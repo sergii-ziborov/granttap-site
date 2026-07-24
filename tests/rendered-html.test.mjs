@@ -90,3 +90,11 @@ test("ships the real product imagery used by the page", async () => {
     ].map((path) => access(new URL(`../${path}`, import.meta.url))),
   );
 });
+
+test("lets Cloudflare serve hashed CSS and JS before the application worker", async () => {
+  const config = JSON.parse(
+    await readFile(new URL("../wrangler.production.jsonc", import.meta.url), "utf8"),
+  );
+
+  assert.notEqual(config.assets?.run_worker_first, true);
+});
