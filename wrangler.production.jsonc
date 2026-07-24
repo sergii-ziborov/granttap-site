@@ -11,6 +11,10 @@
     {
       "pattern": "granttap.com",
       "custom_domain": true
+    },
+    {
+      "pattern": "www.granttap.com",
+      "custom_domain": true
     }
   ],
   "assets": {
