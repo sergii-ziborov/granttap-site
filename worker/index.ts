@@ -2,6 +2,12 @@
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 
+const CANONICAL_ORIGIN = "https://granttap.com";
+const REDIRECT_HOSTS = new Set([
+  "granttap.serhiiright.chatgpt.site",
+  "www.granttap.com",
+]);
+
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
@@ -28,6 +34,13 @@ interface ExecutionContext {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    if (REDIRECT_HOSTS.has(url.hostname)) {
+      return Response.redirect(
+        new URL(`${url.pathname}${url.search}`, CANONICAL_ORIGIN),
+        308,
+      );
+    }
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];

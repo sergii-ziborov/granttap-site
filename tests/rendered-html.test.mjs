@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
-import { access } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(url = "https://granttap.com/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("http://localhost/", {
+    new Request(url, {
       headers: { accept: "text/html" },
     }),
     {
@@ -42,8 +42,35 @@ test("server-renders the GrantTap product page and social metadata", async () =>
     html,
     /<meta(?=[^>]*property="og:image")(?=[^>]*content="https:\/\/granttap\.com\/og\.png")[^>]*>/i,
   );
+  assert.match(
+    html,
+    /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i,
+  );
   assert.doesNotMatch(html, /Nodvox|Your site is taking shape/);
   assert.doesNotMatch(html, /\/Users\/|\.vinext\/fonts\//);
+});
+
+test("permanently redirects the Sites hostname to the canonical domain", async () => {
+  const response = await render(
+    "https://granttap.serhiiright.chatgpt.site/features?from=sites",
+  );
+
+  assert.equal(response.status, 308);
+  assert.equal(
+    response.headers.get("location"),
+    "https://granttap.com/features?from=sites",
+  );
+});
+
+test("publishes robots and sitemap files for only the canonical domain", async () => {
+  const [robots, sitemap] = await Promise.all([
+    readFile(new URL("../public/robots.txt", import.meta.url), "utf8"),
+    readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(robots, /Sitemap: https:\/\/granttap\.com\/sitemap\.xml/);
+  assert.match(sitemap, /<loc>https:\/\/granttap\.com\/<\/loc>/);
+  assert.doesNotMatch(`${robots}\n${sitemap}`, /chatgpt\.site/);
 });
 
 test("ships the real product imagery used by the page", async () => {

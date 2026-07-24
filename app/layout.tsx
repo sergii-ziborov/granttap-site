@@ -10,6 +10,20 @@ export const metadata: Metadata = {
   description:
     "Approve commands, answer questions, and inspect visible activity from Claude Code and Codex on Apple Watch and iPhone.",
   applicationName: "GrantTap",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   keywords: [
     "Apple Watch",
     "Claude Code",
