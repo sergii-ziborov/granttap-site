@@ -19,14 +19,14 @@ export default function TermsPage() {
       sections={{
         en: [
           { heading: "Your responsibility", paragraphs: ["You remain responsible for reviewing commands, protecting paired devices, and deciding whether an agent action is appropriate. An approval can modify or delete files, publish code, or affect external systems."] },
-          { heading: "Availability", paragraphs: ["The product is pre-release and the App Store listing is under review. Features, relay availability, and the estimated launch date may change. Do not rely on GrantTap as the only approval or recovery mechanism."] },
+          { heading: "Availability", paragraphs: ["The product is pre-release and is being prepared for App Store review. Features, relay availability, and the estimated launch date may change. Do not rely on GrantTap as the only approval or recovery mechanism."] },
           { heading: "No affiliation", paragraphs: ["GrantTap is an independent product and is not affiliated with, endorsed by, or sponsored by Apple, Anthropic, OpenAI, Cloudflare, or their products."] },
           { heading: "Open-source components", paragraphs: ["The GrantTap MCP bridge, relay, and website are licensed separately under the licenses in their public repositories. The iPhone and Apple Watch application is proprietary unless stated otherwise."] },
           { heading: "Warranty", paragraphs: ["To the maximum extent permitted by law, GrantTap is provided as available and without warranties. Nothing here excludes rights that cannot lawfully be excluded."] },
         ],
         ru: [
           { heading: "Ваша ответственность", paragraphs: ["Вы отвечаете за проверку команд, защиту спаренных устройств и решение о допустимости действия агента. Подтверждение может изменить или удалить файлы, опубликовать код либо затронуть внешние системы."] },
-          { heading: "Доступность", paragraphs: ["Продукт находится на этапе предварительного выпуска, листинг App Store проходит проверку. Возможности, доступность relay и оценочная дата запуска могут измениться. GrantTap не должен быть единственным механизмом подтверждения или восстановления."] },
+          { heading: "Доступность", paragraphs: ["Продукт находится на этапе предварительного выпуска и готовится к проверке App Store. Возможности, доступность relay и оценочная дата запуска могут измениться. GrantTap не должен быть единственным механизмом подтверждения или восстановления."] },
           { heading: "Независимый продукт", paragraphs: ["GrantTap не связан и не одобрен Apple, Anthropic, OpenAI, Cloudflare или их продуктами."] },
           { heading: "Открытые компоненты", paragraphs: ["MCP-мост, relay и сайт GrantTap имеют отдельные лицензии в публичных репозиториях. Приложение для iPhone и Apple Watch является проприетарным, если не указано иное."] },
           { heading: "Гарантии", paragraphs: ["В максимально допустимой законом степени GrantTap предоставляется «как доступно», без гарантий. Неотчуждаемые законом права сохраняются."] },

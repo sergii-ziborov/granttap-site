@@ -8,7 +8,7 @@ on iPhone and Apple Watch.
 | ![GrantTap sessions](public/product/phone-sessions.png) | ![GrantTap activity](public/product/phone-activity.png) | ![GrantTap approval](public/product/watch-approval.png) |
 
 The canonical product site explains the GrantTap workflow, security boundary,
-MCP integration, phone/watch experience, and current App Store review status
+MCP integration, phone/watch experience, and current App Store launch status
 using real screenshots from the app. English is the default; visitors can
 switch the full site to Russian.
 
@@ -71,11 +71,13 @@ duplicate content.
 - Terms: `app/terms/`
 - Support: `app/support/`
 - Licenses: `app/licenses/`
+- Security policy: `SECURITY.md`
 
 ## Related
 
 - MCP bridge: [sergii-ziborov/granttap-mcp](https://github.com/sergii-ziborov/granttap-mcp)
 - npm package: [granttap-mcp](https://www.npmjs.com/package/granttap-mcp)
 - Relay: [sergii-ziborov/granttap-relay](https://github.com/sergii-ziborov/granttap-relay)
+- Support: [granttap.com/support](https://granttap.com/support)
 
 GrantTap is not affiliated with Anthropic, OpenAI, or Apple.

@@ -37,6 +37,9 @@ export default function SupportPage() {
           },
           {
             heading: "Get help",
+            paragraphs: [
+              "Support email: sergii.ziborov@gmail.com. Include the GrantTap app version, iOS/watchOS version, MCP package version, and steps to reproduce. Never send pairing codes, secret keys, or real command payloads.",
+            ],
             links: [
               { label: "MCP issues", href: "https://github.com/sergii-ziborov/granttap-mcp/issues" },
               { label: "Relay issues", href: "https://github.com/sergii-ziborov/granttap-relay/issues" },
@@ -65,6 +68,9 @@ export default function SupportPage() {
           },
           {
             heading: "Получить помощь",
+            paragraphs: [
+              "Email поддержки: sergii.ziborov@gmail.com. Укажите версию GrantTap, iOS/watchOS, версию MCP-пакета и шаги воспроизведения. Не отправляйте коды пейринга, секретные ключи или реальные команды.",
+            ],
             links: [
               { label: "Проблемы MCP", href: "https://github.com/sergii-ziborov/granttap-mcp/issues" },
               { label: "Проблемы relay", href: "https://github.com/sergii-ziborov/granttap-relay/issues" },

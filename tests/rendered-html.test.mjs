@@ -39,7 +39,7 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.match(html, /Live only while open/);
   assert.match(html, /Per-chat controls/);
   assert.match(html, /codex mcp add granttap -- npx -y granttap-mcp/);
-  assert.match(html, /App Store release is in review/);
+  assert.match(html, /Preparing for App Store review/);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
   assert.match(
     html,

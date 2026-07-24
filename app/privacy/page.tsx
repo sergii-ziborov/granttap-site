@@ -30,7 +30,7 @@ export default function PrivacyPage() {
           {
             heading: "What the relay can observe",
             paragraphs: [
-              "Cloudflare and the GrantTap relay can process operational metadata such as IP address, connection time, room identifier, sender and recipient roles, payload size, and expiry. The relay does not receive the secret keys needed to decrypt message contents.",
+              "Cloudflare and the GrantTap relay process operational metadata such as IP address, connection time, room identifier, sender and recipient roles, payload size, and expiry only as needed to deliver and protect the service. GrantTap does not use this metadata for advertising, profiling, or product analytics. The relay does not receive the secret keys needed to decrypt message contents.",
             ],
           },
           {
@@ -48,11 +48,12 @@ export default function PrivacyPage() {
           {
             heading: "Retention and deletion",
             paragraphs: [
-              "Encrypted relay messages have explicit expirations and bounded queues. Pairing blobs expire after 15 minutes and are single-use. Remove the app and delete ~/.granttap on the paired computer to remove local GrantTap state.",
+              "Encrypted relay messages have explicit expirations and bounded queues and are not retained as a readable account history. Pairing blobs expire after 15 minutes and are single-use. GrantTap does not retain voice recordings. Use Settings → Forget pairing, remove the app, and delete ~/.granttap on the paired computer to remove local GrantTap state.",
             ],
           },
           {
             heading: "Questions",
+            paragraphs: ["Contact: sergii.ziborov@gmail.com."],
             links: [
               { label: "Support", href: "/support" },
               { label: "Audit the public relay", href: "https://github.com/sergii-ziborov/granttap-relay" },
@@ -72,7 +73,7 @@ export default function PrivacyPage() {
           {
             heading: "Что может видеть relay",
             paragraphs: [
-              "Cloudflare и relay GrantTap могут обрабатывать служебные метаданные: IP-адрес, время соединения, идентификатор комнаты, роли отправителя и получателя, размер и срок сообщения. Секретных ключей для расшифровки у relay нет.",
+              "Cloudflare и relay GrantTap обрабатывают служебные метаданные — IP-адрес, время соединения, идентификатор комнаты, роли отправителя и получателя, размер и срок сообщения — только для доставки и защиты сервиса. GrantTap не использует эти данные для рекламы, профилирования или продуктовой аналитики. Секретных ключей для расшифровки у relay нет.",
             ],
           },
           {
@@ -90,11 +91,12 @@ export default function PrivacyPage() {
           {
             heading: "Хранение и удаление",
             paragraphs: [
-              "Сообщения relay имеют срок жизни и ограниченную очередь. Блобы пейринга одноразовые и истекают через 15 минут. Для удаления локального состояния удалите приложение и папку ~/.granttap на спаренном компьютере.",
+              "Сообщения relay имеют срок жизни и ограниченную очередь и не сохраняются как читаемая история аккаунта. Блобы пейринга одноразовые и истекают через 15 минут. GrantTap не хранит голосовые записи. Для удаления локального состояния выберите «Забыть пейринг», удалите приложение и папку ~/.granttap на спаренном компьютере.",
             ],
           },
           {
             heading: "Вопросы",
+            paragraphs: ["Контакт: sergii.ziborov@gmail.com."],
             links: [
               { label: "Поддержка", href: "/support" },
               { label: "Публичный код relay", href: "https://github.com/sergii-ziborov/granttap-relay" },

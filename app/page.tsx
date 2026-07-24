@@ -8,7 +8,7 @@ const RELEASE_AT = new Date("2026-08-14T09:00:00Z");
 const copy = {
   en: {
     nav: ["How it works", "Activity", "Security", "Install"],
-    status: "App Store review",
+    status: "App Store launch",
     eyebrow: "Claude Code + Codex, from your wrist",
     heroTitle: "Approve the next move.",
     heroAccent: "Keep yours.",
@@ -71,10 +71,10 @@ const copy = {
     npm: "View on npm",
     relaySource: "Relay source on GitHub",
     releaseKicker: "Launch status",
-    releaseTitle: "App Store release is in review.",
+    releaseTitle: "Preparing for App Store review.",
     releaseText:
       "Target: August 14, 2026. This is an estimate and may move if Apple requests changes.",
-    appStore: "App Store — review in progress",
+    appStore: "App Store — preparing for review",
     progress: "Release progress",
     remaining: "remaining",
     legal: ["Privacy", "Terms", "Support", "Licenses"],
@@ -83,7 +83,7 @@ const copy = {
   },
   ru: {
     nav: ["Как работает", "Активность", "Безопасность", "Установка"],
-    status: "Проверка App Store",
+    status: "Запуск в App Store",
     eyebrow: "Claude Code + Codex — прямо с запястья",
     heroTitle: "Подтвердите следующий шаг.",
     heroAccent: "Сохраните контроль.",
@@ -146,10 +146,10 @@ const copy = {
     npm: "Пакет на npm",
     relaySource: "Исходники relay на GitHub",
     releaseKicker: "Статус запуска",
-    releaseTitle: "Релиз в App Store проходит проверку.",
+    releaseTitle: "Готовим релиз к проверке App Store.",
     releaseText:
       "Целевая дата: 14 августа 2026 года. Это оценка — срок может измениться, если Apple запросит правки.",
-    appStore: "App Store — идёт проверка",
+    appStore: "App Store — подготовка к проверке",
     progress: "Готовность релиза",
     remaining: "до цели",
     legal: ["Конфиденциальность", "Условия", "Поддержка", "Лицензии"],
@@ -213,7 +213,12 @@ export default function Home() {
         <div className="hero-product" aria-label="GrantTap on iPhone and Apple Watch">
           <div className="signal signal-one" /><div className="signal signal-two" />
           <div className="phone-shell"><div className="phone-speaker" /><img src="/product/phone-activity.png" alt="GrantTap visible agent activity on iPhone" /></div>
-          <div className="watch-shell"><div className="watch-crown" /><img src="/product/watch-approval.png" alt="GrantTap command approval on Apple Watch" /></div>
+          <div className="watch-shell">
+            <span className="watch-strap watch-strap-top" aria-hidden="true" />
+            <span className="watch-strap watch-strap-bottom" aria-hidden="true" />
+            <div className="watch-crown" />
+            <img src="/product/watch-approval.png" alt="GrantTap command approval on Apple Watch" />
+          </div>
           <div className="approval-toast"><span className="toast-icon">✓</span><span><strong>Allowed from Watch</strong><small>Decision returned to the agent</small></span></div>
         </div>
       </section>
