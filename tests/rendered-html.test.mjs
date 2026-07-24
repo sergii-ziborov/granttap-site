@@ -38,6 +38,9 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.match(html, /Zero-knowledge relay/);
   assert.match(html, /Live only while open/);
   assert.match(html, /Per-chat controls/);
+  assert.match(html, /codex mcp add granttap -- npx -y granttap-mcp/);
+  assert.match(html, /App Store release is in review/);
+  assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
   assert.match(
     html,
     /<meta(?=[^>]*property="og:image")(?=[^>]*content="https:\/\/granttap\.com\/og\.png")[^>]*>/i,
@@ -69,7 +72,9 @@ test("publishes robots and sitemap files for only the canonical domain", async (
   ]);
 
   assert.match(robots, /Sitemap: https:\/\/granttap\.com\/sitemap\.xml/);
-  assert.match(sitemap, /<loc>https:\/\/granttap\.com\/<\/loc>/);
+  for (const path of ["/", "/privacy", "/terms", "/support", "/licenses"]) {
+    assert.match(sitemap, new RegExp(`<loc>https:\\/\\/granttap\\.com${path.replace("/", "\\/")}<\\/loc>`));
+  }
   assert.doesNotMatch(`${robots}\n${sitemap}`, /chatgpt\.site/);
 });
 
