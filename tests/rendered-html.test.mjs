@@ -43,6 +43,7 @@ test("server-renders the GrantTap product page and social metadata", async () =>
     /<meta(?=[^>]*property="og:image")(?=[^>]*content="https:\/\/granttap\.com\/og\.png")[^>]*>/i,
   );
   assert.doesNotMatch(html, /Nodvox|Your site is taking shape/);
+  assert.doesNotMatch(html, /\/Users\/|\.vinext\/fonts\//);
 });
 
 test("ships the real product imagery used by the page", async () => {
