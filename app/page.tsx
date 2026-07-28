@@ -88,6 +88,14 @@ const copy = {
     countdownLabel: "Target submission",
     remaining: "to go",
     countdownReached: "Target date reached — submission in progress.",
+    unitDays: "d",
+    unitHours: "h",
+    toastTitle: "Allowed from Watch",
+    toastText: "Decision returned to the agent",
+    agentWorking: "Agent working on your Mac",
+    allowShort: "Allow",
+    watchCaptionInline: "Same context on your wrist",
+    tagline: "Keep your agents moving.",
     legal: ["Privacy", "Terms", "Support", "Licenses"],
     rights:
       "© 2026 GrantTap. GrantTap is not affiliated with Anthropic, OpenAI, or Apple.",
@@ -164,6 +172,14 @@ const copy = {
     countdownLabel: "Цель по отправке",
     remaining: "осталось",
     countdownReached: "Целевая дата наступила — идёт отправка.",
+    unitDays: "д",
+    unitHours: "ч",
+    toastTitle: "Разрешено с часов",
+    toastText: "Решение вернулось агенту",
+    agentWorking: "Агент работает на вашем Mac",
+    allowShort: "Разрешить",
+    watchCaptionInline: "Тот же контекст на запястье",
+    tagline: "Пусть агенты не простаивают.",
     legal: ["Конфиденциальность", "Условия", "Поддержка", "Лицензии"],
     rights:
       "© 2026 GrantTap. GrantTap не связан с Anthropic, OpenAI или Apple.",
@@ -225,7 +241,7 @@ export default function Home() {
             <div className="watch-crown" />
             <img src="/product/watch-approval.png" alt="GrantTap command approval on Apple Watch" />
           </div>
-          <div className="approval-toast"><span className="toast-icon">✓</span><span><strong>Allowed from Watch</strong><small>Decision returned to the agent</small></span></div>
+          <div className="approval-toast"><span className="toast-icon">✓</span><span><strong>{t.toastTitle}</strong><small>{t.toastText}</small></span></div>
         </div>
       </section>
 
@@ -241,8 +257,8 @@ export default function Home() {
             <article className="step-card" key={title}>
               <span className="step-number">0{index + 1}</span>
               {index === 0 && <div className="terminal-card"><div className="terminal-dots"><i /><i /><i /></div><code><span>$</span> granttap-mcp setup</code></div>}
-              {index === 1 && <div className="agent-lines" aria-hidden="true"><span className="agent-line active" /><span className="agent-line" /><span className="agent-line short" /><b>Agent working on your Mac</b></div>}
-              {index === 2 && <div className="decision-demo" aria-hidden="true"><button tabIndex={-1}>×</button><button tabIndex={-1}>✓ Allow</button></div>}
+              {index === 1 && <div className="agent-lines" aria-hidden="true"><span className="agent-line active" /><span className="agent-line" /><span className="agent-line short" /><b>{t.agentWorking}</b></div>}
+              {index === 2 && <div className="decision-demo" aria-hidden="true"><button tabIndex={-1}>×</button><button tabIndex={-1}>✓ {t.allowShort}</button></div>}
               <h3>{title}</h3><p>{text}</p>
             </article>
           ))}
@@ -254,7 +270,7 @@ export default function Home() {
           <p className="kicker">{t.activityKicker}</p><h2>{t.activityTitle}</h2><p>{t.activityText}</p>
           <ul className="check-list">{t.activityItems.map(([title, text]) => <li key={title}><CheckMark /><span><strong>{title}</strong>{text}</span></li>)}</ul>
         </div>
-        <div className="activity-stage"><div className="activity-phone"><img src="/product/phone-activity.png" alt="Open GrantTap session on iPhone" /></div><div className="activity-watch"><span>Same context on your wrist</span><img src="/product/watch-activity.png" alt="GrantTap activity stream on Apple Watch" /></div></div>
+        <div className="activity-stage"><div className="activity-phone"><img src="/product/phone-activity.png" alt="Open GrantTap session on iPhone" /></div><div className="activity-watch"><span>{t.watchCaptionInline}</span><img src="/product/watch-activity.png" alt="GrantTap activity stream on Apple Watch" /></div></div>
       </section>
 
       <section className="controls-section section-shell">
@@ -310,7 +326,7 @@ export default function Home() {
               <p className="release-countdown" role="status">
                 {countdown.reached
                   ? t.countdownReached
-                  : <>{t.countdownLabel}: <strong>{countdown.days}d {countdown.hours}h</strong> {t.remaining}</>}
+                  : <>{t.countdownLabel}: <strong>{countdown.days}{t.unitDays} {countdown.hours}{t.unitHours}</strong> {t.remaining}</>}
               </p>
             )}
           </div>
@@ -319,7 +335,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <div className="footer-brand"><img src="/app-icon.png" alt="" /><span><strong>GrantTap</strong><small>Keep your agents moving.</small></span></div>
+        <div className="footer-brand"><img src="/app-icon.png" alt="" /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div>
         <div className="footer-links">
           <a href="/privacy">{t.legal[0]}</a><a href="/terms">{t.legal[1]}</a><a href="/support">{t.legal[2]}</a><a href="/licenses">{t.legal[3]}</a>
           <a href="https://github.com/sergii-ziborov/granttap-mcp">GitHub</a><a href="https://www.npmjs.com/package/granttap-mcp">npm</a>

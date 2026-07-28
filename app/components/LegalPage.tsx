@@ -3,6 +3,13 @@
 import Link from "next/link";
 import { LanguageToggle, useLocale } from "./Locale";
 
+const LEGAL_LINKS = [
+  { href: "/privacy", label: { en: "Privacy", ru: "Конфиденциальность" } },
+  { href: "/terms", label: { en: "Terms", ru: "Условия" } },
+  { href: "/support", label: { en: "Support", ru: "Поддержка" } },
+  { href: "/licenses", label: { en: "Licenses", ru: "Лицензии" } },
+] as const;
+
 type Section = {
   heading: string;
   paragraphs?: string[];
@@ -64,10 +71,9 @@ export function LegalPage({
         ))}
       </article>
       <footer className="legal-footer">
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
-        <a href="/support">Support</a>
-        <a href="/licenses">Licenses</a>
+        {LEGAL_LINKS.map(({ href, label }) => (
+          <a href={href} key={href}>{label[locale]}</a>
+        ))}
       </footer>
     </main>
   );
