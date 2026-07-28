@@ -1,9 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { LanguageToggle, useLocale } from "./components/Locale";
-
-const RELEASE_AT = new Date("2026-08-14T09:00:00Z");
 
 const copy = {
   en: {
@@ -30,7 +27,7 @@ const copy = {
     activityKicker: "Open a chat when context matters",
     activityTitle: "See the useful trail, not a wall of hidden reasoning.",
     activityText:
-      "While a chat is open, GrantTap streams visible assistant messages and compact action summaries. Thinking blocks are never forwarded. When work finishes, you get the latest visible final answer.",
+      "While a chat is open, GrantTap streams visible assistant messages and compact action summaries. Thinking blocks are never forwarded. When work finishes, you get the latest visible final answer. In version 1.0.0, live requests are delivered while the GrantTap iPhone app is open; notifications mirror to Apple Watch.",
     activityItems: [
       ["Live only while open", "Close the chat and its activity subscription stops."],
       ["Readable action summaries", "Commands stay monospaced and clearly separated from messages."],
@@ -73,10 +70,8 @@ const copy = {
     releaseKicker: "Launch status",
     releaseTitle: "Preparing for App Store review.",
     releaseText:
-      "Target: August 14, 2026. This is an estimate and may move if Apple requests changes.",
-    appStore: "App Store — preparing for review",
-    progress: "Release progress",
-    remaining: "remaining",
+      "GrantTap for iPhone and Apple Watch is not yet available on the App Store. A link to the listing will appear here once the app is approved.",
+    appStore: "App Store — not yet available",
     legal: ["Privacy", "Terms", "Support", "Licenses"],
     rights:
       "© 2026 GrantTap. GrantTap is not affiliated with Anthropic, OpenAI, or Apple.",
@@ -105,7 +100,7 @@ const copy = {
     activityKicker: "Откройте чат, когда нужен контекст",
     activityTitle: "Полезная история без скрытых рассуждений.",
     activityText:
-      "Пока чат открыт, GrantTap передаёт видимые сообщения ассистента и короткие итоги действий. Скрытые thinking-блоки не пересылаются. После завершения вы получите последний видимый итог.",
+      "Пока чат открыт, GrantTap передаёт видимые сообщения ассистента и короткие итоги действий. Скрытые thinking-блоки не пересылаются. После завершения вы получите последний видимый итог. В версии 1.0.0 живые запросы доставляются, пока приложение GrantTap открыто на iPhone; уведомления дублируются на Apple Watch.",
     activityItems: [
       ["Только пока открыто", "Закройте чат — подписка на его активность остановится."],
       ["Понятные итоги действий", "Команды показаны моноширинным шрифтом отдельно от сообщений."],
@@ -148,10 +143,8 @@ const copy = {
     releaseKicker: "Статус запуска",
     releaseTitle: "Готовим релиз к проверке App Store.",
     releaseText:
-      "Целевая дата: 14 августа 2026 года. Это оценка — срок может измениться, если Apple запросит правки.",
-    appStore: "App Store — подготовка к проверке",
-    progress: "Готовность релиза",
-    remaining: "до цели",
+      "GrantTap для iPhone и Apple Watch пока недоступен в App Store. Ссылка на страницу приложения появится здесь после его одобрения.",
+    appStore: "App Store — пока недоступно",
     legal: ["Конфиденциальность", "Условия", "Поддержка", "Лицензии"],
     rights:
       "© 2026 GrantTap. GrantTap не связан с Anthropic, OpenAI или Apple.",
@@ -160,25 +153,9 @@ const copy = {
 
 const CheckMark = () => <span aria-hidden="true">✓</span>;
 
-function releaseCountdown() {
-  const remaining = Math.max(0, RELEASE_AT.getTime() - Date.now());
-  const days = Math.floor(remaining / 86_400_000);
-  const hours = Math.floor((remaining % 86_400_000) / 3_600_000);
-  return { days, hours, progress: Math.min(100, Math.max(0, Math.round(((21 - days) / 21) * 100))) };
-}
-
 export default function Home() {
   const { locale, setLocale } = useLocale();
   const t = copy[locale];
-  const [countdown, setCountdown] = useState({ days: 21, hours: 0, progress: 0 });
-  const [showRelease, setShowRelease] = useState(false);
-
-  useEffect(() => {
-    const update = () => setCountdown(releaseCountdown());
-    update();
-    const timer = window.setInterval(update, 60_000);
-    return () => window.clearInterval(timer);
-  }, []);
 
   return (
     <main>
@@ -298,10 +275,9 @@ export default function Home() {
       <section className="availability section-shell" id="availability">
         <div className="availability-card release-card">
           <img src="/app-icon.png" alt="" />
-          <div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p>{t.releaseText}</p><div className="release-progress" aria-label={`${t.progress}: ${countdown.progress}%`}><i style={{ width: `${countdown.progress}%` }} /></div><small>{countdown.days}d {countdown.hours}h {t.remaining}</small></div>
-          <button className="availability-pill" type="button" onClick={() => setShowRelease((value) => !value)} aria-expanded={showRelease}>{t.appStore}</button>
+          <div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p>{t.releaseText}</p></div>
+          <span className="availability-pill">{t.appStore}</span>
         </div>
-        {showRelease && <p className="release-note" role="status">{t.releaseText} {countdown.days}d {countdown.hours}h {t.remaining}.</p>}
       </section>
 
       <footer>

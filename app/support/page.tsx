@@ -11,10 +11,10 @@ export default function SupportPage() {
   return (
     <LegalPage
       title={{ en: "Support", ru: "Поддержка" }}
-      updated={{ en: "July 24, 2026", ru: "24 июля 2026" }}
+      updated={{ en: "July 27, 2026", ru: "27 июля 2026" }}
       intro={{
-        en: "GrantTap for iPhone and Apple Watch is preparing for release. The public MCP bridge is available now.",
-        ru: "GrantTap для iPhone и Apple Watch готовится к выпуску. Публичный MCP-мост уже доступен.",
+        en: "GrantTap for iPhone and Apple Watch is not yet available on the App Store. The public MCP bridge is available now.",
+        ru: "GrantTap для iPhone и Apple Watch пока недоступен в App Store. Публичный MCP-мост уже доступен.",
       }}
       sections={{
         en: [
@@ -33,6 +33,8 @@ export default function SupportPage() {
               "Check that the relay URL begins with wss:// for cloud use.",
               "Re-run granttap-mcp setup after updating the package.",
               "Use a test chat before enabling remote approval on important work.",
+              "In version 1.0.0, live requests are delivered while the GrantTap iPhone app is open; notifications mirror to Apple Watch.",
+              "If camera access was denied, enable it in iOS Settings → GrantTap, then scan the pairing QR code again.",
             ],
           },
           {
@@ -64,6 +66,8 @@ export default function SupportPage() {
               "Для облачного relay адрес должен начинаться с wss://.",
               "После обновления пакета повторно запустите granttap-mcp setup.",
               "Сначала проверяйте удалённые подтверждения в тестовом чате.",
+              "В версии 1.0.0 живые запросы доставляются, пока приложение GrantTap открыто на iPhone; уведомления дублируются на Apple Watch.",
+              "Если доступ к камере был запрещён, включите его в Настройках iOS → GrantTap и снова отсканируйте QR-код пейринга.",
             ],
           },
           {
