@@ -1,6 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { LanguageToggle, useLocale } from "./components/Locale";
+
+/** Target submission date. Move this one constant when the plan changes. */
+const RELEASE_AT = new Date("2026-08-14T09:00:00Z");
+
+function releaseCountdown() {
+  const remaining = Math.max(0, RELEASE_AT.getTime() - Date.now());
+  return {
+    days: Math.floor(remaining / 86_400_000),
+    hours: Math.floor((remaining % 86_400_000) / 3_600_000),
+    reached: remaining === 0,
+  };
+}
 
 const copy = {
   en: {
@@ -72,6 +85,9 @@ const copy = {
     releaseText:
       "GrantTap for iPhone and Apple Watch is not yet available on the App Store. A link to the listing will appear here once the app is approved.",
     appStore: "App Store — not yet available",
+    countdownLabel: "Target submission",
+    remaining: "to go",
+    countdownReached: "Target date reached — submission in progress.",
     legal: ["Privacy", "Terms", "Support", "Licenses"],
     rights:
       "© 2026 GrantTap. GrantTap is not affiliated with Anthropic, OpenAI, or Apple.",
@@ -145,6 +161,9 @@ const copy = {
     releaseText:
       "GrantTap для iPhone и Apple Watch пока недоступен в App Store. Ссылка на страницу приложения появится здесь после его одобрения.",
     appStore: "App Store — пока недоступно",
+    countdownLabel: "Цель по отправке",
+    remaining: "осталось",
+    countdownReached: "Целевая дата наступила — идёт отправка.",
     legal: ["Конфиденциальность", "Условия", "Поддержка", "Лицензии"],
     rights:
       "© 2026 GrantTap. GrantTap не связан с Anthropic, OpenAI или Apple.",
@@ -156,6 +175,16 @@ const CheckMark = () => <span aria-hidden="true">✓</span>;
 export default function Home() {
   const { locale, setLocale } = useLocale();
   const t = copy[locale];
+
+  // Starts null so server and first client render agree; the real figure lands
+  // after hydration and then ticks hourly.
+  const [countdown, setCountdown] = useState<ReturnType<typeof releaseCountdown> | null>(null);
+  useEffect(() => {
+    const update = () => setCountdown(releaseCountdown());
+    update();
+    const id = setInterval(update, 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <main>
@@ -275,7 +304,16 @@ export default function Home() {
       <section className="availability section-shell" id="availability">
         <div className="availability-card release-card">
           <img src="/app-icon.png" alt="" />
-          <div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p>{t.releaseText}</p></div>
+          <div>
+            <p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p>{t.releaseText}</p>
+            {countdown && (
+              <p className="release-countdown" role="status">
+                {countdown.reached
+                  ? t.countdownReached
+                  : <>{t.countdownLabel}: <strong>{countdown.days}d {countdown.hours}h</strong> {t.remaining}</>}
+              </p>
+            )}
+          </div>
           <span className="availability-pill">{t.appStore}</span>
         </div>
       </section>

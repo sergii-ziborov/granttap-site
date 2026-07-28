@@ -1579,3 +1579,15 @@ footer > p {
     transition-duration: 0.01ms !important;
   }
 }
+
+.release-countdown {
+  margin-top: 12px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.release-countdown strong {
+  color: var(--orange);
+  font-weight: 600;
+}
