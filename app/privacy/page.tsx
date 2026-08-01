@@ -32,6 +32,7 @@ export default function PrivacyPage() {
             heading: "What the relay can observe",
             paragraphs: [
               "Cloudflare and the GrantTap relay process operational metadata such as IP address, connection time, opaque room/mailbox and delivery identifiers, sender and recipient roles, ciphertext size, expiry, APNs device token/environment, and a content-neutral wake flag only as needed to deliver and protect the service. GrantTap does not use this metadata for advertising, profiling, or product analytics. APNs wakes contain no task kind, request id, delivery id, command, prompt, path, task title, or message body. A Cloudflare account or database compromise does not provide the endpoint, transfer, or per-task keys needed to decrypt content.",
+              "Plaintext exists only on authorized endpoints. A task key never opens a second task. Possession of one paired device cannot decrypt another pairing or a task whose independent key was never granted to it; a device explicitly granted multiple tasks is an authorized endpoint for each of them.",
             ],
           },
           {
@@ -82,6 +83,7 @@ export default function PrivacyPage() {
             heading: "Что может видеть relay",
             paragraphs: [
               "Cloudflare и relay GrantTap обрабатывают только служебные метаданные: IP, время, непрозрачные идентификаторы комнаты/mailbox/delivery, роли маршрутизации, размер шифротекста, срок, APNs-токен и среду, а также нейтральный wake-флаг. Они не используются для рекламы, профилирования или аналитики. APNs не содержит тип задачи, request/delivery ID, команду, промпт, путь, название или текст. Доступ к аккаунту Cloudflare или базе не даёт ключей устройства, transfer key или отдельных ключей задач.",
+              "Открытый текст существует только на разрешённых конечных устройствах. Ключ одной задачи не открывает вторую. Наличие одного спаренного устройства не расшифрует другой пейринг или задачу, чей независимый ключ ему не выдавался; если устройству явно выданы ключи нескольких задач, оно является разрешённым endpoint для каждой из них.",
             ],
           },
           {

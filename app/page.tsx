@@ -66,7 +66,7 @@ const copy = {
     facts: [
       ["Never touches", "Source repositories, model credentials, prompts to the model, or model traffic."],
       ["Can observe", "Opaque routes, timing, IP address, ciphertext size, expiry, and APNs routing data—not task content."],
-      ["Keys live on", "Your paired endpoints. A key from one task cannot decrypt another task."],
+      ["Keys live on", "Authorized endpoints only. A key from one task cannot decrypt another, and a device cannot open a task whose key it was never granted."],
     ],
     galleryKicker: "One system, two speeds",
     galleryTitle: "Fast decisions on Watch. Full control on iPhone.",
@@ -149,7 +149,7 @@ const copy = {
     facts: [
       ["Никогда не получает", "Репозитории, ключи моделей, промпты модели и трафик модели."],
       ["Может видеть", "Непрозрачный маршрут, время, IP, размер шифротекста, срок и данные APNs — но не содержимое задач."],
-      ["Ключи хранятся", "На спаренных устройствах. Ключ одной задачи не расшифровывает другую."],
+      ["Ключи хранятся", "Только на разрешённых конечных устройствах. Ключ одной задачи не расшифровывает другую, а устройство не откроет задачу, ключ которой ему не выдавался."],
     ],
     galleryKicker: "Одна система, две скорости",
     galleryTitle: "Быстрые решения на Watch. Полный контроль на iPhone.",
