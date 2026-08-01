@@ -47,6 +47,7 @@ const copy = {
       ["Useful, readable activity", "Messages render with formatting; actions stay clearly separated from the agent summary."],
       ["Real context controls", "Track used tokens and the model window. Codex compaction uses its supported app-server API."],
       ["Route the next turn", "Choose an allowed MCP or a project skill, then attach up to five photos or files."],
+      ["History you can audit", "Browse older chats with their tokens, context, MCP servers and skills, plus exact local MCP/skill usage counts."],
       ["Plan recurring work", "Chat with local Codex or Claude Code, review its validated series, and save the schedule."],
     ],
     controlsKicker: "Control the task, not a mock setting",
@@ -71,8 +72,10 @@ const copy = {
     ],
     galleryKicker: "One system, two speeds",
     galleryTitle: "Fast decisions on Watch. Full control on iPhone.",
-    phoneCaption: "Tasks, formatted activity, five-file attachment selection, context, per-task MCP, and conversational schedules.",
+    phoneCaption: "Tasks, formatted activity, chat history, exact MCP/skill usage, five-file attachments, context, and conversational schedules.",
     watchCaption: "Approve or deny immediately, then open the session when you need context.",
+    historyCaption: "Older chats keep useful metadata: tokens, context, MCP, skills, and local archive state.",
+    usageCaption: "Only delivered selections and observed tool calls count toward local MCP and skill usage.",
     installKicker: "Public and auditable machine bridge",
     installTitle: "Install the GrantTap MCP in one command.",
     installText:
@@ -131,6 +134,7 @@ const copy = {
       ["Понятная активность", "Сообщения сохраняют форматирование, а действия отделены от итога агента."],
       ["Настоящий контекст", "Смотрите использованные токены и размер окна. Сжатие Codex использует поддерживаемый app-server API."],
       ["Маршрут следующего хода", "Выберите разрешённый MCP или скил проекта и приложите до пяти фото либо файлов."],
+      ["Проверяемая история", "Смотрите старые чаты, их токены, контекст, MCP и скилы, а также точные локальные счётчики использования."],
       ["Планирование серий", "Обсудите повторяющуюся работу с локальным Codex или Claude Code, проверьте расписание и сохраните."],
     ],
     controlsKicker: "Реальное управление задачей",
@@ -155,8 +159,10 @@ const copy = {
     ],
     galleryKicker: "Одна система, две скорости",
     galleryTitle: "Быстрые решения на Watch. Полный контроль на iPhone.",
-    phoneCaption: "Задачи, форматированная активность, до пяти вложений, контекст, MCP и расписания через чат.",
+    phoneCaption: "Задачи, форматированная активность, история чатов, точное использование MCP/скилов, до пяти вложений, контекст и расписания через чат.",
     watchCaption: "Сразу разрешите или отклоните, а при необходимости откройте контекст сессии.",
+    historyCaption: "Старые чаты сохраняют полезные данные: токены, контекст, MCP, скилы и локальный архив.",
+    usageCaption: "В локальный счётчик попадают только доставленные выборы и реальные вызовы инструментов.",
     installKicker: "Публичный и проверяемый мост",
     installTitle: "Установите GrantTap MCP одной командой.",
     installText:
@@ -311,6 +317,10 @@ export default function Home() {
         <div className="gallery-grid">
           <figure className="gallery-phone"><div className="gallery-device"><div className="gallery-screen-stack"><img src="/product/phone-home-v030.png" alt="GrantTap tasks on iPhone" /><img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap task controls on iPhone" /></div></div><figcaption><strong>iPhone</strong>{t.phoneCaption}</figcaption></figure>
           <figure className="gallery-watch"><div className="watch-pair"><img src="/product/watch-approval.png" alt="Approval on Apple Watch" /><img src="/product/watch-activity.png" alt="Activity on Apple Watch" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure>
+        </div>
+        <div className="history-gallery">
+          <figure><div className="history-shot"><img src="/product/phone-chat-history-v062.png" alt="GrantTap old chat history on iPhone" /></div><figcaption><strong>{locale === "ru" ? "История чатов" : "Chat history"}</strong>{t.historyCaption}</figcaption></figure>
+          <figure><div className="history-shot"><img src="/product/phone-mcp-usage-v062.png" alt="GrantTap MCP and skill usage on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Использование MCP и скилов" : "MCP and skill usage"}</strong>{t.usageCaption}</figcaption></figure>
         </div>
       </section>
 

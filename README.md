@@ -7,12 +7,20 @@ on iPhone and Apple Watch.
 | --- | --- | --- | --- |
 | ![GrantTap tasks](public/product/phone-home-v030.png) | ![GrantTap context](public/product/phone-context-v030.png) | ![GrantTap MCP controls](public/product/phone-controls-v030.png) | ![GrantTap approval](public/product/watch-approval.png) |
 
+| Chat history | MCP and skill usage |
+| --- | --- |
+| ![GrantTap chat history](public/product/phone-chat-history-v062.png) | ![GrantTap MCP and skill usage](public/product/phone-mcp-usage-v062.png) |
+
 The canonical product site explains the GrantTap workflow, security boundary,
 MCP integration, phone/watch experience, and current App Store launch status
 using real screenshots from the app. The product tour animates iPhone screen
 changes, a scroll gesture, the Watch activity/approval transition, and the
 decision toast. A live animated countdown tracks the App Store submission date;
 `prefers-reduced-motion` visitors receive a static first frame.
+
+The product copy also covers the protected on-device MCP/skill usage ledger and
+the bounded old-chat browser with per-chat tokens, context, MCP, skills, and
+local archive controls.
 English is the default; visitors can switch the full site to Russian.
 
 The capability copy also covers GrantTap's native recurrence editor and its
