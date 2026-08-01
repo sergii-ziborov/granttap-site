@@ -26,7 +26,7 @@ const copy = {
       "Let your coding agents keep working on your computer while you step away. Review commands, answer questions, and see visible activity from Apple Watch or iPhone.",
     see: "See how it works",
     securityModel: "Read the security model",
-    highlights: ["End-to-end encrypted", "No model traffic proxy", "Per-chat controls"],
+    highlights: ["End-to-end encrypted", "No model traffic proxy", "Context + MCP per task"],
     builtFor: "Built for the tools already running on your machine",
     workflowKicker: "A thin remote, not another agent",
     workflowTitle: "Your computer does the work. GrantTap keeps you in control.",
@@ -40,18 +40,18 @@ const copy = {
     activityKicker: "Open a chat when context matters",
     activityTitle: "See the useful trail, not a wall of hidden reasoning.",
     activityText:
-      "While a chat is open, GrantTap streams visible assistant messages and compact action summaries. Thinking blocks are never forwarded. When work finishes, you get the latest visible final answer. In version 1.0.0, live requests are delivered while the GrantTap iPhone app is open; notifications mirror to Apple Watch.",
+      "While a chat is open, GrantTap streams the last five visible updates, with the full trail one tap away. See the actual context window, compact an idle Codex task, and decide which configured MCP servers are allowed for the next turn.",
     activityItems: [
-      ["Live only while open", "Close the chat and its activity subscription stops."],
-      ["Readable action summaries", "Commands stay monospaced and clearly separated from messages."],
-      ["Reply where you are", "Use text or voice to continue the same agent session."],
+      ["Useful, readable activity", "Messages render with formatting; actions stay clearly separated from the agent summary."],
+      ["Real context controls", "Track used tokens and the model window. Codex compaction uses its supported app-server API."],
+      ["Route the next turn", "Choose an allowed MCP or a project skill, then attach up to five photos or files."],
     ],
-    controlsKicker: "Choose where GrantTap steps in",
-    controlsTitle: "Global control, with a precise escape hatch.",
+    controlsKicker: "Control the task, not a mock setting",
+    controlsTitle: "The switches change the next real agent turn.",
     controls: [
-      ["Pause approvals globally", "Turn remote gating off from iPhone and every local session returns to its normal approval flow."],
-      ["Exclude one session", "Let a trusted test loop run freely without weakening the rest of your active work."],
-      ["Fail back to local", "If the relay is unavailable, the decision returns to the normal desktop prompt."],
+      ["Agent access", "Inspect and change read-only, workspace, or full access for Codex turns sent from GrantTap."],
+      ["MCP per task", "Allow or deny configured MCP servers for one task without changing unrelated sessions."],
+      ["Codex context", "See the real context window and start supported compaction after the active turn finishes."],
     ],
     securityKicker: "Zero-knowledge relay",
     securityTitle: "The server can route your request. It cannot read it.",
@@ -68,7 +68,7 @@ const copy = {
     ],
     galleryKicker: "One system, two speeds",
     galleryTitle: "Fast decisions on Watch. Full control on iPhone.",
-    phoneCaption: "Sessions, visible activity, replies, pairing, and per-chat approval settings.",
+    phoneCaption: "Tasks, formatted activity, five-file attachment selection, context usage, skills, and per-task MCP controls.",
     watchCaption: "Approve or deny immediately, then open the session when you need context.",
     installKicker: "Public and auditable machine bridge",
     installTitle: "Install the GrantTap MCP in one command.",
@@ -110,7 +110,7 @@ const copy = {
       "Пусть кодовые агенты продолжают работу на компьютере, пока вы отошли. Проверяйте команды, отвечайте на вопросы и смотрите видимую активность с Apple Watch или iPhone.",
     see: "Как это работает",
     securityModel: "Модель безопасности",
-    highlights: ["Сквозное шифрование", "Без проксирования модели", "Настройки для каждого чата"],
+    highlights: ["Сквозное шифрование", "Без проксирования модели", "Контекст и MCP для каждой задачи"],
     builtFor: "Работает с инструментами, уже запущенными на вашем компьютере",
     workflowKicker: "Тонкий пульт, а не ещё один агент",
     workflowTitle: "Компьютер выполняет работу. GrantTap оставляет контроль вам.",
@@ -124,18 +124,18 @@ const copy = {
     activityKicker: "Откройте чат, когда нужен контекст",
     activityTitle: "Полезная история без скрытых рассуждений.",
     activityText:
-      "Пока чат открыт, GrantTap передаёт видимые сообщения ассистента и короткие итоги действий. Скрытые thinking-блоки не пересылаются. После завершения вы получите последний видимый итог. В версии 1.0.0 живые запросы доставляются, пока приложение GrantTap открыто на iPhone; уведомления дублируются на Apple Watch.",
+      "Пока чат открыт, GrantTap показывает пять последних видимых обновлений, а полная история доступна одним касанием. Здесь же видны реальный контекст, сжатие свободной задачи Codex и MCP-серверы, разрешённые для следующего хода.",
     activityItems: [
-      ["Только пока открыто", "Закройте чат — подписка на его активность остановится."],
-      ["Понятные итоги действий", "Команды показаны моноширинным шрифтом отдельно от сообщений."],
-      ["Ответ с любого места", "Продолжайте ту же сессию текстом или голосом."],
+      ["Понятная активность", "Сообщения сохраняют форматирование, а действия отделены от итога агента."],
+      ["Настоящий контекст", "Смотрите использованные токены и размер окна. Сжатие Codex использует поддерживаемый app-server API."],
+      ["Маршрут следующего хода", "Выберите разрешённый MCP или скил проекта и приложите до пяти фото либо файлов."],
     ],
-    controlsKicker: "Выберите, где вмешивается GrantTap",
-    controlsTitle: "Общий контроль с точным исключением.",
+    controlsKicker: "Реальное управление задачей",
+    controlsTitle: "Переключатели меняют следующий ход агента.",
     controls: [
-      ["Приостановить всё", "Отключите удалённые подтверждения на iPhone — сессии вернутся к обычному локальному режиму."],
-      ["Исключить одну сессию", "Разрешите доверенному тестовому циклу работать свободно, не ослабляя остальные чаты."],
-      ["Вернуться к локальному", "Если relay недоступен, решение снова появится в обычном окне на компьютере."],
+      ["Доступ агента", "Смотрите и меняйте read-only, workspace или full access для ходов Codex из GrantTap."],
+      ["MCP для задачи", "Разрешайте или запрещайте настроенные MCP-серверы в одной задаче, не затрагивая остальные."],
+      ["Контекст Codex", "Следите за реальным окном и запускайте поддерживаемое сжатие после завершения активного хода."],
     ],
     securityKicker: "Relay с нулевым знанием",
     securityTitle: "Сервер маршрутизирует запрос, но не может его прочитать.",
@@ -152,7 +152,7 @@ const copy = {
     ],
     galleryKicker: "Одна система, две скорости",
     galleryTitle: "Быстрые решения на Watch. Полный контроль на iPhone.",
-    phoneCaption: "Сессии, видимая активность, ответы, пейринг и настройки подтверждений для чатов.",
+    phoneCaption: "Задачи, форматированная активность, до пяти вложений, контекст, скилы и MCP-настройки для каждой задачи.",
     watchCaption: "Сразу разрешите или отклоните, а при необходимости откройте контекст сессии.",
     installKicker: "Публичный и проверяемый мост",
     installTitle: "Установите GrantTap MCP одной командой.",
@@ -234,12 +234,23 @@ export default function Home() {
         </div>
         <div className="hero-product" aria-label="GrantTap on iPhone and Apple Watch">
           <div className="signal signal-one" /><div className="signal signal-two" />
-          <div className="phone-shell"><div className="phone-speaker" /><img src="/product/phone-activity.png" alt="GrantTap visible agent activity on iPhone" /></div>
+          <div className="phone-shell">
+            <div className="phone-speaker" />
+            <div className="phone-screen-stack">
+              <img src="/product/phone-home-v030.png" alt="GrantTap tasks and approvals on iPhone" />
+              <img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" />
+              <img src="/product/phone-controls-v030.png" alt="GrantTap MCP controls on iPhone" />
+            </div>
+            <span className="phone-gesture" aria-hidden="true" />
+          </div>
           <div className="watch-shell">
             <span className="watch-strap watch-strap-top" aria-hidden="true" />
             <span className="watch-strap watch-strap-bottom" aria-hidden="true" />
             <div className="watch-crown" />
-            <img src="/product/watch-approval.png" alt="GrantTap command approval on Apple Watch" />
+            <div className="watch-screen-stack">
+              <img src="/product/watch-approval.png" alt="GrantTap command approval on Apple Watch" />
+              <img src="/product/watch-activity.png" alt="GrantTap agent activity on Apple Watch" />
+            </div>
           </div>
           <div className="approval-toast"><span className="toast-icon">✓</span><span><strong>{t.toastTitle}</strong><small>{t.toastText}</small></span></div>
         </div>
@@ -270,7 +281,7 @@ export default function Home() {
           <p className="kicker">{t.activityKicker}</p><h2>{t.activityTitle}</h2><p>{t.activityText}</p>
           <ul className="check-list">{t.activityItems.map(([title, text]) => <li key={title}><CheckMark /><span><strong>{title}</strong>{text}</span></li>)}</ul>
         </div>
-        <div className="activity-stage"><div className="activity-phone"><img src="/product/phone-activity.png" alt="Open GrantTap session on iPhone" /></div><div className="activity-watch"><span>{t.watchCaptionInline}</span><img src="/product/watch-activity.png" alt="GrantTap activity stream on Apple Watch" /></div></div>
+        <div className="activity-stage"><div className="activity-phone"><div className="activity-screen-stack"><img src="/product/phone-context-v030.png" alt="Open GrantTap context controls on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap MCP controls on iPhone" /></div></div><div className="activity-watch"><span>{t.watchCaptionInline}</span><img src="/product/watch-activity.png" alt="GrantTap activity stream on Apple Watch" /></div></div>
       </section>
 
       <section className="controls-section section-shell">
@@ -296,7 +307,7 @@ export default function Home() {
       <section className="gallery-section section-shell">
         <div className="section-heading compact"><p className="kicker">{t.galleryKicker}</p><h2>{t.galleryTitle}</h2></div>
         <div className="gallery-grid">
-          <figure className="gallery-phone"><div className="gallery-device"><img src="/product/phone-sessions.png" alt="GrantTap sessions on iPhone" /></div><figcaption><strong>iPhone</strong>{t.phoneCaption}</figcaption></figure>
+          <figure className="gallery-phone"><div className="gallery-device"><div className="gallery-screen-stack"><img src="/product/phone-home-v030.png" alt="GrantTap tasks on iPhone" /><img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap task controls on iPhone" /></div></div><figcaption><strong>iPhone</strong>{t.phoneCaption}</figcaption></figure>
           <figure className="gallery-watch"><div className="watch-pair"><img src="/product/watch-approval.png" alt="Approval on Apple Watch" /><img src="/product/watch-activity.png" alt="Activity on Apple Watch" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure>
         </div>
       </section>

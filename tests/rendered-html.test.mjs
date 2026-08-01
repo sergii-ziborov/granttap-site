@@ -36,8 +36,9 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.match(html, /Approve the next move\./);
   assert.match(html, /Keep yours\./);
   assert.match(html, /Zero-knowledge relay/);
-  assert.match(html, /Live only while open/);
-  assert.match(html, /Per-chat controls/);
+  assert.match(html, /Real context controls/);
+  assert.match(html, /MCP per task/);
+  assert.match(html, /phone-controls-v030\.png/);
   assert.match(html, /codex mcp add granttap -- npx -y granttap-mcp/);
   assert.match(html, /Preparing for App Store review/);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
@@ -85,6 +86,9 @@ test("ships the real product imagery used by the page", async () => {
       "public/og.png",
       "public/product/phone-sessions.png",
       "public/product/phone-activity.png",
+      "public/product/phone-home-v030.png",
+      "public/product/phone-context-v030.png",
+      "public/product/phone-controls-v030.png",
       "public/product/watch-approval.png",
       "public/product/watch-activity.png",
     ].map((path) => access(new URL(`../${path}`, import.meta.url))),

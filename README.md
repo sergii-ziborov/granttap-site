@@ -3,14 +3,16 @@
 Source for [granttap.com](https://granttap.com), the product site for GrantTap
 on iPhone and Apple Watch.
 
-| Sessions on iPhone | Activity on iPhone | Approval on Apple Watch |
-| --- | --- | --- |
-| ![GrantTap sessions](public/product/phone-sessions.png) | ![GrantTap activity](public/product/phone-activity.png) | ![GrantTap approval](public/product/watch-approval.png) |
+| Tasks on iPhone | Context usage | Per-task MCP | Approval on Apple Watch |
+| --- | --- | --- | --- |
+| ![GrantTap tasks](public/product/phone-home-v030.png) | ![GrantTap context](public/product/phone-context-v030.png) | ![GrantTap MCP controls](public/product/phone-controls-v030.png) | ![GrantTap approval](public/product/watch-approval.png) |
 
 The canonical product site explains the GrantTap workflow, security boundary,
 MCP integration, phone/watch experience, and current App Store launch status
-using real screenshots from the app. English is the default; visitors can
-switch the full site to Russian.
+using real screenshots from the app. The product tour animates iPhone screen
+changes, a scroll gesture, the Watch activity/approval transition, and the
+decision toast; `prefers-reduced-motion` visitors receive a static first frame.
+English is the default; visitors can switch the full site to Russian.
 
 ## Install the public MCP bridge
 
