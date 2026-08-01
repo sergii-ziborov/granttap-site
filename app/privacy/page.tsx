@@ -11,7 +11,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title={{ en: "Privacy Policy", ru: "Политика конфиденциальности" }}
-      updated={{ en: "July 24, 2026", ru: "24 июля 2026" }}
+      updated={{ en: "August 1, 2026", ru: "1 августа 2026" }}
       intro={{
         en: "GrantTap is designed so the relay can deliver your data without being able to read its contents.",
         ru: "GrantTap устроен так, чтобы relay мог доставлять данные, не имея возможности прочитать их содержимое.",
@@ -24,13 +24,14 @@ export default function PrivacyPage() {
               "Pairing identifiers and encryption keys are created and stored on your paired devices.",
               "Visible agent messages, commands, questions, replies, and approval decisions are end-to-end encrypted before leaving a device.",
               "The relay may temporarily queue encrypted envelopes until delivery or expiry.",
+              "For background delivery, the authenticated relay room stores the APNs device token, environment, bundle identifier, and update time. Apple treats the retained token as a Device ID used for App Functionality. It is linked to the device, never used for tracking, and removed on unpairing or when APNs reports it stale.",
               "The app stores local preferences, session state, and pairing details needed to operate.",
             ],
           },
           {
             heading: "What the relay can observe",
             paragraphs: [
-              "Cloudflare and the GrantTap relay process operational metadata such as IP address, connection time, room identifier, sender and recipient roles, payload size, and expiry only as needed to deliver and protect the service. GrantTap does not use this metadata for advertising, profiling, or product analytics. The relay does not receive the secret keys needed to decrypt message contents.",
+              "Cloudflare and the GrantTap relay process operational metadata such as IP address, connection time, room identifier, sender and recipient roles, payload size, expiry, and the APNs routing token only as needed to deliver and protect the service. GrantTap does not use this metadata for advertising, profiling, or product analytics. APNs wake payloads contain no command, prompt, path, task title, or message body. The relay does not receive the secret keys needed to decrypt message contents.",
             ],
           },
           {
@@ -43,6 +44,12 @@ export default function PrivacyPage() {
             heading: "Analytics, advertising, and tracking",
             paragraphs: [
               "GrantTap does not include advertising SDKs, cross-app tracking, or product analytics. The public website may be protected and logged by Cloudflare for security and delivery.",
+            ],
+          },
+          {
+            heading: "Face ID and local audit log",
+            paragraphs: [
+              "If you enable the app lock, iOS verifies the device owner with Face ID, Touch ID, or the device passcode. GrantTap receives only the result and never receives or stores biometric data. The bounded audit log and local task archives stay on the iPhone under iOS data protection and can be cleared by the owner.",
             ],
           },
           {
@@ -67,13 +74,14 @@ export default function PrivacyPage() {
               "Идентификаторы пейринга и ключи шифрования создаются и хранятся на ваших устройствах.",
               "Видимые сообщения агента, команды, вопросы, ответы и решения шифруются до отправки с устройства.",
               "Relay может временно хранить зашифрованные конверты до доставки или истечения срока.",
+              "Для фоновой доставки защищённая комната relay хранит APNs-токен устройства, среду, bundle ID и время обновления. По классификации Apple это Device ID для работы приложения: он связан с устройством, не используется для трекинга и удаляется при отключении пейринга или ответе APNs о недействительности.",
               "Приложение локально хранит настройки, состояние сессий и данные пейринга.",
             ],
           },
           {
             heading: "Что может видеть relay",
             paragraphs: [
-              "Cloudflare и relay GrantTap обрабатывают служебные метаданные — IP-адрес, время соединения, идентификатор комнаты, роли отправителя и получателя, размер и срок сообщения — только для доставки и защиты сервиса. GrantTap не использует эти данные для рекламы, профилирования или продуктовой аналитики. Секретных ключей для расшифровки у relay нет.",
+              "Cloudflare и relay GrantTap обрабатывают служебные метаданные — IP-адрес, время соединения, идентификатор комнаты, роли отправителя и получателя, размер, срок сообщения и APNs-токен маршрутизации — только для доставки и защиты сервиса. GrantTap не использует их для рекламы, профилирования или продуктовой аналитики. APNs-уведомление не содержит команду, промпт, путь, название задачи или текст сообщения. Секретных ключей для расшифровки у relay нет.",
             ],
           },
           {
@@ -86,6 +94,12 @@ export default function PrivacyPage() {
             heading: "Аналитика, реклама и трекинг",
             paragraphs: [
               "В GrantTap нет рекламных SDK, межприложенческого трекинга или продуктовой аналитики. Cloudflare может вести технические журналы сайта для защиты и доставки.",
+            ],
+          },
+          {
+            heading: "Face ID и локальный журнал действий",
+            paragraphs: [
+              "Если вы включили блокировку, iOS проверяет владельца через Face ID, Touch ID или код-пароль устройства. GrantTap получает только результат и не получает и не хранит биометрические данные. Ограниченный журнал действий и локальный архив задач остаются на iPhone под защитой данных iOS и могут быть очищены владельцем.",
             ],
           },
           {
