@@ -11,6 +11,8 @@ function releaseCountdown() {
   return {
     days: Math.floor(remaining / 86_400_000),
     hours: Math.floor((remaining % 86_400_000) / 3_600_000),
+    minutes: Math.floor((remaining % 3_600_000) / 60_000),
+    seconds: Math.floor((remaining % 60_000) / 1_000),
     reached: remaining === 0,
   };
 }
@@ -88,8 +90,7 @@ const copy = {
     countdownLabel: "Target submission",
     remaining: "to go",
     countdownReached: "Target date reached — submission in progress.",
-    unitDays: "d",
-    unitHours: "h",
+    countdownUnits: ["days", "hours", "min", "sec"],
     toastTitle: "Allowed from Watch",
     toastText: "Decision returned to the agent",
     agentWorking: "Agent working on your Mac",
@@ -172,8 +173,7 @@ const copy = {
     countdownLabel: "Цель по отправке",
     remaining: "осталось",
     countdownReached: "Целевая дата наступила — идёт отправка.",
-    unitDays: "д",
-    unitHours: "ч",
+    countdownUnits: ["дней", "часов", "мин", "сек"],
     toastTitle: "Разрешено с часов",
     toastText: "Решение вернулось агенту",
     agentWorking: "Агент работает на вашем Mac",
@@ -193,12 +193,12 @@ export default function Home() {
   const t = copy[locale];
 
   // Starts null so server and first client render agree; the real figure lands
-  // after hydration and then ticks hourly.
+  // after hydration and then becomes the visible one-second launch clock.
   const [countdown, setCountdown] = useState<ReturnType<typeof releaseCountdown> | null>(null);
   useEffect(() => {
     const update = () => setCountdown(releaseCountdown());
     update();
-    const id = setInterval(update, 60_000);
+    const id = setInterval(update, 1_000);
     return () => clearInterval(id);
   }, []);
 
@@ -332,14 +332,20 @@ export default function Home() {
         <div className="availability-card release-card">
           <img src="/app-icon.png" alt="" />
           <div>
-            <p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p>{t.releaseText}</p>
-            {countdown && (
-              <p className="release-countdown" role="status">
-                {countdown.reached
-                  ? t.countdownReached
-                  : <>{t.countdownLabel}: <strong>{countdown.days}{t.unitDays} {countdown.hours}{t.unitHours}</strong> {t.remaining}</>}
-              </p>
-            )}
+            <p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p className="release-copy">{t.releaseText}</p>
+            {countdown && (countdown.reached
+              ? <p className="release-countdown reached" role="status">{t.countdownReached}</p>
+              : <div className="release-countdown" role="timer" aria-label={`${t.countdownLabel}: ${countdown.days} ${t.countdownUnits[0]}, ${countdown.hours} ${t.countdownUnits[1]}, ${countdown.minutes} ${t.countdownUnits[2]}, ${countdown.seconds} ${t.countdownUnits[3]} ${t.remaining}`}>
+                  <span className="countdown-caption"><i aria-hidden="true" />{t.countdownLabel} · {t.remaining}</span>
+                  <div className="countdown-clock" aria-hidden="true">
+                    {[countdown.days, countdown.hours, countdown.minutes, countdown.seconds].map((value, index) => (
+                      <span className="countdown-unit" key={t.countdownUnits[index]}>
+                        <strong>{String(value).padStart(2, "0")}</strong>
+                        <small>{t.countdownUnits[index]}</small>
+                      </span>
+                    ))}
+                  </div>
+                </div>)}
           </div>
           <span className="availability-pill">{t.appStore}</span>
         </div>

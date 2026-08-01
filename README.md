@@ -11,7 +11,8 @@ The canonical product site explains the GrantTap workflow, security boundary,
 MCP integration, phone/watch experience, and current App Store launch status
 using real screenshots from the app. The product tour animates iPhone screen
 changes, a scroll gesture, the Watch activity/approval transition, and the
-decision toast; `prefers-reduced-motion` visitors receive a static first frame.
+decision toast. A live animated countdown tracks the App Store submission date;
+`prefers-reduced-motion` visitors receive a static first frame.
 English is the default; visitors can switch the full site to Russian.
 
 ## Install the public MCP bridge
