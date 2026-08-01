@@ -15,6 +15,9 @@ decision toast. A live animated countdown tracks the App Store submission date;
 `prefers-reduced-motion` visitors receive a static first frame.
 English is the default; visitors can switch the full site to Russian.
 
+The capability copy also covers GrantTap's native recurrence editor and its
+real E2EE conversational scheduler planner for local Codex and Claude Code.
+
 ## Install the public MCP bridge
 
 ```bash
