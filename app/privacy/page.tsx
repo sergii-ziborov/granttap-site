@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           {
             heading: "Data handled by the app",
             bullets: [
-              "Pairing identifiers and encryption keys are created and stored on your paired devices.",
+              "Pairing uses a random mailbox id and an independent 256-bit transfer key. Only the mailbox id reaches the relay; endpoint and per-task keys are created and stored on paired devices.",
               "Visible agent messages, commands, questions, replies, and approval decisions are end-to-end encrypted before leaving a device.",
               "The relay may temporarily queue encrypted envelopes until delivery or expiry.",
               "For background delivery, the authenticated relay room stores the APNs device token, environment, bundle identifier, and update time. Apple treats the retained token as a Device ID used for App Functionality. It is linked to the device, never used for tracking, and removed on unpairing or when APNs reports it stale.",
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           {
             heading: "What the relay can observe",
             paragraphs: [
-              "Cloudflare and the GrantTap relay process operational metadata such as IP address, connection time, room identifier, sender and recipient roles, payload size, expiry, and the APNs routing token only as needed to deliver and protect the service. GrantTap does not use this metadata for advertising, profiling, or product analytics. APNs wake payloads contain no command, prompt, path, task title, or message body. The relay does not receive the secret keys needed to decrypt message contents.",
+              "Cloudflare and the GrantTap relay process operational metadata such as IP address, connection time, opaque room/mailbox and delivery identifiers, sender and recipient roles, ciphertext size, expiry, APNs device token/environment, and a content-neutral wake flag only as needed to deliver and protect the service. GrantTap does not use this metadata for advertising, profiling, or product analytics. APNs wakes contain no task kind, request id, delivery id, command, prompt, path, task title, or message body. A Cloudflare account or database compromise does not provide the endpoint, transfer, or per-task keys needed to decrypt content.",
             ],
           },
           {
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
           {
             heading: "Какие данные обрабатывает приложение",
             bullets: [
-              "Идентификаторы пейринга и ключи шифрования создаются и хранятся на ваших устройствах.",
+              "Пейринг использует случайный mailbox ID и независимый 256-битный transfer key. Relay получает только mailbox ID; ключи устройств и отдельных задач создаются и хранятся на спаренных устройствах.",
               "Видимые сообщения агента, команды, вопросы, ответы и решения шифруются до отправки с устройства.",
               "Relay может временно хранить зашифрованные конверты до доставки или истечения срока.",
               "Для фоновой доставки защищённая комната relay хранит APNs-токен устройства, среду, bundle ID и время обновления. По классификации Apple это Device ID для работы приложения: он связан с устройством, не используется для трекинга и удаляется при отключении пейринга или ответе APNs о недействительности.",
@@ -81,7 +81,7 @@ export default function PrivacyPage() {
           {
             heading: "Что может видеть relay",
             paragraphs: [
-              "Cloudflare и relay GrantTap обрабатывают служебные метаданные — IP-адрес, время соединения, идентификатор комнаты, роли отправителя и получателя, размер, срок сообщения и APNs-токен маршрутизации — только для доставки и защиты сервиса. GrantTap не использует их для рекламы, профилирования или продуктовой аналитики. APNs-уведомление не содержит команду, промпт, путь, название задачи или текст сообщения. Секретных ключей для расшифровки у relay нет.",
+              "Cloudflare и relay GrantTap обрабатывают только служебные метаданные: IP, время, непрозрачные идентификаторы комнаты/mailbox/delivery, роли маршрутизации, размер шифротекста, срок, APNs-токен и среду, а также нейтральный wake-флаг. Они не используются для рекламы, профилирования или аналитики. APNs не содержит тип задачи, request/delivery ID, команду, промпт, путь, название или текст. Доступ к аккаунту Cloudflare или базе не даёт ключей устройства, transfer key или отдельных ключей задач.",
             ],
           },
           {
