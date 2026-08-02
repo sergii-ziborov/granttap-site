@@ -328,6 +328,24 @@ h1 span {
   box-shadow: 0 35px 90px rgba(0, 0, 0, 0.58);
 }
 
+.phone-shell-secondary {
+  z-index: 1;
+  width: 250px;
+  height: 512px;
+  left: auto;
+  right: 10px;
+  top: 34px;
+  opacity: 0.62;
+  transform: rotate(3deg);
+}
+
+.phone-shell-secondary > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
 .phone-speaker {
   position: absolute;
   z-index: 3;
@@ -357,7 +375,7 @@ h1 span {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  animation: phone-tour 24s ease-in-out infinite;
+  animation: phone-tour 12s ease-in-out infinite;
 }
 
 .activity-screen-stack img {
@@ -375,16 +393,6 @@ h1 span {
   animation-delay: 6s;
 }
 
-.phone-screen-stack img:nth-child(3),
-.gallery-screen-stack img:nth-child(3) {
-  animation-delay: 12s;
-}
-
-.phone-screen-stack img:nth-child(4),
-.gallery-screen-stack img:nth-child(4) {
-  animation-delay: 18s;
-}
-
 .phone-gesture {
   position: absolute;
   z-index: 4;
@@ -397,7 +405,7 @@ h1 span {
   background: rgba(244, 106, 59, 0.82);
   box-shadow: 0 0 0 7px rgba(244, 106, 59, 0.15);
   opacity: 0;
-  animation: phone-gesture 24s ease-in-out infinite;
+  animation: phone-gesture 12s ease-in-out infinite;
 }
 
 .watch-shell {
@@ -496,8 +504,8 @@ h1 span {
 }
 
 @keyframes phone-tour {
-  0%, 21% { opacity: 1; transform: translateY(0) scale(1); }
-  25%, 100% { opacity: 0; transform: translateY(-2.5%) scale(1.015); }
+  0%, 44% { opacity: 1; transform: translateY(0) scale(1); }
+  50%, 100% { opacity: 0; transform: translateY(-1.25%) scale(1.01); }
 }
 
 @keyframes activity-tour {
@@ -506,10 +514,10 @@ h1 span {
 }
 
 @keyframes phone-gesture {
-  0%, 8%, 35%, 100% { opacity: 0; transform: translateY(50px) scale(0.75); }
-  12% { opacity: 1; transform: translateY(50px) scale(1); }
-  25% { opacity: 1; transform: translateY(-105px) scale(1); }
-  30% { opacity: 0; transform: translateY(-105px) scale(0.75); }
+  0%, 10%, 66%, 100% { opacity: 0; transform: translateY(55px) scale(0.75); }
+  18% { opacity: 1; transform: translateY(55px) scale(1); }
+  48% { opacity: 1; transform: translateY(-92px) scale(1); }
+  58% { opacity: 0; transform: translateY(-92px) scale(0.75); }
 }
 
 @keyframes watch-tour {
@@ -815,7 +823,7 @@ h1 span {
 .step-card,
 .control-card {
   position: relative;
-  min-height: 400px;
+  min-height: 260px;
   padding: 27px;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -838,7 +846,7 @@ h1 span {
 
 .step-card h3,
 .control-card h3 {
-  margin: 27px 0 12px;
+  margin: 52px 0 12px;
   font-size: 22px;
   letter-spacing: -0.035em;
 }
@@ -1024,6 +1032,9 @@ h1 span {
 
 .activity-phone img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .activity-screen-stack img {
@@ -1039,6 +1050,33 @@ h1 span {
   right: 24px;
   bottom: 54px;
   width: 250px;
+}
+
+.activity-inset {
+  position: absolute;
+  right: 24px;
+  bottom: 46px;
+  width: 224px;
+}
+
+.activity-inset span {
+  display: block;
+  margin: 0 0 13px 7px;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.activity-inset img {
+  width: 100%;
+  height: 470px;
+  object-fit: cover;
+  object-position: top center;
+  border: 6px solid #3a3c41;
+  border-radius: 38px;
+  background: #000;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55);
 }
 
 .activity-watch span {
@@ -1283,6 +1321,15 @@ h1 span {
   background: var(--panel);
 }
 
+.history-gallery .history-security {
+  grid-column: 1 / -1;
+  grid-template-columns: 285px 1fr;
+}
+
+.history-security .history-shot {
+  width: 285px;
+}
+
 .history-shot {
   height: 350px;
   overflow: hidden;
@@ -1308,18 +1355,37 @@ h1 span {
 .history-gallery figcaption strong {
   display: block;
   margin-bottom: 9px;
-  color: var(--text);
+  color: var(--ink);
   font-size: 20px;
 }
 
 .gallery-phone,
-.gallery-watch {
+.gallery-watch,
+.gallery-security {
   margin: 0;
   padding: 34px 34px 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 28px;
   background: var(--panel);
+}
+
+.security-shot {
+  width: 285px;
+  height: 520px;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 7px solid #383a40;
+  border-bottom: 0;
+  border-radius: 46px 46px 0 0;
+  background: #000;
+}
+
+.security-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .gallery-device {
@@ -1331,6 +1397,32 @@ h1 span {
   border-bottom: 0;
   border-radius: 46px 46px 0 0;
   background: #000;
+}
+
+.phone-pair {
+  display: flex;
+  min-height: 520px;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+}
+
+.phone-pair .gallery-device {
+  width: min(44%, 225px);
+  height: auto;
+  aspect-ratio: 1206 / 2622;
+  margin: 0;
+}
+
+.phone-pair .gallery-device:last-child {
+  transform: translateY(24px);
+}
+
+.phone-pair .gallery-device img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .gallery-screen-stack img {
@@ -1563,6 +1655,10 @@ footer > p {
     right: -2%;
   }
 
+  .phone-shell-secondary {
+    right: -2%;
+  }
+
   .approval-toast {
     left: -4%;
   }
@@ -1601,7 +1697,7 @@ footer > p {
   }
 
   .step-card {
-    min-height: 360px;
+    min-height: 230px;
   }
 
   .feature-section {
@@ -1622,6 +1718,15 @@ footer > p {
   .activity-watch {
     right: -8px;
     width: 190px;
+  }
+
+  .activity-inset {
+    right: -8px;
+    width: 190px;
+  }
+
+  .activity-inset img {
+    height: 410px;
   }
 
   .security-section {
@@ -1651,13 +1756,44 @@ footer > p {
   }
 
   .gallery-phone,
-  .gallery-watch {
+  .gallery-watch,
+  .gallery-security {
     padding-inline: 18px;
+  }
+
+  .phone-pair {
+    min-height: 560px;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-inline: -18px;
+    padding: 0 18px 30px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+
+  .phone-pair::-webkit-scrollbar {
+    display: none;
+  }
+
+  .phone-pair .gallery-device {
+    flex: 0 0 252px;
+    width: 252px;
+    scroll-snap-align: center;
+  }
+
+  .phone-pair .gallery-device:last-child {
+    transform: none;
   }
 
   .history-gallery figure {
     grid-template-columns: 1fr;
     padding: 18px;
+  }
+
+  .history-gallery .history-security {
+    grid-template-columns: 1fr;
   }
 
   .history-shot {

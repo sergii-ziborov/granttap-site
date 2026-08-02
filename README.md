@@ -1,39 +1,48 @@
-# GrantTap website
+# GrantTap
 
-Source for [granttap.com](https://granttap.com), the product site for GrantTap
-on iPhone and Apple Watch.
+**Step away from your Mac. Keep Codex and Claude Code moving.**
 
-| Codex on iPhone | Claude Code on iPhone | Context usage | Approval on Apple Watch |
-| --- | --- | --- | --- |
-| ![GrantTap Codex tasks](public/product/phone-home-v064-codex.png) | ![GrantTap Claude Code tasks](public/product/phone-home-v064-claude.png) | ![GrantTap context](public/product/phone-context-v030.png) | ![GrantTap approval](public/product/watch-approval.png) |
+GrantTap is the secure iPhone and Apple Watch companion for coding-agent
+sessions already running on your computer. Approve a command, answer a
+question, inspect the latest task activity, or send the next turn without
+starting a second agent or moving your project to another service.
 
-| Chat history | MCP and skill usage |
-| --- | --- |
-| ![GrantTap chat history](public/product/phone-chat-history-v062.png) | ![GrantTap MCP and skill usage](public/product/phone-mcp-usage-v064.png) |
+<p align="center">
+  <img src="public/product/iphone-command-center.png" width="220" alt="GrantTap Codex task list on iPhone">
+  <img src="public/product/iphone-claude-tasks.png" width="220" alt="GrantTap Claude Code task list on iPhone">
+  <img src="public/product/apple-watch-approval.png" width="185" alt="GrantTap command approval on Apple Watch">
+</p>
 
-The canonical product site explains the GrantTap workflow, security boundary,
-MCP integration, phone/watch experience, and current App Store launch status
-using real screenshots from the app. The product tour animates iPhone screen
-changes, a scroll gesture, the Watch activity/approval transition, and the
-decision toast. A live animated countdown tracks the App Store submission date;
-`prefers-reduced-motion` visitors receive a static first frame.
+The product site is live at [granttap.com](https://granttap.com). The iPhone
+and Apple Watch apps are still being prepared for App Store review.
 
-The product copy also covers the protected on-device MCP/skill usage ledger and
-the bounded old-chat browser with per-chat tokens, context, MCP, skills, and
-local archive controls. MCP branding comes from each server's actual
-`serverInfo` metadata; the site does not claim inferred provider logos.
-English is the default; visitors can switch the full site to Russian.
+## One task, wherever you are
 
-The capability copy also covers GrantTap's native recurrence editor and its
-real E2EE conversational scheduler planner for local Codex and Claude Code.
-New tasks explicitly start without a project or in a same-agent workspace the
-user selected; they never silently inherit the bridge process directory.
+1. Codex or Claude Code keeps working in its normal local session.
+2. When it needs a decision, GrantTap sends the encrypted event to your paired
+   devices.
+3. You approve, deny, reply by voice or text, or open the task for more context.
+4. The response returns to the same local session.
 
-Observed MCP calls are synced into an encrypted on-device ledger even when a
-task is not open. Per-server tokens are labelled as an estimated contribution
-to the chat context, not as a separate MCP bill.
+On iPhone, each task exposes recent visible activity, full formatted chat,
+attachments, agent access, context-window usage, Codex compaction, and allowed
+MCP servers or project skills. Apple Watch keeps the fast path focused: active
+and recent tasks, recent updates, voice replies, and approvals.
 
-## Install the public MCP bridge
+## Security boundary
+
+GrantTap is a thin encrypted control channel, not a model proxy.
+
+- Projects, model credentials, and model traffic remain on the computer.
+- Pairing and task traffic are end-to-end encrypted.
+- Each attached task has an independent key.
+- The relay routes ciphertext and cannot decrypt task content.
+- A device with access to one task cannot use that key to open another task.
+
+See [SECURITY.md](SECURITY.md) for the exact boundary and relay-visible
+metadata.
+
+## Connect the public bridge
 
 ```bash
 # Codex
@@ -42,18 +51,18 @@ codex mcp add granttap -- npx -y granttap-mcp
 # Claude Code
 claude mcp add granttap -- npx -y granttap-mcp
 
-# Optional approval hooks for both tools
+# Optional local approval hooks for both tools
 npm install -g granttap-mcp
 granttap-mcp connect
 ```
 
-- npm: [granttap-mcp](https://www.npmjs.com/package/granttap-mcp)
-- Source: [sergii-ziborov/granttap-mcp](https://github.com/sergii-ziborov/granttap-mcp)
-- Relay source: [sergii-ziborov/granttap-relay](https://github.com/sergii-ziborov/granttap-relay)
+- [granttap-mcp on npm](https://www.npmjs.com/package/granttap-mcp)
+- [MCP bridge source](https://github.com/sergii-ziborov/granttap-mcp)
+- [Relay source](https://github.com/sergii-ziborov/granttap-relay)
 
-## Development
+## Develop the website
 
-Requires Node.js 22.13 or newer.
+Node.js 22.13 or newer is required.
 
 ```bash
 git clone https://github.com/sergii-ziborov/granttap-site.git
@@ -62,43 +71,49 @@ npm install
 npm run dev
 ```
 
-Validate the production build with:
+Validate a production build with:
 
 ```bash
 npm test
 npm run lint
 ```
 
-The app is built with React, vinext, and Cloudflare's Vite tooling. The
-production Worker is configured by `wrangler.production.jsonc` and deployed
-directly to the `granttap.com` custom domain:
+The site uses React, vinext, and Cloudflare's Vite tooling. Production is
+configured in `wrangler.production.jsonc`; `granttap.com` is the canonical
+origin and `www` redirects permanently to it.
 
-```bash
-npm run deploy:cloudflare
-```
+## Product-capture contract
 
-`granttap.com` is the only canonical origin. The former hosted service URL and
-`www` are permanent redirects, so search engines see one site rather than
-duplicate content.
+The website and this README use captures from current test builds—not redrawn
+or generated interface mockups. Keep a single language and matching time across
+each capture set.
 
-## Content and assets
+| Asset | Pixels | Contents |
+| --- | ---: | --- |
+| `public/product/iphone-command-center.png` | 1206 × 2622 | Codex task list and composer |
+| `public/product/iphone-claude-tasks.png` | 1206 × 2622 | Claude Code task list, scheduler, and composer |
+| `public/product/iphone-task-detail.png` | 1206 × 2622 | Recent activity, usage, and context |
+| `public/product/iphone-mcp-usage.png` | 1206 × 2622 | Observed MCP and skill usage |
+| `public/product/iphone-security-settings.png` | 1206 × 2622 | Face ID, notification privacy, task keys, and audit log |
+| `public/product/apple-watch-inbox.png` | 416 × 496 | Pending approval and active-task inbox |
+| `public/product/apple-watch-task.png` | 416 × 496 | Recent task updates and reply actions |
+| `public/product/apple-watch-approval.png` | 416 × 496 | Real pending approval |
 
-- Page content: `app/page.tsx`
-- Global styles: `app/globals.css`
-- Metadata: `app/layout.tsx`
-- Product screenshots: `public/product/`
-- Social preview: `public/og.png`
-- Privacy: `app/privacy/`
-- Terms: `app/terms/`
-- Support: `app/support/`
-- Licenses: `app/licenses/`
-- Security policy: `SECURITY.md`
+Do not add device frames, marketing text, or demo overlays to the PNG files;
+the website supplies presentation framing and accessible captions.
+Do not reuse a skeleton frame or an older Watch build merely to fill a slot.
+Each device set must come from one reproducible current state; Watch may use a
+different clock time because watchOS Simulator does not support status-bar time
+overrides.
 
-## Related
+## Repository map
 
-- MCP bridge: [sergii-ziborov/granttap-mcp](https://github.com/sergii-ziborov/granttap-mcp)
-- npm package: [granttap-mcp](https://www.npmjs.com/package/granttap-mcp)
-- Relay: [sergii-ziborov/granttap-relay](https://github.com/sergii-ziborov/granttap-relay)
-- Support: [granttap.com/support](https://granttap.com/support)
+- `app/page.tsx` — product page and English/Russian copy
+- `app/globals.css` — responsive presentation and product-capture motion
+- `app/layout.tsx` — metadata and social preview
+- `public/product/` — canonical real product captures
+- `app/privacy/`, `app/terms/`, `app/support/`, `app/licenses/` — public policy pages
+- `.openai/hosting.json` — Sites project binding
+- `wrangler.production.jsonc` — canonical Cloudflare deployment
 
 GrantTap is not affiliated with Anthropic, OpenAI, or Apple.

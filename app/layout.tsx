@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://granttap.com"),
   title: {
-    default: "GrantTap — Control coding agents from Apple Watch",
+    default: "GrantTap — Keep Codex and Claude Code moving",
     template: "%s · GrantTap",
   },
   description:
-    "Approve commands, answer questions, and inspect visible activity from Claude Code and Codex on Apple Watch and iPhone.",
+    "A secure iPhone and Apple Watch remote for Codex and Claude Code sessions already running on your Mac.",
   applicationName: "GrantTap",
   alternates: {
     canonical: "/",
@@ -40,24 +40,15 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "GrantTap",
-    title: "GrantTap — Keep coding agents moving from your wrist",
+    title: "Step away from your Mac. Keep the work moving.",
     description:
-      "Review commands, answer questions, and inspect visible agent activity from Apple Watch and iPhone.",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "GrantTap — Approve the next move from Apple Watch",
-      },
-    ],
+      "Approve, reply, and inspect real Codex and Claude Code tasks from iPhone and Apple Watch.",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "GrantTap — Keep coding agents moving from your wrist",
+    card: "summary",
+    title: "Step away from your Mac. Keep the work moving.",
     description:
-      "Secure remote approvals and visible activity for Claude Code and Codex.",
-    images: ["/og.png"],
+      "A secure iPhone and Apple Watch remote for local Codex and Claude Code sessions.",
   },
 };
 

@@ -19,42 +19,42 @@ function releaseCountdown() {
 
 const copy = {
   en: {
-    nav: ["How it works", "Activity", "Security", "Install"],
+    nav: ["How it works", "Product", "Security", "Connect"],
     status: "App Store launch",
-    eyebrow: "Claude Code + Codex, from your wrist",
-    heroTitle: "Approve the next move.",
-    heroAccent: "Keep yours.",
+    eyebrow: "Codex + Claude Code stay within reach",
+    heroTitle: "Step away from your Mac.",
+    heroAccent: "The work keeps moving.",
     hero:
-      "Let your coding agents keep working on your computer while you step away. Review commands, answer questions, and see visible activity from Apple Watch or iPhone.",
-    see: "See how it works",
-    securityModel: "Read the security model",
-    highlights: ["End-to-end encrypted", "No model traffic proxy", "Context + MCP per task"],
-    builtFor: "Built for the tools already running on your machine",
-    workflowKicker: "A thin remote, not another agent",
-    workflowTitle: "Your computer does the work. GrantTap keeps you in control.",
+      "GrantTap turns your iPhone and Apple Watch into a secure remote for the coding-agent sessions already running on your computer. Approve, reply, inspect context, and keep the task moving.",
+    see: "See the real app",
+    securityModel: "How encryption works",
+    highlights: ["Agents stay on your Mac", "Task-scoped E2EE", "Real Codex + Claude sessions"],
+    builtFor: "A companion for the agents you already run locally",
+    workflowKicker: "One interruption, handled",
+    workflowTitle: "When an agent needs you, you do not need your laptop.",
     workflowText:
-      "The agent stays where your projects, credentials, and development tools already live. GrantTap adds a secure decision and messaging layer on top.",
+      "GrantTap does not replace Codex or Claude Code. It carries the small, important moments between their local session and your devices.",
     steps: [
-      ["Install the bridge", "Add the public MCP package, then run setup once to register the local approval hooks."],
-      ["Leave the keyboard", "Claude Code or Codex continues in its normal session, using its own login, hooks, and local tools."],
-      ["Grant with a tap", "High-impact actions wait for you. Allow, deny, or answer from the watch or phone."],
+      ["The agent asks", "A command, question, or finished turn appears from the real local session on your Mac."],
+      ["You decide", "Read the task context and approve, deny, or answer from iPhone or Apple Watch."],
+      ["The same task continues", "Your response returns to that session. No copied project, second agent, or cloud model proxy."],
     ],
-    activityKicker: "Open a chat when context matters",
-    activityTitle: "See the useful trail, not a wall of hidden reasoning.",
+    activityKicker: "More than approve or deny",
+    activityTitle: "Open the task. See what matters. Send the next turn.",
     activityText:
-      "While a chat is open, GrantTap streams the last five visible updates, with the full trail one tap away. See the actual context window, compact an idle Codex task, and decide which configured MCP servers are allowed for the next turn.",
+      "The task view starts with the latest useful activity and keeps deeper controls nearby. You can move fast on Watch, then pick up the same task on iPhone when it needs more context.",
     activityItems: [
-      ["Useful, readable activity", "Messages render with formatting; actions stay clearly separated from the agent summary."],
-      ["Real context controls", "Track used tokens and the model window. Codex compaction uses its supported app-server API."],
-      ["Route the next turn", "Choose an allowed MCP or a project skill, then attach up to five photos or files."],
-      ["History you can audit", "Browse older chats with their tokens, context, MCP servers and skills, plus exact local MCP/skill usage counts."],
-      ["Plan recurring work", "Chat with local Codex or Claude Code, review its validated series, and save the schedule."],
+      ["A five-update glance", "The task opens on the latest visible activity; the full formatted chat stays one tap away."],
+      ["Real context usage", "See tokens against the model window and start supported Codex compaction when the turn is idle."],
+      ["Voice, photos, and files", "Reply naturally and attach up to five items to the next turn."],
+      ["Controls for this task", "Inspect access, allowed MCP servers, and available project skills without changing unrelated sessions."],
+      ["Recurring work by conversation", "Describe a schedule to local Codex or Claude Code, review the result, then save it."],
     ],
-    controlsKicker: "Control the task, not a mock setting",
-    controlsTitle: "The switches change the next real agent turn.",
+    controlsKicker: "Task-level control",
+    controlsTitle: "The controls live where you need them: inside the task.",
     controls: [
       ["Agent access", "Inspect and change read-only, workspace, or full access for Codex turns sent from GrantTap."],
-      ["MCP per task", "See identity and icons published by each MCP server, then allow or deny it for one task without changing unrelated sessions."],
+      ["MCP per task", "See the MCP servers configured for the task, then allow or deny one without changing unrelated sessions."],
       ["Codex context", "See the real context window and start supported compaction after the active turn finishes."],
     ],
     securityKicker: "Zero-knowledge relay",
@@ -70,16 +70,17 @@ const copy = {
       ["Can observe", "Opaque routes, timing, IP address, ciphertext size, expiry, and APNs routing data—not task content."],
       ["Keys live on", "Authorized endpoints only. A key from one task cannot decrypt another, and a device cannot open a task whose key it was never granted."],
     ],
-    galleryKicker: "One system, two speeds",
-    galleryTitle: "Fast decisions on Watch. Full control on iPhone.",
-    phoneCaption: "Distinct monochrome Codex and warm Claude Code spaces, plus formatted activity, five-file attachments, context, and conversational schedules.",
-    watchCaption: "Approve or deny immediately, then open the session when you need context.",
-    historyCaption: "Older chats keep useful metadata: tokens, context, MCP, skills, and local archive state.",
-    usageCaption: "Observed tool calls sync even while a task is closed. Their token figure is an estimated context footprint, not separate MCP billing.",
+    galleryKicker: "The actual product",
+    galleryTitle: "Fast decisions on Watch. The full task on iPhone.",
+    phoneCaption: "A live view of your local Codex and Claude Code tasks, with a clear agent switch and the next task routed to the agent you selected.",
+    watchCaption: "Scan active and recent tasks, open the latest updates, reply by voice or text, and handle a pending approval immediately.",
+    historyCaption: "The task detail leads with recent activity, then exposes tokens, context, access, MCP, and the full chat only when you need them.",
+    usageCaption: "The local usage ledger records observed MCP and skill calls. Token figures are estimated context footprint, never separate MCP billing.",
+    securityCaption: "Face ID, private notification details, authenticated approvals, independent task keys, and a local audit log are visible—not hidden behind a security slogan.",
     installKicker: "Public and auditable machine bridge",
-    installTitle: "Install the GrantTap MCP in one command.",
+    installTitle: "Connect the agents you already use.",
     installText:
-      "The app is private, while the machine-side MCP bridge and relay are public so teams can inspect exactly what runs near their code.",
+      "The machine-side MCP bridge and relay are public, so you can inspect exactly what runs near your code before pairing a device.",
     codex: "Codex",
     claude: "Claude Code",
     hooks: "Approval hooks",
@@ -95,53 +96,48 @@ const copy = {
     remaining: "to go",
     countdownReached: "Target date reached — submission in progress.",
     countdownUnits: ["days", "hours", "min", "sec"],
-    toastTitle: "Allowed from Watch",
-    toastText: "Decision returned to the agent",
-    agentWorking: "Agent working on your Mac",
-    allowShort: "Allow",
-    watchCaptionInline: "Same context on your wrist",
     tagline: "Keep your agents moving.",
     legal: ["Privacy", "Terms", "Support", "Licenses"],
     rights:
       "© 2026 GrantTap. GrantTap is not affiliated with Anthropic, OpenAI, or Apple.",
   },
   ru: {
-    nav: ["Как работает", "Активность", "Безопасность", "Установка"],
+    nav: ["Как работает", "Приложение", "Безопасность", "Подключить"],
     status: "Запуск в App Store",
-    eyebrow: "Claude Code + Codex — прямо с запястья",
-    heroTitle: "Подтвердите следующий шаг.",
-    heroAccent: "Сохраните контроль.",
+    eyebrow: "Codex и Claude Code остаются под рукой",
+    heroTitle: "Отойдите от Mac.",
+    heroAccent: "Работа не остановится.",
     hero:
-      "Пусть кодовые агенты продолжают работу на компьютере, пока вы отошли. Проверяйте команды, отвечайте на вопросы и смотрите видимую активность с Apple Watch или iPhone.",
-    see: "Как это работает",
-    securityModel: "Модель безопасности",
-    highlights: ["Сквозное шифрование", "Без проксирования модели", "Контекст и MCP для каждой задачи"],
-    builtFor: "Работает с инструментами, уже запущенными на вашем компьютере",
-    workflowKicker: "Тонкий пульт, а не ещё один агент",
-    workflowTitle: "Компьютер выполняет работу. GrantTap оставляет контроль вам.",
+      "GrantTap превращает iPhone и Apple Watch в защищённый пульт для сессий кодовых агентов, уже запущенных на компьютере. Подтверждайте, отвечайте, проверяйте контекст — и не останавливайте задачу.",
+    see: "Посмотреть приложение",
+    securityModel: "Как устроено шифрование",
+    highlights: ["Агенты остаются на Mac", "E2EE для каждой задачи", "Настоящие сессии Codex и Claude"],
+    builtFor: "Дополнение к агентам, которые уже работают локально",
+    workflowKicker: "Одно прерывание — одно решение",
+    workflowTitle: "Когда агенту нужен ответ, ноутбук не нужен.",
     workflowText:
-      "Агент остаётся рядом с проектами, учётными данными и инструментами разработки. GrantTap добавляет защищённый слой решений и сообщений.",
+      "GrantTap не заменяет Codex или Claude Code. Он переносит короткие, важные моменты между локальной сессией и вашими устройствами.",
     steps: [
-      ["Установите мост", "Добавьте публичный MCP-пакет и один раз запустите setup для локальных approval hooks."],
-      ["Отойдите от клавиатуры", "Claude Code или Codex продолжает обычную сессию со своим входом, hooks и локальными инструментами."],
-      ["Подтвердите касанием", "Важные действия ждут вас. Разрешите, отклоните или ответьте с часов либо телефона."],
+      ["Агент спрашивает", "Команда, вопрос или завершённый ход приходят из настоящей локальной сессии на Mac."],
+      ["Вы решаете", "Прочитайте контекст задачи и разрешите, отклоните или ответьте с iPhone либо Apple Watch."],
+      ["Та же задача продолжается", "Ответ возвращается в исходную сессию — без копии проекта, второго агента и облачного прокси модели."],
     ],
-    activityKicker: "Откройте чат, когда нужен контекст",
-    activityTitle: "Полезная история без скрытых рассуждений.",
+    activityKicker: "Больше, чем разрешить или отклонить",
+    activityTitle: "Откройте задачу. Поймите главное. Отправьте следующий ход.",
     activityText:
-      "Пока чат открыт, GrantTap показывает пять последних видимых обновлений, а полная история доступна одним касанием. Здесь же видны реальный контекст, сжатие свободной задачи Codex и MCP-серверы, разрешённые для следующего хода.",
+      "Экран задачи начинается с последних полезных событий, а более глубокое управление остаётся рядом. На Watch вы реагируете быстро, на iPhone продолжаете ту же задачу с полным контекстом.",
     activityItems: [
-      ["Понятная активность", "Сообщения сохраняют форматирование, а действия отделены от итога агента."],
-      ["Настоящий контекст", "Смотрите использованные токены и размер окна. Сжатие Codex использует поддерживаемый app-server API."],
-      ["Маршрут следующего хода", "Выберите разрешённый MCP или скил проекта и приложите до пяти фото либо файлов."],
-      ["Проверяемая история", "Смотрите старые чаты, их токены, контекст, MCP и скилы, а также точные локальные счётчики использования."],
-      ["Планирование серий", "Обсудите повторяющуюся работу с локальным Codex или Claude Code, проверьте расписание и сохраните."],
+      ["Пять последних обновлений", "Задача открывается на свежей видимой активности; полный форматированный чат доступен одним касанием."],
+      ["Реальный расход контекста", "Смотрите токены относительно окна модели и запускайте поддерживаемое сжатие Codex, когда ход свободен."],
+      ["Голос, фото и файлы", "Отвечайте естественно и прикладывайте до пяти элементов к следующему ходу."],
+      ["Управление одной задачей", "Проверяйте доступ, разрешённые MCP и скилы проекта, не затрагивая другие сессии."],
+      ["Расписание через диалог", "Опишите серию локальному Codex или Claude Code, проверьте результат и только потом сохраните."],
     ],
-    controlsKicker: "Реальное управление задачей",
-    controlsTitle: "Переключатели меняют следующий ход агента.",
+    controlsKicker: "Управление на уровне задачи",
+    controlsTitle: "Нужные настройки находятся внутри самой задачи.",
     controls: [
       ["Доступ агента", "Смотрите и меняйте read-only, workspace или full access для ходов Codex из GrantTap."],
-      ["MCP для задачи", "Смотрите имя и иконку, опубликованные самим MCP-сервером, и разрешайте либо запрещайте его в одной задаче, не затрагивая остальные."],
+      ["MCP для задачи", "Смотрите MCP-серверы, настроенные для задачи, и разрешайте либо запрещайте один из них, не затрагивая остальные сессии."],
       ["Контекст Codex", "Следите за реальным окном и запускайте поддерживаемое сжатие после завершения активного хода."],
     ],
     securityKicker: "Relay с нулевым знанием",
@@ -157,16 +153,17 @@ const copy = {
       ["Может видеть", "Непрозрачный маршрут, время, IP, размер шифротекста, срок и данные APNs — но не содержимое задач."],
       ["Ключи хранятся", "Только на разрешённых конечных устройствах. Ключ одной задачи не расшифровывает другую, а устройство не откроет задачу, ключ которой ему не выдавался."],
     ],
-    galleryKicker: "Одна система, две скорости",
-    galleryTitle: "Быстрые решения на Watch. Полный контроль на iPhone.",
-    phoneCaption: "Отдельные монохромные экраны Codex и тёплые экраны Claude Code, форматированная активность, до пяти вложений, контекст и расписания через чат.",
-    watchCaption: "Сразу разрешите или отклоните, а при необходимости откройте контекст сессии.",
-    historyCaption: "Старые чаты сохраняют полезные данные: токены, контекст, MCP, скилы и локальный архив.",
-    usageCaption: "Реальные вызовы инструментов синхронизируются и для закрытых задач. Токены — оценка занятого контекста, а не отдельный счёт MCP.",
+    galleryKicker: "Настоящее приложение",
+    galleryTitle: "Быстрые решения на Watch. Вся задача — на iPhone.",
+    phoneCaption: "Живой список локальных задач Codex и Claude Code, понятное переключение агента и запуск новой задачи именно для выбранного агента.",
+    watchCaption: "Просматривайте активные и недавние задачи, открывайте последние обновления, отвечайте голосом или текстом и сразу обрабатывайте подтверждения.",
+    historyCaption: "Экран задачи начинается со свежих событий, а токены, контекст, доступ, MCP и полный чат открываются тогда, когда нужны.",
+    usageCaption: "Локальная история хранит наблюдаемые вызовы MCP и скилов. Токены — оценка места в контексте, а не отдельный счёт MCP.",
+    securityCaption: "Face ID, скрытие деталей уведомлений, подтверждение опасных действий, отдельные ключи задач и локальный журнал видны прямо в приложении.",
     installKicker: "Публичный и проверяемый мост",
-    installTitle: "Установите GrantTap MCP одной командой.",
+    installTitle: "Подключите агентов, которыми уже пользуетесь.",
     installText:
-      "Приложение приватное, а машинный MCP-мост и relay открыты, чтобы команды могли проверить код, работающий рядом с их проектами.",
+      "MCP-мост на компьютере и relay открыты: до пейринга можно проверить весь код, который будет работать рядом с проектами.",
     codex: "Codex",
     claude: "Claude Code",
     hooks: "Approval hooks",
@@ -182,11 +179,6 @@ const copy = {
     remaining: "осталось",
     countdownReached: "Целевая дата наступила — идёт отправка.",
     countdownUnits: ["дней", "часов", "мин", "сек"],
-    toastTitle: "Разрешено с часов",
-    toastText: "Решение вернулось агенту",
-    agentWorking: "Агент работает на вашем Mac",
-    allowShort: "Разрешить",
-    watchCaptionInline: "Тот же контекст на запястье",
     tagline: "Пусть агенты не простаивают.",
     legal: ["Конфиденциальность", "Условия", "Поддержка", "Лицензии"],
     rights:
@@ -195,6 +187,17 @@ const copy = {
 } as const;
 
 const CheckMark = () => <span aria-hidden="true">✓</span>;
+
+const captures = {
+  codexTasks: "/product/iphone-command-center.png",
+  claudeTasks: "/product/iphone-claude-tasks.png",
+  taskDetail: "/product/iphone-task-detail.png",
+  mcpUsage: "/product/iphone-mcp-usage.png",
+  securitySettings: "/product/iphone-security-settings.png",
+  watchInbox: "/product/apple-watch-inbox.png",
+  watchTask: "/product/apple-watch-task.png",
+  watchApproval: "/product/apple-watch-approval.png",
+} as const;
 
 export default function Home() {
   const { locale, setLocale } = useLocale();
@@ -219,7 +222,7 @@ export default function Home() {
         </a>
         <nav aria-label="Primary navigation">
           <a href="#workflow">{t.nav[0]}</a>
-          <a href="#activity">{t.nav[1]}</a>
+          <a href="#product">{t.nav[1]}</a>
           <a href="#security">{t.nav[2]}</a>
           <a href="#install">{t.nav[3]}</a>
         </nav>
@@ -233,7 +236,7 @@ export default function Home() {
           <h1>{t.heroTitle}<span>{t.heroAccent}</span></h1>
           <p className="hero-lede">{t.hero}</p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#workflow">{t.see} <span aria-hidden="true">↓</span></a>
+            <a className="button button-primary" href="#product">{t.see} <span aria-hidden="true">↓</span></a>
             <a className="button button-secondary" href="#security">{t.securityModel}</a>
           </div>
           <ul className="hero-notes" aria-label="Product highlights">
@@ -245,10 +248,8 @@ export default function Home() {
           <div className="phone-shell">
             <div className="phone-speaker" />
             <div className="phone-screen-stack">
-              <img src="/product/phone-home-v064-codex.png" alt="Monochrome GrantTap Codex tasks on iPhone" />
-              <img src="/product/phone-home-v064-claude.png" alt="Warm GrantTap Claude Code tasks on iPhone" />
-              <img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" />
-              <img src="/product/phone-controls-v030.png" alt="GrantTap MCP controls on iPhone" />
+              <img src={captures.codexTasks} alt="GrantTap Codex task list on iPhone" />
+              <img src={captures.claudeTasks} alt="GrantTap Claude Code task list on iPhone" />
             </div>
             <span className="phone-gesture" aria-hidden="true" />
           </div>
@@ -257,11 +258,10 @@ export default function Home() {
             <span className="watch-strap watch-strap-bottom" aria-hidden="true" />
             <div className="watch-crown" />
             <div className="watch-screen-stack">
-              <img src="/product/watch-approval.png" alt="GrantTap command approval on Apple Watch" />
-              <img src="/product/watch-activity.png" alt="GrantTap agent activity on Apple Watch" />
+              <img src={captures.watchApproval} alt="GrantTap command approval on Apple Watch" />
+              <img src={captures.watchInbox} alt="GrantTap task inbox on Apple Watch" />
             </div>
           </div>
-          <div className="approval-toast"><span className="toast-icon">✓</span><span><strong>{t.toastTitle}</strong><small>{t.toastText}</small></span></div>
         </div>
       </section>
 
@@ -276,9 +276,6 @@ export default function Home() {
           {t.steps.map(([title, text], index) => (
             <article className="step-card" key={title}>
               <span className="step-number">0{index + 1}</span>
-              {index === 0 && <div className="terminal-card"><div className="terminal-dots"><i /><i /><i /></div><code><span>$</span> granttap-mcp setup</code></div>}
-              {index === 1 && <div className="agent-lines" aria-hidden="true"><span className="agent-line active" /><span className="agent-line" /><span className="agent-line short" /><b>{t.agentWorking}</b></div>}
-              {index === 2 && <div className="decision-demo" aria-hidden="true"><button tabIndex={-1}>×</button><button tabIndex={-1}>✓ {t.allowShort}</button></div>}
               <h3>{title}</h3><p>{text}</p>
             </article>
           ))}
@@ -290,7 +287,7 @@ export default function Home() {
           <p className="kicker">{t.activityKicker}</p><h2>{t.activityTitle}</h2><p>{t.activityText}</p>
           <ul className="check-list">{t.activityItems.map(([title, text]) => <li key={title}><CheckMark /><span><strong>{title}</strong>{text}</span></li>)}</ul>
         </div>
-        <div className="activity-stage"><div className="activity-phone"><div className="activity-screen-stack"><img src="/product/phone-context-v030.png" alt="Open GrantTap context controls on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap MCP controls on iPhone" /></div></div><div className="activity-watch"><span>{t.watchCaptionInline}</span><img src="/product/watch-activity.png" alt="GrantTap activity stream on Apple Watch" /></div></div>
+        <div className="activity-stage"><div className="activity-phone"><img src={captures.taskDetail} alt="GrantTap task detail with recent activity and context usage on iPhone" /></div><div className="activity-watch"><span>{locale === "ru" ? "Та же задача на запястье" : "The same task on your wrist"}</span><img src={captures.watchTask} alt="GrantTap task detail on Apple Watch" /></div></div>
       </section>
 
       <section className="controls-section section-shell">
@@ -313,15 +310,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="gallery-section section-shell">
+      <section className="gallery-section section-shell" id="product">
         <div className="section-heading compact"><p className="kicker">{t.galleryKicker}</p><h2>{t.galleryTitle}</h2></div>
         <div className="gallery-grid">
-          <figure className="gallery-phone"><div className="gallery-device"><div className="gallery-screen-stack"><img src="/product/phone-home-v064-codex.png" alt="Monochrome GrantTap Codex tasks on iPhone" /><img src="/product/phone-home-v064-claude.png" alt="Warm GrantTap Claude Code tasks on iPhone" /><img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap task controls on iPhone" /></div></div><figcaption><strong>iPhone</strong>{t.phoneCaption}</figcaption></figure>
-          <figure className="gallery-watch"><div className="watch-pair"><img src="/product/watch-approval.png" alt="Approval on Apple Watch" /><img src="/product/watch-activity.png" alt="Activity on Apple Watch" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure>
+          <figure className="gallery-phone"><div className="phone-pair"><div className="gallery-device"><img src={captures.codexTasks} alt="GrantTap Codex task list on iPhone" /></div><div className="gallery-device"><img src={captures.claudeTasks} alt="GrantTap Claude Code task list on iPhone" /></div></div><figcaption><strong>iPhone · Codex + Claude Code</strong>{t.phoneCaption}</figcaption></figure>
+          <figure className="gallery-watch"><div className="watch-pair"><img src={captures.watchInbox} alt="GrantTap task inbox on Apple Watch" /><img src={captures.watchApproval} alt="GrantTap command approval on Apple Watch" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure>
         </div>
         <div className="history-gallery">
-          <figure><div className="history-shot"><img src="/product/phone-chat-history-v062.png" alt="GrantTap old chat history on iPhone" /></div><figcaption><strong>{locale === "ru" ? "История чатов" : "Chat history"}</strong>{t.historyCaption}</figcaption></figure>
-          <figure><div className="history-shot"><img src="/product/phone-mcp-usage-v064.png" alt="GrantTap observed MCP usage and estimated context tokens on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Использование MCP и скилов" : "MCP and skill usage"}</strong>{t.usageCaption}</figcaption></figure>
+          <figure><div className="history-shot"><img src={captures.taskDetail} alt="GrantTap task detail and context usage on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Контекст задачи" : "Task context"}</strong>{t.historyCaption}</figcaption></figure>
+          <figure><div className="history-shot"><img src={captures.mcpUsage} alt="GrantTap observed MCP usage and estimated context tokens on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Использование MCP и скилов" : "MCP and skill usage"}</strong>{t.usageCaption}</figcaption></figure>
+          <figure className="history-security"><div className="history-shot"><img src={captures.securitySettings} alt="GrantTap security settings on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Безопасность на устройстве" : "On-device security"}</strong>{t.securityCaption}</figcaption></figure>
         </div>
       </section>
 

@@ -31,21 +31,25 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   const html = await response.text();
   assert.match(
     html,
-    /<title>GrantTap — Control coding agents from Apple Watch<\/title>/i,
+    /<title>GrantTap — Keep Codex and Claude Code moving<\/title>/i,
   );
-  assert.match(html, /Approve the next move\./);
-  assert.match(html, /Keep yours\./);
+  assert.match(html, /Step away from your Mac\./);
+  assert.match(html, /The work keeps moving\./);
   assert.match(html, /Zero-knowledge relay/);
-  assert.match(html, /Real context controls/);
+  assert.match(html, /Real context usage/);
   assert.match(html, /MCP per task/);
-  assert.match(html, /phone-controls-v030\.png/);
+  assert.match(html, /iphone-command-center\.png/);
+  assert.match(html, /iphone-claude-tasks\.png/);
+  assert.match(html, /iphone-task-detail\.png/);
+  assert.match(html, /iphone-security-settings\.png/);
+  assert.match(html, /apple-watch-inbox\.png/);
+  assert.match(html, /apple-watch-task\.png/);
+  assert.match(html, /apple-watch-approval\.png/);
+  assert.doesNotMatch(html, /\/product\/(?:phone-(?:home|context|controls)-v\d+|watch-(?:activity|approval)\.png)/);
   assert.match(html, /codex mcp add granttap -- npx -y granttap-mcp/);
   assert.match(html, /Preparing for App Store review/);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
-  assert.match(
-    html,
-    /<meta(?=[^>]*property="og:image")(?=[^>]*content="https:\/\/granttap\.com\/og\.png")[^>]*>/i,
-  );
+  assert.doesNotMatch(html, /property="og:image"/i);
   assert.match(
     html,
     /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i,
@@ -83,14 +87,14 @@ test("ships the real product imagery used by the page", async () => {
   await Promise.all(
     [
       "public/app-icon.png",
-      "public/og.png",
-      "public/product/phone-sessions.png",
-      "public/product/phone-activity.png",
-      "public/product/phone-home-v063.png",
-      "public/product/phone-context-v030.png",
-      "public/product/phone-controls-v030.png",
-      "public/product/watch-approval.png",
-      "public/product/watch-activity.png",
+      "public/product/iphone-command-center.png",
+      "public/product/iphone-claude-tasks.png",
+      "public/product/iphone-task-detail.png",
+      "public/product/iphone-mcp-usage.png",
+      "public/product/iphone-security-settings.png",
+      "public/product/apple-watch-inbox.png",
+      "public/product/apple-watch-task.png",
+      "public/product/apple-watch-approval.png",
     ].map((path) => access(new URL(`../${path}`, import.meta.url))),
   );
 });
