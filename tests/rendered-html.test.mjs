@@ -86,7 +86,7 @@ test("ships the real product imagery used by the page", async () => {
       "public/og.png",
       "public/product/phone-sessions.png",
       "public/product/phone-activity.png",
-      "public/product/phone-home-v030.png",
+      "public/product/phone-home-v063.png",
       "public/product/phone-context-v030.png",
       "public/product/phone-controls-v030.png",
       "public/product/watch-approval.png",

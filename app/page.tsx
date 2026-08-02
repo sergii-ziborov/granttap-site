@@ -54,7 +54,7 @@ const copy = {
     controlsTitle: "The switches change the next real agent turn.",
     controls: [
       ["Agent access", "Inspect and change read-only, workspace, or full access for Codex turns sent from GrantTap."],
-      ["MCP per task", "Allow or deny configured MCP servers for one task without changing unrelated sessions."],
+      ["MCP per task", "See identity and icons published by each MCP server, then allow or deny it for one task without changing unrelated sessions."],
       ["Codex context", "See the real context window and start supported compaction after the active turn finishes."],
     ],
     securityKicker: "Zero-knowledge relay",
@@ -141,7 +141,7 @@ const copy = {
     controlsTitle: "Переключатели меняют следующий ход агента.",
     controls: [
       ["Доступ агента", "Смотрите и меняйте read-only, workspace или full access для ходов Codex из GrantTap."],
-      ["MCP для задачи", "Разрешайте или запрещайте настроенные MCP-серверы в одной задаче, не затрагивая остальные."],
+      ["MCP для задачи", "Смотрите имя и иконку, опубликованные самим MCP-сервером, и разрешайте либо запрещайте его в одной задаче, не затрагивая остальные."],
       ["Контекст Codex", "Следите за реальным окном и запускайте поддерживаемое сжатие после завершения активного хода."],
     ],
     securityKicker: "Relay с нулевым знанием",
@@ -245,7 +245,7 @@ export default function Home() {
           <div className="phone-shell">
             <div className="phone-speaker" />
             <div className="phone-screen-stack">
-              <img src="/product/phone-home-v030.png" alt="GrantTap tasks and approvals on iPhone" />
+              <img src="/product/phone-home-v063.png" alt="GrantTap tasks and approvals on iPhone" />
               <img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" />
               <img src="/product/phone-controls-v030.png" alt="GrantTap MCP controls on iPhone" />
             </div>
@@ -315,7 +315,7 @@ export default function Home() {
       <section className="gallery-section section-shell">
         <div className="section-heading compact"><p className="kicker">{t.galleryKicker}</p><h2>{t.galleryTitle}</h2></div>
         <div className="gallery-grid">
-          <figure className="gallery-phone"><div className="gallery-device"><div className="gallery-screen-stack"><img src="/product/phone-home-v030.png" alt="GrantTap tasks on iPhone" /><img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap task controls on iPhone" /></div></div><figcaption><strong>iPhone</strong>{t.phoneCaption}</figcaption></figure>
+          <figure className="gallery-phone"><div className="gallery-device"><div className="gallery-screen-stack"><img src="/product/phone-home-v063.png" alt="GrantTap tasks on iPhone" /><img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap task controls on iPhone" /></div></div><figcaption><strong>iPhone</strong>{t.phoneCaption}</figcaption></figure>
           <figure className="gallery-watch"><div className="watch-pair"><img src="/product/watch-approval.png" alt="Approval on Apple Watch" /><img src="/product/watch-activity.png" alt="Activity on Apple Watch" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure>
         </div>
         <div className="history-gallery">

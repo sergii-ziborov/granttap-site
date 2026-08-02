@@ -5,7 +5,7 @@ on iPhone and Apple Watch.
 
 | Tasks on iPhone | Context usage | Per-task MCP | Approval on Apple Watch |
 | --- | --- | --- | --- |
-| ![GrantTap tasks](public/product/phone-home-v030.png) | ![GrantTap context](public/product/phone-context-v030.png) | ![GrantTap MCP controls](public/product/phone-controls-v030.png) | ![GrantTap approval](public/product/watch-approval.png) |
+| ![GrantTap tasks](public/product/phone-home-v063.png) | ![GrantTap context](public/product/phone-context-v030.png) | ![GrantTap MCP controls](public/product/phone-controls-v030.png) | ![GrantTap approval](public/product/watch-approval.png) |
 
 | Chat history | MCP and skill usage |
 | --- | --- |
@@ -20,7 +20,8 @@ decision toast. A live animated countdown tracks the App Store submission date;
 
 The product copy also covers the protected on-device MCP/skill usage ledger and
 the bounded old-chat browser with per-chat tokens, context, MCP, skills, and
-local archive controls.
+local archive controls. MCP branding comes from each server's actual
+`serverInfo` metadata; the site does not claim inferred provider logos.
 English is the default; visitors can switch the full site to Russian.
 
 The capability copy also covers GrantTap's native recurrence editor and its
