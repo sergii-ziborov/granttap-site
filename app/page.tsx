@@ -72,10 +72,10 @@ const copy = {
     ],
     galleryKicker: "One system, two speeds",
     galleryTitle: "Fast decisions on Watch. Full control on iPhone.",
-    phoneCaption: "Tasks, formatted activity, chat history, exact MCP/skill usage, five-file attachments, context, and conversational schedules.",
+    phoneCaption: "Distinct monochrome Codex and warm Claude Code spaces, plus formatted activity, five-file attachments, context, and conversational schedules.",
     watchCaption: "Approve or deny immediately, then open the session when you need context.",
     historyCaption: "Older chats keep useful metadata: tokens, context, MCP, skills, and local archive state.",
-    usageCaption: "Only delivered selections and observed tool calls count toward local MCP and skill usage.",
+    usageCaption: "Observed tool calls sync even while a task is closed. Their token figure is an estimated context footprint, not separate MCP billing.",
     installKicker: "Public and auditable machine bridge",
     installTitle: "Install the GrantTap MCP in one command.",
     installText:
@@ -159,10 +159,10 @@ const copy = {
     ],
     galleryKicker: "Одна система, две скорости",
     galleryTitle: "Быстрые решения на Watch. Полный контроль на iPhone.",
-    phoneCaption: "Задачи, форматированная активность, история чатов, точное использование MCP/скилов, до пяти вложений, контекст и расписания через чат.",
+    phoneCaption: "Отдельные монохромные экраны Codex и тёплые экраны Claude Code, форматированная активность, до пяти вложений, контекст и расписания через чат.",
     watchCaption: "Сразу разрешите или отклоните, а при необходимости откройте контекст сессии.",
     historyCaption: "Старые чаты сохраняют полезные данные: токены, контекст, MCP, скилы и локальный архив.",
-    usageCaption: "В локальный счётчик попадают только доставленные выборы и реальные вызовы инструментов.",
+    usageCaption: "Реальные вызовы инструментов синхронизируются и для закрытых задач. Токены — оценка занятого контекста, а не отдельный счёт MCP.",
     installKicker: "Публичный и проверяемый мост",
     installTitle: "Установите GrantTap MCP одной командой.",
     installText:
@@ -245,7 +245,8 @@ export default function Home() {
           <div className="phone-shell">
             <div className="phone-speaker" />
             <div className="phone-screen-stack">
-              <img src="/product/phone-home-v063.png" alt="GrantTap tasks and approvals on iPhone" />
+              <img src="/product/phone-home-v064-codex.png" alt="Monochrome GrantTap Codex tasks on iPhone" />
+              <img src="/product/phone-home-v064-claude.png" alt="Warm GrantTap Claude Code tasks on iPhone" />
               <img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" />
               <img src="/product/phone-controls-v030.png" alt="GrantTap MCP controls on iPhone" />
             </div>
@@ -315,12 +316,12 @@ export default function Home() {
       <section className="gallery-section section-shell">
         <div className="section-heading compact"><p className="kicker">{t.galleryKicker}</p><h2>{t.galleryTitle}</h2></div>
         <div className="gallery-grid">
-          <figure className="gallery-phone"><div className="gallery-device"><div className="gallery-screen-stack"><img src="/product/phone-home-v063.png" alt="GrantTap tasks on iPhone" /><img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap task controls on iPhone" /></div></div><figcaption><strong>iPhone</strong>{t.phoneCaption}</figcaption></figure>
+          <figure className="gallery-phone"><div className="gallery-device"><div className="gallery-screen-stack"><img src="/product/phone-home-v064-codex.png" alt="Monochrome GrantTap Codex tasks on iPhone" /><img src="/product/phone-home-v064-claude.png" alt="Warm GrantTap Claude Code tasks on iPhone" /><img src="/product/phone-context-v030.png" alt="GrantTap context usage on iPhone" /><img src="/product/phone-controls-v030.png" alt="GrantTap task controls on iPhone" /></div></div><figcaption><strong>iPhone</strong>{t.phoneCaption}</figcaption></figure>
           <figure className="gallery-watch"><div className="watch-pair"><img src="/product/watch-approval.png" alt="Approval on Apple Watch" /><img src="/product/watch-activity.png" alt="Activity on Apple Watch" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure>
         </div>
         <div className="history-gallery">
           <figure><div className="history-shot"><img src="/product/phone-chat-history-v062.png" alt="GrantTap old chat history on iPhone" /></div><figcaption><strong>{locale === "ru" ? "История чатов" : "Chat history"}</strong>{t.historyCaption}</figcaption></figure>
-          <figure><div className="history-shot"><img src="/product/phone-mcp-usage-v062.png" alt="GrantTap MCP and skill usage on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Использование MCP и скилов" : "MCP and skill usage"}</strong>{t.usageCaption}</figcaption></figure>
+          <figure><div className="history-shot"><img src="/product/phone-mcp-usage-v064.png" alt="GrantTap observed MCP usage and estimated context tokens on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Использование MCP и скилов" : "MCP and skill usage"}</strong>{t.usageCaption}</figcaption></figure>
         </div>
       </section>
 

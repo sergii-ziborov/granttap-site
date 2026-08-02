@@ -350,7 +350,6 @@ h1 span {
 }
 
 .phone-screen-stack img,
-.activity-screen-stack img,
 .gallery-screen-stack img {
   position: absolute;
   inset: 0;
@@ -358,7 +357,17 @@ h1 span {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  animation: phone-tour 18s ease-in-out infinite;
+  animation: phone-tour 24s ease-in-out infinite;
+}
+
+.activity-screen-stack img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: activity-tour 12s ease-in-out infinite;
 }
 
 .phone-screen-stack img:nth-child(2),
@@ -369,6 +378,11 @@ h1 span {
 .phone-screen-stack img:nth-child(3),
 .gallery-screen-stack img:nth-child(3) {
   animation-delay: 12s;
+}
+
+.phone-screen-stack img:nth-child(4),
+.gallery-screen-stack img:nth-child(4) {
+  animation-delay: 18s;
 }
 
 .phone-gesture {
@@ -383,7 +397,7 @@ h1 span {
   background: rgba(244, 106, 59, 0.82);
   box-shadow: 0 0 0 7px rgba(244, 106, 59, 0.15);
   opacity: 0;
-  animation: phone-gesture 18s ease-in-out infinite;
+  animation: phone-gesture 24s ease-in-out infinite;
 }
 
 .watch-shell {
@@ -482,8 +496,13 @@ h1 span {
 }
 
 @keyframes phone-tour {
-  0%, 28% { opacity: 1; transform: translateY(0) scale(1); }
-  33%, 100% { opacity: 0; transform: translateY(-2.5%) scale(1.015); }
+  0%, 21% { opacity: 1; transform: translateY(0) scale(1); }
+  25%, 100% { opacity: 0; transform: translateY(-2.5%) scale(1.015); }
+}
+
+@keyframes activity-tour {
+  0%, 45% { opacity: 1; transform: translateY(0) scale(1); }
+  50%, 100% { opacity: 0; transform: translateY(-2.5%) scale(1.015); }
 }
 
 @keyframes phone-gesture {

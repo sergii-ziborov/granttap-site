@@ -3,13 +3,13 @@
 Source for [granttap.com](https://granttap.com), the product site for GrantTap
 on iPhone and Apple Watch.
 
-| Tasks on iPhone | Context usage | Per-task MCP | Approval on Apple Watch |
+| Codex on iPhone | Claude Code on iPhone | Context usage | Approval on Apple Watch |
 | --- | --- | --- | --- |
-| ![GrantTap tasks](public/product/phone-home-v063.png) | ![GrantTap context](public/product/phone-context-v030.png) | ![GrantTap MCP controls](public/product/phone-controls-v030.png) | ![GrantTap approval](public/product/watch-approval.png) |
+| ![GrantTap Codex tasks](public/product/phone-home-v064-codex.png) | ![GrantTap Claude Code tasks](public/product/phone-home-v064-claude.png) | ![GrantTap context](public/product/phone-context-v030.png) | ![GrantTap approval](public/product/watch-approval.png) |
 
 | Chat history | MCP and skill usage |
 | --- | --- |
-| ![GrantTap chat history](public/product/phone-chat-history-v062.png) | ![GrantTap MCP and skill usage](public/product/phone-mcp-usage-v062.png) |
+| ![GrantTap chat history](public/product/phone-chat-history-v062.png) | ![GrantTap MCP and skill usage](public/product/phone-mcp-usage-v064.png) |
 
 The canonical product site explains the GrantTap workflow, security boundary,
 MCP integration, phone/watch experience, and current App Store launch status
@@ -26,6 +26,12 @@ English is the default; visitors can switch the full site to Russian.
 
 The capability copy also covers GrantTap's native recurrence editor and its
 real E2EE conversational scheduler planner for local Codex and Claude Code.
+New tasks explicitly start without a project or in a same-agent workspace the
+user selected; they never silently inherit the bridge process directory.
+
+Observed MCP calls are synced into an encrypted on-device ledger even when a
+task is not open. Per-server tokens are labelled as an estimated contribution
+to the chat context, not as a separate MCP bill.
 
 ## Install the public MCP bridge
 
