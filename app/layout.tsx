@@ -43,12 +43,21 @@ export const metadata: Metadata = {
     title: "Step away from your Mac. Keep the work moving.",
     description:
       "Approve, reply, and inspect real Codex and Claude Code tasks from iPhone and Apple Watch.",
+    images: [
+      {
+        url: "/og-granttap.png",
+        width: 1659,
+        height: 948,
+        alt: "GrantTap securely connects coding-agent tasks on a Mac to iPhone and Apple Watch.",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Step away from your Mac. Keep the work moving.",
     description:
       "A secure iPhone and Apple Watch remote for local Codex and Claude Code sessions.",
+    images: ["/og-granttap.png"],
   },
 };
 

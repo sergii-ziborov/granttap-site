@@ -33,12 +33,13 @@ export function LanguageToggle({
   setLocale: (locale: Locale) => void;
 }) {
   return (
-    <div className="language-toggle" aria-label="Language">
+    <div className="language-toggle" role="group" aria-label={locale === "en" ? "Language" : "Язык"}>
       <button
         type="button"
         className={locale === "en" ? "active" : ""}
         onClick={() => setLocale("en")}
         aria-pressed={locale === "en"}
+        aria-label={locale === "en" ? "English, selected" : "Переключить на английский"}
       >
         EN
       </button>
@@ -47,6 +48,7 @@ export function LanguageToggle({
         className={locale === "ru" ? "active" : ""}
         onClick={() => setLocale("ru")}
         aria-pressed={locale === "ru"}
+        aria-label={locale === "ru" ? "Русский, выбран" : "Switch to Russian"}
       >
         RU
       </button>

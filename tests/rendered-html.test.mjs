@@ -23,6 +23,17 @@ async function render(url = "https://granttap.com/") {
   );
 }
 
+const PUBLIC_ROUTES = [
+  "/",
+  "/privacy",
+  "/terms",
+  "/support",
+  "/security",
+  "/data-rights",
+  "/accessibility",
+  "/licenses",
+];
+
 test("server-renders the GrantTap product page and social metadata", async () => {
   const response = await render();
   assert.equal(response.status, 200);
@@ -49,7 +60,11 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.match(html, /codex mcp add granttap -- npx -y granttap-mcp/);
   assert.match(html, /Preparing for App Store review/);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
-  assert.doesNotMatch(html, /property="og:image"/i);
+  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/og-granttap\.png"/i);
+  assert.match(html, /property="og:image:width" content="1659"/i);
+  assert.match(html, /property="og:image:height" content="948"/i);
+  assert.match(html, /name="twitter:card" content="summary_large_image"/i);
+  await access(new URL("../public/og-granttap.png", import.meta.url));
   assert.match(
     html,
     /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i,
@@ -70,6 +85,52 @@ test("permanently redirects the Sites hostname to the canonical domain", async (
   );
 });
 
+test("publishes every support and legal route with canonical metadata", async () => {
+  for (const path of PUBLIC_ROUTES) {
+    const response = await render(`https://granttap.com${path}`);
+    assert.equal(response.status, 200, path);
+    const html = await response.text();
+    const canonical = path === "/" ? "https://granttap.com/" : `https://granttap.com${path}`;
+    assert.match(html, new RegExp(`<link(?=[^>]*rel="canonical")(?=[^>]*href="${canonical.replaceAll("/", "\\/")}")[^>]*>`, "i"));
+    assert.doesNotMatch(html, /\[OWNER CONFIRMATION\]/, `${path} must not expose internal placeholders`);
+  }
+});
+
+test("all public internal page links resolve", async () => {
+  const discovered = new Set();
+
+  for (const path of PUBLIC_ROUTES) {
+    const response = await render(`https://granttap.com${path}`);
+    const html = await response.text();
+    for (const match of html.matchAll(/<a\b[^>]*href="(\/[^"#?]*)/g)) {
+      if (!match[1].startsWith("/_")) discovered.add(match[1]);
+    }
+  }
+
+  for (const path of discovered) {
+    const response = await render(`https://granttap.com${path}`);
+    assert.equal(response.status, 200, `broken internal link: ${path}`);
+  }
+});
+
+test("adds production security headers without forcing HSTS on HTTP", async () => {
+  const secure = await render("https://granttap.com/privacy");
+  const csp = secure.headers.get("content-security-policy") ?? "";
+  assert.match(csp, /default-src 'self'/);
+  assert.match(csp, /frame-ancestors 'none'/);
+  assert.match(csp, /object-src 'none'/);
+  assert.match(csp, /script-src 'self' 'unsafe-inline'/);
+  assert.doesNotMatch(csp, /unsafe-eval/);
+  assert.equal(secure.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(secure.headers.get("x-frame-options"), "DENY");
+  assert.equal(secure.headers.get("referrer-policy"), "no-referrer");
+  assert.match(secure.headers.get("permissions-policy") ?? "", /camera=\(\)/);
+  assert.match(secure.headers.get("strict-transport-security") ?? "", /max-age=63072000/);
+
+  const insecure = await render("http://granttap.com/privacy");
+  assert.equal(insecure.headers.get("strict-transport-security"), null);
+});
+
 test("publishes robots and sitemap files for only the canonical domain", async () => {
   const [robots, sitemap] = await Promise.all([
     readFile(new URL("../public/robots.txt", import.meta.url), "utf8"),
@@ -77,10 +138,35 @@ test("publishes robots and sitemap files for only the canonical domain", async (
   ]);
 
   assert.match(robots, /Sitemap: https:\/\/granttap\.com\/sitemap\.xml/);
-  for (const path of ["/", "/privacy", "/terms", "/support", "/licenses"]) {
+  for (const path of PUBLIC_ROUTES) {
     assert.match(sitemap, new RegExp(`<loc>https:\\/\\/granttap\\.com${path.replace("/", "\\/")}<\\/loc>`));
   }
   assert.doesNotMatch(`${robots}\n${sitemap}`, /chatgpt\.site/);
+});
+
+test("publishes security headers for static Cloudflare asset responses", async () => {
+  const headers = await readFile(new URL("../public/_headers", import.meta.url), "utf8");
+  assert.match(headers, /Content-Security-Policy:/);
+  assert.match(headers, /frame-ancestors 'none'/);
+  assert.match(headers, /X-Content-Type-Options: nosniff/);
+  assert.match(headers, /Permissions-Policy:.*camera=\(\)/);
+});
+
+test("keeps bilingual, actionable privacy and deletion disclosures", async () => {
+  const [privacy, deletion, appStore] = await Promise.all([
+    readFile(new URL("../app/privacy/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/data-rights/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../docs/app-store-connect.md", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(privacy, /No GrantTap account/);
+  assert.match(privacy, /Нет аккаунта GrantTap/);
+  assert.match(privacy, /APNs device token/);
+  assert.match(deletion, /choose Clear local usage history/);
+  assert.match(deletion, /~\/.granttap/);
+  assert.match(deletion, /Apple Data and Privacy/);
+  assert.match(appStore, /\[OWNER CONFIRMATION\]/);
+  assert.match(appStore, /https:\/\/granttap\.com\/privacy/);
 });
 
 test("ships the real product imagery used by the page", async () => {

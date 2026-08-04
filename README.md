@@ -60,6 +60,24 @@ granttap-mcp connect
 - [MCP bridge source](https://github.com/sergii-ziborov/granttap-mcp)
 - [Relay source](https://github.com/sergii-ziborov/granttap-relay)
 
+## App Store and customer URLs
+
+The website publishes the customer-facing pages needed for review and ongoing
+support. Keep these URLs stable across releases:
+
+- [Support](https://granttap.com/support)
+- [Privacy Policy](https://granttap.com/privacy)
+- [Data choices and deletion](https://granttap.com/data-rights)
+- [Security](https://granttap.com/security)
+- [Accessibility](https://granttap.com/accessibility)
+- [Terms of Use](https://granttap.com/terms)
+- [Licenses](https://granttap.com/licenses)
+
+The internal App Store Connect checklist, disclosure decisions, and fields that
+still need owner confirmation are documented in
+[`docs/app-store-connect.md`](docs/app-store-connect.md). Never put an owner
+placeholder on a public page.
+
 ## Develop the website
 
 Node.js 22.13 or newer is required.
@@ -112,7 +130,9 @@ overrides.
 - `app/globals.css` — responsive presentation and product-capture motion
 - `app/layout.tsx` — metadata and social preview
 - `public/product/` — canonical real product captures
-- `app/privacy/`, `app/terms/`, `app/support/`, `app/licenses/` — public policy pages
+- `public/og-granttap.png` — generated social preview used by Open Graph and X/Twitter metadata
+- `app/privacy/`, `app/terms/`, `app/support/`, `app/security/`, `app/data-rights/`, `app/accessibility/`, `app/licenses/` — public policy and support pages
+- `docs/app-store-connect.md` — submission URLs, disclosure checklist, and owner-confirmation items
 - `.openai/hosting.json` — Sites project binding
 - `wrangler.production.jsonc` — canonical Cloudflare deployment
 

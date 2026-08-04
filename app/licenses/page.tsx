@@ -11,7 +11,8 @@ export default function LicensesPage() {
   return (
     <LegalPage
       title={{ en: "Licenses and notices", ru: "Лицензии и уведомления" }}
-      updated={{ en: "July 24, 2026", ru: "24 июля 2026" }}
+      updated={{ en: "August 2, 2026", ru: "2 августа 2026" }}
+      updatedISO="2026-08-02"
       intro={{
         en: "The mobile application is private software. Its public supporting components remain independently auditable.",
         ru: "Мобильное приложение является закрытым ПО. Его публичные вспомогательные компоненты доступны для независимой проверки.",

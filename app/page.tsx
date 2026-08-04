@@ -97,7 +97,7 @@ const copy = {
     countdownReached: "Target date reached — submission in progress.",
     countdownUnits: ["days", "hours", "min", "sec"],
     tagline: "Keep your agents moving.",
-    legal: ["Privacy", "Terms", "Support", "Licenses"],
+    legal: ["Privacy", "Terms", "Support", "Security", "Data choices", "Accessibility", "Licenses"],
     rights:
       "© 2026 GrantTap. GrantTap is not affiliated with Anthropic, OpenAI, or Apple.",
   },
@@ -180,7 +180,7 @@ const copy = {
     countdownReached: "Целевая дата наступила — идёт отправка.",
     countdownUnits: ["дней", "часов", "мин", "сек"],
     tagline: "Пусть агенты не простаивают.",
-    legal: ["Конфиденциальность", "Условия", "Поддержка", "Лицензии"],
+    legal: ["Конфиденциальность", "Условия", "Поддержка", "Безопасность", "Управление данными", "Доступность", "Лицензии"],
     rights:
       "© 2026 GrantTap. GrantTap не связан с Anthropic, OpenAI или Apple.",
   },
@@ -365,7 +365,7 @@ export default function Home() {
       <footer>
         <div className="footer-brand"><img src="/app-icon.png" alt="" /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div>
         <div className="footer-links">
-          <a href="/privacy">{t.legal[0]}</a><a href="/terms">{t.legal[1]}</a><a href="/support">{t.legal[2]}</a><a href="/licenses">{t.legal[3]}</a>
+          <a href="/privacy">{t.legal[0]}</a><a href="/terms">{t.legal[1]}</a><a href="/support">{t.legal[2]}</a><a href="/security">{t.legal[3]}</a><a href="/data-rights">{t.legal[4]}</a><a href="/accessibility">{t.legal[5]}</a><a href="/licenses">{t.legal[6]}</a>
           <a href="https://github.com/sergii-ziborov/granttap-mcp">GitHub</a><a href="https://www.npmjs.com/package/granttap-mcp">npm</a>
         </div>
         <p>{t.rights}</p>
