@@ -119,6 +119,7 @@ matching time across each capture set.
 | `public/product/iphone-task-detail.png` | 1206 × 2622 | Recent activity, usage, and context |
 | `public/product/iphone-mcp-usage.png` | 1206 × 2622 | Observed MCP and skill usage |
 | `public/product/iphone-security-settings.png` | 1206 × 2622 | Safe local render of Face ID, notification privacy, task keys, and audit log |
+| `public/product/encrypted-device-path.png` | 1400 × 788 | Decorative unbranded illustration of the encrypted computer-to-device path; generated with OpenAI ImageGen |
 | `public/product/apple-watch-inbox.png` | 416 × 496 | Pending approval and active-task inbox |
 | `public/product/apple-watch-task.png` | 416 × 496 | Recent task updates and reply actions |
 | `public/product/apple-watch-approval.png` | 416 × 496 | Real pending approval |

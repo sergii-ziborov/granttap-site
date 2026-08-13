@@ -199,7 +199,7 @@ test("documents the public pairing, setup, and Cursor authorization journey", as
   assert.match(html, /single-use and expires after 15 minutes/i);
 });
 
-test("ships the real product imagery used by the page", async () => {
+test("ships every referenced public image and sanitized render source", async () => {
   await Promise.all(
     [
       "public/app-icon.png",
@@ -211,6 +211,7 @@ test("ships the real product imagery used by the page", async () => {
       "public/product/apple-watch-inbox.png",
       "public/product/apple-watch-task.png",
       "public/product/apple-watch-approval.png",
+      "public/product/encrypted-device-path.png",
     ].map((path) => access(new URL(`../${path}`, import.meta.url))),
   );
   const securityRender = await readFile(new URL("../public/product/iphone-security-settings-source.svg", import.meta.url), "utf8");

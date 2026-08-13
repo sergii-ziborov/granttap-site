@@ -11,6 +11,7 @@ test("renders the product journey and supports the locale control", async () => 
   expect(screen.getByRole("heading", { name: /Step away from your Mac/i })).toBeTruthy();
   expect(screen.getByText("Grok Build")).toBeTruthy();
   expect(screen.getByText(/Direct same-Wi-Fi transport is planned/i)).toBeTruthy();
+  expect(screen.getByRole("img", { name: /encrypted path from computer to phone and watch/i })).toBeTruthy();
 
   await user.click(screen.getByRole("button", { name: "Switch to Russian" }));
 
