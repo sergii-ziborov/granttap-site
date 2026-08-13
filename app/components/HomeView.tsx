@@ -58,7 +58,7 @@ function Gallery({ locale, t }: Pick<Props, "locale" | "t">) {
 }
 
 function Install({ t }: Pick<Props, "t">) {
-  const commands = [[t.codex, "codex mcp add granttap -- npx -y granttap-mcp"], [t.claude, "claude mcp add granttap -- npx -y granttap-mcp"], [t.cursor, "npx -y granttap-mcp connect"], [t.copilot, "npx -y granttap-mcp connect"], [t.grok, "grok mcp add granttap -- npx -y granttap-mcp"], [t.hooks, "npm install -g granttap-mcp\ngranttap-mcp connect"]];
+  const commands = [[t.codex, "codex mcp add granttap -- npx -y granttap-mcp"], [t.claude, "claude mcp add granttap -- npx -y granttap-mcp"], [t.cursor, "npm install -g granttap-mcp\ngranttap setup"], [t.copilot, "npm install -g granttap-mcp\ngranttap setup"], [t.grok, "grok mcp add granttap -- npx -y granttap-mcp"], [t.hooks, "npm install -g granttap-mcp\ngranttap connect\ngranttap setup"]];
   return <section className="install-section section-shell" id="install"><Heading kicker={t.installKicker} title={t.installTitle} text={t.installText} /><div className="install-grid">{commands.map(([title, command]) => <article className="install-card" key={title}><strong>{title}</strong><pre><code>{command}</code></pre></article>)}</div><div className="trust-links"><a href="https://github.com/sergii-ziborov/granttap-mcp">{t.source} ↗</a><a href="https://www.npmjs.com/package/granttap-mcp">{t.npm} ↗</a><a href="https://github.com/sergii-ziborov/granttap-relay">{t.relaySource} ↗</a></div></section>;
 }
 

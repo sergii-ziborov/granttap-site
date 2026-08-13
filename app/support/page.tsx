@@ -11,8 +11,8 @@ export default function SupportPage() {
   return (
     <LegalPage
       title={{ en: "Support", ru: "Поддержка" }}
-      updated={{ en: "August 2, 2026", ru: "2 августа 2026" }}
-      updatedISO="2026-08-02"
+      updated={{ en: "August 13, 2026", ru: "13 августа 2026" }}
+      updatedISO="2026-08-13"
       intro={{
         en: "Start with the checks below. If the problem remains, email support with versions and reproducible steps—but never with pairing secrets, encryption keys, or real task content.",
         ru: "Начните с проверок ниже. Если проблема остаётся, напишите в поддержку и укажите версии и шаги воспроизведения, но никогда не отправляйте секреты пейринга, ключи шифрования или реальные данные задачи.",
@@ -37,13 +37,21 @@ export default function SupportPage() {
               "Codex: codex mcp add granttap -- npx -y granttap-mcp",
               "Claude Code: claude mcp add granttap -- npx -y granttap-mcp",
               "Grok Build: grok mcp add granttap -- npx -y granttap-mcp",
-              "Cursor and GitHub Copilot: install the bridge, run granttap-mcp connect, then follow the detected-provider setup status.",
-              "Pairing and optional local approval hooks: npm install -g granttap-mcp, then granttap-mcp connect",
-              "Keep the GrantTap background helper running on the paired computer for schedules and delivery without an open terminal window.",
+              "For Cursor and GitHub Copilot, install the bridge globally: npm install -g granttap-mcp.",
+              "In a new configured agent task, ask for Connect GrantTap. The public MCP connect tool creates a one-time QR code. Scan it in GrantTap on iPhone, then run the separate setup tool to install the supported local policy hooks and background helper.",
+              "If your MCP client cannot show the QR, use the CLI: granttap connect, then granttap setup. granttap status reads readiness without changing settings.",
+              "Setup is designed to preserve unrelated agent settings. In Codex, review and trust the exact GrantTap hooks in /hooks, then restart Codex. Installation alone is not a trusted connection.",
             ],
             links: [
               { label: "granttap-mcp on npm", href: "https://www.npmjs.com/package/granttap-mcp" },
               { label: "Machine bridge source", href: "https://github.com/sergii-ziborov/granttap-mcp" },
+            ],
+          },
+          {
+            heading: "Cursor Settings → Authorize",
+            paragraphs: [
+              "Cursor shows an Authorize button only for an HTTP/SSE MCP server that supports OAuth; its normal command-and-arguments (stdio) entry is manual and has no Authorize button. This is a Cursor UI distinction, not a replacement for GrantTap encryption.",
+              "To use Cursor's web console, run granttap authorize. It installs and checks a loopback-only service, then configures only the GrantTap Cursor entry. Open Cursor Settings → MCP → GrantTap → Authorize and complete the local consent screen. The local OAuth token is separate from, and does not replace, the one-time end-to-end encrypted pairing keys.",
             ],
           },
           {
@@ -126,13 +134,21 @@ export default function SupportPage() {
               "Codex: codex mcp add granttap -- npx -y granttap-mcp",
               "Claude Code: claude mcp add granttap -- npx -y granttap-mcp",
               "Grok Build: grok mcp add granttap -- npx -y granttap-mcp",
-              "Cursor и GitHub Copilot: установите мост, выполните granttap-mcp connect и следуйте статусу настройки обнаруженного агента.",
-              "Пейринг и необязательные локальные approval hooks: npm install -g granttap-mcp, затем granttap-mcp connect",
-              "Для расписаний и доставки без открытого терминала оставьте фоновый помощник GrantTap запущенным на спаренном компьютере.",
+              "Для Cursor и GitHub Copilot установите мост глобально: npm install -g granttap-mcp.",
+              "В новой настроенной задаче агента попросите Connect GrantTap. Публичный MCP-инструмент connect создаст одноразовый QR-код. Отсканируйте его в GrantTap на iPhone, затем запустите отдельный инструмент setup для установки поддерживаемых локальных policy hooks и фонового помощника.",
+              "Если ваш MCP-клиент не показывает QR, используйте CLI: granttap connect, затем granttap setup. granttap status только читает готовность и не меняет настройки.",
+              "Setup должен сохранять не относящиеся к GrantTap настройки агентов. В Codex проверьте и подтвердите точные GrantTap hooks в /hooks, затем перезапустите Codex. Установка сама по себе не является доверенным подключением.",
             ],
             links: [
               { label: "granttap-mcp на npm", href: "https://www.npmjs.com/package/granttap-mcp" },
               { label: "Исходники моста", href: "https://github.com/sergii-ziborov/granttap-mcp" },
+            ],
+          },
+          {
+            heading: "Cursor Settings → Authorize",
+            paragraphs: [
+              "Cursor показывает кнопку Authorize только для HTTP/SSE MCP-сервера с OAuth; в обычной записи command-and-arguments (stdio) авторизация выполняется вручную и такой кнопки нет. Это различие интерфейса Cursor, а не замена шифрования GrantTap.",
+              "Для веб-консоли Cursor выполните granttap authorize. Команда устанавливает и проверяет сервис только на loopback, затем настраивает только запись GrantTap в Cursor. Откройте Cursor Settings → MCP → GrantTap → Authorize и завершите локальное согласие. Локальный OAuth-токен отделён от одноразовых ключей сквозного пейринга и не заменяет их.",
             ],
           },
           {

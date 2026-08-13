@@ -155,10 +155,9 @@ test("publishes security headers for static Cloudflare asset responses", async (
 });
 
 test("keeps bilingual, actionable privacy and deletion disclosures", async () => {
-  const [privacy, deletion, appStore] = await Promise.all([
+  const [privacy, deletion] = await Promise.all([
     readFile(new URL("../app/privacy/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/data-rights/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../docs/app-store-connect.md", import.meta.url), "utf8"),
   ]);
 
   assert.match(privacy, /No GrantTap account/);
@@ -167,8 +166,6 @@ test("keeps bilingual, actionable privacy and deletion disclosures", async () =>
   assert.match(deletion, /choose Clear local usage history/);
   assert.match(deletion, /~\/.granttap/);
   assert.match(deletion, /Apple Data and Privacy/);
-  assert.match(appStore, /\[OWNER CONFIRMATION\]/);
-  assert.match(appStore, /https:\/\/granttap\.com\/privacy/);
 });
 
 test("publishes transparent subscription pricing and future LAN scope", async () => {
@@ -181,10 +178,25 @@ test("publishes transparent subscription pricing and future LAN scope", async ()
   assert.match(html, /cancel/i);
   assert.match(html, /same Wi-Fi/i);
   assert.match(html, /no server synchronization/i);
+  assert.match(html, /free local mode/i);
 
   const terms = await render("https://granttap.com/terms").then((item) => item.text());
   assert.match(terms, /auto-renewable subscription/i);
   assert.match(terms, /7-day free trial/i);
+});
+
+test("documents the public pairing, setup, and Cursor authorization journey", async () => {
+  const response = await render("https://granttap.com/support");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+
+  assert.match(html, /Connect GrantTap/);
+  assert.match(html, /granttap connect/);
+  assert.match(html, /granttap setup/);
+  assert.match(html, /granttap authorize/);
+  assert.match(html, /Cursor Settings/);
+  assert.match(html, /Authorize/);
+  assert.match(html, /single-use and expires after 15 minutes/i);
 });
 
 test("ships the real product imagery used by the page", async () => {

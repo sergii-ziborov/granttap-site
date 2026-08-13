@@ -29,7 +29,7 @@ export default function PricingPage() {
             "A higher-capacity plan for more than 3 computers is planned. Its price and limits will be shown before purchase; this page does not promise an unpublished price.",
           ] },
           { heading: "Future same-Wi-Fi mode", paragraphs: [
-            "A local transport for phone, watch, and computer on the same Wi-Fi is planned. It is not available yet. The first version is intended for direct local delivery only, with no server synchronization or remote history sync.",
+            "A free local mode for phone, watch, and computer on the same Wi-Fi is planned. It is not available yet. The first version is intended for direct local delivery only, with no server synchronization or remote history sync.",
           ] },
           { heading: "Billing", paragraphs: [
             "Payment is charged to your Apple Account after trial confirmation. The subscription renews automatically unless cancelled at least 24 hours before the current period ends. Apple manages billing, taxes, refunds, and subscription settings.",
@@ -50,7 +50,7 @@ export default function PricingPage() {
             "Планируется тариф для более чем 3 компьютеров. Цена и лимиты будут показаны до покупки; эта страница не обещает ещё не опубликованную цену.",
           ] },
           { heading: "Будущий режим в одной Wi-Fi сети", paragraphs: [
-            "Планируется локальный транспорт между телефоном, часами и компьютером в одной Wi-Fi сети. Сейчас он недоступен. Первая версия задумана только для прямой локальной доставки, без серверной синхронизации и удалённой синхронизации истории.",
+            "Планируется бесплатный локальный режим между телефоном, часами и компьютером в одной Wi-Fi сети. Сейчас он недоступен. Первая версия задумана только для прямой локальной доставки, без серверной синхронизации и удалённой синхронизации истории.",
           ] },
           { heading: "Оплата", paragraphs: [
             "После подтверждения пробного периода оплата списывается с Apple Account. Подписка продлевается автоматически, если не отменить её минимум за 24 часа до конца периода. Apple управляет оплатой, налогами, возвратами и настройками подписки.",

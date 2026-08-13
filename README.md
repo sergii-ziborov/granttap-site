@@ -77,10 +77,9 @@ support. Keep these URLs stable across releases:
 - [Terms of Use](https://granttap.com/terms)
 - [Licenses](https://granttap.com/licenses)
 
-The internal App Store Connect checklist, disclosure decisions, and fields that
-still need owner confirmation are documented in
-[`docs/app-store-connect.md`](docs/app-store-connect.md). Never put an owner
-placeholder on a public page.
+The site contains only customer-facing support and policy material. Never put
+an owner placeholder, internal submission checklist, or unpublished roadmap on
+a public page or in this repository.
 
 ## Develop the website
 
@@ -137,7 +136,6 @@ overrides.
 - `public/product/` — canonical real product captures
 - `public/og-granttap.png` — generated social preview used by Open Graph and X/Twitter metadata
 - `app/privacy/`, `app/terms/`, `app/support/`, `app/security/`, `app/data-rights/`, `app/accessibility/`, `app/licenses/` — public policy and support pages
-- `docs/app-store-connect.md` — submission URLs, disclosure checklist, and owner-confirmation items
 - `.openai/hosting.json` — Sites project binding
 - `wrangler.production.jsonc` — canonical Cloudflare deployment
 
