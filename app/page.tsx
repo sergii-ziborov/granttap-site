@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LanguageToggle, useLocale } from "./components/Locale";
+import { useLocale } from "./components/Locale";
+import { HomeView } from "./components/HomeView";
 
 /** Target submission date. Move this one constant when the plan changes. */
 const RELEASE_AT = new Date("2026-08-14T09:00:00Z");
@@ -17,7 +18,7 @@ function releaseCountdown() {
   };
 }
 
-const copy = {
+export const copy = {
   en: {
     nav: ["How it works", "Product", "Security", "Connect"],
     status: "App Store launch",
@@ -204,18 +205,7 @@ const copy = {
   },
 } as const;
 
-const CheckMark = () => <span aria-hidden="true">✓</span>;
-
-const captures = {
-  codexTasks: "/product/iphone-command-center.png",
-  claudeTasks: "/product/iphone-claude-tasks.png",
-  taskDetail: "/product/iphone-task-detail.png",
-  mcpUsage: "/product/iphone-mcp-usage.png",
-  securitySettings: "/product/iphone-security-settings.png",
-  watchInbox: "/product/apple-watch-inbox.png",
-  watchTask: "/product/apple-watch-task.png",
-  watchApproval: "/product/apple-watch-approval.png",
-} as const;
+export type HomeCopy = typeof copy.en | typeof copy.ru;
 
 export default function Home() {
   const { locale, setLocale } = useLocale();
@@ -231,179 +221,5 @@ export default function Home() {
     return () => clearInterval(id);
   }, []);
 
-  return (
-    <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="GrantTap home">
-          <img src="/app-icon.png" alt="" />
-          <span>GrantTap</span>
-        </a>
-        <nav aria-label="Primary navigation">
-          <a href="#workflow">{t.nav[0]}</a>
-          <a href="#product">{t.nav[1]}</a>
-          <a href="#security">{t.nav[2]}</a>
-          <a href="#install">{t.nav[3]}</a>
-        </nav>
-        <LanguageToggle locale={locale} setLocale={setLocale} />
-        <a className="nav-cta" href="#availability">{t.status}</a>
-      </header>
-
-      <section className="hero section-shell" id="top">
-        <div className="hero-copy">
-          <div className="eyebrow"><span className="status-dot" />{t.eyebrow}</div>
-          <h1>{t.heroTitle}<span>{t.heroAccent}</span></h1>
-          <p className="hero-lede">{t.hero}</p>
-          <div className="hero-actions">
-            <a className="button button-primary" href="#product">{t.see} <span aria-hidden="true">↓</span></a>
-            <a className="button button-secondary" href="#security">{t.securityModel}</a>
-          </div>
-          <ul className="hero-notes" aria-label="Product highlights">
-            {t.highlights.map((item) => <li key={item}><CheckMark /> {item}</li>)}
-          </ul>
-        </div>
-        <div className="hero-product" aria-label="GrantTap on iPhone and Apple Watch">
-          <div className="signal signal-one" /><div className="signal signal-two" />
-          <div className="phone-shell">
-            <div className="phone-speaker" />
-            <div className="phone-screen-stack">
-              <img src={captures.codexTasks} alt="GrantTap Codex task list on iPhone" />
-              <img src={captures.claudeTasks} alt="GrantTap Claude Code task list on iPhone" />
-            </div>
-            <span className="phone-gesture" aria-hidden="true" />
-          </div>
-          <div className="watch-shell">
-            <span className="watch-strap watch-strap-top" aria-hidden="true" />
-            <span className="watch-strap watch-strap-bottom" aria-hidden="true" />
-            <div className="watch-crown" />
-            <div className="watch-screen-stack">
-              <img src={captures.watchApproval} alt="GrantTap command approval on Apple Watch" />
-              <img src={captures.watchInbox} alt="GrantTap task inbox on Apple Watch" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="trust-strip" aria-label="Supported platforms">
-        <p>{t.builtFor}</p>
-        <div><span className="tool-mark cursor-mark">⟩</span><strong>Cursor</strong><span className="divider" /><span className="tool-mark claude-mark">C</span><strong>Claude Code</strong><span className="divider" /><span className="tool-mark codex-mark">▚</span><strong>Codex</strong><span className="divider" /><span className="tool-mark copilot-mark">✦</span><strong>Copilot</strong><span className="divider" /><span className="tool-mark grok-mark">↯</span><strong>Grok</strong><span className="divider" /><span className="apple-mark"></span><strong>iPhone + Apple Watch</strong></div>
-      </section>
-
-      <section className="section-shell workflow" id="workflow">
-        <div className="section-heading"><p className="kicker">{t.workflowKicker}</p><h2>{t.workflowTitle}</h2><p>{t.workflowText}</p></div>
-        <div className="workflow-grid">
-          {t.steps.map(([title, text], index) => (
-            <article className="step-card" key={title}>
-              <span className="step-number">0{index + 1}</span>
-              <h3>{title}</h3><p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="feature-section section-shell" id="activity">
-        <div className="feature-copy">
-          <p className="kicker">{t.activityKicker}</p><h2>{t.activityTitle}</h2><p>{t.activityText}</p>
-          <ul className="check-list">{t.activityItems.map(([title, text]) => <li key={title}><CheckMark /><span><strong>{title}</strong>{text}</span></li>)}</ul>
-        </div>
-        <div className="activity-stage"><div className="activity-phone"><img src={captures.taskDetail} alt="GrantTap task detail with recent activity and context usage on iPhone" /></div><div className="activity-watch"><span>{locale === "ru" ? "Та же задача на запястье" : "The same task on your wrist"}</span><img src={captures.watchTask} alt="GrantTap task detail on Apple Watch" /></div></div>
-      </section>
-
-      <section className="controls-section section-shell">
-        <div className="section-heading compact"><p className="kicker">{t.controlsKicker}</p><h2>{t.controlsTitle}</h2></div>
-        <div className="controls-grid">{t.controls.map(([title, text], index) => <article className={`control-card${index === 1 ? " featured" : ""}`} key={title}><div className="control-icon">{["⌁", "◉", "↺"][index]}</div><h3>{title}</h3><p>{text}</p></article>)}</div>
-      </section>
-
-      <section className="security-section" id="security">
-        <div className="section-shell security-inner">
-          <div className="security-copy"><p className="kicker">{t.securityKicker}</p><h2>{t.securityTitle}</h2><p>{t.securityText}</p></div>
-          <div className="security-diagram" aria-label="End-to-end encrypted connection">
-            {[t.mac, t.relay, t.devices].map(([title, text], index) => (
-              <div className="diagram-group" key={title}>
-                {index > 0 && <div className="encrypted-line"><span>{t.ciphertext}</span></div>}
-                <div className={`security-node${index === 1 ? " relay-node" : ""}`}><span>{["⌘", "◇", "⌚"][index]}</span><strong>{title}</strong><small>{text}</small></div>
-              </div>
-            ))}
-          </div>
-          <div className="security-facts">{t.facts.map(([title, text]) => <article key={title}><strong>{title}</strong><p>{text}</p></article>)}</div>
-        </div>
-      </section>
-
-      <section className="gallery-section section-shell" id="product">
-        <div className="section-heading compact"><p className="kicker">{t.galleryKicker}</p><h2>{t.galleryTitle}</h2></div>
-        <div className="gallery-grid">
-          <figure className="gallery-phone"><div className="phone-pair"><div className="gallery-device"><img src={captures.codexTasks} alt="GrantTap Codex task list on iPhone" /></div><div className="gallery-device"><img src={captures.claudeTasks} alt="GrantTap Claude Code task list on iPhone" /></div></div><figcaption><strong>iPhone · approvals + chat</strong>{t.phoneCaption}</figcaption></figure>
-          <figure className="gallery-watch"><div className="watch-pair"><img src={captures.watchInbox} alt="GrantTap task inbox on Apple Watch" /><img src={captures.watchApproval} alt="GrantTap command approval on Apple Watch" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure>
-        </div>
-        <div className="history-gallery">
-          <figure><div className="history-shot"><img src={captures.taskDetail} alt="GrantTap task detail and context usage on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Контекст задачи" : "Task context"}</strong>{t.historyCaption}</figcaption></figure>
-          <figure><div className="history-shot"><img src={captures.mcpUsage} alt="GrantTap observed MCP usage and estimated context tokens on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Использование MCP и скилов" : "MCP and skill usage"}</strong>{t.usageCaption}</figcaption></figure>
-          <figure className="history-security"><div className="history-shot"><img src={captures.securitySettings} alt="GrantTap security settings on iPhone" /></div><figcaption><strong>{locale === "ru" ? "Безопасность на устройстве" : "On-device security"}</strong>{t.securityCaption}</figcaption></figure>
-        </div>
-      </section>
-
-      <section className="install-section section-shell" id="install">
-        <div className="section-heading"><p className="kicker">{t.installKicker}</p><h2>{t.installTitle}</h2><p>{t.installText}</p></div>
-        <div className="install-grid">
-          {[
-            [t.codex, "codex mcp add granttap -- npx -y granttap-mcp"],
-            [t.claude, "claude mcp add granttap -- npx -y granttap-mcp"],
-            [t.cursor, "npx -y granttap-mcp connect\n# Cursor shell gates → phone Allow"],
-            [t.copilot, "npx -y granttap-mcp connect\n# Discovers local Copilot sessions"],
-            [t.grok, "grok mcp add granttap -- npx -y granttap-mcp"],
-            [t.hooks, "npm install -g granttap-mcp\n granttap-mcp connect"],
-          ].map(([title, command]) => <article className="install-card" key={title}><strong>{title}</strong><pre><code>{command}</code></pre></article>)}
-        </div>
-        <div className="trust-links">
-          <a href="https://github.com/sergii-ziborov/granttap-mcp" target="_blank" rel="noreferrer">{t.source} ↗</a>
-          <a href="https://www.npmjs.com/package/granttap-mcp" target="_blank" rel="noreferrer">{t.npm} ↗</a>
-          <a href="https://github.com/sergii-ziborov/granttap-relay" target="_blank" rel="noreferrer">{t.relaySource} ↗</a>
-        </div>
-      </section>
-
-      <section className="pricing-preview section-shell" aria-labelledby="pricing-title">
-        <div>
-          <p className="kicker">{t.pricingKicker}</p>
-          <h2 id="pricing-title">{t.pricingTitle}</h2>
-          <p>{t.pricingText}</p>
-          <a className="button button-secondary" href="/pricing">{t.pricingAction}</a>
-        </div>
-        <aside>
-          <strong>{t.localTitle}</strong>
-          <p>{t.localText}</p>
-        </aside>
-      </section>
-
-      <section className="availability section-shell" id="availability">
-        <div className="availability-card release-card">
-          <img src="/app-icon.png" alt="" />
-          <div>
-            <p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p className="release-copy">{t.releaseText}</p>
-            {countdown && (countdown.reached
-              ? <p className="release-countdown reached" role="status">{t.countdownReached}</p>
-              : <div className="release-countdown" role="timer" aria-label={`${t.countdownLabel}: ${countdown.days} ${t.countdownUnits[0]}, ${countdown.hours} ${t.countdownUnits[1]}, ${countdown.minutes} ${t.countdownUnits[2]}, ${countdown.seconds} ${t.countdownUnits[3]} ${t.remaining}`}>
-                  <span className="countdown-caption"><i aria-hidden="true" />{t.countdownLabel} · {t.remaining}</span>
-                  <div className="countdown-clock" aria-hidden="true">
-                    {[countdown.days, countdown.hours, countdown.minutes, countdown.seconds].map((value, index) => (
-                      <span className="countdown-unit" key={t.countdownUnits[index]}>
-                        <strong>{String(value).padStart(2, "0")}</strong>
-                        <small>{t.countdownUnits[index]}</small>
-                      </span>
-                    ))}
-                  </div>
-                </div>)}
-          </div>
-          <span className="availability-pill">{t.appStore}</span>
-        </div>
-      </section>
-
-      <footer>
-        <div className="footer-brand"><img src="/app-icon.png" alt="" /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div>
-        <div className="footer-links">
-          <a href="/pricing">{t.legal[0]}</a><a href="/privacy">{t.legal[1]}</a><a href="/terms">{t.legal[2]}</a><a href="/support">{t.legal[3]}</a><a href="/security">{t.legal[4]}</a><a href="/data-rights">{t.legal[5]}</a><a href="/accessibility">{t.legal[6]}</a><a href="/licenses">{t.legal[7]}</a>
-          <a href="https://github.com/sergii-ziborov/granttap-mcp">GitHub</a><a href="https://www.npmjs.com/package/granttap-mcp">npm</a>
-        </div>
-        <p>{t.rights}</p>
-      </footer>
-    </main>
-  );
+  return <HomeView locale={locale} setLocale={setLocale} t={t} countdown={countdown} />;
 }
