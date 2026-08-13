@@ -1,0 +1,248 @@
+.activity-watch {
+  position: absolute;
+  right: 24px;
+  bottom: 54px;
+  width: 250px;
+}
+
+.activity-inset {
+  position: absolute;
+  right: 24px;
+  bottom: 46px;
+  width: 224px;
+}
+
+.activity-inset span {
+  display: block;
+  margin: 0 0 13px 7px;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.activity-inset img {
+  width: 100%;
+  height: 470px;
+  object-fit: cover;
+  object-position: top center;
+  border: 6px solid #3a3c41;
+  border-radius: 38px;
+  background: #000;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55);
+}
+
+.activity-watch span {
+  display: block;
+  margin: 0 0 13px 7px;
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.activity-watch img {
+  width: 100%;
+  padding: 11px;
+  border: 6px solid #3a3c41;
+  border-radius: 48px;
+  background: #000;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55);
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr 0.8fr;
+  gap: 14px;
+}
+
+.control-card {
+  min-height: 310px;
+}
+
+.control-card.featured {
+  background:
+    radial-gradient(circle at 75% 10%, rgba(244, 106, 59, 0.12), transparent 55%),
+    var(--panel);
+}
+
+.control-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 13px;
+  color: var(--orange);
+  background: rgba(244, 106, 59, 0.1);
+  font-size: 23px;
+}
+
+.mini-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 18px;
+  border: 1px solid #34373d;
+  border-radius: 17px;
+  background: #23262b;
+}
+
+.mini-toggle strong,
+.mini-toggle small {
+  display: block;
+}
+
+.mini-toggle strong {
+  font-size: 13px;
+}
+
+.mini-toggle small {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.mini-toggle i {
+  position: relative;
+  flex: 0 0 auto;
+  width: 47px;
+  height: 27px;
+  border-radius: 99px;
+  background: var(--orange);
+}
+
+.mini-toggle i::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.security-section {
+  padding-block: 135px;
+  border-block: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 5%, rgba(168, 190, 125, 0.09), transparent 40rem),
+    #0d0f0f;
+}
+
+.security-inner {
+  display: grid;
+  grid-template-columns: 0.86fr 1.14fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.security-copy .kicker {
+  color: var(--green);
+}
+
+.security-copy h2 {
+  max-width: 590px;
+}
+
+.security-copy a {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 670;
+}
+
+.security-diagram {
+  display: grid;
+  grid-template-columns: 1fr 0.62fr 1fr 0.62fr 1fr;
+  align-items: center;
+  min-height: 285px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.security-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.security-node > span {
+  display: grid;
+  width: 63px;
+  height: 63px;
+  place-items: center;
+  margin-bottom: 13px;
+  border: 1px solid #404349;
+  border-radius: 20px;
+  background: #1b1d21;
+  font-size: 25px;
+}
+
+.security-node strong {
+  font-size: 12px;
+}
+
+.security-node small {
+  margin-top: 4px;
+  color: var(--dim);
+  font-size: 9px;
+}
+
+.relay-node > span {
+  color: var(--green);
+  border-color: rgba(168, 190, 125, 0.3);
+}
+
+.encrypted-line {
+  position: relative;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--green) 0 4px, transparent 4px 8px);
+}
+
+.encrypted-line span {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  color: var(--dim);
+  font-family: var(--font-mono);
+  font-size: 7px;
+  white-space: nowrap;
+}
+
+.security-facts {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 45px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--line);
+}
+
+.security-facts article {
+  padding: 25px;
+  background: #111313;
+}
+
+.security-facts strong {
+  color: var(--green);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.security-facts p {
+  margin: 11px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}

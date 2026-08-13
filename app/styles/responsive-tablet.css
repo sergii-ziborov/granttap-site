@@ -1,0 +1,50 @@
+@media (max-width: 1040px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    padding-top: 65px;
+  }
+
+  .hero-copy {
+    min-width: 0;
+    max-width: 770px;
+  }
+
+  .hero-product {
+    width: min(650px, 100%);
+    margin-inline: auto;
+  }
+
+  .workflow-grid,
+  .controls-grid,
+  .install-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .step-card:last-child,
+  .control-card.featured {
+    grid-column: span 2;
+  }
+
+  .feature-section,
+  .security-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-copy,
+  .security-copy {
+    max-width: 720px;
+  }
+
+  .activity-stage {
+    width: min(650px, 100%);
+    margin-inline: auto;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .history-gallery {
+    grid-template-columns: 1fr;
+  }
+}

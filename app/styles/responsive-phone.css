@@ -1,0 +1,286 @@
+@media (max-width: 760px) {
+  .pricing-preview {
+    grid-template-columns: 1fr;
+    padding-top: 64px;
+  }
+
+  .section-shell,
+  .site-header,
+  .trust-strip,
+  footer {
+    width: min(100% - 30px, 1180px);
+  }
+
+  .site-header {
+    height: 74px;
+  }
+
+  .site-header nav {
+    display: none;
+  }
+
+  .language-toggle {
+    margin-left: auto;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-block: 52px 80px;
+    gap: 20px;
+  }
+
+  h1 {
+    font-size: clamp(50px, 15vw, 72px);
+  }
+
+  .hero-product {
+    height: 510px;
+    transform: scale(0.86);
+    transform-origin: top center;
+    margin-bottom: -65px;
+  }
+
+  .phone-shell {
+    left: 4%;
+  }
+
+  .watch-shell {
+    right: -2%;
+  }
+
+  .phone-shell-secondary {
+    right: -2%;
+  }
+
+  .approval-toast {
+    left: -4%;
+  }
+
+  .trust-strip {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+    padding: 27px 4px;
+  }
+
+  .trust-strip > div {
+    flex-wrap: wrap;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .workflow,
+  .controls-section,
+  .gallery-section,
+  .install-section {
+    padding-block: 95px;
+  }
+
+  .workflow-grid,
+  .controls-grid,
+  .install-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card:last-child,
+  .control-card.featured {
+    grid-column: auto;
+  }
+
+  .step-card {
+    min-height: 230px;
+  }
+
+  .feature-section {
+    gap: 45px;
+    padding-block: 90px;
+  }
+
+  .activity-stage {
+    min-height: 650px;
+  }
+
+  .activity-phone {
+    left: 50%;
+    width: 280px;
+    transform: translateX(-50%);
+  }
+
+  .activity-watch {
+    right: -8px;
+    width: 190px;
+  }
+
+  .activity-inset {
+    right: -8px;
+    width: 190px;
+  }
+
+  .activity-inset img {
+    height: 410px;
+  }
+
+  .security-section {
+    padding-block: 95px;
+  }
+
+  .security-diagram {
+    grid-template-columns: 1fr;
+    gap: 19px;
+  }
+
+  .encrypted-line {
+    width: 1px;
+    height: 35px;
+    margin-inline: auto;
+    background: repeating-linear-gradient(180deg, var(--green) 0 4px, transparent 4px 8px);
+  }
+
+  .encrypted-line span {
+    left: 12px;
+    bottom: 12px;
+    transform: none;
+  }
+
+  .security-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-phone,
+  .gallery-watch,
+  .gallery-security {
+    padding-inline: 18px;
+  }
+
+  .phone-pair {
+    min-height: 560px;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-inline: -18px;
+    padding: 0 18px 30px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+  }
+
+  .phone-pair::-webkit-scrollbar {
+    display: none;
+  }
+
+  .phone-pair .gallery-device {
+    flex: 0 0 252px;
+    width: 252px;
+    scroll-snap-align: center;
+  }
+
+  .phone-pair .gallery-device:last-child {
+    transform: none;
+  }
+
+  .history-gallery figure {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .history-gallery .history-security {
+    grid-template-columns: 1fr;
+  }
+
+  .history-shot {
+    width: min(285px, 100%);
+    margin-inline: auto;
+  }
+
+  .history-gallery figcaption {
+    margin-inline: 0;
+    padding: 0 6px 10px;
+  }
+
+  figcaption {
+    margin-inline: -18px;
+  }
+
+  .watch-pair {
+    gap: 7px;
+  }
+
+  .availability {
+    padding-bottom: 95px;
+  }
+
+  .availability-card {
+    grid-template-columns: 68px 1fr;
+    gap: 20px;
+    padding: 32px 24px;
+  }
+
+  .availability-card > img {
+    width: 68px;
+    height: 68px;
+    border-radius: 17px;
+  }
+
+  .availability-card > div {
+    grid-column: 1 / -1;
+  }
+
+  .availability-pill {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    justify-self: start;
+  }
+
+  footer {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-header,
+  .legal-document,
+  .legal-footer {
+    width: min(100% - 30px, 880px);
+  }
+
+  .legal-document {
+    padding-block: 64px 82px;
+  }
+
+  .legal-header {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-block: 15px;
+  }
+
+  .legal-header .brand {
+    flex: 1 1 auto;
+  }
+
+  .legal-header > a:nth-child(2) {
+    margin-left: 0;
+  }
+
+  .legal-document h1 {
+    font-size: clamp(40px, 13vw, 58px);
+    overflow-wrap: anywhere;
+  }
+
+  .legal-intro {
+    margin-bottom: 58px;
+    font-size: 18px;
+  }
+
+  .legal-index {
+    margin-top: -24px;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+  }
+}

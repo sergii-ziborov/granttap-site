@@ -1,0 +1,45 @@
+@media (max-width: 420px) {
+  .hero-product {
+    left: 50%;
+    width: 470px;
+    transform: translateX(-50%) scale(0.74);
+    margin-bottom: -125px;
+  }
+
+  .signal-one {
+    right: 0;
+  }
+
+  .gallery-device {
+    width: 252px;
+  }
+
+  .watch-pair {
+    min-height: 410px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .phone-screen-stack img:first-child,
+  .activity-screen-stack img:first-child,
+  .gallery-screen-stack img:first-child,
+  .watch-screen-stack img:first-child {
+    opacity: 1;
+  }
+
+  .phone-gesture,
+  .approval-toast {
+    display: none;
+  }
+}
