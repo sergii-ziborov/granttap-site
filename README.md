@@ -1,11 +1,11 @@
 # GrantTap
 
-**Step away from your Mac. Keep Codex and Claude Code moving.**
+**Step away from your Mac. Keep Cursor, Claude, Codex, Copilot, and Grok moving.**
 
 GrantTap is the secure iPhone and Apple Watch companion for coding-agent
-sessions already running on your computer. Approve a command, answer a
-question, inspect the latest task activity, or send the next turn without
-starting a second agent or moving your project to another service.
+sessions already running on your computer. Approve a shell command, answer a
+question, open chat, inspect the latest task activity, or send the next turn
+without starting a second agent or moving your project to another service.
 
 <p align="center">
   <img src="public/product/iphone-command-center.png" width="220" alt="GrantTap Codex task list on iPhone">
@@ -14,11 +14,14 @@ starting a second agent or moving your project to another service.
 </p>
 
 The product site is live at [granttap.com](https://granttap.com). The iPhone
-and Apple Watch apps are still being prepared for App Store review.
+and Apple Watch apps are still being prepared for App Store review. The planned
+Personal subscription includes a 7-day free trial, then costs $2.99 per month
+for up to three linked computers. A direct same-Wi-Fi transport without server
+synchronization is planned, but is not available yet.
 
 ## One task, wherever you are
 
-1. Codex or Claude Code keeps working in its normal local session.
+1. Cursor, Claude Code, Codex, Copilot, or Grok Build keeps working in its normal local session.
 2. When it needs a decision, GrantTap sends the encrypted event to your paired
    devices.
 3. You approve, deny, reply by voice or text, or open the task for more context.
@@ -26,7 +29,8 @@ and Apple Watch apps are still being prepared for App Store review.
 
 On iPhone, each task exposes recent visible activity, full formatted chat,
 attachments, agent access, context-window usage, Codex compaction, and allowed
-MCP servers or project skills. Apple Watch keeps the fast path focused: active
+MCP servers or project skills. Cursor shell approvals and Copilot session chat
+share the same phone remote. Apple Watch keeps the fast path focused: active
 and recent tasks, recent updates, voice replies, and approvals.
 
 ## Security boundary
@@ -108,8 +112,9 @@ each capture set.
 
 | Asset | Pixels | Contents |
 | --- | ---: | --- |
-| `public/product/iphone-command-center.png` | 1206 × 2622 | Codex task list and composer |
+| `public/product/iphone-command-center.png` | 1206 × 2622 | Codex task list, approvals, and composer |
 | `public/product/iphone-claude-tasks.png` | 1206 × 2622 | Claude Code task list, scheduler, and composer |
+| *(planned)* Cursor / Copilot home | 1206 × 2622 | Capture when English demo UI shows agent tabs |
 | `public/product/iphone-task-detail.png` | 1206 × 2622 | Recent activity, usage, and context |
 | `public/product/iphone-mcp-usage.png` | 1206 × 2622 | Observed MCP and skill usage |
 | `public/product/iphone-security-settings.png` | 1206 × 2622 | Face ID, notification privacy, task keys, and audit log |
@@ -136,4 +141,4 @@ overrides.
 - `.openai/hosting.json` — Sites project binding
 - `wrangler.production.jsonc` — canonical Cloudflare deployment
 
-GrantTap is not affiliated with Anthropic, OpenAI, or Apple.
+GrantTap is not affiliated with Anthropic, OpenAI, Microsoft, Anysphere, xAI, or Apple.

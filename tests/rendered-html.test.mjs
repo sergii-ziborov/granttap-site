@@ -32,6 +32,7 @@ const PUBLIC_ROUTES = [
   "/data-rights",
   "/accessibility",
   "/licenses",
+  "/pricing",
 ];
 
 test("server-renders the GrantTap product page and social metadata", async () => {
@@ -42,7 +43,7 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   const html = await response.text();
   assert.match(
     html,
-    /<title>GrantTap — Keep Codex and Claude Code moving<\/title>/i,
+    /<title>GrantTap — Keep Cursor, Claude, Codex, Copilot, and Grok moving<\/title>/i,
   );
   assert.match(html, /Step away from your Mac\./);
   assert.match(html, /The work keeps moving\./);
@@ -58,6 +59,7 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.match(html, /apple-watch-approval\.png/);
   assert.doesNotMatch(html, /\/product\/(?:phone-(?:home|context|controls)-v\d+|watch-(?:activity|approval)\.png)/);
   assert.match(html, /codex mcp add granttap -- npx -y granttap-mcp/);
+  assert.match(html, /grok mcp add granttap/);
   assert.match(html, /Preparing for App Store review/);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
   assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/og-granttap\.png"/i);
@@ -167,6 +169,22 @@ test("keeps bilingual, actionable privacy and deletion disclosures", async () =>
   assert.match(deletion, /Apple Data and Privacy/);
   assert.match(appStore, /\[OWNER CONFIRMATION\]/);
   assert.match(appStore, /https:\/\/granttap\.com\/privacy/);
+});
+
+test("publishes transparent subscription pricing and future LAN scope", async () => {
+  const response = await render("https://granttap.com/pricing");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /7-day free trial/i);
+  assert.match(html, /\$2\.99/);
+  assert.match(html, /up to 3 (?:linked )?computers/i);
+  assert.match(html, /cancel/i);
+  assert.match(html, /same Wi-Fi/i);
+  assert.match(html, /no server synchronization/i);
+
+  const terms = await render("https://granttap.com/terms").then((item) => item.text());
+  assert.match(terms, /auto-renewable subscription/i);
+  assert.match(terms, /7-day free trial/i);
 });
 
 test("ships the real product imagery used by the page", async () => {

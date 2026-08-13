@@ -21,19 +21,19 @@ const copy = {
   en: {
     nav: ["How it works", "Product", "Security", "Connect"],
     status: "App Store launch",
-    eyebrow: "Codex + Claude Code stay within reach",
+    eyebrow: "Cursor · Claude · Codex · Copilot · Grok within reach",
     heroTitle: "Step away from your Mac.",
     heroAccent: "The work keeps moving.",
     hero:
-      "GrantTap turns your iPhone and Apple Watch into a secure remote for the coding-agent sessions already running on your computer. Approve, reply, inspect context, and keep the task moving.",
+      "GrantTap turns your iPhone and Apple Watch into a secure remote for coding-agent sessions already running on your computer — Cursor, Claude Code, Codex, Copilot, and Grok Build. Approve shell commands, answer questions, open chat, and keep the task moving.",
     see: "See the real app",
     securityModel: "How encryption works",
-    highlights: ["Agents stay on your Mac", "Task-scoped E2EE", "Real Codex + Claude sessions"],
+    highlights: ["Agents stay on your Mac", "Task-scoped E2EE", "Approvals + chat from your phone"],
     builtFor: "A companion for the agents you already run locally",
     workflowKicker: "One interruption, handled",
     workflowTitle: "When an agent needs you, you do not need your laptop.",
     workflowText:
-      "GrantTap does not replace Codex or Claude Code. It carries the small, important moments between their local session and your devices.",
+      "GrantTap does not replace Cursor, Claude Code, Codex, Copilot, or Grok Build. It carries the small, important moments — approvals, questions, and chat — between their local session and your devices.",
     steps: [
       ["The agent asks", "A command, question, or finished turn appears from the real local session on your Mac."],
       ["You decide", "Read the task context and approve, deny, or answer from iPhone or Apple Watch."],
@@ -72,7 +72,7 @@ const copy = {
     ],
     galleryKicker: "The actual product",
     galleryTitle: "Fast decisions on Watch. The full task on iPhone.",
-    phoneCaption: "A live view of your local Codex and Claude Code tasks, with a clear agent switch and the next task routed to the agent you selected.",
+    phoneCaption: "A live view of local agent tasks with approvals, questions, chat history, and MCP usage across Cursor, Claude Code, Codex, Copilot, and Grok Build.",
     watchCaption: "Scan active and recent tasks, open the latest updates, reply by voice or text, and handle a pending approval immediately.",
     historyCaption: "The task detail leads with recent activity, then exposes tokens, context, access, MCP, and the full chat only when you need them.",
     usageCaption: "The local usage ledger records observed MCP and skill calls. Token figures are estimated context footprint, never separate MCP billing.",
@@ -80,13 +80,22 @@ const copy = {
     installKicker: "Public and auditable machine bridge",
     installTitle: "Connect the agents you already use.",
     installText:
-      "The machine-side MCP bridge and relay are public, so you can inspect exactly what runs near your code before pairing a device.",
+      "The machine-side bridge and relay are public, so you can inspect exactly what runs near your code before pairing a device. All five supported agents share the same encrypted phone channel.",
     codex: "Codex",
     claude: "Claude Code",
+    cursor: "Cursor",
+    copilot: "GitHub Copilot",
+    grok: "Grok Build",
     hooks: "Approval hooks",
     source: "MCP source on GitHub",
     npm: "View on npm",
     relaySource: "Relay source on GitHub",
+    pricingKicker: "Simple subscription",
+    pricingTitle: "$2.99 per month after a 7-day free trial.",
+    pricingText: "Personal connects up to 3 computers. Cancel through Apple at any time. Larger plans will follow without weakening the per-computer security boundary.",
+    pricingAction: "See pricing and terms",
+    localTitle: "Direct same-Wi-Fi transport is planned",
+    localText: "A future local mode will deliver directly between your devices on the same network, with no server synchronization. It is not available yet.",
     releaseKicker: "Launch status",
     releaseTitle: "Preparing for App Store review.",
     releaseText:
@@ -97,26 +106,26 @@ const copy = {
     countdownReached: "Target date reached — submission in progress.",
     countdownUnits: ["days", "hours", "min", "sec"],
     tagline: "Keep your agents moving.",
-    legal: ["Privacy", "Terms", "Support", "Security", "Data choices", "Accessibility", "Licenses"],
+    legal: ["Pricing", "Privacy", "Terms", "Support", "Security", "Data choices", "Accessibility", "Licenses"],
     rights:
-      "© 2026 GrantTap. GrantTap is not affiliated with Anthropic, OpenAI, or Apple.",
+      "© 2026 GrantTap. GrantTap is not affiliated with Anthropic, OpenAI, Microsoft, Anysphere, xAI, or Apple.",
   },
   ru: {
     nav: ["Как работает", "Приложение", "Безопасность", "Подключить"],
     status: "Запуск в App Store",
-    eyebrow: "Codex и Claude Code остаются под рукой",
+    eyebrow: "Cursor · Claude · Codex · Copilot · Grok под рукой",
     heroTitle: "Отойдите от Mac.",
     heroAccent: "Работа не остановится.",
     hero:
-      "GrantTap превращает iPhone и Apple Watch в защищённый пульт для сессий кодовых агентов, уже запущенных на компьютере. Подтверждайте, отвечайте, проверяйте контекст — и не останавливайте задачу.",
+      "GrantTap превращает iPhone и Apple Watch в защищённый пульт для сессий кодовых агентов на вашем компьютере — Cursor, Claude Code, Codex, Copilot и Grok Build. Подтверждайте команды, отвечайте на вопросы, открывайте чат — и не останавливайте задачу.",
     see: "Посмотреть приложение",
     securityModel: "Как устроено шифрование",
-    highlights: ["Агенты остаются на Mac", "E2EE для каждой задачи", "Настоящие сессии Codex и Claude"],
+    highlights: ["Агенты остаются на Mac", "E2EE для каждой задачи", "Подтверждения и чат с телефона"],
     builtFor: "Дополнение к агентам, которые уже работают локально",
     workflowKicker: "Одно прерывание — одно решение",
     workflowTitle: "Когда агенту нужен ответ, ноутбук не нужен.",
     workflowText:
-      "GrantTap не заменяет Codex или Claude Code. Он переносит короткие, важные моменты между локальной сессией и вашими устройствами.",
+      "GrantTap не заменяет Cursor, Claude Code, Codex, Copilot или Grok Build. Он переносит короткие, важные моменты — подтверждения, вопросы и чат — между локальной сессией и вашими устройствами.",
     steps: [
       ["Агент спрашивает", "Команда, вопрос или завершённый ход приходят из настоящей локальной сессии на Mac."],
       ["Вы решаете", "Прочитайте контекст задачи и разрешите, отклоните или ответьте с iPhone либо Apple Watch."],
@@ -155,7 +164,7 @@ const copy = {
     ],
     galleryKicker: "Настоящее приложение",
     galleryTitle: "Быстрые решения на Watch. Вся задача — на iPhone.",
-    phoneCaption: "Живой список локальных задач Codex и Claude Code, понятное переключение агента и запуск новой задачи именно для выбранного агента.",
+    phoneCaption: "Живой список локальных задач с подтверждениями, вопросами, историей чата и MCP для Cursor, Claude Code, Codex, Copilot и Grok Build.",
     watchCaption: "Просматривайте активные и недавние задачи, открывайте последние обновления, отвечайте голосом или текстом и сразу обрабатывайте подтверждения.",
     historyCaption: "Экран задачи начинается со свежих событий, а токены, контекст, доступ, MCP и полный чат открываются тогда, когда нужны.",
     usageCaption: "Локальная история хранит наблюдаемые вызовы MCP и скилов. Токены — оценка места в контексте, а не отдельный счёт MCP.",
@@ -163,13 +172,22 @@ const copy = {
     installKicker: "Публичный и проверяемый мост",
     installTitle: "Подключите агентов, которыми уже пользуетесь.",
     installText:
-      "MCP-мост на компьютере и relay открыты: до пейринга можно проверить весь код, который будет работать рядом с проектами.",
+      "Мост на компьютере и relay открыты: до пейринга можно проверить весь код рядом с проектами. Все пять поддерживаемых агентов используют один зашифрованный канал телефона.",
     codex: "Codex",
     claude: "Claude Code",
+    cursor: "Cursor",
+    copilot: "GitHub Copilot",
+    grok: "Grok Build",
     hooks: "Approval hooks",
     source: "Исходники MCP на GitHub",
     npm: "Пакет на npm",
     relaySource: "Исходники relay на GitHub",
+    pricingKicker: "Простая подписка",
+    pricingTitle: "$2,99 в месяц после 7 бесплатных дней.",
+    pricingText: "Personal подключает до 3 компьютеров. Отменить можно в Apple в любой момент. Для большего числа компьютеров позже появятся отдельные планы без ослабления границ безопасности.",
+    pricingAction: "Тарифы и условия",
+    localTitle: "Прямое соединение в одной Wi-Fi сети — в планах",
+    localText: "Будущий локальный режим будет передавать данные напрямую между устройствами в одной сети, без серверной синхронизации. Сейчас он ещё недоступен.",
     releaseKicker: "Статус запуска",
     releaseTitle: "Готовим релиз к проверке App Store.",
     releaseText:
@@ -180,9 +198,9 @@ const copy = {
     countdownReached: "Целевая дата наступила — идёт отправка.",
     countdownUnits: ["дней", "часов", "мин", "сек"],
     tagline: "Пусть агенты не простаивают.",
-    legal: ["Конфиденциальность", "Условия", "Поддержка", "Безопасность", "Управление данными", "Доступность", "Лицензии"],
+    legal: ["Тарифы", "Конфиденциальность", "Условия", "Поддержка", "Безопасность", "Управление данными", "Доступность", "Лицензии"],
     rights:
-      "© 2026 GrantTap. GrantTap не связан с Anthropic, OpenAI или Apple.",
+      "© 2026 GrantTap. GrantTap не связан с Anthropic, OpenAI, Microsoft, Anysphere, xAI или Apple.",
   },
 } as const;
 
@@ -267,7 +285,7 @@ export default function Home() {
 
       <section className="trust-strip" aria-label="Supported platforms">
         <p>{t.builtFor}</p>
-        <div><span className="tool-mark claude-mark">C</span><strong>Claude Code</strong><span className="divider" /><span className="tool-mark codex-mark">▚</span><strong>Codex</strong><span className="divider" /><span className="apple-mark"></span><strong>iPhone + Apple Watch</strong></div>
+        <div><span className="tool-mark cursor-mark">⟩</span><strong>Cursor</strong><span className="divider" /><span className="tool-mark claude-mark">C</span><strong>Claude Code</strong><span className="divider" /><span className="tool-mark codex-mark">▚</span><strong>Codex</strong><span className="divider" /><span className="tool-mark copilot-mark">✦</span><strong>Copilot</strong><span className="divider" /><span className="tool-mark grok-mark">↯</span><strong>Grok</strong><span className="divider" /><span className="apple-mark"></span><strong>iPhone + Apple Watch</strong></div>
       </section>
 
       <section className="section-shell workflow" id="workflow">
@@ -313,7 +331,7 @@ export default function Home() {
       <section className="gallery-section section-shell" id="product">
         <div className="section-heading compact"><p className="kicker">{t.galleryKicker}</p><h2>{t.galleryTitle}</h2></div>
         <div className="gallery-grid">
-          <figure className="gallery-phone"><div className="phone-pair"><div className="gallery-device"><img src={captures.codexTasks} alt="GrantTap Codex task list on iPhone" /></div><div className="gallery-device"><img src={captures.claudeTasks} alt="GrantTap Claude Code task list on iPhone" /></div></div><figcaption><strong>iPhone · Codex + Claude Code</strong>{t.phoneCaption}</figcaption></figure>
+          <figure className="gallery-phone"><div className="phone-pair"><div className="gallery-device"><img src={captures.codexTasks} alt="GrantTap Codex task list on iPhone" /></div><div className="gallery-device"><img src={captures.claudeTasks} alt="GrantTap Claude Code task list on iPhone" /></div></div><figcaption><strong>iPhone · approvals + chat</strong>{t.phoneCaption}</figcaption></figure>
           <figure className="gallery-watch"><div className="watch-pair"><img src={captures.watchInbox} alt="GrantTap task inbox on Apple Watch" /><img src={captures.watchApproval} alt="GrantTap command approval on Apple Watch" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure>
         </div>
         <div className="history-gallery">
@@ -329,6 +347,9 @@ export default function Home() {
           {[
             [t.codex, "codex mcp add granttap -- npx -y granttap-mcp"],
             [t.claude, "claude mcp add granttap -- npx -y granttap-mcp"],
+            [t.cursor, "npx -y granttap-mcp connect\n# Cursor shell gates → phone Allow"],
+            [t.copilot, "npx -y granttap-mcp connect\n# Discovers local Copilot sessions"],
+            [t.grok, "grok mcp add granttap -- npx -y granttap-mcp"],
             [t.hooks, "npm install -g granttap-mcp\n granttap-mcp connect"],
           ].map(([title, command]) => <article className="install-card" key={title}><strong>{title}</strong><pre><code>{command}</code></pre></article>)}
         </div>
@@ -337,6 +358,19 @@ export default function Home() {
           <a href="https://www.npmjs.com/package/granttap-mcp" target="_blank" rel="noreferrer">{t.npm} ↗</a>
           <a href="https://github.com/sergii-ziborov/granttap-relay" target="_blank" rel="noreferrer">{t.relaySource} ↗</a>
         </div>
+      </section>
+
+      <section className="pricing-preview section-shell" aria-labelledby="pricing-title">
+        <div>
+          <p className="kicker">{t.pricingKicker}</p>
+          <h2 id="pricing-title">{t.pricingTitle}</h2>
+          <p>{t.pricingText}</p>
+          <a className="button button-secondary" href="/pricing">{t.pricingAction}</a>
+        </div>
+        <aside>
+          <strong>{t.localTitle}</strong>
+          <p>{t.localText}</p>
+        </aside>
       </section>
 
       <section className="availability section-shell" id="availability">
@@ -365,7 +399,7 @@ export default function Home() {
       <footer>
         <div className="footer-brand"><img src="/app-icon.png" alt="" /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div>
         <div className="footer-links">
-          <a href="/privacy">{t.legal[0]}</a><a href="/terms">{t.legal[1]}</a><a href="/support">{t.legal[2]}</a><a href="/security">{t.legal[3]}</a><a href="/data-rights">{t.legal[4]}</a><a href="/accessibility">{t.legal[5]}</a><a href="/licenses">{t.legal[6]}</a>
+          <a href="/pricing">{t.legal[0]}</a><a href="/privacy">{t.legal[1]}</a><a href="/terms">{t.legal[2]}</a><a href="/support">{t.legal[3]}</a><a href="/security">{t.legal[4]}</a><a href="/data-rights">{t.legal[5]}</a><a href="/accessibility">{t.legal[6]}</a><a href="/licenses">{t.legal[7]}</a>
           <a href="https://github.com/sergii-ziborov/granttap-mcp">GitHub</a><a href="https://www.npmjs.com/package/granttap-mcp">npm</a>
         </div>
         <p>{t.rights}</p>

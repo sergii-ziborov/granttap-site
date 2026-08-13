@@ -2,7 +2,7 @@
   "name": "granttap-web",
   "version": "0.1.0",
   "private": true,
-  "description": "Product website for GrantTap on iPhone and Apple Watch.",
+  "description": "Product website for GrantTap \u2014 iPhone and Apple Watch remote for Cursor, Claude Code, Codex, Copilot, and Grok Build.",
   "homepage": "https://granttap.com",
   "repository": {
     "type": "git",

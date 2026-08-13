@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://granttap.com"),
   title: {
-    default: "GrantTap — Keep Codex and Claude Code moving",
+    default: "GrantTap — Keep Cursor, Claude, Codex, Copilot, and Grok moving",
     template: "%s · GrantTap",
   },
   description:
-    "A secure iPhone and Apple Watch remote for Codex and Claude Code sessions already running on your Mac.",
+    "A secure iPhone and Apple Watch remote for Cursor, Claude Code, Codex, Copilot, and Grok Build — approvals, questions, and chat for sessions already on your computer.",
   applicationName: "GrantTap",
   alternates: {
     canonical: "/",
@@ -28,9 +28,13 @@ export const metadata: Metadata = {
     "Apple Watch",
     "Claude Code",
     "Codex",
+    "Cursor",
+    "GitHub Copilot",
+    "Grok Build",
     "coding agent",
     "developer tools",
     "remote approval",
+    "MCP",
   ],
   icons: {
     icon: "/favicon.png",
@@ -42,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "GrantTap",
     title: "Step away from your Mac. Keep the work moving.",
     description:
-      "Approve, reply, and inspect real Codex and Claude Code tasks from iPhone and Apple Watch.",
+      "Approve commands, answer questions, and chat with Cursor, Claude Code, Codex, Copilot, and Grok Build from iPhone and Apple Watch.",
     images: [
       {
         url: "/og-granttap.png",
@@ -56,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Step away from your Mac. Keep the work moving.",
     description:
-      "A secure iPhone and Apple Watch remote for local Codex and Claude Code sessions.",
+      "A secure iPhone and Apple Watch remote for local Cursor, Claude Code, Codex, Copilot, and Grok Build sessions.",
     images: ["/og-granttap.png"],
   },
 };

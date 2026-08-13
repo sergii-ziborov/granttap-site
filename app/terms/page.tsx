@@ -11,8 +11,8 @@ export default function TermsPage() {
   return (
     <LegalPage
       title={{ en: "Terms of Use", ru: "Условия использования" }}
-      updated={{ en: "August 2, 2026", ru: "2 августа 2026" }}
-      updatedISO="2026-08-02"
+      updated={{ en: "August 13, 2026", ru: "13 августа 2026" }}
+      updatedISO="2026-08-13"
       intro={{
         en: "These terms cover the GrantTap app, encrypted relay, and related support services. GrantTap extends coding-agent sessions on computers you control; it does not replace the agent or move your project into a GrantTap cloud.",
         ru: "Эти условия относятся к приложению GrantTap, зашифрованному relay и поддержке. GrantTap дополняет сессии кодовых агентов на контролируемых вами компьютерах, а не заменяет агента и не переносит проект в облако GrantTap.",
@@ -32,7 +32,7 @@ export default function TermsPage() {
           {
             heading: "No GrantTap account",
             paragraphs: [
-              "GrantTap does not require or create a GrantTap user account. Pairing authorizes a device and computer using locally held cryptographic credentials. Your Apple Account, Codex account, Claude account, model provider account, and source-control accounts remain separate and are governed by their providers.",
+              "GrantTap does not require or create a GrantTap user account. Pairing authorizes a device and computer using locally held cryptographic credentials. Your Apple Account, coding-agent accounts, model provider accounts, and source-control accounts remain separate and are governed by their providers.",
             ],
           },
           {
@@ -47,16 +47,18 @@ export default function TermsPage() {
           {
             heading: "Third-party agents and services",
             paragraphs: [
-              "Codex, Claude Code, Apple services, Cloudflare, MCP servers, repositories, and any external tool you select are independent services with their own terms and privacy practices. GrantTap does not control their outputs, availability, pricing, or data practices and does not proxy model traffic.",
-              "References to third-party names describe compatibility only. GrantTap is an independent product and is not affiliated with, endorsed by, or sponsored by Apple, Anthropic, OpenAI, or Cloudflare.",
+              "Cursor, Claude Code, Codex, GitHub Copilot, Grok Build, Apple services, Cloudflare, MCP servers, repositories, and any external tool you select are independent services with their own terms and privacy practices. GrantTap does not control their outputs, availability, pricing, or data practices and does not proxy model traffic.",
+              "References to third-party names describe compatibility only. GrantTap is an independent product and is not affiliated with, endorsed by, or sponsored by Apple, Anthropic, OpenAI, Microsoft, Anysphere, xAI, or Cloudflare.",
             ],
           },
           {
             heading: "Purchases and refunds",
             paragraphs: [
-              "App Store purchases, payment processing, taxes, family sharing, and refunds are handled by Apple under Apple's terms. GrantTap does not receive your payment-card details. For an App Store refund request, use Apple's Report a Problem service.",
+              "GrantTap is planned as an auto-renewable subscription with a 7-day free trial for eligible new subscribers. The planned Personal price is $2.99 per month for up to 3 computers. The exact price and trial eligibility shown by Apple before confirmation control if they differ from this page.",
+              "The subscription renews automatically unless cancelled at least 24 hours before the current period ends. App Store purchases, payment processing, taxes, family sharing, and refunds are handled by Apple. GrantTap does not receive your payment-card details.",
             ],
             links: [
+              { label: "Pricing and subscription details", href: "/pricing" },
               { label: "Apple Report a Problem", href: "https://reportaproblem.apple.com/" },
             ],
           },
@@ -114,7 +116,7 @@ export default function TermsPage() {
           {
             heading: "Без аккаунта GrantTap",
             paragraphs: [
-              "GrantTap не требует и не создаёт пользовательский аккаунт. Пейринг разрешает связь устройства и компьютера с помощью локальных криптографических данных. Apple Account, Codex, Claude, аккаунты поставщиков моделей и систем контроля версий остаются отдельными и регулируются их условиями.",
+              "GrantTap не требует и не создаёт пользовательский аккаунт. Пейринг разрешает связь устройства и компьютера с помощью локальных криптографических данных. Apple Account, аккаунты кодовых агентов, поставщиков моделей и систем контроля версий остаются отдельными и регулируются их условиями.",
             ],
           },
           {
@@ -129,16 +131,20 @@ export default function TermsPage() {
           {
             heading: "Сторонние агенты и сервисы",
             paragraphs: [
-              "Codex, Claude Code, сервисы Apple, Cloudflare, MCP-серверы, репозитории и другие выбранные инструменты независимы и имеют собственные условия и правила данных. GrantTap не контролирует их ответы, доступность, цены или обработку данных и не проксирует трафик модели.",
-              "Упоминание сторонних названий означает только совместимость. GrantTap — независимый продукт и не связан, не одобрен и не спонсируется Apple, Anthropic, OpenAI или Cloudflare.",
+              "Cursor, Claude Code, Codex, GitHub Copilot, Grok Build, сервисы Apple, Cloudflare, MCP-серверы, репозитории и другие выбранные инструменты независимы и имеют собственные условия и правила данных. GrantTap не контролирует их ответы, доступность, цены или обработку данных и не проксирует трафик модели.",
+              "Упоминание сторонних названий означает только совместимость. GrantTap — независимый продукт и не связан, не одобрен и не спонсируется Apple, Anthropic, OpenAI, Microsoft, Anysphere, xAI или Cloudflare.",
             ],
           },
           {
             heading: "Покупки и возвраты",
             paragraphs: [
-              "Покупки в App Store, платежи, налоги, семейный доступ и возвраты обрабатывает Apple по своим условиям. GrantTap не получает данные платёжной карты. Для запроса возврата используйте сервис Apple Report a Problem.",
+              "GrantTap планируется как автопродлеваемая подписка с 7-дневным бесплатным пробным периодом для подходящих новых подписчиков. Планируемый тариф Personal стоит $2,99 в месяц и поддерживает до 3 компьютеров. Если экран Apple перед подтверждением показывает другие цену или доступность trial, действуют данные Apple.",
+              "Подписка продлевается автоматически, если не отменить её минимум за 24 часа до конца периода. Покупки, платежи, налоги, семейный доступ и возвраты обрабатывает Apple. GrantTap не получает данные платёжной карты.",
             ],
-            links: [{ label: "Apple Report a Problem", href: "https://reportaproblem.apple.com/" }],
+            links: [
+              { label: "Тарифы и подписка", href: "/pricing" },
+              { label: "Apple Report a Problem", href: "https://reportaproblem.apple.com/" },
+            ],
           },
           {
             heading: "Допустимое использование",

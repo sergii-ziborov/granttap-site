@@ -608,6 +608,59 @@ h1 span {
   background: #4be990;
 }
 
+.cursor-mark {
+  background: #5b4bd8;
+}
+
+.copilot-mark {
+  background: #2867b2;
+}
+
+.grok-mark {
+  background: #111;
+}
+
+.pricing-preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+  gap: 24px;
+  align-items: stretch;
+  padding-block: 84px 24px;
+}
+
+.pricing-preview > div,
+.pricing-preview > aside {
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 32px;
+  background: var(--surface);
+}
+
+.pricing-preview h2 {
+  max-width: 680px;
+  margin: 8px 0 12px;
+}
+
+.pricing-preview p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.pricing-preview .button {
+  display: inline-flex;
+  margin-top: 12px;
+}
+
+.pricing-preview aside {
+  background: linear-gradient(145deg, rgba(255, 112, 67, 0.08), rgba(92, 74, 255, 0.06));
+}
+
+.pricing-preview aside strong {
+  display: block;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
 .apple-mark {
   margin-left: 1px;
   font-size: 23px;
@@ -1680,6 +1733,11 @@ footer > p {
 }
 
 @media (max-width: 760px) {
+  .pricing-preview {
+    grid-template-columns: 1fr;
+    padding-top: 64px;
+  }
+
   .section-shell,
   .site-header,
   .trust-strip,

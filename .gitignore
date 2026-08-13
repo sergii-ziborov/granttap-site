@@ -40,6 +40,7 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+/.claude/
 
 # TypeScript incremental build info
 tsconfig.tsbuildinfo

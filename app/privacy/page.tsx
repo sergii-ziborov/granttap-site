@@ -52,14 +52,14 @@ export default function PrivacyPage() {
             heading: "Encrypted task content",
             paragraphs: [
               "The relay receives authenticated ciphertext and a nonce, not readable task content. Endpoint, pairing-transfer, and per-task keys are generated locally and are not stored in relay code, databases, logs, or Cloudflare secrets. Each task has an independent key; a key for one task cannot decrypt another.",
-              "Plaintext exists on endpoints you authorize: the paired iPhone, its companion Watch experience, and the paired computer running your coding agent. Codex, Claude Code, MCP servers, and other tools you choose may process content under their own terms; GrantTap does not proxy their model traffic.",
+              "Plaintext exists on endpoints you authorize: the paired iPhone, its companion Watch experience, and the paired computer running your coding agent. Cursor, Claude Code, Codex, GitHub Copilot, Grok Build, MCP servers, and other tools you choose may process content under their own terms; GrantTap does not proxy their model traffic.",
             ],
           },
           {
             heading: "Data kept on your devices",
             bullets: [
               "Pairing and task keys, local preferences, delivery status, archives, schedule state, a bounded audit log, and MCP or skill usage history are stored in the app container or protected device storage.",
-              "Chat history shown by GrantTap may originate from local Codex or Claude Code data on your computer. Archiving a task on iPhone is a local GrantTap preference and does not delete the source chat from those tools.",
+              "Chat history shown by GrantTap may originate from supported local coding-agent data on your computer. Archiving a task on iPhone is a local GrantTap preference and does not delete the source chat from those tools.",
               "The machine bridge stores its local configuration and schedules under ~/.granttap on the paired computer.",
             ],
           },
@@ -143,14 +143,14 @@ export default function PrivacyPage() {
             heading: "Зашифрованное содержимое задач",
             paragraphs: [
               "Relay получает аутентифицированный шифротекст и nonce, а не читаемое содержимое. Ключи устройства, transfer key и ключи отдельных задач создаются локально и не хранятся в коде relay, базе, логах или Cloudflare secrets. У каждой задачи отдельный ключ; ключ одной задачи не открывает другую.",
-              "Открытый текст существует на разрешённых вами endpoints: спаренном iPhone, связанном опыте Apple Watch и компьютере с кодовым агентом. Codex, Claude Code, MCP-серверы и другие выбранные инструменты обрабатывают данные по собственным условиям; GrantTap не проксирует трафик модели.",
+              "Открытый текст существует на разрешённых вами endpoints: спаренном iPhone, связанном опыте Apple Watch и компьютере с кодовым агентом. Cursor, Claude Code, Codex, GitHub Copilot, Grok Build, MCP-серверы и другие выбранные инструменты обрабатывают данные по собственным условиям; GrantTap не проксирует трафик модели.",
             ],
           },
           {
             heading: "Данные на ваших устройствах",
             bullets: [
               "Ключи пейринга и задач, настройки, статусы доставки, архив, расписания, ограниченный журнал действий и история MCP или скилов хранятся в контейнере приложения или защищённом хранилище устройства.",
-              "История чатов в GrantTap может поступать из локальных данных Codex или Claude Code на компьютере. Архивирование на iPhone — локальная настройка GrantTap и не удаляет исходный чат из этих инструментов.",
+              "История чатов в GrantTap может поступать из локальных данных поддерживаемых кодовых агентов на компьютере. Архивирование на iPhone — локальная настройка GrantTap и не удаляет исходный чат из этих инструментов.",
               "Мост на компьютере хранит локальную конфигурацию и расписания в ~/.granttap.",
             ],
           },

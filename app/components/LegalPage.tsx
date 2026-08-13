@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { LanguageToggle, useLocale } from "./Locale";
 
 const LEGAL_LINKS = [
+  { href: "/pricing", label: { en: "Pricing", ru: "Тарифы" } },
   { href: "/privacy", label: { en: "Privacy", ru: "Конфиденциальность" } },
   { href: "/terms", label: { en: "Terms", ru: "Условия" } },
   { href: "/support", label: { en: "Support", ru: "Поддержка" } },

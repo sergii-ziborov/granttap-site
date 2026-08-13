@@ -42,7 +42,7 @@ export default function DataRightsPage() {
             bullets: [
               "Stop the GrantTap background helper and any running granttap-mcp process.",
               "Remove the local GrantTap state directory at ~/.granttap only after confirming that exact path. It can contain pairing state, schedules, and local bridge configuration.",
-              "Remove the GrantTap MCP entry or hooks from Codex and Claude Code if you no longer want those tools connected.",
+              "Remove the GrantTap MCP entry or hooks from every connected coding agent if you no longer want those tools connected.",
             ],
             paragraphs: [
               "Deleting ~/.granttap is destructive and cannot be undone unless you made a backup. GrantTap does not provide a remote restore of local keys or schedules.",
@@ -51,7 +51,7 @@ export default function DataRightsPage() {
           {
             heading: "Source chat history is separate",
             paragraphs: [
-              "GrantTap can display activity originating from local Codex or Claude Code sessions. Archiving a task in GrantTap does not delete that source chat. Delete or archive source history through Codex, Claude Code, or their local storage controls under the terms of the corresponding provider.",
+              "GrantTap can display activity originating from supported local coding-agent sessions. Archiving a task in GrantTap does not delete that source chat. Delete or archive source history through the original agent or its local storage controls under the terms of the corresponding provider.",
             ],
           },
           {
@@ -107,7 +107,7 @@ export default function DataRightsPage() {
             bullets: [
               "Остановите фоновый помощник GrantTap и все процессы granttap-mcp.",
               "Удалите локальный каталог ~/.granttap только после проверки точного пути. Там могут находиться пейринг, расписания и конфигурация моста.",
-              "Удалите MCP-запись GrantTap или hooks из Codex и Claude Code, если больше не хотите их подключать.",
+              "Удалите MCP-запись GrantTap или hooks из каждого подключённого кодового агента, если больше не хотите их подключать.",
             ],
             paragraphs: [
               "Удаление ~/.granttap необратимо без резервной копии. GrantTap не хранит облачную копию локальных ключей или расписаний для восстановления.",
@@ -116,7 +116,7 @@ export default function DataRightsPage() {
           {
             heading: "Исходная история чатов хранится отдельно",
             paragraphs: [
-              "GrantTap может показывать события локальных сессий Codex или Claude Code. Архивирование задачи в GrantTap не удаляет исходный чат. Удаляйте или архивируйте его средствами Codex, Claude Code или их локального хранилища по условиям соответствующего поставщика.",
+              "GrantTap может показывать события локальных сессий поддерживаемых кодовых агентов. Архивирование задачи в GrantTap не удаляет исходный чат. Удаляйте или архивируйте его средствами исходного агента или его локального хранилища по условиям соответствующего поставщика.",
             ],
           },
           {
