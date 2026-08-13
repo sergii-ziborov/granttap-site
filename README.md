@@ -105,9 +105,11 @@ origin and `www` redirects permanently to it.
 
 ## Product-capture contract
 
-The website and this README use captures from current test builds—not redrawn
-or generated interface mockups. Keep a single language and matching time across
-each capture set.
+The website and this README use captures from current test builds. The security
+visual is a separate deterministic local render, clearly labelled in the image,
+so it can demonstrate the documented controls without exposing a pairing code,
+task, repository path, credential, or audit record. Keep a single language and
+matching time across each capture set.
 
 | Asset | Pixels | Contents |
 | --- | ---: | --- |
@@ -116,13 +118,16 @@ each capture set.
 | *(planned)* Cursor / Copilot home | 1206 × 2622 | Capture when English demo UI shows agent tabs |
 | `public/product/iphone-task-detail.png` | 1206 × 2622 | Recent activity, usage, and context |
 | `public/product/iphone-mcp-usage.png` | 1206 × 2622 | Observed MCP and skill usage |
-| `public/product/iphone-security-settings.png` | 1206 × 2622 | Face ID, notification privacy, task keys, and audit log |
+| `public/product/iphone-security-settings.png` | 1206 × 2622 | Safe local render of Face ID, notification privacy, task keys, and audit log |
 | `public/product/apple-watch-inbox.png` | 416 × 496 | Pending approval and active-task inbox |
 | `public/product/apple-watch-task.png` | 416 × 496 | Recent task updates and reply actions |
 | `public/product/apple-watch-approval.png` | 416 × 496 | Real pending approval |
 
-Do not add device frames, marketing text, or demo overlays to the PNG files;
-the website supplies presentation framing and accessible captions.
+The source for the safe security render is
+`public/product/iphone-security-settings-source.svg`; regenerate its PNG with
+`sips` after a deliberate visual change. Do not place real pairing, task,
+repository, credential, or audit data in either asset. The website supplies
+presentation framing and accessible captions.
 Do not reuse a skeleton frame or an older Watch build merely to fill a slot.
 Each device set must come from one reproducible current state; Watch may use a
 different clock time because watchOS Simulator does not support status-bar time

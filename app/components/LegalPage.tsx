@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LanguageToggle, useLocale } from "./Locale";
 
@@ -63,7 +64,7 @@ export function LegalPage({
       <a className="skip-link" href="#legal-content">{labels.skip}</a>
       <header className="legal-header">
         <Link className="brand" href="/" aria-label={`GrantTap — ${labels.home}`}>
-          <img src="/app-icon.png" alt="" />
+          <Image src="/app-icon.png" alt="" width={1024} height={1024} priority />
           <span>GrantTap</span>
         </Link>
         <Link href="/">{labels.home}</Link>

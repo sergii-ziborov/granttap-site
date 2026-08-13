@@ -77,7 +77,7 @@ export const copy = {
     watchCaption: "Scan active and recent tasks, open the latest updates, reply by voice or text, and handle a pending approval immediately.",
     historyCaption: "The task detail leads with recent activity, then exposes tokens, context, access, MCP, and the full chat only when you need them.",
     usageCaption: "The local usage ledger records observed MCP and skill calls. Token figures are estimated context footprint, never separate MCP billing.",
-    securityCaption: "Face ID, private notification details, authenticated approvals, independent task keys, and a local audit log are visible—not hidden behind a security slogan.",
+    securityCaption: "A safe local render illustrates Face ID, private notifications, authenticated approvals, independent task keys, and a local audit log. It contains no pairing code, task content, path, credential, or audit entry.",
     installKicker: "Public and auditable machine bridge",
     installTitle: "Connect the agents you already use.",
     installText:
@@ -169,7 +169,7 @@ export const copy = {
     watchCaption: "Просматривайте активные и недавние задачи, открывайте последние обновления, отвечайте голосом или текстом и сразу обрабатывайте подтверждения.",
     historyCaption: "Экран задачи начинается со свежих событий, а токены, контекст, доступ, MCP и полный чат открываются тогда, когда нужны.",
     usageCaption: "Локальная история хранит наблюдаемые вызовы MCP и скилов. Токены — оценка места в контексте, а не отдельный счёт MCP.",
-    securityCaption: "Face ID, скрытие деталей уведомлений, подтверждение опасных действий, отдельные ключи задач и локальный журнал видны прямо в приложении.",
+    securityCaption: "Безопасный локальный рендер показывает Face ID, скрытие деталей уведомлений, подтверждение действий, отдельные ключи задач и локальный журнал. В нём нет кода пейринга, данных задачи, пути, учётных данных или записи журнала.",
     installKicker: "Публичный и проверяемый мост",
     installTitle: "Подключите агентов, которыми уже пользуетесь.",
     installText:
