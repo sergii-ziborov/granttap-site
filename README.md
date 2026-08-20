@@ -60,7 +60,7 @@ codex plugin add granttap@personal
 
 One machine helper owns one encrypted phone pairing. `granttap setup` adds or
 repairs all detected supported agent adapters, so installing another agent does
-not create a second GrantTap account or pairing. Connect/reconnect reuses a
+not create a second helper or pairing. Connect/reconnect reuses a
 healthy pairing; replacement is an explicit unlink-and-pair-again action.
 Provider authentication and model credentials remain separate.
 
@@ -109,32 +109,26 @@ origin and `www` redirects permanently to it.
 
 ## Product-capture contract
 
-The website and this README use captures from current test builds. The security
-visual is a separate deterministic local render, clearly labelled in the image,
-so it can demonstrate the documented controls without exposing a pairing code,
-task, repository path, credential, or audit record. Keep a single language and
-matching time across each capture set.
+The website and this README use native captures from the current production UI
+with deterministic Debug-only sample data. They are not concept renders. Keep a
+single language and matching time across each capture set.
 
 | Asset | Pixels | Contents |
 | --- | ---: | --- |
 | `public/product/iphone-command-center.png` | 1206 × 2622 | Codex task list, approvals, and composer |
 | `public/product/iphone-claude-tasks.png` | 1206 × 2622 | Claude Code task list, scheduler, and composer |
-| *(planned)* Cursor / Copilot home | 1206 × 2622 | Capture when English demo UI shows agent tabs |
 | `public/product/iphone-task-detail.png` | 1206 × 2622 | Recent activity, usage, and context |
 | `public/product/iphone-mcp-usage.png` | 1206 × 2622 | Observed MCP and skill usage |
 | `public/product/iphone-chat.png` | 1206 × 2622 | Full chat with one delivered phone photo and one reconciled short reply |
 | `public/product/iphone-photo-preview.png` | 1206 × 2622 | Local full-screen preview for a photo retained by its outgoing delivery |
-| `public/product/iphone-security-settings.png` | 1206 × 2622 | Safe local render of Face ID, notification privacy, task keys, and audit log |
+| `public/product/iphone-security-settings.png` | 1206 × 2622 | Current connection, agent, language, and approval settings |
 | `public/product/encrypted-device-path.png` | 1400 × 788 | Decorative unbranded illustration of the encrypted computer-to-device path; generated with OpenAI ImageGen |
 | `public/product/apple-watch-inbox.png` | 416 × 496 | Pending approval and active-task inbox |
 | `public/product/apple-watch-task.png` | 416 × 496 | Recent task updates and reply actions |
 | `public/product/apple-watch-approval.png` | 416 × 496 | Real pending approval |
 
-The source for the safe security render is
-`public/product/iphone-security-settings-source.svg`; regenerate its PNG with
-`sips` after a deliberate visual change. Do not place real pairing, task,
-repository, credential, or audit data in either asset. The website supplies
-presentation framing and accessible captions.
+Do not place real pairing, task, repository, credential, or audit data in any
+capture. The website supplies presentation framing and accessible captions.
 Do not reuse a skeleton frame or an older Watch build merely to fill a slot.
 Each device set must come from one reproducible current state; Watch may use a
 different clock time because watchOS Simulator does not support status-bar time

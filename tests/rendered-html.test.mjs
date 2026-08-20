@@ -160,9 +160,8 @@ test("keeps bilingual, actionable privacy and deletion disclosures", async () =>
     readFile(new URL("../app/data-rights/page.tsx", import.meta.url), "utf8"),
   ]);
 
-  assert.match(privacy, /Personal\/Team account login is optional/);
-  assert.match(privacy, /Для Personal\/Team вход в аккаунт необязателен/);
-  assert.match(privacy, /Enterprise login is required/);
+  assert.match(privacy, /No GrantTap account/);
+  assert.match(privacy, /Нет аккаунта GrantTap/);
   assert.match(privacy, /APNs device token/);
   assert.match(deletion, /choose Clear local usage history/);
   assert.match(deletion, /~\/.granttap/);
@@ -202,7 +201,7 @@ test("documents the public pairing, setup, and Cursor authorization journey", as
   assert.match(html, /single-use and expires after 15 minutes/i);
 });
 
-test("ships every referenced public image and sanitized render source", async () => {
+test("ships every referenced public product image", async () => {
   await Promise.all(
     [
       "public/app-icon.png",
@@ -219,9 +218,6 @@ test("ships every referenced public image and sanitized render source", async ()
       "public/product/encrypted-device-path.png",
     ].map((path) => access(new URL(`../${path}`, import.meta.url))),
   );
-  const securityRender = await readFile(new URL("../public/product/iphone-security-settings-source.svg", import.meta.url), "utf8");
-  assert.match(securityRender, /SAFE LOCAL RENDER/);
-  assert.match(securityRender, /No pairing codes, task text, paths/);
 });
 
 test("lets Cloudflare serve hashed CSS and JS before the application worker", async () => {

@@ -11,18 +11,18 @@ export default function DataRightsPage() {
   return (
     <LegalPage
       title={{ en: "Data choices and deletion", ru: "Управление и удаление данных" }}
-      updated={{ en: "August 20, 2026", ru: "20 августа 2026" }}
-      updatedISO="2026-08-20"
+      updated={{ en: "August 2, 2026", ru: "2 августа 2026" }}
+      updatedISO="2026-08-02"
       intro={{
-        en: "GrantTap account login is optional for Personal/Team and required for managed Enterprise endpoints. Readable task data remains on your iPhone or paired computer. Use the ordered steps below for account and device cleanup.",
-        ru: "Вход в аккаунт GrantTap необязателен для Personal/Team и обязателен для управляемого Enterprise. Читаемые данные задач остаются на iPhone или спаренном компьютере. Ниже описана очистка аккаунта и устройств.",
+        en: "GrantTap has no user account. Most readable GrantTap data is held on your iPhone or paired computer, so you control it locally. Use the ordered steps below for a complete device-side cleanup.",
+        ru: "В GrantTap нет пользовательского аккаунта. Большинство читаемых данных хранится на iPhone или спаренном компьютере, поэтому управляется локально. Для полной очистки выполните шаги по порядку.",
       }}
       sections={{
         en: [
           {
-            heading: "GrantTap account is separate from pairing",
+            heading: "No GrantTap account",
             paragraphs: [
-              "Use granttap logout to remove the machine account session and Enterprise login receipt without changing phone pairing or provider logins. Pairing is separate device authorization. Apple's App Store records belong to your Apple Account and remain controlled by Apple.",
+              "Pairing is device authorization, not account registration. GrantTap has no username, password, profile, subscription account, or cloud index of people. Apple's record of an App Store download or purchase belongs to your Apple Account and is controlled by Apple.",
             ],
           },
           {
@@ -41,7 +41,6 @@ export default function DataRightsPage() {
             heading: "Remove paired-computer data",
             bullets: [
               "Stop the GrantTap background helper and any running granttap-mcp process.",
-              "Run granttap logout first to remove the account session and Enterprise login receipt from protected storage.",
               "Remove the local GrantTap state directory at ~/.granttap only after confirming that exact path. It can contain pairing state, schedules, and local bridge configuration.",
               "Remove the GrantTap MCP entry or hooks from every connected coding agent if you no longer want those tools connected.",
             ],
@@ -59,14 +58,14 @@ export default function DataRightsPage() {
             heading: "What happens at the relay",
             paragraphs: [
               "Forgetting a pairing asks the service to remove its APNs registration and makes locally deleted keys unavailable for future decryption. Pairing blobs are single-use and expire after 15 minutes. Encrypted queues are bounded and messages carry expirations. Some network or security logs can remain for the infrastructure provider's operational retention period.",
-              "The relay has no decryption keys. Account services can identify account metadata but cannot decrypt task payloads. Deleting an endpoint key makes remaining ciphertext unreadable from that endpoint, but does not erase plaintext already exported or stored by an authorized endpoint or third-party tool.",
+              "The relay has no account lookup and no decryption keys. Deleting an endpoint key makes any remaining ciphertext unreadable from that endpoint, but it does not retroactively erase a copy of plaintext already exported, logged, or stored by an authorized endpoint or third-party tool.",
             ],
           },
           {
             heading: "Privacy request or correction",
             paragraphs: [
               "Depending on where you live, you may request access, correction, deletion, restriction, portability, or objection for personal data GrantTap can identify and control. Email the support address below with the minimum information needed to explain the request.",
-              "An account record can be handled by identity, but encrypted task payloads cannot be searched or decrypted that way. The developer may have no readable task record to return or delete centrally. We will explain what can be identified rather than ask for pairing tokens or encryption keys. Never send those secrets.",
+              "Because there is no GrantTap account index and encrypted payloads cannot be searched by identity, the developer may have no readable task record to return or delete centrally. We will explain what can be identified rather than ask for pairing tokens or encryption keys. Never send those secrets.",
             ],
             links: [
               { label: "Email a privacy request", href: "mailto:sergii.ziborov@gmail.com" },
@@ -86,9 +85,9 @@ export default function DataRightsPage() {
         ],
         ru: [
           {
-            heading: "Аккаунт GrantTap отделён от пейринга",
+            heading: "Без аккаунта GrantTap",
             paragraphs: [
-              "Команда granttap logout удаляет сессию аккаунта компьютера и Enterprise login receipt, не меняя пейринг телефона или логины провайдеров. Пейринг остаётся отдельным разрешением устройства. Данные App Store относятся к Apple Account и контролируются Apple.",
+              "Пейринг — разрешение устройства, а не регистрация. В GrantTap нет имени пользователя, пароля, профиля, аккаунта подписки или облачного списка людей. Запись Apple о загрузке или покупке относится к Apple Account и контролируется Apple.",
             ],
           },
           {
@@ -107,7 +106,6 @@ export default function DataRightsPage() {
             heading: "Удалить данные с компьютера",
             bullets: [
               "Остановите фоновый помощник GrantTap и все процессы granttap-mcp.",
-              "Сначала выполните granttap logout, чтобы удалить сессию аккаунта и Enterprise login receipt из защищённого хранилища.",
               "Удалите локальный каталог ~/.granttap только после проверки точного пути. Там могут находиться пейринг, расписания и конфигурация моста.",
               "Удалите MCP-запись GrantTap или hooks из каждого подключённого кодового агента, если больше не хотите их подключать.",
             ],
@@ -125,14 +123,14 @@ export default function DataRightsPage() {
             heading: "Что происходит в relay",
             paragraphs: [
               "Удаление пейринга запрашивает удаление APNs-регистрации и лишает endpoint локальных ключей. Pairing blob одноразовый и истекает через 15 минут. Зашифрованные очереди ограничены, сообщения имеют срок. Сетевые и защитные логи могут оставаться на срок, установленный поставщиком инфраструктуры.",
-              "У relay нет ключей расшифровки. Сервис аккаунтов может идентифицировать метаданные аккаунта, но не расшифровать payload задач. Удаление ключа делает шифротекст нечитаемым для endpoint, но не удаляет открытый текст, ранее сохранённый разрешённым устройством или сторонним инструментом.",
+              "У relay нет поиска по аккаунтам и ключей расшифровки. Удаление ключа делает оставшийся шифротекст нечитаемым для этого endpoint, но не удаляет задним числом открытый текст, ранее экспортированный или сохранённый разрешённым устройством или сторонним инструментом.",
             ],
           },
           {
             heading: "Запрос по данным или исправление",
             paragraphs: [
               "В зависимости от юрисдикции можно запросить доступ, исправление, удаление, ограничение, переносимость или возражение для данных, которые GrantTap способен идентифицировать и контролировать. Напишите в поддержку и сообщите минимум сведений для объяснения запроса.",
-              "Запись аккаунта можно обработать по личности, но зашифрованные payload задач нельзя так найти или расшифровать. У разработчика может не быть читаемой записи задачи для централизованной выдачи или удаления. Мы объясним доступные действия и не попросим токены или ключи.",
+              "Из-за отсутствия индекса аккаунтов и невозможности искать зашифрованные payload по личности у разработчика может не быть читаемой записи для централизованной выдачи или удаления. Мы объясним доступные действия и не попросим токены или ключи. Никогда не отправляйте эти секреты.",
             ],
             links: [
               { label: "Отправить запрос по данным", href: "mailto:sergii.ziborov@gmail.com" },

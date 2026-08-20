@@ -65,7 +65,7 @@ function Gallery({ locale, t }: Pick<Props, "locale" | "t">) {
     ["iphone-photo-preview", locale === "ru" ? "Полноэкранный просмотр отправленного фото" : "Fullscreen preview of the sent photo", t.photoCaption],
     ["iphone-task-detail", locale === "ru" ? "Контекст задачи" : "Task context", t.historyCaption],
     ["iphone-mcp-usage", "MCP and skill usage", t.usageCaption],
-    ["iphone-security-settings", "On-device security", t.securityCaption],
+    ["iphone-security-settings", locale === "ru" ? "Настройки на устройстве" : "On-device settings", t.securityCaption],
   ];
   return <section className="gallery-section section-shell" id="product"><Heading kicker={t.galleryKicker} title={t.galleryTitle} /><div className="gallery-grid"><figure className="gallery-phone"><div className="phone-pair"><div className="gallery-device"><ProductImage name="iphone-command-center" alt="GrantTap task list" /></div><div className="gallery-device"><ProductImage name="iphone-claude-tasks" alt="GrantTap Claude tasks" /></div></div><figcaption><strong>iPhone · approvals + chat</strong>{t.phoneCaption}</figcaption></figure><figure className="gallery-watch"><div className="watch-pair"><ProductImage name="apple-watch-inbox" alt="Watch inbox" /><ProductImage name="apple-watch-approval" alt="Watch approval" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure></div><div className="history-gallery">{details.map(([image, title, text]) => <figure key={image}><div className="history-shot"><ProductImage name={image} alt={title} /></div><figcaption><strong>{title}</strong>{text}</figcaption></figure>)}</div></section>;
 }
