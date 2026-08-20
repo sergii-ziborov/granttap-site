@@ -160,8 +160,9 @@ test("keeps bilingual, actionable privacy and deletion disclosures", async () =>
     readFile(new URL("../app/data-rights/page.tsx", import.meta.url), "utf8"),
   ]);
 
-  assert.match(privacy, /No GrantTap account/);
-  assert.match(privacy, /Нет аккаунта GrantTap/);
+  assert.match(privacy, /Personal\/Team account login is optional/);
+  assert.match(privacy, /Для Personal\/Team вход в аккаунт необязателен/);
+  assert.match(privacy, /Enterprise login is required/);
   assert.match(privacy, /APNs device token/);
   assert.match(deletion, /choose Clear local usage history/);
   assert.match(deletion, /~\/.granttap/);
