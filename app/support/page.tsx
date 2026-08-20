@@ -11,8 +11,8 @@ export default function SupportPage() {
   return (
     <LegalPage
       title={{ en: "Support", ru: "Поддержка" }}
-      updated={{ en: "August 13, 2026", ru: "13 августа 2026" }}
-      updatedISO="2026-08-13"
+      updated={{ en: "August 20, 2026", ru: "20 августа 2026" }}
+      updatedISO="2026-08-20"
       intro={{
         en: "Start with the checks below. If the problem remains, email support with versions and reproducible steps—but never with pairing secrets, encryption keys, or real task content.",
         ru: "Начните с проверок ниже. Если проблема остаётся, напишите в поддержку и укажите версии и шаги воспроизведения, но никогда не отправляйте секреты пейринга, ключи шифрования или реальные данные задачи.",
@@ -31,15 +31,15 @@ export default function SupportPage() {
             ],
           },
           {
-            heading: "Install the machine bridge",
+            heading: "Install GrantTap once, then add agents",
             bullets: [
               "Requirement: Node.js 20 or newer.",
-              "Codex: codex mcp add granttap -- npx -y granttap-mcp",
-              "Claude Code: claude mcp add granttap -- npx -y granttap-mcp",
-              "Grok Build: grok mcp add granttap -- npx -y granttap-mcp",
-              "For Cursor and GitHub Copilot, install the bridge globally: npm install -g granttap-mcp.",
-              "In a new configured agent task, ask for Connect GrantTap. The public MCP connect tool creates a one-time QR code. Scan it in GrantTap on iPhone, then run the separate setup tool to install the supported local policy hooks and background helper.",
-              "If your MCP client cannot show the QR, use the CLI: granttap connect, then granttap setup. granttap status reads readiness without changing settings.",
+              "Install one machine helper: npm install -g granttap-mcp. Then run granttap connect and granttap setup.",
+              "A healthy existing phone pairing is reused. Reconnect does not rotate keys; use granttap connect --replace only when you explicitly want to unlink and pair this computer again.",
+              "granttap setup adds or repairs every supported agent adapter it detects. Run it again after installing another agent; do not create a second GrantTap account or phone pairing.",
+              "Codex plugin: codex plugin marketplace add sergii-ziborov/granttap, then codex plugin add granttap@personal. Open its prompts to Connect or reconnect, Add this agent, or Repair all agent connections.",
+              "GrantTap pairing is not a provider login. Codex, Claude Code, Cursor, Copilot, and Grok Build keep their own authentication and model credentials.",
+              "granttap status reads readiness without changing settings.",
               "Setup is designed to preserve unrelated agent settings. In Codex, review and trust the exact GrantTap hooks in /hooks, then restart Codex. Installation alone is not a trusted connection.",
             ],
             links: [
@@ -128,15 +128,15 @@ export default function SupportPage() {
             ],
           },
           {
-            heading: "Установить мост на компьютере",
+            heading: "Установить GrantTap один раз и добавлять агентов",
             bullets: [
               "Требуется Node.js 20 или новее.",
-              "Codex: codex mcp add granttap -- npx -y granttap-mcp",
-              "Claude Code: claude mcp add granttap -- npx -y granttap-mcp",
-              "Grok Build: grok mcp add granttap -- npx -y granttap-mcp",
-              "Для Cursor и GitHub Copilot установите мост глобально: npm install -g granttap-mcp.",
-              "В новой настроенной задаче агента попросите Connect GrantTap. Публичный MCP-инструмент connect создаст одноразовый QR-код. Отсканируйте его в GrantTap на iPhone, затем запустите отдельный инструмент setup для установки поддерживаемых локальных policy hooks и фонового помощника.",
-              "Если ваш MCP-клиент не показывает QR, используйте CLI: granttap connect, затем granttap setup. granttap status только читает готовность и не меняет настройки.",
+              "Установите один помощник на компьютере: npm install -g granttap-mcp. Затем выполните granttap connect и granttap setup.",
+              "Рабочий пейринг телефона переиспользуется. Reconnect не меняет ключи; granttap connect --replace нужен только по явному желанию отвязать и заново спарить этот компьютер.",
+              "granttap setup добавляет или исправляет все найденные поддерживаемые адаптеры агентов. Повторите команду после установки нового агента — второй аккаунт GrantTap или пейринг телефона не нужен.",
+              "Плагин Codex: codex plugin marketplace add sergii-ziborov/granttap, затем codex plugin add granttap@personal. В карточке доступны действия подключения, добавления этого агента и исправления всех связей.",
+              "Пейринг GrantTap не является логином провайдера. Codex, Claude Code, Cursor, Copilot и Grok Build сохраняют собственную авторизацию и ключи моделей.",
+              "granttap status только читает готовность и не меняет настройки.",
               "Setup должен сохранять не относящиеся к GrantTap настройки агентов. В Codex проверьте и подтвердите точные GrantTap hooks в /hooks, затем перезапустите Codex. Установка сама по себе не является доверенным подключением.",
             ],
             links: [

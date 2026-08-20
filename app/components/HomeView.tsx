@@ -60,11 +60,22 @@ function Security({ t }: Pick<Props, "t">) {
 }
 
 function Gallery({ locale, t }: Pick<Props, "locale" | "t">) {
-  return <section className="gallery-section section-shell" id="product"><Heading kicker={t.galleryKicker} title={t.galleryTitle} /><div className="gallery-grid"><figure className="gallery-phone"><div className="phone-pair"><div className="gallery-device"><ProductImage name="iphone-command-center" alt="GrantTap task list" /></div><div className="gallery-device"><ProductImage name="iphone-claude-tasks" alt="GrantTap Claude tasks" /></div></div><figcaption><strong>iPhone · approvals + chat</strong>{t.phoneCaption}</figcaption></figure><figure className="gallery-watch"><div className="watch-pair"><ProductImage name="apple-watch-inbox" alt="Watch inbox" /><ProductImage name="apple-watch-approval" alt="Watch approval" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure></div><div className="history-gallery">{[["iphone-task-detail", locale === "ru" ? "Контекст задачи" : "Task context", t.historyCaption], ["iphone-mcp-usage", "MCP and skill usage", t.usageCaption], ["iphone-security-settings", "On-device security", t.securityCaption]].map(([image, title, text]) => <figure key={image}><div className="history-shot"><ProductImage name={image} alt={title} /></div><figcaption><strong>{title}</strong>{text}</figcaption></figure>)}</div></section>;
+  const details = [
+    ["iphone-chat", locale === "ru" ? "Полный чат с доставленным фото" : "Full chat with a delivered photo", t.chatCaption],
+    ["iphone-photo-preview", locale === "ru" ? "Полноэкранный просмотр отправленного фото" : "Fullscreen preview of the sent photo", t.photoCaption],
+    ["iphone-task-detail", locale === "ru" ? "Контекст задачи" : "Task context", t.historyCaption],
+    ["iphone-mcp-usage", "MCP and skill usage", t.usageCaption],
+    ["iphone-security-settings", "On-device security", t.securityCaption],
+  ];
+  return <section className="gallery-section section-shell" id="product"><Heading kicker={t.galleryKicker} title={t.galleryTitle} /><div className="gallery-grid"><figure className="gallery-phone"><div className="phone-pair"><div className="gallery-device"><ProductImage name="iphone-command-center" alt="GrantTap task list" /></div><div className="gallery-device"><ProductImage name="iphone-claude-tasks" alt="GrantTap Claude tasks" /></div></div><figcaption><strong>iPhone · approvals + chat</strong>{t.phoneCaption}</figcaption></figure><figure className="gallery-watch"><div className="watch-pair"><ProductImage name="apple-watch-inbox" alt="Watch inbox" /><ProductImage name="apple-watch-approval" alt="Watch approval" /></div><figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption></figure></div><div className="history-gallery">{details.map(([image, title, text]) => <figure key={image}><div className="history-shot"><ProductImage name={image} alt={title} /></div><figcaption><strong>{title}</strong>{text}</figcaption></figure>)}</div></section>;
 }
 
 function Install({ t }: Pick<Props, "t">) {
-  const commands = [[t.codex, "codex mcp add granttap -- npx -y granttap-mcp"], [t.claude, "claude mcp add granttap -- npx -y granttap-mcp"], [t.cursor, "npm install -g granttap-mcp\ngranttap setup"], [t.copilot, "npm install -g granttap-mcp\ngranttap setup"], [t.grok, "grok mcp add granttap -- npx -y granttap-mcp"], [t.hooks, "npm install -g granttap-mcp\ngranttap connect\ngranttap setup"]];
+  const commands = [
+    [t.oneInstall, "npm install -g granttap-mcp\ngranttap connect\ngranttap setup"],
+    [t.addAgent, "granttap setup\ngranttap status"],
+    [t.codexPlugin, "codex plugin marketplace add sergii-ziborov/granttap\ncodex plugin add granttap@personal"],
+  ];
   return <section className="install-section section-shell" id="install"><Heading kicker={t.installKicker} title={t.installTitle} text={t.installText} /><div className="install-grid">{commands.map(([title, command]) => <article className="install-card" key={title}><strong>{title}</strong><pre><code>{command}</code></pre></article>)}</div><div className="trust-links"><a href="https://github.com/sergii-ziborov/granttap-mcp">{t.source} ↗</a><a href="https://www.npmjs.com/package/granttap-mcp">{t.npm} ↗</a><a href="https://github.com/sergii-ziborov/granttap-relay">{t.relaySource} ↗</a></div></section>;
 }
 

@@ -9,7 +9,10 @@ test("renders the product journey and supports the locale control", async () => 
   render(<Home />);
 
   expect(screen.getByRole("heading", { name: /Step away from your Mac/i })).toBeTruthy();
-  expect(screen.getByText("Grok Build")).toBeTruthy();
+  expect(screen.getAllByText(/Grok Build/).length).toBeGreaterThan(0);
+  expect(screen.getAllByText(/One GrantTap installation/i).length).toBeGreaterThan(0);
+  expect(screen.getByRole("img", { name: /full chat with a delivered photo/i })).toBeTruthy();
+  expect(screen.getByRole("img", { name: /fullscreen preview of the sent photo/i })).toBeTruthy();
   expect(screen.getByText(/Direct same-Wi-Fi transport is planned/i)).toBeTruthy();
   expect(screen.getByRole("img", { name: /encrypted path from computer to phone and watch/i })).toBeTruthy();
 

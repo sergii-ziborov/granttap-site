@@ -58,8 +58,8 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.match(html, /apple-watch-task\.png/);
   assert.match(html, /apple-watch-approval\.png/);
   assert.doesNotMatch(html, /\/product\/(?:phone-(?:home|context|controls)-v\d+|watch-(?:activity|approval)\.png)/);
-  assert.match(html, /codex mcp add granttap -- npx -y granttap-mcp/);
-  assert.match(html, /grok mcp add granttap/);
+  assert.match(html, /One GrantTap installation/);
+  assert.match(html, /codex plugin add granttap@personal/);
   assert.match(html, /Preparing for App Store review/);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
   assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/og-granttap\.png"/i);
@@ -190,9 +190,11 @@ test("documents the public pairing, setup, and Cursor authorization journey", as
   assert.equal(response.status, 200);
   const html = await response.text();
 
-  assert.match(html, /Connect GrantTap/);
+  assert.match(html, /Install GrantTap once/);
   assert.match(html, /granttap connect/);
   assert.match(html, /granttap setup/);
+  assert.match(html, /codex plugin add granttap@personal/);
+  assert.match(html, /does not rotate keys/i);
   assert.match(html, /granttap authorize/);
   assert.match(html, /Cursor Settings/);
   assert.match(html, /Authorize/);
@@ -205,6 +207,8 @@ test("ships every referenced public image and sanitized render source", async ()
       "public/app-icon.png",
       "public/product/iphone-command-center.png",
       "public/product/iphone-claude-tasks.png",
+      "public/product/iphone-chat.png",
+      "public/product/iphone-photo-preview.png",
       "public/product/iphone-task-detail.png",
       "public/product/iphone-mcp-usage.png",
       "public/product/iphone-security-settings.png",

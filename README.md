@@ -46,19 +46,23 @@ GrantTap is a thin encrypted control channel, not a model proxy.
 See [SECURITY.md](SECURITY.md) for the exact boundary and relay-visible
 metadata.
 
-## Connect the public bridge
+## Install once, then add agents
 
 ```bash
-# Codex
-codex mcp add granttap -- npx -y granttap-mcp
-
-# Claude Code
-claude mcp add granttap -- npx -y granttap-mcp
-
-# Optional local approval hooks for both tools
 npm install -g granttap-mcp
-granttap-mcp connect
+granttap connect
+granttap setup
+
+# GrantTap plugin for Codex
+codex plugin marketplace add sergii-ziborov/granttap
+codex plugin add granttap@personal
 ```
+
+One machine helper owns one encrypted phone pairing. `granttap setup` adds or
+repairs all detected supported agent adapters, so installing another agent does
+not create a second GrantTap account or pairing. Connect/reconnect reuses a
+healthy pairing; replacement is an explicit unlink-and-pair-again action.
+Provider authentication and model credentials remain separate.
 
 - [granttap-mcp on npm](https://www.npmjs.com/package/granttap-mcp)
 - [MCP bridge source](https://github.com/sergii-ziborov/granttap-mcp)
@@ -118,6 +122,8 @@ matching time across each capture set.
 | *(planned)* Cursor / Copilot home | 1206 × 2622 | Capture when English demo UI shows agent tabs |
 | `public/product/iphone-task-detail.png` | 1206 × 2622 | Recent activity, usage, and context |
 | `public/product/iphone-mcp-usage.png` | 1206 × 2622 | Observed MCP and skill usage |
+| `public/product/iphone-chat.png` | 1206 × 2622 | Full chat with one delivered phone photo and one reconciled short reply |
+| `public/product/iphone-photo-preview.png` | 1206 × 2622 | Local full-screen preview for a photo retained by its outgoing delivery |
 | `public/product/iphone-security-settings.png` | 1206 × 2622 | Safe local render of Face ID, notification privacy, task keys, and audit log |
 | `public/product/encrypted-device-path.png` | 1400 × 788 | Decorative unbranded illustration of the encrypted computer-to-device path; generated with OpenAI ImageGen |
 | `public/product/apple-watch-inbox.png` | 416 × 496 | Pending approval and active-task inbox |
