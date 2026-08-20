@@ -25,36 +25,17 @@
   font-size: 14px;
 }
 
+.trust-strip > div > span:not(.apple-mark) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .tool-mark {
-  display: grid;
   width: 25px;
   height: 25px;
-  place-items: center;
+  flex: 0 0 25px;
   border-radius: 7px;
-  color: #130806;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.claude-mark {
-  background: var(--orange);
-}
-
-.codex-mark {
-  background: #4be990;
-}
-
-.cursor-mark {
-  background: #5b4bd8;
-}
-
-.copilot-mark {
-  background: #2867b2;
-}
-
-.grok-mark {
-  background: #111;
 }
 
 .pricing-preview {

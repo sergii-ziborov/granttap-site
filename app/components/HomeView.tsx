@@ -43,7 +43,7 @@ function Hero({ t }: Pick<Props, "t">) {
 }
 
 function Agents({ t }: Pick<Props, "t">) {
-  return <section className="trust-strip" aria-label="Supported platforms"><p>{t.builtFor}</p><div>{[["cursor", "Cursor", "⟩"], ["claude", "Claude Code", "C"], ["codex", "Codex", "▚"], ["copilot", "Copilot", "✦"], ["grok", "Grok", "↯"]].map(([id, label, mark]) => <span key={id}><span className={`tool-mark ${id}-mark`}>{mark}</span><strong>{label}</strong><span className="divider" /></span>)}<span className="apple-mark"></span><strong>iPhone + Apple Watch</strong></div></section>;
+  return <section className="trust-strip" aria-label="Supported platforms"><p>{t.builtFor}</p><div>{[["cursor", "Cursor"], ["claude", "Claude Code"], ["codex", "Codex"], ["copilot", "Copilot"], ["grok", "Grok"]].map(([id, label]) => <span key={id}><Image className="tool-mark" src={`/providers/${id}.png?v=20260820`} alt="" width={192} height={192} unoptimized /><strong>{label}</strong><span className="divider" /></span>)}<span className="apple-mark"></span><strong>iPhone + Apple Watch</strong></div></section>;
 }
 
 function ProductStory({ locale, t }: Pick<Props, "locale" | "t">) {

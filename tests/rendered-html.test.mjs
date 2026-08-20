@@ -57,6 +57,11 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.match(html, /apple-watch-inbox\.png/);
   assert.match(html, /apple-watch-task\.png/);
   assert.match(html, /apple-watch-approval\.png/);
+  assert.match(html, /providers\/cursor\.png\?v=20260820/);
+  assert.match(html, /providers\/claude\.png\?v=20260820/);
+  assert.match(html, /providers\/codex\.png\?v=20260820/);
+  assert.match(html, /providers\/copilot\.png\?v=20260820/);
+  assert.match(html, /providers\/grok\.png\?v=20260820/);
   assert.doesNotMatch(html, /\/product\/(?:phone-(?:home|context|controls)-v\d+|watch-(?:activity|approval)\.png)/);
   assert.match(html, /One GrantTap installation/);
   assert.match(html, /codex plugin add granttap@personal/);
@@ -215,6 +220,11 @@ test("ships every referenced public product image", async () => {
       "public/product/apple-watch-inbox.png",
       "public/product/apple-watch-task.png",
       "public/product/apple-watch-approval.png",
+      "public/providers/cursor.png",
+      "public/providers/claude.png",
+      "public/providers/codex.png",
+      "public/providers/copilot.png",
+      "public/providers/grok.png",
     ].map((path) => access(new URL(`../${path}`, import.meta.url))),
   );
 });
