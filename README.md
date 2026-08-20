@@ -115,8 +115,8 @@ single language and matching time across each capture set.
 
 | Asset | Pixels | Contents |
 | --- | ---: | --- |
-| `public/product/iphone-command-center.png` | 1206 × 2622 | Codex task list, approvals, and composer |
-| `public/product/iphone-claude-tasks.png` | 1206 × 2622 | Claude Code task list, scheduler, and composer |
+| `public/product/iphone-command-center.png` | 1206 × 2622 | Unified task list with the Codex composer selected |
+| `public/product/iphone-claude-tasks.png` | 1206 × 2622 | Unified task list with the Claude composer selected |
 | `public/product/iphone-task-detail.png` | 1206 × 2622 | Recent activity, usage, and context |
 | `public/product/iphone-mcp-usage.png` | 1206 × 2622 | Observed MCP and skill usage |
 | `public/product/iphone-chat.png` | 1206 × 2622 | Full chat with one delivered phone photo and one reconciled short reply |
