@@ -11,8 +11,8 @@ export default function TermsPage() {
   return (
     <LegalPage
       title={{ en: "Terms of Use", ru: "Условия использования" }}
-      updated={{ en: "August 13, 2026", ru: "13 августа 2026" }}
-      updatedISO="2026-08-13"
+      updated={{ en: "August 20, 2026", ru: "20 августа 2026" }}
+      updatedISO="2026-08-20"
       intro={{
         en: "These terms cover the GrantTap app, encrypted relay, and related support services. GrantTap extends coding-agent sessions on computers you control; it does not replace the agent or move your project into a GrantTap cloud.",
         ru: "Эти условия относятся к приложению GrantTap, зашифрованному relay и поддержке. GrantTap дополняет сессии кодовых агентов на контролируемых вами компьютерах, а не заменяет агента и не переносит проект в облако GrantTap.",
@@ -30,9 +30,9 @@ export default function TermsPage() {
             ],
           },
           {
-            heading: "No GrantTap account",
+            heading: "GrantTap account and pairing",
             paragraphs: [
-              "GrantTap does not require or create a GrantTap user account. Pairing authorizes a device and computer using locally held cryptographic credentials. Your Apple Account, coding-agent accounts, model provider accounts, and source-control accounts remain separate and are governed by their providers.",
+              "Personal/Team account login is optional; Enterprise account login is required for managed endpoints. Account login and encrypted phone pairing are separate authorizations and neither replaces the other. Your Apple Account, coding-agent accounts, model-provider accounts, and source-control accounts remain separate and are governed by their providers.",
             ],
           },
           {
@@ -114,9 +114,9 @@ export default function TermsPage() {
             links: [{ label: "Стандартное EULA Apple", href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" }],
           },
           {
-            heading: "Без аккаунта GrantTap",
+            heading: "Аккаунт и пейринг GrantTap",
             paragraphs: [
-              "GrantTap не требует и не создаёт пользовательский аккаунт. Пейринг разрешает связь устройства и компьютера с помощью локальных криптографических данных. Apple Account, аккаунты кодовых агентов, поставщиков моделей и систем контроля версий остаются отдельными и регулируются их условиями.",
+              "Для Personal/Team вход в аккаунт необязателен; для управляемого Enterprise обязателен. Вход в аккаунт и зашифрованный пейринг телефона — разные разрешения и не заменяют друг друга. Apple Account, аккаунты кодовых агентов, поставщиков моделей и систем контроля версий остаются отдельными и регулируются их условиями.",
             ],
           },
           {

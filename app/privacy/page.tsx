@@ -11,11 +11,11 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title={{ en: "Privacy Policy", ru: "Политика конфиденциальности" }}
-      updated={{ en: "August 2, 2026", ru: "2 августа 2026" }}
-      updatedISO="2026-08-02"
+      updated={{ en: "August 20, 2026", ru: "20 августа 2026" }}
+      updatedISO="2026-08-20"
       intro={{
-        en: "This policy covers the GrantTap iPhone and Apple Watch app, the encrypted relay, and granttap.com. GrantTap has no user account, advertising profile, or readable cloud chat history.",
-        ru: "Эта политика относится к GrantTap для iPhone и Apple Watch, зашифрованному relay и сайту granttap.com. В GrantTap нет пользовательского аккаунта, рекламного профиля или читаемой облачной истории чатов.",
+        en: "This policy covers the GrantTap iPhone and Apple Watch app, account login, the encrypted relay, and granttap.com. Personal/Team login is optional; Enterprise login is required for managed endpoints. GrantTap has no advertising profile or readable cloud chat history.",
+        ru: "Эта политика относится к GrantTap для iPhone и Apple Watch, входу в аккаунт, зашифрованному relay и сайту granttap.com. Для Personal/Team вход необязателен, для управляемого Enterprise обязателен. В GrantTap нет рекламного профиля или читаемой облачной истории чатов.",
       }}
       sections={{
         en: [
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           {
             heading: "Privacy at a glance",
             bullets: [
-              "No GrantTap account, login, advertising, cross-app tracking, data broker sharing, or product analytics.",
+              "Personal/Team account login is optional; Enterprise login is required for managed endpoints. There is no advertising, cross-app tracking, data broker sharing, or product analytics.",
               "Your repositories, model credentials, prompts sent directly to the model, and model traffic do not pass through the GrantTap relay.",
               "Task messages, commands, questions, attachments, replies, and approval decisions are end-to-end encrypted before they leave an authorized endpoint.",
               "GrantTap does not sell personal data or use app data for advertising or profiling.",
@@ -42,6 +42,7 @@ export default function PrivacyPage() {
             heading: "Data processed to provide the app",
             bullets: [
               "Pairing: a random 128-bit mailbox identifier, a single-use encrypted pairing blob, and timestamps needed to complete pairing. The independent 256-bit transfer key stays in the QR or manual pairing token and is never sent to the relay.",
+              "Account login: account and organization identifiers, a device public key, authorization state, expiry, and security metadata needed to issue and protect a session. The QR contains only an HTTPS verification URL and user code; the device code, PKCE verifier, signing seed, and tokens remain protected on the computer.",
               "Delivery metadata: opaque room, task, message, and delivery identifiers; sender and recipient roles; connection time; ciphertext size; expiry; delivery status; and retry state.",
               "Network and security metadata: IP address and request information may be processed by Cloudflare to connect, protect, and operate the relay and website.",
               "Background delivery: the relay stores an APNs device token, sandbox or production environment, bundle identifier, and update time. The token is a device-level routing identifier used only for App Functionality, linked to the pairing, and never used for tracking.",
@@ -60,13 +61,13 @@ export default function PrivacyPage() {
             bullets: [
               "Pairing and task keys, local preferences, delivery status, archives, schedule state, a bounded audit log, and MCP or skill usage history are stored in the app container or protected device storage.",
               "Chat history shown by GrantTap may originate from supported local coding-agent data on your computer. Archiving a task on iPhone is a local GrantTap preference and does not delete the source chat from those tools.",
-              "The machine bridge stores its local configuration and schedules under ~/.granttap on the paired computer.",
+              "The machine bridge stores its local configuration and schedules under ~/.granttap. Account signing material, pending authorization secrets, and tokens are stored separately in macOS Keychain.",
             ],
           },
           {
             heading: "Camera, photos, files, microphone, speech, and biometrics",
             bullets: [
-              "Camera access is used to scan a pairing QR code and, when you explicitly choose it, to create an attachment.",
+              "Camera access is used to scan a pairing or account-login QR code and, when you explicitly choose it, to create an attachment.",
               "Photo-library and file access is used only for items you select for a task. Selected content is sent through the encrypted task route to your paired computer.",
               "Microphone and speech-recognition access is used only when you start a voice reply. GrantTap requests on-device recognition when available; Apple may process speech when the system uses Apple speech services. GrantTap does not retain voice recordings as a separate cloud asset.",
               "Face ID, Touch ID, or the device passcode can protect the app and approval actions. GrantTap receives only the authentication result and never receives or stores biometric templates.",
@@ -87,7 +88,7 @@ export default function PrivacyPage() {
             heading: "Retention and deletion",
             paragraphs: [
               "Pairing blobs expire after 15 minutes and are single-use. Encrypted delivery queues are bounded and messages carry explicit expirations. APNs registration remains until you forget the pairing, the app unregisters, or APNs reports the token stale. Operational security records may remain under infrastructure-provider retention policies.",
-              "Local app data remains until you clear the corresponding history, forget the paired computer, or remove the app. Machine-side state remains until you remove ~/.granttap. Support correspondence is kept only as needed to answer the request, maintain security records, or meet applicable obligations.",
+              "Local app data remains until you clear the corresponding history, forget the paired computer, or remove the app. Machine-side account state remains until logout and local bridge state until you remove ~/.granttap. Support correspondence is kept only as needed to answer the request, maintain security records, or meet applicable obligations.",
             ],
             links: [
               { label: "Deletion and privacy choices", href: "/data-rights" },
@@ -97,7 +98,7 @@ export default function PrivacyPage() {
             heading: "Your choices and rights",
             paragraphs: [
               "You can decline camera, photo, microphone, speech, biometric-lock, or notification permissions and continue using the parts of GrantTap that do not need them. Permissions can be changed in system Settings. Depending on where you live, you may also request access, correction, deletion, restriction, portability, or objection for personal data GrantTap can identify and control.",
-              "Because GrantTap has no account index and cannot decrypt relay payloads, the developer may have no readable task record to return or search by your identity. We will explain that limitation rather than ask you to disclose secret keys.",
+              "Account records can identify signed-in users, but they contain no readable task history. Because GrantTap cannot decrypt relay payloads, the developer may have no readable task record to return or search by identity. We will explain that limitation rather than ask you to disclose secret keys.",
             ],
           },
           {
@@ -123,7 +124,7 @@ export default function PrivacyPage() {
           {
             heading: "Коротко о конфиденциальности",
             bullets: [
-              "Нет аккаунта GrantTap, логина, рекламы, межприложенческого трекинга, передачи брокерам данных или продуктовой аналитики.",
+              "Для Personal/Team вход в аккаунт необязателен; для управляемого Enterprise обязателен. Нет рекламы, межприложенческого трекинга, передачи брокерам данных или продуктовой аналитики.",
               "Репозитории, ключи моделей, промпты, отправленные непосредственно модели, и трафик модели не проходят через relay GrantTap.",
               "Сообщения задач, команды, вопросы, вложения, ответы и решения шифруются до отправки с разрешённого устройства.",
               "GrantTap не продаёт персональные данные и не использует данные приложения для рекламы или профилирования.",
@@ -133,6 +134,7 @@ export default function PrivacyPage() {
             heading: "Данные для работы приложения",
             bullets: [
               "Пейринг: случайный 128-битный mailbox ID, одноразовый зашифрованный blob и время, необходимые для подключения. Независимый 256-битный transfer key остаётся в QR-коде или ручном токене и не отправляется relay.",
+              "Вход в аккаунт: идентификаторы аккаунта и организации, открытый ключ устройства, статус авторизации, срок и защитные метаданные. QR содержит только HTTPS-адрес проверки и короткий код; device code, PKCE verifier, seed подписи и токены остаются в защищённом хранилище компьютера.",
               "Метаданные доставки: непрозрачные идентификаторы комнаты, задачи, сообщения и доставки; роли отправителя и получателя; время соединения; размер шифротекста; срок; статус и повторы доставки.",
               "Сетевые и защитные метаданные: Cloudflare может обрабатывать IP и данные запроса для подключения, защиты и работы relay и сайта.",
               "Фоновая доставка: relay хранит APNs-токен, среду sandbox или production, bundle ID и время обновления. Это идентификатор устройства только для работы приложения; он связан с пейрингом и не используется для трекинга.",
@@ -151,13 +153,13 @@ export default function PrivacyPage() {
             bullets: [
               "Ключи пейринга и задач, настройки, статусы доставки, архив, расписания, ограниченный журнал действий и история MCP или скилов хранятся в контейнере приложения или защищённом хранилище устройства.",
               "История чатов в GrantTap может поступать из локальных данных поддерживаемых кодовых агентов на компьютере. Архивирование на iPhone — локальная настройка GrantTap и не удаляет исходный чат из этих инструментов.",
-              "Мост на компьютере хранит локальную конфигурацию и расписания в ~/.granttap.",
+              "Мост хранит локальную конфигурацию и расписания в ~/.granttap. Ключ аккаунта, секреты незавершённого входа и токены хранятся отдельно в macOS Keychain.",
             ],
           },
           {
             heading: "Камера, фото, файлы, микрофон, речь и биометрия",
             bullets: [
-              "Камера используется для QR-кода пейринга и, только по вашему выбору, для создания вложения.",
+              "Камера используется для QR-кода пейринга или входа в аккаунт и, только по вашему выбору, для создания вложения.",
               "Доступ к фото и файлам используется только для выбранных вами элементов. Они отправляются по зашифрованному маршруту задачи на спаренный компьютер.",
               "Микрофон и распознавание включаются только после запуска голосового ответа. GrantTap запрашивает локальное распознавание, когда оно доступно; в ином случае речь может обрабатываться сервисами Apple. GrantTap не хранит голосовую запись как отдельный облачный объект.",
               "Face ID, Touch ID или код-пароль могут защищать приложение и подтверждения. GrantTap получает только результат проверки и не получает биометрические шаблоны.",
@@ -178,7 +180,7 @@ export default function PrivacyPage() {
             heading: "Сроки хранения и удаление",
             paragraphs: [
               "Pairing blob одноразовый и истекает через 15 минут. Очереди шифротекста ограничены, а сообщения имеют срок действия. APNs-регистрация хранится до отключения пейринга, отмены регистрации приложением или ответа APNs о недействительном токене. Служебные записи безопасности могут храниться по правилам поставщиков инфраструктуры.",
-              "Локальные данные остаются до очистки соответствующей истории, удаления пейринга или приложения. Данные на компьютере остаются до удаления ~/.granttap. Переписка поддержки хранится только для ответа, защиты сервиса или выполнения применимых обязанностей.",
+              "Локальные данные остаются до очистки истории, удаления пейринга или приложения. Сессия аккаунта на компьютере хранится до выхода, а состояние моста — до удаления ~/.granttap. Переписка поддержки хранится только для ответа, защиты сервиса или выполнения применимых обязанностей.",
             ],
             links: [
               { label: "Удаление и настройки данных", href: "/data-rights" },
@@ -188,7 +190,7 @@ export default function PrivacyPage() {
             heading: "Ваш выбор и права",
             paragraphs: [
               "Можно не выдавать доступ к камере, фото, микрофону, распознаванию речи, биометрической блокировке или уведомлениям и использовать остальные функции. Разрешения меняются в системных Настройках. В зависимости от юрисдикции вы можете запросить доступ, исправление, удаление, ограничение, переносимость или возражение для данных, которые GrantTap способен идентифицировать и контролировать.",
-              "У GrantTap нет индекса аккаунтов, а relay не расшифровывает payload. Поэтому у разработчика может не быть читаемой записи задачи, которую можно найти по вашей личности. Мы объясним это ограничение и не будем просить секретные ключи.",
+              "Запись аккаунта может идентифицировать вошедшего пользователя, но не содержит читаемой истории задач. Relay не расшифровывает payload, поэтому у разработчика может не быть читаемой записи задачи для поиска по личности. Мы объясним ограничение и не будем просить секретные ключи.",
             ],
           },
           {

@@ -83,7 +83,7 @@ export const copy = {
     installKicker: "Public and auditable machine bridge",
     installTitle: "Connect the agents you already use.",
     installText:
-      "One GrantTap installation owns the encrypted machine pairing. Setup adds every detected agent adapter to it; installing for another agent never creates a second GrantTap account or phone pairing.",
+      "One GrantTap installation owns the machine account session and encrypted phone pairing. Setup adds every detected agent adapter to it; installing for another agent never creates a second account or pairing. Personal/Team login is optional; managed Enterprise endpoints require protected device login.",
     oneInstall: "One GrantTap installation",
     addAgent: "Add or repair agent adapters",
     codexPlugin: "GrantTap plugin for Codex",
@@ -180,7 +180,7 @@ export const copy = {
     installKicker: "Публичный и проверяемый мост",
     installTitle: "Подключите агентов, которыми уже пользуетесь.",
     installText:
-      "Одна установка GrantTap хранит зашифрованный пейринг компьютера. Setup добавляет к ней все найденные адаптеры агентов; подключение другого агента не создаёт второй аккаунт GrantTap или пейринг телефона.",
+      "Одна установка GrantTap хранит сессию аккаунта компьютера и зашифрованный пейринг телефона. Setup добавляет к ней все найденные адаптеры агентов; подключение другого агента не создаёт второй аккаунт или пейринг. Для Personal/Team вход необязателен, для управляемого Enterprise — защищённый вход обязателен.",
     oneInstall: "Одна установка GrantTap",
     addAgent: "Добавить или исправить адаптеры",
     codexPlugin: "Плагин GrantTap для Codex",
