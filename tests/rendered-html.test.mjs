@@ -212,6 +212,8 @@ test("exposes the QR account launcher without indexing the private vault", async
   assert.match(html, /Opening QR sign-in/);
   assert.match(html, /url=https:\/\/granttap\.com\/account\/index\.html/);
   assert.match(html, /name="robots" content="noindex, nofollow"/i);
+  const accountShell = await readFile(new URL("../public/account/index.html", import.meta.url), "utf8");
+  assert.match(accountShell, /location\.replace\("https:\/\/granttap\.com\/account\/"\)/);
 });
 
 test("documents the public pairing, setup, and Cursor authorization journey", async () => {
