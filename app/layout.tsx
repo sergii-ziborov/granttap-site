@@ -49,10 +49,10 @@ export const metadata: Metadata = {
       "Approve commands, answer questions, and chat with Cursor, Claude Code, Codex, Copilot, and Grok Build from iPhone and Apple Watch.",
     images: [
       {
-        url: "/og-granttap.png",
-        width: 1659,
-        height: 948,
-        alt: "GrantTap securely connects coding-agent tasks on a Mac to iPhone and Apple Watch.",
+        url: "/product/iphone-command-center.png?v=20260820",
+        width: 1206,
+        height: 2622,
+        alt: "The current GrantTap task list and composer on iPhone.",
       },
     ],
   },
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Step away from your Mac. Keep the work moving.",
     description:
       "A secure iPhone and Apple Watch remote for local Cursor, Claude Code, Codex, Copilot, and Grok Build sessions.",
-    images: ["/og-granttap.png"],
+    images: ["/product/iphone-command-center.png?v=20260820"],
   },
 };
 

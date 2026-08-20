@@ -60,13 +60,13 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.doesNotMatch(html, /\/product\/(?:phone-(?:home|context|controls)-v\d+|watch-(?:activity|approval)\.png)/);
   assert.match(html, /One GrantTap installation/);
   assert.match(html, /codex plugin add granttap@personal/);
-  assert.match(html, /Preparing for App Store review/);
+  assert.match(html, /Private testing before App Store submission/);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
-  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/og-granttap\.png"/i);
-  assert.match(html, /property="og:image:width" content="1659"/i);
-  assert.match(html, /property="og:image:height" content="948"/i);
+  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20260820"/i);
+  assert.match(html, /property="og:image:width" content="1206"/i);
+  assert.match(html, /property="og:image:height" content="2622"/i);
   assert.match(html, /name="twitter:card" content="summary_large_image"/i);
-  await access(new URL("../public/og-granttap.png", import.meta.url));
+  await access(new URL("../public/product/iphone-command-center.png", import.meta.url));
   assert.match(
     html,
     /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i,
@@ -215,7 +215,6 @@ test("ships every referenced public product image", async () => {
       "public/product/apple-watch-inbox.png",
       "public/product/apple-watch-task.png",
       "public/product/apple-watch-approval.png",
-      "public/product/encrypted-device-path.png",
     ].map((path) => access(new URL(`../${path}`, import.meta.url))),
   );
 });

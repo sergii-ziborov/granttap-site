@@ -122,7 +122,6 @@ single language and matching time across each capture set.
 | `public/product/iphone-chat.png` | 1206 × 2622 | Full chat with one delivered phone photo and one reconciled short reply |
 | `public/product/iphone-photo-preview.png` | 1206 × 2622 | Local full-screen preview for a photo retained by its outgoing delivery |
 | `public/product/iphone-security-settings.png` | 1206 × 2622 | Current connection, agent, language, and approval settings |
-| `public/product/encrypted-device-path.png` | 1400 × 788 | Decorative unbranded illustration of the encrypted computer-to-device path; generated with OpenAI ImageGen |
 | `public/product/apple-watch-inbox.png` | 416 × 496 | Pending approval and active-task inbox |
 | `public/product/apple-watch-task.png` | 416 × 496 | Recent task updates and reply actions |
 | `public/product/apple-watch-approval.png` | 416 × 496 | Real pending approval |
@@ -138,9 +137,8 @@ overrides.
 
 - `app/page.tsx` — product page and English/Russian copy
 - `app/globals.css` — responsive presentation and product-capture motion
-- `app/layout.tsx` — metadata and social preview
+- `app/layout.tsx` — metadata and social preview backed by the current native iPhone capture
 - `public/product/` — canonical real product captures
-- `public/og-granttap.png` — generated social preview used by Open Graph and X/Twitter metadata
 - `app/privacy/`, `app/terms/`, `app/support/`, `app/security/`, `app/data-rights/`, `app/accessibility/`, `app/licenses/` — public policy and support pages
 - `.openai/hosting.json` — Sites project binding
 - `wrangler.production.jsonc` — canonical Cloudflare deployment

@@ -1,22 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useLocale } from "./components/Locale";
 import { HomeView } from "./components/HomeView";
-
-/** Target submission date. Move this one constant when the plan changes. */
-const RELEASE_AT = new Date("2026-08-14T09:00:00Z");
-
-function releaseCountdown() {
-  const remaining = Math.max(0, RELEASE_AT.getTime() - Date.now());
-  return {
-    days: Math.floor(remaining / 86_400_000),
-    hours: Math.floor((remaining % 86_400_000) / 3_600_000),
-    minutes: Math.floor((remaining % 3_600_000) / 60_000),
-    seconds: Math.floor((remaining % 60_000) / 1_000),
-    reached: remaining === 0,
-  };
-}
 
 export const copy = {
   en: {
@@ -102,15 +87,11 @@ export const copy = {
     pricingAction: "See pricing and terms",
     localTitle: "Direct same-Wi-Fi transport is planned",
     localText: "A future local mode will deliver directly between your devices on the same network, with no server synchronization. It is not available yet.",
-    releaseKicker: "Launch status",
-    releaseTitle: "Preparing for App Store review.",
+    releaseKicker: "Availability",
+    releaseTitle: "Private testing before App Store submission.",
     releaseText:
       "GrantTap for iPhone and Apple Watch is not yet available on the App Store. A link to the listing will appear here once the app is approved.",
     appStore: "App Store — not yet available",
-    countdownLabel: "Target submission",
-    remaining: "to go",
-    countdownReached: "Target date reached — submission in progress.",
-    countdownUnits: ["days", "hours", "min", "sec"],
     tagline: "Keep your agents moving.",
     legal: ["Pricing", "Privacy", "Terms", "Support", "Security", "Data choices", "Accessibility", "Licenses"],
     rights:
@@ -199,15 +180,11 @@ export const copy = {
     pricingAction: "Тарифы и условия",
     localTitle: "Прямое соединение в одной Wi-Fi сети — в планах",
     localText: "Будущий локальный режим будет передавать данные напрямую между устройствами в одной сети, без серверной синхронизации. Сейчас он ещё недоступен.",
-    releaseKicker: "Статус запуска",
-    releaseTitle: "Готовим релиз к проверке App Store.",
+    releaseKicker: "Доступность",
+    releaseTitle: "Закрытое тестирование перед отправкой в App Store.",
     releaseText:
       "GrantTap для iPhone и Apple Watch пока недоступен в App Store. Ссылка на страницу приложения появится здесь после его одобрения.",
     appStore: "App Store — пока недоступно",
-    countdownLabel: "Цель по отправке",
-    remaining: "осталось",
-    countdownReached: "Целевая дата наступила — идёт отправка.",
-    countdownUnits: ["дней", "часов", "мин", "сек"],
     tagline: "Пусть агенты не простаивают.",
     legal: ["Тарифы", "Конфиденциальность", "Условия", "Поддержка", "Безопасность", "Управление данными", "Доступность", "Лицензии"],
     rights:
@@ -220,16 +197,5 @@ export type HomeCopy = typeof copy.en | typeof copy.ru;
 export default function Home() {
   const { locale, setLocale } = useLocale();
   const t = copy[locale];
-
-  // Starts null so server and first client render agree; the real figure lands
-  // after hydration and then becomes the visible one-second launch clock.
-  const [countdown, setCountdown] = useState<ReturnType<typeof releaseCountdown> | null>(null);
-  useEffect(() => {
-    const update = () => setCountdown(releaseCountdown());
-    update();
-    const id = setInterval(update, 1_000);
-    return () => clearInterval(id);
-  }, []);
-
-  return <HomeView locale={locale} setLocale={setLocale} t={t} countdown={countdown} />;
+  return <HomeView locale={locale} setLocale={setLocale} t={t} />;
 }

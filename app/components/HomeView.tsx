@@ -2,9 +2,8 @@ import Image from "next/image";
 import type { HomeCopy } from "../page";
 import { LanguageToggle, type Locale } from "./Locale";
 
-type Countdown = { days: number; hours: number; minutes: number; seconds: number; reached: boolean };
-type Props = { locale: Locale; setLocale: (locale: Locale) => void; t: HomeCopy; countdown: Countdown | null };
-const capture = (name: string) => `/product/${name}.png`;
+type Props = { locale: Locale; setLocale: (locale: Locale) => void; t: HomeCopy };
+const capture = (name: string) => `/product/${name}.png?v=20260820`;
 const Check = () => <span aria-hidden="true">✓</span>;
 const imageSize = (name: string) => name.startsWith("iphone") ? { width: 1206, height: 2622 } : { width: 416, height: 496 };
 
@@ -12,7 +11,7 @@ function ProductImage({ name, alt, priority = false }: { name: string; alt: stri
   return <Image src={capture(name)} alt={alt} {...imageSize(name)} priority={priority} unoptimized />;
 }
 
-export function HomeView({ locale, setLocale, t, countdown }: Props) {
+export function HomeView({ locale, setLocale, t }: Props) {
   return <main>
     <SiteHeader locale={locale} setLocale={setLocale} t={t} />
     <Hero t={t} />
@@ -22,12 +21,12 @@ export function HomeView({ locale, setLocale, t, countdown }: Props) {
     <Gallery locale={locale} t={t} />
     <Install t={t} />
     <Pricing t={t} />
-    <Availability countdown={countdown} t={t} />
+    <Availability t={t} />
     <SiteFooter t={t} />
   </main>;
 }
 
-function SiteHeader({ locale, setLocale, t }: Omit<Props, "countdown">) {
+function SiteHeader({ locale, setLocale, t }: Props) {
   return <header className="site-header">
     <a className="brand" href="#top" aria-label="GrantTap home"><Image src="/app-icon.png" alt="" width={1024} height={1024} priority /><span>GrantTap</span></a>
     <nav aria-label="Primary navigation"><a href="#workflow">{t.nav[0]}</a><a href="#product">{t.nav[1]}</a><a href="#security">{t.nav[2]}</a><a href="#install">{t.nav[3]}</a></nav>
@@ -56,7 +55,7 @@ function ProductStory({ locale, t }: Pick<Props, "locale" | "t">) {
 }
 
 function Security({ t }: Pick<Props, "t">) {
-  return <section className="security-section" id="security"><div className="section-shell security-inner"><div className="security-copy"><p className="kicker">{t.securityKicker}</p><h2>{t.securityTitle}</h2><p>{t.securityText}</p></div><div className="security-diagram"><Image className="security-art" src="/product/encrypted-device-path.png" alt="Encrypted path from computer to phone and watch" width={1400} height={788} unoptimized />{[t.mac, t.relay, t.devices].map(([title, text], index) => <div className="diagram-group" key={title}>{index > 0 && <div className="encrypted-line"><span>{t.ciphertext}</span></div>}<div className={`security-node${index === 1 ? " relay-node" : ""}`}><span>{["⌘", "◇", "⌚"][index]}</span><strong>{title}</strong><small>{text}</small></div></div>)}</div><div className="security-facts">{t.facts.map(([title, text]) => <article key={title}><strong>{title}</strong><p>{text}</p></article>)}</div></div></section>;
+  return <section className="security-section" id="security"><div className="section-shell security-inner"><div className="security-copy"><p className="kicker">{t.securityKicker}</p><h2>{t.securityTitle}</h2><p>{t.securityText}</p></div><div className="security-diagram">{[t.mac, t.relay, t.devices].map(([title, text], index) => <div className="diagram-group" key={title}>{index > 0 && <div className="encrypted-line"><span>{t.ciphertext}</span></div>}<div className={`security-node${index === 1 ? " relay-node" : ""}`}><span>{["⌘", "◇", "⌚"][index]}</span><strong>{title}</strong><small>{text}</small></div></div>)}</div><div className="security-facts">{t.facts.map(([title, text]) => <article key={title}><strong>{title}</strong><p>{text}</p></article>)}</div></div></section>;
 }
 
 function Gallery({ locale, t }: Pick<Props, "locale" | "t">) {
@@ -83,8 +82,8 @@ function Pricing({ t }: Pick<Props, "t">) {
   return <section className="pricing-preview section-shell"><div><p className="kicker">{t.pricingKicker}</p><h2>{t.pricingTitle}</h2><p>{t.pricingText}</p><a className="button button-secondary" href="/pricing">{t.pricingAction}</a></div><aside><strong>{t.localTitle}</strong><p>{t.localText}</p></aside></section>;
 }
 
-function Availability({ countdown, t }: Pick<Props, "countdown" | "t">) {
-  return <section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} /><div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p className="release-copy">{t.releaseText}</p>{countdown && (countdown.reached ? <p className="release-countdown reached">{t.countdownReached}</p> : <div className="release-countdown"><span className="countdown-caption">{t.countdownLabel} · {t.remaining}</span><div className="countdown-clock">{[countdown.days, countdown.hours, countdown.minutes, countdown.seconds].map((value, index) => <span className="countdown-unit" key={t.countdownUnits[index]}><strong>{String(value).padStart(2, "0")}</strong><small>{t.countdownUnits[index]}</small></span>)}</div></div>)}</div><span className="availability-pill">{t.appStore}</span></div></section>;
+function Availability({ t }: Pick<Props, "t">) {
+  return <section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} /><div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p className="release-copy">{t.releaseText}</p></div><span className="availability-pill">{t.appStore}</span></div></section>;
 }
 
 function SiteFooter({ t }: Pick<Props, "t">) {

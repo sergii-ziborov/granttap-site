@@ -12,7 +12,6 @@ It composes small, purpose-named style modules from this directory.
 - `gallery.css` — screenshots, availability, and footer.
 - `responsive-*.css` — breakpoint-specific layout changes.
 - `accessibility.css` — narrow-screen and reduced-motion behavior.
-- `release-countdown.css` — launch countdown component.
 
 Rendered behavior is covered by `../../tests/rendered-html.test.mjs`; `npm test`
 also performs a production build so malformed imports fail before publishing.
