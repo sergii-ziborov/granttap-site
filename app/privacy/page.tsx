@@ -11,11 +11,11 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title={{ en: "Privacy Policy", ru: "Политика конфиденциальности" }}
-      updated={{ en: "August 2, 2026", ru: "2 августа 2026" }}
-      updatedISO="2026-08-02"
+      updated={{ en: "August 20, 2026", ru: "20 августа 2026" }}
+      updatedISO="2026-08-20"
       intro={{
-        en: "This policy covers the GrantTap iPhone and Apple Watch app, the encrypted relay, and granttap.com. GrantTap has no user account, advertising profile, or readable cloud chat history.",
-        ru: "Эта политика относится к GrantTap для iPhone и Apple Watch, зашифрованному relay и сайту granttap.com. В GrantTap нет пользовательского аккаунта, рекламного профиля или читаемой облачной истории чатов.",
+        en: "This policy covers the GrantTap iPhone and Apple Watch app, GrantTap Web, the encrypted relay, and granttap.com. Personal use needs no centralized identity account; managed Enterprise deployments may issue organization account and device records. GrantTap creates no advertising profile or readable cloud chat history.",
+        ru: "Эта политика относится к GrantTap для iPhone и Apple Watch, GrantTap Web, зашифрованному relay и сайту granttap.com. Для Personal не нужен централизованный identity account; управляемый Enterprise может создавать записи аккаунта организации и устройства. GrantTap не создаёт рекламный профиль или читаемую облачную историю чатов.",
       }}
       sections={{
         en: [
@@ -32,7 +32,7 @@ export default function PrivacyPage() {
           {
             heading: "Privacy at a glance",
             bullets: [
-              "No GrantTap account, login, advertising, cross-app tracking, data broker sharing, or product analytics.",
+              "Personal and QR-based GrantTap Web access require no username or password. A managed Enterprise deployment may process bounded organization, user, device, policy, and login-receipt metadata.",
               "Your repositories, model credentials, prompts sent directly to the model, and model traffic do not pass through the GrantTap relay.",
               "Task messages, commands, questions, attachments, replies, and approval decisions are end-to-end encrypted before they leave an authorized endpoint.",
               "GrantTap does not sell personal data or use app data for advertising or profiling.",
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
             heading: "Your choices and rights",
             paragraphs: [
               "You can decline camera, photo, microphone, speech, biometric-lock, or notification permissions and continue using the parts of GrantTap that do not need them. Permissions can be changed in system Settings. Depending on where you live, you may also request access, correction, deletion, restriction, portability, or objection for personal data GrantTap can identify and control.",
-              "Because GrantTap has no account index and cannot decrypt relay payloads, the developer may have no readable task record to return or search by your identity. We will explain that limitation rather than ask you to disclose secret keys.",
+              "GrantTap has no Personal identity index and cannot decrypt relay payloads, so the developer may have no readable task record to return or search by identity. For managed Enterprise records, contact your organization controller first. We will explain the applicable boundary rather than ask you to disclose secret keys.",
             ],
           },
           {
@@ -123,7 +123,7 @@ export default function PrivacyPage() {
           {
             heading: "Коротко о конфиденциальности",
             bullets: [
-              "Нет аккаунта GrantTap, логина, рекламы, межприложенческого трекинга, передачи брокерам данных или продуктовой аналитики.",
+              "Для Personal и QR-входа в GrantTap Web не нужны имя пользователя или пароль. Управляемый Enterprise может обрабатывать ограниченные метаданные организации, пользователя, устройства, политики и login receipt.",
               "Репозитории, ключи моделей, промпты, отправленные непосредственно модели, и трафик модели не проходят через relay GrantTap.",
               "Сообщения задач, команды, вопросы, вложения, ответы и решения шифруются до отправки с разрешённого устройства.",
               "GrantTap не продаёт персональные данные и не использует данные приложения для рекламы или профилирования.",
@@ -188,7 +188,7 @@ export default function PrivacyPage() {
             heading: "Ваш выбор и права",
             paragraphs: [
               "Можно не выдавать доступ к камере, фото, микрофону, распознаванию речи, биометрической блокировке или уведомлениям и использовать остальные функции. Разрешения меняются в системных Настройках. В зависимости от юрисдикции вы можете запросить доступ, исправление, удаление, ограничение, переносимость или возражение для данных, которые GrantTap способен идентифицировать и контролировать.",
-              "У GrantTap нет индекса аккаунтов, а relay не расшифровывает payload. Поэтому у разработчика может не быть читаемой записи задачи, которую можно найти по вашей личности. Мы объясним это ограничение и не будем просить секретные ключи.",
+              "У GrantTap нет Personal-индекса личности, а relay не расшифровывает payload. Поэтому у разработчика может не быть читаемой записи задачи для поиска по личности. По записям управляемого Enterprise сначала обратитесь к контроллеру организации. Мы объясним применимую границу и не будем просить секретные ключи.",
             ],
           },
           {

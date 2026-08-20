@@ -13,10 +13,22 @@
 
   .site-header {
     height: 74px;
+    gap: 8px;
   }
 
   .site-header nav {
     display: none;
+  }
+
+  .site-header .brand span {
+    display: none;
+  }
+
+  .enterprise-quick {
+    display: inline-flex;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
   }
 
   .language-toggle {
@@ -24,7 +36,9 @@
   }
 
   .nav-cta {
-    display: none;
+    min-height: 34px;
+    padding-inline: 11px;
+    font-size: 11px;
   }
 
   .hero {

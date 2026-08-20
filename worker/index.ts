@@ -11,7 +11,7 @@ const REDIRECT_HOSTS = new Set([
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "base-uri 'self'",
-  "connect-src 'self'",
+  "connect-src 'self' https://granttap-relay.sergii-ziborov.workers.dev",
   "font-src 'self' data:",
   "form-action 'self'",
   "frame-ancestors 'none'",

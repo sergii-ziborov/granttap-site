@@ -11,18 +11,18 @@ export default function DataRightsPage() {
   return (
     <LegalPage
       title={{ en: "Data choices and deletion", ru: "Управление и удаление данных" }}
-      updated={{ en: "August 2, 2026", ru: "2 августа 2026" }}
-      updatedISO="2026-08-02"
+      updated={{ en: "August 20, 2026", ru: "20 августа 2026" }}
+      updatedISO="2026-08-20"
       intro={{
-        en: "GrantTap has no user account. Most readable GrantTap data is held on your iPhone or paired computer, so you control it locally. Use the ordered steps below for a complete device-side cleanup.",
-        ru: "В GrantTap нет пользовательского аккаунта. Большинство читаемых данных хранится на iPhone или спаренном компьютере, поэтому управляется локально. Для полной очистки выполните шаги по порядку.",
+        en: "Personal and QR-based GrantTap Web access need no centralized identity account. Most readable data stays on your iPhone, paired computer, or locally encrypted browser vault. Managed Enterprise identity records are controlled by the organization deployment.",
+        ru: "Для Personal и QR-входа в GrantTap Web не нужен централизованный identity account. Большинство читаемых данных остаётся на iPhone, спаренном компьютере или в локально зашифрованном browser vault. Записями управляемого Enterprise распоряжается организация.",
       }}
       sections={{
         en: [
           {
-            heading: "No GrantTap account",
+            heading: "Personal access and Enterprise identity",
             paragraphs: [
-              "Pairing is device authorization, not account registration. GrantTap has no username, password, profile, subscription account, or cloud index of people. Apple's record of an App Store download or purchase belongs to your Apple Account and is controlled by Apple.",
+              "Personal pairing and GrantTap Web QR access are device or capability authorization, not identity registration. The encrypted browser-vault recovery code is the only vault key and is never sent to the relay. A managed Enterprise deployment may separately hold bounded organization, user, device, policy, and login-receipt metadata. Apple's purchase record belongs to your Apple Account and is controlled by Apple.",
             ],
           },
           {
@@ -65,7 +65,7 @@ export default function DataRightsPage() {
             heading: "Privacy request or correction",
             paragraphs: [
               "Depending on where you live, you may request access, correction, deletion, restriction, portability, or objection for personal data GrantTap can identify and control. Email the support address below with the minimum information needed to explain the request.",
-              "Because there is no GrantTap account index and encrypted payloads cannot be searched by identity, the developer may have no readable task record to return or delete centrally. We will explain what can be identified rather than ask for pairing tokens or encryption keys. Never send those secrets.",
+              "Because Personal has no identity index and encrypted payloads cannot be searched by identity, the developer may have no readable task record to return or delete centrally. For managed Enterprise identity records, contact your organization controller first. We will explain what can be identified rather than ask for pairing tokens, recovery codes, or encryption keys. Never send those secrets.",
             ],
             links: [
               { label: "Email a privacy request", href: "mailto:sergii.ziborov@gmail.com" },
@@ -85,9 +85,9 @@ export default function DataRightsPage() {
         ],
         ru: [
           {
-            heading: "Без аккаунта GrantTap",
+            heading: "Personal-доступ и Enterprise identity",
             paragraphs: [
-              "Пейринг — разрешение устройства, а не регистрация. В GrantTap нет имени пользователя, пароля, профиля, аккаунта подписки или облачного списка людей. Запись Apple о загрузке или покупке относится к Apple Account и контролируется Apple.",
+              "Personal-пейринг и QR-вход GrantTap Web — разрешение устройства или capability, а не регистрация личности. Recovery code зашифрованного browser vault — его единственный ключ и не отправляется в relay. Управляемый Enterprise может отдельно хранить ограниченные метаданные организации, пользователя, устройства, политики и login receipt. Запись о покупке относится к Apple Account и контролируется Apple.",
             ],
           },
           {
@@ -130,7 +130,7 @@ export default function DataRightsPage() {
             heading: "Запрос по данным или исправление",
             paragraphs: [
               "В зависимости от юрисдикции можно запросить доступ, исправление, удаление, ограничение, переносимость или возражение для данных, которые GrantTap способен идентифицировать и контролировать. Напишите в поддержку и сообщите минимум сведений для объяснения запроса.",
-              "Из-за отсутствия индекса аккаунтов и невозможности искать зашифрованные payload по личности у разработчика может не быть читаемой записи для централизованной выдачи или удаления. Мы объясним доступные действия и не попросим токены или ключи. Никогда не отправляйте эти секреты.",
+              "У Personal нет identity-индекса, а зашифрованные payload нельзя искать по личности, поэтому у разработчика может не быть читаемой записи для централизованной выдачи или удаления. По управляемым Enterprise-записям сначала обратитесь к контроллеру организации. Мы объясним доступные действия и не попросим токены, recovery code или ключи. Никогда не отправляйте эти секреты.",
             ],
             links: [
               { label: "Отправить запрос по данным", href: "mailto:sergii.ziborov@gmail.com" },

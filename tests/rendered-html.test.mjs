@@ -33,6 +33,7 @@ const PUBLIC_ROUTES = [
   "/accessibility",
   "/licenses",
   "/pricing",
+  "/enterprise",
 ];
 
 test("server-renders the GrantTap product page and social metadata", async () => {
@@ -64,6 +65,8 @@ test("server-renders the GrantTap product page and social metadata", async () =>
   assert.match(html, /providers\/grok\.png\?v=20260820/);
   assert.doesNotMatch(html, /\/product\/(?:phone-(?:home|context|controls)-v\d+|watch-(?:activity|approval)\.png)/);
   assert.match(html, /One GrantTap installation/);
+  assert.match(html, /Open QR sign-in/);
+  assert.match(html, /Explore Enterprise/);
   assert.match(html, /codex plugin add granttap@personal/);
   assert.match(html, /Private testing before App Store submission/);
   assert.match(html, /https:\/\/www\.npmjs\.com\/package\/granttap-mcp/);
@@ -165,8 +168,8 @@ test("keeps bilingual, actionable privacy and deletion disclosures", async () =>
     readFile(new URL("../app/data-rights/page.tsx", import.meta.url), "utf8"),
   ]);
 
-  assert.match(privacy, /No GrantTap account/);
-  assert.match(privacy, /Нет аккаунта GrantTap/);
+  assert.match(privacy, /Personal and QR-based GrantTap Web access/);
+  assert.match(privacy, /Для Personal и QR-входа в GrantTap Web/);
   assert.match(privacy, /APNs device token/);
   assert.match(deletion, /choose Clear local usage history/);
   assert.match(deletion, /~\/.granttap/);
@@ -188,6 +191,27 @@ test("publishes transparent subscription pricing and future LAN scope", async ()
   const terms = await render("https://granttap.com/terms").then((item) => item.text());
   assert.match(terms, /auto-renewable subscription/i);
   assert.match(terms, /7-day free trial/i);
+});
+
+test("publishes honest Enterprise status and a working account entry", async () => {
+  const response = await render("https://granttap.com/enterprise");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Control stays with the organization/);
+  assert.match(html, /Signed organization policy/);
+  assert.match(html, /GrantTap Web — available now/);
+  assert.match(html, /private GrantTap Control issuer deployed/);
+  assert.match(html, /SAML\/OIDC SSO and SCIM/);
+  assert.match(html, /href="\/account"/);
+});
+
+test("exposes the QR account launcher without indexing the private vault", async () => {
+  const response = await render("https://granttap.com/account");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Opening QR sign-in/);
+  assert.match(html, /url=\/account\/index\.html/);
+  assert.match(html, /name="robots" content="noindex, nofollow"/i);
 });
 
 test("documents the public pairing, setup, and Cursor authorization journey", async () => {

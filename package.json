@@ -18,7 +18,7 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern public/account/assets",
     "deploy:cloudflare": "npm run build && wrangler deploy --config wrangler.production.jsonc"
   },
   "dependencies": {

@@ -30,9 +30,9 @@ export default function TermsPage() {
             ],
           },
           {
-            heading: "No GrantTap account",
+            heading: "Personal access and managed accounts",
             paragraphs: [
-              "GrantTap does not require or create a GrantTap user account. Pairing authorizes a device and computer using locally held cryptographic credentials. Your Apple Account, coding-agent accounts, model provider accounts, and source-control accounts remain separate and are governed by their providers.",
+              "Personal pairing and QR-based GrantTap Web access do not require a centralized identity account; they authorize devices or bounded capabilities using locally held cryptographic credentials. Managed Enterprise deployments may require an organization account and device-bound login receipt under a separate agreement. Your Apple Account and third-party provider accounts remain separate.",
             ],
           },
           {
@@ -114,9 +114,9 @@ export default function TermsPage() {
             links: [{ label: "Стандартное EULA Apple", href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" }],
           },
           {
-            heading: "Без аккаунта GrantTap",
+            heading: "Personal-доступ и управляемые аккаунты",
             paragraphs: [
-              "GrantTap не требует и не создаёт пользовательский аккаунт. Пейринг разрешает связь устройства и компьютера с помощью локальных криптографических данных. Apple Account, аккаунты кодовых агентов, поставщиков моделей и систем контроля версий остаются отдельными и регулируются их условиями.",
+              "Для Personal-пейринга и QR-входа в GrantTap Web не нужен централизованный identity account: они разрешают устройство или ограниченную capability с помощью локальных криптографических данных. Управляемый Enterprise может требовать аккаунт организации и привязанный к устройству login receipt по отдельному соглашению. Apple Account и аккаунты сторонних providers остаются отдельными.",
             ],
           },
           {

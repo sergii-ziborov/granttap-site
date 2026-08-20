@@ -16,6 +16,7 @@ export function HomeView({ locale, setLocale, t }: Props) {
     <SiteHeader locale={locale} setLocale={setLocale} t={t} />
     <Hero t={t} />
     <Agents t={t} />
+    <ProductEntries t={t} />
     <ProductStory locale={locale} t={t} />
     <Security t={t} />
     <Gallery locale={locale} t={t} />
@@ -29,9 +30,10 @@ export function HomeView({ locale, setLocale, t }: Props) {
 function SiteHeader({ locale, setLocale, t }: Props) {
   return <header className="site-header">
     <a className="brand" href="#top" aria-label="GrantTap home"><Image src="/app-icon.png" alt="" width={1024} height={1024} priority /><span>GrantTap</span></a>
-    <nav aria-label="Primary navigation"><a href="#workflow">{t.nav[0]}</a><a href="#product">{t.nav[1]}</a><a href="#security">{t.nav[2]}</a><a href="#install">{t.nav[3]}</a></nav>
+    <nav aria-label="Primary navigation"><a href="#workflow">{t.nav[0]}</a><a href="#product">{t.nav[1]}</a><a href="#security">{t.nav[2]}</a><a href="/enterprise">{t.nav[3]}</a><a href="#install">{t.nav[4]}</a></nav>
+    <a className="enterprise-quick" href="/enterprise">{t.enterprise}</a>
     <LanguageToggle locale={locale} setLocale={setLocale} />
-    <a className="nav-cta" href="#availability">{t.status}</a>
+    <a className="nav-cta" href="/account">{t.status}</a>
   </header>;
 }
 
@@ -44,6 +46,13 @@ function Hero({ t }: Pick<Props, "t">) {
 
 function Agents({ t }: Pick<Props, "t">) {
   return <section className="trust-strip" aria-label="Supported platforms"><p>{t.builtFor}</p><div>{[["cursor", "Cursor"], ["claude", "Claude Code"], ["codex", "Codex"], ["copilot", "Copilot"], ["grok", "Grok"]].map(([id, label]) => <span key={id}><Image className="tool-mark" src={`/providers/${id}.png?v=20260820`} alt="" width={192} height={192} unoptimized /><strong>{label}</strong><span className="divider" /></span>)}<span className="apple-mark"></span><strong>iPhone + Apple Watch</strong></div></section>;
+}
+
+function ProductEntries({ t }: Pick<Props, "t">) {
+  return <section className="product-entries section-shell" aria-label="GrantTap account and Enterprise">
+    <a className="entry-card entry-account" href="/account"><span className="entry-icon" aria-hidden="true">⌁</span><span><small>{t.accountKicker}</small><strong>{t.accountTitle}</strong><p>{t.accountText}</p><b>{t.accountAction} →</b></span></a>
+    <a className="entry-card entry-enterprise" href="/enterprise"><span className="entry-icon" aria-hidden="true">◆</span><span><small>{t.enterpriseKicker}</small><strong>{t.enterpriseTitle}</strong><p>{t.enterpriseText}</p><b>{t.enterpriseAction} →</b></span></a>
+  </section>;
 }
 
 function ProductStory({ locale, t }: Pick<Props, "locale" | "t">) {
@@ -87,7 +96,7 @@ function Availability({ t }: Pick<Props, "t">) {
 }
 
 function SiteFooter({ t }: Pick<Props, "t">) {
-  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links">{["pricing", "privacy", "terms", "support", "security", "data-rights", "accessibility", "licenses"].map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
+  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links"><a href="/enterprise">{t.enterprise}</a><a href="/account">{t.account}</a>{["pricing", "privacy", "terms", "support", "security", "data-rights", "accessibility", "licenses"].map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
 }
 
 function Heading({ kicker, title, text }: { kicker: string; title: string; text?: string }) {
