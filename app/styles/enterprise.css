@@ -19,7 +19,7 @@
 
 .entry-card:hover { transform: translateY(-3px); border-color: #54575e; }
 .entry-enterprise { background: radial-gradient(circle at 90% 10%, rgba(244,106,59,.17), transparent 48%), var(--panel); }
-.entry-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--orange); color: #1d0c05; font-size: 23px; font-weight: 900; }
+.entry-icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--orange); color: #1d0c05; font: 900 10px/1 var(--font-mono); letter-spacing: .06em; }
 .entry-card small, .endpoint-card small { color: var(--orange); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .entry-card strong { display: block; margin: 7px 0 9px; font-size: 22px; line-height: 1.18; letter-spacing: -.035em; }
 .entry-card p { color: var(--muted); line-height: 1.5; }

@@ -3,7 +3,7 @@ import type { HomeCopy } from "../page";
 import { LanguageToggle, type Locale } from "./Locale";
 
 type Props = { locale: Locale; setLocale: (locale: Locale) => void; t: HomeCopy };
-const capture = (name: string) => `/product/${name}.png?v=20260820`;
+const capture = (name: string) => `/product/${name}.png?v=20260820-2`;
 const Check = () => <span aria-hidden="true">✓</span>;
 const imageSize = (name: string) => name.startsWith("iphone") ? { width: 1206, height: 2622 } : { width: 416, height: 496 };
 
@@ -45,13 +45,13 @@ function Hero({ t }: Pick<Props, "t">) {
 }
 
 function Agents({ t }: Pick<Props, "t">) {
-  return <section className="trust-strip" aria-label="Supported platforms"><p>{t.builtFor}</p><div>{[["cursor", "Cursor"], ["claude", "Claude Code"], ["codex", "Codex"], ["copilot", "Copilot"], ["grok", "Grok"]].map(([id, label]) => <span key={id}><Image className="tool-mark" src={`/providers/${id}.png?v=20260820`} alt="" width={192} height={192} unoptimized /><strong>{label}</strong><span className="divider" /></span>)}<span className="apple-mark"></span><strong>iPhone + Apple Watch</strong></div></section>;
+  return <section className="trust-strip" aria-label="Supported platforms"><p>{t.builtFor}</p><div>{[["cursor", "Cursor"], ["claude", "Claude Code"], ["codex", "Codex"], ["copilot", "Copilot"], ["grok", "Grok"]].map(([id, label]) => <span key={id}><Image className="tool-mark" src={`/providers/${id}.png?v=20260820-2`} alt="" width={192} height={192} unoptimized /><strong>{label}</strong><span className="divider" /></span>)}<span className="apple-mark"></span><strong>iPhone + Apple Watch</strong></div></section>;
 }
 
 function ProductEntries({ t }: Pick<Props, "t">) {
   return <section className="product-entries section-shell" aria-label="GrantTap account and Enterprise">
-    <a className="entry-card entry-account" href="/account"><span className="entry-icon" aria-hidden="true">⌁</span><span><small>{t.accountKicker}</small><strong>{t.accountTitle}</strong><p>{t.accountText}</p><b>{t.accountAction} →</b></span></a>
-    <a className="entry-card entry-enterprise" href="/enterprise"><span className="entry-icon" aria-hidden="true">◆</span><span><small>{t.enterpriseKicker}</small><strong>{t.enterpriseTitle}</strong><p>{t.enterpriseText}</p><b>{t.enterpriseAction} →</b></span></a>
+    <a className="entry-card entry-account" href="/account"><span className="entry-icon" aria-hidden="true">WEB</span><span><small>{t.accountKicker}</small><strong>{t.accountTitle}</strong><p>{t.accountText}</p><b>{t.accountAction} →</b></span></a>
+    <a className="entry-card entry-enterprise" href="/enterprise"><span className="entry-icon" aria-hidden="true">ORG</span><span><small>{t.enterpriseKicker}</small><strong>{t.enterpriseTitle}</strong><p>{t.enterpriseText}</p><b>{t.enterpriseAction} →</b></span></a>
   </section>;
 }
 
@@ -59,12 +59,12 @@ function ProductStory({ locale, t }: Pick<Props, "locale" | "t">) {
   return <>
     <section className="section-shell workflow" id="workflow"><Heading kicker={t.workflowKicker} title={t.workflowTitle} text={t.workflowText} /><div className="workflow-grid">{t.steps.map(([title, text], index) => <article className="step-card" key={title}><span className="step-number">0{index + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
     <section className="feature-section section-shell"><div className="feature-copy"><p className="kicker">{t.activityKicker}</p><h2>{t.activityTitle}</h2><p>{t.activityText}</p><ul className="check-list">{t.activityItems.map(([title, text]) => <li key={title}><Check /><span><strong>{title}</strong>{text}</span></li>)}</ul></div><div className="activity-stage"><div className="activity-phone"><ProductImage name="iphone-task-detail" alt="GrantTap task context" /></div><div className="activity-watch"><span>{locale === "ru" ? "Та же задача на запястье" : "The same task on your wrist"}</span><ProductImage name="apple-watch-task" alt="GrantTap Watch task" /></div></div></section>
-    <section className="controls-section section-shell"><Heading kicker={t.controlsKicker} title={t.controlsTitle} /><div className="controls-grid">{t.controls.map(([title, text], index) => <article className={`control-card${index === 1 ? " featured" : ""}`} key={title}><div className="control-icon">{["⌁", "◉", "↺"][index]}</div><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    <section className="controls-section section-shell"><Heading kicker={t.controlsKicker} title={t.controlsTitle} /><div className="controls-grid">{t.controls.map(([title, text], index) => <article className={`control-card${index === 1 ? " featured" : ""}`} key={title}><div className="control-icon">{["ACCESS", "MCP", "CONTEXT"][index]}</div><h3>{title}</h3><p>{text}</p></article>)}</div></section>
   </>;
 }
 
 function Security({ t }: Pick<Props, "t">) {
-  return <section className="security-section" id="security"><div className="section-shell security-inner"><div className="security-copy"><p className="kicker">{t.securityKicker}</p><h2>{t.securityTitle}</h2><p>{t.securityText}</p></div><div className="security-diagram">{[t.mac, t.relay, t.devices].map(([title, text], index) => <div className="diagram-group" key={title}>{index > 0 && <div className="encrypted-line"><span>{t.ciphertext}</span></div>}<div className={`security-node${index === 1 ? " relay-node" : ""}`}><span>{["⌘", "◇", "⌚"][index]}</span><strong>{title}</strong><small>{text}</small></div></div>)}</div><div className="security-facts">{t.facts.map(([title, text]) => <article key={title}><strong>{title}</strong><p>{text}</p></article>)}</div></div></section>;
+  return <section className="security-section" id="security"><div className="section-shell security-inner"><div className="security-copy"><p className="kicker">{t.securityKicker}</p><h2>{t.securityTitle}</h2><p>{t.securityText}</p></div><div className="security-diagram">{[t.mac, t.relay, t.devices].map(([title, text], index) => <div className="diagram-group" key={title}>{index > 0 && <div className="encrypted-line"><span>{t.ciphertext}</span></div>}<div className={`security-node${index === 1 ? " relay-node" : ""}`}><span>{["MAC", "E2EE", "IOS"][index]}</span><strong>{title}</strong><small>{text}</small></div></div>)}</div><div className="security-facts">{t.facts.map(([title, text]) => <article key={title}><strong>{title}</strong><p>{text}</p></article>)}</div></div></section>;
 }
 
 function Gallery({ locale, t }: Pick<Props, "locale" | "t">) {

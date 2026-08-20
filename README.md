@@ -46,6 +46,22 @@ GrantTap is a thin encrypted control channel, not a model proxy.
 See [SECURITY.md](SECURITY.md) for the exact boundary and relay-visible
 metadata.
 
+## Web account and Enterprise
+
+[GrantTap Web](https://granttap.com/account/) signs in through an origin-bound,
+one-use QR approved on iPhone. Its local encrypted vault now shows browser role,
+connected computers, pending approvals, provider setup, and private sharing in
+one dashboard. Owners and admins can issue a five-minute single-use link for one
+computer and choose an `admin` or `approver` role; the approval capability is
+encrypted through the relay and never appears in the link itself. The recovery
+code is presented in an in-app save dialog, not a browser alert.
+
+The [Enterprise page](https://granttap.com/enterprise/) separates the shipped
+endpoint verifier from the control-plane work that is not yet hosted. Signed
+endpoint policy and device-bound login receipt validation exist; organization
+directory management, SAML/OIDC SSO, SCIM, centralized revocation, and audit
+exports are not represented as available services.
+
 ## Install once, then add agents
 
 ```bash

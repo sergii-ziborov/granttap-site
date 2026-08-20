@@ -108,7 +108,13 @@
   }
 
   .step-card {
-    min-height: 230px;
+    min-height: 168px;
+    padding: 21px;
+  }
+
+  .step-card h3,
+  .control-card h3 {
+    margin-top: 16px;
   }
 
   .feature-section {
@@ -117,12 +123,14 @@
   }
 
   .activity-stage {
-    min-height: 650px;
+    min-height: 620px;
   }
 
   .activity-phone {
     left: 50%;
-    width: 280px;
+    width: 252px;
+    height: auto;
+    top: 18px;
     transform: translateX(-50%);
   }
 

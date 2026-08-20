@@ -98,8 +98,7 @@
   margin-inline: auto;
   overflow: hidden;
   border: 7px solid #383a40;
-  border-bottom: 0;
-  border-radius: 46px 46px 0 0;
+  border-radius: 46px;
   background: #000;
 }
 
@@ -119,13 +118,13 @@
 }
 
 .phone-pair .gallery-device:last-child {
-  transform: translateY(24px);
+  transform: none;
 }
 
 .phone-pair .gallery-device img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top center;
 }
 
@@ -155,7 +154,8 @@ figcaption strong {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 16px;
-  min-height: 520px;
+  min-height: 480px;
+  padding-block: 8px 24px;
 }
 
 .watch-pair img {
@@ -168,7 +168,7 @@ figcaption strong {
 }
 
 .watch-pair img:last-child {
-  transform: translateY(32px);
+  transform: none;
 }
 
 .availability {
