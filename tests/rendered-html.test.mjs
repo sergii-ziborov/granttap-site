@@ -210,7 +210,7 @@ test("exposes the QR account launcher without indexing the private vault", async
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Opening QR sign-in/);
-  assert.match(html, /url=\/account\/index\.html/);
+  assert.match(html, /url=https:\/\/granttap\.com\/account\/index\.html/);
   assert.match(html, /name="robots" content="noindex, nofollow"/i);
 });
 

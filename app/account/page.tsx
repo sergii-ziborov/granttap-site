@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function AccountPage() {
   return <main className="account-launch">
-    <meta httpEquiv="refresh" content="0;url=/account/index.html" />
+    <meta httpEquiv="refresh" content="0;url=https://granttap.com/account/index.html" />
     <Link className="brand" href="/"><Image src="/app-icon.png" alt="" width={1024} height={1024} priority /><span>GrantTap</span></Link>
-    <section><p className="eyebrow">Secure web vault</p><h1>Opening QR sign-in…</h1><p>GrantTap Web will create a one-time request for your iPhone.</p><a className="button button-primary" href="/account/index.html">Continue</a></section>
+    <section><p className="eyebrow">Secure web vault</p><h1>Opening QR sign-in…</h1><p>GrantTap Web will create a one-time request for your iPhone.</p><a className="button button-primary" href="https://granttap.com/account/index.html">Continue</a></section>
   </main>;
 }
