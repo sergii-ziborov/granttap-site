@@ -19,10 +19,14 @@ test("server-renders one Personal product", async () => {
   const html = await response.text();
   assert.match(html, /All your coding agents\./);
   assert.match(html, /One live control center\./);
-  assert.match(html, /Claude Code \+ Codex/);
+  assert.match(html, /Claude Code · Codex · Cursor · Grok Build/);
   assert.match(html, /Cursor Beta/);
   assert.match(html, /Grok Build · Experimental/);
   assert.match(html, /Needs You/);
+  assert.match(html, /Project Mesh/);
+  assert.match(html, /Claude · MacBook/);
+  assert.match(html, /Codex · Workstation/);
+  assert.match(html, /separate branches or worktrees/);
   assert.match(html, /npm install -g granttap-mcp/);
   assert.match(html, /granttap setup/);
   assert.match(html, /Native E2EE/);
@@ -31,7 +35,7 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /iphone-chat\.png/);
   assert.match(html, /iphone-mcp-usage\.png/);
   assert.match(html, /apple-watch-approval\.png/);
-  assert.doesNotMatch(html, /Enterprise|GrantTap Web|Open account|browser workspace|organization policy|scheduler/i);
+  assert.doesNotMatch(html, /Enterprise|GrantTap Web|Open account|browser workspace|organization policy|scheduler|Copilot/i);
   assert.doesNotMatch(html, /href="\/(?:account|enterprise)/);
   assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20260823-1"/i);
   assert.match(html, /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i);

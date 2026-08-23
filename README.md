@@ -4,9 +4,14 @@ GrantTap is a Personal live control center for local coding agents:
 
 > See what your coding agents are doing. Step in when they need you.
 
-The public site presents one product for iPhone and Apple Watch. Claude Code
-and Codex are primary, Cursor is Beta, and additional integrations are shown
-only where supported. The site presents one Personal product.
+The public site presents one product for iPhone and Apple Watch across Claude
+Code, Codex, Cursor Beta, and Grok Build where its implemented behavior is
+available. The site presents one Personal product.
+
+Project Mesh coordinates those existing agents with bounded encrypted task
+state, dependencies, resource claims, agent-to-agent questions, and same-task
+handoffs across computers. It does not copy hidden reasoning or turn GrantTap
+into a coding agent or an unrestricted orchestrator.
 
 ## Install
 

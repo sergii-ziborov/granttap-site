@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     "Claude Code",
     "Codex",
     "Cursor Beta",
-    "GitHub Copilot",
     "Grok Build",
     "coding agent",
     "developer tools",

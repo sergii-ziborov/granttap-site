@@ -95,6 +95,17 @@
     grid-template-columns: 1fr;
   }
 
+  .mesh-panel {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 22px;
+  }
+
+  .mesh-route {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .step-card:last-child,
   .control-card.featured {
     grid-column: auto;

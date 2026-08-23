@@ -43,7 +43,7 @@ function Providers({ t }: Pick<Props, "t">) {
 }
 
 function Product({ t }: Pick<Props, "t">) {
-  return <section className="controls-section section-shell" id="product"><Heading kicker={t.productKicker} title={t.productTitle} text={t.productText} /><div className="controls-grid">{t.scenarios.map(([title, text], index) => <article className={`control-card${index === 0 ? " featured" : ""}`} id={index === 2 ? "usage" : undefined} key={title}><div className="control-icon">{["DECIDE", "SEE", "USAGE"][index]}</div><h3>{title}</h3><p>{text}</p></article>)}</div></section>;
+  return <section className="controls-section section-shell" id="product"><Heading kicker={t.productKicker} title={t.productTitle} text={t.productText} /><div className="controls-grid">{t.scenarios.map(([title, text], index) => <article className={`control-card${index === 0 ? " featured" : ""}`} id={index === 2 ? "usage" : undefined} key={title}><div className="control-icon">{["DECIDE", "SEE", "USAGE"][index]}</div><h3>{title}</h3><p>{text}</p></article>)}</div><div className="mesh-panel"><div className="mesh-copy"><p className="kicker">{t.meshKicker}</p><h2>{t.meshTitle}</h2><p>{t.meshText}</p><div className="mesh-route" aria-label="Task handoff"><span>Claude · MacBook</span><b>→</b><span>Codex · Workstation</span></div></div><div className="mesh-questions">{t.meshQuestions.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><div><strong>{title}</strong><p>{text}</p></div></article>)}</div></div></section>;
 }
 
 function How({ t }: Pick<Props, "t">) {

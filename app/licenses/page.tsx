@@ -29,7 +29,7 @@ export default function LicensesPage() {
             ],
           },
           { heading: "Third-party software", bullets: ["TweetNacl SwiftWrap — MIT", "tweetnacl-js — Unlicense", "Model Context Protocol SDK — MIT", "ws — MIT", "Zod — MIT", "React and Next.js — MIT", "Cloudflare Workers tooling — applicable open-source licenses"] },
-          { heading: "Trademarks", paragraphs: ["Apple, Apple Watch, iPhone, and App Store are trademarks of Apple Inc. Claude and Claude Code are trademarks of Anthropic. OpenAI and Codex are trademarks of OpenAI. GitHub and Copilot are trademarks of GitHub or Microsoft. Cursor belongs to Anysphere. Grok and xAI belong to xAI. All other names belong to their respective owners."] },
+          { heading: "Trademarks", paragraphs: ["Apple, Apple Watch, iPhone, and App Store are trademarks of Apple Inc. Claude and Claude Code are trademarks of Anthropic. OpenAI and Codex are trademarks of OpenAI. Cursor belongs to Anysphere. Grok and xAI belong to xAI. All other names belong to their respective owners."] },
         ],
         ru: [
           { heading: "Приложение GrantTap", paragraphs: ["Copyright © 2026 Serhii Ziborov. Все права защищены. Лицензия на исходный код приложения для iPhone или Apple Watch не предоставляется."] },
@@ -42,7 +42,7 @@ export default function LicensesPage() {
             ],
           },
           { heading: "Стороннее ПО", bullets: ["TweetNacl SwiftWrap — MIT", "tweetnacl-js — Unlicense", "Model Context Protocol SDK — MIT", "ws — MIT", "Zod — MIT", "React и Next.js — MIT", "Инструменты Cloudflare Workers — соответствующие открытые лицензии"] },
-          { heading: "Товарные знаки", paragraphs: ["Apple, Apple Watch, iPhone и App Store являются товарными знаками Apple Inc. Claude и Claude Code принадлежат Anthropic. OpenAI и Codex принадлежат OpenAI. GitHub и Copilot принадлежат GitHub или Microsoft. Cursor принадлежит Anysphere. Grok и xAI принадлежат xAI. Остальные названия принадлежат соответствующим владельцам."] },
+          { heading: "Товарные знаки", paragraphs: ["Apple, Apple Watch, iPhone и App Store являются товарными знаками Apple Inc. Claude и Claude Code принадлежат Anthropic. OpenAI и Codex принадлежат OpenAI. Cursor принадлежит Anysphere. Grok и xAI принадлежат xAI. Остальные названия принадлежат соответствующим владельцам."] },
         ],
       }}
     />
