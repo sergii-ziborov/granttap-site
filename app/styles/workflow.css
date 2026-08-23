@@ -1,6 +1,6 @@
 .section-heading {
   max-width: 790px;
-  margin-bottom: 55px;
+  margin-bottom: 38px;
 }
 
 .section-heading.compact {
@@ -175,7 +175,7 @@
   grid-template-columns: 0.86fr 1.14fr;
   align-items: center;
   gap: 80px;
-  padding-block: 132px;
+  padding-block: 88px;
 }
 
 .feature-copy h2 {

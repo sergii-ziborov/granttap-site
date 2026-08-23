@@ -96,7 +96,8 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  animation: phone-tour 12s ease-in-out infinite;
+  animation: phone-tour 12s linear infinite;
+  will-change: opacity;
 }
 
 .activity-screen-stack img {
@@ -111,22 +112,13 @@
 
 .phone-screen-stack img:nth-child(2),
 .gallery-screen-stack img:nth-child(2) {
-  animation-delay: 6s;
+  animation-delay: -6s;
 }
 
-.phone-gesture {
-  position: absolute;
-  z-index: 4;
-  right: 18px;
-  top: 44%;
-  width: 13px;
-  height: 13px;
-  border: 2px solid rgba(255, 255, 255, 0.88);
-  border-radius: 50%;
-  background: rgba(244, 106, 59, 0.82);
-  box-shadow: 0 0 0 7px rgba(244, 106, 59, 0.15);
-  opacity: 0;
-  animation: phone-gesture 12s ease-in-out infinite;
+.phone-screen-stack img:only-child,
+.gallery-screen-stack img:only-child {
+  opacity: 1;
+  animation: none;
 }
 
 .watch-shell {
@@ -140,38 +132,6 @@
   border-radius: 54px;
   background: #000;
   box-shadow: 0 25px 65px rgba(0, 0, 0, 0.64);
-}
-
-/* Band: slimmer than the case, gently tapered, and dissolved at the free end
-   with a mask so it anchors the watch without towering over the composition. */
-.watch-strap {
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  display: block;
-  width: 88px;
-  transform: translateX(-50%);
-  background:
-    linear-gradient(90deg, #101215 0%, #1e2126 30%, #23262b 50%, #1e2126 70%, #101215 100%);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-}
-
-.watch-strap-top {
-  top: -118px;
-  height: 138px;
-  border-radius: 44px 44px 12px 12px;
-  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
-  -webkit-mask-image: linear-gradient(to top, #000 55%, transparent 96%);
-  mask-image: linear-gradient(to top, #000 55%, transparent 96%);
-}
-
-.watch-strap-bottom {
-  bottom: -126px;
-  height: 146px;
-  border-radius: 12px 12px 48px 48px;
-  clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 96%);
-  mask-image: linear-gradient(to bottom, #000 55%, transparent 96%);
 }
 
 .watch-screen-stack {
@@ -190,11 +150,17 @@
   object-fit: cover;
   border-radius: 38px;
   opacity: 0;
-  animation: watch-tour 10s ease-in-out infinite;
+  animation: watch-tour 10s linear infinite;
+  will-change: opacity;
 }
 
 .watch-screen-stack img:nth-child(2) {
-  animation-delay: 5s;
+  animation-delay: -5s;
+}
+
+.watch-screen-stack img:only-child {
+  opacity: 1;
+  animation: none;
 }
 
 .watch-crown {
@@ -225,8 +191,9 @@
 }
 
 @keyframes phone-tour {
-  0%, 44% { opacity: 1; transform: translateY(0) scale(1); }
-  50%, 100% { opacity: 0; transform: translateY(-1.25%) scale(1.01); }
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes activity-tour {
@@ -234,16 +201,10 @@
   50%, 100% { opacity: 0; transform: translateY(-2.5%) scale(1.015); }
 }
 
-@keyframes phone-gesture {
-  0%, 10%, 66%, 100% { opacity: 0; transform: translateY(55px) scale(0.75); }
-  18% { opacity: 1; transform: translateY(55px) scale(1); }
-  48% { opacity: 1; transform: translateY(-92px) scale(1); }
-  58% { opacity: 0; transform: translateY(-92px) scale(0.75); }
-}
-
 @keyframes watch-tour {
-  0%, 45% { opacity: 1; transform: scale(1); }
-  50%, 100% { opacity: 0; transform: scale(0.96); }
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes approval-toast {

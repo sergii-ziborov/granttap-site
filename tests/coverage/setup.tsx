@@ -3,7 +3,14 @@ import { createElement } from "react";
 import { afterEach, vi } from "vitest";
 
 vi.mock("next/image", () => ({
-  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => createElement("img", props),
+  default: ({ priority: _priority, unoptimized: _unoptimized, ...props }: React.ImgHTMLAttributes<HTMLImageElement> & {
+    priority?: boolean;
+    unoptimized?: boolean;
+  }) => {
+    void _priority;
+    void _unoptimized;
+    return createElement("img", props);
+  },
 }));
 
 vi.mock("next/link", () => ({

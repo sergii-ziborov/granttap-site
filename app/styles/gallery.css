@@ -6,53 +6,84 @@
 
 .history-gallery {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   margin-top: 18px;
 }
 
 .history-gallery figure {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.72fr) 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 28px;
-  min-height: 390px;
+  gap: 22px;
   margin: 0;
-  padding: 28px;
+  padding: 24px;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 28px;
   background: var(--panel);
 }
 
-.history-gallery .history-security {
+.history-gallery .watch-captures {
   grid-column: 1 / -1;
-  grid-template-columns: 285px 1fr;
+  display: grid;
+  grid-template-columns: minmax(420px, 1fr) minmax(260px, 0.8fr);
+  min-height: 300px;
 }
 
-.history-security .history-shot {
-  width: 285px;
-}
-
-.history-shot {
-  height: 350px;
+.capture-button {
+  position: relative;
+  width: min(270px, 100%);
+  padding: 0;
   overflow: hidden;
   border: 6px solid #303238;
-  border-radius: 34px 34px 0 0;
+  border-radius: 34px;
   background: #000;
   box-shadow: 0 25px 65px rgba(0, 0, 0, 0.45);
+  cursor: zoom-in;
+  transition: transform 160ms ease, border-color 160ms ease;
 }
 
-.history-shot img {
+.capture-button.phone {
+  aspect-ratio: 1320 / 2868;
+}
+
+.capture-button:hover,
+.capture-button:focus-visible {
+  border-color: #676b74;
+  transform: translateY(-3px);
+}
+
+.capture-button img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
 }
 
+.capture-zoom {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(7, 8, 10, 0.82);
+  font-size: 18px;
+  backdrop-filter: blur(10px);
+}
+
 .history-gallery figcaption {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -154,25 +185,87 @@ figcaption strong {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 16px;
-  min-height: 480px;
-  padding-block: 8px 24px;
+  width: min(520px, 100%);
+  min-height: 0;
+  padding: 0;
 }
 
-.watch-pair img {
+.watch-pair .capture-button {
   width: 100%;
-  padding: 10px;
-  border: 6px solid #3b3d42;
+  padding: 8px;
   border-radius: 46px;
-  background: #000;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
-.watch-pair img:last-child {
-  transform: none;
+.capture-lightbox {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  place-items: center;
+  padding: 34px;
+  overflow: auto;
+  background: rgba(4, 5, 7, 0.94);
+  backdrop-filter: blur(20px);
+}
+
+.lightbox-close {
+  position: fixed;
+  z-index: 2;
+  top: 22px;
+  right: 22px;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid #4d5159;
+  border-radius: 50%;
+  color: #fff;
+  background: #17191d;
+  font: 300 30px/1 var(--font-sans);
+  cursor: pointer;
+}
+
+.lightbox-device {
+  overflow: hidden;
+  border: 7px solid #3b3e45;
+  background: #000;
+  box-shadow: 0 35px 110px rgba(0, 0, 0, 0.72);
+}
+
+.lightbox-device.phone {
+  width: min(410px, 76vw);
+  border-radius: 50px;
+}
+
+.lightbox-device.watch {
+  width: min(520px, 82vw);
+  padding: 12px;
+  border-radius: 68px;
+}
+
+.lightbox-device img {
+  width: 100%;
+  max-height: calc(100dvh - 150px);
+  object-fit: contain;
+}
+
+.capture-lightbox > p {
+  max-width: 620px;
+  margin: 20px 0 0;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.55;
+}
+
+.capture-lightbox > p strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--ink);
 }
 
 .availability {
-  padding-block: 0 140px;
+  padding-block: 0 64px;
 }
 
 .availability-card {

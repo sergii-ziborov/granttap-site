@@ -127,7 +127,7 @@
 }
 
 .security-section {
-  padding-block: 135px;
+  padding-block: 80px;
   border-block: 1px solid var(--line);
   background:
     radial-gradient(circle at 50% 5%, rgba(168, 190, 125, 0.09), transparent 40rem),

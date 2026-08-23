@@ -20,22 +20,51 @@
 .trust-strip > div {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
   color: #c7c4c1;
   font-size: 14px;
 }
 
-.trust-strip > div > span:not(.apple-mark) {
+.provider-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 38px;
+  padding: 5px 10px 5px 6px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: #15171a;
 }
 
 .tool-mark {
-  width: 25px;
-  height: 25px;
-  flex: 0 0 25px;
-  border-radius: 7px;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border: 1px solid #4b4e55;
+  border-radius: 8px;
+}
+
+.provider-badge.cursor .tool-mark {
+  border-color: #737780;
+  box-shadow: 0 0 0 1px #090a0c;
+}
+
+.provider-badge.grok .tool-mark {
+  border-color: #e8e8e8;
+  background: #fff;
+}
+
+.provider-badge strong {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.provider-note {
+  margin-left: 4px;
+  color: var(--dim);
+  font-size: 11px;
 }
 
 .pricing-preview {
@@ -95,7 +124,7 @@
 .controls-section,
 .gallery-section,
 .install-section {
-  padding-block: 140px;
+  padding-block: 80px;
 }
 
 .install-grid {

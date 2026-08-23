@@ -36,7 +36,7 @@
 
   .hero {
     min-height: auto;
-    padding-block: 52px 80px;
+    padding-block: 42px 58px;
     gap: 20px;
   }
 
@@ -86,7 +86,7 @@
   .controls-section,
   .gallery-section,
   .install-section {
-    padding-block: 95px;
+    padding-block: 56px;
   }
 
   .workflow-grid,
@@ -112,7 +112,7 @@
 
   .feature-section {
     gap: 45px;
-    padding-block: 90px;
+    padding-block: 56px;
   }
 
   .activity-stage {
@@ -142,7 +142,7 @@
   }
 
   .security-section {
-    padding-block: 95px;
+    padding-block: 56px;
   }
 
   .security-diagram {
@@ -200,17 +200,29 @@
   }
 
   .history-gallery figure {
-    grid-template-columns: 1fr;
+    flex: 0 0 min(330px, calc(100vw - 50px));
     padding: 18px;
+    scroll-snap-align: center;
   }
 
-  .history-gallery .history-security {
-    grid-template-columns: 1fr;
+  .history-gallery {
+    display: flex;
+    align-items: flex-start;
+    margin-inline: -15px;
+    padding: 0 15px 18px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
   }
 
-  .history-shot {
-    width: min(285px, 100%);
-    margin-inline: auto;
+  .history-gallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  .history-gallery .watch-captures {
+    display: flex;
+    flex-direction: column;
   }
 
   .history-gallery figcaption {
@@ -224,10 +236,20 @@
 
   .watch-pair {
     gap: 7px;
+    min-height: 0;
+  }
+
+  .capture-lightbox {
+    padding: 22px 16px;
+  }
+
+  .lightbox-close {
+    top: 12px;
+    right: 12px;
   }
 
   .availability {
-    padding-bottom: 95px;
+    padding-bottom: 56px;
   }
 
   .availability-card {

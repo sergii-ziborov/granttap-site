@@ -21,6 +21,7 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /One live control center\./);
   assert.match(html, /Claude Code \+ Codex/);
   assert.match(html, /Cursor Beta/);
+  assert.match(html, /Grok Build · Experimental/);
   assert.match(html, /Needs You/);
   assert.match(html, /npm install -g granttap-mcp/);
   assert.match(html, /granttap setup/);
@@ -108,5 +109,5 @@ test("publishes transparent subscription pricing", async () => {
 });
 
 test("ships every homepage image", async () => {
-  await Promise.all(["app-icon.png", "product/iphone-command-center.png", "product/iphone-chat.png", "product/iphone-mcp-usage.png", "product/apple-watch-inbox.png", "product/apple-watch-approval.png", "providers/claude.png", "providers/codex.png"].map(path => access(new URL(`../public/${path}`, import.meta.url))));
+  await Promise.all(["app-icon.png", "product/iphone-command-center.png", "product/iphone-chat.png", "product/iphone-mcp-usage.png", "product/apple-watch-inbox.png", "product/apple-watch-approval.png", "providers/claude.png", "providers/codex.png", "providers/cursor.png", "providers/grok.png"].map(path => access(new URL(`../public/${path}`, import.meta.url))));
 });
