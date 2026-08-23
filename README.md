@@ -1,162 +1,57 @@
-# GrantTap
+# GrantTap Personal website
 
-**Step away from your Mac. Keep Cursor, Claude, Codex, Copilot, and Grok moving.**
+GrantTap is a Personal live control center for local coding agents:
 
-GrantTap is the secure iPhone and Apple Watch companion for coding-agent
-sessions already running on your computer. Approve a shell command, answer a
-question, open chat, inspect the latest task activity, or send the next turn
-without starting a second agent or moving your project to another service.
+> See what your coding agents are doing. Step in when they need you.
 
-<p align="center">
-  <img src="public/product/iphone-command-center.png" width="220" alt="GrantTap Codex task list on iPhone">
-  <img src="public/product/iphone-claude-tasks.png" width="220" alt="GrantTap Claude Code task list on iPhone">
-  <img src="public/product/apple-watch-approval.png" width="185" alt="GrantTap command approval on Apple Watch">
-</p>
+The public site presents one product for iPhone and Apple Watch. Claude Code
+and Codex are primary, Cursor is Beta, and additional integrations are shown
+only where supported. The site presents one Personal product.
 
-The product site is live at [granttap.com](https://granttap.com). The iPhone
-and Apple Watch apps are still being prepared for App Store review. The planned
-Personal subscription includes a 7-day free trial, then costs $2.99 per month
-for up to three linked computers. A direct same-Wi-Fi transport without server
-synchronization is planned, but is not available yet.
-
-## One task, wherever you are
-
-1. Cursor, Claude Code, Codex, Copilot, or Grok Build keeps working in its normal local session.
-2. When it needs a decision, GrantTap sends the encrypted event to your paired
-   devices.
-3. You approve, deny, reply by voice or text, or open the task for more context.
-4. The response returns to the same local session.
-
-On iPhone, each task exposes recent visible activity, full formatted chat,
-attachments, agent access, context-window usage, Codex compaction, and allowed
-MCP servers or project skills. Cursor shell approvals and Copilot session chat
-share the same phone remote. Apple Watch keeps the fast path focused: active
-and recent tasks, recent updates, voice replies, and approvals.
-
-## Security boundary
-
-GrantTap is a thin encrypted control channel, not a model proxy.
-
-- Projects, model credentials, and model traffic remain on the computer.
-- Pairing and task traffic are end-to-end encrypted.
-- Each attached task has an independent key.
-- The relay routes ciphertext and cannot decrypt task content.
-- A device with access to one task cannot use that key to open another task.
-
-See [SECURITY.md](SECURITY.md) for the exact boundary and relay-visible
-metadata.
-
-## Web account and Enterprise
-
-[GrantTap Web](https://granttap.com/account/) signs in through an origin-bound,
-one-use QR approved on iPhone. Its local encrypted vault now shows browser role,
-connected computers, pending approvals, provider setup, and private sharing in
-one dashboard. Owners and admins can issue a five-minute single-use link for one
-computer and choose an `admin` or `approver` role; the approval capability is
-encrypted through the relay and never appears in the link itself. The recovery
-code is presented in an in-app save dialog, not a browser alert.
-
-The [Enterprise page](https://granttap.com/enterprise/) separates the shipped
-endpoint verifier from the control-plane work that is not yet hosted. Signed
-endpoint policy and device-bound login receipt validation exist; organization
-directory management, SAML/OIDC SSO, SCIM, centralized revocation, and audit
-exports are not represented as available services.
-
-## Install once, then add agents
+## Install
 
 ```bash
 npm install -g granttap-mcp
-granttap connect
 granttap setup
-
-# GrantTap plugin for Codex
-codex plugin marketplace add sergii-ziborov/granttap
-codex plugin add granttap@personal
 ```
 
-One machine helper owns one encrypted phone pairing. `granttap setup` adds or
-repairs all detected supported agent adapters, so installing another agent does
-not create a second helper or pairing. Connect/reconnect reuses a
-healthy pairing; replacement is an explicit unlink-and-pair-again action.
-Provider authentication and model credentials remain separate.
+- [granttap-mcp source](https://github.com/sergii-ziborov/granttap-mcp)
+- [npm package](https://www.npmjs.com/package/granttap-mcp)
+- [ciphertext relay source](https://github.com/sergii-ziborov/granttap-relay)
 
-- [granttap-mcp on npm](https://www.npmjs.com/package/granttap-mcp)
-- [MCP bridge source](https://github.com/sergii-ziborov/granttap-mcp)
-- [Relay source](https://github.com/sergii-ziborov/granttap-relay)
+## Public customer pages
 
-## App Store and customer URLs
-
-The website publishes the customer-facing pages needed for review and ongoing
-support. Keep these URLs stable across releases:
-
+- [Pricing](https://granttap.com/pricing)
+- [Privacy](https://granttap.com/privacy)
+- [Terms](https://granttap.com/terms)
 - [Support](https://granttap.com/support)
-- [Privacy Policy](https://granttap.com/privacy)
-- [Data choices and deletion](https://granttap.com/data-rights)
 - [Security](https://granttap.com/security)
+- [Data choices](https://granttap.com/data-rights)
 - [Accessibility](https://granttap.com/accessibility)
-- [Terms of Use](https://granttap.com/terms)
 - [Licenses](https://granttap.com/licenses)
 
-The site contains only customer-facing support and policy material. Never put
-an owner placeholder, internal submission checklist, or unpublished roadmap on
-a public page or in this repository.
-
-## Develop the website
+## Development
 
 Node.js 22.13 or newer is required.
 
 ```bash
-git clone https://github.com/sergii-ziborov/granttap-site.git
-cd granttap-site
 npm install
-npm run dev
-```
-
-Validate a production build with:
-
-```bash
+npm run typecheck
 npm test
 npm run lint
 ```
 
-The site uses React, vinext, and Cloudflare's Vite tooling. Production is
-configured in `wrangler.production.jsonc`; `granttap.com` is the canonical
-origin and `www` redirects permanently to it.
+The site uses React, vinext, and Cloudflare tooling. `.openai/hosting.json`
+binds the Sites project, while `wrangler.production.jsonc` describes the
+canonical Cloudflare deployment. Do not publish without explicit authorization.
 
-## Product-capture contract
+Product captures under `public/product/` must come from deterministic sample
+data and contain no real pairing, task, repository, credential, or audit data.
 
-The website and this README use native captures from the current production UI
-with deterministic Debug-only sample data. They are not concept renders. Keep a
-single language and matching time across each capture set.
+## Current captures
 
-| Asset | Pixels | Contents |
-| --- | ---: | --- |
-| `public/product/iphone-command-center.png` | 1206 × 2622 | Unified task list with the Codex composer selected |
-| `public/product/iphone-claude-tasks.png` | 1206 × 2622 | Unified task list with the Claude composer selected |
-| `public/product/iphone-task-detail.png` | 1206 × 2622 | Recent activity, usage, and context |
-| `public/product/iphone-mcp-usage.png` | 1206 × 2622 | Observed MCP and skill usage |
-| `public/product/iphone-chat.png` | 1206 × 2622 | Full chat with one delivered phone photo and one reconciled short reply |
-| `public/product/iphone-photo-preview.png` | 1206 × 2622 | Local full-screen preview for a photo retained by its outgoing delivery |
-| `public/product/iphone-security-settings.png` | 1206 × 2622 | Current connection, agent, language, and approval settings |
-| `public/product/apple-watch-inbox.png` | 416 × 496 | Pending approval and active-task inbox |
-| `public/product/apple-watch-task.png` | 416 × 496 | Recent task updates and reply actions |
-| `public/product/apple-watch-approval.png` | 416 × 496 | Real pending approval |
-
-Do not place real pairing, task, repository, credential, or audit data in any
-capture. The website supplies presentation framing and accessible captions.
-Do not reuse a skeleton frame or an older Watch build merely to fill a slot.
-Each device set must come from one reproducible current state; Watch may use a
-different clock time because watchOS Simulator does not support status-bar time
-overrides.
-
-## Repository map
-
-- `app/page.tsx` — product page and English/Russian copy
-- `app/globals.css` — responsive presentation and product-capture motion
-- `app/layout.tsx` — metadata and social preview backed by the current native iPhone capture
-- `public/product/` — canonical real product captures
-- `app/privacy/`, `app/terms/`, `app/support/`, `app/security/`, `app/data-rights/`, `app/accessibility/`, `app/licenses/` — public policy and support pages
-- `.openai/hosting.json` — Sites project binding
-- `wrangler.production.jsonc` — canonical Cloudflare deployment
-
-GrantTap is not affiliated with Anthropic, OpenAI, Microsoft, Anysphere, xAI, or Apple.
+<p align="center">
+  <img src="public/product/iphone-command-center.png" width="230" alt="GrantTap Now">
+  <img src="public/product/iphone-chat.png" width="230" alt="GrantTap task timeline">
+  <img src="public/product/iphone-mcp-usage.png" width="230" alt="GrantTap Usage">
+</p>

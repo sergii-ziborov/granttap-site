@@ -30,9 +30,9 @@ export default function TermsPage() {
             ],
           },
           {
-            heading: "Personal access and managed accounts",
+            heading: "Personal pairing",
             paragraphs: [
-              "Personal pairing and QR-based GrantTap Web access do not require a centralized identity account; they authorize devices or bounded capabilities using locally held cryptographic credentials. Managed Enterprise deployments may require an organization account and device-bound login receipt under a separate agreement. Your Apple Account and third-party provider accounts remain separate.",
+              "GrantTap pairing authorizes devices using locally held cryptographic credentials. Your Apple billing identity and third-party provider sign-ins remain separate and are governed by those services.",
             ],
           },
           {
@@ -114,9 +114,9 @@ export default function TermsPage() {
             links: [{ label: "Стандартное EULA Apple", href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" }],
           },
           {
-            heading: "Personal-доступ и управляемые аккаунты",
+            heading: "Personal-пейринг",
             paragraphs: [
-              "Для Personal-пейринга и QR-входа в GrantTap Web не нужен централизованный identity account: они разрешают устройство или ограниченную capability с помощью локальных криптографических данных. Управляемый Enterprise может требовать аккаунт организации и привязанный к устройству login receipt по отдельному соглашению. Apple Account и аккаунты сторонних providers остаются отдельными.",
+              "GrantTap разрешает устройства с помощью локальных криптографических данных. Платёжный профиль Apple и sign-in сторонних providers остаются отдельными и регулируются соответствующими сервисами.",
             ],
           },
           {

@@ -148,10 +148,6 @@ footer {
   font-weight: 650;
 }
 
-.enterprise-quick {
-  display: none;
-}
-
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(470px, 1.08fr);

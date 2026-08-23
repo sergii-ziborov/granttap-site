@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://granttap.com"),
   title: {
-    default: "GrantTap — Keep Cursor, Claude, Codex, Copilot, and Grok moving",
+    default: "GrantTap — All your coding agents. One live control center.",
     template: "%s · GrantTap",
   },
   description:
-    "A secure iPhone and Apple Watch remote for Cursor, Claude Code, Codex, Copilot, and Grok Build — approvals, questions, and chat for sessions already on your computer.",
+    "See what Claude Code and Codex are doing across your computers, decide when they need you, and continue from iPhone or Apple Watch.",
   applicationName: "GrantTap",
   alternates: {
     canonical: "/",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Apple Watch",
     "Claude Code",
     "Codex",
-    "Cursor",
+    "Cursor Beta",
     "GitHub Copilot",
     "Grok Build",
     "coding agent",
@@ -44,24 +44,24 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: "GrantTap",
-    title: "Step away from your Mac. Keep the work moving.",
+    title: "All your coding agents. One live control center.",
     description:
-      "Approve commands, answer questions, and chat with Cursor, Claude Code, Codex, Copilot, and Grok Build from iPhone and Apple Watch.",
+      "See, decide, and continue local Claude Code and Codex tasks from iPhone and Apple Watch.",
     images: [
       {
-        url: "/product/iphone-command-center.png?v=20260820",
-        width: 1206,
-        height: 2622,
+        url: "/product/iphone-command-center.png?v=20260823-1",
+        width: 1320,
+        height: 2868,
         alt: "The current GrantTap task list and composer on iPhone.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Step away from your Mac. Keep the work moving.",
+    title: "All your coding agents. One live control center.",
     description:
-      "A secure iPhone and Apple Watch remote for local Cursor, Claude Code, Codex, Copilot, and Grok Build sessions.",
-    images: ["/product/iphone-command-center.png?v=20260820"],
+      "A secure Personal live control center for local Claude Code and Codex sessions.",
+    images: ["/product/iphone-command-center.png?v=20260823-1"],
   },
 };
 
