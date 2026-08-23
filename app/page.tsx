@@ -72,7 +72,7 @@ export const copy = {
     releaseText: "Join TestFlight to try GrantTap on iPhone and Apple Watch before the public release.",
     tagline: "See what your coding agents are doing. Step in when they need you.",
     legal: ["Pricing", "Privacy", "Terms", "Support", "Security", "Data choices", "Accessibility", "Licenses"],
-    rights: "© 2026 GrantTap. Not affiliated with Anthropic, OpenAI, Microsoft, Anysphere, xAI, or Apple.",
+    rights: "© 2026 GrantTap. Not affiliated with Anthropic, OpenAI, Anysphere, xAI, or Apple.",
   },
   ru: {
     nav: ["Продукт", "Как работает", "Usage", "Безопасность", "Установка", "Цена"],
@@ -142,7 +142,7 @@ export const copy = {
     releaseText: "Присоединяйтесь к TestFlight, чтобы попробовать GrantTap на iPhone и Apple Watch.",
     tagline: "Смотрите, что делают coding agents. Подключайтесь, когда вы нужны.",
     legal: ["Цена", "Конфиденциальность", "Условия", "Поддержка", "Безопасность", "Данные", "Доступность", "Лицензии"],
-    rights: "© 2026 GrantTap. Не связан с Anthropic, OpenAI, Microsoft, Anysphere, xAI или Apple.",
+    rights: "© 2026 GrantTap. Не связан с Anthropic, OpenAI, Anysphere, xAI или Apple.",
   },
 } as const;
 

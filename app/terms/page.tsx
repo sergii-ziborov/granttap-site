@@ -48,7 +48,7 @@ export default function TermsPage() {
             heading: "Third-party agents and services",
             paragraphs: [
               "Cursor, Claude Code, Codex, Grok Build, Apple services, Cloudflare, MCP servers, repositories, and any external tool you select are independent services with their own terms and privacy practices. GrantTap does not control their outputs, availability, pricing, or data practices and does not proxy model traffic.",
-              "References to third-party names describe compatibility only. GrantTap is an independent product and is not affiliated with, endorsed by, or sponsored by Apple, Anthropic, OpenAI, Microsoft, Anysphere, xAI, or Cloudflare.",
+              "References to third-party names describe compatibility only. GrantTap is an independent product and is not affiliated with, endorsed by, or sponsored by Apple, Anthropic, OpenAI, Anysphere, xAI, or Cloudflare.",
             ],
           },
           {
@@ -132,7 +132,7 @@ export default function TermsPage() {
             heading: "Сторонние агенты и сервисы",
             paragraphs: [
               "Cursor, Claude Code, Codex, Grok Build, сервисы Apple, Cloudflare, MCP-серверы, репозитории и другие выбранные инструменты независимы и имеют собственные условия и правила данных. GrantTap не контролирует их ответы, доступность, цены или обработку данных и не проксирует трафик модели.",
-              "Упоминание сторонних названий означает только совместимость. GrantTap — независимый продукт и не связан, не одобрен и не спонсируется Apple, Anthropic, OpenAI, Microsoft, Anysphere, xAI или Cloudflare.",
+              "Упоминание сторонних названий означает только совместимость. GrantTap — независимый продукт и не связан, не одобрен и не спонсируется Apple, Anthropic, OpenAI, Anysphere, xAI или Cloudflare.",
             ],
           },
           {
