@@ -38,8 +38,8 @@ function Hero({ t }: Pick<Props, "t">) {
 }
 
 function Providers({ t }: Pick<Props, "t">) {
-  const providers = [["claude", "Claude Code"], ["codex", "Codex"], ["cursor", t.cursor], ["grok", t.grok]];
-  return <section className="trust-strip" aria-label="Supported providers"><p>{t.providers}</p><div>{providers.map(([id, label]) => <span className={`provider-badge ${id}`} key={id}><Image className="tool-mark" src={`/providers/${id}.png?v=20260820-2`} alt="" width={192} height={192} unoptimized /><strong>{label}</strong></span>)}<span className="provider-note">{t.additional}</span></div></section>;
+  const providers = [["claude", "Claude Code", "/agents/claude-code"], ["codex", "Codex", "/agents/codex"], ["cursor", t.cursor, "/agents/cursor"], ["grok", t.grok, "/agents/grok-build"]];
+  return <section className="trust-strip" aria-label="Supported providers"><p>{t.providers}</p><div>{providers.map(([id, label, href]) => <a href={href} className={`provider-badge ${id}`} key={id}><Image className="tool-mark" src={`/providers/${id}.png?v=20260820-2`} alt="" width={192} height={192} unoptimized /><strong>{label}</strong></a>)}<span className="provider-note">{t.additional}</span></div></section>;
 }
 
 function Product({ t }: Pick<Props, "t">) {
@@ -64,7 +64,8 @@ function Pricing({ t }: Pick<Props, "t">) {
 
 function Footer({ t }: Pick<Props, "t">) {
   const paths = ["pricing", "privacy", "terms", "support", "security", "data-rights", "accessibility", "licenses"];
-  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links">{paths.map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
+  const guidePaths = ["project-mesh", "grok-bot", "apple-watch-coding-agents", "agents/claude-code", "agents/codex", "agents/cursor", "agents/grok-build"];
+  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links">{guidePaths.map((path, index) => <a href={`/${path}`} key={path}>{t.guides[index]}</a>)}</div><div className="footer-links">{paths.map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
 }
 
 function Heading({ kicker, title, text }: { kicker: string; title: string; text?: string }) {

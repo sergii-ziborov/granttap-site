@@ -164,3 +164,41 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+.capability-status {
+  display: flex;
+  gap: 12px;
+  width: fit-content;
+  margin: -35px 0 55px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.capability-status strong {
+  color: var(--orange);
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.capability-grid article {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.capability-grid h3 {
+  margin-bottom: 8px;
+  font-size: 17px;
+}
+
+@media (max-width: 640px) {
+  .capability-grid { grid-template-columns: 1fr; }
+}

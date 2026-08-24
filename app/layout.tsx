@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: "%s · GrantTap",
   },
   description:
-    "See what Claude Code and Codex are doing across your computers, decide when they need you, and continue from iPhone or Apple Watch.",
+    "See what Claude Code, Codex, Cursor, and Grok Build are doing across your computers, coordinate Project Mesh tasks, and respond from iPhone or Apple Watch.",
   applicationName: "GrantTap",
   alternates: {
     canonical: "/",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "GrantTap",
     title: "All your coding agents. One live control center.",
     description:
-      "See, decide, and continue local Claude Code and Codex tasks from iPhone and Apple Watch.",
+      "See, decide, and continue local Claude Code, Codex, Cursor, and Grok Build tasks from iPhone and Apple Watch.",
     images: [
       {
         url: "/product/iphone-command-center.png?v=20260823-1",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "All your coding agents. One live control center.",
     description:
-      "A secure Personal live control center for local Claude Code and Codex sessions.",
+      "A secure Personal live control center for local Claude Code, Codex, Cursor, and Grok Build sessions.",
     images: ["/product/iphone-command-center.png?v=20260823-1"],
   },
 };

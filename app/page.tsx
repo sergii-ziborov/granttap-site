@@ -24,7 +24,7 @@ export const copy = {
     scenarios: [
       ["Needs You", "Approvals, questions, and failed deliveries appear before everything else."],
       ["Working", "See the agent, model, computer, workspace, and latest useful activity."],
-      ["Usage", "Find high context, waiting time, tool calls, failures, and actions worth taking."],
+      ["Usage", "Find context pressure, observed tool failures, and actions worth taking."],
     ],
     meshKicker: "Project Mesh",
     meshTitle: "One project. Several agents. One human attention layer.",
@@ -45,7 +45,7 @@ export const copy = {
     galleryTitle: "Current work on iPhone. Fast decisions on Apple Watch.",
     phoneCaption: "Now prioritizes Needs You, at-risk work, active sessions, and a short recent list.",
     taskCaption: "The task opens directly into live activity and chat, with context and controls one tap away.",
-    usageCaption: "Usage turns context pressure, waiting time, and tool outcomes into concrete next actions.",
+    usageCaption: "Usage turns context pressure and observed tool outcomes into concrete next actions.",
     watchCaption: "Watch is for a glance, a decision, a short reply, or a new voice task.",
     openCapture: "Open full-size",
     closeCapture: "Close preview",
@@ -72,6 +72,7 @@ export const copy = {
     releaseText: "Join TestFlight to try GrantTap on iPhone and Apple Watch before the public release.",
     tagline: "See what your coding agents are doing. Step in when they need you.",
     legal: ["Pricing", "Privacy", "Terms", "Support", "Security", "Data choices", "Accessibility", "Licenses"],
+    guides: ["Project Mesh", "Grok Bot", "Apple Watch", "Claude Code", "Codex", "Cursor Beta", "Grok Build"],
     rights: "© 2026 GrantTap. Not affiliated with Anthropic, OpenAI, Anysphere, xAI, or Apple.",
   },
   ru: {
@@ -94,7 +95,7 @@ export const copy = {
     scenarios: [
       ["Needs You", "Подтверждения, вопросы и ошибки доставки всегда выше остального."],
       ["Working", "Видны agent, model, computer, workspace и последнее полезное событие."],
-      ["Usage", "Высокий контекст, ожидание, tool calls, ошибки и конкретные действия."],
+      ["Usage", "Давление context, наблюдаемые ошибки tool calls и конкретные действия."],
     ],
     meshKicker: "Project Mesh",
     meshTitle: "Один проект. Несколько агентов. Один human-attention layer.",
@@ -115,7 +116,7 @@ export const copy = {
     galleryTitle: "Текущая работа на iPhone. Быстрые решения на Apple Watch.",
     phoneCaption: "Now сначала показывает Needs You, риски, активные задачи и короткий recent list.",
     taskCaption: "Задача сразу открывает live activity и chat; context и controls доступны одним касанием.",
-    usageCaption: "Usage превращает давление context, ожидание и outcomes инструментов в конкретные действия.",
+    usageCaption: "Usage превращает давление context и наблюдаемые outcomes инструментов в конкретные действия.",
     watchCaption: "Watch нужен для glance, решения, короткого ответа и новой голосовой задачи.",
     openCapture: "Открыть крупно",
     closeCapture: "Закрыть просмотр",
@@ -142,6 +143,7 @@ export const copy = {
     releaseText: "Присоединяйтесь к TestFlight, чтобы попробовать GrantTap на iPhone и Apple Watch.",
     tagline: "Смотрите, что делают coding agents. Подключайтесь, когда вы нужны.",
     legal: ["Цена", "Конфиденциальность", "Условия", "Поддержка", "Безопасность", "Данные", "Доступность", "Лицензии"],
+    guides: ["Project Mesh", "Grok Bot", "Apple Watch", "Claude Code", "Codex", "Cursor Beta", "Grok Build"],
     rights: "© 2026 GrantTap. Не связан с Anthropic, OpenAI, Anysphere, xAI или Apple.",
   },
 } as const;
