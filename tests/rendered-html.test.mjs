@@ -43,7 +43,7 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /content="See what Claude Code, Codex, Cursor, and Grok Build/i);
   assert.doesNotMatch(html, /Enterprise|GrantTap Web|Open account|browser workspace|organization policy|scheduler|Copilot/i);
   assert.doesNotMatch(html, /href="\/(?:account|enterprise)/);
-  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20260823-1"/i);
+  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20260828-1"/i);
   assert.match(html, /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i);
 });
 
