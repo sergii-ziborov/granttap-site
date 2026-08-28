@@ -54,7 +54,7 @@ export default function TermsPage() {
           {
             heading: "Purchases and refunds",
             paragraphs: [
-              "GrantTap is planned as an auto-renewable subscription with a 7-day free trial for eligible new subscribers. The planned Personal price is $2.99 per month for up to 3 computers. The exact price and trial eligibility shown by Apple before confirmation control if they differ from this page.",
+              "GrantTap is planned as an auto-renewable subscription with a 7-day free trial for eligible new subscribers. Personal is priced by linked computers: $1.99 per month for one, $3.99 for up to five, $5.99 for up to ten, with unlimited agents on each. The exact price and trial eligibility shown by Apple before confirmation control if they differ from this page.",
               "The subscription renews automatically unless cancelled at least 24 hours before the current period ends. App Store purchases, payment processing, taxes, family sharing, and refunds are handled by Apple. GrantTap does not receive your payment-card details.",
             ],
             links: [
@@ -138,7 +138,7 @@ export default function TermsPage() {
           {
             heading: "Покупки и возвраты",
             paragraphs: [
-              "GrantTap планируется как автопродлеваемая подписка с 7-дневным бесплатным пробным периодом для подходящих новых подписчиков. Планируемый тариф Personal стоит $2,99 в месяц и поддерживает до 3 компьютеров. Если экран Apple перед подтверждением показывает другие цену или доступность trial, действуют данные Apple.",
+              "GrantTap планируется как автопродлеваемая подписка с 7-дневным бесплатным пробным периодом для подходящих новых подписчиков. Personal тарифицируется по числу компьютеров: $1,99 в месяц за один, $3,99 — до пяти, $5,99 — до десяти, агентов на каждом — без ограничений. Если экран Apple перед подтверждением показывает другие цену или доступность trial, действуют данные Apple.",
               "Подписка продлевается автоматически, если не отменить её минимум за 24 часа до конца периода. Покупки, платежи, налоги, семейный доступ и возвраты обрабатывает Apple. GrantTap не получает данные платёжной карты.",
             ],
             links: [
