@@ -10,7 +10,9 @@ available. The site presents one Personal product.
 
 Project Mesh coordinates those existing agents with bounded encrypted task
 state, dependencies, resource claims, agent-to-agent questions, and same-task
-handoffs across computers. It does not copy hidden reasoning or turn GrantTap
+handoffs across computers. Project Governance decides, per Project, which
+skills, MCP servers, and shell access agents may use, and every linked computer
+applies the same policy. It does not copy hidden reasoning or turn GrantTap
 into a coding agent or an unrestricted orchestrator.
 
 ## Install
