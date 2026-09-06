@@ -11,6 +11,7 @@ export function HomeView({ locale, setLocale, t }: Props) {
     <Hero t={t} />
     <Providers t={t} />
     <Product t={t} />
+    <Share t={t} />
     <How t={t} />
     <CaptureGallery t={t} />
     <Security t={t} />
@@ -43,7 +44,14 @@ function Providers({ t }: Pick<Props, "t">) {
 }
 
 function Product({ t }: Pick<Props, "t">) {
-  return <section className="controls-section section-shell" id="product"><Heading kicker={t.productKicker} title={t.productTitle} text={t.productText} /><div className="controls-grid">{t.scenarios.map(([title, text], index) => <article className={`control-card${index === 0 ? " featured" : ""}`} id={index === 2 ? "usage" : undefined} key={title}><div className="control-icon">{["DECIDE", "SEE", "USAGE"][index]}</div><h3>{title}</h3><p>{text}</p></article>)}</div><div className="mesh-panel"><div className="mesh-copy"><p className="kicker">{t.meshKicker}</p><h2>{t.meshTitle}</h2><p>{t.meshText}</p><div className="mesh-route" aria-label="Task handoff"><span>Claude · MacBook</span><b>→</b><span>Codex · Workstation</span></div></div><div className="mesh-questions">{t.meshQuestions.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><div><strong>{title}</strong><p>{text}</p></div></article>)}</div></div></section>;
+  return <section className="controls-section section-shell" id="product"><Heading kicker={t.productKicker} title={t.productTitle} text={t.productText} /><div className="controls-grid">{t.scenarios.map(([title, text], index) => <article className={`control-card${index === 0 ? " featured" : ""}`} id={index === 2 ? "usage" : undefined} key={title}><div className="control-icon">{["DECIDE", "SEE", "USAGE", "POLICY"][index] ?? "MORE"}</div><h3>{title}</h3><p>{text}</p></article>)}</div><div className="mesh-panel"><div className="mesh-copy"><p className="kicker">{t.meshKicker}</p><h2>{t.meshTitle}</h2><p>{t.meshText}</p><div className="mesh-route" aria-label="Task handoff"><span>Claude · MacBook</span><b>→</b><span>Codex · Workstation</span></div></div><div className="mesh-questions">{t.meshQuestions.map(([title, text], index) => <article key={title}><span>0{index + 1}</span><div><strong>{title}</strong><p>{text}</p></div></article>)}</div></div></section>;
+}
+
+function Share({ t }: Pick<Props, "t">) {
+  return <section className="share-section section-shell" id="share">
+    <Heading kicker={t.shareKicker} title={t.shareTitle} text={t.shareText} />
+    <div className="share-grid">{t.shareFacts.map(([title, text], index) => <article className="share-card" key={title}><span className="share-step">0{index + 1}</span><div><strong>{title}</strong><p>{text}</p></div></article>)}</div>
+  </section>;
 }
 
 function How({ t }: Pick<Props, "t">) {

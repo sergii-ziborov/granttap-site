@@ -6,6 +6,9 @@ import { ProductImage } from "./ProductImage";
 type Copy = {
   galleryKicker: string;
   galleryTitle: string;
+  meshGalleryKicker: string;
+  meshGalleryTitle: string;
+  meshCaptures: readonly (readonly [string, string, string])[];
   phoneCaption: string;
   taskCaption: string;
   usageCaption: string;
@@ -33,6 +36,8 @@ export function CaptureGallery({ t }: { t: Copy }) {
     { name: "apple-watch-inbox", alt: "GrantTap Needs You on Apple Watch", title: "Apple Watch", caption: t.watchCaption, kind: "watch" },
     { name: "apple-watch-approval", alt: "GrantTap decision on Apple Watch", title: "Apple Watch", caption: t.watchCaption, kind: "watch" },
   ];
+  const mesh: Capture[] = t.meshCaptures.map(([name, title, caption]) =>
+    ({ name, title, caption, alt: `GrantTap ${title}`, kind: "phone" as const }));
 
   useEffect(() => {
     if (!selected) return;
@@ -59,6 +64,13 @@ export function CaptureGallery({ t }: { t: Copy }) {
         <div className="watch-pair">{watch.map(capture => <CaptureButton capture={capture} label={t.openCapture} onOpen={setSelected} key={capture.name} />)}</div>
         <figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption>
       </figure>
+    </div>
+    <div className="section-heading mesh-gallery-heading"><p className="kicker">{t.meshGalleryKicker}</p><h2>{t.meshGalleryTitle}</h2></div>
+    <div className="mesh-gallery">
+      {mesh.map(capture => <figure key={capture.name}>
+        <CaptureButton capture={capture} label={t.openCapture} onOpen={setSelected} />
+        <figcaption><strong>{capture.title}</strong>{capture.caption}</figcaption>
+      </figure>)}
     </div>
     {selected && <CaptureLightbox capture={selected} closeLabel={t.closeCapture} onClose={() => setSelected(null)} />}
   </section>;

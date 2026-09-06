@@ -91,7 +91,9 @@
 
   .workflow-grid,
   .controls-grid,
-  .install-grid {
+  .install-grid,
+  .share-grid,
+  .mesh-gallery {
     grid-template-columns: 1fr;
   }
 
