@@ -63,7 +63,12 @@ function Security({ t }: Pick<Props, "t">) {
 }
 
 function Install({ t }: Pick<Props, "t">) {
-  return <section className="install-section section-shell" id="install"><Heading kicker={t.installKicker} title={t.installTitle} text={t.installText} /><div className="install-grid"><article className="install-card"><strong>GrantTap Personal</strong><pre><code>{"npm install -g granttap-mcp\ngranttap setup"}</code></pre></article></div><div className="trust-links"><a href="https://github.com/sergii-ziborov/granttap-mcp">{t.source} ↗</a><a href="https://www.npmjs.com/package/granttap-mcp">{t.npm} ↗</a><a href="https://github.com/sergii-ziborov/granttap-relay">{t.relay} ↗</a></div></section>;
+  const cards = [
+    ["Codex", "codex plugin marketplace add sergii-ziborov/granttap-mcp\ncodex plugin add granttap@granttap"],
+    ["Claude Code", "claude plugin marketplace add sergii-ziborov/granttap-mcp\nclaude plugin install granttap@granttap"],
+    ["GrantTap CLI", "npm install -g granttap-mcp\ngranttap setup"],
+  ];
+  return <section className="install-section section-shell" id="install"><Heading kicker={t.installKicker} title={t.installTitle} text={t.installText} /><div className="install-grid">{cards.map(([name, command]) => <article className="install-card" key={name}><strong>{name}</strong><pre><code>{command}</code></pre></article>)}</div><div className="trust-links"><a href="https://github.com/sergii-ziborov/granttap-mcp">{t.source} ↗</a><a href="https://www.npmjs.com/package/granttap-mcp">{t.npm} ↗</a><a href="https://github.com/sergii-ziborov/granttap-relay">{t.relay} ↗</a></div></section>;
 }
 
 function Pricing({ t }: Pick<Props, "t">) {

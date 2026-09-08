@@ -32,6 +32,8 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /Claude · MacBook/);
   assert.match(html, /Codex · Workstation/);
   assert.match(html, /separate branches or worktrees/);
+  assert.match(html, /codex plugin add granttap@granttap/);
+  assert.match(html, /claude plugin install granttap@granttap/);
   assert.match(html, /npm install -g granttap-mcp/);
   assert.match(html, /granttap setup/);
   assert.match(html, /Native E2EE/);

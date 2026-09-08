@@ -18,9 +18,20 @@ into a coding agent or an unrestricted orchestrator.
 ## Install
 
 ```bash
+# Codex plugin
+codex plugin marketplace add sergii-ziborov/granttap-mcp
+codex plugin add granttap@granttap
+
+# Claude Code plugin
+claude plugin marketplace add sergii-ziborov/granttap-mcp
+claude plugin install granttap@granttap
+
+# Background helper and provider hooks
 npm install -g granttap-mcp
 granttap setup
 ```
+
+After plugin installation, ask the agent: `Show my GrantTap pairing QR.`
 
 - [granttap-mcp source](https://github.com/sergii-ziborov/granttap-mcp)
 - [npm package](https://www.npmjs.com/package/granttap-mcp)

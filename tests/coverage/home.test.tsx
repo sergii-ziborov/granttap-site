@@ -14,6 +14,8 @@ test("renders the Personal product journey and locale control", async () => {
   expect(within(providers).getByRole("link", { name: "Cursor Beta" })).toBeTruthy();
   expect(within(providers).getByRole("link", { name: "Grok Build · Experimental" })).toBeTruthy();
   expect(screen.getByRole("heading", { name: "Needs You" })).toBeTruthy();
+  expect(screen.getByText(/codex plugin add granttap@granttap/)).toBeTruthy();
+  expect(screen.getByText(/claude plugin install granttap@granttap/)).toBeTruthy();
   expect(screen.getByText(/npm install -g granttap-mcp/)).toBeTruthy();
   expect(screen.queryByText(/Enterprise|Open account|GrantTap Web/i)).toBeNull();
   expect(screen.getByRole("img", { name: "GrantTap live task chat" })).toBeTruthy();
