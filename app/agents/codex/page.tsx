@@ -14,6 +14,7 @@ export default function CodexPage() {
     intro="GrantTap keeps local Codex sessions visible across your computers and routes exact permission and task decisions to your Apple devices."
     status="Primary"
     facts={[
+      { title: "Connection app", text: "Open GrantTap inside Codex to see connection status, scan the one-time pairing QR, copy its fallback link, or confirm a reconnect." },
       { title: "Live task catalog", text: "See active and recent Codex work with its real computer, workspace, model, and context state." },
       { title: "Permission hooks", text: "Trusted Codex hooks enforce configured local policy and route unresolved decisions to the phone." },
       { title: "Native continuation", text: "Reply to the same Codex session from iPhone or send a short turn from Apple Watch." },
