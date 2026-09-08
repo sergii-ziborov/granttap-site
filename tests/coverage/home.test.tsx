@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { expect, test } from "vitest";
 import Home from "../../app/page";
@@ -8,16 +8,18 @@ test("renders the Personal product journey and locale control", async () => {
   render(<Home />);
 
   expect(screen.getByRole("heading", { name: /All your coding agents/i })).toBeTruthy();
-  expect(screen.getByText("Claude Code + Codex")).toBeTruthy();
-  expect(screen.getByText("Cursor Beta")).toBeTruthy();
-  expect(screen.getByText("Grok Build · Experimental")).toBeTruthy();
+  const providers = screen.getByRole("region", { name: "Supported providers" });
+  expect(within(providers).getByRole("link", { name: "Claude Code" })).toBeTruthy();
+  expect(within(providers).getByRole("link", { name: "Codex" })).toBeTruthy();
+  expect(within(providers).getByRole("link", { name: "Cursor Beta" })).toBeTruthy();
+  expect(within(providers).getByRole("link", { name: "Grok Build · Experimental" })).toBeTruthy();
   expect(screen.getByRole("heading", { name: "Needs You" })).toBeTruthy();
   expect(screen.getByText(/npm install -g granttap-mcp/)).toBeTruthy();
   expect(screen.queryByText(/Enterprise|Open account|GrantTap Web/i)).toBeNull();
   expect(screen.getByRole("img", { name: "GrantTap live task chat" })).toBeTruthy();
 
   const previews = screen.getAllByRole("button", { name: /Open full-size/i });
-  expect(previews).toHaveLength(5);
+  expect(previews).toHaveLength(13);
   await user.click(previews[0]);
   expect(screen.getByRole("dialog", { name: "Now screenshot" })).toBeTruthy();
   expect(screen.getByRole("img", { name: "GrantTap Now, full size" })).toBeTruthy();

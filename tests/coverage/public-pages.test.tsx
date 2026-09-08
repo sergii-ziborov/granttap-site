@@ -2,10 +2,17 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test } from "vitest";
 import AccessibilityPage from "../../app/accessibility/page";
+import ClaudeCodePage from "../../app/agents/claude-code/page";
+import CodexPage from "../../app/agents/codex/page";
+import CursorPage from "../../app/agents/cursor/page";
+import GrokBuildPage from "../../app/agents/grok-build/page";
+import AppleWatchPage from "../../app/apple-watch-coding-agents/page";
 import DataRightsPage from "../../app/data-rights/page";
+import GrokBotPage from "../../app/grok-bot/page";
 import LicensesPage from "../../app/licenses/page";
 import PricingPage from "../../app/pricing/page";
 import PrivacyPage from "../../app/privacy/page";
+import ProjectMeshPage from "../../app/project-mesh/page";
 import SecurityPage from "../../app/security/page";
 import SupportPage from "../../app/support/page";
 import TermsPage from "../../app/terms/page";
@@ -16,11 +23,28 @@ const pages = [
   ["Privacy Policy", PrivacyPage], ["Security", SecurityPage], ["Support", SupportPage], ["Terms of Use", TermsPage],
 ] as const;
 
+const guides = [
+  ["Claude Code, visible beyond the terminal.", ClaudeCodePage],
+  ["Codex tasks, connected to the same human.", CodexPage],
+  ["Cursor support, labeled Beta on purpose.", CursorPage],
+  ["Grok Build is Experimental—not fake parity.", GrokBuildPage],
+  ["The wrist is for the decision, not the whole terminal.", AppleWatchPage],
+  ["Grok Bot is a participant, not a provider shortcut.", GrokBotPage],
+  ["One Task can outlive one agent session.", ProjectMeshPage],
+] as const;
+
 describe("public legal and support pages", () => {
   test.each(pages)("renders %s with its customer-facing content", (title, Page) => {
     render(<Page />);
     expect(screen.getByRole("heading", { name: title, level: 1 })).toBeTruthy();
     expect(screen.getByRole("link", { name: "Home" }).getAttribute("href")).toBe("/");
+  });
+
+  test.each(guides)("renders guide %s with capability boundaries", (title, Page) => {
+    render(<Page />);
+    expect(screen.getByRole("heading", { name: title, level: 1 })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "What works", level: 2 })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Honest limits", level: 2 })).toBeTruthy();
   });
 
   test("switches legal pages to Russian and saves the visitor choice", async () => {
