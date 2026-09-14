@@ -34,7 +34,13 @@ granttap setup
 After plugin installation, open GrantTap inside Codex or ask the agent:
 `Show my GrantTap pairing QR.` Codex renders connection status, the one-time
 QR, a copy-link fallback, and confirmed reconnect controls in the conversation.
-The current plugin uses the public `granttap-mcp@0.8.7` package.
+The current plugin uses the public `granttap-mcp@0.8.18` package.
+
+The Task screenshot includes a demo Runtime history. On a real computer,
+Invocation history requires the separately distributed GrantTap Engine. A tool
+request or reported success is not presented as a verified filesystem change;
+the bridge does not yet produce verified change events or revision-bound impact
+links.
 
 - [granttap-mcp source](https://github.com/sergii-ziborov/granttap-mcp)
 - [npm package](https://www.npmjs.com/package/granttap-mcp)
