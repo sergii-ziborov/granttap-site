@@ -1,6 +1,7 @@
 /** Cloudflare Worker entry point for the vinext-starter template. */
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
+import { handleConnectApi } from "./connect-api";
 
 const CANONICAL_ORIGIN = "https://granttap.com";
 const REDIRECT_HOSTS = new Set([
@@ -88,6 +89,9 @@ const worker = {
         ),
       );
     }
+
+    const connect = await handleConnectApi(request);
+    if (connect) return withSecurityHeaders(request, connect);
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
