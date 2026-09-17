@@ -9,6 +9,7 @@ export type ConnectSnapshot = {
   paired: boolean;
   phones: Array<{ name: string; status: string; lastSeenAt: number | null }>;
   providers: Array<{ id: string; installed: boolean; ready: boolean }>;
+  mesh?: { present: boolean; thisComputer: string; computers: string[]; openTasks: number };
   decision?: "approve" | "deny";
   redirectUrl?: string;
   error?: string;
@@ -48,6 +49,7 @@ function sanitizeSnapshot(input: unknown, current?: ConnectSnapshot): ConnectSna
     paired: current?.paired ?? false,
     phones: current?.phones ?? [],
     providers: current?.providers ?? [],
+    mesh: current?.mesh,
     decision: current?.decision,
     redirectUrl: current?.redirectUrl,
     error: current?.error,
@@ -79,6 +81,18 @@ function sanitizeSnapshot(input: unknown, current?: ConnectSnapshot): ConnectSna
         ready: row.ready === true,
       }];
     });
+  }
+  if (raw.mesh && typeof raw.mesh === "object") {
+    const mesh = raw.mesh as Record<string, unknown>;
+    const computers = Array.isArray(mesh.computers)
+      ? mesh.computers.flatMap((name) => typeof name === "string" && name.trim() ? [name.trim().slice(0, 80)] : []).slice(0, 8)
+      : [];
+    next.mesh = {
+      present: mesh.present === true,
+      thisComputer: typeof mesh.thisComputer === "string" ? mesh.thisComputer.trim().slice(0, 80) : "",
+      computers,
+      openTasks: Number.isFinite(mesh.openTasks) ? Math.max(0, Math.min(999, Math.floor(Number(mesh.openTasks)))) : 0,
+    };
   }
   if (raw.decision === "approve" || raw.decision === "deny") next.decision = raw.decision;
   if (typeof raw.error === "string") next.error = raw.error.slice(0, 300);

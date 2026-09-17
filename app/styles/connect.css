@@ -123,6 +123,58 @@
   background: #7dce6a;
 }
 
+.connect-phones {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.connect-phone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #2c2f35;
+  border-radius: 14px;
+  background: #111214;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.connect-phone.selected {
+  border-color: #f47a45;
+  background: #241811;
+}
+
+.connect-phone i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #666;
+  flex: 0 0 auto;
+}
+
+.connect-phone.seen i {
+  background: #7dce6a;
+}
+
+.connect-phone em {
+  color: #8d8d90;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.connect-phone:disabled {
+  cursor: default;
+}
+
 .connect-actions {
   display: flex;
   flex-wrap: wrap;

@@ -1,0 +1,57 @@
+name: granttap-web
+
+services:
+  web:
+    build:
+      context: ./hetzner
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      PORT: "3210"
+      HOST: "0.0.0.0"
+    ports:
+      - "127.0.0.1:3210:3210"
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid,nodev
+    mem_limit: 256m
+    cpus: 0.5
+    pids_limit: 64
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3210/healthz').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  site:
+    build:
+      context: .
+      dockerfile: hetzner/site.Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      PORT: "3211"
+      HOST: "0.0.0.0"
+      VINEXT_TRUST_PROXY: "1"
+      VINEXT_TRUSTED_HOSTS: "granttap.com,www.granttap.com"
+    ports:
+      - "127.0.0.1:3211:3211"
+    mem_limit: 1024m
+    cpus: 1
+    pids_limit: 256
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3211/').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 8s
+      retries: 4
+      start_period: 20s

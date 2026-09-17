@@ -24,6 +24,11 @@ const COPY = {
     missingBody: "Start authorization again from your coding app. The website never talks to localhost.",
     unpaired: "This computer is not paired yet.",
     unpairedBody: "Scan the QR in the GrantTap plugin or the iPhone app, then approve here.",
+    phones: "Choose a phone",
+    phonesBody: "Approvals from this coding app go to the phone you select.",
+    phonesEmpty: "No phone is listed for this computer yet. Add one in the GrantTap plugin, then start authorization again.",
+    phonePaired: "Paired",
+    phoneSeen: "Online just now",
     paired: "A phone is already connected",
     pairedBody: "You can approve this coding app without changing your existing connection.",
     apps: "Coding apps on this computer",
@@ -44,6 +49,11 @@ const COPY = {
     missingBody: "Запустите авторизацию снова из coding app. Сайт не ходит на localhost.",
     unpaired: "Этот компьютер ещё не сопряжён.",
     unpairedBody: "Отсканируйте QR в плагине GrantTap или в приложении на iPhone, затем подтвердите здесь.",
+    phones: "Выберите телефон",
+    phonesBody: "Подтверждения из этого coding app пойдут на выбранный телефон.",
+    phonesEmpty: "Для этого компьютера телефон ещё не указан. Добавьте его в плагине GrantTap и запустите авторизацию снова.",
+    phonePaired: "Сопряжён",
+    phoneSeen: "Сейчас онлайн",
     paired: "Телефон уже подключён",
     pairedBody: "Можно подтвердить этот coding app, не меняя текущее соединение.",
     apps: "Coding apps на этом компьютере",
@@ -75,6 +85,7 @@ export function ConnectView() {
   const [row, setRow] = useState<Snapshot | null>(null);
   const [busy, setBusy] = useState(false);
   const [missing, setMissing] = useState(false);
+  const [selectedPhone, setSelectedPhone] = useState("");
 
   useEffect(() => {
     const next = requestId();
@@ -96,6 +107,11 @@ export function ConnectView() {
       const body = await response.json() as Snapshot;
       setMissing(false);
       setRow(body);
+      setSelectedPhone((current) => {
+        const names = body.phones.map((phone) => phone.name);
+        if (current && names.includes(current)) return current;
+        return names.length === 1 ? names[0] : "";
+      });
       if (body.redirectUrl) window.location.assign(body.redirectUrl);
     };
     void tick();
@@ -108,11 +124,12 @@ export function ConnectView() {
 
   async function decide(decision: "approve" | "deny") {
     if (!id || busy) return;
+    if (decision === "approve" && !selectedPhone) return;
     setBusy(true);
     await fetch(`/api/connect/requests/${id}/decision`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ decision }),
+      body: JSON.stringify({ decision, phone: selectedPhone || undefined }),
     });
     setBusy(false);
   }
@@ -149,9 +166,27 @@ export function ConnectView() {
           {row && (
             <>
               <span className="connect-chip">{row.clientName}</span>
-              <div className={`connect-panel ${row.paired ? "ok" : ""}`}>
-                <h2>{row.paired ? t.paired : t.unpaired}</h2>
-                <p>{row.paired ? t.pairedBody : t.unpairedBody}</p>
+              <div className="connect-panel ok">
+                <h2>{t.phones}</h2>
+                {row.phones.length > 0 && <p>{t.phonesBody}</p>}
+                {row.phones.length === 0 && <p>{t.phonesEmpty}</p>}
+                {row.phones.length > 0 && (
+                  <div className="connect-phones">
+                    {row.phones.map((phone) => (
+                      <button
+                        key={phone.name}
+                        type="button"
+                        className={`connect-phone${phone.status === "seen" ? " seen" : ""}${selectedPhone === phone.name ? " selected" : ""}`}
+                        disabled={busy || Boolean(row.decision)}
+                        onClick={() => setSelectedPhone(phone.name)}
+                      >
+                        <i />
+                        <span>{phone.name}</span>
+                        <em>{phone.status === "seen" ? t.phoneSeen : t.phonePaired}</em>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="connect-panel ok">
                 <h2>{t.apps}</h2>
@@ -166,7 +201,7 @@ export function ConnectView() {
               </div>
               {row.decision && !row.redirectUrl && !row.error && <p className="lead">{t.waiting}</p>}
               <div className="connect-actions">
-                <button className="primary" type="button" disabled={busy || Boolean(row.decision)} onClick={() => void decide("approve")}>
+                <button className="primary" type="button" disabled={busy || Boolean(row.decision) || !selectedPhone} onClick={() => void decide("approve")}>
                   {t.approve}
                 </button>
                 <button className="ghost" type="button" disabled={busy || Boolean(row.decision)} onClick={() => void decide("deny")}>

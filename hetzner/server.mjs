@@ -4,17 +4,35 @@
  * Pairing keys never arrive here.
  */
 import { createServer } from "node:http";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGE = readFileSync(join(ROOT, "public", "connect.html"), "utf8");
+const STORE_PATH = process.env.GRANTTAP_CONNECT_STORE ?? join(ROOT, "connect-store.json");
 const PORT = Number(process.env.PORT ?? 3210);
 const HOST = process.env.HOST ?? "0.0.0.0";
 const REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const TTL_MS = 15 * 60_000;
-const store = new Map();
+const store = loadStore();
+
+function loadStore() {
+  try {
+    const parsed = JSON.parse(readFileSync(STORE_PATH, "utf8"));
+    return new Map(Array.isArray(parsed) ? parsed : []);
+  } catch {
+    return new Map();
+  }
+}
+
+function persistStore() {
+  try {
+    writeFileSync(STORE_PATH, JSON.stringify([...store.entries()]));
+  } catch {
+    // Memory still serves this process.
+  }
+}
 
 function json(res, status, body) {
   const payload = JSON.stringify(body);
@@ -59,6 +77,7 @@ function readRow(id) {
 
 function writeRow(id, value) {
   store.set(id, { value, exp: Date.now() + TTL_MS });
+  persistStore();
 }
 
 function sanitize(input, current) {
@@ -66,15 +85,24 @@ function sanitize(input, current) {
   const raw = input;
   const next = {
     clientName: current?.clientName ?? "Coding app",
+    computerName: current?.computerName,
     paired: current?.paired ?? false,
     phones: current?.phones ?? [],
     providers: current?.providers ?? [],
+    relayStatus: current?.relayStatus,
+    mesh: current?.mesh,
     decision: current?.decision,
     redirectUrl: current?.redirectUrl,
     error: current?.error,
   };
   if (typeof raw.clientName === "string") {
     next.clientName = raw.clientName.trim().slice(0, 80) || "Coding app";
+  }
+  if (typeof raw.computerName === "string") {
+    next.computerName = raw.computerName.trim().slice(0, 80);
+  }
+  if (raw.relayStatus === "online" || raw.relayStatus === "offline" || raw.relayStatus === "unknown") {
+    next.relayStatus = raw.relayStatus;
   }
   if (typeof raw.paired === "boolean") next.paired = raw.paired;
   if (Array.isArray(raw.phones)) {
@@ -98,6 +126,18 @@ function sanitize(input, current) {
         ready: provider.ready === true,
       }];
     });
+  }
+  if (raw.mesh && typeof raw.mesh === "object") {
+    const mesh = raw.mesh;
+    const computers = Array.isArray(mesh.computers)
+      ? mesh.computers.flatMap((name) => typeof name === "string" && name.trim() ? [name.trim().slice(0, 80)] : []).slice(0, 8)
+      : [];
+    next.mesh = {
+      present: mesh.present === true,
+      thisComputer: typeof mesh.thisComputer === "string" ? mesh.thisComputer.trim().slice(0, 80) : "",
+      computers,
+      openTasks: Number.isFinite(mesh.openTasks) ? Math.max(0, Math.min(999, Math.floor(mesh.openTasks))) : 0,
+    };
   }
   if (raw.decision === "approve" || raw.decision === "deny") next.decision = raw.decision;
   if (typeof raw.error === "string") next.error = raw.error.slice(0, 300);
@@ -163,6 +203,11 @@ const server = createServer(async (req, res) => {
       if (body?.decision !== "approve" && body?.decision !== "deny") {
         json(res, 400, { error: "Choose Approve or Deny." });
         return;
+      }
+      if (typeof body?.phone === "string") {
+        const name = body.phone.trim().slice(0, 80);
+        const names = (current.phones ?? []).map((phone) => phone.name);
+        if (name && (names.length === 0 || names.includes(name))) current.selectedPhone = name;
       }
       if (!current.decision) current.decision = body.decision;
       writeRow(id, current);

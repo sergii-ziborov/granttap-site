@@ -27,10 +27,13 @@ test("connect page talks only to the website API", async () => {
   render(<ConnectView />);
   expect(await screen.findByRole("heading", { name: "Connect your coding app", level: 1 })).toBeTruthy();
   expect(screen.getByText("Cursor")).toBeTruthy();
-  expect(screen.getByText(/already connected/i)).toBeTruthy();
+  expect(screen.getByRole("button", { name: /iPhone/i })).toBeTruthy();
 
+  await userEvent.click(screen.getByRole("button", { name: /iPhone/i }));
   await userEvent.click(screen.getByRole("button", { name: "Approve" }));
   expect(fetchMock.mock.calls.some((call) => String(call[0]).endsWith("/decision"))).toBe(true);
+  const decision = fetchMock.mock.calls.find((call) => String(call[0]).endsWith("/decision"));
+  expect(JSON.parse(String(decision?.[1]?.body))).toMatchObject({ decision: "approve", phone: "iPhone" });
 });
 
 test("missing request does not mention loopback", async () => {

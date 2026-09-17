@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Connect your coding app · GrantTap</title>
+  <title>GrantTap devices</title>
   <style>
     :root { color-scheme: dark; }
     html, body { margin: 0; background: #0b0b0c; color: #f5f2ee; font: 16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
@@ -26,7 +26,15 @@
     .app { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: #111214; }
     .app i { width: 8px; height: 8px; border-radius: 50%; background: #666; }
     .app.ready i { background: #7dce6a; }
-    .actions { display: flex; gap: 10px; margin-top: 22px; }
+    .phones { display: grid; gap: 8px; margin-top: 10px; }
+    .phone { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid #2c2f35; border-radius: 14px; background: #111214; color: inherit; text-align: left; font: inherit; font-weight: 650; }
+    .phone.selected { border-color: #f47a45; background: #241811; }
+    .phone i { width: 8px; height: 8px; border-radius: 50%; background: #666; flex: 0 0 auto; }
+    .phone.seen i { background: #7dce6a; }
+    .phone span { flex: 1; }
+    .phone em { color: #8d8d90; font-style: normal; font-weight: 600; font-size: 13px; }
+    .qr { display: block; width: min(100%, 320px); aspect-ratio: 1; height: auto; max-height: 320px; margin: 12px auto 0; border: 0; border-radius: 16px; background: #fff; overflow: hidden; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
     button { min-height: 44px; padding: 10px 18px; border: 0; border-radius: 999px; font-weight: 700; cursor: pointer; }
     .primary { background: #f47a45; color: #161616; }
     .ghost { background: #2a2a2c; color: #f6f6f6; }
@@ -41,70 +49,242 @@
     </header>
     <main>
       <section class="card">
-        <p class="eyebrow">GrantTap authorization</p>
-        <h1>Connect your coding app</h1>
-        <p class="lead">GrantTap is asking to send approvals and activity from this coding app to your phone.</p>
+        <p class="eyebrow">GrantTap</p>
+        <h1 id="title">Your devices</h1>
+        <p class="lead" id="lead">This page talks to GrantTap on this Mac. The iPhone app shows the computer; Cursor settings do not.</p>
         <div id="root"></div>
       </section>
     </main>
   </div>
   <script>
     const labels = { cursor: "Cursor", claude: "Claude Code", codex: "Codex" };
-    const id = new URLSearchParams(location.hash.replace(/^#/, "")).get("request") || "";
+    function helperOrigin() {
+      const port = Number(new URLSearchParams(location.hash.replace(/^#/, "")).get("port") || "17342");
+      return "http://127.0.0.1:" + (Number.isInteger(port) && port > 0 && port < 65536 ? port : 17342);
+    }
     const root = document.getElementById("root");
     let busy = false;
+    let selectedPhone = "";
+    let lastRow = null;
+    let lastJson = "";
+    let pairingViewId = "";
+    let pairingError = "";
+    let pairingBusy = false;
+    let pairingTried = false;
 
+    function requestId() {
+      return new URLSearchParams(location.hash.replace(/^#/, "")).get("request") || "";
+    }
+    function esc(value) {
+      return String(value).replace(/[&<>"']/g, (ch) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+      }[ch]));
+    }
     function panel(title, body, ok) {
       return `<div class="panel${ok ? " ok" : ""}"><h2>${title}</h2><p>${body}</p></div>`;
     }
-    function render(row, missing) {
-      if (missing) {
+    function mergeRow(site, local) {
+      if (!site && !local) return null;
+      const phones = (local && local.phones && local.phones.length)
+        ? local.phones
+        : (site && site.phones) || [];
+      return {
+        ...(site || {}),
+        ...(local || {}),
+        phones,
+        clientName: (site && site.clientName) || (local && local.clientName) || "GrantTap",
+        decision: site && site.decision,
+        redirectUrl: site && site.redirectUrl,
+        error: site && site.error,
+      };
+    }
+    function render(row, missingHelper) {
+      const auth = Boolean(requestId());
+      document.getElementById("title").textContent = auth ? "Connect your coding app" : "Your devices";
+      document.getElementById("lead").textContent = auth
+        ? "GrantTap is asking to send approvals and activity from this coding app to your phone."
+        : "This Mac and the iPhone saved on it. Reconnect replaces the current pairing and shows a new QR immediately.";
+      if (missingHelper) {
         root.innerHTML = panel(
-          "This request is not on GrantTap yet.",
-          "Start authorization again from your coding app. This page never talks to localhost."
+          "Open this page on the Mac",
+          "GrantTap on this computer is not reachable at 127.0.0.1:17342. Start GrantTap on this Mac, then reload."
         );
         return;
       }
       if (!row) { root.innerHTML = ""; return; }
+      lastRow = row;
       if (row.redirectUrl) { location.assign(row.redirectUrl); return; }
+      const phones = Array.isArray(row.phones) ? row.phones : [];
+      const seenPhones = phones.filter((phone) => phone.status === "seen");
+      if (!selectedPhone && phones.length === 1 && phones[0].name) selectedPhone = phones[0].name;
+      if (selectedPhone && !phones.some((phone) => phone.name === selectedPhone)) selectedPhone = "";
+      if (seenPhones.length && pairingViewId) {
+        pairingViewId = "";
+      }
       const apps = (row.providers || []).map((p) =>
-        `<span class="app${p.ready ? " ready" : ""}"><i></i>${labels[p.id] || p.id} · ${
+        `<span class="app${p.ready ? " ready" : ""}"><i></i>${esc(labels[p.id] || p.id)} · ${
           p.ready ? "Ready" : p.installed ? "Installed" : "Not installed"
         }</span>`
       ).join("");
+      const phoneRows = phones.map((phone) => {
+        const name = phone.name || "iPhone";
+        const seen = phone.status === "seen";
+        const selected = selectedPhone === name;
+        return `<button type="button" class="phone${seen ? " seen" : ""}${selected ? " selected" : ""}" data-name="${esc(name)}" ${row.decision || busy ? "disabled" : ""}><i></i><span>${esc(name)}</span><em>${seen ? "Connected just now" : "Saved · waiting for the app"}</em></button>`;
+      }).join("");
+      const qr = pairingViewId
+        ? `<iframe class="qr" title="GrantTap pairing QR" scrolling="no" src="${helperOrigin()}/oauth/pairing/view?view_id=${esc(pairingViewId)}&embed=1"></iframe>`
+        : pairingBusy
+          ? `<p>Creating a pairing QR…</p>`
+          : pairingError
+            ? `<p>${esc(pairingError)}</p>`
+            : "";
+      const canApprove = Boolean(auth && selectedPhone && !row.decision && !busy);
+      const paired = Boolean(row.paired || phones.length);
+      const mesh = row.mesh && typeof row.mesh === "object" ? row.mesh : null;
       root.innerHTML = `
-        <span class="chip">${row.clientName || "Coding app"}</span>
-        ${panel(
-          row.paired ? "A phone is already connected" : "This computer is not paired yet.",
-          row.paired
-            ? "You can approve this coding app without changing your existing connection."
-            : "Scan the QR in the GrantTap plugin or the iPhone app, then approve here.",
-          row.paired
-        )}
-        <div class="panel ok"><h2>Coding apps on this computer</h2><div class="apps">${apps}</div></div>
+        <span class="chip">${esc(row.computerName || "This Mac")}</span>
+        ${auth ? `<span class="chip">${esc(row.clientName || "Coding app")}</span>` : ""}
+        <div class="panel ok">
+          <h2>${pairingViewId ? "Scan in GrantTap" : paired ? "Devices in this room" : "Pair a device"}</h2>
+          <p>${pairingViewId
+            ? "Scan on iPhone, iPad, or Android. That device and any computer it pairs later share this room. A Mesh link is separate — it shares Mesh, not this room."
+            : paired
+              ? (seenPhones.length ? "This device is in the room. More phones, tablets, and PCs can join it." : "This computer is in the room. Waiting for the app.")
+              : "The QR appears here. Scan it in GrantTap on a phone or tablet."}
+          ${phoneRows ? `<div class="phones">${phoneRows}</div>` : ""}
+          ${qr}
+        </div>
+        <div class="panel ok"><h2>Project Mesh</h2>
+          <p>${mesh && mesh.present
+            ? `This Mac is on the Mesh${mesh.openTasks ? ` · ${Number(mesh.openTasks)} open tasks` : ""}.`
+            : "No Mesh on this computer yet. After the phone is paired, a project on this Mac joins the Mesh."}</p>
+          ${mesh && Array.isArray(mesh.computers) && mesh.computers.length
+            ? `<div class="apps">${mesh.computers.map((name) =>
+                `<span class="app${name === mesh.thisComputer ? " ready" : ""}"><i></i>${esc(name)}${name === mesh.thisComputer ? " · this Mac" : ""}</span>`
+              ).join("")}</div>`
+            : ""}
+        </div>
+        <div class="panel ok"><h2>Coding apps on this computer</h2><div class="apps">${apps || "<p>No coding apps reported yet.</p>"}</div></div>
         ${row.error ? panel("The coding app could not finish authorization.", row.error) : ""}
         ${row.decision && !row.redirectUrl && !row.error ? `<p class="lead">Waiting for this computer…</p>` : ""}
         <div class="actions">
-          <button class="primary" id="approve" ${row.decision || busy ? "disabled" : ""}>Approve</button>
-          <button class="ghost" id="deny" ${row.decision || busy ? "disabled" : ""}>Deny</button>
+          ${paired && !pairingViewId ? `<button class="ghost" id="reconnect" ${pairingBusy || row.decision ? "disabled" : ""}>Reconnect this iPhone</button>` : ""}
+          ${paired && !pairingViewId ? `<button class="ghost" id="another" ${pairingBusy || row.decision ? "disabled" : ""}>Add another device</button>` : ""}
+          ${auth ? `<button class="primary" id="approve" ${canApprove ? "" : "disabled"}>Approve</button>` : ""}
+          ${auth ? `<button class="ghost" id="deny" ${row.decision || busy ? "disabled" : ""}>Deny</button>` : ""}
         </div>`;
+      root.querySelectorAll(".phone").forEach((button) => {
+        button.addEventListener("click", () => {
+          selectedPhone = button.getAttribute("data-name") || "";
+          render(row, false);
+        });
+      });
+      document.getElementById("reconnect")?.addEventListener("click", () => void showQr(true, false));
+      document.getElementById("another")?.addEventListener("click", () => void showQr(true, false));
       document.getElementById("approve")?.addEventListener("click", () => decide("approve"));
       document.getElementById("deny")?.addEventListener("click", () => decide("deny"));
     }
+    async function pair(confirmed, replace) {
+      const body = new URLSearchParams();
+      const id = requestId();
+      if (id) body.set("pending_id", id);
+      if (confirmed) body.set("confirmed", "true");
+      if (replace) body.set("replace", "true");
+      const response = await fetch(helperOrigin() + "/oauth/pairing", {
+        method: "POST",
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        body,
+      });
+      const json = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(json.error || "GrantTap helper rejected pairing.");
+      }
+      return json;
+    }
+    async function showQr(force, replace) {
+      if (pairingBusy) return;
+      pairingBusy = true;
+      pairingError = "";
+      if (lastRow) render(lastRow, false);
+      try {
+        const body = await pair(force, replace);
+        if (body.alreadyPaired) {
+          pairingError = "";
+          pairingBusy = false;
+          lastRow = mergeRow(lastRow, body);
+          if (lastRow) render(lastRow, false);
+          return;
+        }
+        if (!body.viewId) throw new Error("Helper did not return a pairing view.");
+        pairingViewId = body.viewId;
+        pairingError = "";
+      } catch (error) {
+        pairingError = error instanceof Error ? error.message : "Could not create a pairing QR. Is GrantTap running on this computer?";
+      }
+      pairingBusy = false;
+      if (lastRow) render(lastRow, false);
+    }
+    async function loadHelper() {
+      const response = await fetch(helperOrigin() + "/oauth/connection", { cache: "no-store" });
+      if (response.ok) return response.json();
+      const session = await fetch(helperOrigin() + "/oauth/session?pending_id=" + encodeURIComponent(requestId()), { cache: "no-store" });
+      if (session.ok) return session.json();
+      if (session.status === 404) {
+        const body = await session.json().catch(() => ({}));
+        if (body && typeof body.paired === "boolean") return body;
+      }
+      throw new Error("helper");
+    }
     async function tick() {
-      if (!id) { render(null, true); return; }
-      const response = await fetch("/api/connect/requests/" + id, { cache: "no-store" });
-      if (response.status === 404) { render(null, true); return; }
-      if (!response.ok) return;
-      render(await response.json(), false);
+      let local = null;
+      let helperMissing = false;
+      try {
+        local = await loadHelper();
+      } catch {
+        helperMissing = true;
+      }
+      let site = null;
+      const id = requestId();
+      if (id) {
+        const response = await fetch("/api/connect/requests/" + id, { cache: "no-store" });
+        if (response.ok) site = await response.json();
+      }
+      const row = mergeRow(site, local);
+      if (!row) {
+        document.getElementById("title").textContent = id ? "Connect your coding app" : "Your devices";
+        if (id) {
+          root.innerHTML = panel(
+            helperMissing ? "Waiting for this Mac" : "This request is not on GrantTap yet.",
+            helperMissing
+              ? "GrantTap on this computer is publishing the request. Allow local network access for granttap.com if Chrome asks, then keep this tab open."
+              : "Start authorization again from your coding app, or open this page without a request to manage devices."
+          );
+          return;
+        }
+        render(null, helperMissing);
+        return;
+      }
+      const next = JSON.stringify({ row, pairingViewId, pairingError, pairingBusy, selectedPhone });
+      if (next !== lastJson) {
+        lastJson = next;
+        render(row, false);
+      }
+      if (!pairingTried && !pairingViewId && !(row.paired || (row.phones || []).length)) {
+        pairingTried = true;
+        void showQr(false);
+      }
     }
     async function decide(decision) {
+      const id = requestId();
       if (!id || busy) return;
+      if (decision === "approve" && !selectedPhone) return;
       busy = true;
+      if (lastRow) render(lastRow, false);
       await fetch("/api/connect/requests/" + id + "/decision", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ decision }),
+        body: JSON.stringify({ decision, phone: selectedPhone || undefined }),
       });
       busy = false;
       tick();
