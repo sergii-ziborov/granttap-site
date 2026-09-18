@@ -32,6 +32,10 @@ test("scanning the QR is the Approve; the devices page stays after the coding ap
   assert.doesNotMatch(html, /127\.0\.0\.1:17342/);
 });
 
+test("the devices page shows this computer's short room id next to its name", () => {
+  assert.match(html, /row\.roomPrefix \? ` · \$\{esc\(String\(row\.roomPrefix\)\.slice\(0, 8\)\)\}…`/);
+});
+
 test("paired devices keep Reconnect and Add another even while a QR is showing", () => {
   assert.match(html, /\$\{paired \? `<button class="ghost" id="reconnect"/);
   assert.match(html, /\$\{paired \? `<button class="ghost" id="another"/);

@@ -167,7 +167,7 @@
       const paired = Boolean(row.paired || phones.length);
       const mesh = row.mesh && typeof row.mesh === "object" ? row.mesh : null;
       root.innerHTML = `
-        <span class="chip">${esc(row.computerName || "This Mac")}</span>
+        <span class="chip">${esc(row.computerName || "This Mac")}${row.roomPrefix ? ` · ${esc(String(row.roomPrefix).slice(0, 8))}…` : ""}</span>
         ${auth ? `<span class="chip">${esc(row.clientName || "Coding app")}</span>` : ""}
         <div class="panel ok">
           <h2>${pairingViewId ? "Scan in GrantTap" : paired ? "Devices in this room" : "Pair a device"}</h2>
