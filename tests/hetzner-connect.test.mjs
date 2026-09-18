@@ -20,20 +20,25 @@ test("connect page can approve the one saved phone before the helper marks it se
   );
 });
 
-test("scanning the QR is the Approve; the devices page stays after the coding app callback", () => {
+test("scanning the QR is the Approve; the coding-app callback is a top-level redirect", () => {
   assert.match(html, /function maybeApproveScan\(row\)/);
   assert.match(html, /phone\.status === "seen"/);
+  assert.doesNotMatch(html, /row\.paired && phones\.length/);
   assert.match(html, /void decide\("approve"\)/);
   assert.match(html, /That scan authorizes this coding app/);
   assert.match(html, /function handOffOAuth\(redirectUrl\)/);
-  assert.match(html, /history\.replaceState\(null, "", location\.pathname\)/);
-  assert.doesNotMatch(html, /location\.assign\(row\.redirectUrl\)/);
+  assert.match(html, /window\.location\.assign\(redirectUrl\)/);
+  assert.doesNotMatch(html, /document\.createElement\("iframe"\)/);
   assert.match(html, /auth && !pairingViewId \? `<button class="primary" id="approve"/);
   assert.doesNotMatch(html, /127\.0\.0\.1:17342/);
 });
 
 test("the devices page shows this computer's short room id next to its name", () => {
   assert.match(html, /row\.roomPrefix \? ` · \$\{esc\(String\(row\.roomPrefix\)\.slice\(0, 8\)\)\}…`/);
+});
+
+test("an already paired Mac does not mint a QR just because Cursor asked again", () => {
+  assert.match(html, /if \(!paired\) \{\s*pairingTried = true;\s*void showQr\(false, false\);/);
 });
 
 test("paired devices keep Reconnect and Add another even while a QR is showing", () => {

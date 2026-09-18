@@ -83,17 +83,15 @@
     function handOffOAuth(redirectUrl) {
       if (oauthHandedOff || !redirectUrl) return;
       oauthHandedOff = true;
-      const frame = document.createElement("iframe");
-      frame.hidden = true;
-      frame.title = "Finish authorization";
-      frame.src = redirectUrl;
-      document.body.appendChild(frame);
-      pairingViewId = "";
-      dropRequest();
+      // Top-level navigation is the coding-app callback. A hidden iframe from
+      // https://granttap.com to http://127.0.0.1 is blocked, so Cursor never
+      // receives the code and stays on Needs Authentication.
+      window.location.assign(redirectUrl);
     }
     function maybeApproveScan(row) {
       if (scanApproved || busy || !requestId() || row.decision) return;
-      const seen = (Array.isArray(row.phones) ? row.phones : []).find((phone) => phone.status === "seen");
+      const phones = Array.isArray(row.phones) ? row.phones : [];
+      const seen = phones.find((phone) => phone.status === "seen");
       if (!seen) return;
       scanApproved = true;
       selectedPhone = selectedPhone || seen.name || "iPhone";
@@ -154,7 +152,7 @@
         const name = phone.name || "iPhone";
         const seen = phone.status === "seen";
         const selected = selectedPhone === name;
-        return `<button type="button" class="phone${seen ? " seen" : ""}${selected ? " selected" : ""}" data-name="${esc(name)}" ${row.decision || busy ? "disabled" : ""}><i></i><span>${esc(name)}</span><em>${seen ? "Connected just now" : "Saved · waiting for the app"}</em></button>`;
+        return `<button type="button" class="phone${seen ? " seen" : ""}${selected ? " selected" : ""}" data-name="${esc(name)}" ${row.decision || busy ? "disabled" : ""}><i></i><span>${esc(name)}</span><em>${seen ? "QR scanned · Live is only in GrantTap" : "Saved · waiting for the app"}</em></button>`;
       }).join("");
       const qr = pairingViewId
         ? `<iframe class="qr" title="GrantTap pairing QR" scrolling="no" src="${helperOrigin()}/oauth/pairing/view?view_id=${esc(pairingViewId)}&embed=1"></iframe>`
@@ -297,9 +295,9 @@
       }
       if (!pairingTried && !pairingViewId && !row.decision && !row.redirectUrl && !scanApproved) {
         const paired = Boolean(row.paired || (row.phones || []).length);
-        if (id || !paired) {
+        if (!paired) {
           pairingTried = true;
-          void showQr(paired, false);
+          void showQr(false, false);
         }
       }
     }
