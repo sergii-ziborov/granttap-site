@@ -51,7 +51,7 @@
       <section class="card">
         <p class="eyebrow">GrantTap</p>
         <h1 id="title">Your devices</h1>
-        <p class="lead" id="lead">This page talks to GrantTap on this Mac. The iPhone app shows the computer; Cursor settings do not.</p>
+        <p class="lead" id="lead">This Mac and the devices in its pairing room. Scan the QR in GrantTap to join — that scan is the authorization.</p>
         <div id="root"></div>
       </section>
     </main>
@@ -71,9 +71,33 @@
     let pairingError = "";
     let pairingBusy = false;
     let pairingTried = false;
+    let oauthHandedOff = false;
+    let scanApproved = false;
 
     function requestId() {
       return new URLSearchParams(location.hash.replace(/^#/, "")).get("request") || "";
+    }
+    function dropRequest() {
+      try { history.replaceState(null, "", location.pathname); } catch { /* stay */ }
+    }
+    function handOffOAuth(redirectUrl) {
+      if (oauthHandedOff || !redirectUrl) return;
+      oauthHandedOff = true;
+      const frame = document.createElement("iframe");
+      frame.hidden = true;
+      frame.title = "Finish authorization";
+      frame.src = redirectUrl;
+      document.body.appendChild(frame);
+      pairingViewId = "";
+      dropRequest();
+    }
+    function maybeApproveScan(row) {
+      if (scanApproved || busy || !requestId() || row.decision) return;
+      const seen = (Array.isArray(row.phones) ? row.phones : []).find((phone) => phone.status === "seen");
+      if (!seen) return;
+      scanApproved = true;
+      selectedPhone = selectedPhone || seen.name || "iPhone";
+      void decide("approve");
     }
     function esc(value) {
       return String(value).replace(/[&<>"']/g, (ch) => ({
@@ -102,18 +126,18 @@
       const auth = Boolean(requestId());
       document.getElementById("title").textContent = auth ? "Connect your coding app" : "Your devices";
       document.getElementById("lead").textContent = auth
-        ? "GrantTap is asking to send approvals and activity from this coding app to your phone."
-        : "This Mac and the iPhone saved on it. Reconnect replaces the current pairing and shows a new QR immediately.";
+        ? "Scan the QR in GrantTap. That scan authorizes this coding app. There is no second Approve after the scan."
+        : "This Mac and the devices in its pairing room. Reconnect and Add another show a new QR for the same room.";
       if (missingHelper) {
         root.innerHTML = panel(
           "Open this page on the Mac",
-          "GrantTap on this computer is not reachable at 127.0.0.1:17342. Start GrantTap on this Mac, then reload."
+          "GrantTap is not running on this computer. Open GrantTap here, then reload."
         );
         return;
       }
       if (!row) { root.innerHTML = ""; return; }
       lastRow = row;
-      if (row.redirectUrl) { location.assign(row.redirectUrl); return; }
+      if (row.redirectUrl) handOffOAuth(row.redirectUrl);
       const phones = Array.isArray(row.phones) ? row.phones : [];
       const seenPhones = phones.filter((phone) => phone.status === "seen");
       if (!selectedPhone && phones.length === 1 && phones[0].name) selectedPhone = phones[0].name;
@@ -169,9 +193,9 @@
         ${row.error ? panel("The coding app could not finish authorization.", row.error) : ""}
         ${row.decision && !row.redirectUrl && !row.error ? `<p class="lead">Waiting for this computer…</p>` : ""}
         <div class="actions">
-          ${paired && !pairingViewId ? `<button class="ghost" id="reconnect" ${pairingBusy || row.decision ? "disabled" : ""}>Reconnect this iPhone</button>` : ""}
-          ${paired && !pairingViewId ? `<button class="ghost" id="another" ${pairingBusy || row.decision ? "disabled" : ""}>Add another device</button>` : ""}
-          ${auth ? `<button class="primary" id="approve" ${canApprove ? "" : "disabled"}>Approve</button>` : ""}
+          ${paired ? `<button class="ghost" id="reconnect" ${pairingBusy || row.decision ? "disabled" : ""}>Reconnect this iPhone</button>` : ""}
+          ${paired ? `<button class="ghost" id="another" ${pairingBusy || row.decision ? "disabled" : ""}>Add another device</button>` : ""}
+          ${auth && !pairingViewId ? `<button class="primary" id="approve" ${canApprove ? "" : "disabled"}>Approve</button>` : ""}
           ${auth ? `<button class="ghost" id="deny" ${row.decision || busy ? "disabled" : ""}>Deny</button>` : ""}
         </div>`;
       root.querySelectorAll(".phone").forEach((button) => {
@@ -265,20 +289,24 @@
         render(null, helperMissing);
         return;
       }
+      maybeApproveScan(row);
       const next = JSON.stringify({ row, pairingViewId, pairingError, pairingBusy, selectedPhone });
       if (next !== lastJson) {
         lastJson = next;
         render(row, false);
       }
-      if (!pairingTried && !pairingViewId && !(row.paired || (row.phones || []).length)) {
-        pairingTried = true;
-        void showQr(false);
+      if (!pairingTried && !pairingViewId && !row.decision && !row.redirectUrl && !scanApproved) {
+        const paired = Boolean(row.paired || (row.phones || []).length);
+        if (id || !paired) {
+          pairingTried = true;
+          void showQr(paired, false);
+        }
       }
     }
     async function decide(decision) {
       const id = requestId();
       if (!id || busy) return;
-      if (decision === "approve" && !selectedPhone) return;
+      if (decision === "approve" && !selectedPhone) selectedPhone = "iPhone";
       busy = true;
       if (lastRow) render(lastRow, false);
       await fetch("/api/connect/requests/" + id + "/decision", {
