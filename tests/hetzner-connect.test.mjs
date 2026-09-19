@@ -11,7 +11,9 @@ const html = readFileSync(
 
 test("connect page can approve the one saved phone before the helper marks it seen", () => {
   assert.match(html, /if \(!selectedPhone && phones\.length === 1 && phones\[0\]\.name\) selectedPhone = phones\[0\]\.name;/);
-  assert.match(html, /const canApprove = Boolean\(auth && selectedPhone && !row\.decision && !busy\);/);
+  assert.match(html, /const canApprove = Boolean\(auth && selectedPhone && !row\.redirectUrl && !busy\);/);
+  assert.match(html, /helperOrigin\(\) \+ "\/oauth\/decision"/);
+  assert.match(html, /This computer has not finished authorization\. Tap Approve again\./);
   assert.doesNotMatch(html, /seenPhones\.some/);
   assert.doesNotMatch(
     html,

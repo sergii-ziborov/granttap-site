@@ -35,7 +35,7 @@ function isLoopbackRedirect(value: string): boolean {
     const host = url.hostname.toLowerCase();
     return url.protocol === "http:"
       && (host === "127.0.0.1" || host === "localhost" || host === "::1")
-      && /\/callback(\/|$)/.test(url.pathname);
+      && /\/(callback|oauth|redirect)(\/|$)/.test(url.pathname);
   } catch {
     return false;
   }

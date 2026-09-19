@@ -39,6 +39,7 @@ const COPY = {
     approve: "Approve",
     deny: "Deny",
     waiting: "Waiting for this computer…",
+    retry: "This computer has not finished authorization. Tap Approve again.",
     failed: "The coding app could not finish authorization.",
   },
   ru: {
@@ -64,6 +65,7 @@ const COPY = {
     approve: "Подтвердить",
     deny: "Отклонить",
     waiting: "Ждём этот компьютер…",
+    retry: "Этот компьютер не закончил авторизацию. Нажмите Approve ещё раз.",
     failed: "Coding app не смог завершить авторизацию.",
   },
 } as const;
@@ -201,12 +203,14 @@ export function ConnectView() {
                   ))}
                 </div>
               </div>
-              {row.decision && !row.redirectUrl && !row.error && <p className="lead">{t.waiting}</p>}
+              {row.decision && !row.redirectUrl && !row.error && (
+                <p className="lead">{busy ? t.waiting : t.retry}</p>
+              )}
               <div className="connect-actions">
-                <button className="primary" type="button" disabled={busy || Boolean(row.decision) || !selectedPhone} onClick={() => void decide("approve")}>
+                <button className="primary" type="button" disabled={busy || Boolean(row.redirectUrl) || !selectedPhone} onClick={() => void decide("approve")}>
                   {t.approve}
                 </button>
-                <button className="ghost" type="button" disabled={busy || Boolean(row.decision)} onClick={() => void decide("deny")}>
+                <button className="ghost" type="button" disabled={busy || Boolean(row.redirectUrl)} onClick={() => void decide("deny")}>
                   {t.deny}
                 </button>
               </div>
