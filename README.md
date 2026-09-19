@@ -31,10 +31,20 @@ npm install -g granttap-mcp
 granttap setup
 ```
 
-After plugin installation, open GrantTap inside Codex or ask the agent:
-`Show my GrantTap pairing QR.` Codex renders connection status, the one-time
-QR, a copy-link fallback, and confirmed reconnect controls in the conversation.
-The current plugin uses the public `granttap-mcp@0.8.18` package.
+After plugin installation, run `granttap setup` and Authenticate in the coding
+app. The browser opens [granttap.com/connect](https://granttap.com/connect):
+this computer, its phones, Approve, Reconnect, and Add another. A saved pairing
+does not skip that page or jump to the coding-app callback. Scan in the
+GrantTap app only when a new device joins. Do not ask an agent to print a
+pairing QR in chat. The current plugin uses the public `granttap-mcp@0.8.18`
+package.
+
+Live `/` is the Cloudflare Next site (`npm run deploy:cloudflare`). Live
+`/connect` and `/api/connect` stay on the Hetzner helper (`hetzner/`), because
+that page talks to the local GrantTap helper for the pairing QR.
+
+For Cursor, install the reviewed **GrantTap** Marketplace listing, then
+`granttap setup`. Do not add GrantTap in Customize → MCPs.
 
 The Task screenshot includes a demo Runtime history. On a real computer,
 Invocation history requires the separately distributed GrantTap Engine. A tool
@@ -68,9 +78,11 @@ npm test
 npm run lint
 ```
 
-The site uses React, vinext, and Cloudflare tooling. `.openai/hosting.json`
-binds the Sites project, while `wrangler.production.jsonc` describes the
-canonical Cloudflare deployment. Do not publish without explicit authorization.
+Live granttap.com is the Hetzner compose stack: `/` on port 3211, `/connect`
+and `/api/connect` on port 3210. `wrangler.production.jsonc` is a leftover
+Cloudflare config — do not `wrangler deploy` it over the live domain. Publish
+by rsyncing this tree to `/srv/apps/granttap-site/releases/` and
+`docker compose -p granttap-web -f compose.hetzner.yaml up -d --build`.
 
 Product captures under `public/product/` must come from deterministic sample
 data and contain no real pairing, task, repository, credential, or audit data.

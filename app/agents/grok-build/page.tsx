@@ -14,6 +14,7 @@ export default function GrokBuildPage() {
     intro="GrantTap includes Grok Build where its local runtime exposes durable session behavior, while clearly separating that integration from the scoped Grok Bot endpoint."
     status="Experimental where available"
     facts={[
+      { title: "Authenticate", text: "After granttap setup, authenticate Grok Build. granttap.com/connect is the device page — not a QR printed in chat." },
       { title: "Honest discovery", text: "Visible Grok Build sessions can join the same provider-neutral task catalog." },
       { title: "Bounded continuation", text: "Where the installed CLI supports it, GrantTap can route a follow-up to the native session." },
       { title: "Shared presentation", text: "Computer, workspace, task state, and observed activity use the same truthful UI vocabulary." },

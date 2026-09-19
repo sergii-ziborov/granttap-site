@@ -14,6 +14,7 @@ export default function ClaudeCodePage() {
     intro="GrantTap follows your local Claude Code sessions across linked computers and brings the moments that need a human to iPhone and Apple Watch."
     status="Primary"
     facts={[
+      { title: "Authenticate", text: "Open GrantTap in Claude and authenticate. granttap.com/connect shows this computer and its phones. Do not ask Claude to print a pairing QR in chat." },
       { title: "Live task state", text: "See the computer, workspace, model, context pressure, and latest useful activity." },
       { title: "Authenticated decisions", text: "Allow or deny native permission requests from iPhone notifications or Apple Watch." },
       { title: "Continue locally", text: "Send the next bounded turn back to the same native session without copying its transcript to GrantTap." },

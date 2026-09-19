@@ -16,7 +16,8 @@ test("renders the Personal product journey and locale control", async () => {
   expect(screen.getByRole("heading", { name: "Needs You" })).toBeTruthy();
   expect(screen.getByText(/codex plugin add granttap@granttap/)).toBeTruthy();
   expect(screen.getByText(/claude plugin install granttap@granttap/)).toBeTruthy();
-  expect(screen.getByText(/npm install -g granttap-mcp/)).toBeTruthy();
+  expect(screen.getByText(/Install GrantTap from Cursor Marketplace/)).toBeTruthy();
+  expect(screen.getAllByText(/npm install -g granttap-mcp/).length).toBeGreaterThan(0);
   expect(screen.queryByText(/Enterprise|Open account|GrantTap Web/i)).toBeNull();
   expect(screen.getByRole("img", { name: "GrantTap live task chat" })).toBeTruthy();
 

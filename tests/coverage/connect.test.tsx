@@ -1,11 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, expect, test, vi } from "vitest";
+import ConnectPage from "../../app/connect/page";
 import { ConnectView } from "../../app/connect/ConnectView";
 
 afterEach(() => {
   vi.unstubAllGlobals();
   window.location.hash = "";
+});
+
+test("the /connect route renders the authorization card", () => {
+  window.location.hash = "";
+  render(<ConnectPage />);
+  expect(screen.getByRole("heading", { name: "Connect your coding app", level: 1 })).toBeTruthy();
 });
 
 test("connect page talks only to the website API", async () => {
@@ -32,13 +39,43 @@ test("connect page talks only to the website API", async () => {
   await userEvent.click(screen.getByRole("button", { name: /iPhone/i }));
   await userEvent.click(screen.getByRole("button", { name: "Approve" }));
   expect(fetchMock.mock.calls.some((call) => String(call[0]).endsWith("/decision"))).toBe(true);
-  const decision = fetchMock.mock.calls.find((call) => String(call[0]).endsWith("/decision"));
+  const decision = fetchMock.mock.calls.find((call) => String(call[0]).endsWith("/decision")) as
+    | [RequestInfo, RequestInit?]
+    | undefined;
   expect(JSON.parse(String(decision?.[1]?.body))).toMatchObject({ decision: "approve", phone: "iPhone" });
+});
+
+test("a missing website row keeps the person on this page", async () => {
+  window.location.hash = "#request=11111111-1111-4111-8111-111111111111";
+  vi.stubGlobal("fetch", vi.fn(async () => new Response(null, { status: 404 })));
+  render(<ConnectView />);
+  expect(await screen.findByText(/not on GrantTap yet/i)).toBeTruthy();
+});
+
+test("Deny posts the decision without leaving the page", async () => {
+  window.location.hash = "#request=11111111-1111-4111-8111-111111111111";
+  const fetchMock = vi.fn(async (input: RequestInfo) => {
+    if (String(input).endsWith("/decision")) return new Response(JSON.stringify({ ok: true }), { status: 200 });
+    return new Response(JSON.stringify({
+      clientName: "Cursor",
+      paired: true,
+      phones: [{ name: "iPhone", status: "paired" }],
+      providers: [{ id: "cursor", installed: true, ready: true }],
+    }), { status: 200 });
+  });
+  vi.stubGlobal("fetch", fetchMock);
+  render(<ConnectView />);
+  expect(await screen.findByRole("button", { name: "Deny" })).toBeTruthy();
+  await userEvent.click(screen.getByRole("button", { name: "Deny" }));
+  const decision = fetchMock.mock.calls.find((call) => String(call[0]).endsWith("/decision")) as
+    | [RequestInfo, RequestInit?]
+    | undefined;
+  expect(JSON.parse(String(decision?.[1]?.body))).toMatchObject({ decision: "deny" });
 });
 
 test("missing request does not mention loopback", async () => {
   window.location.hash = "";
   render(<ConnectView />);
-  expect(screen.getByText(/not on GrantTap yet/i)).toBeTruthy();
+  expect(await screen.findByText(/not on GrantTap yet/i)).toBeTruthy();
   expect(document.body.textContent).not.toMatch(/127\.0\.0\.1|localhost:17342/);
 });

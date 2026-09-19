@@ -51,7 +51,7 @@
       <section class="card">
         <p class="eyebrow">GrantTap</p>
         <h1 id="title">Your devices</h1>
-        <p class="lead" id="lead">This Mac and the devices in its pairing room. Scan the QR in GrantTap to join — that scan is the authorization.</p>
+        <p class="lead" id="lead">Approve this coding app, or scan a new QR in GrantTap. A saved pairing stays on this page so you can Reconnect or add a device. The coding-app callback waits for Approve or that scan.</p>
         <div id="root"></div>
       </section>
     </main>
@@ -124,7 +124,7 @@
       const auth = Boolean(requestId());
       document.getElementById("title").textContent = auth ? "Connect your coding app" : "Your devices";
       document.getElementById("lead").textContent = auth
-        ? "Scan the QR in GrantTap. That scan authorizes this coding app. There is no second Approve after the scan."
+        ? "Approve this coding app, or scan a new QR in GrantTap. A saved pairing stays on this page so you can Reconnect or add a device. The coding-app callback waits for Approve or that scan."
         : "This Mac and the devices in its pairing room. Reconnect and Add another show a new QR for the same room.";
       if (missingHelper) {
         root.innerHTML = panel(

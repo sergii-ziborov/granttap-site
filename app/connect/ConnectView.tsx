@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { LanguageToggle, useLocale } from "../components/Locale";
 
 type Provider = { id: "codex" | "claude" | "cursor"; installed: boolean; ready: boolean };
@@ -19,13 +20,13 @@ const COPY = {
     home: "Home",
     eyebrow: "GrantTap authorization",
     title: "Connect your coding app",
-    lead: "GrantTap is asking to send approvals and activity from this coding app to your phone.",
+    lead: "Approve this coding app, or wait for a new-device scan in GrantTap. A saved pairing does not skip this page. Reconnect and Add another stay available so you can change the phone.",
     missing: "This request is not on GrantTap yet.",
     missingBody: "Start authorization again from your coding app. The website never talks to localhost.",
     unpaired: "This computer is not paired yet.",
-    unpairedBody: "Scan the QR in the GrantTap plugin or the iPhone app, then approve here.",
-    phones: "Choose a phone",
-    phonesBody: "Approvals from this coding app go to the phone you select.",
+    unpairedBody: "Scan the one-time QR in the GrantTap app on the phone, then Approve here if the scan has not already authorized this request.",
+    phones: "Devices in this room",
+    phonesBody: "A scan in GrantTap is the Approve for a new device. A saved phone still needs Approve or Reconnect on this page.",
     phonesEmpty: "No phone is listed for this computer yet. Add one in the GrantTap plugin, then start authorization again.",
     phonePaired: "Paired",
     phoneSeen: "Online just now",
@@ -44,13 +45,13 @@ const COPY = {
     home: "Главная",
     eyebrow: "Авторизация GrantTap",
     title: "Подключите coding app",
-    lead: "GrantTap просит отправлять approvals и активность этого coding app на телефон.",
+    lead: "Подтвердите этот coding app или дождитесь скана нового устройства в GrantTap. Сохранённое сопряжение эту страницу не пропускает. Reconnect и Add another остаются, чтобы сменить телефон.",
     missing: "Этого запроса ещё нет на GrantTap.",
     missingBody: "Запустите авторизацию снова из coding app. Сайт не ходит на localhost.",
     unpaired: "Этот компьютер ещё не сопряжён.",
-    unpairedBody: "Отсканируйте QR в плагине GrantTap или в приложении на iPhone, затем подтвердите здесь.",
-    phones: "Выберите телефон",
-    phonesBody: "Подтверждения из этого coding app пойдут на выбранный телефон.",
+    unpairedBody: "Отсканируйте одноразовый QR в приложении GrantTap на телефоне, затем Approve здесь, если скан ещё не авторизовал запрос.",
+    phones: "Устройства в этой комнате",
+    phonesBody: "Скан в GrantTap — Approve для нового устройства. Сохранённый телефон всё равно нужно подтвердить или сделать Reconnect.",
     phonesEmpty: "Для этого компьютера телефон ещё не указан. Добавьте его в плагине GrantTap и запустите авторизацию снова.",
     phonePaired: "Сопряжён",
     phoneSeen: "Сейчас онлайн",
@@ -89,12 +90,13 @@ export function ConnectView() {
 
   useEffect(() => {
     const next = requestId();
-    setId(next);
-    if (!next) {
-      setMissing(true);
-      return;
-    }
     let cancelled = false;
+    queueMicrotask(() => {
+      if (cancelled) return;
+      setId(next);
+      if (!next) setMissing(true);
+    });
+    if (!next) return () => { cancelled = true; };
     const tick = async () => {
       const response = await fetch(`/api/connect/requests/${next}`, { cache: "no-store" });
       if (cancelled) return;
@@ -137,12 +139,12 @@ export function ConnectView() {
   return (
     <div className="connect-page">
       <header className="connect-header">
-        <a className="connect-brand" href="/">
+        <Link className="connect-brand" href="/">
           <img src="/favicon.png" alt="" width={28} height={28} />
           GrantTap
-        </a>
+        </Link>
         <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-          <a href="/">{t.home}</a>
+          <Link href="/">{t.home}</Link>
           <LanguageToggle locale={locale} setLocale={setLocale} />
         </div>
       </header>
