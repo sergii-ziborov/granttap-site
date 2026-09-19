@@ -29,6 +29,8 @@ test("scanning the QR is the Approve; the coding-app callback is a top-level red
   assert.match(html, /function handOffOAuth\(redirectUrl\)/);
   assert.match(html, /window\.location\.assign\(redirectUrl\)/);
   assert.doesNotMatch(html, /document\.createElement\("iframe"\)/);
+  assert.match(html, /setInterval\(tick, 3000\)/);
+  assert.doesNotMatch(html, /setInterval\(tick, 1000\)/);
   assert.match(html, /auth && !pairingViewId \? `<button class="primary" id="approve"/);
   assert.doesNotMatch(html, /127\.0\.0\.1:17342/);
 });

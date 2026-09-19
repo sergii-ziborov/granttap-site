@@ -117,7 +117,7 @@ export function ConnectView() {
       if (body.redirectUrl) window.location.assign(body.redirectUrl);
     };
     void tick();
-    const timer = window.setInterval(() => { void tick(); }, 1000);
+    const timer = window.setInterval(() => { void tick(); }, 3000);
     return () => {
       cancelled = true;
       window.clearInterval(timer);
