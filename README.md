@@ -36,12 +36,11 @@ app. The browser opens [granttap.com/connect](https://granttap.com/connect):
 this computer, its phones, Approve, Reconnect, and Add another. A saved pairing
 does not skip that page or jump to the coding-app callback. Scan in the
 GrantTap app only when a new device joins. Do not ask an agent to print a
-pairing QR in chat. The current plugin uses the public `granttap-mcp@0.8.18`
+pairing QR in chat. The current plugin uses the public `granttap-mcp@0.8.19`
 package.
 
-Live `/` is the Cloudflare Next site (`npm run deploy:cloudflare`). Live
-`/connect` and `/api/connect` stay on the Hetzner helper (`hetzner/`), because
-that page talks to the local GrantTap helper for the pairing QR.
+Live `/`, `/connect`, and `/api/connect` use the Hetzner compose stack.
+The connect page talks to the local GrantTap helper for the pairing QR.
 
 For Cursor, install the reviewed **GrantTap** Marketplace listing, then
 `granttap setup`. Do not add GrantTap in Customize → MCPs.
