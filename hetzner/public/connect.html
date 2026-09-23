@@ -207,17 +207,18 @@
           render(row, false);
         });
       });
-      document.getElementById("reconnect")?.addEventListener("click", () => void showQr(true, false));
-      document.getElementById("another")?.addEventListener("click", () => void showQr(true, false));
+      document.getElementById("reconnect")?.addEventListener("click", () => void showQr(true, false, false));
+      document.getElementById("another")?.addEventListener("click", () => void showQr(true, false, true));
       document.getElementById("approve")?.addEventListener("click", () => decide("approve"));
       document.getElementById("deny")?.addEventListener("click", () => decide("deny"));
     }
-    async function pair(confirmed, replace) {
+    async function pair(confirmed, replace, addDevice) {
       const body = new URLSearchParams();
       const id = requestId();
       if (id) body.set("pending_id", id);
       if (confirmed) body.set("confirmed", "true");
       if (replace) body.set("replace", "true");
+      if (addDevice) body.set("mode", "add_device");
       const response = await fetch(helperOrigin() + "/oauth/pairing", {
         method: "POST",
         headers: { "content-type": "application/x-www-form-urlencoded" },
@@ -229,13 +230,13 @@
       }
       return json;
     }
-    async function showQr(force, replace) {
+    async function showQr(force, replace, addDevice = false) {
       if (pairingBusy) return;
       pairingBusy = true;
       pairingError = "";
       if (lastRow) render(lastRow, false);
       try {
-        const body = await pair(force, replace);
+        const body = await pair(force, replace, addDevice);
         if (body.alreadyPaired) {
           pairingError = "";
           pairingBusy = false;

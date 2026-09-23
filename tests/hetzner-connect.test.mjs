@@ -51,7 +51,8 @@ test("paired devices keep Reconnect and Add another even while a QR is showing",
   assert.doesNotMatch(html, /paired && !pairingViewId \? `<button class="ghost" id="reconnect"/);
   assert.match(html, /Reconnect this iPhone/);
   assert.match(html, /Add another device/);
-  assert.match(html, /showQr\(true, false\)/);
-  assert.doesNotMatch(html, /showQr\(true, true\)/);
+  assert.match(html, /"reconnect"\)\?\.addEventListener\("click", \(\) => void showQr\(true, false, false\)\)/);
+  assert.match(html, /"another"\)\?\.addEventListener\("click", \(\) => void showQr\(true, false, true\)\)/);
+  assert.match(html, /if \(addDevice\) body\.set\("mode", "add_device"\)/);
   assert.doesNotMatch(html, /Reconnect replaces the current pairing/);
 });
