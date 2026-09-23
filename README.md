@@ -36,7 +36,7 @@ app. The browser opens [granttap.com/connect](https://granttap.com/connect):
 this computer, its phones, Approve, Reconnect, and Add another. A saved pairing
 does not skip that page or jump to the coding-app callback. Scan in the
 GrantTap app only when a new device joins. Do not ask an agent to print a
-pairing QR in chat. The current plugin uses the public `granttap-mcp@0.8.19`
+pairing QR in chat. The current plugin uses the public `granttap-mcp@0.8.20`
 package.
 
 Live `/`, `/connect`, and `/api/connect` use the Hetzner compose stack.
