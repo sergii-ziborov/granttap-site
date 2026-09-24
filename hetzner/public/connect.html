@@ -51,7 +51,7 @@
       <section class="card">
         <p class="eyebrow">GrantTap</p>
         <h1 id="title">Your devices</h1>
-        <p class="lead" id="lead">Approve this coding app, or scan a new QR in GrantTap. A saved pairing stays on this page so you can Reconnect or add a device. The coding-app callback waits for Approve or that scan.</p>
+        <p class="lead" id="lead">This Mac can show a one-time QR for GrantTap on iPhone or iPad. Scan it to add a controller, or approve a coding app with a saved phone.</p>
         <div id="root"></div>
       </section>
     </main>
@@ -124,8 +124,8 @@
       const auth = Boolean(requestId());
       document.getElementById("title").textContent = auth ? "Connect your coding app" : "Your devices";
       document.getElementById("lead").textContent = auth
-        ? "Approve this coding app, or scan a new QR in GrantTap. A saved pairing stays on this page so you can Reconnect or add a device. The coding-app callback waits for Approve or that scan."
-        : "This Mac and the devices in its pairing room. Reconnect and Add another show a new QR for the same room.";
+        ? "This Mac can show a one-time QR for GrantTap on iPhone or iPad. Scan it to add a controller; a scan can also approve this coding app. A saved phone can use Approve, Reconnect, or Add another device."
+        : "This Mac and its controller devices. Add a device, Reconnect, and Add another device show a one-time QR. No GrantTap account is required.";
       if (missingHelper) {
         root.innerHTML = panel(
           "Open this page on the Mac",
@@ -196,6 +196,7 @@
             : "This computer has not finished authorization. Tap Approve again."}</p>`
           : ""}
         <div class="actions">
+          ${!paired && !pairingViewId ? `<button class="ghost" id="add-device" ${pairingBusy ? "disabled" : ""}>Add a device (show QR)</button>` : ""}
           ${paired ? `<button class="ghost" id="reconnect" ${pairingBusy || row.decision ? "disabled" : ""}>Reconnect this iPhone</button>` : ""}
           ${paired ? `<button class="ghost" id="another" ${pairingBusy || row.decision ? "disabled" : ""}>Add another device</button>` : ""}
           ${auth && !pairingViewId ? `<button class="primary" id="approve" ${canApprove ? "" : "disabled"}>Approve</button>` : ""}
@@ -207,6 +208,7 @@
           render(row, false);
         });
       });
+      document.getElementById("add-device")?.addEventListener("click", () => void showQr(false, false, false));
       document.getElementById("reconnect")?.addEventListener("click", () => void showQr(true, false, false));
       document.getElementById("another")?.addEventListener("click", () => void showQr(true, false, true));
       document.getElementById("approve")?.addEventListener("click", () => decide("approve"));

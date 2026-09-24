@@ -62,7 +62,7 @@ export const copy = {
     howKicker: "How it works",
     howTitle: "One secure path back to the same local task.",
     steps: [
-      ["Connect", "Run granttap setup, then open the GrantTap connection card in your coding app. Add a device shows a one-time QR to scan in GrantTap on iPhone. Authenticate opens granttap.com/connect for coding-app approval."],
+      ["Connect", "Run granttap setup, then open granttap.com/connect on this Mac. It shows a one-time QR for iPhone pairing and coding-app approval. The GrantTap connection card offers the same device controls."],
       ["Decide", "Allow, deny, answer, or retry when the exact session asks for you."],
       ["Continue", "Open the visible timeline and send the next turn with voice, photos, or files."],
     ],
@@ -84,7 +84,7 @@ export const copy = {
     ],
     installKicker: "Install",
     installTitle: "Install the plugin. Connect on this computer.",
-    installText: "Add GrantTap in Codex, Claude Code, Cursor Marketplace, or Grok Build, then run granttap setup. Open its connection card for the phone QR; Authenticate opens granttap.com/connect to approve the coding app. Do not add GrantTap in Cursor Customize → MCPs — that leftover HTTP entry is why Cloud shows fetch failed.",
+    installText: "Add GrantTap in Codex, Claude Code, Cursor Marketplace, or Grok Build, then run granttap setup. Open granttap.com/connect on this Mac or the GrantTap connection card for the phone QR. Authenticate also approves the coding app there. Do not add GrantTap in Cursor Customize → MCPs — that leftover HTTP entry is why Cloud shows fetch failed.",
     source: "Source",
     npm: "npm",
     relay: "Relay",

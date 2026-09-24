@@ -14,7 +14,7 @@ export default function CodexPage() {
     intro="GrantTap keeps local Codex sessions visible across your computers and routes exact permission and task decisions to your Apple devices."
     status="Primary"
     facts={[
-      { title: "Connection app", text: "Codex Connected accounts is not the GrantTap device list. Try now opens GrantTap's connection card; Add a device or Add another device shows a one-time QR to scan in the iPhone app. Authenticate opens granttap.com/connect for coding-app approval. Never paste a pairing QR into chat." },
+      { title: "Connection app", text: "Codex Connected accounts is not the GrantTap device list. Open granttap.com/connect on this Mac to see devices, approve Codex, and show a one-time pairing QR. The GrantTap connection card also offers Add a device, Add another device, and Reconnect. Never paste a pairing QR into chat." },
       { title: "Live task catalog", text: "See active and recent Codex work with its real computer, workspace, model, and context state." },
       { title: "Permission hooks", text: "Trusted Codex hooks enforce configured local policy and route unresolved decisions to the phone." },
       { title: "Native continuation", text: "Reply to the same Codex session from iPhone or send a short turn from Apple Watch." },

@@ -27,7 +27,6 @@ test("scanning the QR is the Approve; the coding-app callback is a top-level red
   assert.match(html, /phone\.status === "seen"/);
   assert.doesNotMatch(html, /row\.paired && phones\.length/);
   assert.match(html, /void decide\("approve"\)/);
-  assert.match(html, /The coding-app callback waits for Approve or that scan/);
   assert.match(html, /function handOffOAuth\(redirectUrl\)/);
   assert.match(html, /window\.location\.assign\(redirectUrl\)/);
   assert.doesNotMatch(html, /document\.createElement\("iframe"\)/);
