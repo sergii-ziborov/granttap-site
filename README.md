@@ -15,6 +15,12 @@ skills, MCP servers, and shell access agents may use, and every linked computer
 reports whether the policy was applied. It does not copy hidden reasoning or turn GrantTap
 into a coding agent or an unrestricted orchestrator.
 
+Company accounts and Project Mesh members are separate. On the owner's phone,
+an account receives selected or all repository IDs; each of its devices then
+needs a separate Project invitation and role. A repository grant alone grants
+no Mesh access, and a Project invitation does not change Git provider ACLs.
+The owner phone checks both before forwarding Project data and actions.
+
 ## Install
 
 ```bash
@@ -91,6 +97,8 @@ by rsyncing this tree to `/srv/apps/granttap-site/releases/` and
 
 Product captures under `public/product/` must come from deterministic sample
 data and contain no real pairing, task, repository, credential, or audit data.
+`iphone-company-accounts.png` and `iphone-company-repositories.png` are iPhone
+Simulator captures from the owner-managed account and repository grant screens.
 `iphone-linked-projects.png` is an iPhone Simulator Debug demo capture from
 internal source `1aecdca`. It shows binding-level grouping and the corrected
 device-scoped invite copy; it does not claim a Weavatrix dependency was observed.
