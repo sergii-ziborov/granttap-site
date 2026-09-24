@@ -91,8 +91,9 @@ by rsyncing this tree to `/srv/apps/granttap-site/releases/` and
 
 Product captures under `public/product/` must come from deterministic sample
 data and contain no real pairing, task, repository, credential, or audit data.
-`iphone-linked-projects.png` is an iPhone Simulator Debug demo capture. It shows
-binding-level grouping; it does not claim a Weavatrix dependency was observed.
+`iphone-linked-projects.png` is an iPhone Simulator Debug demo capture from
+internal source `1aecdca`. It shows binding-level grouping and the corrected
+device-scoped invite copy; it does not claim a Weavatrix dependency was observed.
 `iphone-weavatrix-graph.png` and `iphone-health-code-towers.png` are kept UI-test
 attachments from deterministic architecture and code-map fixtures. Their
 `demo-revision` label is deliberate; neither depicts a live repository scan.
