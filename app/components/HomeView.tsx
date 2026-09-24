@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { HomeCopy } from "../page";
 import { CaptureGallery } from "./CaptureGallery";
 import { LanguageToggle, type Locale } from "./Locale";
@@ -17,6 +18,7 @@ export function HomeView({ locale, setLocale, t }: Props) {
     <Security t={t} />
     <Install t={t} />
     <Pricing t={t} />
+    <BlogTeaser locale={locale} />
     <Footer t={t} />
   </main>;
 }
@@ -25,7 +27,7 @@ function Header({ locale, setLocale, t }: Props) {
   const anchors = ["product", "how", "usage", "security", "install", "pricing"];
   return <header className="site-header">
     <a className="brand" href="#top" aria-label="GrantTap home"><Image src="/app-icon.png" alt="" width={1024} height={1024} priority unoptimized /><span>GrantTap</span></a>
-    <nav aria-label="Primary navigation">{t.nav.map((label, index) => <a href={`#${anchors[index]}`} key={label}>{label}</a>)}</nav>
+    <nav aria-label="Primary navigation">{t.nav.map((label, index) => <a href={`#${anchors[index]}`} key={label}>{label}</a>)}<Link href="/blog">{locale === "ru" ? "Блог" : "Blog"}</Link></nav>
     <LanguageToggle locale={locale} setLocale={setLocale} />
     <a className="nav-cta" href="#availability">{t.cta}</a>
   </header>;
@@ -76,10 +78,22 @@ function Pricing({ t }: Pick<Props, "t">) {
   return <><section className="pricing-preview section-shell" id="pricing"><div><p className="kicker">{t.pricingKicker}</p><h2>{t.pricingTitle}</h2><p>{t.pricingText}</p><a className="button button-secondary" href="/pricing">{t.pricingAction}</a></div></section><section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p className="release-copy">{t.releaseText}</p></div><span className="availability-pill">{t.cta}</span></div></section></>;
 }
 
+function BlogTeaser({ locale }: { locale: Locale }) {
+  const items = locale === "ru"
+    ? [["Как подключить iPhone без дополнительного аккаунта", "connect-iphone-with-qr"], ["Связанные Projects не объединяют права", "linked-projects-without-merging-access"], ["Граф должен отвечать на вопрос о коде", "architecture-graph-with-evidence"]]
+    : [["Connect your iPhone without another account", "connect-iphone-with-qr"], ["Linked Projects are not one permission pool", "linked-projects-without-merging-access"], ["A graph should answer a code question", "architecture-graph-with-evidence"]];
+  return <section className="section-shell home-blog" aria-label={locale === "ru" ? "Блог GrantTap" : "GrantTap Journal"}>
+    <p className="kicker">GrantTap Journal</p>
+    <h2>{locale === "ru" ? "Понять, как это работает." : "Understand how it works."}</h2>
+    <div>{items.map(([title, slug]) => <Link href={`/blog/${slug}`} key={slug}>{title}<span>↗</span></Link>)}</div>
+    <Link className="home-blog-all" href="/blog">{locale === "ru" ? "Все пять статей →" : "All five stories →"}</Link>
+  </section>;
+}
+
 function Footer({ t }: Pick<Props, "t">) {
   const paths = ["pricing", "privacy", "terms", "support", "security", "data-rights", "accessibility", "licenses"];
   const guidePaths = ["project-mesh", "grok-bot", "apple-watch-coding-agents", "agents/claude-code", "agents/codex", "agents/cursor", "agents/grok-build"];
-  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links">{guidePaths.map((path, index) => <a href={`/${path}`} key={path}>{t.guides[index]}</a>)}</div><div className="footer-links">{paths.map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
+  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links"><Link href="/blog">GrantTap Journal</Link>{guidePaths.map((path, index) => <a href={`/${path}`} key={path}>{t.guides[index]}</a>)}</div><div className="footer-links">{paths.map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
 }
 
 function Heading({ kicker, title, text }: { kicker: string; title: string; text?: string }) {

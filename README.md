@@ -61,6 +61,8 @@ links.
 
 ## Public customer pages
 
+- [Journal](https://granttap.com/blog): five EN/RU guides with clearly labelled
+  deterministic product captures and five generated editorial illustrations.
 - [Pricing](https://granttap.com/pricing)
 - [Privacy](https://granttap.com/privacy)
 - [Terms](https://granttap.com/terms)

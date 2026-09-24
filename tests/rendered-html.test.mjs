@@ -16,6 +16,9 @@ const routes = [
   "/accessibility", "/licenses", "/pricing", "/agents/claude-code",
   "/agents/codex", "/agents/cursor", "/agents/grok-build", "/project-mesh",
   "/grok-bot", "/apple-watch-coding-agents",
+  "/blog", "/blog/connect-iphone-with-qr", "/blog/task-continuity-across-agents",
+  "/blog/linked-projects-without-merging-access", "/blog/architecture-graph-with-evidence",
+  "/blog/mcp-skills-and-governance-status",
 ];
 
 test("server-renders one Personal product", async () => {
@@ -62,6 +65,21 @@ test("provider and Mesh guides publish exact capability boundaries", async () =>
   assert.match(watch, /Mesh handoffs, conflicts, questions, and failures/);
   const bot = await (await render("https://granttap.com/grok-bot")).text();
   assert.match(bot, /cannot create invites, choose a relay, run setup, or expand/);
+});
+
+test("journal publishes five distinct guides with accurate status and images", async () => {
+  const index = await (await render("https://granttap.com/blog")).text();
+  assert.match(index, /All stories/);
+  assert.match(index, /connect-iphone-with-qr/);
+  assert.match(index, /mcp-skills-and-governance-status/);
+  const pairing = await (await render("https://granttap.com/blog/connect-iphone-with-qr")).text();
+  assert.match(pairing, /You do not need to add GrantTap under Codex Connected accounts/);
+  assert.match(pairing, /Add a device \(Scan QR\)/);
+  const mesh = await (await render("https://granttap.com/blog/linked-projects-without-merging-access")).text();
+  assert.match(mesh, /Grouping is a map for the person/);
+  const governance = await (await render("https://granttap.com/blog/mcp-skills-and-governance-status")).text();
+  assert.match(governance, /budget and use-only flows are still being built/);
+  await Promise.all(["blog/device-network.webp", "blog/linked-work.webp", "blog/task-continuity.webp", "blog/architecture-evidence.webp", "blog/capability-states.webp"].map(path => access(new URL(`../public/${path}`, import.meta.url))));
 });
 
 test("redirects the Sites hostname to the canonical domain", async () => {

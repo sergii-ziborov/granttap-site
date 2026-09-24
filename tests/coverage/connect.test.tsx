@@ -79,3 +79,48 @@ test("missing request does not mention loopback", async () => {
   expect(await screen.findByText(/not on GrantTap yet/i)).toBeTruthy();
   expect(document.body.textContent).not.toMatch(/127\.0\.0\.1|localhost:17342/);
 });
+
+test("connection page distinguishes two phones and provider readiness", async () => {
+  window.location.hash = "#request=66666666-6666-4666-8666-666666666666";
+  const fetchMock = vi.fn(async (input: RequestInfo) => {
+    if (String(input).endsWith("/decision")) return new Response(JSON.stringify({ ok: true }), { status: 200 });
+    return new Response(JSON.stringify({
+      clientName: "Codex", paired: true,
+      phones: [{ name: "iPhone", status: "seen" }, { name: "iPad", status: "paired" }],
+      providers: [{ id: "codex", installed: true, ready: true }, { id: "cursor", installed: true, ready: false }, { id: "claude", installed: false, ready: false }],
+    }), { status: 200 });
+  });
+  vi.stubGlobal("fetch", fetchMock);
+  render(<ConnectView />);
+  expect(await screen.findByText("Codex · Ready")).toBeTruthy();
+  expect(screen.getByText("Cursor · Installed")).toBeTruthy();
+  expect(screen.getByText("Claude Code · Not installed")).toBeTruthy();
+  const iPhone = screen.getByRole("button", { name: /iPhone.*Online just now/i });
+  const iPad = screen.getByRole("button", { name: /iPad.*Paired/i });
+  expect(iPhone.className).toContain("seen");
+  await userEvent.click(iPad);
+  await userEvent.click(screen.getByRole("button", { name: "Approve" }));
+  const decision = fetchMock.mock.calls.find(call => String(call[0]).endsWith("/decision")) as
+    | [RequestInfo, RequestInit?]
+    | undefined;
+  expect(JSON.parse(String(decision?.[1]?.body))).toMatchObject({ decision: "approve", phone: "iPad" });
+});
+
+test("connection page reports unpaired, failed, and pending authorization states", async () => {
+  window.location.hash = "#request=77777777-7777-4777-8777-777777777777";
+  let snapshot: Record<string, unknown> = {
+    clientName: "Cursor", paired: false, phones: [], providers: [], error: "Helper unavailable",
+  };
+  vi.stubGlobal("fetch", vi.fn(async () => new Response(JSON.stringify(snapshot), { status: 200 })));
+  const view = render(<ConnectView />);
+  expect(await screen.findByText("Helper unavailable")).toBeTruthy();
+  expect(screen.getByText(/No phone is listed for this computer/)).toBeTruthy();
+  await userEvent.click(screen.getByRole("button", { name: "Switch to Russian" }));
+  expect(screen.getByRole("heading", { name: "Подключите coding app" })).toBeTruthy();
+  view.unmount();
+  window.localStorage.clear();
+  snapshot = { clientName: "Cursor", paired: true, phones: [{ name: "iPhone", status: "paired" }], providers: [], decision: "approve" };
+  render(<ConnectView />);
+  expect(await screen.findByText(/has not finished authorization/)).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Deny" })).toBeTruthy();
+});

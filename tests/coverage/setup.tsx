@@ -17,7 +17,7 @@ vi.mock("next/link", () => ({
   default: ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => <a href={href} {...props}>{children}</a>,
 }));
 
-vi.mock("next/navigation", () => ({ usePathname: () => "/privacy" }));
+vi.mock("next/navigation", () => ({ usePathname: () => "/privacy", notFound: () => { throw new Error("not found"); } }));
 
 afterEach(() => {
   cleanup();

@@ -32,7 +32,7 @@ function isRequestId(value: string): boolean {
 function isLoopbackRedirect(value: string): boolean {
   try {
     const url = new URL(value);
-    const host = url.hostname.toLowerCase();
+    const host = url.hostname.toLowerCase().replace(/^\[|\]$/g, "");
     return url.protocol === "http:"
       && (host === "127.0.0.1" || host === "localhost" || host === "::1")
       && /\/(callback|oauth|redirect)(\/|$)/.test(url.pathname);
