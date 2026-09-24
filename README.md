@@ -32,10 +32,12 @@ granttap setup
 ```
 
 After plugin installation, run `granttap setup` and Authenticate in the coding
-app. The browser opens [granttap.com/connect](https://granttap.com/connect):
-this computer, its phones, Approve, Reconnect, and Add another. A saved pairing
-does not skip that page or jump to the coding-app callback. Scan in the
-GrantTap app only when a new device joins. An existing trusted iPhone or iPad
+app. The browser opens [granttap.com/connect](https://granttap.com/connect)
+for coding-app approval and phone observations. Open the GrantTap connection
+card in the coding app for **Add a device**, **Add another device**, or
+**Reconnect** and its one-time QR. Codex Connected accounts is unrelated to
+GrantTap device pairing. Scan in the GrantTap app when a device joins. An
+existing trusted iPhone or iPad
 can show an expiring QR in Settings to add another controller to its linked
 computers; this joins the device network rather than a Project. Do not ask an
 agent to print a pairing QR in chat. The plugin and local `granttap-mcp`

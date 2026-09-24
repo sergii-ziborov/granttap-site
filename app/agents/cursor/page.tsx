@@ -14,7 +14,7 @@ export default function CursorPage() {
     intro="GrantTap reads the durable local Cursor state that is actually available, keeps root and child work together, and uses Cursor's supported hook surfaces."
     status="Beta"
     facts={[
-      { title: "Authenticate on this Mac", text: "Cursor Authenticate opens granttap.com/connect. Approve the coding app, Reconnect the phone, or add a device there. Do not add GrantTap in Customize → MCPs; a leftover http://127.0.0.1:17342/mcp entry is why Cloud shows fetch failed." },
+      { title: "Authenticate on this Mac", text: "Cursor Authenticate opens granttap.com/connect for coding-app approval. Open the GrantTap connection card in Cursor for Add a device or Reconnect and scan its QR in the phone app. Do not add GrantTap in Customize → MCPs; a leftover http://127.0.0.1:17342/mcp entry is why Cloud shows fetch failed." },
       { title: "Session visibility", text: "Cursor composer tasks, child agents, activity, and observed capability usage appear in the shared task catalog." },
       { title: "Continuation", text: "GrantTap uses Cursor's persisted native session identifier for bounded follow-up turns." },
       { title: "Local policy", text: "Shell and MCP hooks can route or block exact calls when Cursor exposes deterministic correlation." },
