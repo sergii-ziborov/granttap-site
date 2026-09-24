@@ -12,7 +12,7 @@ Project Mesh coordinates those existing agents with bounded encrypted task
 state, dependencies, resource claims, agent-to-agent questions, and same-task
 handoffs across computers. Project Governance decides, per Project, which
 skills, MCP servers, and shell access agents may use, and every linked computer
-applies the same policy. It does not copy hidden reasoning or turn GrantTap
+reports whether the policy was applied. It does not copy hidden reasoning or turn GrantTap
 into a coding agent or an unrestricted orchestrator.
 
 ## Install
@@ -35,9 +35,11 @@ After plugin installation, run `granttap setup` and Authenticate in the coding
 app. The browser opens [granttap.com/connect](https://granttap.com/connect):
 this computer, its phones, Approve, Reconnect, and Add another. A saved pairing
 does not skip that page or jump to the coding-app callback. Scan in the
-GrantTap app only when a new device joins. Do not ask an agent to print a
-pairing QR in chat. The current plugin uses the public `granttap-mcp@0.8.20`
-package.
+GrantTap app only when a new device joins. An existing trusted iPhone or iPad
+can show an expiring QR in Settings to add another controller to its linked
+computers; this joins the device network rather than a Project. Do not ask an
+agent to print a pairing QR in chat. The plugin and local `granttap-mcp`
+runtime must use compatible protocol versions.
 
 Live `/`, `/connect`, and `/api/connect` use the Hetzner compose stack.
 The connect page talks to the local GrantTap helper for the pairing QR.
@@ -85,6 +87,11 @@ by rsyncing this tree to `/srv/apps/granttap-site/releases/` and
 
 Product captures under `public/product/` must come from deterministic sample
 data and contain no real pairing, task, repository, credential, or audit data.
+`iphone-linked-projects.png` is an iPhone Simulator Debug demo capture. It shows
+binding-level grouping; it does not claim a Weavatrix dependency was observed.
+`iphone-weavatrix-graph.png` and `iphone-health-code-towers.png` are kept UI-test
+attachments from deterministic architecture and code-map fixtures. Their
+`demo-revision` label is deliberate; neither depicts a live repository scan.
 
 ## Current captures
 

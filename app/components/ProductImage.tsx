@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const capture = (name: string) => `/product/${name}.png?v=20260906-1`;
+const capture = (name: string) => `/product/${name}.png?v=20260924-1`;
 
 export function ProductImage({
   name,
