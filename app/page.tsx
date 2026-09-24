@@ -37,7 +37,7 @@ export const copy = {
     ],
     shareKicker: "Shared Projects",
     shareTitle: "Two people, one Project, one place the work happens.",
-    shareText: "Grant repository access to a company account, then separately invite each of its devices into selected Project Mesh scopes. Your phone checks both grants before forwarding Project data or actions.",
+    shareText: "Grant repository access to a company account, pair a device even before a computer or Project exists, then separately grant that device selected Project Mesh scopes. Your phone checks both grants before forwarding Project data or actions.",
     shareFacts: [
       ["Company account", "Grant one, selected, or all repository IDs to a person. This alone does not join any Project Mesh or change Git provider access."],
       ["Invite with a role", "Viewer, Member, or Admin—and the answers under it: chats, posting, Governance, creating tasks, using the Project executor, choosing a host model, and pinning execution."],
@@ -55,6 +55,7 @@ export const copy = {
       ["iphone-project-mesh", "Project", "Governance, members and computers, bound repositories, and the Tasks under them."],
       ["iphone-company-accounts", "Company accounts", "People and their repository grants are managed separately from device invitations."],
       ["iphone-company-repositories", "Repository access", "Give an account selected repository IDs or an explicit all-repositories grant."],
+      ["iphone-company-device-invite", "Controller device", "Create a one-time device code before any computer or Project exists; no Mesh Project is shared yet."],
       ["iphone-members", "Members", "Who is in the Project, what each may do, and which computers carry the work."],
       ["iphone-invite", "Invite", "A one-time code, good for fifteen minutes, with the role chosen before it is made."],
       ["iphone-task-route", "Task", "Executions, claims, and optional Engine-backed Runtime history for one Task."],
@@ -136,7 +137,7 @@ export const copy = {
     ],
     shareKicker: "Общие проекты",
     shareTitle: "Двое, один проект и одно место, где идёт работа.",
-    shareText: "Выдайте аккаунту компании доступ к репозиториям, затем отдельно пригласите каждое его устройство в выбранные Project Mesh. Перед пересылкой данных и действий телефон проверяет оба разрешения.",
+    shareText: "Выдайте аккаунту компании доступ к репозиториям и привяжите устройство даже до появления компьютера или проекта. Доступ к выбранным Project Mesh выдаётся ему отдельно. Перед пересылкой данных и действий телефон проверяет оба разрешения.",
     shareFacts: [
       ["Аккаунт компании", "Дайте человеку доступ к одному, выбранным или всем ID репозиториев. Сам по себе он не добавляет в Mesh и не меняет права в Git-провайдере."],
       ["Приглашение с ролью", "Viewer, Member или Admin — и ответы под ней: чаты, публикация, Governance, создание задач, executor, модель хоста и закрепление выполнения."],
@@ -154,6 +155,7 @@ export const copy = {
       ["iphone-project-mesh", "Проект", "Governance, участники и компьютеры, связанные репозитории и задачи под ними."],
       ["iphone-company-accounts", "Аккаунты компании", "Люди и их права на репозитории управляются отдельно от приглашений устройств."],
       ["iphone-company-repositories", "Доступ к репозиториям", "Аккаунту можно выдать выбранные ID репозиториев или явный доступ ко всем."],
+      ["iphone-company-device-invite", "Устройство управления", "Создайте одноразовый код даже без компьютера или проекта; пока ни один Mesh проект не открыт."],
       ["iphone-members", "Участники", "Кто в проекте, что каждому можно и какие компьютеры несут работу."],
       ["iphone-invite", "Приглашение", "Одноразовый код на пятнадцать минут, роль выбирается до того, как он создан."],
       ["iphone-task-route", "Задача", "Исполнения, claims и история Runtime при подключённом Engine для одной задачи."],

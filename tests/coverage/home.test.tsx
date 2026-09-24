@@ -22,7 +22,7 @@ test("renders the Personal product journey and locale control", async () => {
   expect(screen.getByRole("img", { name: "GrantTap live task chat" })).toBeTruthy();
 
   const previews = screen.getAllByRole("button", { name: /Open full-size/i });
-  expect(previews).toHaveLength(18);
+  expect(previews).toHaveLength(19);
   expect(screen.getByRole("button", { name: "Open full-size: Company accounts" })).toBeTruthy();
   expect(screen.getByRole("button", { name: "Open full-size: Repository access" })).toBeTruthy();
   await user.click(previews[0]);

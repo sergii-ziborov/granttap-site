@@ -16,9 +16,10 @@ reports whether the policy was applied. It does not copy hidden reasoning or tur
 into a coding agent or an unrestricted orchestrator.
 
 Company accounts and Project Mesh members are separate. On the owner's phone,
-an account receives selected or all repository IDs; each of its devices then
-needs a separate Project invitation and role. A repository grant alone grants
-no Mesh access, and a Project invitation does not change Git provider ACLs.
+an account receives selected or all repository IDs. A phone or tablet can pair
+to the account with a one-time code even before any computer or Project exists;
+this grants no Mesh access. The owner later selects Projects and a role for
+that device. A Project invitation does not change Git provider ACLs.
 The owner phone checks both before forwarding Project data and actions.
 
 ## Install
