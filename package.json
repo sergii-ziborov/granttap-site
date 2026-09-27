@@ -2,12 +2,13 @@
   "name": "granttap-web",
   "version": "0.1.0",
   "private": true,
-  "description": "Product website for GrantTap — the Personal live control center for Claude Code, Codex, Cursor, and Grok Build on iPhone and Apple Watch.",
+  "description": "Product website for GrantTap — Mesh, Governance, and coding-agent coordination across Mac, iPhone, iPad, and Apple Watch.",
   "homepage": "https://granttap.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sergii-ziborov/granttap-site.git"
   },
+  "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "node": ">=22.13.0"
   },

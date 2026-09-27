@@ -29,53 +29,53 @@ export const articles: BlogArticle[] = [
     screenshot: "/product/iphone-security-settings.png",
     en: {
       title: "Connect your iPhone without another account",
-      summary: "The computer shows the pairing QR. The phone scans it. A Project invitation is a different action.",
+      summary: "The computer shows the pairing QR. The phone scans it. A Mesh invitation is a different action.",
       category: "Getting started",
       intro: [
         "GrantTap connects a phone to a local computer that already runs your coding tools. You do not need to add GrantTap under Codex Connected accounts, and a chat message cannot substitute for device pairing. The connection must be confirmed through the local GrantTap helper and the phone.",
-        "Think of this as adding a trusted controller to a computer. A Mesh Project is a later collaboration scope; joining one does not pair a device to the computer network.",
+        "Think of this as adding a trusted controller to a computer. A Mesh is a separate collaboration scope; joining one does not pair a device to the computer network.",
       ],
       sections: [
         { heading: "Start on the computer", paragraphs: [
-          "Install the compatible GrantTap plugin and granttap-mcp runtime, then run granttap setup. Open the GrantTap Connection card in the coding app or granttap.com/connect on that same computer. Choose Add a device. The computer displays a short-lived, one-time QR; it should never be pasted into chat or a support ticket.",
+          "Install the compatible GrantTap plugin and granttap-mcp runtime, then run granttap setup. Open the GrantTap connection card in the coding app and choose Add a device. That card displays a short-lived, one-time QR; granttap.com/connect handles coding-app approval and observations. Never paste the QR into chat or a support ticket.",
           "If the card cannot contact the helper, check that the local helper is running and the plugin uses the same protocol version. A relay being online only proves one part of the route. It does not prove that an approval hook, background sync, or this phone is ready.",
         ] },
         { heading: "Finish on the phone", paragraphs: [
           "In GrantTap on iPhone or iPad, open Settings → Connections → Add a device (Scan QR). Scan the code shown by the computer and confirm the computer identity on both sides. The computer then appears in Connections. Repeat the same process for each additional Mac or PC; scanning a second computer adds a link rather than replacing the first.",
-          "An already trusted phone may show an expiring QR for another controller in its Settings. That joins another iPhone or iPad to the device network. It is separate from inviting a person into a particular Project, which has its own role and access choices.",
+          "An already trusted phone may show an expiring QR for another controller in its Settings. That joins another iPhone or iPad to the device network. It is separate from inviting a person into a particular Mesh, which has its own role and access choices.",
         ] },
         { heading: "Check the whole path", paragraphs: [
           "After pairing, verify that the computer reports Live, that the intended coding app has its GrantTap hooks or plugin active, and that a real task event reaches the phone. A saved pairing record and a green relay light alone are insufficient. If a coding app was open before installation, restart that app so it loads the new integration.",
-          "Keep the QR private until it expires. If the wrong device was added, revoke that link in Connections and pair again with a fresh code. Do not share an entire Mesh Project merely to make a phone able to manage your own computers.",
+          "Keep the QR private until it expires. If the wrong device was added, revoke that link in Connections and pair again with a fresh code. Do not share a Mesh merely to make a phone able to manage your own computers.",
         ] },
       ],
       screenshotCaption: "GrantTap Settings in demo mode. The Scan QR action belongs to Connections; the image contains sample data.",
-      closing: "One computer may have several trusted controllers, and one phone may connect to several computers. Project membership is granted separately.",
+      closing: "One computer may have several trusted controllers, and one phone may connect to several computers. Mesh membership is granted separately.",
     },
     ru: {
       title: "Как подключить iPhone без дополнительного аккаунта",
-      summary: "Компьютер показывает QR для привязки, телефон его сканирует. Приглашение в Project — отдельное действие.",
+      summary: "Компьютер показывает QR для привязки, телефон его сканирует. Приглашение в Mesh — отдельное действие.",
       category: "Начало работы",
       intro: [
         "GrantTap связывает телефон с локальным компьютером, на котором уже работают ваши coding tools. Добавлять GrantTap в Codex Connected accounts не нужно; сообщение в чате не заменяет привязку устройства. Соединение подтверждают локальный helper и телефон.",
-        "Это добавление доверенного управляющего устройства к компьютеру. Mesh Project — отдельная область совместной работы; вступление в Project не подключает телефон к сети устройств.",
+        "Это добавление доверенного управляющего устройства к компьютеру. Mesh — отдельная область совместной работы; вступление в Mesh не подключает телефон к сети устройств.",
       ],
       sections: [
         { heading: "Начните на компьютере", paragraphs: [
-          "Установите совместимые версии GrantTap plugin и granttap-mcp, затем выполните granttap setup. Откройте карточку GrantTap Connection в coding app или granttap.com/connect на этом же компьютере. Нажмите Add a device. Компьютер покажет одноразовый QR с коротким сроком жизни; не отправляйте его в чат или поддержку.",
+          "Установите совместимые версии GrantTap plugin и granttap-mcp, затем выполните granttap setup. Откройте панель GrantTap в coding app и нажмите Add a device. Эта панель покажет одноразовый QR с коротким сроком жизни; granttap.com/connect служит для подтверждения coding app и наблюдения. Не отправляйте QR в чат или поддержку.",
           "Если карточка не видит helper, проверьте, что локальный процесс запущен и версии протокола совпадают. Online relay подтверждает только часть маршрута: это ещё не доказательство работы approval hooks, фоновой синхронизации и связи с телефоном.",
         ] },
         { heading: "Завершите на телефоне", paragraphs: [
           "В GrantTap на iPhone или iPad откройте Settings → Connections → Add a device (Scan QR). Отсканируйте код с компьютера и подтвердите его идентичность с обеих сторон. После этого компьютер появится в Connections. Для каждого следующего Mac или PC повторите привязку: новая связь не заменит старую.",
-          "Уже доверенный телефон может показать временный QR для второго управляющего телефона в Settings. Это добавление iPhone или iPad в сеть устройств. Приглашение человека в конкретный Project с ролью и правами находится отдельно.",
+          "Уже доверенный телефон может показать временный QR для второго управляющего телефона в Settings. Это добавление iPhone или iPad в сеть устройств. Приглашение человека в конкретный Mesh с ролью и правами находится отдельно.",
         ] },
         { heading: "Проверьте весь путь", paragraphs: [
           "После привязки проверьте статус Live у компьютера, активность GrantTap plugin или hooks в нужном coding app и доставку реального события задачи на телефон. Сохранённая привязка и зелёный индикатор relay сами по себе недостаточны. Если coding app был открыт до установки, перезапустите его.",
-          "Не показывайте QR посторонним до истечения срока. Если подключили не то устройство, отзовите связь в Connections и создайте новый код. Не открывайте весь Mesh Project только ради управления собственными компьютерами с другого телефона.",
+          "Не показывайте QR посторонним до истечения срока. Если подключили не то устройство, отзовите связь в Connections и создайте новый код. Не открывайте Mesh только ради управления собственными компьютерами с другого телефона.",
         ] },
       ],
       screenshotCaption: "GrantTap Settings в демо-режиме. Scan QR относится к Connections; на снимке тестовые данные.",
-      closing: "К одному компьютеру могут подключаться несколько доверенных контроллеров, а один телефон может управлять несколькими компьютерами. Доступ к Project выдаётся отдельно.",
+      closing: "К одному компьютеру могут подключаться несколько доверенных контроллеров, а один телефон может управлять несколькими компьютерами. Доступ к Mesh выдаётся отдельно.",
     },
   },
   {
@@ -138,53 +138,53 @@ export const articles: BlogArticle[] = [
     date: "2026-09-24",
     minutes: 6,
     cover: "/blog/linked-work.webp",
-    screenshot: "/product/iphone-linked-projects.png",
+    screenshot: "/product/iphone-weavatrix-graph.png",
     en: {
-      title: "Linked Projects are not one permission pool",
-      summary: "Repository bindings can group related work while Project identities and access remain separate.",
-      category: "Project Mesh",
+      title: "Linked Mesh spaces keep separate permissions",
+      summary: "One Mesh can link several repositories; links between Mesh spaces do not merge access.",
+      category: "Mesh",
       intro: [
-        "A product may span an iOS app, a local bridge, an Engine, and a public website. Seeing those repositories together is useful. Merging all of their Project permissions because the folders have similar names is dangerous.",
-        "GrantTap's Project is a coordination scope. A repository binding says which Project owns or references a checkout. A verified architecture relation says something different: that code or runtime evidence supports a dependency. The UI should label each kind of connection accurately.",
+        "A product may span an iOS app, a local bridge, an Engine, and a public website. One Mesh can link all of those repositories without turning them into one provider project.",
+        "A repository binding tells Mesh which checkout is available to it. A verified architecture relation means code or runtime evidence supports a dependency. The UI distinguishes those two links.",
       ],
       sections: [
         { heading: "Three questions behind one group", paragraphs: [
-          "First, which repository is this? Multiple checkouts can point to one remote repository; a folder name is not an identity. Second, which Project has authority over the Task, policy, memory, and members? Third, what relation has Weavatrix actually verified between repositories or components? The answers can differ.",
-          "For example, an internal Project can be linked to a public site Project so a person can navigate between them. That navigation does not grant members of the public site access to internal tasks or secrets. A code dependency should only be shown as verified when its source revision and evidence are present.",
+          "First, which repository is this? Multiple checkouts can point to one remote; a folder name is not an identity. Second, which Mesh owns the Task, policy, memory, and members? Third, what relation has Weavatrix verified between repositories or components? The answers can differ.",
+          "For example, a Mesh can link an internal app and a public site repository. That does not give every member access to both. A code dependency is verified only when its source revision and evidence are present.",
         ] },
         { heading: "What a good group view shows", paragraphs: [
-          "A useful group shows each Project by stable identity, its owning repository, computers, recent Task activity, and the reason it appears in the group. The relation label should distinguish a shared repository binding, a user-declared link, and a verified Weavatrix relation. A missing architecture report should say that analysis is pending or unavailable on that endpoint, not assert that the repository or connection does not exist.",
-          "A Project can also have a narrower nested Mesh. Membership in the parent should not silently open every child repository. Grant access to a particular repository or subtree explicitly, then observe on which hosts that grant actually took effect.",
+          "A useful Mesh view shows each Mesh, its linked repositories, computers, recent Tasks, and why they appear together. The label distinguishes a binding, a declared link, and Weavatrix evidence. A missing report remains unknown rather than erasing a connection.",
+          "A Mesh can link ten repositories while each member sees only resources granted to them. Host receipts show where access was applied.",
         ] },
         { heading: "Names are for people, IDs are for routing", paragraphs: [
-          "Two Projects called ‘general-codex’ may be separate authorities; two checkout folders called ‘granttap’ may be the same repository. Display names help orientation but must not drive deduplication, routing, or access. Rejoin and migration flows need stable lineage and visible receipts rather than a guessed merge.",
+          "Two Mesh spaces called ‘general-codex’ may have separate permissions; two checkout folders called ‘granttap’ may be the same repository. Names help orientation but cannot drive deduplication, routing, or access.",
         ] },
       ],
-      screenshotCaption: "Deterministic demo grouping from repository bindings. This capture does not claim a live Weavatrix dependency scan.",
+      screenshotCaption: "A deterministic demo graph with explicit component relations. It does not claim a live scan of the linked repositories.",
       closing: "Grouping is a map for the person; it must never become an accidental permission grant.",
     },
     ru: {
-      title: "Связанные Projects не объединяют права",
-      summary: "Привязки репозиториев помогают сгруппировать работу, сохраняя отдельные Project identities и доступы.",
-      category: "Project Mesh",
+      title: "Связанные Mesh сохраняют отдельные права",
+      summary: "Один Mesh может связывать несколько репозиториев, а связи между Mesh не объединяют доступ.",
+      category: "Mesh",
       intro: [
-        "Один продукт может включать iOS-приложение, локальный bridge, Engine и публичный сайт. Видеть эти репозитории рядом удобно. Объединять их Project-права только из-за похожих имён папок опасно.",
-        "Project в GrantTap — область координации. Repository binding показывает, какой Project владеет checkout или ссылается на него. Подтверждённая архитектурная связь означает другое: зависимость подкреплена evidence кода или runtime. Интерфейс должен различать эти причины связи.",
+        "Один продукт может включать iOS-приложение, локальный bridge, Engine и публичный сайт. Один Mesh связывает эти репозитории без смешения проектов разных провайдеров.",
+        "Привязка репозитория показывает, какой checkout доступен Mesh. Подтверждённая архитектурная связь означает другое: код или наблюдение во время выполнения подкрепляют зависимость. Интерфейс различает эти связи.",
       ],
       sections: [
         { heading: "Три вопроса за одной группой", paragraphs: [
-          "Первый: что это за репозиторий? Разные checkout могут указывать на один remote; имя папки не является identity. Второй: какой Project управляет Task, policy, memory и участниками? Третий: какую связь между репозиториями или компонентами реально подтвердил Weavatrix? Ответы могут различаться.",
-          "Например, internal Project может быть связан с Project публичного сайта для навигации. Эта навигация не открывает участникам сайта внутренние задачи и секреты. Кодовую зависимость можно назвать подтверждённой только при наличии evidence и revision источника.",
+          "Первый: что это за репозиторий? Разные checkout могут указывать на один remote; имя папки не является identity. Второй: какой Mesh владеет Task, правилами, памятью и участниками? Третий: какую связь подтвердил Weavatrix? Ответы могут различаться.",
+          "Например, Mesh связывает внутреннее приложение и публичный сайт. Это не выдаёт каждому участнику доступ к обоим репозиториям. Кодовая зависимость подтверждается только при наличии свидетельства и ревизии источника.",
         ] },
         { heading: "Что должна показывать группа", paragraphs: [
-          "Хорошая группа показывает каждый Project по устойчивой identity, его основной репозиторий, компьютеры, последнюю активность Task и причину нахождения в группе. Подпись связи отличает общую repository binding, заявленную пользователем связь и подтверждённую Weavatrix relation. Если отчёта архитектуры нет, лучше сказать, что анализ ожидается или недоступен на данном endpoint, чем утверждать, будто самого репозитория или связи не существует.",
-          "У Project может быть и более узкий вложенный Mesh. Участие в родительском Project не должно открывать все дочерние репозитории. Права на конкретный репозиторий или subtree задаются явно, а затем подтверждается их применение на нужных хостах.",
+          "Обзор показывает Mesh, связанные репозитории, компьютеры, недавние Tasks и причины связей. Подпись отличает привязку от подтверждённой Weavatrix зависимости. Отсутствие отчёта означает неизвестность, а не отсутствие связи.",
+          "Mesh может связывать десять репозиториев, но каждый участник видит только разрешённые ресурсы. Отчёты компьютеров показывают, где доступ действительно применён.",
         ] },
         { heading: "Имена для человека, ID для маршрута", paragraphs: [
-          "Два Projects с именем general-codex могут быть разными authority; две папки granttap — checkout одного репозитория. Отображаемые имена помогают ориентироваться, но не годятся для дедупликации, маршрутизации и выдачи прав. Миграции требуют устойчивой lineage и видимых receipts вместо угаданного слияния.",
+          "Два Mesh с именем general-codex могут иметь разные права; две папки granttap могут быть рабочими копиями одного репозитория. Имена помогают ориентироваться, но не служат основанием для маршрутизации и выдачи доступа.",
         ] },
       ],
-      screenshotCaption: "Демо-группировка по repository bindings. Этот снимок не утверждает, что проверена живая зависимость Weavatrix.",
+      screenshotCaption: "Демонстрационный граф с явными связями компонентов. Снимок не доказывает живой анализ связанных репозиториев.",
       closing: "Группировка — карта для человека; она не должна случайно выдавать доступ.",
     },
   },
@@ -209,7 +209,7 @@ export const articles: BlogArticle[] = [
         ] },
         { heading: "Use code towers to orient, then inspect", paragraphs: [
           "The full-screen Health map groups code visually so you can find a file or symbol, understand its neighborhood, and open details. Tall or bright geometry is a navigation aid, not a quality score. A component deserves a stronger claim only when its underlying source and relation evidence can be inspected.",
-          "If architecture is unavailable on one computer, first check that its repository is bound and that the Engine can reach that checkout. The product should offer an explicit build or refresh action when supported. It must not claim that a connected Weavatrix library is absent merely because this Project has no current report.",
+          "If architecture is unavailable on one computer, first check that its repository is bound and that the Engine can reach that checkout. The product should offer an explicit build or refresh action when supported. It must not claim that a connected Weavatrix library is absent merely because this chat has no current report.",
         ] },
         { heading: "From graph to action", paragraphs: [
           "For a coding Task, the next useful step is a revision-bound impact packet: what changed, which related components may be affected, why, and how fresh that conclusion is. The graph can supply evidence to Cortex context selection, but a stale or missing impact packet must be visible. A relation by itself does not calculate cost, authorize a command, or prove a test passed.",
@@ -233,7 +233,7 @@ export const articles: BlogArticle[] = [
         ] },
         { heading: "Башни помогают найти, подробности — проверить", paragraphs: [
           "Полноэкранная карта Health собирает код визуально: можно найти файл или символ, увидеть окружение и открыть детали. Высокая или яркая геометрия — помощь в навигации, не оценка качества. Более сильный вывод о компоненте возможен лишь тогда, когда доступны исходник и evidence связи.",
-          "Если архитектура недоступна на одном компьютере, проверьте привязку репозитория и доступ Engine к checkout. Там, где это поддерживается, интерфейс должен предложить явное построение или обновление. Отсутствие актуального отчёта Project не означает, что библиотека Weavatrix не подключена.",
+          "Если архитектура недоступна на одном компьютере, проверьте привязку репозитория и доступ Engine к checkout. Там, где это поддерживается, интерфейс должен предложить явное построение или обновление. Отсутствие актуального отчёта chat не означает, что библиотека Weavatrix не подключена.",
         ] },
         { heading: "От графа к действию", paragraphs: [
           "Для coding Task следующий полезный шаг — impact packet, привязанный к revision: что изменилось, какие связанные компоненты затронуты, почему и насколько свеж вывод. Граф даёт evidence для отбора контекста Cortex, но устаревший или отсутствующий packet должен быть видим. Одна связь не считает стоимость, не разрешает команду и не доказывает прохождение теста.",
@@ -255,11 +255,11 @@ export const articles: BlogArticle[] = [
       category: "Governance",
       intro: [
         "A tool can appear in a catalog and still be unusable on the computer selected for a Task. It may be requested, approved, installed with a different configuration, missing a credential, or simply not initialized. A trustworthy control screen names these states separately.",
-        "GrantTap tracks capability identities, observed host state, and project decisions. The full bundle transfer and per-host durable apply receipts remain work in progress, so the UI must not label a requested MCP or skill as ready just because it was listed or approved.",
+        "GrantTap tracks capability identities, observed host state, and Mesh decisions. The full bundle transfer and per-host durable apply receipts remain work in progress, so the UI must not label a requested MCP or skill as ready just because it was listed or approved.",
       ],
       sections: [
         { heading: "Follow the capability through its lifecycle", paragraphs: [
-          "First comes discovery: a host reports a native MCP configuration or skill bundle. A request brings that exact version or digest into a Project review. Approval allows that identity under the Project policy. Then each target host has to apply the configuration or bundle and independently report initialized state. Finally, real invocation evidence can show that a Task actually used it.",
+          "First comes discovery: a host reports a native MCP configuration or skill bundle. A request brings that exact version or digest into a chat review. Approval allows that identity under the chat policy. Then each target host has to apply the configuration or bundle and independently report initialized state. Finally, real invocation evidence can show that a Task actually used it.",
           "The same human-friendly MCP name can hide two different server configurations. For a skill, scripts and references matter as much as SKILL.md. An edit to the bundle changes the digest and requires a new readiness decision rather than inheriting an old approval by name.",
         ] },
         { heading: "Policy and environment are separate", paragraphs: [
@@ -267,7 +267,7 @@ export const articles: BlogArticle[] = [
           "Likewise, observing token use is not a spending cap. A strict budget needs an atomic reservation before a controlled external action, accounting for work already in flight and unknown outcomes. These budget and use-only flows are still being built and should not be treated as active protection.",
         ] },
         { heading: "What to check today", paragraphs: [
-          "Check the exact capability identity, the target computer, its observed configured and initialized states, the Project's allow/ask/deny decision, and the result of a small real invocation. If any state is unknown, keep it unknown. A green catalog card must not stand in for successful use.",
+          "Check the exact capability identity, the target computer, its observed configured and initialized states, the chat's allow/ask/deny decision, and the result of a small real invocation. If any state is unknown, keep it unknown. A green catalog card must not stand in for successful use.",
           "For a local MCP connection, also verify the machine helper, transport, provider plugin, and app hooks independently. A relay connection does not prove that an stdio server launched in Cursor or that a Codex session loaded newly trusted hooks.",
         ] },
       ],
@@ -280,11 +280,11 @@ export const articles: BlogArticle[] = [
       category: "Governance",
       intro: [
         "Инструмент может быть в каталоге и при этом не работать на компьютере, выбранном для Task. Его могли запросить, одобрить, установить с другой конфигурацией, оставить без credential или не инициализировать. Надёжный экран контроля называет эти состояния по отдельности.",
-        "GrantTap отслеживает identity возможностей, наблюдаемое состояние хостов и решения Project. Полный перенос bundle и устойчивые receipts применения на каждом host ещё в работе, поэтому нельзя писать «готово» только потому, что MCP или skill попали в список либо были одобрены.",
+        "GrantTap отслеживает identity возможностей, наблюдаемое состояние хостов и решения chat. Полный перенос bundle и устойчивые receipts применения на каждом host ещё в работе, поэтому нельзя писать «готово» только потому, что MCP или skill попали в список либо были одобрены.",
       ],
       sections: [
         { heading: "Проследите весь жизненный цикл", paragraphs: [
-          "Сначала обнаружение: хост сообщает native MCP configuration или bundle skill. Запрос приносит в Project точную версию или digest. Одобрение разрешает эту identity по правилам Project. Затем каждый целевой host должен применить конфигурацию или bundle и независимо сообщить initialized state. Только evidence реального вызова показывает, что Task действительно использовала инструмент.",
+          "Сначала обнаружение: хост сообщает native MCP configuration или bundle skill. Запрос приносит в chat точную версию или digest. Одобрение разрешает эту identity по правилам chat. Затем каждый целевой host должен применить конфигурацию или bundle и независимо сообщить initialized state. Только evidence реального вызова показывает, что Task действительно использовала инструмент.",
           "За одним удобным именем MCP могут скрываться разные конфигурации сервера. У skill важны scripts и references, а не один SKILL.md. После изменения bundle меняется digest; старое одобрение по имени не подтверждает новую готовность.",
         ] },
         { heading: "Policy и Environment решают разные задачи", paragraphs: [
@@ -292,7 +292,7 @@ export const articles: BlogArticle[] = [
           "Точно так же наблюдение токенов не ограничивает расходы. Строгий бюджет требует атомарного резерва перед управляемым внешним действием с учётом уже идущей работы и неизвестных исходов. Эти budget и use-only сценарии пока разрабатываются и не должны считаться действующей защитой.",
         ] },
         { heading: "Что проверять сейчас", paragraphs: [
-          "Смотрите точную identity возможности, целевой компьютер, наблюдаемые configured и initialized состояния, решение allow/ask/deny в Project и результат небольшого реального вызова. Если что-то неизвестно, оставляйте статус неизвестным. Зелёная карточка каталога не равна успешному использованию.",
+          "Смотрите точную identity возможности, целевой компьютер, наблюдаемые configured и initialized состояния, решение allow/ask/deny в chat и результат небольшого реального вызова. Если что-то неизвестно, оставляйте статус неизвестным. Зелёная карточка каталога не равна успешному использованию.",
           "Для локального MCP отдельно проверяйте machine helper, transport, provider plugin и hooks приложения. Связь с relay не доказывает, что stdio server запустился в Cursor или что сессия Codex подхватила новые доверенные hooks.",
         ] },
       ],

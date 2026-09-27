@@ -12,7 +12,7 @@ async function render(url = "https://granttap.com/") {
 }
 
 const routes = [
-  "/", "/privacy", "/terms", "/support", "/security", "/data-rights",
+  "/", "/about", "/privacy", "/terms", "/support", "/security", "/data-rights",
   "/accessibility", "/licenses", "/pricing", "/agents/claude-code",
   "/agents/codex", "/agents/cursor", "/agents/grok-build", "/project-mesh",
   "/grok-bot", "/apple-watch-coding-agents",
@@ -31,10 +31,11 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /Cursor Beta/);
   assert.match(html, /Grok Build · Experimental/);
   assert.match(html, /Needs You/);
-  assert.match(html, /Project Mesh/);
+  assert.match(html, /One Mesh\. Connected repositories, Tasks, people, and agents\./);
+  assert.doesNotMatch(html, /Project Mesh|Shared Projects/);
   assert.match(html, /Claude · MacBook/);
   assert.match(html, /Codex · Workstation/);
-  assert.match(html, /separate branches or worktrees/);
+  assert.match(html, /distributed evidence graph connects dependencies/);
   assert.match(html, /codex plugin add granttap@granttap/);
   assert.match(html, /claude plugin install granttap@granttap/);
   assert.match(html, /npm install -g granttap-mcp/);
@@ -46,7 +47,7 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /iphone-chat\.png/);
   assert.match(html, /iphone-mcp-usage\.png/);
   assert.match(html, /apple-watch-approval\.png/);
-  assert.match(html, /content="See what Claude Code, Codex, Cursor, and Grok Build/i);
+  assert.match(html, /content="Coordinate Claude Code, Codex, Cursor, and Grok Build/i);
   assert.doesNotMatch(html, /Enterprise|GrantTap Web|Open account|browser workspace|organization policy|scheduler|Copilot/i);
   assert.doesNotMatch(html, /href="\/(?:account|enterprise)/);
   assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20260828-1"/i);
@@ -56,7 +57,7 @@ test("server-renders one Personal product", async () => {
 test("provider and Mesh guides publish exact capability boundaries", async () => {
   const grok = await (await render("https://granttap.com/agents/grok-build")).text();
   assert.match(grok, /does not yet expose a trusted caller hook/);
-  assert.match(grok, /Agent-authored scoped Project Mesh events are therefore not offered/);
+  assert.match(grok, /Agent-authored scoped Mesh events are therefore not offered/);
   const mesh = await (await render("https://granttap.com/project-mesh")).text();
   assert.match(mesh, /never reopens a previous native execution/);
   assert.match(mesh, /uncommitted work blocks departure/);

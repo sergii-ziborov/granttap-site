@@ -178,10 +178,10 @@
           ${phoneRows ? `<div class="phones">${phoneRows}</div>` : ""}
           ${qr}
         </div>
-        <div class="panel ok"><h2>Project Mesh</h2>
+        <div class="panel ok"><h2>Mesh</h2>
           <p>${mesh && mesh.present
             ? `This Mac is on the Mesh${mesh.openTasks ? ` · ${Number(mesh.openTasks)} open tasks` : ""}.`
-            : "No Mesh on this computer yet. After the phone is paired, a project on this Mac joins the Mesh."}</p>
+            : "No Mesh on this computer yet. A local repository can be added to a Mesh after pairing."}</p>
           ${mesh && Array.isArray(mesh.computers) && mesh.computers.length
             ? `<div class="apps">${mesh.computers.map((name) =>
                 `<span class="app${name === mesh.thisComputer ? " ready" : ""}"><i></i>${esc(name)}${name === mesh.thisComputer ? " · this Mac" : ""}</span>`

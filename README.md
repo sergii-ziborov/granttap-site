@@ -1,26 +1,31 @@
 # GrantTap Personal website
 
+The publicly readable website source is under the
+[GrantTap Commercial Source License](LICENSE). Production deployment and
+redistribution of versions under this license require a commercial grant.
+Copies released earlier under MIT retain their original MIT permissions.
+
 GrantTap is a Personal live control center for local coding agents:
 
 > See what your coding agents are doing. Step in when they need you.
 
-The public site presents one product for iPhone and Apple Watch across Claude
+The public site presents one product across Mac, iPhone, iPad, and Apple Watch with Claude
 Code, Codex, Cursor Beta, and Grok Build where its implemented behavior is
 available. The site presents one Personal product.
 
-Project Mesh coordinates those existing agents with bounded encrypted task
+Mesh coordinates those existing agents with bounded encrypted task
 state, dependencies, resource claims, agent-to-agent questions, and same-task
-handoffs across computers. Project Governance decides, per Project, which
+handoffs across computers. Mesh Governance decides, per Mesh, which
 skills, MCP servers, and shell access agents may use, and every linked computer
 reports whether the policy was applied. It does not copy hidden reasoning or turn GrantTap
 into a coding agent or an unrestricted orchestrator.
 
-Company accounts and Project Mesh members are separate. On the owner's phone,
+Company accounts and Mesh members are separate. On the owner's phone,
 an account receives selected or all repository IDs. A phone or tablet can pair
-to the account with a one-time code even before any computer or Project exists;
-this grants no Mesh access. The owner later selects Projects and a role for
-that device. A Project invitation does not change Git provider ACLs.
-The owner phone checks both before forwarding Project data and actions.
+to the account with a one-time code even before any computer or Mesh exists;
+this grants no Mesh access. The owner later selects Mesh spaces and a role for
+that device. A Mesh invitation does not change Git provider ACLs.
+The owner phone checks both before forwarding Mesh data and actions.
 
 ## Install
 
@@ -39,19 +44,18 @@ granttap setup
 ```
 
 After plugin installation, run `granttap setup` and open
-[granttap.com/connect](https://granttap.com/connect) on the Mac. The page shows
-this computer, its phones, coding-app approval, and a one-time pairing QR. The
-GrantTap connection card in the coding app also offers **Add a device**,
+[granttap.com/connect](https://granttap.com/connect) on the Mac for coding-app
+approval and observations. The GrantTap connection card in the coding app offers **Add a device**,
 **Add another device**, and **Reconnect**. Codex Connected accounts is
 unrelated to GrantTap device pairing. Scan in the GrantTap app when a device
 joins. An existing trusted iPhone or iPad
 can show an expiring QR in Settings to add another controller to its linked
-computers; this joins the device network rather than a Project. Do not ask an
+computers; this joins the device network rather than a Mesh. Do not ask an
 agent to print a pairing QR in chat. The plugin and local `granttap-mcp`
 runtime must use compatible protocol versions.
 
 Live `/`, `/connect`, and `/api/connect` use the Hetzner compose stack.
-The connect page talks to the local GrantTap helper for the pairing QR.
+The connect page does not generate or display a pairing QR.
 
 For Cursor, install the reviewed **GrantTap** Marketplace listing, then
 `granttap setup`. Do not add GrantTap in Customize → MCPs.
@@ -68,6 +72,7 @@ links.
 
 ## Public customer pages
 
+- [About](https://granttap.com/about)
 - [Journal](https://granttap.com/blog): five EN/RU guides with clearly labelled
   deterministic product captures and five generated editorial illustrations.
 - [Pricing](https://granttap.com/pricing)

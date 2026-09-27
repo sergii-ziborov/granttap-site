@@ -14,7 +14,7 @@ export default function CursorPage() {
     intro="GrantTap reads the durable local Cursor state that is actually available, keeps root and child work together, and uses Cursor's supported hook surfaces."
     status="Beta"
     facts={[
-      { title: "Authenticate on this Mac", text: "Cursor Authenticate opens granttap.com/connect for coding-app approval and a pairing QR on this Mac. The GrantTap connection card in Cursor also offers Add a device and Reconnect. Scan the QR in the phone app. Do not add GrantTap in Customize → MCPs; a leftover http://127.0.0.1:17342/mcp entry is why Cloud shows fetch failed." },
+      { title: "Authenticate on this Mac", text: "Cursor Authenticate opens granttap.com/connect for coding-app approval. The GrantTap connection card in Cursor offers Add a device and Reconnect with a one-time QR; scan it in the phone app. Do not add GrantTap in Customize → MCPs." },
       { title: "Session visibility", text: "Cursor composer tasks, child agents, activity, and observed capability usage appear in the shared task catalog." },
       { title: "Continuation", text: "GrantTap uses Cursor's persisted native session identifier for bounded follow-up turns." },
       { title: "Local policy", text: "Shell and MCP hooks can route or block exact calls when Cursor exposes deterministic correlation." },
@@ -25,6 +25,6 @@ export default function CursorPage() {
       "The first remote-start handoff path is Claude Code ↔ Codex; Cursor does not claim that parity yet.",
       "Where Cursor cannot deterministically enforce a capability, GrantTap reports observation rather than a false block guarantee.",
     ]}
-    related={[{ href: "/project-mesh", label: "Project Mesh" }, { href: "/agents/grok-build", label: "Grok Build" }, { href: "/support", label: "Setup help" }]}
+    related={[{ href: "/project-mesh", label: "Mesh" }, { href: "/agents/grok-build", label: "Grok Build" }, { href: "/support", label: "Setup help" }]}
   />;
 }

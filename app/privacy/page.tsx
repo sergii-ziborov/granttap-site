@@ -45,7 +45,7 @@ export default function PrivacyPage() {
           bullets: [
             "The app stores keys, preferences, delivery state, hidden/history state, a bounded local audit, and capability usage in protected local storage.",
             "The helper stores local pairing and provider integration configuration under ~/.granttap.",
-            "Project Mesh uses one additional key per Project. The phone hands it only to computers you have already paired, inside the pairing encryption they already use, so shared task state, Governance policy, and cost figures travel as ciphertext like everything else.",
+            "Each Mesh has an additional key. The phone hands it only to computers you have already paired, inside the pairing encryption they already use, so shared Task state, Governance policy, and cost figures travel as ciphertext like everything else.",
             "Report a problem composes its text on your device and hands it to the system share sheet. The report contains no keys, tokens, chat content, or commands, and the app itself sends nothing.",
             "Camera, photos, files, microphone, speech recognition, biometrics, and notifications are used only for the features you explicitly invoke or enable.",
           ],
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
           bullets: [
             "Приложение локально хранит keys, preferences, delivery state, history/hidden state, ограниченный audit и capability usage.",
             "Helper хранит pairing и provider integration configuration в ~/.granttap.",
-            "Project Mesh использует один дополнительный ключ на Project. Телефон передаёт его только уже связанным компьютерам внутри их pairing-шифрования, поэтому общее состояние задач, политика Governance и данные о стоимости идут шифротекстом, как и всё остальное.",
+            "У каждого Mesh есть дополнительный ключ. Телефон передаёт его только уже связанным компьютерам внутри их pairing-шифрования, поэтому общее состояние задач, политика Governance и данные о стоимости идут шифротекстом, как и всё остальное.",
             "«Сообщить о проблеме» составляет текст на устройстве и передаёт его системному share sheet. Отчёт не содержит ключей, токенов, содержимого чатов и команд; само приложение ничего не отправляет.",
             "Камера, фото, файлы, микрофон, speech recognition, biometrics и notifications используются только для явно запущенных или включённых функций.",
           ],

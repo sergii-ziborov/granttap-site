@@ -24,6 +24,6 @@ export default function AppleWatchPage() {
       "Conflicts and failures that need richer context explicitly ask you to open GrantTap on iPhone.",
       "Provider and computer confirmation—not a local tap animation—decides when a permission is truly resolved.",
     ]}
-    related={[{ href: "/project-mesh", label: "Project Mesh" }, { href: "/agents/claude-code", label: "Claude Code" }, { href: "/agents/codex", label: "Codex" }]}
+    related={[{ href: "/project-mesh", label: "Mesh" }, { href: "/agents/claude-code", label: "Claude Code" }, { href: "/agents/codex", label: "Codex" }]}
   />;
 }

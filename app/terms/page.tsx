@@ -11,8 +11,8 @@ export default function TermsPage() {
   return (
     <LegalPage
       title={{ en: "Terms of Use", ru: "Условия использования" }}
-      updated={{ en: "September 4, 2026", ru: "4 сентября 2026" }}
-      updatedISO="2026-09-04"
+      updated={{ en: "September 25, 2026", ru: "25 сентября 2026" }}
+      updatedISO="2026-09-25"
       intro={{
         en: "These terms cover the GrantTap app, encrypted relay, and related support services. GrantTap extends coding-agent sessions on computers you control; it does not replace the agent or move your project into a GrantTap cloud.",
         ru: "Эти условия относятся к приложению GrantTap, зашифрованному relay и поддержке. GrantTap дополняет сессии кодовых агентов на контролируемых вами компьютерах, а не заменяет агента и не переносит проект в облако GrantTap.",
@@ -22,11 +22,12 @@ export default function TermsPage() {
           {
             heading: "Agreement and license",
             paragraphs: [
-              "By downloading or using GrantTap, you agree to these terms and any non-waivable rules that apply where you live. If you obtained the app through Apple's App Store, Apple's Standard Licensed Application End User License Agreement applies to the app license; these terms supplement it for the GrantTap relay, bridge, website, and support.",
-              "GrantTap grants you a personal, limited, non-transferable license to use the app on Apple-branded products you own or control as allowed by the App Store rules and the Apple Standard EULA. No source-code license is granted for the iPhone or Apple Watch app.",
+              "By downloading or using GrantTap, you agree to these terms and any non-waivable rules that apply where you live. Apps obtained through Apple's App Store use Apple's Standard Licensed Application End User License Agreement unless a custom agreement is presented there. Directly distributed GrantTap Desktop builds use the GrantTap Desktop Commercial End-User License. These terms also cover the relay, website, and support.",
+              "App Store use follows the applicable Apple license and purchase terms. Direct Desktop use follows its own purchase record and Desktop license. Neither app license grants rights to the Apple-client source code.",
             ],
             links: [
               { label: "Apple Standard EULA", href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" },
+              { label: "Desktop commercial license", href: "https://github.com/sergii-ziborov/granttap/blob/main/apps/macos/DESKTOP_EULA.md" },
             ],
           },
           {
@@ -81,7 +82,7 @@ export default function TermsPage() {
           {
             heading: "Ownership and open source",
             paragraphs: [
-              "GrantTap branding, app design, and proprietary app code remain the property of their owner. The public MCP bridge, relay, website, and third-party components are governed by the licenses identified on the Licenses page and in their repositories.",
+              "GrantTap branding, app design, Apple-client code, relay, and website remain the property of their owner. The standalone GrantTap MCP is MIT licensed. Earlier relay and website versions released under MIT retain those license rights. Third-party components keep their own licenses; current terms are listed on the Licenses page and in each repository.",
             ],
             links: [{ label: "Licenses and notices", href: "/licenses" }],
           },
@@ -108,10 +109,13 @@ export default function TermsPage() {
           {
             heading: "Согласие и лицензия",
             paragraphs: [
-              "Скачивая или используя GrantTap, вы соглашаетесь с этими условиями и неотчуждаемыми правилами вашей юрисдикции. Если приложение получено через App Store, к лицензии применяется стандартное лицензионное соглашение Apple; эти условия дополняют его для relay, моста, сайта и поддержки GrantTap.",
-              "GrantTap предоставляет личную, ограниченную и непередаваемую лицензию на использование приложения на принадлежащих или контролируемых вами устройствах Apple в пределах правил App Store и стандартного EULA Apple. Лицензия на исходный код приложения для iPhone и Apple Watch не предоставляется.",
+              "Скачивая или используя GrantTap, вы соглашаетесь с этими условиями и обязательными правилами вашей юрисдикции. Для приложений из App Store действует стандартное лицензионное соглашение Apple, если там не представлено отдельное соглашение. Для GrantTap Desktop, распространяемого напрямую, действует коммерческая лицензия Desktop. Эти условия также относятся к relay, сайту и поддержке.",
+              "Использование версии из App Store регулируют применимое соглашение Apple и условия покупки. Использование Desktop регулируют его лицензия и документ о покупке. Ни одна из этих лицензий не предоставляет права на исходный код Apple-клиентов.",
             ],
-            links: [{ label: "Стандартное EULA Apple", href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" }],
+            links: [
+              { label: "Стандартное EULA Apple", href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" },
+              { label: "Коммерческая лицензия Desktop", href: "https://github.com/sergii-ziborov/granttap/blob/main/apps/macos/DESKTOP_EULA.md" },
+            ],
           },
           {
             heading: "Personal-пейринг",
@@ -165,7 +169,7 @@ export default function TermsPage() {
           {
             heading: "Права и открытый код",
             paragraphs: [
-              "Бренд GrantTap, дизайн и закрытый код приложения остаются собственностью правообладателя. Публичные MCP-мост, relay, сайт и сторонние компоненты регулируются лицензиями на странице лицензий и в их репозиториях.",
+              "Бренд GrantTap, дизайн, код Apple-клиентов, relay и сайта остаются собственностью правообладателя. Самостоятельный GrantTap MCP распространяется по MIT. За более ранними версиями relay и сайта, выпущенными по MIT, сохраняются права этой лицензии. У сторонних компонентов собственные лицензии; действующие условия указаны на странице лицензий и в репозиториях.",
             ],
             links: [{ label: "Лицензии и уведомления", href: "/licenses" }],
           },

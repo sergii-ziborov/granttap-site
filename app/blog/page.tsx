@@ -3,7 +3,7 @@ import { BlogIndex } from "./BlogViews";
 
 export const metadata: Metadata = {
   title: "Journal",
-  description: "Practical guides to GrantTap pairing, Project Mesh, Task continuity, architecture evidence, and governance.",
+  description: "Practical guides to GrantTap pairing, Mesh, Task continuity, architecture evidence, and governance.",
   alternates: { canonical: "/blog" },
 };
 
