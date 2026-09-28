@@ -18,6 +18,7 @@ export default function PrivacyPage() {
     }}
     sections={{
       en: [
+          { heading: "Mac and endpoint discovery", paragraphs: ["App Store purchase evidence is verified by StoreKit; we do not receive payment-card details. The native Mac keeps its separate local MCP access token in its device-only Keychain. Direct mode announces only authenticated encrypted endpoint records with opaque room and recipient identifiers, sizes and expiry. The managed directory cannot decrypt an address; network operators still observe connection IPs and timing. Directory records expire within 15 minutes. In fully self-hosted mode, pairing and chat traffic use your endpoint and do not contact that directory. You administer your own server logs, queues and retention."] },
         {
           heading: "Privacy at a glance",
           bullets: [
@@ -70,6 +71,7 @@ export default function PrivacyPage() {
         },
       ],
       ru: [
+          { heading: "Mac и поиск адреса", paragraphs: ["Покупки App Store проверяет StoreKit; реквизиты платёжной карты нам недоступны. Mac хранит отдельный локальный токен MCP в Keychain только этого устройства. Прямой режим публикует лишь аутентифицированные зашифрованные записи адреса с непрозрачными идентификаторами комнаты и получателя, размерами и сроком действия. Каталог не может расшифровать адрес; сетевые операторы видят IP соединения и время. Записи истекают в пределах 15 минут. В автономном режиме пейринг и чат используют ваш endpoint без обращения к этому каталогу. Логами, очередями и сроками хранения своего сервера управляете вы."] },
         {
           heading: "Коротко",
           bullets: [

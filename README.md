@@ -119,3 +119,13 @@ attachments from deterministic architecture and code-map fixtures. Their
   <img src="public/product/iphone-chat.png" width="230" alt="GrantTap task timeline">
   <img src="public/product/iphone-mcp-usage.png" width="230" alt="GrantTap Usage">
 </p>
+
+## Mac commerce
+
+The Mac client source is public in [granttap](https://github.com/sergii-ziborov/granttap),
+including its [Mac end-user license](https://github.com/sergii-ziborov/granttap/blob/main/apps/macos/DESKTOP_EULA.md).
+The proposed one-time Mac License is USD 39.99, with optional existing Personal
+tiers. Until App Store approval, this is preparation rather than availability.
+Direct address discovery and the licensed personal/internal own-relay mode
+require no Personal subscription. Supply a reachable TLS endpoint or VPN;
+announcing an IP does not open NAT, configure TLS or promise background APNs.

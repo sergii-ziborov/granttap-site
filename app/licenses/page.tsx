@@ -11,8 +11,8 @@ export default function LicensesPage() {
   return (
     <LegalPage
       title={{ en: "Licenses and notices", ru: "Лицензии и уведомления" }}
-      updated={{ en: "September 25, 2026", ru: "25 сентября 2026" }}
-      updatedISO="2026-09-25"
+      updated={{ en: "September 28, 2026", ru: "28 сентября 2026" }}
+      updatedISO="2026-09-28"
       intro={{
         en: "GrantTap app, desktop, relay, and website are commercial software. Public source access does not make them MIT-licensed. The MCP project has its own MIT license.",
         ru: "Приложение GrantTap, desktop, relay и сайт — коммерческое ПО. Публичный доступ к исходникам не делает их MIT-проектами. У MCP-проекта отдельная лицензия MIT.",
@@ -21,7 +21,7 @@ export default function LicensesPage() {
         en: [
           {
             heading: "GrantTap apps",
-            paragraphs: ["Copyright © 2026 Serhii Ziborov. All rights reserved. The iPhone, iPad, and Apple Watch app uses the applicable App Store end-user license. A directly distributed Mac app uses the separate Desktop commercial end-user license when offered. The publicly readable first-party app source is governed by the GrantTap Commercial Source License."],
+            paragraphs: ["Copyright © 2026 Serhii Ziborov. All rights reserved. The iPhone, iPad, and Apple Watch app uses the applicable App Store end-user license. The Mac app uses the Mac commercial end-user license together with mandatory Apple Usage Rules when distributed through the App Store. A purchased Mac license includes personal/internal own-relay use without a Personal subscription. The publicly readable first-party app source is governed by the GrantTap Commercial Source License."],
             links: [
               { label: "Commercial Source License", href: "https://github.com/sergii-ziborov/granttap/blob/main/LICENSE" },
               { label: "Desktop end-user license", href: "https://github.com/sergii-ziborov/granttap/blob/main/apps/macos/DESKTOP_EULA.md" },
@@ -48,7 +48,7 @@ export default function LicensesPage() {
         ru: [
           {
             heading: "Приложения GrantTap",
-            paragraphs: ["Copyright © 2026 Serhii Ziborov. Все права защищены. Для приложения iPhone, iPad и Apple Watch действует применимая пользовательская лицензия App Store. Для Mac-приложения при прямом распространении действует отдельная коммерческая пользовательская лицензия. Публично доступный собственный код приложений регулируется GrantTap Commercial Source License."],
+            paragraphs: ["Copyright © 2026 Serhii Ziborov. Все права защищены. Для приложения iPhone, iPad и Apple Watch действует применимая пользовательская лицензия App Store. Для Mac-приложения действует коммерческая лицензия Mac вместе с обязательными правилами Apple при распространении через App Store. Покупка Mac включает личное или внутреннее использование своего relay без подписки Personal. Публично доступный собственный код приложений регулируется GrantTap Commercial Source License."],
             links: [
               { label: "Коммерческая лицензия на исходный код", href: "https://github.com/sergii-ziborov/granttap/blob/main/LICENSE" },
               { label: "Пользовательская лицензия Desktop", href: "https://github.com/sergii-ziborov/granttap/blob/main/apps/macos/DESKTOP_EULA.md" },
