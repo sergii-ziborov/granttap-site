@@ -21,7 +21,7 @@ export default function LicensesPage() {
         en: [
           {
             heading: "GrantTap apps",
-            paragraphs: ["Copyright © 2026 Serhii Ziborov. All rights reserved. The iPhone, iPad, and Apple Watch app uses the applicable App Store end-user license. The Mac app uses the Mac commercial end-user license together with mandatory Apple Usage Rules when distributed through the App Store. A purchased Mac license includes personal/internal own-relay use without a Personal subscription. The publicly readable first-party app source is governed by the GrantTap Commercial Source License."],
+            paragraphs: ["Copyright © 2026 Serhii Ziborov. All rights reserved. The iPhone, iPad, and Apple Watch app uses the applicable App Store end-user license. App Store apps use Apple's Standard EULA unless a custom EULA is displayed there. The Mac license additionally grants personal/internal use of your own GrantTap relay. A purchased Mac license includes personal/internal own-relay use without a Personal subscription. The publicly readable first-party app source is governed by the GrantTap Commercial Source License."],
             links: [
               { label: "Commercial Source License", href: "https://github.com/sergii-ziborov/granttap/blob/main/LICENSE" },
               { label: "Desktop end-user license", href: "https://github.com/sergii-ziborov/granttap/blob/main/apps/macos/DESKTOP_EULA.md" },
@@ -48,7 +48,7 @@ export default function LicensesPage() {
         ru: [
           {
             heading: "Приложения GrantTap",
-            paragraphs: ["Copyright © 2026 Serhii Ziborov. Все права защищены. Для приложения iPhone, iPad и Apple Watch действует применимая пользовательская лицензия App Store. Для Mac-приложения действует коммерческая лицензия Mac вместе с обязательными правилами Apple при распространении через App Store. Покупка Mac включает личное или внутреннее использование своего relay без подписки Personal. Публично доступный собственный код приложений регулируется GrantTap Commercial Source License."],
+            paragraphs: ["Copyright © 2026 Serhii Ziborov. Все права защищены. Для приложения iPhone, iPad и Apple Watch действует применимая пользовательская лицензия App Store. В App Store действует стандартная EULA Apple, если там не указана специальная EULA. Лицензия Mac дополнительно разрешает личное или внутреннее использование своего relay GrantTap. Покупка Mac включает личное или внутреннее использование своего relay без подписки Personal. Публично доступный собственный код приложений регулируется GrantTap Commercial Source License."],
             links: [
               { label: "Коммерческая лицензия на исходный код", href: "https://github.com/sergii-ziborov/granttap/blob/main/LICENSE" },
               { label: "Пользовательская лицензия Desktop", href: "https://github.com/sergii-ziborov/granttap/blob/main/apps/macos/DESKTOP_EULA.md" },

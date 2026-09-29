@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return <LegalPage
     title={{ en: "Privacy Policy", ru: "Политика конфиденциальности" }}
-    updated={{ en: "September 4, 2026", ru: "4 сентября 2026" }}
-    updatedISO="2026-09-04"
+    updated={{ en: "September 29, 2026", ru: "29 сентября 2026" }}
+    updatedISO="2026-09-29"
     intro={{
-      en: "This policy covers the GrantTap Personal iPhone and Apple Watch app, its local machine helper, the encrypted relay, and granttap.com. GrantTap creates no advertising profile or readable cloud chat history.",
-      ru: "Эта политика относится к GrantTap Personal для iPhone и Apple Watch, локальному helper, зашифрованному relay и granttap.com. GrantTap не создаёт рекламный профиль или читаемую облачную историю чатов.",
+      en: "This policy covers the GrantTap Mac, iPhone, iPad and Apple Watch apps, its local machine helper, the encrypted relay, and granttap.com. GrantTap creates no advertising profile or readable cloud chat history.",
+      ru: "Эта политика относится к GrantTap для Mac, iPhone, iPad и Apple Watch, локальному helper, зашифрованному relay и granttap.com. GrantTap не создаёт рекламный профиль или читаемую облачную историю чатов.",
     }}
     sections={{
       en: [
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
             "Readable content exists only on the computer and Apple devices you authorize, plus tools you explicitly use there. GrantTap does not proxy provider model traffic.",
           ],
           bullets: [
-            "The app stores keys, preferences, delivery state, hidden/history state, a bounded local audit, and capability usage in protected local storage.",
+            "The app stores keys, preferences, delivery state, hidden/history state, a bounded local audit, and capability usage in protected local storage. Mac also stores fetched chat pages in a protected local archive. Clear this copy in Settings → This Mac → Chat history & cache without deleting provider history or device connections.",
             "The helper stores local pairing and provider integration configuration under ~/.granttap.",
             "Each Mesh has an additional key. The phone hands it only to computers you have already paired, inside the pairing encryption they already use, so shared Task state, Governance policy, and cost figures travel as ciphertext like everything else.",
             "Report a problem composes its text on your device and hands it to the system share sheet. The report contains no keys, tokens, chat content, or commands, and the app itself sends nothing.",
@@ -97,7 +97,7 @@ export default function PrivacyPage() {
             "Читаемое содержимое существует только на разрешённых компьютере и Apple devices, а также в явно выбранных вами tools. GrantTap не проксирует model traffic providers.",
           ],
           bullets: [
-            "Приложение локально хранит keys, preferences, delivery state, history/hidden state, ограниченный audit и capability usage.",
+            "Приложение локально хранит keys, preferences, delivery state, history/hidden state, ограниченный audit и capability usage. Mac также сохраняет загруженные страницы чата в защищённом локальном архиве. Очистить эту копию можно в Settings → This Mac → Chat history & cache, не удаляя историю провайдеров и соединения устройств.",
             "Helper хранит pairing и provider integration configuration в ~/.granttap.",
             "У каждого Mesh есть дополнительный ключ. Телефон передаёт его только уже связанным компьютерам внутри их pairing-шифрования, поэтому общее состояние задач, политика Governance и данные о стоимости идут шифротекстом, как и всё остальное.",
             "«Сообщить о проблеме» составляет текст на устройстве и передаёт его системному share sheet. Отчёт не содержит ключей, токенов, содержимого чатов и команд; само приложение ничего не отправляет.",

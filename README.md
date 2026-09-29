@@ -99,7 +99,7 @@ Live granttap.com is the Hetzner compose stack: `/` on port 3211, `/connect`
 and `/api/connect` on port 3210. `wrangler.production.jsonc` is a leftover
 Cloudflare config — do not `wrangler deploy` it over the live domain. Publish
 by rsyncing this tree to `/srv/apps/granttap-site/releases/` and
-`docker compose -p granttap-web -f compose.hetzner.yaml up -d --build`.
+`podman compose -p granttap-web -f compose.hetzner.yaml up -d --build`.
 
 Product captures under `public/product/` must come from deterministic sample
 data and contain no real pairing, task, repository, credential, or audit data.
@@ -129,3 +129,8 @@ tiers. Until App Store approval, this is preparation rather than availability.
 Direct address discovery and the licensed personal/internal own-relay mode
 require no Personal subscription. Supply a reachable TLS endpoint or VPN;
 announcing an IP does not open NAT, configure TLS or promise background APNs.
+
+Mac menu and device-network support is documented on `/support`; the Apple app
+bundles the same English/Russian customer documents for offline access. Current
+production uses Podman. Deploy only the `site` service for copy changes so pairing
+and `/api/connect` remain on the existing `web` service.
