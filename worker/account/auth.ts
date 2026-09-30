@@ -97,7 +97,7 @@ export class AccountAuth {
       rpName: "GrantTap",
       rpID: RP_ID,
       userID: new TextEncoder().encode(accountId),
-      userName: "GrantTap account",
+      userName: `GrantTap ${accountId.slice(0, 8)}`,
       attestationType: "none",
       authenticatorSelection: { residentKey: "required", userVerification: "required" },
       supportedAlgorithmIDs: [-7],

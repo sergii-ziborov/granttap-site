@@ -99,7 +99,10 @@ test("publishes only Personal customer routes with canonical metadata", async ()
     assert.doesNotMatch(html, /Enterprise|GrantTap Web|browser vault|organization policy/i);
   }
   assert.equal((await render("https://granttap.com/enterprise")).status, 404);
-  assert.equal((await render("https://granttap.com/account")).status, 404);
+  const account = await (await render("https://granttap.com/account")).text();
+  assert.match(account, /Your GrantTap account/);
+  assert.match(account, /name="robots" content="noindex/);
+  assert.match(account, /href="https:\/\/granttap\.com\/account"/);
 });
 
 test("all internal links resolve", async () => {
