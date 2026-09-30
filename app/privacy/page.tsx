@@ -34,7 +34,7 @@ export default function PrivacyPage() {
             "Pairing uses a random mailbox identifier and a single-use encrypted blob. The independent transfer key remains in the QR or manual token and never reaches the relay.",
             "If you use an account, the service stores a passkey public credential, account ID, computer name and identifier, a hash of the Mac credential, and last-seen time. A recovery request holds an ephemeral phone public key and encrypted offer for up to five minutes. The service cannot read the offered pairing key.",
             "Delivery uses opaque room, task, message, and delivery identifiers; sender and recipient roles; timing; ciphertext size; expiry; delivery status; and retry state.",
-            "Cloudflare may process IP address and ordinary security request data to operate the relay and website.",
+            "Hetzner hosts the current relay, website and account bridge and may process IP addresses and ordinary security request data. Cloudflare provides DNS and may process DNS request metadata.",
             "Background delivery stores an APNs device token, environment, bundle identifier, and update time. Push payloads contain no prompt, command, title, path, request identifier, or message body.",
           ],
         },
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
         {
           heading: "Service providers, website, and changes",
           paragraphs: [
-            "Cloudflare provides network, Worker, Durable Object, and website infrastructure. Apple provides APNs, system speech and biometric APIs, and App Store services under Apple's terms. Neither receives GrantTap decryption keys from the app.",
+            "Hetzner hosts the current relay, website and account bridge; Cloudflare provides DNS. Apple provides APNs, system speech and biometric APIs, and App Store services under Apple's terms. These providers do not receive GrantTap decryption keys from the app.",
             "The website stores your language choice locally and uses an HttpOnly session cookie when you sign in to an account. It uses no advertising or product analytics. Material policy changes will be posted here with a new effective date.",
           ],
         },
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
             "Пейринг использует случайный mailbox ID и одноразовый зашифрованный blob. Независимый transfer key остаётся в QR или ручном token и не поступает в relay.",
             "При использовании аккаунта сервис хранит публичный ключ passkey, ID аккаунта, имя и ID компьютера, хеш токена Mac и время последнего подключения. Запрос восстановления содержит временный публичный ключ iPhone и зашифрованное предложение не более пяти минут. Сервис не может прочитать ключ подключения.",
             "Для доставки обрабатываются непрозрачные IDs комнаты, задачи, сообщения и доставки, роли, время, размер шифротекста, expiry, status и retry state.",
-            "Cloudflare может обрабатывать IP и обычные security request data для работы relay и сайта.",
+            "Hetzner размещает действующие relay, сайт и мост аккаунта и может обрабатывать IP и обычные технические данные запросов. Cloudflare предоставляет DNS и может обрабатывать метаданные DNS-запросов.",
             "Фоновая доставка хранит APNs device token, environment, bundle ID и время обновления. Push не содержит prompt, command, title, path, request ID или message body.",
           ],
         },
@@ -120,7 +120,7 @@ export default function PrivacyPage() {
         {
           heading: "Инфраструктура, сайт и изменения",
           paragraphs: [
-            "Cloudflare предоставляет network, Worker, Durable Object и website infrastructure. Apple предоставляет APNs, system speech и biometric APIs и App Store services по своим условиям. Ни один из них не получает GrantTap decryption keys из приложения.",
+            "Hetzner размещает действующие relay, сайт и мост аккаунта; Cloudflare предоставляет DNS. Apple предоставляет APNs, системные API речи и биометрии, а также App Store на своих условиях. Эти поставщики не получают ключи расшифровки GrantTap из приложения.",
             "Сайт хранит локально выбор языка и использует HttpOnly cookie сеанса при входе в аккаунт. Рекламы и аналитики продукта нет. Существенные изменения политики публикуются здесь с новой датой.",
           ],
         },
