@@ -202,10 +202,10 @@
           ${paired ? `<button class="ghost" id="reconnect" ${pairingBusy || row.decision ? "disabled" : ""}>Reconnect this iPhone</button>` : ""}
           ${paired ? `<button class="ghost" id="another" ${pairingBusy || row.decision ? "disabled" : ""}>Add another device</button>` : ""}
           ${auth && !pairingViewId ? `<button class="primary" id="approve" ${canApprove ? "" : "disabled"}>Approve</button>` : ""}
-          ${auth && !row.decision ? `<button class="ghost" id="passkey" ${busy ? "disabled" : ""}>Use passkey on this Mac</button>` : ""}
+          ${auth && row.passkeyCapable === true && !row.decision ? `<button class="ghost" id="passkey" ${busy ? "disabled" : ""}>Use passkey on this Mac</button>` : ""}
           ${auth ? `<button class="ghost" id="deny" ${row.decision || busy ? "disabled" : ""}>Deny</button>` : ""}
         </div>
-        ${auth && !row.decision ? `<p class="lead">A GrantTap account passkey authorizes this coding app on this Mac. It does not pair a phone. <a href="/account" target="_blank" rel="noopener noreferrer">Create or sign in to your account</a>.</p>` : ""}`;
+        ${auth && row.passkeyCapable === true && !row.decision ? `<p class="lead">A GrantTap account passkey authorizes this coding app on this Mac. It does not pair a phone. <a href="/account" target="_blank" rel="noopener noreferrer">Create or sign in to your account</a>.</p>` : ""}`;
       root.querySelectorAll(".phone").forEach((button) => {
         button.addEventListener("click", () => {
           selectedPhone = button.getAttribute("data-name") || "";

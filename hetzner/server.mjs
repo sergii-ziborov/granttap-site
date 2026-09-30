@@ -100,6 +100,7 @@ function sanitize(input, current) {
     clientName: current?.clientName ?? "Coding app",
     computerName: current?.computerName,
     paired: current?.paired ?? false,
+    passkeyCapable: current?.passkeyCapable ?? false,
     phones: current?.phones ?? [],
     providers: current?.providers ?? [],
     relayStatus: current?.relayStatus,
@@ -118,6 +119,7 @@ function sanitize(input, current) {
     next.relayStatus = raw.relayStatus;
   }
   if (typeof raw.paired === "boolean") next.paired = raw.paired;
+  if (typeof raw.passkeyCapable === "boolean") next.passkeyCapable = raw.passkeyCapable;
   if (Array.isArray(raw.phones)) {
     next.phones = raw.phones.slice(0, 4).flatMap((phone) => {
       if (!phone || typeof phone !== "object") return [];
@@ -248,6 +250,9 @@ const server = createServer(async (req, res) => {
       }
       const current = readRow(id);
       if (!current) { json(res, 404, { error: "Connection request expired." }); return; }
+      if (current.passkeyCapable !== true) {
+        json(res, 409, { error: "Update the Mac helper to use passkeys." }); return;
+      }
       if (current.decision) { json(res, 409, { error: "Request already decided." }); return; }
       const body = await readBody(req);
       if (typeof body?.ceremonyId !== "string" || !REQUEST_ID.test(body.ceremonyId)

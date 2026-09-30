@@ -95,8 +95,11 @@ test("live Hetzner connect service exposes account ceremonies but cannot forge p
   const requestId = "a1111111-1111-4111-8111-111111111111";
   const url = `${origin}/api/connect/requests/${requestId}`;
   assert.equal((await fetch(url, { method: "PUT", headers: { "content-type": "application/json" },
-    body: JSON.stringify({ clientName: "Codex", decision: "passkey" }) })).status, 200);
-  assert.equal((await (await fetch(url)).json()).decision, undefined);
+    body: JSON.stringify({ clientName: "Codex", passkeyCapable: true,
+      decision: "passkey" }) })).status, 200);
+  const snapshot = await (await fetch(url)).json();
+  assert.equal(snapshot.decision, undefined);
+  assert.equal(snapshot.passkeyCapable, true);
   assert.equal((await fetch(`${url}/decision`, { method: "POST", headers: { "content-type": "application/json" },
     body: JSON.stringify({ decision: "passkey" }) })).status, 400);
   assert.equal((await fetch(`${url}/passkey`, { method: "POST",
@@ -106,6 +109,13 @@ test("live Hetzner connect service exposes account ceremonies but cannot forge p
     headers: { origin: "https://granttap.com", "content-type": "application/json" },
     body: JSON.stringify({ ceremonyId: requestId, response: { id: "fake" } }) })).status, 401);
   assert.equal((await (await fetch(url)).json()).decision, undefined);
+
+  const oldRequest = `${origin}/api/connect/requests/b2222222-2222-4222-8222-222222222222`;
+  await fetch(oldRequest, { method: "PUT", headers: { "content-type": "application/json" },
+    body: JSON.stringify({ clientName: "Older Codex" }) });
+  assert.equal((await fetch(`${oldRequest}/passkey`, { method: "POST",
+    headers: { origin: "https://granttap.com", "content-type": "application/json" },
+    body: JSON.stringify({ ceremonyId: requestId, response: { id: "fake" } }) })).status, 409);
 
   const jsonPost = async (path, body) => fetch(`${origin}${path}`, {
     method: "POST", headers: { origin: "https://granttap.com", "content-type": "application/json" },

@@ -9,6 +9,7 @@ const memory = new Map<string, { body: string; exp: number }>();
 export type ConnectSnapshot = {
   clientName: string;
   paired: boolean;
+  passkeyCapable?: boolean;
   phones: Array<{ name: string; status: string; lastSeenAt: number | null }>;
   providers: Array<{ id: string; installed: boolean; ready: boolean }>;
   mesh?: { present: boolean; thisComputer: string; computers: string[]; openTasks: number };
@@ -49,6 +50,7 @@ function sanitizeSnapshot(input: unknown, current?: ConnectSnapshot): ConnectSna
   const next: ConnectSnapshot = {
     clientName: current?.clientName ?? "Coding app",
     paired: current?.paired ?? false,
+    passkeyCapable: current?.passkeyCapable ?? false,
     phones: current?.phones ?? [],
     providers: current?.providers ?? [],
     mesh: current?.mesh,
@@ -60,6 +62,7 @@ function sanitizeSnapshot(input: unknown, current?: ConnectSnapshot): ConnectSna
     next.clientName = raw.clientName.trim().slice(0, 80) || "Coding app";
   }
   if (typeof raw.paired === "boolean") next.paired = raw.paired;
+  if (typeof raw.passkeyCapable === "boolean") next.passkeyCapable = raw.passkeyCapable;
   if (Array.isArray(raw.phones)) {
     next.phones = raw.phones.slice(0, 4).flatMap((phone) => {
       if (!phone || typeof phone !== "object") return [];
@@ -167,6 +170,7 @@ export async function handleConnectApi(request: Request, auth?: AccountAuth): Pr
     if (!auth) return json(503, { error: "Passkey service unavailable." });
     const current = await readRow(id);
     if (!current) return json(404, { error: "Connection request expired." });
+    if (current.passkeyCapable !== true) return json(409, { error: "Update the Mac helper to use passkeys." });
     if (current.decision) return json(409, { error: "Request already decided." });
     const body = await boundedJSON(request);
     if (typeof body?.ceremonyId !== "string" || !UUID.test(body.ceremonyId)

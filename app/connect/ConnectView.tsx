@@ -10,6 +10,7 @@ type Provider = { id: "codex" | "claude" | "cursor"; installed: boolean; ready: 
 type Snapshot = {
   clientName: string;
   paired: boolean;
+  passkeyCapable?: boolean;
   phones: Array<{ name: string; status: string }>;
   providers: Provider[];
   decision?: "approve" | "deny" | "passkey";
@@ -248,7 +249,7 @@ export function ConnectView() {
                   {t.deny}
                 </button>
               </div>
-              {!row.decision && <div className="connect-passkey">
+              {row.passkeyCapable && !row.decision && <div className="connect-passkey">
                 <button type="button" disabled={busy} onClick={() => void approveWithPasskey()}>{t.macPasskey}</button>
                 <p>{t.passkeyNote} <Link href="/account" target="_blank" rel="noopener noreferrer">{t.createAccount}</Link></p>
                 {passkeyError && <p role="alert">{t.passkeyFailed}</p>}

@@ -26,7 +26,8 @@ test("a Mac passkey can approve MCP access without a paired phone", async () => 
       expect(init?.method).toBe("POST");
       return Response.json({ ok: true, decision: "passkey" });
     }
-    return Response.json({ clientName: "Codex", paired: false, phones: [], providers: [] });
+    return Response.json({ clientName: "Codex", paired: false, passkeyCapable: true,
+      phones: [], providers: [] });
   });
   vi.stubGlobal("fetch", fetchMock);
   render(<ConnectView />);
@@ -42,7 +43,8 @@ test("passkey errors stay visible and leave QR approval available", async () => 
   window.location.hash = "#request=82222222-2222-4222-8222-222222222222";
   Object.defineProperty(window, "PublicKeyCredential", { value: undefined, configurable: true });
   vi.stubGlobal("fetch", vi.fn(async () => Response.json({ clientName: "Codex",
-    paired: true, phones: [{ name: "iPhone", status: "paired" }], providers: [] })));
+    paired: true, passkeyCapable: true,
+    phones: [{ name: "iPhone", status: "paired" }], providers: [] })));
   render(<ConnectView />);
   await userEvent.click(await screen.findByRole("button", { name: "Use passkey on this Mac" }));
   expect(await screen.findByRole("alert")).toBeTruthy();
@@ -53,6 +55,15 @@ test("the /connect route renders the authorization card", () => {
   window.location.hash = "";
   render(<ConnectPage />);
   expect(screen.getByRole("heading", { name: "Connect your coding app", level: 1 })).toBeTruthy();
+});
+
+test("older MCP helpers do not offer passkey consent they cannot complete", async () => {
+  window.location.hash = "#request=83333333-3333-4333-8333-333333333333";
+  vi.stubGlobal("fetch", vi.fn(async () => Response.json({ clientName: "Codex",
+    paired: true, phones: [{ name: "iPhone", status: "paired" }], providers: [] })));
+  render(<ConnectView />);
+  expect(await screen.findByRole("button", { name: "Approve" })).toBeTruthy();
+  expect(screen.queryByRole("button", { name: "Use passkey on this Mac" })).toBeNull();
 });
 
 test("connect page talks only to the website API", async () => {
