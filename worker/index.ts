@@ -101,10 +101,12 @@ const worker = {
       }), { headers: { "content-type": "application/json; charset=utf-8" } }));
     }
 
-    const account = await handleAccountApi(request, env.ACCOUNTS_DB);
+    const database = env?.ACCOUNTS_DB;
+    const account = database ? await handleAccountApi(request, database) : null;
     if (account) return withSecurityHeaders(request, account);
 
-    const connect = await handleConnectApi(request, new AccountAuth(new D1AccountStore(env.ACCOUNTS_DB)));
+    const connect = await handleConnectApi(request,
+      database ? new AccountAuth(new D1AccountStore(database)) : undefined);
     if (connect) return withSecurityHeaders(request, connect);
 
     if (url.pathname === "/_vinext/image") {

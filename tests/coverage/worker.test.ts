@@ -35,6 +35,14 @@ test("adds headers to app responses and omits HSTS on HTTP", async () => {
   expect(response.headers.get("strict-transport-security")).toBeNull();
 });
 
+test("Node production renders account pages without a Cloudflare D1 binding", async () => {
+  doubles.app.mockResolvedValueOnce(new Response("account page"));
+  const response = await worker.fetch(new Request("https://granttap.com/account"),
+    undefined as unknown as typeof env, context);
+  expect(response.status).toBe(200);
+  expect(await response.text()).toBe("account page");
+});
+
 test("stores a public connect snapshot without loopback or pairing secrets", async () => {
   const id = "11111111-1111-4111-8111-111111111111";
   const put = await worker.fetch(new Request(`https://granttap.com/api/connect/requests/${id}`, {
