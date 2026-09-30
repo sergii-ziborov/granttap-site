@@ -2,6 +2,8 @@
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 import { handleConnectApi } from "./connect-api";
+import { handleAccountApi } from "./account/api";
+import type { D1Database } from "@cloudflare/workers-types";
 
 const CANONICAL_ORIGIN = "https://granttap.com";
 const REDIRECT_HOSTS = new Set([
@@ -56,6 +58,7 @@ interface AssetFetcher {
 
 interface Env {
   ASSETS: AssetFetcher;
+  ACCOUNTS_DB: D1Database;
   IMAGES: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
@@ -89,6 +92,15 @@ const worker = {
         ),
       );
     }
+
+    if (url.pathname === "/.well-known/apple-app-site-association") {
+      return withSecurityHeaders(request, new Response(JSON.stringify({
+        webcredentials: { apps: ["XMS5ZC28UJ.com.ziborov.granttap"] },
+      }), { headers: { "content-type": "application/json; charset=utf-8" } }));
+    }
+
+    const account = await handleAccountApi(request, env.ACCOUNTS_DB);
+    if (account) return withSecurityHeaders(request, account);
 
     const connect = await handleConnectApi(request);
     if (connect) return withSecurityHeaders(request, connect);

@@ -1,3 +1,4 @@
+import type { D1Database } from "@cloudflare/workers-types";
 import { expect, test, vi } from "vitest";
 
 const doubles = vi.hoisted(() => ({ app: vi.fn(), optimize: vi.fn() }));
@@ -15,6 +16,7 @@ const context = { waitUntil: vi.fn(), passThroughOnException: vi.fn() };
 const env = {
   ASSETS: { fetch: vi.fn(async () => new Response("asset")) },
   IMAGES: { input: vi.fn(() => ({ transform: () => ({ output: async () => ({ response: () => new Response("image") }) }) })) },
+  ACCOUNTS_DB: {} as D1Database,
 };
 
 test("redirects alternate hosts with production security headers", async () => {

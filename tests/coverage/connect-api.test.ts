@@ -85,7 +85,10 @@ test("connect API bounds untrusted snapshots and preserves an existing decision"
     mesh: { present: true, thisComputer: " Mac ", computers: ["Mac", " ", 3, "PC"], openTasks: 10_000 },
     error: "E".repeat(400), decision: "deny",
   }))?.status).toBe(200);
-  const row = await (await handleConnectApi(new Request(url)))?.json();
+  const row = await (await handleConnectApi(new Request(url)))?.json() as {
+    clientName: string; phones: unknown[]; providers: unknown[];
+    mesh: unknown; error: string;
+  };
   expect(row).toMatchObject({ clientName: "Coding app", paired: true, decision: "deny" });
   expect(row.phones).toEqual([{ name: "iPhone", status: "seen", lastSeenAt: 5 }, { name: "Tablet", status: "paired", lastSeenAt: null }]);
   expect(row.providers).toEqual([{ id: "codex", installed: true, ready: false }, { id: "claude", installed: false, ready: true }]);

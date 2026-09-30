@@ -21,5 +21,5 @@ vi.mock("next/navigation", () => ({ usePathname: () => "/privacy", notFound: () 
 
 afterEach(() => {
   cleanup();
-  window.localStorage.clear();
+  if (typeof window !== "undefined") window.localStorage.clear();
 });
