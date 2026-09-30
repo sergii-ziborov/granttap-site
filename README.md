@@ -95,8 +95,10 @@ npm test
 npm run lint
 ```
 
-Live granttap.com is the Hetzner compose stack: `/` on port 3211, `/connect`
-and `/api/connect` on port 3210. `wrangler.production.jsonc` is a leftover
+Live granttap.com is the Hetzner compose stack: `/` on port 3211, `/connect`,
+`/api/connect`, and `/api/account` on port 3210. Passkey account records live
+in the persistent `account_data` volume; deploys must retain that volume and
+install the matching `hetzner/nginx.conf` account route. `wrangler.production.jsonc` is a leftover
 Cloudflare config — do not `wrangler deploy` it over the live domain. Publish
 by rsyncing this tree to `/srv/apps/granttap-site/releases/` and
 `podman compose -p granttap-web -f compose.hetzner.yaml up -d --build`.

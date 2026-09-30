@@ -3,6 +3,8 @@ import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } fr
 import handler from "vinext/server/app-router-entry";
 import { handleConnectApi } from "./connect-api";
 import { handleAccountApi } from "./account/api";
+import { AccountAuth } from "./account/auth";
+import { D1AccountStore } from "./account/d1-store";
 import type { D1Database } from "@cloudflare/workers-types";
 
 const CANONICAL_ORIGIN = "https://granttap.com";
@@ -102,7 +104,7 @@ const worker = {
     const account = await handleAccountApi(request, env.ACCOUNTS_DB);
     if (account) return withSecurityHeaders(request, account);
 
-    const connect = await handleConnectApi(request);
+    const connect = await handleConnectApi(request, new AccountAuth(new D1AccountStore(env.ACCOUNTS_DB)));
     if (connect) return withSecurityHeaders(request, connect);
 
     if (url.pathname === "/_vinext/image") {

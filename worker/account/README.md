@@ -3,7 +3,9 @@
 `api.ts` is the public HTTP entry point for passkey account registration, sign-in,
 session lookup, sign-out, account deletion, and linked computer management. `auth.ts` verifies WebAuthn
 ceremonies for `granttap.com`; `d1-store.ts` persists public credential data,
-single-use challenges, and hashes of session tokens in Cloudflare D1.
+single-use challenges, and hashes of session tokens through a prepared SQLite
+interface. The live Hetzner connect service uses `sqlite.ts` with a durable
+database volume; the optional Cloudflare Worker uses D1.
 
 `machines.ts` stores opt-in computer links with hashed machine bearer tokens.
 `machine-api.ts` lets the account list or revoke those links, opens a five-minute
@@ -22,10 +24,17 @@ path remains independent of the account service. The computer poller, encrypted
 offer producer, and iPhone recovery UI are not shipped yet. Until they are,
 the account page must not claim that signing in restores a connection.
 
-The worker serves Apple's `webcredentials` association file at
+The Worker serves Apple's `webcredentials` association file at
 `/.well-known/apple-app-site-association`. The corresponding native app needs
 the `webcredentials:granttap.com` entitlement and a matching provisioning
 profile before it can use this relying party.
+
+The Hetzner server exposes `/api/account/` and accepts a fresh account passkey
+assertion at `/api/connect/requests/:id/passkey`. The normal QR path stays
+independent. `hetzner/nginx.conf` routes account APIs to port 3210; the
+`account_data` compose volume holds credential records across deploys. The
+MCP OAuth token remains local to the computer and is not a machine recovery
+grant.
 
 Run `npm run test:coverage`, `npm run typecheck`, `npm run lint`, and `npm test`
 before changing the account boundary. The test suite includes real P-256

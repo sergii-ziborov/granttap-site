@@ -73,6 +73,7 @@
     let pairingTried = false;
     let oauthHandedOff = false;
     let scanApproved = false;
+    let passkeyError = "";
 
     function requestId() {
       return new URLSearchParams(location.hash.replace(/^#/, "")).get("request") || "";
@@ -124,7 +125,7 @@
       const auth = Boolean(requestId());
       document.getElementById("title").textContent = auth ? "Connect your coding app" : "Your devices";
       document.getElementById("lead").textContent = auth
-        ? "This Mac can show a one-time QR for GrantTap on iPhone or iPad. Scan it to add a controller; a scan can also approve this coding app. A saved phone can use Approve, Reconnect, or Add another device."
+        ? "Approve this coding app with a phone QR or a GrantTap account passkey on this Mac. QR pairing does not require an account."
         : "This Mac and its controller devices. Add a device, Reconnect, and Add another device show a one-time QR. No GrantTap account is required.";
       if (missingHelper) {
         root.innerHTML = panel(
@@ -190,6 +191,7 @@
         </div>
         <div class="panel ok"><h2>Coding apps on this computer</h2><div class="apps">${apps || "<p>No coding apps reported yet.</p>"}</div></div>
         ${row.error ? panel("The coding app could not finish authorization.", row.error) : ""}
+        ${passkeyError ? panel("Passkey approval failed", esc(passkeyError)) : ""}
         ${row.decision && !row.redirectUrl && !row.error
           ? `<p class="lead">${busy
             ? "Waiting for this computer…"
@@ -200,8 +202,10 @@
           ${paired ? `<button class="ghost" id="reconnect" ${pairingBusy || row.decision ? "disabled" : ""}>Reconnect this iPhone</button>` : ""}
           ${paired ? `<button class="ghost" id="another" ${pairingBusy || row.decision ? "disabled" : ""}>Add another device</button>` : ""}
           ${auth && !pairingViewId ? `<button class="primary" id="approve" ${canApprove ? "" : "disabled"}>Approve</button>` : ""}
+          ${auth && !row.decision ? `<button class="ghost" id="passkey" ${busy ? "disabled" : ""}>Use passkey on this Mac</button>` : ""}
           ${auth ? `<button class="ghost" id="deny" ${row.decision || busy ? "disabled" : ""}>Deny</button>` : ""}
-        </div>`;
+        </div>
+        ${auth && !row.decision ? `<p class="lead">A GrantTap account passkey authorizes this coding app on this Mac. It does not pair a phone. <a href="/account" target="_blank" rel="noopener noreferrer">Create or sign in to your account</a>.</p>` : ""}`;
       root.querySelectorAll(".phone").forEach((button) => {
         button.addEventListener("click", () => {
           selectedPhone = button.getAttribute("data-name") || "";
@@ -212,7 +216,56 @@
       document.getElementById("reconnect")?.addEventListener("click", () => void showQr(true, false, false));
       document.getElementById("another")?.addEventListener("click", () => void showQr(true, false, true));
       document.getElementById("approve")?.addEventListener("click", () => decide("approve"));
+      document.getElementById("passkey")?.addEventListener("click", () => void approveWithPasskey());
       document.getElementById("deny")?.addEventListener("click", () => decide("deny"));
+    }
+    function fromBase64url(value) {
+      const raw = atob(value.replace(/-/g, "+").replace(/_/g, "/"));
+      return Uint8Array.from(raw, (char) => char.charCodeAt(0));
+    }
+    function toBase64url(value) {
+      const bytes = new Uint8Array(value);
+      let raw = "";
+      for (const byte of bytes) raw += String.fromCharCode(byte);
+      return btoa(raw).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+    }
+    async function approveWithPasskey() {
+      if (busy || !requestId()) return;
+      busy = true;
+      passkeyError = "";
+      if (lastRow) render(lastRow, false);
+      try {
+        if (!window.PublicKeyCredential || !navigator.credentials) throw new Error("Passkeys are unavailable in this browser.");
+        const optionsResponse = await fetch("/api/account/authentication/options", {
+          method: "POST", headers: { "content-type": "application/json" }, body: "{}",
+        });
+        if (!optionsResponse.ok) throw new Error("The account service is unavailable.");
+        const ceremony = await optionsResponse.json();
+        const options = ceremony.options;
+        const publicKey = { ...options, challenge: fromBase64url(options.challenge),
+          allowCredentials: (options.allowCredentials || []).map((item) => ({
+            ...item, id: fromBase64url(item.id),
+          })) };
+        const credential = await navigator.credentials.get({ publicKey });
+        if (!credential) throw new Error("No passkey was selected.");
+        const result = { id: credential.id, rawId: toBase64url(credential.rawId),
+          type: credential.type, response: {
+            clientDataJSON: toBase64url(credential.response.clientDataJSON),
+            authenticatorData: toBase64url(credential.response.authenticatorData),
+            signature: toBase64url(credential.response.signature),
+            userHandle: credential.response.userHandle ? toBase64url(credential.response.userHandle) : undefined,
+          }, clientExtensionResults: credential.getClientExtensionResults() };
+        const approval = await fetch("/api/connect/requests/" + requestId() + "/passkey", {
+          method: "POST", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ ceremonyId: ceremony.ceremonyId, response: result }),
+        });
+        if (!approval.ok) throw new Error("Check your account passkey and try again.");
+      } catch (error) {
+        passkeyError = error instanceof Error ? error.message : "Try again.";
+      } finally {
+        busy = false;
+        if (lastRow) render(lastRow, false);
+      }
     }
     async function pair(confirmed, replace, addDevice) {
       const body = new URLSearchParams();

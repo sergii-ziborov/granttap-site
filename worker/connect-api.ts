@@ -1,4 +1,6 @@
-/** Short-lived public Cursor/Codex consent. No pairing keys. No loopback. */
+/** Short-lived MCP consent with an optional fresh account passkey. No pairing keys. */
+import { AccountAuth } from "./account/auth";
+import { boundedJSON, sessionCookie, UUID } from "./account/http";
 
 const REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const TTL_MS = 15 * 60_000;
@@ -10,7 +12,7 @@ export type ConnectSnapshot = {
   phones: Array<{ name: string; status: string; lastSeenAt: number | null }>;
   providers: Array<{ id: string; installed: boolean; ready: boolean }>;
   mesh?: { present: boolean; thisComputer: string; computers: string[]; openTasks: number };
-  decision?: "approve" | "deny";
+  decision?: "approve" | "deny" | "passkey";
   redirectUrl?: string;
   error?: string;
 };
@@ -137,7 +139,7 @@ async function writeRow(id: string, row: ConnectSnapshot): Promise<void> {
   }
 }
 
-export async function handleConnectApi(request: Request): Promise<Response | null> {
+export async function handleConnectApi(request: Request, auth?: AccountAuth): Promise<Response | null> {
   const url = new URL(request.url);
   const parts = url.pathname.split("/").filter(Boolean);
   if (parts[0] !== "api" || parts[1] !== "connect" || parts[2] !== "requests") return null;
@@ -156,6 +158,30 @@ export async function handleConnectApi(request: Request): Promise<Response | nul
     if (!incoming) return json(400, { error: "Invalid connection snapshot." });
     await writeRow(id, incoming);
     return json(200, { ok: true });
+  }
+
+  if (request.method === "POST" && action === "passkey") {
+    if (request.headers.get("origin") !== "https://granttap.com") {
+      return json(403, { error: "Passkey approval requires this website." });
+    }
+    if (!auth) return json(503, { error: "Passkey service unavailable." });
+    const current = await readRow(id);
+    if (!current) return json(404, { error: "Connection request expired." });
+    if (current.decision) return json(409, { error: "Request already decided." });
+    const body = await boundedJSON(request);
+    if (typeof body?.ceremonyId !== "string" || !UUID.test(body.ceremonyId)
+      || !body.response || typeof body.response !== "object" || Array.isArray(body.response)
+      || typeof (body.response as Record<string, unknown>).id !== "string") {
+      return json(400, { error: "Invalid passkey response." });
+    }
+    const result = await auth.completeAuthentication(body.ceremonyId, body.response as { id: string });
+    if (!result) return json(401, { error: "Passkey verification failed or expired." });
+    current.decision = "passkey";
+    await writeRow(id, current);
+    return new Response(JSON.stringify({ ok: true, decision: "passkey" }), {
+      status: 200, headers: { "content-type": "application/json", "cache-control": "no-store",
+        "set-cookie": sessionCookie(result.token) },
+    });
   }
 
   if (request.method === "POST" && action === "decision") {

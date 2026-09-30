@@ -3,16 +3,19 @@ name: granttap-web
 services:
   web:
     build:
-      context: ./hetzner
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: hetzner/Dockerfile
     restart: unless-stopped
     init: true
     environment:
       PORT: "3210"
       HOST: "0.0.0.0"
+      GRANTTAP_ACCOUNT_DB: "/data/accounts.sqlite"
     ports:
       - "127.0.0.1:3210:3210"
     read_only: true
+    volumes:
+      - account_data:/data
     tmpfs:
       - /tmp:size=16m,noexec,nosuid,nodev
     mem_limit: 256m
@@ -55,3 +58,6 @@ services:
       timeout: 8s
       retries: 4
       start_period: 20s
+
+volumes:
+  account_data:

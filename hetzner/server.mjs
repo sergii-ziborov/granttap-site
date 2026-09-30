@@ -7,12 +7,25 @@ import { createServer } from "node:http";
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { AccountAuth } from "../worker/account/auth.ts";
+import { D1AccountStore } from "../worker/account/d1-store.ts";
+import { handleAccountApi } from "../worker/account/api.ts";
+import { sessionCookie } from "../worker/account/http.ts";
+import { SqliteD1 } from "../worker/account/sqlite.ts";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGE = readFileSync(join(ROOT, "public", "connect.html"), "utf8");
 const STORE_PATH = process.env.GRANTTAP_CONNECT_STORE ?? join(ROOT, "connect-store.json");
 const PORT = Number(process.env.PORT ?? 3210);
 const HOST = process.env.HOST ?? "0.0.0.0";
+const accountDb = new SqliteD1(process.env.GRANTTAP_ACCOUNT_DB ?? join(ROOT, "accounts.sqlite"));
+const accountAuth = new AccountAuth(new D1AccountStore(accountDb));
+function purgeExpiredAccountState() {
+  accountDb.sqlite.prepare("DELETE FROM ceremonies WHERE expires_at<=?").run(Date.now());
+  accountDb.sqlite.prepare("DELETE FROM sessions WHERE expires_at<=?").run(Date.now());
+}
+purgeExpiredAccountState();
+setInterval(purgeExpiredAccountState, 10 * 60_000).unref();
 const REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const TTL_MS = 15 * 60_000;
 const store = loadStore();
@@ -155,6 +168,28 @@ async function readBody(req) {
   }
 }
 
+async function webRequest(req) {
+  const chunks = [];
+  let length = 0;
+  for await (const chunk of req) {
+    length += chunk.length;
+    if (length > 16_384) throw new Error("Request too large");
+    chunks.push(chunk);
+  }
+  return new Request(`https://granttap.com${req.url}`, {
+    method: req.method,
+    headers: req.headers,
+    body: chunks.length ? Buffer.concat(chunks) : undefined,
+  });
+}
+
+async function sendResponse(res, response) {
+  const headers = Object.fromEntries(response.headers);
+  const body = Buffer.from(await response.arrayBuffer());
+  res.writeHead(response.status, { ...headers, "content-length": body.length });
+  res.end(body);
+}
+
 const server = createServer(async (req, res) => {
   const url = new URL(req.url ?? "/", "http://127.0.0.1");
   if (req.method === "GET" && url.pathname === "/healthz") {
@@ -163,6 +198,19 @@ const server = createServer(async (req, res) => {
   }
   if (req.method === "GET" && (url.pathname === "/connect" || url.pathname === "/connect/")) {
     html(res, 200, PAGE);
+    return;
+  }
+
+  if (url.pathname.startsWith("/api/account/")) {
+    try {
+      const response = await handleAccountApi(await webRequest(req), accountDb);
+      if (response) await sendResponse(res, response);
+      else json(res, 404, { error: "Not found." });
+    } catch (error) {
+      const tooLarge = error instanceof Error && error.message === "Request too large";
+      json(res, tooLarge ? 413 : 500, { error: tooLarge
+        ? "Account request is too large." : "Account service unavailable." });
+    }
     return;
   }
 
@@ -191,6 +239,29 @@ const server = createServer(async (req, res) => {
       }
       writeRow(id, incoming);
       json(res, 200, { ok: true });
+      return;
+    }
+    if (req.method === "POST" && action === "passkey") {
+      if (req.headers.origin !== "https://granttap.com") {
+        json(res, 403, { error: "Passkey approval requires this website." });
+        return;
+      }
+      const current = readRow(id);
+      if (!current) { json(res, 404, { error: "Connection request expired." }); return; }
+      if (current.decision) { json(res, 409, { error: "Request already decided." }); return; }
+      const body = await readBody(req);
+      if (typeof body?.ceremonyId !== "string" || !REQUEST_ID.test(body.ceremonyId)
+          || !body.response || typeof body.response !== "object" || Array.isArray(body.response)
+          || typeof body.response.id !== "string") {
+        json(res, 400, { error: "Invalid passkey response." });
+        return;
+      }
+      const verified = await accountAuth.completeAuthentication(body.ceremonyId, body.response);
+      if (!verified) { json(res, 401, { error: "Passkey verification failed or expired." }); return; }
+      current.decision = "passkey";
+      writeRow(id, current);
+      res.setHeader("set-cookie", sessionCookie(verified.token));
+      json(res, 200, { ok: true, decision: "passkey" });
       return;
     }
     if (req.method === "POST" && action === "decision") {
