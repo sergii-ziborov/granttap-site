@@ -14,4 +14,6 @@
 .account-actions button:focus-visible { outline: 3px solid #ff9a67; outline-offset: 3px; }
 .account-card .account-boundary, .account-card .account-note { font-size: 14px; }
 .account-card .account-error { color: #ff9b86; }
+.account-machines { list-style: none; padding: 0; margin: 12px 0 24px; }
+.account-machines li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px solid #343436; }
 @media (max-width: 600px) { .account-card { margin: 20px auto; padding: 24px; } }

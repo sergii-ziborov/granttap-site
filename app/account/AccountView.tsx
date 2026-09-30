@@ -8,6 +8,7 @@ import { LanguageToggle, useLocale } from "../components/Locale";
 
 type Ceremony<T> = { ceremonyId: string; options: T };
 type Account = { accountId: string };
+type Machine = { id: string; name: string; createdAt: number; lastSeenAt: number | null };
 const base = "/api/account/";
 
 const copy = {
@@ -18,7 +19,11 @@ const copy = {
     signIn: "Sign in with passkey",
     createNote: "Already have an account? Sign in first. Creating another account will not find your existing computers.",
     account: "Account ID",
-    noComputer: "No computer is linked to this account yet. Signing in does not restore a computer connection.",
+    noComputer: "Signing in alone does not restore a computer connection. Keep the existing QR pairing when available.",
+    computers: "Connected computers",
+    disconnect: "Disconnect",
+    none: "No computers are linked to this account.",
+    loading: "Loading computers…",
     signOut: "Sign out",
     delete: "Delete account",
     confirmDelete: "Delete this account and its passkey records? This cannot be undone.",
@@ -33,7 +38,11 @@ const copy = {
     signIn: "Войти по passkey",
     createNote: "Уже есть аккаунт? Сначала войдите. Новый аккаунт не найдёт ваши прежние компьютеры.",
     account: "ID аккаунта",
-    noComputer: "К этому аккаунту пока не привязан компьютер. Вход сам по себе не восстанавливает подключение.",
+    noComputer: "Сам по себе вход не восстанавливает подключение к компьютеру. Если QR доступен, используйте обычное подключение.",
+    computers: "Подключённые компьютеры",
+    disconnect: "Отключить",
+    none: "К аккаунту пока не привязаны компьютеры.",
+    loading: "Загрузка компьютеров…",
     signOut: "Выйти",
     delete: "Удалить аккаунт",
     confirmDelete: "Удалить аккаунт и записи passkey? Это действие нельзя отменить.",
@@ -58,6 +67,7 @@ export function AccountView() {
   const { locale, setLocale } = useLocale();
   const t = copy[locale];
   const [accountId, setAccountId] = useState<string | null>();
+  const [machines, setMachines] = useState<Machine[] | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,6 +79,31 @@ export function AccountView() {
       .catch(() => { if (active) setAccountId(null); });
     return () => { active = false; };
   }, []);
+
+  useEffect(() => {
+    if (!accountId) return;
+    let active = true;
+    void fetch(base + "machines", { credentials: "same-origin" })
+      .then(async response => {
+        if (!response.ok) throw new Error("Machines unavailable");
+        return await response.json() as { machines: Machine[] };
+      })
+      .then(result => { if (active) setMachines(result.machines); })
+      .catch(() => { if (active) setError(copy[locale].failed); });
+    return () => { active = false; };
+  }, [accountId, locale]);
+
+  async function disconnect(machine: Machine) {
+    setBusy(true);
+    setError(null);
+    try {
+      const response = await fetch(base + "machines/" + machine.id,
+        { method: "DELETE", credentials: "same-origin" });
+      if (!response.ok) throw new Error("Revoke failed");
+      setMachines(current => current?.filter(item => item.id !== machine.id) ?? null);
+    } catch { setError(t.failed); }
+    finally { setBusy(false); }
+  }
 
   async function enter(kind: "registration" | "authentication") {
     setBusy(true);
@@ -84,6 +119,7 @@ export function AccountView() {
       const account = await post<Account>(kind + "/verify", {
         ceremonyId: ceremony.ceremonyId, response,
       });
+      setMachines(null);
       setAccountId(account.accountId);
     } catch (cause) {
       setError(cause instanceof Error && cause.message === "Passkey unavailable" ? t.unavailable : t.failed);
@@ -99,6 +135,7 @@ export function AccountView() {
         const response = await fetch(base + "me", { method: "DELETE", credentials: "same-origin" });
         if (!response.ok) throw new Error("Delete failed");
       } else await post("logout");
+      setMachines(null);
       setAccountId(null);
     } catch { setError(t.failed); }
     finally { setBusy(false); }
@@ -114,6 +151,14 @@ export function AccountView() {
       <p>{t.lead}</p>
       {accountId === undefined ? <p role="status">…</p> : accountId ? <>
         <dl><dt>{t.account}</dt><dd>{accountId}</dd></dl>
+        <h2>{t.computers}</h2>
+        {machines === null ? <p role="status">{t.loading}</p> : machines.length === 0
+          ? <p className="account-boundary">{t.none}</p>
+          : <ul className="account-machines">{machines.map(machine => <li key={machine.id}>
+            <span>{machine.name}</span>
+            <button type="button" disabled={busy} aria-label={`${t.disconnect} ${machine.name}`}
+              onClick={() => void disconnect(machine)}>{t.disconnect}</button>
+          </li>)}</ul>}
         <p className="account-boundary">{t.noComputer}</p>
         <div className="account-actions">
           <button type="button" disabled={busy} onClick={() => void exit(false)}>{t.signOut}</button>
