@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return <LegalPage
     title={{ en: "Privacy Policy", ru: "Политика конфиденциальности" }}
-    updated={{ en: "September 29, 2026", ru: "29 сентября 2026" }}
-    updatedISO="2026-09-29"
+    updated={{ en: "September 30, 2026", ru: "30 сентября 2026" }}
+    updatedISO="2026-09-30"
     intro={{
       en: "This policy covers the GrantTap Mac, iPhone, iPad and Apple Watch apps, its local machine helper, the encrypted relay, and granttap.com. GrantTap creates no advertising profile or readable cloud chat history.",
       ru: "Эта политика относится к GrantTap для Mac, iPhone, iPad и Apple Watch, локальному helper, зашифрованному relay и granttap.com. GrantTap не создаёт рекламный профиль или читаемую облачную историю чатов.",
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
         {
           heading: "Privacy at a glance",
           bullets: [
-            "GrantTap Personal requires no username or password.",
+            "QR pairing requires no account. The optional account uses a passkey without a password.",
             "Repositories, provider credentials, model prompts, and model traffic do not pass through the GrantTap relay.",
             "Task messages, commands, questions, attachments, replies, and decisions are end-to-end encrypted before leaving an authorized endpoint.",
             "GrantTap does not sell personal data or use app data for advertising, tracking, productivity scoring, or profiling.",
@@ -32,6 +32,7 @@ export default function PrivacyPage() {
           heading: "Data processed to provide the app",
           bullets: [
             "Pairing uses a random mailbox identifier and a single-use encrypted blob. The independent transfer key remains in the QR or manual token and never reaches the relay.",
+            "If you use an account, the service stores a passkey public credential, account ID, computer name and identifier, a hash of the Mac credential, and last-seen time. A recovery request holds an ephemeral phone public key and encrypted offer for up to five minutes. The service cannot read the offered pairing key.",
             "Delivery uses opaque room, task, message, and delivery identifiers; sender and recipient roles; timing; ciphertext size; expiry; delivery status; and retry state.",
             "Cloudflare may process IP address and ordinary security request data to operate the relay and website.",
             "Background delivery stores an APNs device token, environment, bundle identifier, and update time. Push payloads contain no prompt, command, title, path, request identifier, or message body.",
@@ -55,7 +56,7 @@ export default function PrivacyPage() {
           heading: "Retention, deletion, and your choices",
           paragraphs: [
             "Pairing blobs expire after 15 minutes and are single-use. Encrypted offline queues are bounded and expire. Local data remains until you clear it, unlink a computer, reset pairing, or remove the app/helper.",
-            "You may decline optional system permissions. Depending on applicable law, you may request access, correction, deletion, restriction, portability, or objection for data GrantTap can identify and control. Because Personal has no identity index and the relay cannot decrypt payloads, no readable task record may exist for a centralized identity search.",
+            "You may decline optional system permissions. Account devices can be revoked and the account deleted on the account page. Depending on applicable law, you may request access, correction, deletion, restriction, portability, or objection for data GrantTap can identify and control. The relay cannot decrypt task payloads or search their readable content by account.",
           ],
           links: [
             { label: "Manage or delete data", href: "/data-rights" },
@@ -66,7 +67,7 @@ export default function PrivacyPage() {
           heading: "Service providers, website, and changes",
           paragraphs: [
             "Cloudflare provides network, Worker, Durable Object, and website infrastructure. Apple provides APNs, system speech and biometric APIs, and App Store services under Apple's terms. Neither receives GrantTap decryption keys from the app.",
-            "granttap.com stores only your language choice locally and uses no advertising or product analytics. Material policy changes will be posted here with a new effective date.",
+            "The website stores your language choice locally and uses an HttpOnly session cookie when you sign in to an account. It uses no advertising or product analytics. Material policy changes will be posted here with a new effective date.",
           ],
         },
       ],
@@ -75,7 +76,7 @@ export default function PrivacyPage() {
         {
           heading: "Коротко",
           bullets: [
-            "GrantTap Personal не требует имени пользователя или пароля.",
+            "Для QR-пейринга аккаунт не нужен. Необязательный аккаунт использует passkey без пароля.",
             "Репозитории, provider credentials, prompts модели и model traffic не проходят через relay GrantTap.",
             "Сообщения, команды, вопросы, вложения, ответы и решения шифруются до отправки с разрешённого endpoint.",
             "GrantTap не продаёт данные и не использует их для рекламы, tracking, productivity scoring или профилирования.",
@@ -85,6 +86,7 @@ export default function PrivacyPage() {
           heading: "Данные для работы приложения",
           bullets: [
             "Пейринг использует случайный mailbox ID и одноразовый зашифрованный blob. Независимый transfer key остаётся в QR или ручном token и не поступает в relay.",
+            "При использовании аккаунта сервис хранит публичный ключ passkey, ID аккаунта, имя и ID компьютера, хеш токена Mac и время последнего подключения. Запрос восстановления содержит временный публичный ключ iPhone и зашифрованное предложение не более пяти минут. Сервис не может прочитать ключ подключения.",
             "Для доставки обрабатываются непрозрачные IDs комнаты, задачи, сообщения и доставки, роли, время, размер шифротекста, expiry, status и retry state.",
             "Cloudflare может обрабатывать IP и обычные security request data для работы relay и сайта.",
             "Фоновая доставка хранит APNs device token, environment, bundle ID и время обновления. Push не содержит prompt, command, title, path, request ID или message body.",
@@ -108,7 +110,7 @@ export default function PrivacyPage() {
           heading: "Срок, удаление и ваш выбор",
           paragraphs: [
             "Pairing blobs одноразовые и истекают через 15 минут. Зашифрованные offline queues ограничены и истекают. Локальные данные остаются до очистки, unlink компьютера, reset pairing или удаления приложения/helper.",
-            "Необязательные системные разрешения можно отклонить. По применимому праву вы можете запросить доступ, исправление или удаление данных, которые GrantTap способен определить и контролировать. У Personal нет identity index, а relay не расшифровывает payloads, поэтому централизованной читаемой записи задачи может не существовать.",
+            "Необязательные системные разрешения можно отклонить. На странице аккаунта можно отозвать устройство или удалить аккаунт. По применимому праву вы можете запросить доступ, исправление или удаление данных, которые GrantTap способен определить и контролировать. Relay не расшифровывает содержимое задач и не ищет читаемый текст по аккаунту.",
           ],
           links: [
             { label: "Управление и удаление данных", href: "/data-rights" },
@@ -119,7 +121,7 @@ export default function PrivacyPage() {
           heading: "Инфраструктура, сайт и изменения",
           paragraphs: [
             "Cloudflare предоставляет network, Worker, Durable Object и website infrastructure. Apple предоставляет APNs, system speech и biometric APIs и App Store services по своим условиям. Ни один из них не получает GrantTap decryption keys из приложения.",
-            "granttap.com хранит локально только выбор языка и не использует рекламу или product analytics. Существенные изменения политики публикуются здесь с новой датой.",
+            "Сайт хранит локально выбор языка и использует HttpOnly cookie сеанса при входе в аккаунт. Рекламы и аналитики продукта нет. Существенные изменения политики публикуются здесь с новой датой.",
           ],
         },
       ],

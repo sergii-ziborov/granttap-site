@@ -34,6 +34,7 @@ describe("account machine HTTP boundary", () => {
       }, body: body ? JSON.stringify(body) : undefined }), auth, machines);
 
     expect((await call("machines", "POST", { name: "Mac" }, token, true))?.status).toBe(403);
+    expect((await call("machines", "POST", { name: "" }))?.status).toBe(400);
     const created = await call("machines", "POST", { name: "Mac" });
     expect(created?.status).toBe(201);
     const machine = await created?.json() as { id: string; machineToken: string };
@@ -41,13 +42,17 @@ describe("account machine HTTP boundary", () => {
     expect(await list?.json()).toMatchObject({ machines: [{ id: machine.id, name: "Mac" }] });
     expect(JSON.stringify(await (await call("machines"))?.json())).not.toContain(machine.machineToken);
     expect((await call(`machines/${machine.id}/requests`, "POST", { phonePublicKey }, "bad"))?.status).toBe(401);
+    expect((await call(`machines/${machine.id}/requests`, "POST", { phonePublicKey: "invalid" }))?.status).toBe(400);
+    expect((await call("machine/requests", "GET", undefined, "bad"))?.status).toBe(401);
     const opened = await call(`machines/${machine.id}/requests`, "POST", { phonePublicKey });
     expect(opened?.status).toBe(201);
     const request = await opened?.json() as { id: string };
     expect((await call(`requests/${request.id}`))?.status).toBe(202);
     const pending = await call("machine/requests", "GET", undefined, machine.machineToken);
     expect(await pending?.json()).toMatchObject({ requests: [{ id: request.id, phonePublicKey }] });
+    expect((await call(`machine/requests/${request.id}/offer`, "POST", {}, machine.machineToken))?.status).toBe(400);
     expect((await call(`machine/requests/${request.id}/offer`, "POST", { encryptedOffer: "sealed" }, machine.machineToken))?.status).toBe(200);
+    expect((await call(`machine/requests/${request.id}/offer`, "POST", { encryptedOffer: "again" }, machine.machineToken))?.status).toBe(404);
     expect(await (await call(`requests/${request.id}`))?.json()).toEqual({ encryptedOffer: "sealed" });
     expect((await call(`requests/${request.id}`))?.status).toBe(404);
     expect((await call(`machines/${machine.id}`, "DELETE"))?.status).toBe(200);

@@ -12,6 +12,7 @@ import { D1AccountStore } from "../worker/account/d1-store.ts";
 import { handleAccountApi } from "../worker/account/api.ts";
 import { sessionCookie } from "../worker/account/http.ts";
 import { SqliteD1 } from "../worker/account/sqlite.ts";
+import { AccountMachines } from "../worker/account/machines.ts";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGE = readFileSync(join(ROOT, "public", "connect.html"), "utf8");
@@ -20,6 +21,7 @@ const PORT = Number(process.env.PORT ?? 3210);
 const HOST = process.env.HOST ?? "0.0.0.0";
 const accountDb = new SqliteD1(process.env.GRANTTAP_ACCOUNT_DB ?? join(ROOT, "accounts.sqlite"));
 const accountAuth = new AccountAuth(new D1AccountStore(accountDb));
+const accountMachines = new AccountMachines(accountDb);
 function purgeExpiredAccountState() {
   accountDb.sqlite.prepare("DELETE FROM ceremonies WHERE expires_at<=?").run(Date.now());
   accountDb.sqlite.prepare("DELETE FROM sessions WHERE expires_at<=?").run(Date.now());
@@ -108,6 +110,10 @@ function sanitize(input, current) {
     decision: current?.decision,
     redirectUrl: current?.redirectUrl,
     error: current?.error,
+    requestSecret: current?.requestSecret,
+    machineId: current?.machineId,
+    machineToken: current?.machineToken,
+    accountId: current?.accountId,
   };
   if (typeof raw.clientName === "string") {
     next.clientName = raw.clientName.trim().slice(0, 80) || "Coding app";
@@ -120,6 +126,9 @@ function sanitize(input, current) {
   }
   if (typeof raw.paired === "boolean") next.paired = raw.paired;
   if (typeof raw.passkeyCapable === "boolean") next.passkeyCapable = raw.passkeyCapable;
+  if (typeof raw.machineId === "string" && REQUEST_ID.test(raw.machineId)) {
+    next.machineId = raw.machineId;
+  }
   if (Array.isArray(raw.phones)) {
     next.phones = raw.phones.slice(0, 4).flatMap((phone) => {
       if (!phone || typeof phone !== "object") return [];
@@ -157,6 +166,22 @@ function sanitize(input, current) {
   if (raw.decision === "approve" || raw.decision === "deny") next.decision = raw.decision;
   if (typeof raw.error === "string") next.error = raw.error.slice(0, 300);
   return next;
+}
+
+function publicRow(row) {
+  const visible = { ...row };
+  for (const key of ["requestSecret", "machineToken", "machineId", "accountId"]) delete visible[key];
+  return visible;
+}
+
+function privateRow(row) {
+  const privateFields = { ...row };
+  delete privateFields.requestSecret;
+  return privateFields;
+}
+
+function requestSecret(req) {
+  return req.headers.authorization?.match(/^Bearer ([A-Za-z0-9_-]{43})$/)?.[1];
 }
 
 async function readBody(req) {
@@ -230,15 +255,22 @@ const server = createServer(async (req, res) => {
         json(res, 404, { error: "This connection request expired. Start again in your coding app." });
         return;
       }
-      json(res, 200, row);
+      json(res, 200, requestSecret(req) && requestSecret(req) === row.requestSecret
+        ? privateRow(row) : publicRow(row));
       return;
     }
     if (req.method === "PUT" && !action) {
-      const incoming = sanitize(await readBody(req), readRow(id));
+      const current = readRow(id);
+      const secret = requestSecret(req);
+      if (current?.requestSecret && secret !== current.requestSecret) {
+        json(res, 403, { error: "Computer request authentication failed." }); return;
+      }
+      const incoming = sanitize(await readBody(req), current);
       if (!incoming) {
         json(res, 400, { error: "Invalid connection snapshot." });
         return;
       }
+      if (!current && secret) incoming.requestSecret = secret;
       writeRow(id, incoming);
       json(res, 200, { ok: true });
       return;
@@ -253,6 +285,9 @@ const server = createServer(async (req, res) => {
       if (current.passkeyCapable !== true) {
         json(res, 409, { error: "Update the Mac helper to use passkeys." }); return;
       }
+      if (!current.requestSecret) {
+        json(res, 409, { error: "Update the Mac helper for device-wide passkey access." }); return;
+      }
       if (current.decision) { json(res, 409, { error: "Request already decided." }); return; }
       const body = await readBody(req);
       if (typeof body?.ceremonyId !== "string" || !REQUEST_ID.test(body.ceremonyId)
@@ -263,6 +298,19 @@ const server = createServer(async (req, res) => {
       }
       const verified = await accountAuth.completeAuthentication(body.ceremonyId, body.response);
       if (!verified) { json(res, 401, { error: "Passkey verification failed or expired." }); return; }
+      const owner = current.machineId ? await accountMachines.owner(current.machineId) : null;
+      if (owner && owner !== verified.accountId) {
+        json(res, 409, { error: "This Mac is linked to another GrantTap account." }); return;
+      }
+      if (!owner) {
+        const registered = await accountMachines.register(
+          verified.accountId, current.computerName || "Mac",
+        );
+        if (!registered) { json(res, 503, { error: "Computer link unavailable." }); return; }
+        current.machineId = registered.id;
+        current.machineToken = registered.machineToken;
+      }
+      current.accountId = verified.accountId;
       current.decision = "passkey";
       writeRow(id, current);
       res.setHeader("set-cookie", sessionCookie(verified.token));

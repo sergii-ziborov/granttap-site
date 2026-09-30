@@ -5,6 +5,7 @@ import { handleConnectApi } from "./connect-api";
 import { handleAccountApi } from "./account/api";
 import { AccountAuth } from "./account/auth";
 import { D1AccountStore } from "./account/d1-store";
+import { AccountMachines } from "./account/machines";
 import type { D1Database } from "@cloudflare/workers-types";
 
 const CANONICAL_ORIGIN = "https://granttap.com";
@@ -106,7 +107,8 @@ const worker = {
     if (account) return withSecurityHeaders(request, account);
 
     const connect = await handleConnectApi(request,
-      database ? new AccountAuth(new D1AccountStore(database)) : undefined);
+      database ? new AccountAuth(new D1AccountStore(database)) : undefined,
+      database ? new AccountMachines(database) : undefined);
     if (connect) return withSecurityHeaders(request, connect);
 
     if (url.pathname === "/_vinext/image") {

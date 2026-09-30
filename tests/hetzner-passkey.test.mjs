@@ -94,8 +94,10 @@ test("live Hetzner connect service exposes account ceremonies but cannot forge p
 
   const requestId = "a1111111-1111-4111-8111-111111111111";
   const url = `${origin}/api/connect/requests/${requestId}`;
-  assert.equal((await fetch(url, { method: "PUT", headers: { "content-type": "application/json" },
-    body: JSON.stringify({ clientName: "Codex", passkeyCapable: true,
+  const requestSecret = randomBytes(32).toString("base64url");
+  assert.equal((await fetch(url, { method: "PUT", headers: { "content-type": "application/json",
+      authorization: `Bearer ${requestSecret}` },
+    body: JSON.stringify({ clientName: "Codex", computerName: "Test Mac", passkeyCapable: true,
       decision: "passkey" }) })).status, 200);
   const snapshot = await (await fetch(url)).json();
   assert.equal(snapshot.decision, undefined);
@@ -133,4 +135,13 @@ test("live Hetzner connect service exposes account ceremonies but cannot forge p
   assert.equal(approval.status, 200);
   assert.match(approval.headers.get("set-cookie") ?? "", /HttpOnly/);
   assert.equal((await (await fetch(url)).json()).decision, "passkey");
+  assert.equal((await (await fetch(url)).json()).machineToken, undefined);
+  const privateRow = await (await fetch(url, {
+    headers: { authorization: `Bearer ${requestSecret}` },
+  })).json();
+  assert.match(privateRow.machineToken ?? "", /^[A-Za-z0-9_-]{43}$/);
+  assert.match(privateRow.machineId ?? "", /^[0-9a-f-]{36}$/);
+  assert.equal((await fetch(`${origin}/api/account/machine/requests`, {
+    headers: { authorization: `Bearer ${privateRow.machineToken}` },
+  })).status, 200);
 });

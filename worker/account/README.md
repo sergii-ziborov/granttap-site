@@ -21,8 +21,9 @@ command, transcript, or provider credential. It temporarily stores an opaque
 encrypted pairing offer. Account authentication authorizes a recovery request,
 so the service is part of the recovery trust boundary. The standard QR pairing
 path remains independent of the account service. The computer poller, encrypted
-offer producer, and iPhone recovery UI are not shipped yet. Until they are,
-the account page must not claim that signing in restores a connection.
+offer producer, and iPhone recovery UI are now present in the companion MCP and
+Apple app. Native passkey and encrypted offer delivery still require a live Mac
+service and a signed app with the `webcredentials:granttap.com` entitlement.
 
 The Worker serves Apple's `webcredentials` association file at
 `/.well-known/apple-app-site-association`. The corresponding native app needs

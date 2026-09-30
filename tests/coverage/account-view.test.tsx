@@ -16,7 +16,7 @@ beforeEach(() => {
   Object.defineProperty(window, "PublicKeyCredential", { value: class {}, configurable: true });
 });
 
-test("passkey sign-in shows the account without claiming that a computer is restored", async () => {
+test("passkey sign-in shows the account and explains app-based recovery", async () => {
   const fetcher = vi.spyOn(globalThis, "fetch")
     .mockResolvedValueOnce(new Response("{}", { status: 401 }))
     .mockResolvedValueOnce(Response.json({ ceremonyId: "ceremony", options: { challenge: "challenge" } }))
@@ -28,7 +28,7 @@ test("passkey sign-in shows the account without claiming that a computer is rest
   await userEvent.click(await screen.findByRole("button", { name: "Sign in with passkey" }));
   expect(passkeys.get).toHaveBeenCalledWith({ optionsJSON: { challenge: "challenge" } });
   await waitFor(() => expect(screen.getByText(/account-123/)).toBeTruthy());
-  expect(screen.getByText(/Signing in alone does not restore/)).toBeTruthy();
+  expect(screen.getByText(/Open GrantTap on iPhone to connect/)).toBeTruthy();
   await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(4));
 });
 

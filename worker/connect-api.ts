@@ -1,5 +1,6 @@
 /** Short-lived MCP consent with an optional fresh account passkey. No pairing keys. */
 import { AccountAuth } from "./account/auth";
+import { AccountMachines } from "./account/machines";
 import { boundedJSON, sessionCookie, UUID } from "./account/http";
 
 const REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -8,6 +9,7 @@ const memory = new Map<string, { body: string; exp: number }>();
 
 export type ConnectSnapshot = {
   clientName: string;
+  computerName?: string;
   paired: boolean;
   passkeyCapable?: boolean;
   phones: Array<{ name: string; status: string; lastSeenAt: number | null }>;
@@ -16,7 +18,24 @@ export type ConnectSnapshot = {
   decision?: "approve" | "deny" | "passkey";
   redirectUrl?: string;
   error?: string;
+  requestSecret?: string;
+  machineId?: string;
+  machineToken?: string;
+  accountId?: string;
 };
+
+function secret(request: Request): string | undefined {
+  return request.headers.get("authorization")?.match(/^Bearer ([A-Za-z0-9_-]{43})$/)?.[1];
+}
+
+function visible(row: ConnectSnapshot): ConnectSnapshot {
+  const publicRow = { ...row };
+  delete publicRow.requestSecret;
+  delete publicRow.machineId;
+  delete publicRow.machineToken;
+  delete publicRow.accountId;
+  return publicRow;
+}
 
 function json(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), {
@@ -49,6 +68,7 @@ function sanitizeSnapshot(input: unknown, current?: ConnectSnapshot): ConnectSna
   const raw = input as Record<string, unknown>;
   const next: ConnectSnapshot = {
     clientName: current?.clientName ?? "Coding app",
+    computerName: current?.computerName,
     paired: current?.paired ?? false,
     passkeyCapable: current?.passkeyCapable ?? false,
     phones: current?.phones ?? [],
@@ -57,10 +77,16 @@ function sanitizeSnapshot(input: unknown, current?: ConnectSnapshot): ConnectSna
     decision: current?.decision,
     redirectUrl: current?.redirectUrl,
     error: current?.error,
+    requestSecret: current?.requestSecret,
+    machineId: current?.machineId,
+    machineToken: current?.machineToken,
+    accountId: current?.accountId,
   };
   if (typeof raw.clientName === "string") {
     next.clientName = raw.clientName.trim().slice(0, 80) || "Coding app";
   }
+  if (typeof raw.computerName === "string") next.computerName = raw.computerName.trim().slice(0, 80);
+  if (typeof raw.machineId === "string" && REQUEST_ID.test(raw.machineId)) next.machineId = raw.machineId;
   if (typeof raw.paired === "boolean") next.paired = raw.paired;
   if (typeof raw.passkeyCapable === "boolean") next.passkeyCapable = raw.passkeyCapable;
   if (Array.isArray(raw.phones)) {
@@ -142,7 +168,8 @@ async function writeRow(id: string, row: ConnectSnapshot): Promise<void> {
   }
 }
 
-export async function handleConnectApi(request: Request, auth?: AccountAuth): Promise<Response | null> {
+export async function handleConnectApi(request: Request, auth?: AccountAuth,
+  machines?: AccountMachines): Promise<Response | null> {
   const url = new URL(request.url);
   const parts = url.pathname.split("/").filter(Boolean);
   if (parts[0] !== "api" || parts[1] !== "connect" || parts[2] !== "requests") return null;
@@ -153,12 +180,20 @@ export async function handleConnectApi(request: Request, auth?: AccountAuth): Pr
   if (request.method === "GET" && !action) {
     const row = await readRow(id);
     if (!row) return json(404, { error: "This connection request expired. Start again in your coding app." });
-    return json(200, row);
+    return json(200, secret(request) && secret(request) === row.requestSecret
+      ? { ...visible(row), machineId: row.machineId, machineToken: row.machineToken,
+        accountId: row.accountId } : visible(row));
   }
 
   if (request.method === "PUT" && !action) {
-    const incoming = sanitizeSnapshot(await request.json().catch(() => null), await readRow(id));
+    const current = await readRow(id);
+    const requestSecret = secret(request);
+    if (current?.requestSecret && requestSecret !== current.requestSecret) {
+      return json(403, { error: "Computer request authentication failed." });
+    }
+    const incoming = sanitizeSnapshot(await request.json().catch(() => null), current);
     if (!incoming) return json(400, { error: "Invalid connection snapshot." });
+    if (!current && requestSecret) incoming.requestSecret = requestSecret;
     await writeRow(id, incoming);
     return json(200, { ok: true });
   }
@@ -171,6 +206,9 @@ export async function handleConnectApi(request: Request, auth?: AccountAuth): Pr
     const current = await readRow(id);
     if (!current) return json(404, { error: "Connection request expired." });
     if (current.passkeyCapable !== true) return json(409, { error: "Update the Mac helper to use passkeys." });
+    if (!current.requestSecret || !machines) {
+      return json(409, { error: "Update the Mac helper for device-wide passkey access." });
+    }
     if (current.decision) return json(409, { error: "Request already decided." });
     const body = await boundedJSON(request);
     if (typeof body?.ceremonyId !== "string" || !UUID.test(body.ceremonyId)
@@ -180,6 +218,17 @@ export async function handleConnectApi(request: Request, auth?: AccountAuth): Pr
     }
     const result = await auth.completeAuthentication(body.ceremonyId, body.response as { id: string });
     if (!result) return json(401, { error: "Passkey verification failed or expired." });
+    const owner = current.machineId ? await machines.owner(current.machineId) : null;
+    if (owner && owner !== result.accountId) {
+      return json(409, { error: "This Mac is linked to another GrantTap account." });
+    }
+    if (!owner) {
+      const registered = await machines.register(result.accountId, current.computerName || "Mac");
+      if (!registered) return json(503, { error: "Computer link unavailable." });
+      current.machineId = registered.id;
+      current.machineToken = registered.machineToken;
+    }
+    current.accountId = result.accountId;
     current.decision = "passkey";
     await writeRow(id, current);
     return new Response(JSON.stringify({ ok: true, decision: "passkey" }), {

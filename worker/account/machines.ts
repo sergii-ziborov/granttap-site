@@ -44,6 +44,13 @@ export class AccountMachines {
       createdAt: row.created_at, lastSeenAt: row.last_seen_at }));
   }
 
+  async owner(machineId: string): Promise<string | null> {
+    const row = await this.db.prepare(
+      "SELECT account_id FROM account_machines WHERE id=? AND revoked_at IS NULL",
+    ).bind(machineId).first<{ account_id: string }>();
+    return row?.account_id ?? null;
+  }
+
   async revoke(accountId: string, machineId: string): Promise<boolean> {
     const result = await this.db.prepare(
       "UPDATE account_machines SET revoked_at=? WHERE id=? AND account_id=? AND revoked_at IS NULL",
