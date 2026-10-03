@@ -127,8 +127,9 @@ device-scoped invite copy; it does not claim a Weavatrix dependency was observed
 attachments from deterministic architecture and code-map fixtures. Their
 `demo-revision` label is deliberate; neither depicts a live repository scan.
 The updated `iphone-command-center.png`, `iphone-tasks.png`, `iphone-chat.png`,
-`iphone-mcp-usage.png`, and `iphone-project-mesh.png` are current 2026-10-01
-iPhone Simulator captures. The site references them with a versioned URL to
+`iphone-mcp-usage.png`, and `iphone-project-mesh.png` are current iPhone
+Simulator captures. The chat capture was refreshed on 2026-10-03 to show the
+user's last request above the timeline. The site references them with a versioned URL to
 invalidate browser caches after deployment.
 
 ## Current captures
