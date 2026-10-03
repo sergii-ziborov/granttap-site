@@ -206,3 +206,10 @@
   opacity: 0.55;
   cursor: default;
 }
+
+.connect-passkey { margin-top: 18px; padding-top: 18px; border-top: 1px solid #3a3939; }
+.connect-passkey button { min-height: 44px; padding: 10px 18px; border: 1px solid #f47a45; border-radius: 999px; background: transparent; color: #f6f6f6; font-weight: 700; cursor: pointer; }
+.connect-passkey button:disabled { opacity: .55; cursor: default; }
+.connect-passkey p { color: #bdb9b6; font-size: 14px; line-height: 1.5; }
+.connect-passkey a { color: #ffab82; }
+.connect-passkey [role="alert"] { color: #ff9b86; }

@@ -11,8 +11,8 @@ export default function TermsPage() {
   return (
     <LegalPage
       title={{ en: "Terms of Use", ru: "Условия использования" }}
-      updated={{ en: "September 28, 2026", ru: "28 сентября 2026" }}
-      updatedISO="2026-09-28"
+      updated={{ en: "September 30, 2026", ru: "30 сентября 2026" }}
+      updatedISO="2026-09-30"
       intro={{
         en: "These terms cover the GrantTap app, encrypted relay, and related support services. GrantTap extends coding-agent sessions on computers you control; it does not replace the agent or move your project into a GrantTap cloud.",
         ru: "Эти условия относятся к приложению GrantTap, зашифрованному relay и поддержке. GrantTap дополняет сессии кодовых агентов на контролируемых вами компьютерах, а не заменяет агента и не переносит проект в облако GrantTap.",
@@ -34,6 +34,7 @@ export default function TermsPage() {
             heading: "Personal pairing",
             paragraphs: [
               "GrantTap pairing authorizes devices using locally held cryptographic credentials. Your Apple billing identity and third-party provider sign-ins remain separate and are governed by those services.",
+              "An optional passkey account links your Mac, iPhone, and MCP authorization. The account service verifies identity and forwards an encrypted pairing offer; the linked Mac must be online, and a passkey alone cannot decrypt task data. Protect and revoke account-linked devices you no longer control.",
             ],
           },
           {
@@ -122,6 +123,7 @@ export default function TermsPage() {
             heading: "Personal-пейринг",
             paragraphs: [
               "GrantTap разрешает устройства с помощью локальных криптографических данных. Платёжный профиль Apple и sign-in сторонних providers остаются отдельными и регулируются соответствующими сервисами.",
+              "Необязательный аккаунт с passkey связывает Mac, iPhone и авторизацию MCP. Сервис проверяет личность и передаёт зашифрованное предложение подключения; привязанный Mac должен быть онлайн, а сам passkey не расшифровывает задачи. Отзывайте устройства, которые больше не контролируете.",
             ],
           },
           {

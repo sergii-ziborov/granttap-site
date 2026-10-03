@@ -9,9 +9,12 @@ export function useLocale() {
 
   useEffect(() => {
     const saved = window.localStorage.getItem("granttap.locale");
-    if (saved === "en" || saved === "ru") {
-      document.documentElement.lang = saved;
-      const timer = window.setTimeout(() => setLocaleState(saved), 0);
+    const requested = new URLSearchParams(window.location.search).get("lang");
+    const selected = requested === "en" || requested === "ru" ? requested : saved;
+    if (selected === "en" || selected === "ru") {
+      document.documentElement.lang = selected;
+      if (requested) window.localStorage.setItem("granttap.locale", selected);
+      const timer = window.setTimeout(() => setLocaleState(selected), 0);
       return () => window.clearTimeout(timer);
     }
   }, []);
@@ -20,6 +23,11 @@ export function useLocale() {
     setLocaleState(next);
     window.localStorage.setItem("granttap.locale", next);
     document.documentElement.lang = next;
+    if (new URLSearchParams(window.location.search).has("lang")) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", next);
+      window.history.replaceState(null, "", url);
+    }
   }
 
   return { locale, setLocale };

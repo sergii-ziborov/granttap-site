@@ -24,6 +24,13 @@
   "observability": {
     "enabled": true
   },
+  "d1_databases": [
+    {
+      "binding": "ACCOUNTS_DB",
+      "database_name": "granttap-accounts",
+      "database_id": "fb2192b6-dc3f-4387-bfee-5bfc856eba00"
+    }
+  ],
   "rules": [
     {
       "type": "ESModule",

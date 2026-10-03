@@ -13,6 +13,13 @@ The public site presents one product across Mac, iPhone, iPad, and Apple Watch w
 Code, Codex, Cursor Beta, and Grok Build where its implemented behavior is
 available. The site presents one Personal product.
 
+The current home-page phone captures were retaken on 2026-10-01 from the
+deterministic iPhone simulator demo: Now, Tasks, dated Task chat, Usage, and
+the Mesh/Repositories switch. They depict sample work, not a customer's
+session or a live repository scan. Older feature captures remain identified as
+fixtures below; the home gallery does not imply that an agent authored the
+architecture graph or measured its own resource use.
+
 Mesh coordinates those existing agents with bounded encrypted task
 state, dependencies, resource claims, agent-to-agent questions, and same-task
 handoffs across computers. Mesh Governance decides, per Mesh, which
@@ -54,6 +61,15 @@ computers; this joins the device network rather than a Mesh. Do not ask an
 agent to print a pairing QR in chat. The plugin and local `granttap-mcp`
 runtime must use compatible protocol versions.
 
+An optional GrantTap account passkey signs in on Mac or iPhone. On a Mac with
+the local bridge, `/connect` can use a fresh passkey assertion to approve a
+coding app. The phone-to-computer pairing key still moves through a separate
+encrypted device-link flow; signing in alone does not recover an old phone
+connection. QR pairing remains available without any account. A Mac appears
+in the phone's account after the Mac app authorizes local MCP access and signs
+in with the same passkey. Apple Passwords can sync a passkey through iCloud;
+another passkey manager must be selected on both devices.
+
 Live `/`, `/connect`, and `/api/connect` use the Hetzner compose stack.
 The connect page does not generate or display a pairing QR.
 
@@ -73,8 +89,14 @@ links.
 ## Public customer pages
 
 - [About](https://granttap.com/about)
-- [Journal](https://granttap.com/blog): five EN/RU guides with clearly labelled
-  deterministic product captures and five generated editorial illustrations.
+- [Journal](https://granttap.com/blog): fifteen EN/RU stories with at least 1,000 body words per
+  language, source links, real app captures from deterministic demo fixtures, labelled
+  generated covers, and two generated inline illustrations in each story.
+
+The editorial series is dated October 3, 10, 17, 24, and 31; November 7, 14, 21,
+and 28; and December 5, 2026. The blog routes
+and dynamic sitemap release each story at midnight in Asia/Jerusalem; unpublished
+stories return 404. The comparison article states its October 3 source-check date.
 - [Pricing](https://granttap.com/pricing)
 - [Privacy](https://granttap.com/privacy)
 - [Terms](https://granttap.com/terms)
@@ -95,8 +117,10 @@ npm test
 npm run lint
 ```
 
-Live granttap.com is the Hetzner compose stack: `/` on port 3211, `/connect`
-and `/api/connect` on port 3210. `wrangler.production.jsonc` is a leftover
+Live granttap.com is the Hetzner compose stack: `/` on port 3211, `/connect`,
+`/api/connect`, and `/api/account` on port 3210. Passkey account records live
+in the persistent `account_data` volume; deploys must retain that volume and
+install the matching `hetzner/nginx.conf` account route. `wrangler.production.jsonc` is a leftover
 Cloudflare config — do not `wrangler deploy` it over the live domain. Publish
 by rsyncing this tree to `/srv/apps/granttap-site/releases/` and
 `podman compose -p granttap-web -f compose.hetzner.yaml up -d --build`.
@@ -105,12 +129,17 @@ Product captures under `public/product/` must come from deterministic sample
 data and contain no real pairing, task, repository, credential, or audit data.
 `iphone-company-accounts.png` and `iphone-company-repositories.png` are iPhone
 Simulator captures from the owner-managed account and repository grant screens.
-`iphone-linked-projects.png` is an iPhone Simulator Debug demo capture from
+`iphone-linked-projects.png` is an older iPhone Simulator Debug demo capture from
 internal source `1aecdca`. It shows binding-level grouping and the corrected
 device-scoped invite copy; it does not claim a Weavatrix dependency was observed.
 `iphone-weavatrix-graph.png` and `iphone-health-code-towers.png` are kept UI-test
 attachments from deterministic architecture and code-map fixtures. Their
 `demo-revision` label is deliberate; neither depicts a live repository scan.
+The updated `iphone-command-center.png`, `iphone-tasks.png`, `iphone-chat.png`,
+`iphone-mcp-usage.png`, and `iphone-project-mesh.png` are current iPhone
+Simulator captures. The chat capture was refreshed on 2026-10-03 to show the
+user's last request above the timeline. The site references them with a versioned URL to
+invalidate browser caches after deployment.
 
 ## Current captures
 

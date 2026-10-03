@@ -1,3 +1,4 @@
+import type { D1Database } from "@cloudflare/workers-types";
 import { expect, test, vi } from "vitest";
 
 const doubles = vi.hoisted(() => ({ app: vi.fn(), optimize: vi.fn() }));
@@ -15,6 +16,7 @@ const context = { waitUntil: vi.fn(), passThroughOnException: vi.fn() };
 const env = {
   ASSETS: { fetch: vi.fn(async () => new Response("asset")) },
   IMAGES: { input: vi.fn(() => ({ transform: () => ({ output: async () => ({ response: () => new Response("image") }) }) })) },
+  ACCOUNTS_DB: {} as D1Database,
 };
 
 test("redirects alternate hosts with production security headers", async () => {
@@ -31,6 +33,14 @@ test("adds headers to app responses and omits HSTS on HTTP", async () => {
 
   expect(response.headers.get("content-security-policy")).toContain("frame-ancestors 'none'");
   expect(response.headers.get("strict-transport-security")).toBeNull();
+});
+
+test("Node production renders account pages without a Cloudflare D1 binding", async () => {
+  doubles.app.mockResolvedValueOnce(new Response("account page"));
+  const response = await worker.fetch(new Request("https://granttap.com/account"),
+    undefined as unknown as typeof env, context);
+  expect(response.status).toBe(200);
+  expect(await response.text()).toBe("account page");
 });
 
 test("stores a public connect snapshot without loopback or pairing secrets", async () => {

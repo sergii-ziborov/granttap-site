@@ -2,15 +2,18 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { startAuthentication } from "@simplewebauthn/browser";
+import type { PublicKeyCredentialRequestOptionsJSON } from "@simplewebauthn/browser";
 import { LanguageToggle, useLocale } from "../components/Locale";
 
 type Provider = { id: "codex" | "claude" | "cursor"; installed: boolean; ready: boolean };
 type Snapshot = {
   clientName: string;
   paired: boolean;
+  passkeyCapable?: boolean;
   phones: Array<{ name: string; status: string }>;
   providers: Provider[];
-  decision?: "approve" | "deny";
+  decision?: "approve" | "deny" | "passkey";
   redirectUrl?: string;
   error?: string;
 };
@@ -20,7 +23,7 @@ const COPY = {
     home: "Home",
     eyebrow: "GrantTap authorization",
     title: "Connect your coding app",
-    lead: "Approve this coding app here. Add iPhone or iPad controllers through the GrantTap connection card on this Mac, which offers Add a device, Add another device, and Reconnect. No separate GrantTap account is needed.",
+    lead: "Approve with a phone QR or a GrantTap passkey on this Mac. QR pairing works without an account.",
     missing: "This request is not on GrantTap yet.",
     missingBody: "Start authorization again from your coding app. Open this page on the Mac running GrantTap to manage devices.",
     unpaired: "This computer is not paired yet.",
@@ -37,6 +40,10 @@ const COPY = {
     installed: "Installed",
     missingApp: "Not installed",
     approve: "Approve",
+    macPasskey: "Use passkey on this Mac",
+    passkeyNote: "A GrantTap account passkey authorizes this coding app on this Mac. It does not pair a phone. Create a passkey account first if you do not have one.",
+    passkeyFailed: "Passkey approval failed. Check the account passkey and try again.",
+    createAccount: "Create a passkey account",
     deny: "Deny",
     waiting: "Waiting for this computer…",
     retry: "This computer has not finished authorization. Tap Approve again.",
@@ -46,7 +53,7 @@ const COPY = {
     home: "Главная",
     eyebrow: "Авторизация GrantTap",
     title: "Подключите coding app",
-    lead: "Подтвердите coding app здесь. iPhone или iPad добавляются через панель GrantTap на этом Mac: Add a device, Add another device и Reconnect. Отдельный аккаунт GrantTap не нужен.",
+    lead: "Подтвердите через QR телефона или passkey GrantTap на этом Mac. Для QR аккаунт не нужен.",
     missing: "Этого запроса ещё нет на GrantTap.",
     missingBody: "Запустите авторизацию снова из coding app. Для управления устройствами откройте страницу на Mac с запущенным GrantTap.",
     unpaired: "Этот компьютер ещё не сопряжён.",
@@ -63,6 +70,10 @@ const COPY = {
     installed: "Установлен",
     missingApp: "Не установлен",
     approve: "Подтвердить",
+    macPasskey: "Войти по passkey на этом Mac",
+    passkeyNote: "Passkey аккаунта GrantTap разрешает этой coding app доступ к MCP на данном Mac, но не подключает телефон. Если аккаунта ещё нет, сначала создайте его.",
+    passkeyFailed: "Не удалось подтвердить passkey. Проверьте ключ аккаунта и попробуйте снова.",
+    createAccount: "Создать аккаунт с passkey",
     deny: "Отклонить",
     waiting: "Ждём этот компьютер…",
     retry: "Этот компьютер не закончил авторизацию. Нажмите Approve ещё раз.",
@@ -89,6 +100,7 @@ export function ConnectView() {
   const [busy, setBusy] = useState(false);
   const [missing, setMissing] = useState(false);
   const [selectedPhone, setSelectedPhone] = useState("");
+  const [passkeyError, setPasskeyError] = useState(false);
 
   useEffect(() => {
     const next = requestId();
@@ -136,6 +148,29 @@ export function ConnectView() {
       body: JSON.stringify({ decision, phone: selectedPhone || undefined }),
     });
     setBusy(false);
+  }
+
+  async function approveWithPasskey() {
+    if (!id || busy) return;
+    setBusy(true);
+    setPasskeyError(false);
+    try {
+      if (!window.PublicKeyCredential) throw new Error("Passkey unavailable");
+      const optionsResponse = await fetch("/api/account/authentication/options", {
+        method: "POST", headers: { "content-type": "application/json" }, body: "{}",
+      });
+      if (!optionsResponse.ok) throw new Error("Options unavailable");
+      const ceremony = await optionsResponse.json() as {
+        ceremonyId: string; options: PublicKeyCredentialRequestOptionsJSON;
+      };
+      const response = await startAuthentication({ optionsJSON: ceremony.options });
+      const approval = await fetch(`/api/connect/requests/${id}/passkey`, {
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ceremonyId: ceremony.ceremonyId, response }),
+      });
+      if (!approval.ok) throw new Error("Approval failed");
+    } catch { setPasskeyError(true); }
+    finally { setBusy(false); }
   }
 
   return (
@@ -214,6 +249,11 @@ export function ConnectView() {
                   {t.deny}
                 </button>
               </div>
+              {row.passkeyCapable && !row.decision && <div className="connect-passkey">
+                <button type="button" disabled={busy} onClick={() => void approveWithPasskey()}>{t.macPasskey}</button>
+                <p>{t.passkeyNote} <Link href="/account" target="_blank" rel="noopener noreferrer">{t.createAccount}</Link></p>
+                {passkeyError && <p role="alert">{t.passkeyFailed}</p>}
+              </div>}
             </>
           )}
         </section>

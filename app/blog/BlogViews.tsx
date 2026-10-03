@@ -1,87 +1,105 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { LanguageToggle, useLocale, type Locale } from "../components/Locale";
-import { articles, type BlogArticle } from "./articles";
+import type { BlogArticle, BlogLocale } from "./articleTypes";
 
-function BlogHeader({ locale, setLocale }: { locale: Locale; setLocale: (next: Locale) => void }) {
+function blogHref(path: string, locale: BlogLocale) {
+  return locale === "ru" ? `${path}?lang=ru` : path;
+}
+
+function productHref(locale: BlogLocale) {
+  return `/?lang=${locale}`;
+}
+
+function BlogHeader({ locale, path }: { locale: BlogLocale; path: string }) {
   return <header className="blog-header section-shell">
-    <Link className="blog-brand" href="/"><Image src="/app-icon.png" alt="" width={34} height={34} unoptimized />GrantTap</Link>
+    <Link className="blog-brand" href={productHref(locale)} prefetch={false}><Image src="/app-icon.png" alt="" width={34} height={34} unoptimized />GrantTap</Link>
     <nav aria-label={locale === "ru" ? "Навигация" : "Navigation"}>
-      <Link href="/">{locale === "ru" ? "Продукт" : "Product"}</Link>
-      <Link href="/blog" aria-current="page">{locale === "ru" ? "Блог" : "Blog"}</Link>
-      <Link href="/connect">{locale === "ru" ? "Подключение" : "Connect"}</Link>
+      <Link href={productHref(locale)} prefetch={false}>{locale === "ru" ? "Продукт" : "Product"}</Link>
+      <a href={blogHref("/blog", locale)} aria-current="page">{locale === "ru" ? "Блог" : "Blog"}</a>
+      <a href="/connect">{locale === "ru" ? "Подключение" : "Connect"}</a>
     </nav>
-    <LanguageToggle locale={locale} setLocale={setLocale} />
+    <div className="language-toggle blog-language-toggle" role="group" aria-label={locale === "ru" ? "Язык" : "Language"}>
+      <a href={path} aria-current={locale === "en" ? "true" : undefined} aria-label={locale === "en" ? "English, selected" : "Переключить на английский"}>EN</a>
+      <a href={`${path}?lang=ru`} aria-current={locale === "ru" ? "true" : undefined} aria-label={locale === "ru" ? "Русский, выбран" : "Switch to Russian"}>RU</a>
+    </div>
   </header>;
 }
 
-function BlogFooter({ locale }: { locale: Locale }) {
+function BlogFooter({ locale }: { locale: BlogLocale }) {
   return <footer className="blog-footer section-shell">
     <span>© 2026 GrantTap</span>
-    <Link href="/support">{locale === "ru" ? "Помощь" : "Support"}</Link>
-    <Link href="/privacy">{locale === "ru" ? "Конфиденциальность" : "Privacy"}</Link>
+    <a href="/support">{locale === "ru" ? "Помощь" : "Support"}</a>
+    <a href="/privacy">{locale === "ru" ? "Конфиденциальность" : "Privacy"}</a>
   </footer>;
 }
 
-export function BlogIndex() {
-  const { locale, setLocale } = useLocale();
+export function BlogIndex({ articles, scheduleActive, locale }: { articles: BlogArticle[]; scheduleActive: boolean; locale: BlogLocale }) {
   const first = articles[0];
-  return <main className="blog-shell">
-    <BlogHeader locale={locale} setLocale={setLocale} />
+  return <main className="blog-shell" lang={locale}>
+    <BlogHeader locale={locale} path="/blog" />
     <section className="blog-lead section-shell">
       <p className="blog-eyebrow">GrantTap Journal</p>
       <h1>{locale === "ru" ? "Работа агентов, которую можно понять и контролировать." : "Agent work you can understand and control."}</h1>
-      <p>{locale === "ru" ? "Практические руководства по подключению устройств, задачам, Mesh, архитектуре и правам. В статьях различаются возможности продукта, демо-экраны и работа, которую ещё предстоит завершить." : "Practical guides to device pairing, Tasks, Mesh, architecture, and permissions. We distinguish working product paths, demo captures, and work still in progress."}</p>
+      <p>{locale === "ru" ? "Идеи продукта, честное сравнение с coding-инструментами, governance, события и практические руководства. Мы отделяем действующие возможности от планов и подтверждённые факты от выводов." : "Product thinking, honest comparisons, governance, events, and practical guides. We separate working features from plans and documented facts from interpretation."}</p>
+      {scheduleActive && <p className="blog-cadence">{locale === "ru" ? "Новые материалы по субботам до 5 декабря." : "New stories every Saturday through December 5."}</p>}
     </section>
     <section className="section-shell blog-feature" aria-label={locale === "ru" ? "Главная статья" : "Featured article"}>
-      <Link className="blog-feature-link" href={`/blog/${first.slug}`}>
+      <a className="blog-feature-link" href={blogHref(`/blog/${first.slug}`, locale)}>
         <Image src={first.cover} alt="" width={1600} height={900} priority unoptimized />
         <span className="blog-feature-copy">
-          <small>{first[locale].category} · {first.minutes} {locale === "ru" ? "мин" : "min"}</small>
+          <small>{first[locale].category} · {first.date} · {first.minutes} {locale === "ru" ? "мин" : "min"}</small>
           <strong>{first[locale].title}</strong>
           <span>{first[locale].summary}</span>
           <b>{locale === "ru" ? "Читать статью ↗" : "Read the story ↗"}</b>
         </span>
-      </Link>
+      </a>
     </section>
     <section className="section-shell blog-list" aria-label={locale === "ru" ? "Все статьи" : "All articles"}>
       <div className="blog-list-heading"><h2>{locale === "ru" ? "Все статьи" : "All stories"}</h2><span>{articles.length} {locale === "ru" ? "материалов" : "stories"}</span></div>
-      <div className="blog-grid">{articles.map(article => <Link className="blog-card" href={`/blog/${article.slug}`} key={article.slug}>
+      <div className="blog-grid">{articles.map(article => <a className="blog-card" href={blogHref(`/blog/${article.slug}`, locale)} key={article.slug}>
         <span className="blog-card-image"><Image src={article.cover} alt="" width={800} height={450} unoptimized /></span>
-        <span className="blog-card-body"><small>{article[locale].category} · {article.minutes} {locale === "ru" ? "мин" : "min"}</small><strong>{article[locale].title}</strong><span>{article[locale].summary}</span></span>
-      </Link>)}</div>
+        <span className="blog-card-body"><small>{article[locale].category} · {article.date} · {article.minutes} {locale === "ru" ? "мин" : "min"}</small><strong>{article[locale].title}</strong><span>{article[locale].summary}</span></span>
+      </a>)}</div>
     </section>
     <BlogFooter locale={locale} />
   </main>;
 }
 
-export function BlogArticleView({ article }: { article: BlogArticle }) {
-  const { locale, setLocale } = useLocale();
+export function BlogArticleView({ article, articles, locale }: { article: BlogArticle; articles: BlogArticle[]; locale: BlogLocale }) {
   const t = article[locale];
   const next = articles[(articles.findIndex(item => item.slug === article.slug) + 1) % articles.length];
-  return <main className="blog-shell">
-    <BlogHeader locale={locale} setLocale={setLocale} />
+  return <main className="blog-shell" lang={locale}>
+    <BlogHeader locale={locale} path={`/blog/${article.slug}`} />
     <article className="blog-article">
       <div className="section-shell blog-article-head">
-        <Link className="blog-back" href="/blog">← {locale === "ru" ? "Все статьи" : "All stories"}</Link>
-        <p className="blog-eyebrow">{t.category} <span>·</span> {article.date} <span>·</span> {article.minutes} {locale === "ru" ? "мин чтения" : "min read"}</p>
+        <a className="blog-back" href={blogHref("/blog", locale)}>← {locale === "ru" ? "Все статьи" : "All stories"}</a>
+        <p className="blog-eyebrow">{t.category} <span>·</span> <time dateTime={article.date}>{article.date}</time> <span>·</span> {article.minutes} {locale === "ru" ? "мин чтения" : "min read"}</p>
         <h1>{t.title}</h1>
         <p className="blog-deck">{t.summary}</p>
       </div>
-      <div className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized /></div>
+      <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption>{locale === "ru" ? "Иллюстрация создана с помощью генерации изображений; это не экран продукта, рабочий QR-код или фотография события." : "AI-generated editorial illustration; this is not a product screen, functional QR code, or event photograph."}</figcaption>}</figure>
       <div className="blog-prose">
         {t.intro.map(paragraph => <p className="blog-intro" key={paragraph}>{paragraph}</p>)}
+        {t.graphic && <figure className="blog-graphic">
+          <figcaption><strong>{t.graphic.title}</strong><span>{t.graphic.caption}</span></figcaption>
+          <div className="blog-graphic-rows">{t.graphic.rows.map((row, index) => <div className="blog-graphic-row" key={row.label}>
+            <span className="blog-graphic-index">{String(index + 1).padStart(2, "0")}</span>
+            <strong>{row.label}</strong><span>{row.detail}</span>
+            {row.value !== undefined && <div className="blog-graphic-track" aria-label={`${row.label}: ${row.detail}`}><i style={{ width: `${row.value}%` }} /></div>}
+          </div>)}</div>
+        </figure>}
         {t.sections.map((section, index) => <section key={section.heading}>
           <h2>{section.heading}</h2>
           {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-          {index === 1 && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption>{t.screenshotCaption}</figcaption></figure>}
+          {index === 0 && article.inlineIllustration && t.illustrationCaption && <figure className="blog-illustration"><Image src={article.inlineIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption>{t.illustrationCaption}</figcaption></figure>}
+          {index === t.sections.length - 1 && article.screenshot && t.screenshotCaption && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption>{t.screenshotCaption}</figcaption></figure>}
+          {index === Math.floor(t.sections.length / 2) && article.additionalIllustration && t.additionalIllustrationCaption && <figure className="blog-illustration"><Image src={article.additionalIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption>{t.additionalIllustrationCaption}</figcaption></figure>}
         </section>)}
         <aside className="blog-note">{t.closing}</aside>
+        {t.sources && <section className="blog-sources"><h2>{locale === "ru" ? "Источники" : "Sources"}</h2><ul>{t.sources.map(source => <li key={source.url}><a href={source.url} target={source.url.startsWith("http") ? "_blank" : undefined} rel={source.url.startsWith("http") ? "noopener noreferrer" : undefined}>{source.label} ↗</a></li>)}</ul></section>}
       </div>
     </article>
-    <div className="section-shell blog-next"><span>{locale === "ru" ? "Далее" : "Next story"}</span><Link href={`/blog/${next.slug}`}>{next[locale].title} →</Link></div>
+    <div className="section-shell blog-next"><span>{locale === "ru" ? "Далее" : "Next story"}</span><a href={blogHref(`/blog/${next.slug}`, locale)}>{next[locale].title} →</a></div>
     <BlogFooter locale={locale} />
   </main>;
 }

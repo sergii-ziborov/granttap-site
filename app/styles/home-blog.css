@@ -1,0 +1,11 @@
+.home-blog { padding-block: 85px 100px; }
+.home-blog h2 { font-size: clamp(34px, 5vw, 58px); letter-spacing: -.055em; margin: 10px 0 30px; }
+.home-blog>div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.home-blog>div a { display: flex; flex-direction: column; justify-content: space-between; min-height: 150px; padding: 23px; border: 1px solid var(--line); border-radius: 18px; background: #191b20; font-size: 20px; font-weight: 680; line-height: 1.25; }
+.home-blog>div a:hover { border-color: var(--orange); }
+.home-blog>div a span { color: var(--orange); align-self: flex-end; }
+.home-blog-all { display: inline-block; color: var(--orange); margin-top: 28px; font-weight: 700; }
+@media (max-width: 700px) {
+  .home-blog>div { grid-template-columns: 1fr; }
+  .home-blog>div a { min-height: 115px; }
+}

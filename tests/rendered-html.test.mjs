@@ -16,7 +16,7 @@ const routes = [
   "/accessibility", "/licenses", "/pricing", "/agents/claude-code",
   "/agents/codex", "/agents/cursor", "/agents/grok-build", "/project-mesh",
   "/grok-bot", "/apple-watch-coding-agents",
-  "/blog", "/blog/connect-iphone-with-qr", "/blog/task-continuity-across-agents",
+  "/blog", "/blog/why-granttap-is-a-control-center", "/blog/connect-iphone-with-qr", "/blog/task-continuity-across-agents",
   "/blog/linked-projects-without-merging-access", "/blog/architecture-graph-with-evidence",
   "/blog/mcp-skills-and-governance-status",
 ];
@@ -68,11 +68,15 @@ test("provider and Mesh guides publish exact capability boundaries", async () =>
   assert.match(bot, /cannot create invites, choose a relay, run setup, or expand/);
 });
 
-test("journal publishes five distinct guides with accurate status and images", async () => {
+test("journal publishes current stories with accurate status and images", async () => {
   const index = await (await render("https://granttap.com/blog")).text();
   assert.match(index, /All stories/);
   assert.match(index, /connect-iphone-with-qr/);
+  assert.match(index, /why-granttap-is-a-control-center/);
   assert.match(index, /mcp-skills-and-governance-status/);
+  assert.doesNotMatch(index, /choose-a-mobile-coding-agent-workflow/);
+  const future = await render("https://granttap.com/blog/choose-a-mobile-coding-agent-workflow");
+  assert.equal(future.status, 404);
   const pairing = await (await render("https://granttap.com/blog/connect-iphone-with-qr")).text();
   assert.match(pairing, /You do not need to add GrantTap under Codex Connected accounts/);
   assert.match(pairing, /Add a device \(Scan QR\)/);
@@ -80,7 +84,30 @@ test("journal publishes five distinct guides with accurate status and images", a
   assert.match(mesh, /Grouping is a map for the person/);
   const governance = await (await render("https://granttap.com/blog/mcp-skills-and-governance-status")).text();
   assert.match(governance, /budget and use-only flows are still being built/);
-  await Promise.all(["blog/device-network.webp", "blog/linked-work.webp", "blog/task-continuity.webp", "blog/architecture-evidence.webp", "blog/capability-states.webp"].map(path => access(new URL(`../public/${path}`, import.meta.url))));
+  const product = await (await render("https://granttap.com/blog/why-granttap-is-a-control-center")).text();
+  assert.match(product, /One Task, many executions/);
+  assert.match(product, /why-granttap-is-a-control-center-a\.webp/);
+  assert.match(product, /why-granttap-is-a-control-center-b\.webp/);
+  await Promise.all(["device-network", "linked-work", "task-continuity", "architecture-evidence", "capability-states", "granttap-control", "agent-landscape", "governance-boundary", "tel-aviv-agentic", "cortex-evidence"].map(name => access(new URL(`../public/blog/${name}.webp`, import.meta.url))));
+});
+
+test("homepage leaves journal assets and article data to blog routes", async () => {
+  const home = await (await render("https://granttap.com/")).text();
+  const journal = await (await render("https://granttap.com/blog")).text();
+  assert.doesNotMatch(home, /href="\/blog\.css"|\/blog\/[a-z-]+\.webp|A phone should reduce uncertainty|An agent approval is only as strong/);
+  assert.match(journal, /href="\/blog\.css"/);
+  assert.doesNotMatch(journal, /A phone should reduce uncertainty/);
+  const cssAssets = [...home.matchAll(/href="(\/assets\/[^\"]+\.css)"/g)].map(match => match[1]);
+  for (const asset of cssAssets) {
+    const css = await readFile(new URL(`../dist/client${asset}`, import.meta.url), "utf8");
+    assert.doesNotMatch(css, /\.blog-article-head|\.blog-screenshot|\.blog-graphic-row/);
+  }
+  const jsAssets = [...home.matchAll(/(?:href|src)="(\/assets\/[^\"]+\.js)"/g)].map(match => match[1]);
+  for (const asset of jsAssets) {
+    const js = await readFile(new URL(`../dist/client${asset}`, import.meta.url), "utf8");
+    assert.doesNotMatch(js, /blog-article-head|A phone should reduce uncertainty|An agent approval is only as strong/);
+  }
+  await access(new URL("../public/blog.css", import.meta.url));
 });
 
 test("redirects the Sites hostname to the canonical domain", async () => {
@@ -99,7 +126,10 @@ test("publishes only Personal customer routes with canonical metadata", async ()
     assert.doesNotMatch(html, /Enterprise|GrantTap Web|browser vault|organization policy/i);
   }
   assert.equal((await render("https://granttap.com/enterprise")).status, 404);
-  assert.equal((await render("https://granttap.com/account")).status, 404);
+  const account = await (await render("https://granttap.com/account")).text();
+  assert.match(account, /Your GrantTap account/);
+  assert.match(account, /name="robots" content="noindex/);
+  assert.match(account, /href="https:\/\/granttap\.com\/account"/);
 });
 
 test("all internal links resolve", async () => {
@@ -122,11 +152,9 @@ test("adds production security headers", async () => {
   assert.equal((await render("http://granttap.com/privacy")).headers.get("strict-transport-security"), null);
 });
 
-test("robots and sitemap expose no retired product route", async () => {
-  const [robots, sitemap] = await Promise.all([
-    readFile(new URL("../public/robots.txt", import.meta.url), "utf8"),
-    readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8"),
-  ]);
+test("robots and dynamic sitemap expose only published customer routes", async () => {
+  const robots = await readFile(new URL("../public/robots.txt", import.meta.url), "utf8");
+  const sitemap = await (await render("https://granttap.com/sitemap.xml")).text();
   assert.match(robots, /Sitemap: https:\/\/granttap\.com\/sitemap\.xml/);
   for (const path of routes) assert.match(sitemap, new RegExp(`<loc>https:\/\/granttap\.com${path.replace("/", "\\/")}<\/loc>`));
   assert.doesNotMatch(`${robots}\n${sitemap}`, /chatgpt\.site|enterprise|account/i);
