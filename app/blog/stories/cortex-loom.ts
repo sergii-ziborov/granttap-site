@@ -6,6 +6,7 @@ export const cortexLoom: BlogArticle = {
   minutes: 7,
   cover: "/blog/cortex-evidence.webp",
   generatedCover: true,
+  screenshot: "/product/iphone-weavatrix-graph.png",
   en: {
     title: "Cortex Loom: fewer context tokens, with the gaps visible",
     summary: "A task-aware evidence packet can be much smaller than a folder dump. The benchmark also shows why token savings alone are not the goal.",
@@ -28,6 +29,7 @@ export const cortexLoom: BlogArticle = {
         "Cortex is useful when a task needs unfamiliar callers, contracts, or cross-file relationships. For a tiny edit in a known file, its own documentation says to skip it. A reliable system spends context where it changes the next decision, and measures both completeness and the result of the coding work.",
       ] },
     ],
+    screenshotCaption: "Weavatrix architecture graph in GrantTap, using a deterministic demo revision. It does not show the Cortex token benchmark or a live repository scan.",
     closing: "The useful metric is verified evidence per token for the task at hand, followed by whether the agent actually closed that task.",
     sources: [
       { label: "Cortex Loom README and measured work", url: "https://github.com/sergii-ziborov/cortex-loom" },
@@ -61,6 +63,7 @@ export const cortexLoom: BlogArticle = {
         "Cortex полезен при изучении незнакомых вызовов, контрактов и связей между файлами. Для крошечной правки в известном файле его собственная документация советует пропустить этот шаг. Надёжная система тратит контекст там, где он меняет следующее решение, и измеряет как полноту evidence, так и результат работы агента.",
       ] },
     ],
+    screenshotCaption: "Архитектурный граф Weavatrix в GrantTap на тестовой ревизии. Он не показывает бенчмарк токенов Cortex или сканирование живого репозитория.",
     closing: "Полезная метрика — проверенные факты на токен для конкретной задачи, а затем реальное завершение самой задачи.",
     sources: [
       { label: "Cortex Loom и результаты измерений", url: "https://github.com/sergii-ziborov/cortex-loom" },

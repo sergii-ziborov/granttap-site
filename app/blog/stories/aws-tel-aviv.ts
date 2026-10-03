@@ -6,6 +6,7 @@ export const awsTelAviv: BlogArticle = {
   minutes: 6,
   cover: "/blog/tel-aviv-agentic.webp",
   generatedCover: true,
+  screenshot: "/product/iphone-mcp-usage.png",
   en: {
     title: "What the AWS Summit Tel Aviv agenda says about agents",
     summary: "The September 2026 program put building, operating, observing, and governing agents in the same conversation.",
@@ -28,6 +29,7 @@ export const awsTelAviv: BlogArticle = {
         "Conference agendas are evidence of emphasis, not proof of market share or a universal industry priority. We will keep testing these ideas against actual tasks, host behavior, and user decisions.",
       ] },
     ],
+    screenshotCaption: "GrantTap Usage on iPhone with deterministic sample values. These are not AWS Summit metrics or live customer telemetry.",
     closing: "Agents become useful at scale when decisions and outcomes can be traced through their real execution path.",
     sources: [
       { label: "AWS Summit Tel Aviv 2026 overview", url: "https://aws.amazon.com/events/summits/tel-aviv/" },
@@ -63,6 +65,7 @@ export const awsTelAviv: BlogArticle = {
         "Программа конференции показывает акценты, но не доказывает долю рынка или единую для всех отраслей повестку. Эти идеи нужно проверять на реальных задачах, поведении компьютеров и решениях пользователей.",
       ] },
     ],
+    screenshotCaption: "Экран Usage в GrantTap с детерминированными тестовыми значениями. Это не статистика AWS Summit и не данные пользователей.",
     closing: "Агенты становятся полезнее при росте масштаба, когда решения и результаты прослеживаются до реального пути исполнения.",
     sources: [
       { label: "Страница AWS Summit Tel Aviv 2026", url: "https://aws.amazon.com/events/summits/tel-aviv/" },

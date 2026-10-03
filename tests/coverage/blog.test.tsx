@@ -1,4 +1,6 @@
 import { render, screen, within } from "@testing-library/react";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import userEvent from "@testing-library/user-event";
 import { expect, test } from "vitest";
 import BlogPage from "../../app/blog/page";
@@ -34,6 +36,17 @@ test("every article renders its own sections and sources in both languages", asy
     if (article.ru.screenshotCaption) expect(screen.getByRole("img", { name: article.ru.screenshotCaption })).toBeTruthy();
     view.unmount();
     window.localStorage.clear();
+  }
+});
+
+test("each editorial story includes a real GrantTap interface with bilingual context", () => {
+  const editorial = articles.filter(article => article.date >= "2026-10-03");
+  expect(editorial).toHaveLength(5);
+  for (const article of editorial) {
+    expect(article.screenshot).toMatch(/^\/product\/iphone-[\w-]+\.png$/);
+    expect(existsSync(join(process.cwd(), "public", article.screenshot!))).toBe(true);
+    expect(article.en.screenshotCaption?.length).toBeGreaterThan(30);
+    expect(article.ru.screenshotCaption?.length).toBeGreaterThan(30);
   }
 });
 

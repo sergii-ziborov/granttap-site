@@ -6,6 +6,7 @@ export const agentLandscape: BlogArticle = {
   minutes: 7,
   cover: "/blog/agent-landscape.webp",
   generatedCover: true,
+  screenshot: "/product/iphone-tasks.png",
   en: {
     title: "Coding agents on your phone: what each approach controls",
     summary: "Claude Code, Codex, and Cursor already offer mobile paths. The useful comparison is where the agent runs and what you can verify.",
@@ -28,6 +29,7 @@ export const agentLandscape: BlogArticle = {
         "The best choice depends on your workflow. A single-provider session may be simplest in its native app. A cross-provider local workflow benefits from stable Task identity and explicit handoff, provided every integration reports its actual limits honestly.",
       ] },
     ],
+    screenshotCaption: "GrantTap Tasks on iPhone with deterministic sample Codex and Claude Code work. This is GrantTap's interface, not either provider's mobile app.",
     closing: "Mobile access is now expected. The differentiator is a truthful account of execution, authority, and continuity.",
     sources: [
       { label: "Claude Code Remote Control documentation", url: "https://code.claude.com/docs/en/remote-control" },
@@ -63,6 +65,7 @@ export const agentLandscape: BlogArticle = {
         "Выбор зависит от процесса. Для одной сессии у одного провайдера его native app часто проще. Для локальной работы с несколькими провайдерами полезны стабильная Task и явный handoff — при условии, что ограничения каждой интеграции названы честно.",
       ] },
     ],
+    screenshotCaption: "Экран Tasks в GrantTap с тестовыми задачами Codex и Claude Code. Это интерфейс GrantTap, а не мобильное приложение одного из провайдеров.",
     closing: "Мобильный доступ стал нормой. Важнее ясность об исполнении, полномочиях и непрерывности работы.",
     sources: [
       { label: "Документация Claude Code Remote Control", url: "https://code.claude.com/docs/en/remote-control" },
