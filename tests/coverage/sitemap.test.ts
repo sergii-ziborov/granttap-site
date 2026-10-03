@@ -12,6 +12,10 @@ test("sitemap includes released articles and adds each future story on its date"
     const complete = sitemap().map(entry => entry.url);
     expect(complete).toContain("https://granttap.com/blog/cortex-loom-evidence-per-token");
     expect(complete.filter(url => url.startsWith("https://granttap.com/blog/"))).toHaveLength(10);
+    vi.setSystemTime(new Date("2026-12-05T12:00:00Z"));
+    const expanded = sitemap().map(entry => entry.url);
+    expect(expanded).toContain("https://granttap.com/blog/local-cloud-hybrid-agent-boundaries");
+    expect(expanded.filter(url => url.startsWith("https://granttap.com/blog/"))).toHaveLength(15);
   } finally {
     vi.useRealTimers();
   }

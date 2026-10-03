@@ -86,11 +86,12 @@ links.
 ## Public customer pages
 
 - [About](https://granttap.com/about)
-- [Journal](https://granttap.com/blog): ten EN/RU stories with at least 1,000 body words per
+- [Journal](https://granttap.com/blog): fifteen EN/RU stories with at least 1,000 body words per
   language, source links, real app captures from deterministic demo fixtures, labelled
   generated covers, and two generated inline illustrations in each story.
 
-The new stories are dated October 3, 10, 17, 24, and 31, 2026. The blog routes
+The editorial series is dated October 3, 10, 17, 24, and 31; November 7, 14, 21,
+and 28; and December 5, 2026. The blog routes
 and dynamic sitemap release each story at midnight in Asia/Jerusalem; unpublished
 stories return 404. The comparison article states its October 3 source-check date.
 - [Pricing](https://granttap.com/pricing)

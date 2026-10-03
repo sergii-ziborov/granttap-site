@@ -41,7 +41,7 @@ export function BlogIndex({ articles, scheduleActive, locale }: { articles: Blog
       <p className="blog-eyebrow">GrantTap Journal</p>
       <h1>{locale === "ru" ? "Работа агентов, которую можно понять и контролировать." : "Agent work you can understand and control."}</h1>
       <p>{locale === "ru" ? "Идеи продукта, честное сравнение с coding-инструментами, governance, события и практические руководства. Мы отделяем действующие возможности от планов и подтверждённые факты от выводов." : "Product thinking, honest comparisons, governance, events, and practical guides. We separate working features from plans and documented facts from interpretation."}</p>
-      {scheduleActive && <p className="blog-cadence">{locale === "ru" ? "Новые материалы по субботам до 31 октября." : "New stories every Saturday through October 31."}</p>}
+      {scheduleActive && <p className="blog-cadence">{locale === "ru" ? "Новые материалы по субботам до 5 декабря." : "New stories every Saturday through December 5."}</p>}
     </section>
     <section className="section-shell blog-feature" aria-label={locale === "ru" ? "Главная статья" : "Featured article"}>
       <a className="blog-feature-link" href={blogHref(`/blog/${first.slug}`, locale)}>

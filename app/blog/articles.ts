@@ -6,6 +6,11 @@ import { agentLandscape } from "./stories/agent-landscape";
 import { governance } from "./stories/governance";
 import { awsTelAviv } from "./stories/aws-tel-aviv";
 import { cortexLoom } from "./stories/cortex-loom";
+import { mobileWorkflowMap } from "./stories/mobile-workflow-map";
+import { approvalBoundaries } from "./stories/approval-boundaries";
+import { taskHandoffPaths } from "./stories/task-handoff-paths";
+import { usageEvidence } from "./stories/usage-evidence";
+import { localCloudBoundaries } from "./stories/local-cloud-boundaries";
 export type { BlogArticle, BlogLocale } from "./articleTypes";
 
 const guides: BlogArticle[] = [
@@ -277,8 +282,9 @@ const guides: BlogArticle[] = [
 ];
 
 export const articles: BlogArticle[] = [
-  cortexLoom, awsTelAviv, governance, agentLandscape, granttapControl, ...guides,
-].map(extendArticle);
+  localCloudBoundaries, usageEvidence, taskHandoffPaths, approvalBoundaries, mobileWorkflowMap,
+  ...[cortexLoom, awsTelAviv, governance, agentLandscape, granttapControl, ...guides].map(extendArticle),
+];
 
 export function getArticle(slug: string) {
   return articles.find(article => article.slug === slug);

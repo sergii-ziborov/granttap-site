@@ -39,7 +39,7 @@ test("every article renders its own sections and sources in both languages", () 
 
 test("each editorial story includes a real GrantTap interface with bilingual context", () => {
   const editorial = articles.filter(article => article.date >= "2026-10-03");
-  expect(editorial).toHaveLength(5);
+  expect(editorial).toHaveLength(10);
   for (const article of editorial) {
     expect(article.screenshot).toMatch(/^\/product\/iphone-[\w-]+\.png$/);
     expect(existsSync(join(process.cwd(), "public", article.screenshot!))).toBe(true);
@@ -48,8 +48,8 @@ test("each editorial story includes a real GrantTap interface with bilingual con
   }
 });
 
-test("all ten bilingual stories have at least 1000 body words and two labeled inline images", () => {
-  expect(articles).toHaveLength(10);
+test("all fifteen bilingual stories have at least 1000 body words and two labeled inline images", () => {
+  expect(articles).toHaveLength(15);
   for (const article of articles) {
     expect(article.generatedCover).toBe(true);
     for (const locale of ["en", "ru"] as const) {
@@ -88,4 +88,7 @@ test("publication schedule releases stories on the Jerusalem calendar day", () =
   expect(first.map(item => item.slug)).toContain("why-granttap-is-a-control-center");
   expect(first.map(item => item.slug)).not.toContain("coding-agents-on-your-phone-2026");
   expect(publishedArticles(new Date("2026-10-31T12:00:00Z"))).toHaveLength(10);
+  expect(publishedArticles(new Date("2026-11-06T21:59:59Z"))).toHaveLength(10);
+  expect(publishedArticles(new Date("2026-11-06T22:00:00Z"))).toHaveLength(11);
+  expect(publishedArticles(new Date("2026-12-05T12:00:00Z"))).toHaveLength(15);
 });

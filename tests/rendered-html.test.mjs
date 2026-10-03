@@ -74,6 +74,9 @@ test("journal publishes current stories with accurate status and images", async 
   assert.match(index, /connect-iphone-with-qr/);
   assert.match(index, /why-granttap-is-a-control-center/);
   assert.match(index, /mcp-skills-and-governance-status/);
+  assert.doesNotMatch(index, /choose-a-mobile-coding-agent-workflow/);
+  const future = await render("https://granttap.com/blog/choose-a-mobile-coding-agent-workflow");
+  assert.equal(future.status, 404);
   const pairing = await (await render("https://granttap.com/blog/connect-iphone-with-qr")).text();
   assert.match(pairing, /You do not need to add GrantTap under Codex Connected accounts/);
   assert.match(pairing, /Add a device \(Scan QR\)/);
@@ -91,7 +94,7 @@ test("journal publishes current stories with accurate status and images", async 
 test("homepage leaves journal assets and article data to blog routes", async () => {
   const home = await (await render("https://granttap.com/")).text();
   const journal = await (await render("https://granttap.com/blog")).text();
-  assert.doesNotMatch(home, /href="\/blog\.css"|\/blog\/[a-z-]+\.webp|A phone should reduce uncertainty/);
+  assert.doesNotMatch(home, /href="\/blog\.css"|\/blog\/[a-z-]+\.webp|A phone should reduce uncertainty|An agent approval is only as strong/);
   assert.match(journal, /href="\/blog\.css"/);
   assert.doesNotMatch(journal, /A phone should reduce uncertainty/);
   const cssAssets = [...home.matchAll(/href="(\/assets\/[^\"]+\.css)"/g)].map(match => match[1]);
@@ -102,7 +105,7 @@ test("homepage leaves journal assets and article data to blog routes", async () 
   const jsAssets = [...home.matchAll(/(?:href|src)="(\/assets\/[^\"]+\.js)"/g)].map(match => match[1]);
   for (const asset of jsAssets) {
     const js = await readFile(new URL(`../dist/client${asset}`, import.meta.url), "utf8");
-    assert.doesNotMatch(js, /blog-article-head|A phone should reduce uncertainty/);
+    assert.doesNotMatch(js, /blog-article-head|A phone should reduce uncertainty|An agent approval is only as strong/);
   }
   await access(new URL("../public/blog.css", import.meta.url));
 });
