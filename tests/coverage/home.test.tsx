@@ -23,8 +23,8 @@ test("renders the Personal product journey and locale control", async () => {
 
   const previews = screen.getAllByRole("button", { name: /Open full-size/i });
   expect(previews.length).toBeGreaterThanOrEqual(3);
-  expect(screen.getByRole("button", { name: "Open full-size: Company accounts" })).toBeTruthy();
-  expect(screen.getByRole("button", { name: "Open full-size: Repository access" })).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Open full-size: Tasks" })).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Open full-size: Mesh" })).toBeTruthy();
   await user.click(previews[0]);
   expect(screen.getByRole("dialog", { name: "Now screenshot" })).toBeTruthy();
   expect(screen.getByRole("img", { name: "GrantTap Now, full size" })).toBeTruthy();
@@ -37,7 +37,7 @@ test("renders the Personal product journey and locale control", async () => {
   await user.click(screen.getByRole("button", { name: "Close preview" }));
   expect(screen.queryByRole("dialog")).toBeNull();
 
-  await user.click(previews[2]);
+  await user.click(previews[3]);
   const usageDialog = screen.getByRole("dialog", { name: "Usage screenshot" });
   fireEvent.mouseDown(screen.getByRole("img", { name: "GrantTap Usage, full size" }));
   expect(screen.getByRole("dialog", { name: "Usage screenshot" })).toBeTruthy();

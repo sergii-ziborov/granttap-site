@@ -10,6 +10,7 @@ type Copy = {
   meshGalleryTitle: string;
   meshCaptures: readonly (readonly [string, string, string])[];
   phoneCaption: string;
+  tasksCaption: string;
   taskCaption: string;
   usageCaption: string;
   watchCaption: string;
@@ -29,6 +30,7 @@ export function CaptureGallery({ t }: { t: Copy }) {
   const [selected, setSelected] = useState<Capture | null>(null);
   const captures: Capture[] = [
     { name: "iphone-command-center", alt: "GrantTap Now", title: "Now", caption: t.phoneCaption, kind: "phone" },
+    { name: "iphone-tasks", alt: "GrantTap Tasks", title: "Tasks", caption: t.tasksCaption, kind: "phone" },
     { name: "iphone-chat", alt: "GrantTap live task chat", title: "Task", caption: t.taskCaption, kind: "phone" },
     { name: "iphone-mcp-usage", alt: "GrantTap Usage", title: "Usage", caption: t.usageCaption, kind: "phone" },
   ];

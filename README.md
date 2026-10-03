@@ -13,6 +13,13 @@ The public site presents one product across Mac, iPhone, iPad, and Apple Watch w
 Code, Codex, Cursor Beta, and Grok Build where its implemented behavior is
 available. The site presents one Personal product.
 
+The current home-page phone captures were retaken on 2026-10-01 from the
+deterministic iPhone simulator demo: Now, Tasks, dated Task chat, Usage, and
+the Mesh/Repositories switch. They depict sample work, not a customer's
+session or a live repository scan. Older feature captures remain identified as
+fixtures below; the home gallery does not imply that an agent authored the
+architecture graph or measured its own resource use.
+
 Mesh coordinates those existing agents with bounded encrypted task
 state, dependencies, resource claims, agent-to-agent questions, and same-task
 handoffs across computers. Mesh Governance decides, per Mesh, which
@@ -53,6 +60,12 @@ can show an expiring QR in Settings to add another controller to its linked
 computers; this joins the device network rather than a Mesh. Do not ask an
 agent to print a pairing QR in chat. The plugin and local `granttap-mcp`
 runtime must use compatible protocol versions.
+
+An optional GrantTap account passkey signs in on Mac or iPhone. On a Mac with
+the local bridge, `/connect` can use a fresh passkey assertion to approve a
+coding app. The phone-to-computer pairing key still moves through a separate
+encrypted device-link flow; signing in alone does not recover an old phone
+connection. QR pairing remains available without any account.
 
 Live `/`, `/connect`, and `/api/connect` use the Hetzner compose stack.
 The connect page does not generate or display a pairing QR.
@@ -107,12 +120,16 @@ Product captures under `public/product/` must come from deterministic sample
 data and contain no real pairing, task, repository, credential, or audit data.
 `iphone-company-accounts.png` and `iphone-company-repositories.png` are iPhone
 Simulator captures from the owner-managed account and repository grant screens.
-`iphone-linked-projects.png` is an iPhone Simulator Debug demo capture from
+`iphone-linked-projects.png` is an older iPhone Simulator Debug demo capture from
 internal source `1aecdca`. It shows binding-level grouping and the corrected
 device-scoped invite copy; it does not claim a Weavatrix dependency was observed.
 `iphone-weavatrix-graph.png` and `iphone-health-code-towers.png` are kept UI-test
 attachments from deterministic architecture and code-map fixtures. Their
 `demo-revision` label is deliberate; neither depicts a live repository scan.
+The updated `iphone-command-center.png`, `iphone-tasks.png`, `iphone-chat.png`,
+`iphone-mcp-usage.png`, and `iphone-project-mesh.png` are current 2026-10-01
+iPhone Simulator captures. The site references them with a versioned URL to
+invalidate browser caches after deployment.
 
 ## Current captures
 
