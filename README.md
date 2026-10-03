@@ -86,8 +86,12 @@ links.
 ## Public customer pages
 
 - [About](https://granttap.com/about)
-- [Journal](https://granttap.com/blog): five EN/RU guides with clearly labelled
+- [Journal](https://granttap.com/blog): EN/RU guides and five new editorial stories with clearly labelled
   deterministic product captures and five generated editorial illustrations.
+
+The new stories are dated October 3, 10, 17, 24, and 31, 2026. The blog routes
+and dynamic sitemap release each story at midnight in Asia/Jerusalem; unpublished
+stories return 404. The comparison article states its October 3 source-check date.
 - [Pricing](https://granttap.com/pricing)
 - [Privacy](https://granttap.com/privacy)
 - [Terms](https://granttap.com/terms)

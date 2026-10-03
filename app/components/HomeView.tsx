@@ -80,13 +80,13 @@ function Pricing({ t }: Pick<Props, "t">) {
 
 function BlogTeaser({ locale }: { locale: Locale }) {
   const items = locale === "ru"
-    ? [["Как подключить iPhone без дополнительного аккаунта", "connect-iphone-with-qr"], ["Связанные Mesh сохраняют отдельные права", "linked-projects-without-merging-access"], ["Граф должен отвечать на вопрос о коде", "architecture-graph-with-evidence"]]
-    : [["Connect your iPhone without another account", "connect-iphone-with-qr"], ["Linked Mesh spaces keep separate permissions", "linked-projects-without-merging-access"], ["A graph should answer a code question", "architecture-graph-with-evidence"]];
+    ? [["Зачем GrantTap нужен центр управления локальными агентами", "why-granttap-is-a-control-center"], ["Как подключить iPhone без дополнительного аккаунта", "connect-iphone-with-qr"], ["Настроено, доступно, использовано", "mcp-skills-and-governance-status"]]
+    : [["Why GrantTap is a control center for local agents", "why-granttap-is-a-control-center"], ["Connect your iPhone without another account", "connect-iphone-with-qr"], ["Configured, available, used", "mcp-skills-and-governance-status"]];
   return <section className="section-shell home-blog" aria-label={locale === "ru" ? "Блог GrantTap" : "GrantTap Journal"}>
     <p className="kicker">GrantTap Journal</p>
-    <h2>{locale === "ru" ? "Понять, как это работает." : "Understand how it works."}</h2>
+    <h2>{locale === "ru" ? "Идеи и практика управления агентами." : "The thinking and practice behind agent control."}</h2>
     <div>{items.map(([title, slug]) => <Link href={`/blog/${slug}`} key={slug}>{title}<span>↗</span></Link>)}</div>
-    <Link className="home-blog-all" href="/blog">{locale === "ru" ? "Все пять статей →" : "All five stories →"}</Link>
+    <Link className="home-blog-all" href="/blog">{locale === "ru" ? "Все статьи →" : "All stories →"}</Link>
   </section>;
 }
 

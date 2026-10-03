@@ -1,26 +1,12 @@
-export type BlogLocale = "en" | "ru";
+import type { BlogArticle } from "./articleTypes";
+import { granttapControl } from "./stories/granttap-control";
+import { agentLandscape } from "./stories/agent-landscape";
+import { governance } from "./stories/governance";
+import { awsTelAviv } from "./stories/aws-tel-aviv";
+import { cortexLoom } from "./stories/cortex-loom";
+export type { BlogArticle, BlogLocale } from "./articleTypes";
 
-type ArticleText = {
-  title: string;
-  summary: string;
-  category: string;
-  intro: string[];
-  sections: { heading: string; paragraphs: string[] }[];
-  screenshotCaption: string;
-  closing: string;
-};
-
-export type BlogArticle = {
-  slug: string;
-  date: string;
-  minutes: number;
-  cover: string;
-  screenshot: string;
-  en: ArticleText;
-  ru: ArticleText;
-};
-
-export const articles: BlogArticle[] = [
+const guides: BlogArticle[] = [
   {
     slug: "connect-iphone-with-qr",
     date: "2026-09-24",
@@ -300,6 +286,10 @@ export const articles: BlogArticle[] = [
       closing: "Хороший governance показывает разницу между желаемым правилом и фактически применённым состоянием до того, как Task начнёт зависеть от инструмента.",
     },
   },
+];
+
+export const articles: BlogArticle[] = [
+  cortexLoom, awsTelAviv, governance, agentLandscape, granttapControl, ...guides,
 ];
 
 export function getArticle(slug: string) {
