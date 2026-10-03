@@ -65,7 +65,10 @@ An optional GrantTap account passkey signs in on Mac or iPhone. On a Mac with
 the local bridge, `/connect` can use a fresh passkey assertion to approve a
 coding app. The phone-to-computer pairing key still moves through a separate
 encrypted device-link flow; signing in alone does not recover an old phone
-connection. QR pairing remains available without any account.
+connection. QR pairing remains available without any account. A Mac appears
+in the phone's account after the Mac app authorizes local MCP access and signs
+in with the same passkey. Apple Passwords can sync a passkey through iCloud;
+another passkey manager must be selected on both devices.
 
 Live `/`, `/connect`, and `/api/connect` use the Hetzner compose stack.
 The connect page does not generate or display a pairing QR.
