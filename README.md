@@ -86,8 +86,9 @@ links.
 ## Public customer pages
 
 - [About](https://granttap.com/about)
-- [Journal](https://granttap.com/blog): ten EN/RU stories with source links, real app captures
-  from deterministic demo fixtures, labelled generated covers, and three inline illustrations.
+- [Journal](https://granttap.com/blog): ten EN/RU stories with at least 1,000 body words per
+  language, source links, real app captures from deterministic demo fixtures, labelled
+  generated covers, and two generated inline illustrations in each story.
 
 The new stories are dated October 3, 10, 17, 24, and 31, 2026. The blog routes
 and dynamic sitemap release each story at midnight in Asia/Jerusalem; unpublished

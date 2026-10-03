@@ -8,6 +8,7 @@ export type ArticleText = {
   sections: { heading: string; paragraphs: string[] }[];
   screenshotCaption?: string;
   illustrationCaption?: string;
+  additionalIllustrationCaption?: string;
   closing: string;
   sources?: { label: string; url: string }[];
   graphic?: {
@@ -25,6 +26,7 @@ export type BlogArticle = {
   generatedCover?: boolean;
   screenshot?: string;
   inlineIllustration?: string;
+  additionalIllustration?: string;
   en: ArticleText;
   ru: ArticleText;
 };

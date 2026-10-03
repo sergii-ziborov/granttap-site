@@ -1,4 +1,5 @@
 import type { BlogArticle } from "./articleTypes";
+import { extendArticle } from "./longform";
 import { capabilityStatusGuide } from "./stories/capability-status-guide";
 import { granttapControl } from "./stories/granttap-control";
 import { agentLandscape } from "./stories/agent-landscape";
@@ -277,7 +278,7 @@ const guides: BlogArticle[] = [
 
 export const articles: BlogArticle[] = [
   cortexLoom, awsTelAviv, governance, agentLandscape, granttapControl, ...guides,
-];
+].map(extendArticle);
 
 export function getArticle(slug: string) {
   return articles.find(article => article.slug === slug);

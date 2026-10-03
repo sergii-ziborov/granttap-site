@@ -92,7 +92,8 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
           <h2>{section.heading}</h2>
           {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
           {index === 0 && article.inlineIllustration && t.illustrationCaption && <figure className="blog-illustration"><Image src={article.inlineIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption>{t.illustrationCaption}</figcaption></figure>}
-          {index === 1 && article.screenshot && t.screenshotCaption && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption>{t.screenshotCaption}</figcaption></figure>}
+          {index === t.sections.length - 1 && article.screenshot && t.screenshotCaption && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption>{t.screenshotCaption}</figcaption></figure>}
+          {index === Math.floor(t.sections.length / 2) && article.additionalIllustration && t.additionalIllustrationCaption && <figure className="blog-illustration"><Image src={article.additionalIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption>{t.additionalIllustrationCaption}</figcaption></figure>}
         </section>)}
         <aside className="blog-note">{t.closing}</aside>
         {t.sources && <section className="blog-sources"><h2>{locale === "ru" ? "Источники" : "Sources"}</h2><ul>{t.sources.map(source => <li key={source.url}><a href={source.url} target={source.url.startsWith("http") ? "_blank" : undefined} rel={source.url.startsWith("http") ? "noopener noreferrer" : undefined}>{source.label} ↗</a></li>)}</ul></section>}

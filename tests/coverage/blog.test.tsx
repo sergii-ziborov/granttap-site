@@ -6,6 +6,7 @@ import BlogPage, { generateMetadata as indexMetadata } from "../../app/blog/page
 import ArticlePage, { generateMetadata } from "../../app/blog/[slug]/page";
 import { BlogArticleView } from "../../app/blog/BlogViews";
 import { articles, getArticle } from "../../app/blog/articles";
+import { articleBodyWordCount } from "../../app/blog/longform/wordCount";
 import { publishedArticles, publicationDay } from "../../app/blog/publication";
 
 test("journal lists released stories and keeps language in its links", async () => {
@@ -47,19 +48,23 @@ test("each editorial story includes a real GrantTap interface with bilingual con
   }
 });
 
-test("all ten stories have attributable sources and labeled editorial artwork", () => {
+test("all ten bilingual stories have at least 1000 body words and two labeled inline images", () => {
   expect(articles).toHaveLength(10);
   for (const article of articles) {
     expect(article.generatedCover).toBe(true);
     for (const locale of ["en", "ru"] as const) {
       expect(article[locale].sources?.length).toBeGreaterThan(0);
-      if (article.inlineIllustration) expect(article[locale].illustrationCaption?.length).toBeGreaterThan(20);
+      expect(articleBodyWordCount(article[locale])).toBeGreaterThanOrEqual(1000);
+      expect(article[locale].illustrationCaption?.length).toBeGreaterThan(20);
+      expect(article[locale].additionalIllustrationCaption?.length).toBeGreaterThan(20);
     }
-    if (article.inlineIllustration) {
-      expect(existsSync(join(process.cwd(), "public", article.inlineIllustration))).toBe(true);
+    for (const path of [article.inlineIllustration, article.additionalIllustration]) {
+      expect(path).toMatch(/^\/blog\/[\w-]+\.webp$/);
+      expect(existsSync(join(process.cwd(), "public", path!))).toBe(true);
     }
+    expect(article.inlineIllustration).not.toBe(article.additionalIllustration);
+    expect(article.minutes).toBeGreaterThanOrEqual(6);
   }
-  expect(articles.filter(article => article.inlineIllustration)).toHaveLength(3);
 });
 
 test("article routes and metadata resolve exact slugs and reject unknown ones", async () => {

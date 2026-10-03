@@ -83,15 +83,17 @@ test("journal publishes current stories with accurate status and images", async 
   assert.match(governance, /budget and use-only flows are still being built/);
   const product = await (await render("https://granttap.com/blog/why-granttap-is-a-control-center")).text();
   assert.match(product, /One Task, many executions/);
+  assert.match(product, /why-granttap-is-a-control-center-a\.webp/);
+  assert.match(product, /why-granttap-is-a-control-center-b\.webp/);
   await Promise.all(["device-network", "linked-work", "task-continuity", "architecture-evidence", "capability-states", "granttap-control", "agent-landscape", "governance-boundary", "tel-aviv-agentic", "cortex-evidence"].map(name => access(new URL(`../public/blog/${name}.webp`, import.meta.url))));
 });
 
 test("homepage leaves journal assets and article data to blog routes", async () => {
   const home = await (await render("https://granttap.com/")).text();
   const journal = await (await render("https://granttap.com/blog")).text();
-  assert.doesNotMatch(home, /href="\/blog\.css"|\/blog\/[a-z-]+\.webp|Cortex Loom: fewer context tokens/);
+  assert.doesNotMatch(home, /href="\/blog\.css"|\/blog\/[a-z-]+\.webp|A phone should reduce uncertainty/);
   assert.match(journal, /href="\/blog\.css"/);
-  assert.doesNotMatch(journal, /A graph is useful when it helps answer/);
+  assert.doesNotMatch(journal, /A phone should reduce uncertainty/);
   const cssAssets = [...home.matchAll(/href="(\/assets\/[^\"]+\.css)"/g)].map(match => match[1]);
   for (const asset of cssAssets) {
     const css = await readFile(new URL(`../dist/client${asset}`, import.meta.url), "utf8");
@@ -100,7 +102,7 @@ test("homepage leaves journal assets and article data to blog routes", async () 
   const jsAssets = [...home.matchAll(/(?:href|src)="(\/assets\/[^\"]+\.js)"/g)].map(match => match[1]);
   for (const asset of jsAssets) {
     const js = await readFile(new URL(`../dist/client${asset}`, import.meta.url), "utf8");
-    assert.doesNotMatch(js, /blog-article-head|Cortex Loom: fewer context tokens/);
+    assert.doesNotMatch(js, /blog-article-head|A phone should reduce uncertainty/);
   }
   await access(new URL("../public/blog.css", import.meta.url));
 });
