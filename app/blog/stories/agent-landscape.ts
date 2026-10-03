@@ -12,13 +12,13 @@ export const agentLandscape: BlogArticle = {
     summary: "Claude Code, Codex, and Cursor already offer mobile paths. The useful comparison is where the agent runs and what you can verify.",
     category: "Landscape",
     intro: [
-      "Mobile control of coding agents is no longer a blank market. Claude Code has Remote Control, OpenAI brings Codex into ChatGPT mobile, and Cursor offers a native iOS app with cloud agents and Remote Control. GrantTap has to earn its place through a different coordination boundary, not by pretending those tools lack a phone experience.",
+      "Mobile control of coding agents is no longer a blank market. Claude Code has Remote Control, OpenAI describes Codex in ChatGPT mobile as a preview, and Cursor offers a native iOS app with cloud agents and Remote Control. GrantTap has to earn its place through a different coordination boundary, not by pretending those tools lack a phone experience.",
       "The details below reflect official product documentation checked on October 3, 2026. Availability and plan terms can change; follow each provider's current documentation before choosing a workflow.",
     ],
     sections: [
       { heading: "The provider-native paths", paragraphs: [
         "Claude Code Remote Control connects the Claude app or claude.ai/code to a session associated with your computer. OpenAI's Codex mobile experience loads live state from connected machines and handles threads, approvals, and project context. Cursor for iOS starts and reviews cloud agents and can direct a local computer through Remote Control; its docs say the agent loop moves to Cursor's cloud while tools execute on the computer.",
-        "These are substantial products. For work centered on one provider, its native surface may be the shortest route. Cursor's mobile app also covers pull request review, voice, and notifications. It would be inaccurate to describe any of the three as simply a remote terminal.",
+        "These are substantial products. For work centered on one provider, its native surface may be the shortest route. Their routes have distinct requirements: Claude Remote Control needs an eligible account and an available local process; Cursor's local tools need an online computer while its agent loop uses cloud storage. It would be inaccurate to describe either as simply a remote terminal.",
       ] },
       { heading: "What GrantTap coordinates", paragraphs: [
         "GrantTap's design follows a Task across supported provider executions and computers. It puts decisions, delivery state, capability policy, and observed usage around that Task. Claude Code and Codex are the primary integrations; Cursor is Beta. Provider support is uneven, and a provider's own mobile client may expose features GrantTap does not.",
@@ -36,6 +36,7 @@ export const agentLandscape: BlogArticle = {
       { label: "OpenAI: Work with Codex from anywhere", url: "https://openai.com/index/work-with-codex-from-anywhere/" },
       { label: "Cursor for iOS documentation", url: "https://cursor.com/docs/cloud-agent/mobile" },
       { label: "GrantTap provider guides", url: "/agents/codex" },
+      { label: "GrantTap provider and runtime boundaries", url: "https://github.com/sergii-ziborov/granttap-mcp#supported-providers" },
     ],
     graphic: { title: "Questions to ask any mobile agent client", caption: "A comparison framework, not a feature score or vendor ranking.", rows: [
       { label: "Execution", detail: "Where do the agent loop and file tools run?" },
@@ -48,13 +49,13 @@ export const agentLandscape: BlogArticle = {
     summary: "У Claude Code, Codex и Cursor уже есть мобильные сценарии. Сравнивать полезнее место исполнения и проверяемость результата.",
     category: "Рынок",
     intro: [
-      "Мобильное управление coding-агентами уже не пустая ниша. У Claude Code есть Remote Control, OpenAI выводит Codex в мобильный ChatGPT, а Cursor предлагает нативное iOS-приложение с cloud agents и Remote Control. GrantTap должен отличаться границей координации, а не утверждением, что у других нет телефона.",
+      "Мобильное управление coding-агентами уже не пустая ниша. У Claude Code есть Remote Control, OpenAI описывает Codex в мобильном ChatGPT как предварительную версию, а Cursor предлагает нативное iOS-приложение с cloud agents и Remote Control. GrantTap должен отличаться границей координации, а не утверждением, что у других нет телефона.",
       "Ниже — официальная документация, проверенная 3 октября 2026 года. Доступность и условия тарифов меняются; перед выбором сценария стоит открыть свежую документацию провайдера.",
     ],
     sections: [
       { heading: "Нативные решения провайдеров", paragraphs: [
         "Claude Code Remote Control связывает приложение Claude или claude.ai/code с сессией на вашем компьютере. Мобильный Codex от OpenAI загружает живое состояние подключённых машин и работает с задачами, подтверждениями и контекстом проекта. Cursor для iOS запускает и проверяет cloud agents, а через Remote Control позволяет направлять локальный компьютер; согласно документации Cursor, цикл агента при этом переходит в облако, а инструменты выполняются на компьютере.",
-        "Это серьёзные решения. Если работа сосредоточена у одного провайдера, его приложение может быть самым коротким путём. Мобильный Cursor также умеет проверять pull requests, принимать голосовой ввод и уведомлять о ходе работы. Называть все эти решения просто удалённым терминалом было бы неверно.",
+        "Это серьёзные решения. Если работа сосредоточена у одного провайдера, его приложение может быть самым коротким путём. У маршрутов разные условия: Claude Remote Control требует подходящего аккаунта и работающей локальной сессии; локальные инструменты Cursor требуют доступного компьютера, а цикл агента использует облачное хранение. Называть эти решения просто удалённым терминалом было бы неверно.",
       ] },
       { heading: "Что связывает GrantTap", paragraphs: [
         "GrantTap ведёт Task через поддерживаемые executions разных провайдеров и компьютеров. Вокруг неё собраны решения человека, состояние доставки, правила возможностей и наблюдаемое использование. Основные интеграции — Claude Code и Codex; Cursor находится в Beta. Поддержка разных провайдеров неравномерна, а их собственные мобильные клиенты могут иметь функции, которых нет в GrantTap.",
@@ -72,6 +73,7 @@ export const agentLandscape: BlogArticle = {
       { label: "OpenAI: Work with Codex from anywhere", url: "https://openai.com/index/work-with-codex-from-anywhere/" },
       { label: "Документация Cursor для iOS", url: "https://cursor.com/docs/cloud-agent/mobile" },
       { label: "Интеграция GrantTap с Codex", url: "/agents/codex" },
+      { label: "Провайдеры и границы runtime GrantTap", url: "https://github.com/sergii-ziborov/granttap-mcp#supported-providers" },
     ],
     graphic: { title: "Что спросить о мобильном клиенте", caption: "Рамка сравнения, а не оценка или рейтинг продуктов.", rows: [
       { label: "Исполнение", detail: "Где работают цикл агента и файловые инструменты?" },

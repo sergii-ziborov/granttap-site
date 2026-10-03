@@ -17,7 +17,7 @@ export const governance: BlogArticle = {
     ],
     sections: [
       { heading: "From decision to action", paragraphs: [
-        "A capability has an exact identity: the MCP server configuration or skill bundle matters, not only the name shown to a person. A request and an approval belong to that identity. The target host then has to apply the change and return a result. If it is offline, incompatible, or cannot initialize the tool, the product should show that gap before a Task depends on it.",
+        "A capability has an exact identity: the MCP server configuration or skill bundle matters, not only the name shown to a person. A request and an approval belong to that identity. Each target host must report what it actually applied and initialized. Complete cross-host bundle transfer is still unfinished, so approval alone cannot promise readiness on another computer.",
         "Auto-accept belongs after the effective policy check. A broad provider setting is not a substitute for computer enforcement. Even with a correct policy engine, an action outside its observed path cannot be described as protected by it.",
       ] },
       { heading: "Usage is a separate fact", paragraphs: [
@@ -33,6 +33,7 @@ export const governance: BlogArticle = {
     closing: "The governing question is not ‘was a rule chosen?’ but ‘which computer applied which rule to which action?’",
     sources: [
       { label: "GrantTap capability status guide", url: "/blog/mcp-skills-and-governance-status" },
+      { label: "GrantTap Project Governance and coverage", url: "https://github.com/sergii-ziborov/granttap-mcp#project-governance" },
       { label: "AWS AgentCore Policy documentation", url: "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html" },
       { label: "AWS on temporal policies", url: "https://aws.amazon.com/blogs/machine-learning/securing-ai-agents-with-temporal-policies-in-amazon-bedrock-agentcore/" },
     ],
@@ -53,7 +54,7 @@ export const governance: BlogArticle = {
     ],
     sections: [
       { heading: "От решения до действия", paragraphs: [
-        "У возможности есть точная identity: важна конфигурация MCP-сервера или весь bundle skill, а не только имя на экране. Запрос и подтверждение относятся к этой identity. Затем целевой хост должен применить изменение и вернуть результат. Если он offline, несовместим или не смог инициализировать инструмент, этот пробел нужно показать до зависимости Task от него.",
+        "У возможности есть точная identity: важна конфигурация MCP-сервера или весь bundle skill, а не только имя на экране. Запрос и подтверждение относятся к этой identity. Каждый целевой хост должен сообщить, что он действительно применил и инициализировал. Полный перенос bundles между хостами ещё не завершён, поэтому одобрение не обещает готовности на другом компьютере.",
         "Auto-accept допустим после проверки действующего правила. Широкая настройка провайдера не заменяет computer enforcement. Даже верный policy engine не защищает действия, которые обходят наблюдаемый им путь.",
       ] },
       { heading: "Использование — отдельный факт", paragraphs: [
@@ -69,6 +70,7 @@ export const governance: BlogArticle = {
     closing: "Важный вопрос не «правило выбрано?», а «какой компьютер применил какое правило к какому действию?»",
     sources: [
       { label: "Статусы возможностей в GrantTap", url: "/blog/mcp-skills-and-governance-status" },
+      { label: "Project Governance и покрытие хостов", url: "https://github.com/sergii-ziborov/granttap-mcp#project-governance" },
       { label: "Документация AWS AgentCore Policy", url: "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html" },
       { label: "AWS о temporal policies", url: "https://aws.amazon.com/blogs/machine-learning/securing-ai-agents-with-temporal-policies-in-amazon-bedrock-agentcore/" },
     ],

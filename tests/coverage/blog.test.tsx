@@ -1,41 +1,38 @@
 import { render, screen, within } from "@testing-library/react";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import userEvent from "@testing-library/user-event";
 import { expect, test } from "vitest";
-import BlogPage from "../../app/blog/page";
+import BlogPage, { generateMetadata as indexMetadata } from "../../app/blog/page";
 import ArticlePage, { generateMetadata } from "../../app/blog/[slug]/page";
 import { BlogArticleView } from "../../app/blog/BlogViews";
 import { articles, getArticle } from "../../app/blog/articles";
 import { publishedArticles, publicationDay } from "../../app/blog/publication";
 
-test("journal lists released stories and changes visible copy with the language control", async () => {
-  const user = userEvent.setup();
-  render(<BlogPage />);
+test("journal lists released stories and keeps language in its links", async () => {
+  const english = render(await BlogPage({ searchParams: Promise.resolve({}) }));
   expect(screen.getByRole("heading", { name: "Agent work you can understand and control." })).toBeTruthy();
   const list = screen.getByRole("region", { name: "All articles" });
   expect(within(list).getAllByRole("link")).toHaveLength(publishedArticles().length);
-  await user.click(screen.getByRole("button", { name: "Switch to Russian" }));
+  expect(screen.getByRole("link", { name: "Switch to Russian" }).getAttribute("href")).toBe("/blog?lang=ru");
+  english.unmount();
+  render(await BlogPage({ searchParams: Promise.resolve({ lang: "ru" }) }));
   expect(screen.getByRole("heading", { name: "Работа агентов, которую можно понять и контролировать." })).toBeTruthy();
+  expect(screen.getByRole("main").getAttribute("lang")).toBe("ru");
   expect(screen.getByRole("region", { name: "Все статьи" })).toBeTruthy();
-  await user.click(screen.getByRole("button", { name: "Переключить на английский" }));
-  expect(screen.getByRole("heading", { name: "All stories" })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Переключить на английский" }).getAttribute("href")).toBe("/blog");
+  expect(screen.getByRole("link", { name: /Читать статью/ }).getAttribute("href")).toMatch(/\?lang=ru$/);
 });
 
-test("every article renders its own sections and sources in both languages", async () => {
-  const user = userEvent.setup();
+test("every article renders its own sections and sources in both languages", () => {
   for (const article of articles) {
-    const view = render(<BlogArticleView article={article} articles={articles} />);
-    expect(screen.getByRole("heading", { name: article.en.title })).toBeTruthy();
-    expect(screen.getByText(article.en.closing)).toBeTruthy();
-    if (article.en.screenshotCaption) expect(screen.getByRole("img", { name: article.en.screenshotCaption })).toBeTruthy();
-    if (article.en.sources) expect(screen.getByRole("heading", { name: "Sources" })).toBeTruthy();
-    await user.click(screen.getByRole("button", { name: "Switch to Russian" }));
-    expect(screen.getByRole("heading", { name: article.ru.title })).toBeTruthy();
-    expect(screen.getByText(article.ru.closing)).toBeTruthy();
-    if (article.ru.screenshotCaption) expect(screen.getByRole("img", { name: article.ru.screenshotCaption })).toBeTruthy();
-    view.unmount();
-    window.localStorage.clear();
+    for (const locale of ["en", "ru"] as const) {
+      const view = render(<BlogArticleView article={article} articles={articles} locale={locale} />);
+      expect(screen.getByRole("heading", { name: article[locale].title })).toBeTruthy();
+      expect(screen.getByText(article[locale].closing)).toBeTruthy();
+      if (article[locale].screenshotCaption) expect(screen.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
+      expect(screen.getByRole("heading", { name: locale === "en" ? "Sources" : "Источники" })).toBeTruthy();
+      view.unmount();
+    }
   }
 });
 
@@ -50,16 +47,33 @@ test("each editorial story includes a real GrantTap interface with bilingual con
   }
 });
 
+test("all ten stories have attributable sources and labeled editorial artwork", () => {
+  expect(articles).toHaveLength(10);
+  for (const article of articles) {
+    expect(article.generatedCover).toBe(true);
+    for (const locale of ["en", "ru"] as const) {
+      expect(article[locale].sources?.length).toBeGreaterThan(0);
+      if (article.inlineIllustration) expect(article[locale].illustrationCaption?.length).toBeGreaterThan(20);
+    }
+    if (article.inlineIllustration) {
+      expect(existsSync(join(process.cwd(), "public", article.inlineIllustration))).toBe(true);
+    }
+  }
+  expect(articles.filter(article => article.inlineIllustration)).toHaveLength(3);
+});
+
 test("article routes and metadata resolve exact slugs and reject unknown ones", async () => {
   expect(getArticle("connect-iphone-with-qr")?.en.title).toMatch(/iPhone/);
   expect(getArticle("missing")).toBeUndefined();
   const slug = "connect-iphone-with-qr";
   const metadata = await generateMetadata({ params: Promise.resolve({ slug }) });
   expect(metadata.alternates).toEqual({ canonical: `/blog/${slug}` });
+  expect((await generateMetadata({ params: Promise.resolve({ slug }), searchParams: Promise.resolve({ lang: "ru" }) })).title).toBe(getArticle(slug)?.ru.title);
+  expect((await indexMetadata({ searchParams: Promise.resolve({ lang: "ru" }) })).title).toBe("Журнал");
   expect(await generateMetadata({ params: Promise.resolve({ slug: "missing" }) })).toEqual({});
-  render(await ArticlePage({ params: Promise.resolve({ slug }) }));
+  render(await ArticlePage({ params: Promise.resolve({ slug }), searchParams: Promise.resolve({}) }));
   expect(screen.getByRole("heading", { name: getArticle(slug)?.en.title })).toBeTruthy();
-  await expect(ArticlePage({ params: Promise.resolve({ slug: "missing" }) })).rejects.toThrow("not found");
+  await expect(ArticlePage({ params: Promise.resolve({ slug: "missing" }), searchParams: Promise.resolve({}) })).rejects.toThrow("not found");
 });
 
 test("publication schedule releases stories on the Jerusalem calendar day", () => {

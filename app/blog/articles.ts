@@ -1,4 +1,5 @@
 import type { BlogArticle } from "./articleTypes";
+import { capabilityStatusGuide } from "./stories/capability-status-guide";
 import { granttapControl } from "./stories/granttap-control";
 import { agentLandscape } from "./stories/agent-landscape";
 import { governance } from "./stories/governance";
@@ -12,7 +13,9 @@ const guides: BlogArticle[] = [
     date: "2026-09-24",
     minutes: 5,
     cover: "/blog/device-network.webp",
+    generatedCover: true,
     screenshot: "/product/iphone-security-settings.png",
+    inlineIllustration: "/blog/pairing-trust-v2.webp",
     en: {
       title: "Connect your iPhone without another account",
       summary: "The computer shows the pairing QR. The phone scans it. A Mesh invitation is a different action.",
@@ -36,7 +39,12 @@ const guides: BlogArticle[] = [
         ] },
       ],
       screenshotCaption: "GrantTap Settings in demo mode. The Scan QR action belongs to Connections; the image contains sample data.",
+      illustrationCaption: "AI-generated illustration of a device trust link; it is not a pairing screen or a QR code.",
       closing: "One computer may have several trusted controllers, and one phone may connect to several computers. Mesh membership is granted separately.",
+      sources: [
+        { label: "GrantTap setup and device pairing", url: "https://github.com/sergii-ziborov/granttap-mcp#install" },
+        { label: "GrantTap support and connection steps", url: "/support" },
+      ],
     },
     ru: {
       title: "Как подключить iPhone без дополнительного аккаунта",
@@ -61,7 +69,12 @@ const guides: BlogArticle[] = [
         ] },
       ],
       screenshotCaption: "GrantTap Settings в демо-режиме. Scan QR относится к Connections; на снимке тестовые данные.",
+      illustrationCaption: "Сгенерированная иллюстрация доверенной связи устройств; это не экран привязки и не QR-код.",
       closing: "К одному компьютеру могут подключаться несколько доверенных контроллеров, а один телефон может управлять несколькими компьютерами. Доступ к Mesh выдаётся отдельно.",
+      sources: [
+        { label: "Установка и привязка устройств GrantTap", url: "https://github.com/sergii-ziborov/granttap-mcp#install" },
+        { label: "Поддержка и шаги подключения", url: "/support" },
+      ],
     },
   },
   {
@@ -69,7 +82,9 @@ const guides: BlogArticle[] = [
     date: "2026-09-24",
     minutes: 5,
     cover: "/blog/task-continuity.webp",
+    generatedCover: true,
     screenshot: "/product/iphone-handoff.png",
+    inlineIllustration: "/blog/task-handoff-v2.webp",
     en: {
       title: "One Task, several executions",
       summary: "How a stable Task keeps its history when work moves between a provider, a computer, or a native session.",
@@ -92,7 +107,12 @@ const guides: BlogArticle[] = [
         ] },
       ],
       screenshotCaption: "Demo handoff screen. A real transfer depends on target and policy readiness at the time of execution.",
+      illustrationCaption: "AI-generated illustration of a bounded handoff between computers; it does not depict a completed transfer.",
       closing: "A Task can outlive one session, but continuity is only trustworthy when the next execution receives the current approved state and reports what actually happened.",
+      sources: [
+        { label: "GrantTap Task and handoff contract", url: "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff" },
+        { label: "Project Mesh guide", url: "/project-mesh" },
+      ],
     },
     ru: {
       title: "Одна Task, несколько исполнений",
@@ -116,7 +136,12 @@ const guides: BlogArticle[] = [
         ] },
       ],
       screenshotCaption: "Демо-экран handoff. Реальная передача зависит от готовности целевого хоста и правил в момент запуска.",
+      illustrationCaption: "Сгенерированная иллюстрация передачи задачи между компьютерами; она не показывает завершённый handoff.",
       closing: "Task может пережить одну сессию, но преемственность надёжна, только когда следующее исполнение получает актуальное разрешённое состояние и честно сообщает о результате.",
+      sources: [
+        { label: "Контракт Task и handoff в GrantTap", url: "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff" },
+        { label: "Руководство по Project Mesh", url: "/project-mesh" },
+      ],
     },
   },
   {
@@ -124,6 +149,7 @@ const guides: BlogArticle[] = [
     date: "2026-09-24",
     minutes: 6,
     cover: "/blog/linked-work.webp",
+    generatedCover: true,
     screenshot: "/product/iphone-weavatrix-graph.png",
     en: {
       title: "Linked Mesh spaces keep separate permissions",
@@ -131,7 +157,7 @@ const guides: BlogArticle[] = [
       category: "Mesh",
       intro: [
         "A product may span an iOS app, a local bridge, an Engine, and a public website. One Mesh can link all of those repositories without turning them into one provider project.",
-        "A repository binding tells Mesh which checkout is available to it. A verified architecture relation means code or runtime evidence supports a dependency. The UI distinguishes those two links.",
+        "A repository binding tells Mesh which checkout is available to it. An architecture relation is a different fact: it needs a declared source or revision-bound evidence. The two should not be presented as the same kind of link.",
       ],
       sections: [
         { heading: "Three questions behind one group", paragraphs: [
@@ -140,7 +166,7 @@ const guides: BlogArticle[] = [
         ] },
         { heading: "What a good group view shows", paragraphs: [
           "A useful Mesh view shows each Mesh, its linked repositories, computers, recent Tasks, and why they appear together. The label distinguishes a binding, a declared link, and Weavatrix evidence. A missing report remains unknown rather than erasing a connection.",
-          "A Mesh can link ten repositories while each member sees only resources granted to them. Host receipts show where access was applied.",
+          "A Mesh can link multiple repositories, but each member's view still depends on explicit account and Project grants. The owner's phone checks those grants before forwarding protected Project data or actions.",
         ] },
         { heading: "Names are for people, IDs are for routing", paragraphs: [
           "Two Mesh spaces called ‘general-codex’ may have separate permissions; two checkout folders called ‘granttap’ may be the same repository. Names help orientation but cannot drive deduplication, routing, or access.",
@@ -148,6 +174,10 @@ const guides: BlogArticle[] = [
       ],
       screenshotCaption: "A deterministic demo graph with explicit component relations. It does not claim a live scan of the linked repositories.",
       closing: "Grouping is a map for the person; it must never become an accidental permission grant.",
+      sources: [
+        { label: "GrantTap Project Mesh and repository bindings", url: "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff" },
+        { label: "GrantTap member and device grants", url: "https://github.com/sergii-ziborov/granttap-mcp#members-roles-and-computers-of-their-own" },
+      ],
     },
     ru: {
       title: "Связанные Mesh сохраняют отдельные права",
@@ -155,7 +185,7 @@ const guides: BlogArticle[] = [
       category: "Mesh",
       intro: [
         "Один продукт может включать iOS-приложение, локальный bridge, Engine и публичный сайт. Один Mesh связывает эти репозитории без смешения проектов разных провайдеров.",
-        "Привязка репозитория показывает, какой checkout доступен Mesh. Подтверждённая архитектурная связь означает другое: код или наблюдение во время выполнения подкрепляют зависимость. Интерфейс различает эти связи.",
+        "Привязка репозитория показывает, какой checkout доступен Mesh. Архитектурная связь — другой факт: ей нужен объявленный источник или evidence, привязанное к ревизии. Показывать эти связи как одно и то же нельзя.",
       ],
       sections: [
         { heading: "Три вопроса за одной группой", paragraphs: [
@@ -164,7 +194,7 @@ const guides: BlogArticle[] = [
         ] },
         { heading: "Что должна показывать группа", paragraphs: [
           "Обзор показывает Mesh, связанные репозитории, компьютеры, недавние Tasks и причины связей. Подпись отличает привязку от подтверждённой Weavatrix зависимости. Отсутствие отчёта означает неизвестность, а не отсутствие связи.",
-          "Mesh может связывать десять репозиториев, но каждый участник видит только разрешённые ресурсы. Отчёты компьютеров показывают, где доступ действительно применён.",
+          "Mesh может связывать несколько репозиториев, но вид участника зависит от явных разрешений аккаунта и Project. Телефон владельца проверяет их до пересылки защищённых данных или действий Project.",
         ] },
         { heading: "Имена для человека, ID для маршрута", paragraphs: [
           "Два Mesh с именем general-codex могут иметь разные права; две папки granttap могут быть рабочими копиями одного репозитория. Имена помогают ориентироваться, но не служат основанием для маршрутизации и выдачи доступа.",
@@ -172,6 +202,10 @@ const guides: BlogArticle[] = [
       ],
       screenshotCaption: "Демонстрационный граф с явными связями компонентов. Снимок не доказывает живой анализ связанных репозиториев.",
       closing: "Группировка — карта для человека; она не должна случайно выдавать доступ.",
+      sources: [
+        { label: "Project Mesh и привязки репозиториев", url: "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff" },
+        { label: "Права участников и устройств", url: "https://github.com/sergii-ziborov/granttap-mcp#members-roles-and-computers-of-their-own" },
+      ],
     },
   },
   {
@@ -179,6 +213,7 @@ const guides: BlogArticle[] = [
     date: "2026-09-24",
     minutes: 6,
     cover: "/blog/architecture-evidence.webp",
+    generatedCover: true,
     screenshot: "/product/iphone-health-code-towers.png",
     en: {
       title: "A graph should answer a code question",
@@ -186,12 +221,12 @@ const guides: BlogArticle[] = [
       category: "Architecture",
       intro: [
         "A graph is useful when it helps answer where a change could matter, which component owns a behavior, and what evidence supports a relation. A polished picture with unverified edges is worse than a smaller, honest report.",
-        "GrantTap's architecture view uses Weavatrix reports for components and evidenced relations. The Health code map gives a full-screen way to inspect files and symbols. The two views should carry the same revision context rather than competing stories about the repository.",
+        "With the separately distributed Engine enabled, GrantTap can present Weavatrix reports for components and relations. The Health code map gives a full-screen way to inspect files and symbols. Both views need the same revision context to support a claim about the current checkout.",
       ],
       sections: [
         { heading: "Read the report label first", paragraphs: [
           "Check the repository, engine version, source revision, scan time, and completeness. A report generated for another checkout or an old commit may still be interesting, but it is not current proof for your Task. Search and component inspection help narrow the view; a missing edge should not be interpreted as proof that no dependency exists outside the analyzed scope.",
-          "The graph screenshot on this site is a deterministic fixture labelled demo-revision. It shows navigation and rendering behavior, not an independent scan of a customer's private code.",
+          "The code-towers screenshot in this article is a deterministic fixture labelled demo-revision. It shows navigation and rendering behavior, not an independent scan of a customer's private code.",
         ] },
         { heading: "Use code towers to orient, then inspect", paragraphs: [
           "The full-screen Health map groups code visually so you can find a file or symbol, understand its neighborhood, and open details. Tall or bright geometry is a navigation aid, not a quality score. A component deserves a stronger claim only when its underlying source and relation evidence can be inspected.",
@@ -203,6 +238,10 @@ const guides: BlogArticle[] = [
       ],
       screenshotCaption: "Full-screen Health code towers from deterministic fixture data, labelled demo-revision in the app.",
       closing: "Treat the graph as a route to evidence. Its value grows when every important edge can be traced back to a repository and revision.",
+      sources: [
+        { label: "GrantTap Engine and architecture evidence", url: "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff" },
+        { label: "Weavatrix relation declarations", url: "https://github.com/Weavatrix/weavatrix-md" },
+      ],
     },
     ru: {
       title: "Граф должен отвечать на вопрос о коде",
@@ -210,12 +249,12 @@ const guides: BlogArticle[] = [
       category: "Архитектура",
       intro: [
         "Граф полезен, если помогает понять, где изменение может повлиять на код, какой компонент отвечает за поведение и на чём основана связь. Красивая картинка с неподтверждёнными рёбрами хуже небольшого, но честного отчёта.",
-        "Архитектурный экран GrantTap использует отчёты Weavatrix о компонентах и подтверждённых связях. Карта кода в Health позволяет искать файлы и символы на полном экране. У обоих видов должен быть один revision context, чтобы они не рассказывали разные истории о репозитории.",
+        "При включённом отдельно распространяемом Engine GrantTap может показывать отчёты Weavatrix о компонентах и связях. Карта кода в Health позволяет искать файлы и символы на полном экране. Обоим видам нужен один revision context для вывода о текущем checkout.",
       ],
       sections: [
         { heading: "Сначала прочитайте метку отчёта", paragraphs: [
           "Проверьте репозиторий, версию Engine, revision источника, время сканирования и полноту. Отчёт другого checkout или старого commit может быть полезен, но не доказывает состояние вашей текущей Task. Поиск и просмотр компонента сужают область; отсутствие ребра не доказывает, что зависимости вне проанализированной области нет.",
-          "Скриншот графа на этом сайте создан на детерминированных данных и помечен demo-revision. Он демонстрирует навигацию и рендеринг, а не независимое сканирование приватного кода клиента.",
+          "Скриншот башен кода в этой статье создан на детерминированных данных и помечен demo-revision. Он демонстрирует навигацию и рендеринг, а не независимое сканирование приватного кода клиента.",
         ] },
         { heading: "Башни помогают найти, подробности — проверить", paragraphs: [
           "Полноэкранная карта Health собирает код визуально: можно найти файл или символ, увидеть окружение и открыть детали. Высокая или яркая геометрия — помощь в навигации, не оценка качества. Более сильный вывод о компоненте возможен лишь тогда, когда доступны исходник и evidence связи.",
@@ -227,65 +266,13 @@ const guides: BlogArticle[] = [
       ],
       screenshotCaption: "Полноэкранные башни Health на детерминированных данных; в приложении указан demo-revision.",
       closing: "Считайте граф маршрутом к evidence. Его ценность растёт, когда каждую важную связь можно проследить до репозитория и revision.",
+      sources: [
+        { label: "GrantTap Engine и архитектурное evidence", url: "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff" },
+        { label: "Объявленные связи Weavatrix", url: "https://github.com/Weavatrix/weavatrix-md" },
+      ],
     },
   },
-  {
-    slug: "mcp-skills-and-governance-status",
-    date: "2026-09-24",
-    minutes: 6,
-    cover: "/blog/capability-states.webp",
-    screenshot: "/product/iphone-mcp-usage.png",
-    en: {
-      title: "Configured, available, used: three different facts",
-      summary: "A practical way to read MCP and skill status without confusing a catalog entry with working execution.",
-      category: "Governance",
-      intro: [
-        "A tool can appear in a catalog and still be unusable on the computer selected for a Task. It may be requested, approved, installed with a different configuration, missing a credential, or simply not initialized. A trustworthy control screen names these states separately.",
-        "GrantTap tracks capability identities, observed host state, and Mesh decisions. The full bundle transfer and per-host durable apply receipts remain work in progress, so the UI must not label a requested MCP or skill as ready just because it was listed or approved.",
-      ],
-      sections: [
-        { heading: "Follow the capability through its lifecycle", paragraphs: [
-          "First comes discovery: a host reports a native MCP configuration or skill bundle. A request brings that exact version or digest into a chat review. Approval allows that identity under the chat policy. Then each target host has to apply the configuration or bundle and independently report initialized state. Finally, real invocation evidence can show that a Task actually used it.",
-          "The same human-friendly MCP name can hide two different server configurations. For a skill, scripts and references matter as much as SKILL.md. An edit to the bundle changes the digest and requires a new readiness decision rather than inheriting an old approval by name.",
-        ] },
-        { heading: "Policy and environment are separate", paragraphs: [
-          "Governance answers whether a capability may be used. Environment controls which approved process receives a value or reference. A masked field in Settings prevents casual viewing; it does not stop an agent with shell access to the same process from reading its environment. Use-only credentials require a trusted broker that performs a narrow operation without exposing the key to the model.",
-          "Likewise, observing token use is not a spending cap. A strict budget needs an atomic reservation before a controlled external action, accounting for work already in flight and unknown outcomes. These budget and use-only flows are still being built and should not be treated as active protection.",
-        ] },
-        { heading: "What to check today", paragraphs: [
-          "Check the exact capability identity, the target computer, its observed configured and initialized states, the chat's allow/ask/deny decision, and the result of a small real invocation. If any state is unknown, keep it unknown. A green catalog card must not stand in for successful use.",
-          "For a local MCP connection, also verify the machine helper, transport, provider plugin, and app hooks independently. A relay connection does not prove that an stdio server launched in Cursor or that a Codex session loaded newly trusted hooks.",
-        ] },
-      ],
-      screenshotCaption: "Demo usage and capability view. A listed tool is not evidence that a Task invoked it.",
-      closing: "Good governance makes the gap between intended policy and applied reality visible before a Task depends on that capability.",
-    },
-    ru: {
-      title: "Настроено, доступно, использовано: три разных факта",
-      summary: "Как читать статусы MCP и skills, не путая запись каталога с работающим исполнением.",
-      category: "Governance",
-      intro: [
-        "Инструмент может быть в каталоге и при этом не работать на компьютере, выбранном для Task. Его могли запросить, одобрить, установить с другой конфигурацией, оставить без credential или не инициализировать. Надёжный экран контроля называет эти состояния по отдельности.",
-        "GrantTap отслеживает identity возможностей, наблюдаемое состояние хостов и решения chat. Полный перенос bundle и устойчивые receipts применения на каждом host ещё в работе, поэтому нельзя писать «готово» только потому, что MCP или skill попали в список либо были одобрены.",
-      ],
-      sections: [
-        { heading: "Проследите весь жизненный цикл", paragraphs: [
-          "Сначала обнаружение: хост сообщает native MCP configuration или bundle skill. Запрос приносит в chat точную версию или digest. Одобрение разрешает эту identity по правилам chat. Затем каждый целевой host должен применить конфигурацию или bundle и независимо сообщить initialized state. Только evidence реального вызова показывает, что Task действительно использовала инструмент.",
-          "За одним удобным именем MCP могут скрываться разные конфигурации сервера. У skill важны scripts и references, а не один SKILL.md. После изменения bundle меняется digest; старое одобрение по имени не подтверждает новую готовность.",
-        ] },
-        { heading: "Policy и Environment решают разные задачи", paragraphs: [
-          "Governance отвечает, можно ли использовать capability. Environment определяет, какой разрешённый процесс получает значение или reference. Скрытое поле Settings защищает от случайного взгляда, но агент с shell в том же процессе всё ещё может читать env. Use-only credential требует доверенного broker, который выполняет узкую операцию и не показывает ключ модели.",
-          "Точно так же наблюдение токенов не ограничивает расходы. Строгий бюджет требует атомарного резерва перед управляемым внешним действием с учётом уже идущей работы и неизвестных исходов. Эти budget и use-only сценарии пока разрабатываются и не должны считаться действующей защитой.",
-        ] },
-        { heading: "Что проверять сейчас", paragraphs: [
-          "Смотрите точную identity возможности, целевой компьютер, наблюдаемые configured и initialized состояния, решение allow/ask/deny в chat и результат небольшого реального вызова. Если что-то неизвестно, оставляйте статус неизвестным. Зелёная карточка каталога не равна успешному использованию.",
-          "Для локального MCP отдельно проверяйте machine helper, transport, provider plugin и hooks приложения. Связь с relay не доказывает, что stdio server запустился в Cursor или что сессия Codex подхватила новые доверенные hooks.",
-        ] },
-      ],
-      screenshotCaption: "Демо-экран использования и возможностей. Инструмент в списке не доказывает его вызов Task.",
-      closing: "Хороший governance показывает разницу между желаемым правилом и фактически применённым состоянием до того, как Task начнёт зависеть от инструмента.",
-    },
-  },
+  capabilityStatusGuide,
 ];
 
 export const articles: BlogArticle[] = [

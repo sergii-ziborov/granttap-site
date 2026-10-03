@@ -47,3 +47,15 @@ test("renders the Personal product journey and locale control", async () => {
   await user.click(screen.getByRole("button", { name: "Switch to Russian" }));
   expect(screen.getByRole("heading", { name: /Все ваши coding agents/i })).toBeTruthy();
 });
+
+test("a Russian journal link opens the product and returns to the Russian journal", async () => {
+  window.localStorage.clear();
+  window.history.replaceState(null, "", "/?lang=ru");
+  const view = render(<Home />);
+  expect(await screen.findByRole("heading", { name: /Все ваши coding agents/i })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Блог" }).getAttribute("href")).toBe("/blog?lang=ru");
+  view.unmount();
+  window.history.replaceState(null, "", "/");
+  window.localStorage.clear();
+  document.documentElement.lang = "en";
+});

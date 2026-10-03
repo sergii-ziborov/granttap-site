@@ -86,6 +86,25 @@ test("journal publishes current stories with accurate status and images", async 
   await Promise.all(["device-network", "linked-work", "task-continuity", "architecture-evidence", "capability-states", "granttap-control", "agent-landscape", "governance-boundary", "tel-aviv-agentic", "cortex-evidence"].map(name => access(new URL(`../public/blog/${name}.webp`, import.meta.url))));
 });
 
+test("homepage leaves journal assets and article data to blog routes", async () => {
+  const home = await (await render("https://granttap.com/")).text();
+  const journal = await (await render("https://granttap.com/blog")).text();
+  assert.doesNotMatch(home, /href="\/blog\.css"|\/blog\/[a-z-]+\.webp|Cortex Loom: fewer context tokens/);
+  assert.match(journal, /href="\/blog\.css"/);
+  assert.doesNotMatch(journal, /A graph is useful when it helps answer/);
+  const cssAssets = [...home.matchAll(/href="(\/assets\/[^\"]+\.css)"/g)].map(match => match[1]);
+  for (const asset of cssAssets) {
+    const css = await readFile(new URL(`../dist/client${asset}`, import.meta.url), "utf8");
+    assert.doesNotMatch(css, /\.blog-article-head|\.blog-screenshot|\.blog-graphic-row/);
+  }
+  const jsAssets = [...home.matchAll(/(?:href|src)="(\/assets\/[^\"]+\.js)"/g)].map(match => match[1]);
+  for (const asset of jsAssets) {
+    const js = await readFile(new URL(`../dist/client${asset}`, import.meta.url), "utf8");
+    assert.doesNotMatch(js, /blog-article-head|Cortex Loom: fewer context tokens/);
+  }
+  await access(new URL("../public/blog.css", import.meta.url));
+});
+
 test("redirects the Sites hostname to the canonical domain", async () => {
   const response = await render("https://granttap.serhiiright.chatgpt.site/features?from=sites");
   assert.equal(response.status, 308);

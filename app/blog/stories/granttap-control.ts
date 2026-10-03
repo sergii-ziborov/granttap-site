@@ -25,7 +25,7 @@ export const granttapControl: BlogArticle = {
         "The relay transports encrypted envelopes. Provider credentials and the local coding environment stay on the computer. This architecture is a choice about where work and authority live, not a promise that every external model service is private: provider traffic still follows that provider's own terms.",
       ] },
       { heading: "Make handoffs legible", paragraphs: [
-        "A handoff carries the objective, approved constraints, relevant decisions, blockers, and an explicit target. It does not copy hidden reasoning across providers. Repository identity and resource claims help people notice overlapping work; a receipt shows whether the next execution accepted the transfer.",
+        "A supported handoff carries bounded task and git facts, relevant decisions, blockers, and an explicit target. It does not copy hidden reasoning across providers. Repository identity and resource claims help people notice overlapping work; a receipt shows whether the next execution accepted the transfer. Remote-start support still depends on the provider and target host.",
         "The measure of success is simple: after stepping away, can you tell what happened, what remains unknown, and where your next decision belongs? GrantTap is being built around that question, with product status shown as carefully as product ambition.",
       ] },
     ],
@@ -35,6 +35,7 @@ export const granttapControl: BlogArticle = {
       { label: "GrantTap product and current availability", url: "/" },
       { label: "Task continuity guide", url: "/blog/task-continuity-across-agents" },
       { label: "Security boundaries", url: "/security" },
+      { label: "GrantTap runtime and supported handoff paths", url: "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff" },
     ],
     graphic: { title: "One Task, many executions", caption: "A conceptual map of the stable user-visible unit. It is not a live telemetry chart.", rows: [
       { label: "Task", detail: "Objective, decisions, and visible outcome" },
@@ -60,7 +61,7 @@ export const granttapControl: BlogArticle = {
         "Relay переносит зашифрованные сообщения. Учётные данные провайдера и локальная среда остаются на компьютере. Это выбор границы исполнения, а не обещание приватности у внешней модельной службы: её трафик регулируется условиями самого провайдера.",
       ] },
       { heading: "Понятная передача работы", paragraphs: [
-        "Handoff переносит цель, действующие ограничения, важные решения, блокеры и явный адрес назначения. Скрытые рассуждения между провайдерами не копируются. Identity репозитория и claims помогают заметить пересечение работ; receipt показывает, приняло ли следующее execution передачу.",
+        "Поддерживаемый handoff переносит ограниченные факты Task и git, важные решения, блокеры и явный адрес назначения. Скрытые рассуждения между провайдерами не копируются. Identity репозитория и claims помогают заметить пересечение работ; receipt показывает, приняло ли следующее execution передачу. Удалённый запуск зависит от провайдера и целевого хоста.",
         "Критерий прост: вернувшись к задаче, можно ли понять, что произошло, что остаётся неизвестным и где нужно ваше следующее решение? Вокруг этого вопроса строится GrantTap — с честным различением текущих возможностей и направления развития.",
       ] },
     ],
@@ -70,6 +71,7 @@ export const granttapControl: BlogArticle = {
       { label: "Продукт и текущая доступность", url: "/" },
       { label: "Как сохраняется Task", url: "/blog/task-continuity-across-agents" },
       { label: "Границы безопасности", url: "/security" },
+      { label: "Runtime GrantTap и поддерживаемые маршруты handoff", url: "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff" },
     ],
     graphic: { title: "Одна Task, несколько исполнений", caption: "Схема стабильной единицы работы, а не график реальной телеметрии.", rows: [
       { label: "Task", detail: "Цель, решения и видимый результат" },

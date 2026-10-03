@@ -19,7 +19,7 @@ export function HomeView({ locale, setLocale, t }: Props) {
     <Install t={t} />
     <Pricing t={t} />
     <BlogTeaser locale={locale} />
-    <Footer t={t} />
+    <Footer t={t} locale={locale} />
   </main>;
 }
 
@@ -27,7 +27,7 @@ function Header({ locale, setLocale, t }: Props) {
   const anchors = ["product", "how", "usage", "security", "install", "pricing"];
   return <header className="site-header">
     <a className="brand" href="#top" aria-label="GrantTap home"><Image src="/app-icon.png" alt="" width={1024} height={1024} priority unoptimized /><span>GrantTap</span></a>
-    <nav aria-label="Primary navigation">{t.nav.map((label, index) => <a href={`#${anchors[index]}`} key={label}>{label}</a>)}<Link href="/blog">{locale === "ru" ? "Блог" : "Blog"}</Link></nav>
+    <nav aria-label="Primary navigation">{t.nav.map((label, index) => <a href={`#${anchors[index]}`} key={label}>{label}</a>)}<Link href={locale === "ru" ? "/blog?lang=ru" : "/blog"} prefetch={false}>{locale === "ru" ? "Блог" : "Blog"}</Link></nav>
     <LanguageToggle locale={locale} setLocale={setLocale} />
     <a className="nav-cta" href="#availability">{t.cta}</a>
   </header>;
@@ -85,15 +85,15 @@ function BlogTeaser({ locale }: { locale: Locale }) {
   return <section className="section-shell home-blog" aria-label={locale === "ru" ? "Блог GrantTap" : "GrantTap Journal"}>
     <p className="kicker">GrantTap Journal</p>
     <h2>{locale === "ru" ? "Идеи и практика управления агентами." : "The thinking and practice behind agent control."}</h2>
-    <div>{items.map(([title, slug]) => <Link href={`/blog/${slug}`} key={slug}>{title}<span>↗</span></Link>)}</div>
-    <Link className="home-blog-all" href="/blog">{locale === "ru" ? "Все статьи →" : "All stories →"}</Link>
+    <div>{items.map(([title, slug]) => <Link href={`/blog/${slug}${locale === "ru" ? "?lang=ru" : ""}`} prefetch={false} key={slug}>{title}<span>↗</span></Link>)}</div>
+    <Link className="home-blog-all" href={locale === "ru" ? "/blog?lang=ru" : "/blog"} prefetch={false}>{locale === "ru" ? "Все статьи →" : "All stories →"}</Link>
   </section>;
 }
 
-function Footer({ t }: Pick<Props, "t">) {
+function Footer({ t, locale }: Pick<Props, "t" | "locale">) {
   const paths = ["about", "pricing", "privacy", "terms", "support", "security", "data-rights", "accessibility", "licenses"];
   const guidePaths = ["project-mesh", "grok-bot", "apple-watch-coding-agents", "agents/claude-code", "agents/codex", "agents/cursor", "agents/grok-build"];
-  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links"><Link href="/blog">GrantTap Journal</Link>{guidePaths.map((path, index) => <a href={`/${path}`} key={path}>{t.guides[index]}</a>)}</div><div className="footer-links">{paths.map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
+  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links"><Link href={locale === "ru" ? "/blog?lang=ru" : "/blog"} prefetch={false}>GrantTap Journal</Link>{guidePaths.map((path, index) => <a href={`/${path}`} key={path}>{t.guides[index]}</a>)}</div><div className="footer-links">{paths.map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
 }
 
 function Heading({ kicker, title, text }: { kicker: string; title: string; text?: string }) {
