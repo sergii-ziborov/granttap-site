@@ -19,8 +19,7 @@
     "test": "npm run build && node --test tests/rendered-html.test.mjs tests/hetzner-connect.test.mjs tests/hetzner-passkey.test.mjs",
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "deploy:cloudflare": "npm run build && wrangler deploy --config wrangler.production.jsonc"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },
   "dependencies": {
     "@simplewebauthn/browser": "^14.0.0",
