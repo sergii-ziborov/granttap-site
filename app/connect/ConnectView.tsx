@@ -5,6 +5,7 @@ import Link from "next/link";
 import { startAuthentication } from "@simplewebauthn/browser";
 import type { PublicKeyCredentialRequestOptionsJSON } from "@simplewebauthn/browser";
 import { LanguageToggle, useLocale } from "../components/Locale";
+import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 
 type Provider = { id: "codex" | "claude" | "cursor"; installed: boolean; ready: boolean };
 type Snapshot = {
@@ -175,16 +176,7 @@ export function ConnectView() {
 
   return (
     <div className="connect-page">
-      <header className="connect-header">
-        <Link className="connect-brand" href="/">
-          <img src="/favicon.png" alt="" width={28} height={28} />
-          GrantTap
-        </Link>
-        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-          <Link href="/">{t.home}</Link>
-          <LanguageToggle locale={locale} setLocale={setLocale} />
-        </div>
-      </header>
+      <SiteHeader locale={locale} languageControl={<LanguageToggle locale={locale} setLocale={setLocale} />} />
       <main className="connect-main">
         <section className="connect-card">
           <p className="eyebrow">{t.eyebrow}</p>
@@ -258,6 +250,7 @@ export function ConnectView() {
           )}
         </section>
       </main>
+      <SiteFooter locale={locale} />
     </div>
   );
 }

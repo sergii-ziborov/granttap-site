@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { HomeCopy } from "../page";
+import type { HomeCopy } from "../homeCopy";
 import { CaptureGallery } from "./CaptureGallery";
-import { LanguageToggle, type Locale } from "./Locale";
+import type { Locale } from "./Locale";
 import { ProductImage } from "./ProductImage";
+import { LocaleLinks, SiteFooter, SiteHeader } from "./SiteChrome";
 
-type Props = { locale: Locale; setLocale: (locale: Locale) => void; t: HomeCopy };
-export function HomeView({ locale, setLocale, t }: Props) {
-  return <main>
-    <Header locale={locale} setLocale={setLocale} t={t} />
+type Props = { locale: Locale; t: HomeCopy };
+export function HomeView({ locale, t }: Props) {
+  return <main lang={locale}>
+    <SiteHeader locale={locale} active="product" languageControl={<LocaleLinks locale={locale} path="/" />} />
     <Hero t={t} />
     <Providers t={t} />
     <Product t={t} />
@@ -19,18 +20,8 @@ export function HomeView({ locale, setLocale, t }: Props) {
     <Install t={t} />
     <Pricing t={t} />
     <BlogTeaser locale={locale} />
-    <Footer t={t} locale={locale} />
+    <SiteFooter locale={locale} />
   </main>;
-}
-
-function Header({ locale, setLocale, t }: Props) {
-  const anchors = ["product", "how", "usage", "security", "install", "pricing"];
-  return <header className="site-header">
-    <a className="brand" href="#top" aria-label="GrantTap home"><Image src="/app-icon.png" alt="" width={1024} height={1024} priority unoptimized /><span>GrantTap</span></a>
-    <nav aria-label="Primary navigation">{t.nav.map((label, index) => <a href={`#${anchors[index]}`} key={label}>{label}</a>)}<Link href={locale === "ru" ? "/blog?lang=ru" : "/blog"} prefetch={false}>{locale === "ru" ? "Блог" : "Blog"}</Link></nav>
-    <LanguageToggle locale={locale} setLocale={setLocale} />
-    <a className="nav-cta" href="#availability">{t.cta}</a>
-  </header>;
 }
 
 function Hero({ t }: Pick<Props, "t">) {
@@ -88,12 +79,6 @@ function BlogTeaser({ locale }: { locale: Locale }) {
     <div>{items.map(([title, slug]) => <Link href={`/blog/${slug}${locale === "ru" ? "?lang=ru" : ""}`} prefetch={false} key={slug}>{title}<span>↗</span></Link>)}</div>
     <Link className="home-blog-all" href={locale === "ru" ? "/blog?lang=ru" : "/blog"} prefetch={false}>{locale === "ru" ? "Все статьи →" : "All stories →"}</Link>
   </section>;
-}
-
-function Footer({ t, locale }: Pick<Props, "t" | "locale">) {
-  const paths = ["about", "pricing", "privacy", "terms", "support", "security", "data-rights", "accessibility", "licenses"];
-  const guidePaths = ["project-mesh", "grok-bot", "apple-watch-coding-agents", "agents/claude-code", "agents/codex", "agents/cursor", "agents/grok-build"];
-  return <footer><div className="footer-brand"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><span><strong>GrantTap</strong><small>{t.tagline}</small></span></div><div className="footer-links"><Link href={locale === "ru" ? "/blog?lang=ru" : "/blog"} prefetch={false}>GrantTap Journal</Link>{guidePaths.map((path, index) => <a href={`/${path}`} key={path}>{t.guides[index]}</a>)}</div><div className="footer-links">{paths.map((path, index) => <a href={`/${path}`} key={path}>{t.legal[index]}</a>)}</div><p>{t.rights}</p></footer>;
 }
 
 function Heading({ kicker, title, text }: { kicker: string; title: string; text?: string }) {

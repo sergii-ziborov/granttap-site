@@ -5,7 +5,7 @@ import Home from "../../app/page";
 
 test("renders the Personal product journey and locale control", async () => {
   const user = userEvent.setup();
-  render(<Home />);
+  render(await Home({ searchParams: Promise.resolve({}) }));
 
   expect(screen.getByRole("heading", { name: /All your coding agents/i })).toBeTruthy();
   const providers = screen.getByRole("region", { name: "Supported providers" });
@@ -44,16 +44,15 @@ test("renders the Personal product journey and locale control", async () => {
   fireEvent.mouseDown(usageDialog);
   expect(screen.queryByRole("dialog")).toBeNull();
 
-  await user.click(screen.getByRole("button", { name: "Switch to Russian" }));
-  expect(screen.getByRole("heading", { name: /Все ваши coding agents/i })).toBeTruthy();
+  expect(screen.getByRole("link", { name: "Switch to Russian" }).getAttribute("href")).toBe("/?lang=ru");
 });
 
 test("a Russian journal link opens the product and returns to the Russian journal", async () => {
   window.localStorage.clear();
   window.history.replaceState(null, "", "/?lang=ru");
-  const view = render(<Home />);
+  const view = render(await Home({ searchParams: Promise.resolve({ lang: "ru" }) }));
   expect(await screen.findByRole("heading", { name: /Все ваши coding agents/i })).toBeTruthy();
-  expect(screen.getByRole("link", { name: "Блог" }).getAttribute("href")).toBe("/blog?lang=ru");
+  expect(within(screen.getByRole("navigation", { name: "Основная навигация" })).getByRole("link", { name: "Блог" }).getAttribute("href")).toBe("/blog?lang=ru");
   view.unmount();
   window.history.replaceState(null, "", "/");
   window.localStorage.clear();

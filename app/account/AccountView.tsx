@@ -3,8 +3,8 @@
 import { startAuthentication, startRegistration } from "@simplewebauthn/browser";
 import type { PublicKeyCredentialCreationOptionsJSON, PublicKeyCredentialRequestOptionsJSON } from "@simplewebauthn/browser";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { LanguageToggle, useLocale } from "../components/Locale";
+import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 
 type Ceremony<T> = { ceremonyId: string; options: T };
 type Account = { accountId: string };
@@ -141,12 +141,9 @@ export function AccountView() {
     finally { setBusy(false); }
   }
 
-  return <main className="account-page">
-    <header className="account-header">
-      <Link href="/" aria-label={t.home}>GrantTap</Link>
-      <LanguageToggle locale={locale} setLocale={setLocale} />
-    </header>
-    <section className="account-card">
+  return <div className="account-page">
+    <SiteHeader locale={locale} languageControl={<LanguageToggle locale={locale} setLocale={setLocale} />} />
+    <main className="account-main"><section className="account-card">
       <h1>{t.title}</h1>
       <p>{t.lead}</p>
       {accountId === undefined ? <p role="status">…</p> : accountId ? <>
@@ -172,6 +169,7 @@ export function AccountView() {
         <p className="account-note">{t.createNote}</p>
       </>}
       {error && <p role="alert" className="account-error">{error}</p>}
-    </section>
-  </main>;
+    </section></main>
+    <SiteFooter locale={locale} />
+  </div>;
 }

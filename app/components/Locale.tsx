@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 export type Locale = "en" | "ru";
 
-export function useLocale() {
-  const [locale, setLocaleState] = useState<Locale>("en");
+export function useLocale(initialLocale: Locale = "en") {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   useEffect(() => {
     const saved = window.localStorage.getItem("granttap.locale");

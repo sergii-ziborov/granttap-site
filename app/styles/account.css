@@ -1,6 +1,4 @@
 .account-page { min-height: 100vh; background: #0b0b0c; color: #f5f3f0; }
-.account-header { max-width: 720px; margin: 0 auto; padding: 28px 24px; display: flex; align-items: center; justify-content: space-between; }
-.account-header a { color: inherit; font-size: 20px; font-weight: 700; text-decoration: none; }
 .account-card { width: min(640px, calc(100% - 32px)); margin: 48px auto; padding: 32px; background: #19191b; border: 1px solid #343436; border-radius: 24px; }
 .account-card h1 { margin: 0 0 16px; font-size: clamp(28px, 5vw, 42px); }
 .account-card p { color: #c8c5c2; line-height: 1.5; }

@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { SiteFooter, SiteHeader } from "./SiteChrome";
 
 type Fact = { title: string; text: string };
 type Related = { href: string; label: string };
@@ -22,14 +22,9 @@ export function CapabilityPage({
   related: Related[];
 }) {
   return <main className="legal-shell capability-shell">
-    <header className="legal-header">
-      <Link className="brand" href="/" aria-label="GrantTap home">
-        <Image src="/app-icon.png" alt="" width={1024} height={1024} priority />
-        <span>GrantTap</span>
-      </Link>
-      <Link href="/">Home</Link>
-    </header>
+    <SiteHeader locale="en" />
     <article className="legal-document capability-document">
+      <div className="legal-body">
       <p className="kicker">{eyebrow}</p>
       <h1>{title}</h1>
       <p className="legal-intro">{intro}</p>
@@ -53,6 +48,8 @@ export function CapabilityPage({
           {related.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
       </section>
+      </div>
     </article>
+    <SiteFooter locale="en" />
   </main>;
 }

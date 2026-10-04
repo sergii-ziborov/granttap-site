@@ -37,7 +37,7 @@ describe("public legal and support pages", () => {
   test.each(pages)("renders %s with its customer-facing content", (title, Page) => {
     render(<Page />);
     expect(screen.getByRole("heading", { name: title, level: 1 })).toBeTruthy();
-    expect(screen.getByRole("link", { name: "Home" }).getAttribute("href")).toBe("/");
+    expect(screen.getByRole("link", { name: "GrantTap home" }).getAttribute("href")).toBe("/");
   });
 
   test.each(guides)("renders guide %s with capability boundaries", (title, Page) => {

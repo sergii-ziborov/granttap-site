@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LanguageToggle, useLocale } from "./Locale";
+import { SiteFooter, SiteHeader } from "./SiteChrome";
 
 const LEGAL_LINKS = [
   { href: "/pricing", label: { en: "Pricing", ru: "Тарифы" } },
@@ -43,7 +43,6 @@ export function LegalPage({
   const labels =
     locale === "en"
       ? {
-          home: "Home",
           updated: "Last updated",
           footer: "GrantTap legal and support",
           index: "Legal and support pages",
@@ -51,7 +50,6 @@ export function LegalPage({
           contact: "Support contact",
         }
       : {
-          home: "Главная",
           updated: "Обновлено",
           footer: "Юридическая информация и поддержка GrantTap",
           index: "Юридические страницы и поддержка",
@@ -60,17 +58,12 @@ export function LegalPage({
         };
 
   return (
-    <main className="legal-shell">
+    <main className="legal-shell" lang={locale}>
       <a className="skip-link" href="#legal-content">{labels.skip}</a>
-      <header className="legal-header">
-        <Link className="brand" href="/" aria-label={`GrantTap — ${labels.home}`}>
-          <Image src="/app-icon.png" alt="" width={1024} height={1024} priority />
-          <span>GrantTap</span>
-        </Link>
-        <Link href="/">{labels.home}</Link>
-        <LanguageToggle locale={locale} setLocale={setLocale} />
-      </header>
+      <SiteHeader locale={locale} active={pathname === "/pricing" ? "pricing" : pathname === "/support" ? "support" : undefined}
+        languageControl={<LanguageToggle locale={locale} setLocale={setLocale} />} />
       <article className="legal-document" id="legal-content">
+        <div className="legal-body">
         <p className="kicker">{labels.footer}</p>
         <h1>{title[locale]}</h1>
         <p className="legal-updated">
@@ -106,17 +99,10 @@ export function LegalPage({
             )}
           </section>
         ))}
+        </div>
       </article>
-      <footer className="legal-footer">
-        <nav aria-label={labels.index}>
-          {LEGAL_LINKS.map(({ href, label }) => (
-            <Link href={href} key={href} aria-current={pathname === href ? "page" : undefined}>
-              {label[locale]}
-            </Link>
-          ))}
-        </nav>
-        <p>{labels.contact}: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></p>
-      </footer>
+      <div className="legal-contact page-shell">{labels.contact}: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></div>
+      <SiteFooter locale={locale} />
     </main>
   );
 }

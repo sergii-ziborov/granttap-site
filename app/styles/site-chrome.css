@@ -1,0 +1,134 @@
+:root {
+  --site-width: 1180px;
+  --site-gutter: 24px;
+}
+
+.page-shell,
+.section-shell,
+.site-header,
+.trust-strip,
+.site-footer,
+.legal-document {
+  width: min(var(--site-width), calc(100% - var(--site-gutter) * 2));
+  max-width: none;
+  margin-inline: auto;
+}
+
+.site-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 88px;
+  height: auto;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .brand { flex: 0 0 auto; }
+.site-header .brand img { width: 34px; height: 34px; }
+.site-header .site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.8vw, 25px);
+  margin-left: auto;
+}
+
+.site-header .site-nav a,
+.site-header .site-menu nav a {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 580;
+  white-space: nowrap;
+}
+
+.site-header nav a:hover,
+.site-header nav a[aria-current="page"] { color: var(--ink); }
+.site-header-actions { display: flex; align-items: center; gap: 12px; }
+.site-header .nav-cta { min-height: 36px; white-space: nowrap; }
+.site-header .nav-cta span { margin-left: 7px; color: var(--orange); }
+.site-menu { display: none; }
+.site-language-links { gap: 2px; }
+.site-language-links a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  min-height: 30px;
+  border-radius: 999px;
+  color: var(--muted);
+  font: 700 11px/1 var(--font-sans);
+}
+.site-language-links a[aria-current="true"] { color: #1d0c05; background: var(--orange); }
+
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(175px, 1fr) minmax(180px, 1fr) minmax(260px, 1.3fr);
+  align-items: start;
+  gap: 28px 42px;
+  padding-block: 42px 52px;
+}
+.site-footer .footer-links { display: flex; flex-wrap: wrap; gap: 13px 18px; }
+.site-footer .footer-links a { line-height: 1.35; }
+.site-footer > p { grid-column: 1 / -1; }
+
+.legal-document { padding-block: 76px 108px; }
+.legal-document .legal-body { width: min(780px, 100%); }
+.legal-document .legal-intro { max-width: 740px; }
+.legal-document .legal-index { max-width: 780px; }
+.capability-document .legal-body { width: min(900px, 100%); }
+.legal-contact { padding-block: 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+.legal-contact a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+.connect-main,
+.account-card { width: min(var(--site-width), calc(100% - var(--site-gutter) * 2)); margin-inline: auto; }
+.connect-card,
+.account-card > * { max-width: 760px; }
+.connect-main { display: block; padding: 52px 0 90px; }
+.connect-card { width: 100%; margin: 0; }
+.account-card { padding: 36px; }
+
+@media (max-width: 960px) {
+  .site-header .site-nav { display: none; }
+  .site-header-actions { margin-left: auto; }
+  .site-menu { display: block; }
+  .site-menu summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 13px;
+  }
+  .site-menu summary::-webkit-details-marker { display: none; }
+  .site-header .site-menu nav {
+    position: absolute;
+    z-index: 30;
+    right: 0;
+    top: calc(100% - 2px);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: min(280px, 100%);
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: #191b20;
+    box-shadow: 0 24px 45px #0008;
+  }
+  .site-header .site-menu nav a { padding: 12px; }
+  .site-footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  :root { --site-gutter: 15px; }
+  .site-header { min-height: 74px; }
+  .site-header .brand span { display: inline; font-size: 16px; }
+  .site-header-actions { gap: 8px; }
+  .site-header .nav-cta { display: none; }
+  .site-footer { grid-template-columns: 1fr; gap: 28px; }
+  .site-footer > p { grid-column: 1; }
+  .legal-document { padding-block: 58px 78px; }
+  .connect-main { padding-block: 24px 65px; }
+  .connect-card,
+  .account-card { padding: 25px 20px; }
+}

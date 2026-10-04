@@ -41,7 +41,7 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /npm install -g granttap-mcp/);
   assert.match(html, /granttap setup/);
   assert.match(html, /Native E2EE/);
-  assert.match(html, /Join TestFlight/);
+  assert.match(html, /TestFlight by invitation/);
   assert.match(html, /GrantTap 1\.0 is waiting for App Review/);
   assert.match(html, /iphone-command-center\.png/);
   assert.match(html, /iphone-chat\.png/);
@@ -52,6 +52,24 @@ test("server-renders one Personal product", async () => {
   assert.doesNotMatch(html, /href="\/(?:account|enterprise)/);
   assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20260828-1"/i);
   assert.match(html, /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i);
+});
+
+test("Russian homepage is complete in server HTML with matching SEO metadata", async () => {
+  const html = await (await render("https://granttap.com/?lang=ru")).text();
+  assert.match(html, /<main lang="ru">/);
+  assert.match(html, /Все ваши coding agents/);
+  assert.match(html, /<title>GrantTap — Все coding-агенты\. Один центр управления\.<\/title>/);
+  assert.match(html, /href="https:\/\/granttap\.com\/\?lang=ru"/);
+});
+
+test("main, journal, article, and legal routes use the same navigation shell", async () => {
+  for (const path of ["/", "/blog", "/blog/connect-iphone-with-qr", "/data-rights"]) {
+    const html = await (await render(`https://granttap.com${path}`)).text();
+    assert.match(html, /class="site-header page-shell"/);
+    for (const label of ["Product", "How it works", "Security", "Blog", "Pricing", "Support"]) {
+      assert.match(html, new RegExp(`>${label}<`), `${path}: ${label}`);
+    }
+  }
 });
 
 test("provider and Mesh guides publish exact capability boundaries", async () => {
