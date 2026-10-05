@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LanguageToggle, useLocale } from "./Locale";
+import { ReadingGrid } from "./ReadingGrid";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 
 const LEGAL_LINKS = [
@@ -63,21 +64,22 @@ export function LegalPage({
       <SiteHeader locale={locale} active={pathname === "/pricing" ? "pricing" : pathname === "/support" ? "support" : undefined}
         languageControl={<LanguageToggle locale={locale} setLocale={setLocale} />} />
       <article className="legal-document" id="legal-content">
-        <div className="legal-body">
-        <p className="kicker">{labels.footer}</p>
-        <h1>{title[locale]}</h1>
-        <p className="legal-updated">
-          {labels.updated}: <time dateTime={updatedISO}>{updated[locale]}</time>
-        </p>
-        <p className="legal-intro">{intro[locale]}</p>
-        <nav className="legal-index" aria-label={labels.index}>
-          {LEGAL_LINKS.map(({ href, label }) => (
-            <Link href={href} key={href} aria-current={pathname === href ? "page" : undefined}>
-              {label[locale]}
-            </Link>
-          ))}
-        </nav>
-        {sections[locale].map((section) => (
+        <div className="legal-head">
+          <p className="kicker">{labels.footer}</p>
+          <h1>{title[locale]}</h1>
+          <p className="legal-updated">{labels.updated}: <time dateTime={updatedISO}>{updated[locale]}</time></p>
+          <p className="legal-intro">{intro[locale]}</p>
+        </div>
+        <ReadingGrid className="legal-reading" railClassName="legal-rail" rail={<>
+          <p className="rail-label">{labels.index}</p>
+          <nav className="legal-index" aria-label={labels.index}>
+            {LEGAL_LINKS.map(({ href, label }) => (
+              <Link href={href} key={href} aria-current={pathname === href ? "page" : undefined}>
+                {label[locale]}
+              </Link>
+            ))}
+          </nav>
+        </>}><div className="legal-body">{sections[locale].map((section) => (
           <section key={section.heading}>
             <h2>{section.heading}</h2>
             {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -98,8 +100,7 @@ export function LegalPage({
               </div>
             )}
           </section>
-        ))}
-        </div>
+        ))}</div></ReadingGrid>
       </article>
       <div className="legal-contact page-shell">{labels.contact}: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></div>
       <SiteFooter locale={locale} />

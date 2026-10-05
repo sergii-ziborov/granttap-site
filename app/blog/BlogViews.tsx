@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ReadingGrid } from "../components/ReadingGrid";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
 import type { BlogArticle, BlogLocale } from "./articleTypes";
 
@@ -51,7 +52,12 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         <p className="blog-deck">{t.summary}</p>
       </div>
       <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption>{locale === "ru" ? "Иллюстрация создана с помощью генерации изображений; это не экран продукта, рабочий QR-код или фотография события." : "AI-generated editorial illustration; this is not a product screen, functional QR code, or event photograph."}</figcaption>}</figure>
-      <div className="blog-reading-grid section-shell"><div className="blog-prose">
+      <ReadingGrid className="blog-reading-grid section-shell" railClassName="blog-article-rail"
+        railLabel={locale === "ru" ? "Содержание статьи" : "Article contents"} rail={<>
+        <p>{locale === "ru" ? "В статье" : "In this story"}</p>
+        <nav>{t.sections.map((section, index) => <a href={`#article-section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span>{section.heading}</a>)}</nav>
+        <small>{article.minutes} {locale === "ru" ? "мин чтения" : "min read"} · {article.date}</small>
+      </>}><div className="blog-prose">
         {t.intro.map(paragraph => <p className="blog-intro" key={paragraph}>{paragraph}</p>)}
         {t.graphic && <figure className="blog-graphic">
           <figcaption><strong>{t.graphic.title}</strong><span>{t.graphic.caption}</span></figcaption>
@@ -70,11 +76,7 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         </section>)}
         <aside className="blog-note">{t.closing}</aside>
         {t.sources && <section className="blog-sources"><h2>{locale === "ru" ? "Источники" : "Sources"}</h2><ul>{t.sources.map(source => <li key={source.url}><a href={source.url} target={source.url.startsWith("http") ? "_blank" : undefined} rel={source.url.startsWith("http") ? "noopener noreferrer" : undefined}>{source.label} ↗</a></li>)}</ul></section>}
-      </div><aside className="blog-article-rail" aria-label={locale === "ru" ? "Содержание статьи" : "Article contents"}>
-        <p>{locale === "ru" ? "В статье" : "In this story"}</p>
-        <nav>{t.sections.map((section, index) => <a href={`#article-section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span>{section.heading}</a>)}</nav>
-        <small>{article.minutes} {locale === "ru" ? "мин чтения" : "min read"} · {article.date}</small>
-      </aside></div>
+      </div></ReadingGrid>
     </article>
     <div className="section-shell blog-next"><span>{locale === "ru" ? "Далее" : "Next story"}</span><a href={blogHref(`/blog/${next.slug}`, locale)}>{next[locale].title} →</a></div>
     <SiteFooter locale={locale} />

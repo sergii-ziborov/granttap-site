@@ -70,11 +70,33 @@
 .site-footer .footer-links a { line-height: 1.35; }
 .site-footer > p { grid-column: 1 / -1; }
 
+.reading-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 760px) minmax(0, 1fr);
+  grid-template-areas: "main rail";
+  align-items: start;
+  gap: 68px;
+}
+.reading-main { grid-area: main; min-width: 0; }
+.reading-rail { grid-area: rail; min-width: 0; }
+
 .legal-document { padding-block: 76px 108px; }
-.legal-document .legal-body { width: min(780px, 100%); }
+.legal-head h1 { max-width: 1050px; }
+.legal-document .legal-body { width: 100%; }
 .legal-document .legal-intro { max-width: 740px; }
-.legal-document .legal-index { max-width: 780px; }
-.capability-document .legal-body { width: min(900px, 100%); }
+.legal-head .legal-intro { margin-bottom: 56px; }
+.legal-rail,
+.capability-rail {
+  position: sticky;
+  top: 28px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #17191de8;
+}
+.rail-label { margin: 0 0 18px; color: var(--orange); font-size: 12px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+.reading-rail .legal-index { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.reading-rail .legal-index a { width: 100%; min-height: 38px; border-radius: 10px; }
 .legal-contact { padding-block: 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 .legal-contact a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
 .connect-main,
@@ -84,6 +106,13 @@
 .connect-main { display: block; padding: 52px 0 90px; }
 .connect-card { width: 100%; margin: 0; }
 .account-card { padding: 36px; }
+
+@media (max-width: 1050px) {
+  .reading-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "rail" "main"; gap: 24px; }
+  .legal-rail, .capability-rail { position: static; padding: 18px; }
+  .reading-rail .legal-index { flex-direction: row; flex-wrap: wrap; }
+  .reading-rail .legal-index a { width: auto; }
+}
 
 @media (max-width: 960px) {
   .site-header .site-nav { display: none; }
