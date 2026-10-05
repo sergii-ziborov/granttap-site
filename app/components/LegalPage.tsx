@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LanguageToggle, useLocale } from "./Locale";
+import { EditorialArt } from "./EditorialArt";
 import { ReadingGrid } from "./ReadingGrid";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 
@@ -31,12 +32,14 @@ export function LegalPage({
   updated,
   updatedISO,
   intro,
+  art,
   sections,
 }: {
   title: { en: string; ru: string };
   updated: { en: string; ru: string };
   updatedISO: string;
   intro: { en: string; ru: string };
+  art?: { src: string; width: number; height: number; caption: { en: string; ru: string } };
   sections: { en: Section[]; ru: Section[] };
 }) {
   const { locale, setLocale } = useLocale();
@@ -70,6 +73,7 @@ export function LegalPage({
           <p className="legal-updated">{labels.updated}: <time dateTime={updatedISO}>{updated[locale]}</time></p>
           <p className="legal-intro">{intro[locale]}</p>
         </div>
+        {art && <EditorialArt src={art.src} width={art.width} height={art.height} caption={art.caption[locale]} />}
         <ReadingGrid className="legal-reading" railClassName="legal-rail" rail={<>
           <p className="rail-label">{labels.index}</p>
           <nav className="legal-index" aria-label={labels.index}>

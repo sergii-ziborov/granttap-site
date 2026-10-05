@@ -12,6 +12,7 @@ export default function SecurityPage() {
       en: "GrantTap Personal is a native end-to-end encrypted control channel for local coding-agent sessions. It is not a model proxy, terminal, identity service, or universal agent security layer.",
       ru: "GrantTap Personal — native end-to-end encrypted control channel для локальных coding-agent sessions. Это не model proxy, terminal, identity service или универсальный security layer.",
     }}
+    art={{ src: "/visuals/encrypted-route.jpg", width: 1942, height: 809, caption: { en: "Conceptual illustration of encrypted delivery between devices. The relay routes ciphertext; the image is not a network capture.", ru: "Концептуальная иллюстрация шифрованной доставки между устройствами. Relay передаёт шифротекст; это не снимок сетевого трафика." } }}
     sections={{
       en: [
         { heading: "What remains local", bullets: ["Source repositories and workspaces.", "Provider credentials and model traffic.", "Readable prompts, commands, replies, attachments, and decisions except on authorized endpoints."] },

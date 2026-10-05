@@ -31,11 +31,14 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /Cursor Beta/);
   assert.match(html, /Grok Build · Experimental/);
   assert.match(html, /Needs You/);
-  assert.match(html, /One Mesh\. Connected repositories, Tasks, people, and agents\./);
+  assert.match(html, /One Mesh gives the work a home\./);
   assert.doesNotMatch(html, /Project Mesh|Shared Projects/);
   assert.match(html, /Claude · MacBook/);
   assert.match(html, /Codex · Workstation/);
-  assert.match(html, /distributed evidence graph connects dependencies/);
+  assert.match(html, /A Mesh groups a project&#x27;s repositories, people, computers, and rules/);
+  assert.match(html, /The control center is on your computer, too/);
+  assert.match(html, /mac-workspace\.jpg/);
+  assert.match(html, /Conceptual illustration of the Mac workspace/);
   assert.match(html, /codex plugin add granttap@granttap/);
   assert.match(html, /claude plugin install granttap@granttap/);
   assert.match(html, /npm install -g granttap-mcp/);
@@ -70,6 +73,19 @@ test("main, journal, article, and legal routes use the same navigation shell", a
       assert.match(html, new RegExp(`>${label}<`), `${path}: ${label}`);
     }
   }
+});
+
+test("editorial pages identify conceptual art and articles expose a working breadcrumb", async () => {
+  for (const [path, image] of [["/about", "device-journey.jpg"], ["/security", "encrypted-route.jpg"], ["/support", "pairing-journey.jpg"], ["/project-mesh", "mesh-network.jpg"]]) {
+    const html = await (await render(`https://granttap.com${path}`)).text();
+    assert.match(html, new RegExp(image.replace(".", "\\.")));
+  }
+  const html = await (await render("https://granttap.com/blog/connect-iphone-with-qr")).text();
+  assert.match(html, /class="blog-breadcrumb"/);
+  assert.match(html, /<a href="\/">Home<\/a>/);
+  assert.match(html, /<a href="\/blog">Journal<\/a>/);
+  assert.match(html, /aria-current="page">Connect your iPhone without another account/);
+  await Promise.all(["device-journey.jpg", "encrypted-route.jpg", "mac-workspace.jpg", "mesh-network.jpg", "pairing-journey.jpg"].map(name => access(new URL(`../public/visuals/${name}`, import.meta.url))));
 });
 
 test("provider and Mesh guides publish exact capability boundaries", async () => {

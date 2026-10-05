@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EditorialArt } from "./EditorialArt";
 import { ReadingGrid } from "./ReadingGrid";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
 
@@ -9,6 +10,7 @@ export function CapabilityPage({
   eyebrow,
   title,
   intro,
+  art,
   status,
   facts,
   limits,
@@ -17,6 +19,7 @@ export function CapabilityPage({
   eyebrow: string;
   title: string;
   intro: string;
+  art?: { src: string; width: number; height: number; caption: string };
   status: string;
   facts: Fact[];
   limits: string[];
@@ -31,6 +34,7 @@ export function CapabilityPage({
         <p className="legal-intro">{intro}</p>
         <p className="capability-status"><strong>Availability</strong>{status}</p>
       </div>
+      {art && <EditorialArt src={art.src} width={art.width} height={art.height} caption={art.caption} />}
       <ReadingGrid className="capability-reading" railClassName="capability-rail" rail={<>
         <p className="rail-label">Explore GrantTap</p>
         <nav className="legal-index" aria-label="Related GrantTap guides">

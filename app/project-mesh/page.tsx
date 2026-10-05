@@ -12,6 +12,7 @@ export default function ProjectMeshPage() {
     eyebrow="Mesh coordination"
     title="One Task can outlive one agent session."
     intro="A Mesh connects Tasks, people, computers, and repositories. One Mesh can link several repositories; a Task keeps its identity when an agent or computer changes. A provider chat is one execution conversation inside a Task."
+    art={{ src: "/visuals/mesh-network.jpg", width: 1774, height: 887, caption: "Generated concept: one Task persists while agent executions and computers change. This is not a live Mesh map or product screenshot." }}
     status="Available with provider-specific limits"
     facts={[
       { title: "Compact shared state", text: "Tasks carry status, dependencies, resource claims, explicit decisions, and remaining work—not hidden reasoning." },

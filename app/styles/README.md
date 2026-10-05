@@ -13,6 +13,8 @@ It composes small, purpose-named style modules from this directory.
 - `responsive-*.css` — breakpoint-specific layout changes.
 - `accessibility.css` — narrow-screen and reduced-motion behavior.
 - `site-chrome.css` — shared page width, navigation, footer, and document shell.
+- `editorial-visuals.css` — Mesh and Mac editorial sections, art captions, and
+  subtle motion that respects reduced-motion settings.
 
 Rendered behavior is covered by `../../tests/rendered-html.test.mjs`; `npm test`
 also performs a production build so malformed imports fail before publishing.

@@ -16,6 +16,7 @@ export default function AboutPage() {
       en: "GrantTap coordinates local coding agents, Mesh spaces, repository evidence, and human decisions across Apple devices.",
       ru: "GrantTap координирует локальных coding-агентов, пространства Mesh, сведения о репозиториях и решения человека на устройствах Apple.",
     }}
+    art={{ src: "/visuals/device-journey.jpg", width: 1774, height: 887, caption: { en: "Generated illustration of GrantTap's device journey. The screens are conceptual, not product captures.", ru: "Сгенерированная иллюстрация работы на разных устройствах. Экраны условные, не снимки приложения." } }}
     sections={{
       en: [
         { heading: "Four surfaces, one Mesh", paragraphs: ["The proposed one-time Mac license and optional Personal subscription cover different needs: licensed local control and own relay remain available without Personal. Mac, iPhone, and iPad use the shared Apple client for Mesh spaces, Tasks, decisions, usage, and graph evidence where their connection supports it. Apple Watch keeps urgent work visible and sends short decisions through its paired iPhone."] },

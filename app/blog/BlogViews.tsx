@@ -31,7 +31,7 @@ export function BlogIndex({ articles, locale }: { articles: BlogArticle[]; local
       <div className="blog-list-heading"><h2>{locale === "ru" ? "Все статьи" : "All stories"}</h2><span>{articles.length} {locale === "ru" ? "материалов" : "stories"}</span></div>
       <div className="blog-grid">{articles.map(article => <a className="blog-card" href={blogHref(`/blog/${article.slug}`, locale)} key={article.slug}>
         <span className="blog-card-image"><Image src={article.cover} alt="" width={800} height={450} unoptimized /></span>
-        <span className="blog-card-body"><small>{article[locale].category} · {article.date} · {article.minutes} {locale === "ru" ? "мин" : "min"}</small><strong>{article[locale].title}</strong><span>{article[locale].summary}</span></span>
+        <span className="blog-card-body"><small>{article[locale].category} · {article.date} · {article.minutes} {locale === "ru" ? "мин" : "min"}</small><strong>{article[locale].title}</strong><span>{article[locale].summary}</span><b className="blog-card-cta">{locale === "ru" ? "Читать" : "Read story"} ↗</b></span>
       </a>)}</div>
     </section>
     <SiteFooter locale={locale} />
@@ -45,7 +45,11 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
     <SiteHeader locale={locale} active="blog" languageControl={<LocaleLinks locale={locale} path={`/blog/${article.slug}`} />} />
     <article className="blog-article">
       <div className="section-shell blog-article-head">
-        <a className="blog-back" href={blogHref("/blog", locale)}>← {locale === "ru" ? "Все статьи" : "All stories"}</a>
+        <nav className="blog-breadcrumb" aria-label={locale === "ru" ? "Навигационная цепочка" : "Breadcrumb"}><ol>
+          <li><a href={blogHref("/", locale)}>{locale === "ru" ? "Главная" : "Home"}</a></li>
+          <li><a href={blogHref("/blog", locale)}>{locale === "ru" ? "Блог" : "Journal"}</a></li>
+          <li aria-current="page">{t.title}</li>
+        </ol></nav>
         <p className="blog-eyebrow">{t.category} <span>·</span> <time dateTime={article.date}>{article.date}</time> <span>·</span> {article.minutes} {locale === "ru" ? "мин чтения" : "min read"}</p>
         <h1>{t.title}</h1>
         <p className="blog-deck">{t.summary}</p>
