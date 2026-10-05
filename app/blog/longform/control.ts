@@ -28,7 +28,7 @@ export const controlExtension: ArticleExtension = {
       ] },
       { heading: "What success would look like", paragraphs: [
         "Success is not a dashboard with the most counters. It is a person knowing what the agent is doing, what they are authorized to decide, and how to check the result. When the app says something is unknown, that should be actionable: perhaps the host is offline, the provider cannot report usage, or a tool has not been initialized. A clear unknown is preferable to an invented zero or a green completion badge unsupported by evidence.",
-        "GrantTap's product boundary is deliberately Personal and centered on local coding agents. Claude Code and Codex are primary paths, Cursor is Beta, and other behavior is described only where implemented. The control center should become more capable by making the existing Task, execution, capability, and usage surfaces more precise. Its design earns trust when the person can follow a decision to the computer that applied it and the work that followed.",
+        "GrantTap is built for people running local coding agents. Claude Code and Codex are the deepest paths today; Cursor joins the shared view with a narrower set of controls. The control center becomes more useful when Task, execution, capability, and usage states are precise. Its design earns trust when a person can follow a decision to the computer that applied it and the work that followed.",
       ] },
     ],
   },
@@ -58,7 +58,7 @@ export const controlExtension: ArticleExtension = {
       ] },
       { heading: "Как выглядит успех", paragraphs: [
         "Успех — не панель с максимальным числом счётчиков. Он в том, что человек знает, чем занят агент, какое решение ему разрешено принять и как проверить результат. Сообщение «неизвестно» должно вести к действию: возможно, host offline, провайдер не сообщает usage или инструмент не инициализирован. Ясная неизвестность лучше придуманного нуля и зелёного бейджа завершения без доказательств.",
-        "Граница продукта GrantTap — Personal сценарий локальных coding-агентов. Claude Code и Codex основные пути, Cursor в Beta; другие возможности описываются лишь в реально поддерживаемых пределах. Центр управления должен становиться точнее через существующие Task, execution, capability и usage, а не через новые декоративные слои. Доверие появляется, когда решение можно проследить до компьютера, который его применил, и до работы, которая последовала.",
+        "GrantTap создан для людей, запускающих локальных coding-агентов. Claude Code и Codex сегодня дают самые полные пути; Cursor входит в общий обзор с более узким набором способов управления. Центр становится полезнее, когда состояния Task, execution, capability и usage точны. Доверие появляется, когда решение можно проследить до компьютера, который его применил, и до работы, которая последовала.",
         "Проверить эту идею можно на обычном рабочем дне. Выберите две Task на разных компьютерах и одно действие, требующее решения. После короткого взгляда на телефон попробуйте без догадок назвать, где работает каждая Task, какое действие ждёт вас и какое событие уже подтверждено. Если для ответа приходится открывать несколько несвязанных логов, компактный экран ещё не выполнил свою задачу. Улучшать стоит не число карточек, а ясность существующих состояний.",
       ] },
     ],

@@ -6,6 +6,8 @@ import { ProductImage } from "./ProductImage";
 type Copy = {
   galleryKicker: string;
   galleryTitle: string;
+  galleryDisclosure: string;
+  captureLabel: string;
   meshGalleryKicker: string;
   meshGalleryTitle: string;
   meshCaptures: readonly (readonly [string, string, string])[];
@@ -56,22 +58,22 @@ export function CaptureGallery({ t }: { t: Copy }) {
   }, [selected]);
 
   return <section className="gallery-section section-shell">
-    <div className="section-heading"><p className="kicker">{t.galleryKicker}</p><h2>{t.galleryTitle}</h2></div>
+    <div className="section-heading"><p className="kicker">{t.galleryKicker}</p><h2>{t.galleryTitle}</h2><p>{t.galleryDisclosure}</p></div>
     <div className="history-gallery">
       {captures.map(capture => <figure key={capture.name}>
         <CaptureButton capture={capture} label={t.openCapture} onOpen={setSelected} />
-        <figcaption><strong>{capture.title}</strong>{capture.caption}</figcaption>
+        <figcaption><small>{t.captureLabel}</small><strong>{capture.title}</strong>{capture.caption}</figcaption>
       </figure>)}
       <figure className="watch-captures">
         <div className="watch-pair">{watch.map(capture => <CaptureButton capture={capture} label={t.openCapture} onOpen={setSelected} key={capture.name} />)}</div>
-        <figcaption><strong>Apple Watch</strong>{t.watchCaption}</figcaption>
+        <figcaption><small>{t.captureLabel}</small><strong>Apple Watch</strong>{t.watchCaption}</figcaption>
       </figure>
     </div>
     <div className="section-heading mesh-gallery-heading"><p className="kicker">{t.meshGalleryKicker}</p><h2>{t.meshGalleryTitle}</h2></div>
     <div className="mesh-gallery">
       {mesh.map(capture => <figure key={capture.name}>
         <CaptureButton capture={capture} label={t.openCapture} onOpen={setSelected} />
-        <figcaption><strong>{capture.title}</strong>{capture.caption}</figcaption>
+        <figcaption><small>{t.captureLabel}</small><strong>{capture.title}</strong>{capture.caption}</figcaption>
       </figure>)}
     </div>
     {selected && <CaptureLightbox capture={selected} closeLabel={t.closeCapture} onClose={() => setSelected(null)} />}

@@ -97,6 +97,14 @@
   color: var(--ink);
   font-size: 20px;
 }
+.history-gallery figcaption small,
+.mesh-gallery figcaption small {
+  display: block;
+  margin-bottom: 9px;
+  color: #e59a79;
+  font-size: 11px;
+  line-height: 1.35;
+}
 
 .gallery-phone,
 .gallery-watch,

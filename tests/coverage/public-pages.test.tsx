@@ -26,8 +26,8 @@ const pages = [
 const guides = [
   ["Claude Code, visible beyond the terminal.", ClaudeCodePage],
   ["Codex tasks, connected to the same human.", CodexPage],
-  ["Cursor support, labeled Beta on purpose.", CursorPage],
-  ["Grok Build is Experimental—not fake parity.", GrokBuildPage],
+  ["Bring Cursor work into the same Task view.", CursorPage],
+  ["Keep Grok Build work in view.", GrokBuildPage],
   ["The wrist is for the decision, not the whole terminal.", AppleWatchPage],
   ["Grok Bot is a participant, not a provider shortcut.", GrokBotPage],
   ["One Task can outlive one agent session.", ProjectMeshPage],
@@ -45,6 +45,14 @@ describe("public legal and support pages", () => {
     expect(screen.getByRole("heading", { name: title, level: 1 })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "What works", level: 2 })).toBeTruthy();
     expect(screen.getByRole("heading", { name: "Honest limits", level: 2 })).toBeTruthy();
+  });
+
+  test("shows provider capability limits without implying feature parity", () => {
+    const cursor = render(<CursorPage />);
+    expect(screen.getByText("Available with defined limits")).toBeTruthy();
+    cursor.unmount();
+    render(<GrokBuildPage />);
+    expect(screen.getByText("Available where the local runtime supports it")).toBeTruthy();
   });
 
   test("switches legal pages to Russian and saves the visitor choice", async () => {

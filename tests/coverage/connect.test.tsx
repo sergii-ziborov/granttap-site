@@ -84,7 +84,7 @@ test("connect page talks only to the website API", async () => {
 
   render(<ConnectView />);
   expect(await screen.findByRole("heading", { name: "Connect your coding app", level: 1 })).toBeTruthy();
-  expect(screen.getByText("Cursor")).toBeTruthy();
+  expect(screen.getByText("Cursor", { selector: ".connect-chip" })).toBeTruthy();
   expect(screen.getByRole("button", { name: /iPhone/i })).toBeTruthy();
 
   await userEvent.click(screen.getByRole("button", { name: /iPhone/i }));

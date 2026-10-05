@@ -11,7 +11,7 @@ export default function GrokBotPage() {
   return <CapabilityPage
     eyebrow="Scoped Mesh endpoint"
     title="Grok Bot is a participant, not a provider shortcut."
-    intro="A persistent Grok Bot endpoint joins only the Mesh spaces and operations you choose. Its identity and trust path are separate from the Experimental Grok Build integration."
+    intro="A persistent Grok Bot endpoint joins only the Mesh spaces and operations you choose. It has its own identity and trust path, separate from the Grok Build integration."
     status="Explicit invitation required"
     facts={[
       { title: "Phone-issued invite", text: "The iPhone creates a one-time encrypted invite scoped to selected Mesh spaces." },

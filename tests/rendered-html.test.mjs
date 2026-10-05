@@ -28,8 +28,8 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /All your coding agents\./);
   assert.match(html, /One live control center\./);
   assert.match(html, /Claude Code · Codex · Cursor · Grok Build/);
-  assert.match(html, /Cursor Beta/);
-  assert.match(html, /Grok Build · Experimental/);
+  assert.match(html, />Cursor<\/strong>/);
+  assert.match(html, />Grok Build<\/strong>/);
   assert.match(html, /Needs You/);
   assert.match(html, /One Mesh gives the work a home\./);
   assert.doesNotMatch(html, /Project Mesh|Shared Projects/);
@@ -200,7 +200,7 @@ test("publishes actionable Personal support and privacy copy", async () => {
   assert.match(support, /npm install -g granttap-mcp/);
   assert.match(support, /granttap setup/);
   assert.match(support, /granttap status/);
-  assert.match(support, /Cursor is Beta/);
+  assert.match(support, /For Cursor, install the GrantTap Marketplace listing/);
   assert.doesNotMatch(support, /granttap (?:authorize|serve|monitor|hook|web|login)/);
   const privacy = await readFile(new URL("../app/privacy/page.tsx", import.meta.url), "utf8");
   assert.match(privacy, /APNs device token/);

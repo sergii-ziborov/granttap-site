@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { CapabilityPage } from "../../components/CapabilityPage";
 
 export const metadata: Metadata = {
-  title: "Cursor Beta integration",
-  description: "See and continue Cursor tasks with GrantTap's honest Beta capability boundary.",
+  title: "Cursor integration",
+  description: "See Cursor tasks, continue supported local sessions, and inspect the controls available through GrantTap.",
   alternates: { canonical: "/agents/cursor" },
 };
 
 export default function CursorPage() {
   return <CapabilityPage
     eyebrow="Provider integration"
-    title="Cursor support, labeled Beta on purpose."
-    intro="GrantTap reads the durable local Cursor state that is actually available, keeps root and child work together, and uses Cursor's supported hook surfaces."
-    status="Beta"
+    title="Bring Cursor work into the same Task view."
+    intro="See local Cursor work beside your other agents. GrantTap keeps root and child activity together, lets you continue supported sessions, and shows which controls the installed Cursor integration can actually enforce."
+    status="Available with defined limits"
     facts={[
       { title: "Authenticate on this Mac", text: "Cursor Authenticate opens granttap.com/connect for coding-app approval. The GrantTap connection card in Cursor offers Add a device and Reconnect with a one-time QR; scan it in the phone app. Do not add GrantTap in Customize → MCPs." },
       { title: "Session visibility", text: "Cursor composer tasks, child agents, activity, and observed capability usage appear in the shared task catalog." },

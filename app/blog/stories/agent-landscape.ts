@@ -21,7 +21,7 @@ export const agentLandscape: BlogArticle = {
         "These are substantial products. For work centered on one provider, its native surface may be the shortest route. Their routes have distinct requirements: Claude Remote Control needs an eligible account and an available local process; Cursor's local tools need an online computer while its agent loop uses cloud storage. It would be inaccurate to describe either as simply a remote terminal.",
       ] },
       { heading: "What GrantTap coordinates", paragraphs: [
-        "GrantTap's design follows a Task across supported provider executions and computers. It puts decisions, delivery state, capability policy, and observed usage around that Task. Claude Code and Codex are the primary integrations; Cursor is Beta. Provider support is uneven, and a provider's own mobile client may expose features GrantTap does not.",
+        "GrantTap follows a Task across supported provider executions and computers. It brings decisions, delivery state, capability policy, and observed usage around that Task. Claude Code and Codex have the deepest integrations; Cursor joins the view with a more limited control path. Compare the exact action you need, because a provider's own mobile client may offer features GrantTap does not.",
         "This is a complementary choice for people who use more than one coding provider and want a consistent local control view. It does not replace the providers' models, subscriptions, or native review tools. GrantTap's relay carries encrypted envelopes between authorized devices; that is a different data path from each provider's own service.",
       ] },
       { heading: "Compare the right questions", paragraphs: [
@@ -58,7 +58,7 @@ export const agentLandscape: BlogArticle = {
         "Это серьёзные решения. Если работа сосредоточена у одного провайдера, его приложение может быть самым коротким путём. У маршрутов разные условия: Claude Remote Control требует подходящего аккаунта и работающей локальной сессии; локальные инструменты Cursor требуют доступного компьютера, а цикл агента использует облачное хранение. Называть эти решения просто удалённым терминалом было бы неверно.",
       ] },
       { heading: "Что связывает GrantTap", paragraphs: [
-        "GrantTap ведёт Task через поддерживаемые executions разных провайдеров и компьютеров. Вокруг неё собраны решения человека, состояние доставки, правила возможностей и наблюдаемое использование. Основные интеграции — Claude Code и Codex; Cursor находится в Beta. Поддержка разных провайдеров неравномерна, а их собственные мобильные клиенты могут иметь функции, которых нет в GrantTap.",
+        "GrantTap ведёт Task через поддерживаемые executions разных провайдеров и компьютеров. Вокруг неё собраны решения человека, состояние доставки, правила возможностей и наблюдаемое использование. Наиболее полные интеграции — Claude Code и Codex; Cursor входит в обзор с более узким путём управления. Сравнивайте конкретное действие: собственный мобильный клиент провайдера может иметь функции, которых нет в GrantTap.",
         "Это дополняющий вариант для тех, кто использует больше одного coding-провайдера и хочет общий локальный вид управления. Он не заменяет модели, подписки и native review tools провайдеров. Relay GrantTap переносит зашифрованные сообщения между разрешёнными устройствами; путь данных отличается от сервисов самих провайдеров.",
       ] },
       { heading: "Какие вопросы сравнивать", paragraphs: [

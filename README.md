@@ -1,38 +1,55 @@
-# GrantTap Personal website
+# GrantTap
 
-The publicly readable website source is under the
-[GrantTap Commercial Source License](LICENSE). Production deployment and
-redistribution of versions under this license require a commercial grant.
-Copies released earlier under MIT retain their original MIT permissions.
+> **All your coding agents. One live control center.**
 
-GrantTap is a Personal live control center for local coding agents:
+GrantTap brings local coding work into one clear view across Mac, iPhone, iPad,
+and Apple Watch. See what needs your attention, decide from the right device,
+and return to the same Task without losing its history when an agent session or
+computer changes.
 
-> See what your coding agents are doing. Step in when they need you.
+[Explore the product](https://granttap.com) · [Read the journal](https://granttap.com/blog) ·
+[See availability](https://granttap.com/#availability) · [Get help](https://granttap.com/support)
 
-The public site presents one product across Mac, iPhone, iPad, and Apple Watch with Claude
-Code, Codex, Cursor Beta, and Grok Build where its implemented behavior is
-available. The site presents one Personal product.
+## See. Decide. Continue.
 
-The current home-page phone captures were retaken on 2026-10-01 from the
-deterministic iPhone simulator demo: Now, Tasks, dated Task chat, Usage, and
-the Mesh/Repositories switch. They depict sample work, not a customer's
-session or a live repository scan. Older feature captures remain identified as
-fixtures below; the home gallery does not imply that an agent authored the
-architecture graph or measured its own resource use.
+- **See the work.** Now brings urgent decisions, active Tasks, and recent progress
+  together. Open a Task for its conversation, computer, agent, and latest useful
+  activity.
+- **Decide with context.** Answer a question, review an approval, or retry a
+  failed delivery on iPhone or Apple Watch. The decision stays attached to the
+  Task and its execution.
+- **Continue where it belongs.** Follow the same Task across supported local
+  Claude Code and Codex sessions. Cursor and Grok Build can join the shared
+  view where their installed integrations expose the needed behavior.
+- **Set the rules once.** Mesh Governance lets you allow, ask, or deny skills,
+  MCP servers, and shell access for a Mesh. Linked computers report whether
+  they applied those rules.
 
-Mesh coordinates those existing agents with bounded encrypted task
-state, dependencies, resource claims, agent-to-agent questions, and same-task
-handoffs across computers. Mesh Governance decides, per Mesh, which
-skills, MCP servers, and shell access agents may use, and every linked computer
-reports whether the policy was applied. It does not copy hidden reasoning or turn GrantTap
-into a coding agent or an unrestricted orchestrator.
+## The real app
 
-Company accounts and Mesh members are separate. On the owner's phone,
-an account receives selected or all repository IDs. A phone or tablet can pair
-to the account with a one-time code even before any computer or Mesh exists;
-this grants no Mesh access. The owner later selects Mesh spaces and a role for
-that device. A Mesh invitation does not change Git provider ACLs.
-The owner phone checks both before forwarding Mesh data and actions.
+| Now on iPhone | Task conversation | Usage |
+| --- | --- | --- |
+| ![GrantTap Now, with urgent and active work](public/product/iphone-command-center.png) | ![GrantTap Task conversation and composer](public/product/iphone-chat.png) | ![GrantTap Usage screen](public/product/iphone-mcp-usage.png) |
+
+These are captures of the GrantTap app using deterministic sample work; no
+private task, repository, pairing key, or customer data appears in them. The
+[product page](https://granttap.com) also shows Mesh and Apple Watch screens.
+
+## One Mesh for connected work
+
+A Mesh brings a project's repositories, people, computers, and access rules
+into one scope. A **Task** holds one goal and its visible history. An
+**Execution** is one agent session doing part of that work. That separation
+makes a handoff understandable: the Task continues while the provider or
+computer may change.
+
+Mesh also keeps dependencies, resource claims, questions, and bounded handoff
+records close to the Task. It shares compact state, not private hidden
+reasoning. [See how Mesh works](https://granttap.com/project-mesh).
+
+Sharing remains explicit. A company account can grant selected repository IDs;
+a device separately receives access to selected Mesh spaces and a role. A Mesh
+invitation does not change Git provider permissions.
 
 ## Install
 
@@ -50,64 +67,47 @@ npm install -g granttap-mcp
 granttap setup
 ```
 
-After plugin installation, run `granttap setup` and open
-[granttap.com/connect](https://granttap.com/connect) on the Mac for coding-app
-approval and observations. The GrantTap connection card in the coding app offers **Add a device**,
-**Add another device**, and **Reconnect**. Codex Connected accounts is
-unrelated to GrantTap device pairing. Scan in the GrantTap app when a device
-joins. An existing trusted iPhone or iPad
-can show an expiring QR in Settings to add another controller to its linked
-computers; this joins the device network rather than a Mesh. Do not ask an
-agent to print a pairing QR in chat. The plugin and local `granttap-mcp`
-runtime must use compatible protocol versions.
+## Connect your devices
 
-An optional GrantTap account passkey signs in on Mac or iPhone. On a Mac with
-the local bridge, `/connect` can use a fresh passkey assertion to approve a
-coding app. On iPhone, the same connection screen offers QR and passkey:
-after QR pairing, passkey sign-in adds those computers to the account for
-recovery without replacing their encrypted pairing or changing chat/Mesh
-routing. The Mac verifies its machine-scoped account link over the existing
-encrypted room. QR pairing remains available without any account. Apple
-Passwords can sync a passkey through iCloud; another passkey manager must be
-selected on both devices when signing in there.
+1. Run `granttap setup` after installing the plugin. It connects the local
+   helper to supported coding tools.
+2. Open the GrantTap connection card in your coding app and choose **Add a
+   device**. Scan its one-time QR in the GrantTap iPhone or iPad app.
+3. Open Now to see active work and decisions. Use **Add another device** or
+   **Reconnect** from the same card when needed.
 
-Live `/`, `/connect`, and `/api/connect` use the Hetzner compose stack.
-The connect page does not generate or display a pairing QR.
+A GrantTap account passkey is optional. QR pairing works without an account;
+passkey sign-in can add recovery and approve a coding-app connection on a Mac
+with the local bridge. The two steps have different purposes. [Connection
+help](https://granttap.com/support) walks through both.
 
-For Cursor, install the reviewed **GrantTap** Marketplace listing, then
-`granttap setup`. Do not add GrantTap in Customize → MCPs.
+## Explore GrantTap
 
-The Task screenshot includes a demo Runtime history. On a real computer,
-Invocation history requires the separately distributed GrantTap Engine. A tool
-request or reported success is not presented as a verified filesystem change;
-the bridge does not yet produce verified change events or revision-bound impact
-links.
+- [Journal](https://granttap.com/blog) — fifteen sourced, illustrated guides
+  about agent workflows, governance, Mesh, competitors, and product decisions.
+- [Mesh](https://granttap.com/project-mesh) — how connected work keeps one Task
+  identity across supported executions.
+- [Security](https://granttap.com/security) — what stays local and what the
+  encrypted relay can see.
+- [Pricing and availability](https://granttap.com/pricing) — current Personal
+  tiers and the status of the Mac release.
 
-- [granttap-mcp source](https://github.com/sergii-ziborov/granttap-mcp)
-- [npm package](https://www.npmjs.com/package/granttap-mcp)
-- [ciphertext relay source](https://github.com/sergii-ziborov/granttap-relay)
+The iPhone app is currently available through TestFlight by invitation while
+GrantTap 1.0 awaits App Review. A one-time Mac license is being prepared; its
+price and availability are determined by the App Store purchase sheet. The
+website distinguishes those release states from working product paths.
 
-## Public customer pages
+## Source and license
 
-- [About](https://granttap.com/about)
-- [Journal](https://granttap.com/blog): fifteen EN/RU stories with at least 1,000 body words per
-  language, source links, real app captures from deterministic demo fixtures, labelled
-  generated covers, and two generated inline illustrations in each story.
+This repository contains the public website source under the [GrantTap
+Commercial Source License](LICENSE). Production deployment and redistribution
+under that license require a commercial grant. Earlier MIT releases keep their
+original permissions. The [MCP runtime](https://github.com/sergii-ziborov/granttap-mcp)
+is MIT licensed; the [ciphertext relay](https://github.com/sergii-ziborov/granttap-relay)
+has its own license.
 
-The editorial series is dated October 3–5, 2026, and all fifteen stories are
-available in the journal. The comparison article states its October 3 source-check
-date. Publication dates are evaluated in Asia/Jerusalem; future stories, if added,
-remain unavailable until their date.
-- [Pricing](https://granttap.com/pricing)
-- [Privacy](https://granttap.com/privacy)
-- [Terms](https://granttap.com/terms)
-- [Support](https://granttap.com/support)
-- [Security](https://granttap.com/security)
-- [Data choices](https://granttap.com/data-rights)
-- [Accessibility](https://granttap.com/accessibility)
-- [Licenses](https://granttap.com/licenses)
-
-## Development
+<details>
+<summary>Development and deployment notes</summary>
 
 Node.js 22.13 or newer is required.
 
@@ -118,49 +118,20 @@ npm test
 npm run lint
 ```
 
-Live granttap.com is the Hetzner compose stack: `/` on port 3211, `/connect`,
-`/api/connect`, and `/api/account` on port 3210. Passkey account records live
-in the persistent `account_data` volume; deploys must retain that volume and
-install the matching `hetzner/nginx.conf` account route. `wrangler.production.jsonc` is a leftover
-Cloudflare config — do not `wrangler deploy` it over the live domain. Publish
-by rsyncing this tree to `/srv/apps/granttap-site/releases/` and
-`podman compose -p granttap-web -f compose.hetzner.yaml up -d --build`.
+Live granttap.com uses the Hetzner compose stack. The website runs as `site`;
+`/connect`, `/api/connect`, and `/api/account` use `web` and retain the
+persistent `account_data` volume. `wrangler.production.jsonc` is legacy
+Cloudflare configuration and is not the live deployment target. Site-only copy
+changes rebuild only the `site` service.
 
-Product captures under `public/product/` must come from deterministic sample
-data and contain no real pairing, task, repository, credential, or audit data.
-`iphone-company-accounts.png` and `iphone-company-repositories.png` are iPhone
-Simulator captures from the owner-managed account and repository grant screens.
-`iphone-linked-projects.png` is an older iPhone Simulator Debug demo capture from
-internal source `1aecdca`. It shows binding-level grouping and the corrected
-device-scoped invite copy; it does not claim a Weavatrix dependency was observed.
-`iphone-weavatrix-graph.png` and `iphone-health-code-towers.png` are kept UI-test
-attachments from deterministic architecture and code-map fixtures. Their
-`demo-revision` label is deliberate; neither depicts a live repository scan.
-The updated `iphone-command-center.png`, `iphone-tasks.png`, `iphone-chat.png`,
-`iphone-mcp-usage.png`, and `iphone-project-mesh.png` are current iPhone
-Simulator captures. The chat capture was refreshed on 2026-10-03 to show the
-user's last request above the timeline. The site references them with a versioned URL to
-invalidate browser caches after deployment.
+Product captures under `public/product/` use deterministic sample data, never
+private pairing material or customer Tasks. The current homepage iPhone
+screens were refreshed in October 2026. Older graph and code-tower captures
+are explicitly marked as fixtures and do not claim a live repository scan.
+Generated editorial images in `public/visuals/` and the journal are captioned
+as illustrations rather than product captures.
 
-## Current captures
+The Mac client source and its end-user license are in the
+[GrantTap Apple repository](https://github.com/sergii-ziborov/granttap).
 
-<p align="center">
-  <img src="public/product/iphone-command-center.png" width="230" alt="GrantTap Now">
-  <img src="public/product/iphone-chat.png" width="230" alt="GrantTap task timeline">
-  <img src="public/product/iphone-mcp-usage.png" width="230" alt="GrantTap Usage">
-</p>
-
-## Mac commerce
-
-The Mac client source is public in [granttap](https://github.com/sergii-ziborov/granttap),
-including its [Mac end-user license](https://github.com/sergii-ziborov/granttap/blob/main/apps/macos/DESKTOP_EULA.md).
-The proposed one-time Mac License is USD 39.99, with optional existing Personal
-tiers. Until App Store approval, this is preparation rather than availability.
-Direct address discovery and the licensed personal/internal own-relay mode
-require no Personal subscription. Supply a reachable TLS endpoint or VPN;
-announcing an IP does not open NAT, configure TLS or promise background APNs.
-
-Mac menu and device-network support is documented on `/support`; the Apple app
-bundles the same English/Russian customer documents for offline access. Current
-production uses Podman. Deploy only the `site` service for copy changes so pairing
-and `/api/connect` remain on the existing `web` service.
+</details>

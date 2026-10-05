@@ -10,6 +10,7 @@ export function DesktopShowcase({ t }: { t: HomeCopy }) {
     </div>
     <figure className="desktop-visual">
       <Image src="/visuals/mac-workspace.jpg" alt="" width={1672} height={941} loading="lazy" unoptimized />
+      <span className="desktop-visual-label">{t.desktopVisualLabel}</span>
       <figcaption>{t.desktopCaption}</figcaption>
     </figure>
     <div className="desktop-facts">{t.desktopFacts.map(([title, detail], index) =>

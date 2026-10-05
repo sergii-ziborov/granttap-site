@@ -13,8 +13,8 @@ export default function AboutPage() {
     updated={{ en: "September 28, 2026", ru: "28 сентября 2026" }}
     updatedISO="2026-09-28"
     intro={{
-      en: "GrantTap coordinates local coding agents, Mesh spaces, repository evidence, and human decisions across Apple devices.",
-      ru: "GrantTap координирует локальных coding-агентов, пространства Mesh, сведения о репозиториях и решения человека на устройствах Apple.",
+      en: "GrantTap helps you stay close to the work your local coding agents do. See the Task, make a timely decision, and continue with the right context from Mac, iPhone, iPad, or Apple Watch.",
+      ru: "GrantTap помогает оставаться рядом с работой локальных coding-агентов. Следите за Task, вовремя принимайте решения и продолжайте с нужным контекстом на Mac, iPhone, iPad или Apple Watch.",
     }}
     art={{ src: "/visuals/device-journey.jpg", width: 1774, height: 887, caption: { en: "Generated illustration of GrantTap's device journey. The screens are conceptual, not product captures.", ru: "Сгенерированная иллюстрация работы на разных устройствах. Экраны условные, не снимки приложения." } }}
     sections={{

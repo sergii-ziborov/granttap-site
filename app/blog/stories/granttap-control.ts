@@ -21,7 +21,7 @@ export const granttapControl: BlogArticle = {
         "If a computer goes offline, the task should say so. A message queued for delivery is different from one accepted by a provider, and both differ from a tested code change. We preserve those distinctions because a reassuring green dot can be more misleading than an explicit unknown.",
       ] },
       { heading: "Keep authority close to the action", paragraphs: [
-        "GrantTap coordinates Claude Code and Codex as primary integrations; Cursor is Beta and other providers have narrower documented behavior. Each provider retains its own session and controls. Mesh policy can allow, ask, or deny a capability, but a chosen policy is not proof that every computer enforced it. A host must report its observed state.",
+        "GrantTap coordinates Claude Code and Codex most deeply; Cursor and other supported providers have narrower, documented control paths. Each provider retains its own session and controls. Mesh policy can allow, ask, or deny a capability, while each computer reports whether that rule was applied. This makes the decision visible where the action runs.",
         "The relay transports encrypted envelopes. Provider credentials and the local coding environment stay on the computer. This architecture is a choice about where work and authority live, not a promise that every external model service is private: provider traffic still follows that provider's own terms.",
       ] },
       { heading: "Make handoffs legible", paragraphs: [
@@ -57,7 +57,7 @@ export const granttapControl: BlogArticle = {
         "Если компьютер офлайн, задача должна сообщить об этом. Сообщение в очереди отличается от принятого провайдером, а оба состояния — от проверенного изменения кода. Эти различия важны: успокаивающая зелёная точка иногда хуже честного «неизвестно».",
       ] },
       { heading: "Полномочия рядом с действием", paragraphs: [
-        "Основные интеграции GrantTap — Claude Code и Codex; Cursor имеет статус Beta, другие провайдеры поддерживаются в более узких, описанных пределах. У каждого остаются собственные сессии и механизмы контроля. Правило Mesh может разрешить, запросить подтверждение или запретить возможность, но выбор правила ещё не доказывает его применение на каждом компьютере. Нужен наблюдаемый ответ хоста.",
+        "Наиболее полные интеграции GrantTap — Claude Code и Codex; у Cursor и других поддерживаемых провайдеров путь управления уже и описан отдельно. У каждого остаются собственные сессии и механизмы контроля. Правило Mesh разрешает, запрашивает подтверждение или запрещает возможность, а каждый компьютер сообщает, применил ли он это правило. Так решение видно там, где выполняется действие.",
         "Relay переносит зашифрованные сообщения. Учётные данные провайдера и локальная среда остаются на компьютере. Это выбор границы исполнения, а не обещание приватности у внешней модельной службы: её трафик регулируется условиями самого провайдера.",
       ] },
       { heading: "Понятная передача работы", paragraphs: [

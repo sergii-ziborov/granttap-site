@@ -31,6 +31,7 @@ test("every article renders its own sections and sources in both languages", () 
       expect(screen.getByRole("heading", { name: article[locale].title })).toBeTruthy();
       expect(screen.getByText(article[locale].closing)).toBeTruthy();
       if (article[locale].screenshotCaption) expect(screen.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
+      expect(screen.getByText(locale === "en" ? "GrantTap screen · sample data" : "Экран GrantTap · тестовые данные")).toBeTruthy();
       expect(screen.getByRole("heading", { name: locale === "en" ? "Sources" : "Источники" })).toBeTruthy();
       view.unmount();
     }

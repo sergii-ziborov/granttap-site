@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { CapabilityPage } from "../../components/CapabilityPage";
 
 export const metadata: Metadata = {
-  title: "Grok Build Experimental integration",
-  description: "The exact Experimental visibility and continuation boundary for Grok Build in GrantTap.",
+  title: "Grok Build integration",
+  description: "See Grok Build work and continue a native session when the installed local runtime supports it.",
   alternates: { canonical: "/agents/grok-build" },
 };
 
 export default function GrokBuildPage() {
   return <CapabilityPage
     eyebrow="Provider integration"
-    title="Grok Build is Experimental—not fake parity."
-    intro="GrantTap includes Grok Build where its local runtime exposes durable session behavior, while clearly separating that integration from the scoped Grok Bot endpoint."
-    status="Experimental where available"
+    title="Keep Grok Build work in view."
+    intro="GrantTap brings visible Grok Build sessions into the shared Task view and offers follow-up where the installed local CLI supports it. Grok Bot remains a separate scoped Mesh endpoint."
+    status="Available where the local runtime supports it"
     facts={[
       { title: "Authenticate", text: "After granttap setup, authenticate Grok Build. granttap.com/connect handles coding-app approval; the private device QR stays in the GrantTap connection card." },
       { title: "Honest discovery", text: "Visible Grok Build sessions can join the same provider-neutral task catalog." },
@@ -24,6 +24,6 @@ export default function GrokBuildPage() {
       "Agent-authored scoped Mesh events are therefore not offered for Grok Build.",
       "GrantTap does not claim deterministic remote capability blocking or Claude/Codex handoff parity.",
     ]}
-    related={[{ href: "/grok-bot", label: "Grok Bot" }, { href: "/project-mesh", label: "Mesh" }, { href: "/agents/cursor", label: "Cursor Beta" }]}
+    related={[{ href: "/grok-bot", label: "Grok Bot" }, { href: "/project-mesh", label: "Mesh" }, { href: "/agents/cursor", label: "Cursor" }]}
   />;
 }

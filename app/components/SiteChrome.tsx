@@ -51,7 +51,7 @@ const guides = [
   { href: "/project-mesh", en: "Mesh", ru: "Mesh" },
   { href: "/agents/claude-code", en: "Claude Code", ru: "Claude Code" },
   { href: "/agents/codex", en: "Codex", ru: "Codex" },
-  { href: "/agents/cursor", en: "Cursor Beta", ru: "Cursor Beta" },
+  { href: "/agents/cursor", en: "Cursor", ru: "Cursor" },
 ];
 
 const legal = [

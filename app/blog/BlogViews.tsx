@@ -14,7 +14,7 @@ export function BlogIndex({ articles, locale }: { articles: BlogArticle[]; local
     <section className="blog-lead section-shell">
       <p className="blog-eyebrow">GrantTap Journal</p>
       <h1>{locale === "ru" ? "Работа агентов, которую можно понять и контролировать." : "Agent work you can understand and control."}</h1>
-      <p>{locale === "ru" ? "Идеи продукта, честное сравнение с coding-инструментами, governance, события и практические руководства. Мы отделяем действующие возможности от планов и подтверждённые факты от выводов." : "Product thinking, honest comparisons, governance, events, and practical guides. We separate working features from plans and documented facts from interpretation."}</p>
+      <p>{locale === "ru" ? "Практические идеи для работы с coding-агентами: видеть прогресс, принимать точные решения и сохранять одну Task при смене инструмента или устройства. Сравнения, Mesh, governance и проверяемые результаты." : "Field guides for running coding agents with confidence: see progress, make better decisions, and keep one Task moving across tools and devices. Explore comparisons, Mesh, governance, and verifiable results."}</p>
     </section>
     <section className="section-shell blog-feature" aria-label={locale === "ru" ? "Главная статья" : "Featured article"}>
       <a className="blog-feature-link" href={blogHref(`/blog/${first.slug}`, locale)}>
@@ -54,7 +54,7 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         <h1>{t.title}</h1>
         <p className="blog-deck">{t.summary}</p>
       </div>
-      <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption>{locale === "ru" ? "Иллюстрация создана с помощью генерации изображений; это не экран продукта, рабочий QR-код или фотография события." : "AI-generated editorial illustration; this is not a product screen, functional QR code, or event photograph."}</figcaption>}</figure>
+      <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{locale === "ru" ? "Образ статьи создан специально для этого материала. Экраны GrantTap ниже сняты отдельно на тестовых данных." : "Created for this story. GrantTap screens below are separate captures made with sample data."}</figcaption>}</figure>
       <ReadingGrid className="blog-reading-grid section-shell" railClassName="blog-article-rail"
         railLabel={locale === "ru" ? "Содержание статьи" : "Article contents"} rail={<>
         <p>{locale === "ru" ? "В статье" : "In this story"}</p>
@@ -73,9 +73,9 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         {t.sections.map((section, index) => <section id={`article-section-${index + 1}`} key={section.heading}>
           <h2>{section.heading}</h2>
           {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-          {index === 0 && article.inlineIllustration && t.illustrationCaption && <figure className="blog-illustration"><Image src={article.inlineIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption>{t.illustrationCaption}</figcaption></figure>}
-          {index === t.sections.length - 1 && article.screenshot && t.screenshotCaption && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption>{t.screenshotCaption}</figcaption></figure>}
-          {index === Math.floor(t.sections.length / 2) && article.additionalIllustration && t.additionalIllustrationCaption && <figure className="blog-illustration"><Image src={article.additionalIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption>{t.additionalIllustrationCaption}</figcaption></figure>}
+          {index === 0 && article.inlineIllustration && t.illustrationCaption && <figure className="blog-illustration"><Image src={article.inlineIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{t.illustrationCaption}</figcaption></figure>}
+          {index === t.sections.length - 1 && article.screenshot && t.screenshotCaption && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Экран GrantTap · тестовые данные" : "GrantTap screen · sample data"}</strong>{t.screenshotCaption}</figcaption></figure>}
+          {index === Math.floor(t.sections.length / 2) && article.additionalIllustration && t.additionalIllustrationCaption && <figure className="blog-illustration"><Image src={article.additionalIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{t.additionalIllustrationCaption}</figcaption></figure>}
         </section>)}
         <aside className="blog-note">{t.closing}</aside>
         {t.sources && <section className="blog-sources"><h2>{locale === "ru" ? "Источники" : "Sources"}</h2><ul>{t.sources.map(source => <li key={source.url}><a href={source.url} target={source.url.startsWith("http") ? "_blank" : undefined} rel={source.url.startsWith("http") ? "noopener noreferrer" : undefined}>{source.label} ↗</a></li>)}</ul></section>}

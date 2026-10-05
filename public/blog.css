@@ -71,6 +71,7 @@
 .blog-illustration { margin: 42px 0 0; }
 .blog-illustration img { display: block; width: 100%; height: auto; border: 1px solid #34343a; border-radius: 20px; }
 .blog-illustration figcaption { padding: 12px 4px 0; color: #a6a7ad; font-size: 13px; line-height: 1.5; }
+.blog-visual-label { display: block; margin-bottom: 5px; color: #e59a79; font-size: 11px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
 .blog-note { margin-top: 65px; padding: 26px 30px; border-left: 3px solid var(--orange); background: #1b1c21; color: var(--ink); border-radius: 0 14px 14px 0; }
 .blog-next { display: flex; flex-direction: column; gap: 10px; padding-block: 38px 70px; border-top: 1px solid var(--line); }
 .blog-next span { color: var(--muted); font-size: 13px; }

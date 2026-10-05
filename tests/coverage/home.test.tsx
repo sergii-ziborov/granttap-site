@@ -11,8 +11,10 @@ test("renders the Personal product journey and locale control", async () => {
   const providers = screen.getByRole("region", { name: "Supported providers" });
   expect(within(providers).getByRole("link", { name: "Claude Code" })).toBeTruthy();
   expect(within(providers).getByRole("link", { name: "Codex" })).toBeTruthy();
-  expect(within(providers).getByRole("link", { name: "Cursor Beta" })).toBeTruthy();
-  expect(within(providers).getByRole("link", { name: "Grok Build · Experimental" })).toBeTruthy();
+  expect(within(providers).getByRole("link", { name: "Cursor" })).toBeTruthy();
+  expect(within(providers).getByRole("link", { name: "Grok Build" })).toBeTruthy();
+  expect(screen.getAllByText("GrantTap screen · sample data").length).toBeGreaterThan(0);
+  expect(screen.getByText("Concept illustration · Mac app")).toBeTruthy();
   expect(screen.getByRole("heading", { name: "Needs You" })).toBeTruthy();
   expect(screen.getByText(/codex plugin add granttap@granttap/)).toBeTruthy();
   expect(screen.getByText(/claude plugin install granttap@granttap/)).toBeTruthy();

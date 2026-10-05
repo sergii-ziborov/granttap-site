@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "Apple Watch",
     "Claude Code",
     "Codex",
-    "Cursor Beta",
+    "Cursor",
     "Grok Build",
     "coding agent",
     "developer tools",
