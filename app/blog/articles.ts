@@ -41,7 +41,7 @@ const guides: BlogArticle[] = [
           "If the card cannot contact the helper, check that the local helper is running and the plugin uses the same protocol version. A relay being online only proves one part of the route. It does not prove that an approval hook, background sync, or this phone is ready.",
         ] },
         { heading: "Finish on the phone", paragraphs: [
-          "In GrantTap on iPhone or iPad, open Settings → Connections → Add a device (Scan QR). Scan the code shown by the computer and confirm the computer identity on both sides. The computer then appears in Connections. Repeat the same process for each additional Mac or PC; scanning a second computer adds a link rather than replacing the first.",
+          "In GrantTap on iPhone or iPad, open Devices → Add a device (Scan QR). Scan the code shown by the computer and confirm the computer identity on both sides. The computer then appears in Connections. Repeat the same process for each additional Mac or PC; scanning a second computer adds a link rather than replacing the first.",
           "An already trusted phone may show an expiring QR for another controller in its Settings. That joins another iPhone or iPad to the device network. It is separate from inviting a person into a particular Mesh, which has its own role and access choices.",
         ] },
         { heading: "Check the whole path", paragraphs: [
@@ -71,7 +71,7 @@ const guides: BlogArticle[] = [
           "Если карточка не видит helper, проверьте, что локальный процесс запущен и версии протокола совпадают. Online relay подтверждает только часть маршрута: это ещё не доказательство работы approval hooks, фоновой синхронизации и связи с телефоном.",
         ] },
         { heading: "Завершите на телефоне", paragraphs: [
-          "В GrantTap на iPhone или iPad откройте Settings → Connections → Add a device (Scan QR). Отсканируйте код с компьютера и подтвердите его идентичность с обеих сторон. После этого компьютер появится в Connections. Для каждого следующего Mac или PC повторите привязку: новая связь не заменит старую.",
+          "В GrantTap на iPhone или iPad откройте Devices → Add a device (Scan QR). Отсканируйте код с компьютера и подтвердите его идентичность с обеих сторон. После этого компьютер появится в Connections. Для каждого следующего Mac или PC повторите привязку: новая связь не заменит старую.",
           "Уже доверенный телефон может показать временный QR для второго управляющего телефона в Settings. Это добавление iPhone или iPad в сеть устройств. Приглашение человека в конкретный Mesh с ролью и правами находится отдельно.",
         ] },
         { heading: "Проверьте весь путь", paragraphs: [

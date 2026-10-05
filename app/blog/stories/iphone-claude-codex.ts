@@ -35,7 +35,7 @@ Open the GrantTap connection card in the coding app after setup. The card can re
 
 ## Pair the phone through the device flow
 
-In GrantTap on iPhone, open Settings, Connections, and Add a device to scan the computer's short-lived QR. Confirm that both sides name the intended computer. Never paste the QR into a prompt, support chat, or issue tracker. The pairing QR authorizes a trusted controller link; a Project Mesh invite instead adds a person or device to a collaboration scope. Conflating the two would make access difficult to reason about. The [pairing walkthrough](/blog/connect-iphone-with-qr) explains the distinction in detail.
+In GrantTap on iPhone, open Devices and Add a device to scan the computer's short-lived QR. Confirm that both sides name the intended computer. Never paste the QR into a prompt, support chat, or issue tracker. The pairing QR authorizes a trusted controller link; a Project Mesh invite instead adds a person or device to a collaboration scope. Conflating the two would make access difficult to reason about. The [pairing walkthrough](/blog/connect-iphone-with-qr) explains the distinction in detail.
 
 After pairing, look for the computer in Connections and inspect its current readiness. A saved link means the devices have a relationship, not that Claude Code, Codex, a relay, every hook, and every approval path are currently healthy. Create a harmless test Task and ask the local agent to report a simple progress event. Confirm that the iPhone shows the right provider, computer, workspace, and delivery state. If one part is missing, check that part specifically. Do not infer a successful command from a task card that merely received a message.
 
@@ -84,7 +84,7 @@ After the first end-to-end Task, verify the source tree and the test result on t
 
 ## Привяжите iPhone через отдельный маршрут устройств
 
-На iPhone в GrantTap откройте Settings, Connections и Add a device, затем отсканируйте временный QR с компьютера. Подтвердите с обеих сторон, что указан нужный компьютер. Не вставляйте QR в prompt, переписку с поддержкой или issue tracker. Этот код добавляет доверенную управляющую связь; приглашение в Project Mesh открывает доступ к области совместной работы. Смешение двух действий делает права непрозрачными. [Инструкция по привязке](/blog/connect-iphone-with-qr) подробно объясняет разницу.
+На iPhone в GrantTap откройте Devices и Add a device, затем отсканируйте временный QR с компьютера. Подтвердите с обеих сторон, что указан нужный компьютер. Не вставляйте QR в prompt, переписку с поддержкой или issue tracker. Этот код добавляет доверенную управляющую связь; приглашение в Project Mesh открывает доступ к области совместной работы. Смешение двух действий делает права непрозрачными. [Инструкция по привязке](/blog/connect-iphone-with-qr) подробно объясняет разницу.
 
 После сканирования найдите компьютер в Connections и проверьте текущую готовность. Сохранённая связь означает отношение между устройствами, а не одновременную исправность Claude Code, Codex, relay, каждого hook и каждого маршрута approval. Создайте безопасную тестовую Task и попросите локального агента отправить простой progress event. Убедитесь, что iPhone показывает верного провайдера, компьютер, workspace и статус доставки. Если части данных нет, проверяйте именно её. Карточка Task, получившая сообщение, ещё не доказывает успешную команду.
 

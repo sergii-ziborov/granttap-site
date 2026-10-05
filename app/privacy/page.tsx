@@ -56,7 +56,7 @@ export default function PrivacyPage() {
           heading: "Retention, deletion, and your choices",
           paragraphs: [
             "Pairing blobs expire after 15 minutes and are single-use. Encrypted offline queues are bounded and expire. Local data remains until you clear it, unlink a computer, reset pairing, or remove the app/helper.",
-            "You may decline optional system permissions. Account devices can be revoked and the account deleted on the account page or from the passkey connection screen in the Apple app. Deleting the account does not remove QR pairings stored on your own devices or cancel an Apple subscription. Depending on applicable law, you may request access, correction, deletion, restriction, portability, or objection for data GrantTap can identify and control. The relay cannot decrypt task payloads or search their readable content by account.",
+            "You may decline optional system permissions. Account devices can be revoked and the account deleted on the account page or from the Devices screen in the Apple app. Deleting the account does not remove QR pairings stored on your own devices or cancel an Apple subscription. Depending on applicable law, you may request access, correction, deletion, restriction, portability, or objection for data GrantTap can identify and control. The relay cannot decrypt task payloads or search their readable content by account.",
           ],
           links: [
             { label: "Manage or delete data", href: "/data-rights" },

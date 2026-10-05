@@ -28,7 +28,7 @@ test("passkey sign-in shows the account and explains app-based recovery", async 
   await userEvent.click(await screen.findByRole("button", { name: "Sign in with passkey" }));
   expect(passkeys.get).toHaveBeenCalledWith({ optionsJSON: { challenge: "challenge" } });
   await waitFor(() => expect(screen.getByText(/account-123/)).toBeTruthy());
-  expect(screen.getByText(/The app securely recovers available connections/)).toBeTruthy();
+  expect(screen.getByText(/Your Account Mesh is ready\. No computers have joined yet/)).toBeTruthy();
   await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(4));
 });
 
@@ -77,4 +77,23 @@ test("signed-in account lists computers and can revoke access", async () => {
   expect(fetcher).toHaveBeenCalledWith(`/api/account/machines/${machineId}`, {
     method: "DELETE", credentials: "same-origin",
   });
+});
+
+test("account device list continues across pages without losing machines", async () => {
+  const firstPage = Array.from({ length: 100 }, (_, index) => ({
+    id: `machine-${index + 1}`, name: `Machine ${index + 1}`, createdAt: index, lastSeenAt: null,
+  }));
+  const fetcher = vi.spyOn(globalThis, "fetch")
+    .mockResolvedValueOnce(Response.json({ accountId: "owner" }))
+    .mockResolvedValueOnce(Response.json({ machines: firstPage, nextCursor: "123.machine-100" }))
+    .mockResolvedValueOnce(Response.json({ machines: [
+      { id: "machine-101", name: "Machine 101", createdAt: 101, lastSeenAt: null },
+    ], nextCursor: null }));
+
+  render(<AccountView />);
+  expect(await screen.findByText("Machine 101")).toBeTruthy();
+  expect(screen.getByText("Machine 1")).toBeTruthy();
+  expect(fetcher).toHaveBeenCalledWith(
+    "/api/account/machines?pageSize=100&cursor=123.machine-100", { credentials: "same-origin" },
+  );
 });

@@ -14,15 +14,15 @@ const base = "/api/account/";
 const copy = {
   en: {
     title: "Your GrantTap account",
-    lead: "One Personal account can hold many Projects and Meshes. Sign in with the same passkey on each device to return to that account. A QR-paired computer joins it when you sign in from the iPhone connection screen; each Task keeps its computer route.",
+    lead: "Your Account Mesh exists even before any computer joins. It can hold many Projects and their Meshes. Sign in with the same passkey on iPhone and in GrantTap MCP to link devices to this account; each Task keeps its computer route.",
     create: "Create an account with passkey",
     signIn: "Sign in with passkey",
     createNote: "Already have an account? Sign in first. Creating another account will not find your existing computers.",
     account: "Account ID",
-    noComputer: "Open Add a device on iPhone to scan a QR or sign in with your passkey. The app securely recovers available connections; this website cannot read pairing keys.",
+    noComputer: "On iPhone, open Devices to sign in to your Account Mesh. Add a device by QR only when you want a direct computer link. This website cannot read pairing keys.",
     computers: "Connected computers",
     disconnect: "Disconnect",
-    none: "No computers are linked yet. Sign in with the same passkey on a Mac or its GrantTap MCP connection page, or pair a computer by QR on iPhone and sign in there.",
+    none: "Your Account Mesh is ready. No computers have joined yet, so chats are empty. Sign in with the same passkey in GrantTap MCP to add one whenever you need it.",
     loading: "Loading computers…",
     signOut: "Sign out",
     delete: "Delete account",
@@ -33,15 +33,15 @@ const copy = {
   },
   ru: {
     title: "Ваш аккаунт GrantTap",
-    lead: "Один персональный аккаунт объединяет множество проектов и Mesh. Войдите с тем же passkey на каждом устройстве, чтобы вернуться в аккаунт. Компьютер, подключённый по QR, добавится в него после входа на iPhone; каждая задача сохранит маршрут к своему компьютеру.",
+    lead: "Mesh аккаунта существует ещё до подключения компьютеров. Он может содержать множество проектов и их Mesh. Войдите с тем же passkey на iPhone и в GrantTap MCP, чтобы связать устройства с аккаунтом; у каждой задачи остаётся свой маршрут к компьютеру.",
     create: "Создать аккаунт с passkey",
     signIn: "Войти по passkey",
     createNote: "Уже есть аккаунт? Сначала войдите. Новый аккаунт не найдёт ваши прежние компьютеры.",
     account: "ID аккаунта",
-    noComputer: "На iPhone откройте «Добавить устройство»: сканируйте QR или войдите по passkey. Приложение безопасно восстановит доступные подключения; сайт не видит ключей подключения.",
+    noComputer: "На iPhone откройте «Устройства», чтобы войти в Mesh аккаунта. Сканируйте QR только для прямого подключения компьютера. Сайт не видит ключей подключения.",
     computers: "Подключённые компьютеры",
     disconnect: "Отключить",
-    none: "К аккаунту пока не привязаны компьютеры. Войдите с тем же passkey на Mac или странице подключения его GrantTap MCP либо подключите компьютер по QR на iPhone и войдите там.",
+    none: "Mesh аккаунта готов. Компьютеров пока нет, поэтому чаты пусты. Когда понадобится, войдите с тем же passkey в GrantTap MCP, чтобы добавить компьютер.",
     loading: "Загрузка компьютеров…",
     signOut: "Выйти",
     delete: "Удалить аккаунт",
@@ -51,6 +51,29 @@ const copy = {
     home: "Главная GrantTap",
   },
 };
+
+async function loadMachines(): Promise<Machine[]> {
+  const all: Machine[] = [];
+  const seen = new Set<string>();
+  const seenCursors = new Set<string>();
+  let cursor: string | undefined;
+  for (let page = 0; page < 100; page += 1) {
+    const query = "machines?pageSize=100" + (cursor ? "&cursor=" + encodeURIComponent(cursor) : "");
+    const response = await fetch(base + query, { credentials: "same-origin" });
+    if (!response.ok) throw new Error("Machines unavailable");
+    const result = await response.json() as { machines: Machine[]; nextCursor?: string };
+    for (const machine of result.machines) {
+      if (seen.has(machine.id)) continue;
+      seen.add(machine.id);
+      all.push(machine);
+    }
+    if (!result.nextCursor) return all;
+    if (seenCursors.has(result.nextCursor)) throw new Error("Repeated machine cursor");
+    seenCursors.add(result.nextCursor);
+    cursor = result.nextCursor;
+  }
+  throw new Error("Machine list exceeds pagination limit");
+}
 
 async function post<T>(path: string, body?: unknown): Promise<T> {
   const response = await fetch(base + path, {
@@ -83,12 +106,8 @@ export function AccountView() {
   useEffect(() => {
     if (!accountId) return;
     let active = true;
-    void fetch(base + "machines", { credentials: "same-origin" })
-      .then(async response => {
-        if (!response.ok) throw new Error("Machines unavailable");
-        return await response.json() as { machines: Machine[] };
-      })
-      .then(result => { if (active) setMachines(result.machines); })
+    void loadMachines()
+      .then(result => { if (active) setMachines(result); })
       .catch(() => { if (active) setError(copy[locale].failed); });
     return () => { active = false; };
   }, [accountId, locale]);
