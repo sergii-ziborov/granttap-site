@@ -70,9 +70,19 @@ describe("account machine HTTP boundary", () => {
     const machine = await created?.json() as { id: string; machineToken: string };
     expect(await (await call("machine/identity", "GET", undefined, machine.machineToken))?.json())
       .toEqual({ accountId: "owner", machineId: machine.id });
+    expect((await call("machine/self", "PATCH", { name: "Serhii’s MacBook Pro" },
+      machine.machineToken))?.status).toBe(200);
+    expect(await (await call("machines"))?.json()).toMatchObject({
+      machines: [{ id: machine.id, name: "Serhii’s MacBook Pro" }],
+    });
+    expect((await call("machine/self", "PATCH", { name: "Wrong" }, "bad"))?.status).toBe(401);
+    expect((await call("machine/self", "PATCH", { name: "\n" },
+      machine.machineToken))?.status).toBe(400);
     expect((await call("machine/identity", "GET", undefined, "bad"))?.status).toBe(401);
     const list = await call("machines");
-    expect(await list?.json()).toMatchObject({ machines: [{ id: machine.id, name: "Mac" }] });
+    expect(await list?.json()).toMatchObject({
+      machines: [{ id: machine.id, name: "Serhii’s MacBook Pro" }],
+    });
     expect(JSON.stringify(await (await call("machines"))?.json())).not.toContain(machine.machineToken);
     expect((await call(`machines/${machine.id}/requests`, "POST", { phonePublicKey }, "bad"))?.status).toBe(401);
     expect((await call(`machines/${machine.id}/requests`, "POST", { phonePublicKey: "invalid" }))?.status).toBe(400);

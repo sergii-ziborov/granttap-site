@@ -35,7 +35,20 @@ These are captures of the GrantTap app using deterministic sample work; no
 private task, repository, pairing key, or customer data appears in them. The
 [product page](https://granttap.com) also shows Mesh and Apple Watch screens.
 
-## One Mesh for connected work
+## Account Mesh and Project Mesh
+
+A passkey creates or joins an Account Mesh on the relay before any computer is
+connected. Its **Devices** view lists computers by their user-assigned names;
+one account can contain many computers and Project Meshes. The same passkey in
+the Mac app or MCP connection card joins the existing account. Each Task keeps
+its own chosen computer route, so joining an account does not silently pick a
+machine to execute work.
+
+QR remains a direct device-pairing option without an account. The Mac App Store
+app needs the separately installed local helper to show agent work; installing
+the app alone still lets you join the Account Mesh.
+
+## One Project Mesh for connected work
 
 A Mesh brings a project's repositories, people, computers, and access rules
 into one scope. A **Task** holds one goal and its visible history. An
@@ -69,17 +82,17 @@ granttap setup
 
 ## Connect your devices
 
-1. Run `granttap setup` after installing the plugin. It connects the local
-   helper to supported coding tools.
-2. Open the GrantTap connection card in your coding app and choose **Add a
-   device**. Scan its one-time QR in the GrantTap iPhone or iPad app.
-3. Open Now to see active work and decisions. Use **Add another device** or
-   **Reconnect** from the same card when needed.
+1. Open **Devices** in the iPhone, iPad, or Mac app and sign in with a passkey.
+   This opens the Account Mesh even if there are no computers yet.
+2. Install the local helper and run `granttap setup`. In the MCP connection
+   card, use the same passkey to link that computer to your Account Mesh.
+3. Open Now to see active work and decisions. For a direct device link instead,
+   choose **Add a device** in the connection card and scan its one-time QR.
 
 A GrantTap account passkey is optional. QR pairing works without an account;
-the MCP connection card can link this Mac to the account through a one-time
-passkey request, and passkey sign-in can approve a coding-app connection on a Mac
-with the local bridge. The two steps have different purposes. [Connection
+passkey sign-in can also approve a coding-app connection on a Mac with the local
+bridge. Joining the Account Mesh and approving a coding app are different
+steps. [Connection
 help](https://granttap.com/support) walks through both.
 
 ## Explore GrantTap

@@ -17,13 +17,18 @@ function hash(token: string): string {
   return createHash("sha256").update(token).digest("hex");
 }
 
+function validName(value: string): string | null {
+  const name = value.trim();
+  return name && name.length <= 80 && !/[\x00-\x1f\x7f]/.test(name) ? name : null;
+}
+
 /** GrantTap account authority is an opt-in recovery bridge; QR remains independent. */
 export class AccountMachines {
   constructor(private readonly db: D1Database, private readonly now: () => number = Date.now) {}
 
   async register(accountId: string, displayName: string) {
-    const name = displayName.trim();
-    if (!name || name.length > 80 || /[\x00-\x1f\x7f]/.test(name)) return null;
+    const name = validName(displayName);
+    if (!name) return null;
     const id = randomUUID();
     const machineToken = randomBytes(32).toString("base64url");
     try {
@@ -88,6 +93,17 @@ export class AccountMachines {
   async revokeSelf(machineToken: string): Promise<boolean> {
     const machine = await this.machine(machineToken);
     return machine ? this.revoke(machine.account_id, machine.id) : false;
+  }
+
+  async renameSelf(machineToken: string, displayName: string): Promise<boolean | null> {
+    const name = validName(displayName);
+    if (!name) return null;
+    if (!TOKEN.test(machineToken)) return false;
+    const result = await this.db.prepare(`
+      UPDATE account_machines SET display_name=?
+      WHERE token_hash=? AND revoked_at IS NULL
+    `).bind(name, hash(machineToken)).run();
+    return result.meta.changes === 1;
   }
 
   async open(accountId: string, machineId: string, phonePublicKey: string) {

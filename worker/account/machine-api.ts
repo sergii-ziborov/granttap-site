@@ -27,6 +27,14 @@ export async function routeMachineApi(
       return await machines.revokeSelf(token)
         ? json(200, { revoked: true }) : json(401, { error: "Machine access revoked." });
     }
+    if (action === "machine/self" && request.method === "PATCH") {
+      const body = await boundedJSON(request);
+      if (typeof body?.name !== "string") return json(400, { error: "Invalid computer name." });
+      const renamed = await machines.renameSelf(token, body.name);
+      return renamed === null ? json(400, { error: "Invalid computer name." })
+        : renamed ? json(200, { renamed: true })
+          : json(401, { error: "Machine access revoked." });
+    }
     if (action === "machine/requests" && request.method === "GET") {
       const requests = await machines.pending(token);
       return requests ? json(200, { requests }) : json(401, { error: "Machine access revoked." });

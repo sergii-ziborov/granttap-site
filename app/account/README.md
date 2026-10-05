@@ -2,9 +2,12 @@
 
 `AccountView.tsx` is the browser passkey entry point. It uses the account API
 served by Hetzner in production and creates no local pairing credential. The
-iPhone app pairs computers by QR and can then register them with this account
-for recovery from its Devices screen. The browser lists and revokes
-account links; encrypted recovery offers go directly to the requesting phone.
+iPhone, iPad, and Mac apps can create or join an Account Mesh without any
+computer. Their Devices screens show its linked computers. A local MCP can use
+the same passkey to attach an existing computer; the machine token can update
+its own display name without creating another account entry. The browser lists
+and revokes account links; encrypted recovery offers go directly to the
+requesting phone. QR pairing remains a separate direct-device path.
 This page remains outside the public product-navigation sitemap.
 
 The browser receives an HttpOnly session cookie; the account API omits bearer
