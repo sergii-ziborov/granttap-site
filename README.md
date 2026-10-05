@@ -97,7 +97,7 @@ help](https://granttap.com/support) walks through both.
   tiers and the status of the Mac release.
 
 The iPhone app is currently available through TestFlight by invitation while
-GrantTap 1.0 awaits App Review. A one-time Mac license is being prepared; its
+GrantTap 1.0 addresses App Review feedback. A one-time Mac license is being prepared; its
 price and availability are determined by the App Store purchase sheet. The
 website distinguishes those release states from working product paths.
 

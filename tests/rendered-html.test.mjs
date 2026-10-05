@@ -45,7 +45,8 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /granttap setup/);
   assert.match(html, /Native E2EE/);
   assert.match(html, /TestFlight by invitation/);
-  assert.match(html, /GrantTap 1\.0 is waiting for App Review/);
+  assert.match(html, /GrantTap 1\.0 is available on TestFlight by invitation/);
+  assert.match(html, /we are addressing review feedback/);
   assert.match(html, /iphone-command-center\.png/);
   assert.match(html, /iphone-chat\.png/);
   assert.match(html, /iphone-mcp-usage\.png/);

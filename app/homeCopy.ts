@@ -100,8 +100,8 @@ export const copy = {
     pricingText: "$1.99 for one computer, $3.99 for five, $5.99 for ten. Unlimited agents on each. Cancel through Apple at any time.",
     pricingAction: "Pricing and terms",
     releaseKicker: "Availability",
-    releaseTitle: "Submitted to the App Store.",
-    releaseText: "GrantTap 1.0 is waiting for App Review. TestFlight access is available by invitation while Apple reviews the release.",
+    releaseTitle: "Preparing an App Store review update.",
+    releaseText: "GrantTap 1.0 is available on TestFlight by invitation. The App Store version is not approved yet; we are addressing review feedback.",
     tagline: "See what your coding agents are doing. Step in when they need you.",
   },
   ru: {
@@ -205,8 +205,8 @@ export const copy = {
     pricingText: "$1,99 за один компьютер, $3,99 за пять, $5,99 за десять. Агентов на каждом — без ограничений. Отмена через Apple в любой момент.",
     pricingAction: "Цена и условия",
     releaseKicker: "Доступность",
-    releaseTitle: "Отправлено в App Store.",
-    releaseText: "GrantTap 1.0 ожидает App Review. Пока Apple проверяет релиз, доступ к TestFlight предоставляется по приглашению.",
+    releaseTitle: "Готовим обновление для App Review.",
+    releaseText: "GrantTap 1.0 доступен в TestFlight по приглашению. Версия для App Store ещё не одобрена; мы устраняем замечания ревью.",
     tagline: "Смотрите, что делают coding agents. Подключайтесь, когда вы нужны.",
   },
 } as const;
