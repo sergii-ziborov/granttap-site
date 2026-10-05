@@ -56,7 +56,7 @@ export const copy = {
     howKicker: "How it works",
     howTitle: "One secure path back to the same local task.",
     steps: [
-      ["Connect", "Run granttap setup. Pair iPhone or iPad with a one-time QR, or link this Mac to your account with Connect with passkey in the MCP card. A passkey can also approve coding-app access. Passkey sign-in alone does not pair a phone."],
+      ["Connect", "Run granttap setup. Pair iPhone or iPad with a one-time QR, or link this Mac to your Personal account with Connect with passkey in the MCP card. When the Mac is online, the same passkey on iPhone securely recovers its connection. A passkey can also approve coding-app access."],
       ["Decide", "Allow, deny, answer, or retry when the exact session asks for you."],
       ["Continue", "Open the visible timeline and send the next turn with voice, photos, or files."],
     ],
@@ -161,7 +161,7 @@ export const copy = {
     howKicker: "Как работает",
     howTitle: "Один защищённый путь обратно в ту же локальную задачу.",
     steps: [
-      ["Подключите", "Выполните granttap setup. iPhone или iPad подключается по одноразовому QR. Кнопка Connect with passkey в MCP-карточке привязывает Mac к аккаунту; passkey также может подтвердить доступ coding app. Сам вход по passkey телефон не подключает."],
+      ["Подключите", "Выполните granttap setup. iPhone или iPad подключается по одноразовому QR. Кнопка Connect with passkey в MCP-карточке привязывает Mac к персональному аккаунту; тот же passkey на iPhone безопасно восстановит подключение к работающему Mac. Passkey также может подтвердить доступ coding app."],
       ["Решите", "Разрешите, запретите, ответьте или повторите доставку для точной session."],
       ["Продолжите", "Откройте timeline и отправьте следующий ход голосом, с фото или файлом."],
     ],
