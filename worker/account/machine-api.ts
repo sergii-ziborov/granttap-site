@@ -44,7 +44,16 @@ export async function routeMachineApi(
   const accountId = await auth.accountForToken(sessionToken(request));
   if (!accountId) return json(401, { error: "Sign in required." });
   if (action === "machines") {
-    if (request.method === "GET") return json(200, { machines: await machines.list(accountId) });
+    if (request.method === "GET") {
+      const params = new URL(request.url).searchParams;
+      if (params.has("pageSize") || params.has("cursor")) {
+        const text = params.get("pageSize") ?? "100";
+        const size = /^[1-9]\d?$|^100$/.test(text) ? Number(text) : 0;
+        const page = await machines.listPage(accountId, params.get("cursor") ?? undefined, size);
+        return page ? json(200, page) : json(400, { error: "Invalid machine page." });
+      }
+      return json(200, { machines: await machines.list(accountId) });
+    }
     if (request.method === "POST") {
       if (request.headers.has("origin") || request.headers.has("sec-fetch-site")) {
         return json(403, { error: "Register computers from GrantTap for Mac." });

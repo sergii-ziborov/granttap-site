@@ -81,4 +81,27 @@ describe("account machine access", () => {
     expect(await machines.pending(linked[0]!.machineToken)).toBeNull();
     expect(await machines.status("owner", request!.id)).toBeNull();
   });
+
+  it("pages a large account without missing machines that share a timestamp", async () => {
+    const db = new SqliteD1();
+    const store = new D1AccountStore(db as unknown as D1Database);
+    await store.createAccount("owner", { id: "key", accountId: "owner",
+      publicKey: new Uint8Array([1]), counter: 0 });
+    const machines = new AccountMachines(db as unknown as D1Database, () => 1_000);
+    const registered = await Promise.all(Array.from({ length: 205 }, (_, index) =>
+      machines.register("owner", `Mac ${index}`)));
+    expect(registered.every(Boolean)).toBe(true);
+    const first = await machines.listPage("owner", undefined, 100);
+    if (!first?.nextCursor) throw new Error("First page did not continue.");
+    const second = await machines.listPage("owner", first.nextCursor, 100);
+    if (!second?.nextCursor) throw new Error("Second page did not continue.");
+    const third = await machines.listPage("owner", second.nextCursor, 100);
+    if (!third) throw new Error("Final page was unavailable.");
+    expect([first.machines.length, second.machines.length, third.machines.length])
+      .toEqual([100, 100, 5]);
+    expect(third.nextCursor).toBeNull();
+    const ids = [...first.machines, ...second.machines, ...third.machines].map(row => row.id);
+    expect(new Set(ids).size).toBe(205);
+    expect(await machines.listPage("owner", "bad cursor", 100)).toBeNull();
+  });
 });

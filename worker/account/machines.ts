@@ -43,6 +43,31 @@ export class AccountMachines {
       createdAt: row.created_at, lastSeenAt: row.last_seen_at }));
   }
 
+  async listPage(accountId: string, cursor?: string, limit = 100) {
+    if (!Number.isInteger(limit) || limit < 1 || limit > 100) return null;
+    const parsed = cursor?.match(/^(\d+)\.([0-9a-f-]{36})$/);
+    if (cursor && !parsed) return null;
+    const rows = parsed
+      ? await this.db.prepare(`
+        SELECT id,account_id,display_name,created_at,last_seen_at FROM account_machines
+        WHERE account_id=? AND revoked_at IS NULL
+          AND (created_at<? OR (created_at=? AND id<?))
+        ORDER BY created_at DESC,id DESC LIMIT ?
+      `).bind(accountId, Number(parsed[1]), Number(parsed[1]), parsed[2], limit + 1).all<MachineRow>()
+      : await this.db.prepare(`
+        SELECT id,account_id,display_name,created_at,last_seen_at FROM account_machines
+        WHERE account_id=? AND revoked_at IS NULL
+        ORDER BY created_at DESC,id DESC LIMIT ?
+      `).bind(accountId, limit + 1).all<MachineRow>();
+    const page = rows.results.slice(0, limit);
+    const last = page.at(-1);
+    return {
+      machines: page.map(row => ({ id: row.id, name: row.display_name,
+        createdAt: row.created_at, lastSeenAt: row.last_seen_at })),
+      nextCursor: rows.results.length > limit && last ? `${last.created_at}.${last.id}` : null,
+    };
+  }
+
   async owner(machineId: string): Promise<string | null> {
     const row = await this.db.prepare(
       "SELECT account_id FROM account_machines WHERE id=? AND revoked_at IS NULL",

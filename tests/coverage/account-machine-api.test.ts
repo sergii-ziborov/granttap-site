@@ -12,6 +12,36 @@ const base = "https://granttap.com/api/account/";
 const phonePublicKey = Buffer.alloc(32, 1).toString("base64url");
 
 describe("account machine HTTP boundary", () => {
+  it("exposes bounded machine pages to a signed-in account", async () => {
+    const db = new SqliteD1();
+    const store = new D1AccountStore(db as unknown as D1Database);
+    await store.createAccount("owner", { id: "key", accountId: "owner",
+      publicKey: new Uint8Array([1]), counter: 0 });
+    const token = Buffer.alloc(32, 2).toString("base64url");
+    const digest = Buffer.from(await crypto.subtle.digest("SHA-256",
+      new TextEncoder().encode(token))).toString("hex");
+    await store.saveSession(digest, "owner", Date.now() + 60_000);
+    const auth = new AccountAuth(store);
+    const machines = new AccountMachines(db as unknown as D1Database, () => 1_000);
+    await machines.register("owner", "First");
+    await machines.register("owner", "Second");
+    const request = (query: string) => routeMachineApi(new Request(base + `machines${query}`, {
+      headers: { authorization: `Bearer ${token}` },
+    }), auth, machines);
+    const first = await (await request("?pageSize=1"))?.json() as {
+      machines: { id: string }[]; nextCursor: string;
+    };
+    const second = await (await request(`?pageSize=1&cursor=${first.nextCursor}`))?.json() as {
+      machines: { id: string }[]; nextCursor: string | null;
+    };
+    expect(first.machines).toHaveLength(1);
+    expect(second.machines).toHaveLength(1);
+    expect(first.machines[0].id).not.toBe(second.machines[0].id);
+    expect(second.nextCursor).toBeNull();
+    expect((await request("?pageSize=101"))?.status).toBe(400);
+    expect((await request("?pageSize=1&cursor=bad"))?.status).toBe(400);
+  });
+
   it("lists and revokes account machines and delivers a sealed offer once", async () => {
     const db = new SqliteD1();
     const store = new D1AccountStore(db as unknown as D1Database);
