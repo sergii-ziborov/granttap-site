@@ -40,7 +40,7 @@ test("every article renders its own sections and sources in both languages", () 
 
 test("each editorial story includes a real GrantTap interface with bilingual context", () => {
   const editorial = articles.filter(article => article.date >= "2026-10-03");
-  expect(editorial).toHaveLength(10);
+  expect(editorial).toHaveLength(15);
   for (const article of editorial) {
     expect(article.screenshot).toMatch(/^\/product\/iphone-[\w-]+\.png$/);
     expect(existsSync(join(process.cwd(), "public", article.screenshot!))).toBe(true);
@@ -49,8 +49,8 @@ test("each editorial story includes a real GrantTap interface with bilingual con
   }
 });
 
-test("all fifteen bilingual stories have at least 1000 body words and two labeled inline images", () => {
-  expect(articles).toHaveLength(15);
+test("all twenty bilingual stories have at least 1000 body words and two labeled inline images", () => {
+  expect(articles).toHaveLength(20);
   for (const article of articles) {
     expect(article.generatedCover).toBe(true);
     for (const locale of ["en", "ru"] as const) {
@@ -73,7 +73,7 @@ test("article routes and metadata resolve exact slugs and reject unknown ones", 
   expect(getArticle("missing")).toBeUndefined();
   const slug = "connect-iphone-with-qr";
   const metadata = await generateMetadata({ params: Promise.resolve({ slug }) });
-  expect(metadata.alternates).toEqual({ canonical: `/blog/${slug}` });
+  expect(metadata.alternates).toMatchObject({ canonical: `/blog/${slug}`, languages: { en: `/blog/${slug}`, ru: `/blog/${slug}?lang=ru` } });
   expect((await generateMetadata({ params: Promise.resolve({ slug }), searchParams: Promise.resolve({ lang: "ru" }) })).title).toBe(getArticle(slug)?.ru.title);
   expect((await indexMetadata({ searchParams: Promise.resolve({ lang: "ru" }) })).title).toBe("Журнал");
   expect(await generateMetadata({ params: Promise.resolve({ slug: "missing" }) })).toEqual({});
@@ -91,5 +91,17 @@ test("journal availability follows the Jerusalem calendar day", () => {
   expect(first).toHaveLength(10);
   expect(publishedArticles(new Date("2026-10-04T12:00:00Z"))).toHaveLength(13);
   expect(publishedArticles(new Date("2026-10-04T20:59:59Z"))).toHaveLength(13);
-  expect(publishedArticles(new Date("2026-10-04T21:00:00Z"))).toHaveLength(15);
+  expect(publishedArticles(new Date("2026-10-04T21:00:00Z"))).toHaveLength(20);
+});
+
+test("new stories link to related guides and their source reports", async () => {
+  const article = getArticle("microsoft-agent-365-mcp-tool-governance-september-2026")!;
+  render(<BlogArticleView article={article} articles={articles} locale="en" />);
+  expect(screen.getByRole("link", { name: "GrantTap capability status guide" }).getAttribute("href")).toBe("/blog/mcp-skills-and-governance-status");
+  expect(screen.getByRole("region", { name: "Related reading" })).toBeTruthy();
+  expect(screen.getByRole("link", { name: /What's new in Agent 365/ })).toBeTruthy();
+  const page = await ArticlePage({ params: Promise.resolve({ slug: article.slug }), searchParams: Promise.resolve({ lang: "ru" }) });
+  const view = render(page);
+  expect(view.container.querySelector('script[type="application/ld+json"]')?.textContent).toContain('"@type":"BlogPosting"');
+  expect((await generateMetadata({ params: Promise.resolve({ slug: article.slug }), searchParams: Promise.resolve({ lang: "ru" }) })).alternates?.canonical).toBe(`/blog/${article.slug}?lang=ru`);
 });

@@ -2,6 +2,8 @@ import Image from "next/image";
 import { ReadingGrid } from "../components/ReadingGrid";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
 import type { BlogArticle, BlogLocale } from "./articleTypes";
+import { inlineStoryLinks } from "./InlineStoryLinks";
+import { relatedArticles } from "./related";
 
 function blogHref(path: string, locale: BlogLocale) {
   return locale === "ru" ? `${path}?lang=ru` : path;
@@ -41,6 +43,7 @@ export function BlogIndex({ articles, locale }: { articles: BlogArticle[]; local
 export function BlogArticleView({ article, articles, locale }: { article: BlogArticle; articles: BlogArticle[]; locale: BlogLocale }) {
   const t = article[locale];
   const next = articles[(articles.findIndex(item => item.slug === article.slug) + 1) % articles.length];
+  const related = relatedArticles(article, articles);
   return <main className="blog-shell" lang={locale}>
     <SiteHeader locale={locale} active="blog" languageControl={<LocaleLinks locale={locale} path={`/blog/${article.slug}`} />} />
     <article className="blog-article">
@@ -61,7 +64,7 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         <nav>{t.sections.map((section, index) => <a href={`#article-section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span>{section.heading}</a>)}</nav>
         <small>{article.minutes} {locale === "ru" ? "мин чтения" : "min read"} · {article.date}</small>
       </>}><div className="blog-prose">
-        {t.intro.map(paragraph => <p className="blog-intro" key={paragraph}>{paragraph}</p>)}
+        {t.intro.map(paragraph => <p className="blog-intro" key={paragraph}>{inlineStoryLinks(paragraph, locale)}</p>)}
         {t.graphic && <figure className="blog-graphic">
           <figcaption><strong>{t.graphic.title}</strong><span>{t.graphic.caption}</span></figcaption>
           <div className="blog-graphic-rows">{t.graphic.rows.map((row, index) => <div className="blog-graphic-row" key={row.label}>
@@ -72,7 +75,7 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         </figure>}
         {t.sections.map((section, index) => <section id={`article-section-${index + 1}`} key={section.heading}>
           <h2>{section.heading}</h2>
-          {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+          {section.paragraphs.map(paragraph => <p key={paragraph}>{inlineStoryLinks(paragraph, locale)}</p>)}
           {index === 0 && article.inlineIllustration && t.illustrationCaption && <figure className="blog-illustration"><Image src={article.inlineIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{t.illustrationCaption}</figcaption></figure>}
           {index === t.sections.length - 1 && article.screenshot && t.screenshotCaption && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Экран GrantTap · тестовые данные" : "GrantTap screen · sample data"}</strong>{t.screenshotCaption}</figcaption></figure>}
           {index === Math.floor(t.sections.length / 2) && article.additionalIllustration && t.additionalIllustrationCaption && <figure className="blog-illustration"><Image src={article.additionalIllustration} alt="" width={1400} height={788} loading="lazy" unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{t.additionalIllustrationCaption}</figcaption></figure>}
@@ -81,6 +84,12 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         {t.sources && <section className="blog-sources"><h2>{locale === "ru" ? "Источники" : "Sources"}</h2><ul>{t.sources.map(source => <li key={source.url}><a href={source.url} target={source.url.startsWith("http") ? "_blank" : undefined} rel={source.url.startsWith("http") ? "noopener noreferrer" : undefined}>{source.label} ↗</a></li>)}</ul></section>}
       </div></ReadingGrid>
     </article>
+    <section className="section-shell blog-related" aria-label={locale === "ru" ? "Читайте также" : "Related reading"}>
+      <p className="blog-eyebrow">{locale === "ru" ? "Читайте также" : "Related reading"}</p>
+      <div>{related.map(item => <a href={blogHref(`/blog/${item.slug}`, locale)} key={item.slug}>
+        <small>{item[locale].category}</small><strong>{item[locale].title}</strong><span>{item[locale].summary}</span><b>{locale === "ru" ? "Читать" : "Read story"} ↗</b>
+      </a>)}</div>
+    </section>
     <div className="section-shell blog-next"><span>{locale === "ru" ? "Далее" : "Next story"}</span><a href={blogHref(`/blog/${next.slug}`, locale)}>{next[locale].title} →</a></div>
     <SiteFooter locale={locale} />
   </main>;

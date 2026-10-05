@@ -11,6 +11,11 @@ import { approvalBoundaries } from "./stories/approval-boundaries";
 import { taskHandoffPaths } from "./stories/task-handoff-paths";
 import { usageEvidence } from "./stories/usage-evidence";
 import { localCloudBoundaries } from "./stories/local-cloud-boundaries";
+import { iphoneClaudeCodex } from "./stories/iphone-claude-codex";
+import { granttapMeshGovernance } from "./stories/granttap-mesh-governance";
+import { microsoftAgent365Tools } from "./stories/microsoft-agent365-tools";
+import { awsTemporalPolicy } from "./stories/aws-temporal-policy";
+import { anthropicAgentSecurity } from "./stories/anthropic-agent-security";
 export type { BlogArticle, BlogLocale } from "./articleTypes";
 
 const guides: BlogArticle[] = [
@@ -282,6 +287,7 @@ const guides: BlogArticle[] = [
 ];
 
 export const articles: BlogArticle[] = [
+  iphoneClaudeCodex, granttapMeshGovernance, microsoftAgent365Tools, awsTemporalPolicy, anthropicAgentSecurity,
   localCloudBoundaries, usageEvidence, taskHandoffPaths, approvalBoundaries, mobileWorkflowMap,
   ...[cortexLoom, awsTelAviv, governance, agentLandscape, granttapControl, ...guides].map(extendArticle),
 ];

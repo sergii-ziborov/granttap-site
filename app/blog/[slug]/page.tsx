@@ -11,12 +11,15 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
   const { lang } = searchParams ? await searchParams : {};
   const article = publishedArticle(slug);
   if (!article) return {};
-  const copy = article[blogLocale(lang)];
+  const locale = blogLocale(lang);
+  const copy = article[locale];
+  const canonical = locale === "ru" ? `/blog/${article.slug}?lang=ru` : `/blog/${article.slug}`;
   return {
     title: copy.title,
     description: copy.summary,
-    alternates: { canonical: `/blog/${article.slug}` },
+    alternates: { canonical, languages: { en: `/blog/${article.slug}`, ru: `/blog/${article.slug}?lang=ru` } },
     openGraph: { type: "article", publishedTime: article.date, title: copy.title, description: copy.summary, images: [{ url: article.cover, width: 1600, height: 900, alt: copy.title }] },
+    twitter: { card: "summary_large_image", title: copy.title, description: copy.summary, images: [article.cover] },
   };
 }
 
@@ -25,5 +28,23 @@ export default async function ArticlePage({ params, searchParams }: { params: Pr
   const { lang } = await searchParams;
   const article = publishedArticle(slug);
   if (!article) notFound();
-  return <BlogArticleView article={article} articles={publishedArticles()} locale={blogLocale(lang)} />;
+  const locale = blogLocale(lang);
+  const copy = article[locale];
+  const pageUrl = `https://granttap.com/blog/${article.slug}${locale === "ru" ? "?lang=ru" : ""}`;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: copy.title,
+    description: copy.summary,
+    image: `https://granttap.com${article.cover}`,
+    datePublished: article.date,
+    inLanguage: locale,
+    author: { "@type": "Organization", name: "GrantTap" },
+    publisher: { "@type": "Organization", name: "GrantTap", url: "https://granttap.com" },
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+  };
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
+    <BlogArticleView article={article} articles={publishedArticles()} locale={locale} />
+  </>;
 }

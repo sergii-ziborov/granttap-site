@@ -83,8 +83,12 @@ help](https://granttap.com/support) walks through both.
 
 ## Explore GrantTap
 
-- [Journal](https://granttap.com/blog) — fifteen sourced, illustrated guides
-  about agent workflows, governance, Mesh, competitors, and product decisions.
+- [Journal](https://granttap.com/blog) — twenty sourced, illustrated stories in
+  English and Russian. Every story has a real GrantTap interface capture and
+  explains where a product claim can be verified.
+- [Agent security briefings](https://granttap.com/blog/microsoft-agent-365-mcp-tool-governance-september-2026) — original analysis of
+  recent Microsoft, AWS, and Anthropic announcements, with the exact local
+  boundary GrantTap covers and links to the primary reports.
 - [Mesh](https://granttap.com/project-mesh) — how connected work keeps one Task
   identity across supported executions.
 - [Security](https://granttap.com/security) — what stays local and what the
