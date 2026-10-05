@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return <LegalPage
     title={{ en: "Privacy Policy", ru: "Политика конфиденциальности" }}
-    updated={{ en: "September 30, 2026", ru: "30 сентября 2026" }}
-    updatedISO="2026-09-30"
+    updated={{ en: "October 5, 2026", ru: "5 октября 2026" }}
+    updatedISO="2026-10-05"
     intro={{
       en: "This policy covers the GrantTap Mac, iPhone, iPad and Apple Watch apps, its local machine helper, the encrypted relay, and granttap.com. GrantTap creates no advertising profile or readable cloud chat history.",
       ru: "Эта политика относится к GrantTap для Mac, iPhone, iPad и Apple Watch, локальному helper, зашифрованному relay и granttap.com. GrantTap не создаёт рекламный профиль или читаемую облачную историю чатов.",
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
           heading: "Retention, deletion, and your choices",
           paragraphs: [
             "Pairing blobs expire after 15 minutes and are single-use. Encrypted offline queues are bounded and expire. Local data remains until you clear it, unlink a computer, reset pairing, or remove the app/helper.",
-            "You may decline optional system permissions. Account devices can be revoked and the account deleted on the account page. Depending on applicable law, you may request access, correction, deletion, restriction, portability, or objection for data GrantTap can identify and control. The relay cannot decrypt task payloads or search their readable content by account.",
+            "You may decline optional system permissions. Account devices can be revoked and the account deleted on the account page or from the passkey connection screen in the Apple app. Deleting the account does not remove QR pairings stored on your own devices or cancel an Apple subscription. Depending on applicable law, you may request access, correction, deletion, restriction, portability, or objection for data GrantTap can identify and control. The relay cannot decrypt task payloads or search their readable content by account.",
           ],
           links: [
             { label: "Manage or delete data", href: "/data-rights" },
@@ -110,7 +110,7 @@ export default function PrivacyPage() {
           heading: "Срок, удаление и ваш выбор",
           paragraphs: [
             "Pairing blobs одноразовые и истекают через 15 минут. Зашифрованные offline queues ограничены и истекают. Локальные данные остаются до очистки, unlink компьютера, reset pairing или удаления приложения/helper.",
-            "Необязательные системные разрешения можно отклонить. На странице аккаунта можно отозвать устройство или удалить аккаунт. По применимому праву вы можете запросить доступ, исправление или удаление данных, которые GrantTap способен определить и контролировать. Relay не расшифровывает содержимое задач и не ищет читаемый текст по аккаунту.",
+            "Необязательные системные разрешения можно отклонить. Устройства аккаунта можно отозвать, а аккаунт удалить на странице аккаунта или в экране подключения через passkey в приложении Apple. Удаление аккаунта не удаляет QR-подключения на ваших устройствах и не отменяет подписку Apple. По применимому праву вы можете запросить доступ, исправление или удаление данных, которые GrantTap способен определить и контролировать. Relay не расшифровывает содержимое задач и не ищет читаемый текст по аккаунту.",
           ],
           links: [
             { label: "Управление и удаление данных", href: "/data-rights" },
