@@ -98,10 +98,12 @@ test("live Hetzner connect service exposes account ceremonies but cannot forge p
   assert.equal((await fetch(url, { method: "PUT", headers: { "content-type": "application/json",
       authorization: `Bearer ${requestSecret}` },
     body: JSON.stringify({ clientName: "Codex", computerName: "Test Mac", passkeyCapable: true,
+      purpose: "account-link",
       decision: "passkey" }) })).status, 200);
   const snapshot = await (await fetch(url)).json();
   assert.equal(snapshot.decision, undefined);
   assert.equal(snapshot.passkeyCapable, true);
+  assert.equal(snapshot.purpose, "account-link");
   assert.equal((await fetch(`${url}/decision`, { method: "POST", headers: { "content-type": "application/json" },
     body: JSON.stringify({ decision: "passkey" }) })).status, 400);
   assert.equal((await fetch(`${url}/passkey`, { method: "POST",
@@ -141,6 +143,12 @@ test("live Hetzner connect service exposes account ceremonies but cannot forge p
   })).json();
   assert.match(privateRow.machineToken ?? "", /^[A-Za-z0-9_-]{43}$/);
   assert.match(privateRow.machineId ?? "", /^[0-9a-f-]{36}$/);
+  assert.equal((await jsonPost(`/api/connect/requests/${requestId}/redirect`, {
+    redirectUrl: "https://granttap.com/account",
+  })).status, 200);
+  assert.equal((await jsonPost(`/api/connect/requests/${requestId}/redirect`, {
+    redirectUrl: "https://elsewhere.example/account",
+  })).status, 400);
   assert.equal((await fetch(`${origin}/api/account/machine/requests`, {
     headers: { authorization: `Bearer ${privateRow.machineToken}` },
   })).status, 200);

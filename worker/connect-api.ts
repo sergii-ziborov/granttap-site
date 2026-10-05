@@ -9,6 +9,7 @@ const memory = new Map<string, { body: string; exp: number }>();
 
 export type ConnectSnapshot = {
   clientName: string;
+  purpose?: "account-link";
   computerName?: string;
   paired: boolean;
   passkeyCapable?: boolean;
@@ -68,6 +69,7 @@ function sanitizeSnapshot(input: unknown, current?: ConnectSnapshot): ConnectSna
   const raw = input as Record<string, unknown>;
   const next: ConnectSnapshot = {
     clientName: current?.clientName ?? "Coding app",
+    purpose: current?.purpose,
     computerName: current?.computerName,
     paired: current?.paired ?? false,
     passkeyCapable: current?.passkeyCapable ?? false,
@@ -85,6 +87,7 @@ function sanitizeSnapshot(input: unknown, current?: ConnectSnapshot): ConnectSna
   if (typeof raw.clientName === "string") {
     next.clientName = raw.clientName.trim().slice(0, 80) || "Coding app";
   }
+  if (raw.purpose === "account-link") next.purpose = "account-link";
   if (typeof raw.computerName === "string") next.computerName = raw.computerName.trim().slice(0, 80);
   if (typeof raw.machineId === "string" && REQUEST_ID.test(raw.machineId)) next.machineId = raw.machineId;
   if (typeof raw.paired === "boolean") next.paired = raw.paired;
@@ -253,7 +256,9 @@ export async function handleConnectApi(request: Request, auth?: AccountAuth,
     const current = await readRow(id);
     if (!current) return json(404, { error: "This connection request expired. Start again in your coding app." });
     const body = await request.json().catch(() => null) as { redirectUrl?: string } | null;
-    if (!body?.redirectUrl || !isLoopbackRedirect(body.redirectUrl)) {
+    const accountDestination = current.purpose === "account-link"
+      && current.decision === "passkey" && body?.redirectUrl === "https://granttap.com/account";
+    if (!body?.redirectUrl || (!isLoopbackRedirect(body.redirectUrl) && !accountDestination)) {
       return json(400, { error: "Redirect is not a coding-app callback." });
     }
     current.redirectUrl = body.redirectUrl;

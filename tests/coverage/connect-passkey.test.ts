@@ -26,7 +26,7 @@ test("Mac passkey approves one MCP request only after a fresh verified assertion
     }), auth, machines);
   await handleConnectApi(new Request(url, { method: "PUT",
     headers: { authorization: `Bearer ${requestSecret}` }, body: JSON.stringify({
-      clientName: "Codex", computerName: "Mac", passkeyCapable: true,
+      clientName: "Codex", computerName: "Mac", passkeyCapable: true, purpose: "account-link",
     }) }));
   await handleConnectApi(new Request(url, { method: "PUT", body: JSON.stringify({ decision: "passkey" }) }));
   expect((await (await handleConnectApi(new Request(url)))?.json() as { decision?: string }).decision).toBeUndefined();
@@ -47,6 +47,12 @@ test("Mac passkey approves one MCP request only after a fresh verified assertion
     { headers: { authorization: `Bearer ${requestSecret}` } }));
   const linked = (await privateResponse?.json() as { machineToken: string }).machineToken;
   expect(linked).toMatch(/^[A-Za-z0-9_-]{43}$/);
+  expect((await handleConnectApi(new Request(`${url}/redirect`, { method: "POST",
+    body: JSON.stringify({ redirectUrl: "https://granttap.com/account" }),
+  })))?.status).toBe(200);
+  expect((await handleConnectApi(new Request(`${url}/redirect`, { method: "POST",
+    body: JSON.stringify({ redirectUrl: "https://elsewhere.example/account" }),
+  })))?.status).toBe(400);
   expect((await send(body))?.status).toBe(409);
 });
 

@@ -10,6 +10,7 @@ import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 type Provider = { id: "codex" | "claude" | "cursor"; installed: boolean; ready: boolean };
 type Snapshot = {
   clientName: string;
+  purpose?: "account-link";
   paired: boolean;
   passkeyCapable?: boolean;
   phones: Array<{ name: string; status: string }>;
@@ -24,6 +25,11 @@ const COPY = {
     home: "Home",
     eyebrow: "GrantTap authorization",
     title: "Connect your coding app",
+    linkTitle: "Link this Mac to your account",
+    linkLead: "Use the same GrantTap passkey as your iPhone. Existing QR pairings stay in their room.",
+    linkBody: "After sign-in, this Mac joins your account so your signed-in phone can discover it. The passkey stays in your password manager.",
+    linkWaiting: "Passkey verified. Saving this Mac to your account…",
+    linkButton: "Sign in with passkey",
     lead: "Approve with a phone QR or a GrantTap passkey on this Mac. QR pairing works without an account.",
     missing: "This request is not on GrantTap yet.",
     missingBody: "Start authorization again from your coding app. Open this page on the Mac running GrantTap to manage devices.",
@@ -54,6 +60,11 @@ const COPY = {
     home: "Главная",
     eyebrow: "Авторизация GrantTap",
     title: "Подключите coding app",
+    linkTitle: "Привяжите этот Mac к аккаунту",
+    linkLead: "Используйте тот же passkey GrantTap, что и на iPhone. QR-подключения останутся в своей комнате.",
+    linkBody: "После входа Mac появится в аккаунте, и телефон сможет его найти. Passkey останется в менеджере паролей.",
+    linkWaiting: "Passkey подтверждён. Сохраняем Mac в аккаунте…",
+    linkButton: "Войти по passkey",
     lead: "Подтвердите через QR телефона или passkey GrantTap на этом Mac. Для QR аккаунт не нужен.",
     missing: "Этого запроса ещё нет на GrantTap.",
     missingBody: "Запустите авторизацию снова из coding app. Для управления устройствами откройте страницу на Mac с запущенным GrantTap.",
@@ -180,8 +191,8 @@ export function ConnectView() {
       <main className="connect-main">
         <section className="connect-card">
           <p className="eyebrow">{t.eyebrow}</p>
-          <h1>{t.title}</h1>
-          <p className="lead">{t.lead}</p>
+          <h1>{row?.purpose === "account-link" ? t.linkTitle : t.title}</h1>
+          <p className="lead">{row?.purpose === "account-link" ? t.linkLead : t.lead}</p>
           {missing && (
             <div className="connect-panel">
               <h2>{t.missing}</h2>
@@ -194,7 +205,19 @@ export function ConnectView() {
               <p>{row.error}</p>
             </div>
           )}
-          {row && (
+          {row?.purpose === "account-link" && (
+            <>
+              <span className="connect-chip">{row.clientName}</span>
+              <div className="connect-panel ok"><p>{t.linkBody}</p></div>
+              {row.decision === "passkey" ? <p className="lead" role="status">{t.linkWaiting}</p> :
+                <div className="connect-passkey">
+                  <button type="button" disabled={busy} onClick={() => void approveWithPasskey()}>{t.linkButton}</button>
+                  <p><Link href="/account" target="_blank" rel="noopener noreferrer">{t.createAccount}</Link></p>
+                  {passkeyError && <p role="alert">{t.passkeyFailed}</p>}
+                </div>}
+            </>
+          )}
+          {row && row.purpose !== "account-link" && (
             <>
               <span className="connect-chip">{row.clientName}</span>
               <div className="connect-panel ok">

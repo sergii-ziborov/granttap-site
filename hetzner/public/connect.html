@@ -90,7 +90,7 @@
       window.location.assign(redirectUrl);
     }
     function maybeApproveScan(row) {
-      if (scanApproved || busy || !requestId() || row.decision) return;
+      if (scanApproved || busy || !requestId() || row.decision || row.purpose === "account-link") return;
       const phones = Array.isArray(row.phones) ? row.phones : [];
       const seen = phones.find((phone) => phone.status === "seen");
       if (!seen) return;
@@ -123,9 +123,12 @@
     }
     function render(row, missingHelper) {
       const auth = Boolean(requestId());
-      document.getElementById("title").textContent = auth ? "Connect your coding app" : "Your devices";
+      const accountLink = row?.purpose === "account-link";
+      document.getElementById("title").textContent = accountLink ? "Link this Mac to your account" : auth ? "Connect your coding app" : "Your devices";
       document.getElementById("lead").textContent = auth
-        ? "Approve this coding app with a phone QR or a GrantTap account passkey on this Mac. QR pairing does not require an account."
+        ? accountLink
+          ? "Use your GrantTap passkey on this Mac. Existing QR pairings stay in their room, and your signed-in phone can discover linked computers."
+          : "Approve this coding app with a phone QR or a GrantTap account passkey on this Mac. QR pairing does not require an account."
         : "This Mac and its controller devices. Add a device, Reconnect, and Add another device show a one-time QR. No GrantTap account is required.";
       if (missingHelper) {
         root.innerHTML = panel(
@@ -137,6 +140,18 @@
       if (!row) { root.innerHTML = ""; return; }
       lastRow = row;
       if (row.redirectUrl) handOffOAuth(row.redirectUrl);
+      if (accountLink) {
+        root.innerHTML = `
+          <span class="chip">${esc(row.computerName || "This Mac")}</span>
+          ${row.error ? panel("Could not link this Mac", esc(row.error)) : ""}
+          ${passkeyError ? panel("Passkey sign-in failed", esc(passkeyError)) : ""}
+          ${row.decision === "passkey" ? panel("Passkey verified", "Saving this Mac to your account…", true) : `
+            ${panel("Your GrantTap account", "Use the same passkey as your iPhone account. The passkey is verified here and is never sent to the MCP plugin.")}
+            <div class="actions"><button class="primary" id="passkey" ${busy ? "disabled" : ""}>Sign in with passkey</button></div>
+            <p class="lead">New to GrantTap? <a href="/account" target="_blank" rel="noopener noreferrer">Create an account with passkey</a>, then return here.</p>`}`;
+        document.getElementById("passkey")?.addEventListener("click", () => void approveWithPasskey());
+        return;
+      }
       const phones = Array.isArray(row.phones) ? row.phones : [];
       const seenPhones = phones.filter((phone) => phone.status === "seen");
       if (!selectedPhone && seenPhones.length && seenPhones[0].name) selectedPhone = seenPhones[0].name;
@@ -354,7 +369,7 @@
         lastJson = next;
         render(row, false);
       }
-      if (!pairingTried && !pairingViewId && !row.decision && !row.redirectUrl && !scanApproved) {
+      if (row.purpose !== "account-link" && !pairingTried && !pairingViewId && !row.decision && !row.redirectUrl && !scanApproved) {
         const paired = Boolean(row.paired || (row.phones || []).length);
         if (!paired) {
           pairingTried = true;

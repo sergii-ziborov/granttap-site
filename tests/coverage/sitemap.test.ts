@@ -16,7 +16,7 @@ test("sitemap includes the full journal as stories become available", () => {
     vi.setSystemTime(new Date("2026-10-05T12:00:00Z"));
     const expanded = sitemap().map(entry => entry.url);
     expect(expanded).toContain("https://granttap.com/blog/local-cloud-hybrid-agent-boundaries");
-    expect(expanded.filter(url => url.startsWith("https://granttap.com/blog/"))).toHaveLength(15);
+    expect(expanded.filter(url => url.startsWith("https://granttap.com/blog/"))).toHaveLength(20);
   } finally {
     vi.useRealTimers();
   }

@@ -77,7 +77,8 @@ granttap setup
    **Reconnect** from the same card when needed.
 
 A GrantTap account passkey is optional. QR pairing works without an account;
-passkey sign-in can add recovery and approve a coding-app connection on a Mac
+the MCP connection card can link this Mac to the account through a one-time
+passkey request, and passkey sign-in can approve a coding-app connection on a Mac
 with the local bridge. The two steps have different purposes. [Connection
 help](https://granttap.com/support) walks through both.
 

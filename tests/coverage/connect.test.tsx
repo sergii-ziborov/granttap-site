@@ -39,6 +39,18 @@ test("a Mac passkey can approve MCP access without a paired phone", async () => 
   });
 });
 
+test("account-link request offers passkey without coding-app approval or QR controls", async () => {
+  window.location.hash = "#request=84444444-4444-4444-8444-444444444444";
+  vi.stubGlobal("fetch", vi.fn(async () => Response.json({ clientName: "GrantTap MCP",
+    purpose: "account-link", paired: true, passkeyCapable: true,
+    phones: [{ name: "iPhone", status: "paired" }], providers: [] })));
+  render(<ConnectView />);
+  expect(await screen.findByRole("heading", { name: "Link this Mac to your account" })).toBeTruthy();
+  expect(screen.getByRole("button", { name: "Sign in with passkey" })).toBeTruthy();
+  expect(screen.queryByRole("button", { name: "Approve" })).toBeNull();
+  expect(screen.queryByRole("button", { name: /iPhone/ })).toBeNull();
+});
+
 test("passkey errors stay visible and leave QR approval available", async () => {
   window.location.hash = "#request=82222222-2222-4222-8222-222222222222";
   Object.defineProperty(window, "PublicKeyCredential", { value: undefined, configurable: true });

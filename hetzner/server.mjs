@@ -100,6 +100,7 @@ function sanitize(input, current) {
   const raw = input;
   const next = {
     clientName: current?.clientName ?? "Coding app",
+    purpose: current?.purpose,
     computerName: current?.computerName,
     paired: current?.paired ?? false,
     passkeyCapable: current?.passkeyCapable ?? false,
@@ -118,6 +119,7 @@ function sanitize(input, current) {
   if (typeof raw.clientName === "string") {
     next.clientName = raw.clientName.trim().slice(0, 80) || "Coding app";
   }
+  if (raw.purpose === "account-link") next.purpose = "account-link";
   if (typeof raw.computerName === "string") {
     next.computerName = raw.computerName.trim().slice(0, 80);
   }
@@ -345,7 +347,9 @@ const server = createServer(async (req, res) => {
         return;
       }
       const body = await readBody(req);
-      if (!body?.redirectUrl || !isLoopbackRedirect(body.redirectUrl)) {
+      const accountDestination = current.purpose === "account-link"
+        && current.decision === "passkey" && body?.redirectUrl === "https://granttap.com/account";
+      if (!body?.redirectUrl || (!isLoopbackRedirect(body.redirectUrl) && !accountDestination)) {
         json(res, 400, { error: "Redirect is not a coding-app callback." });
         return;
       }
