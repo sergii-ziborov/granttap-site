@@ -28,7 +28,7 @@ test("passkey sign-in shows the account and explains app-based recovery", async 
   await userEvent.click(await screen.findByRole("button", { name: "Sign in with passkey" }));
   expect(passkeys.get).toHaveBeenCalledWith({ optionsJSON: { challenge: "challenge" } });
   await waitFor(() => expect(screen.getByText(/account-123/)).toBeTruthy());
-  expect(screen.getByText(/Open Connect a computer on iPhone to scan a QR or recover a listed Mac/)).toBeTruthy();
+  expect(screen.getByText(/The app securely recovers available connections/)).toBeTruthy();
   await waitFor(() => expect(fetcher).toHaveBeenCalledTimes(4));
 });
 
