@@ -13,8 +13,8 @@ recovery request bound to one computer and an ephemeral phone public key, and
 delivers one opaque sealed offer from that computer. Claims consume offers
 atomically. Revocation and account deletion invalidate pending requests.
 Registration returns the machine bearer once to a native client; it is never
-returned by the browser list. A maximum of 16 active computers and three
-pending requests per computer applies.
+returned by the browser list. There is no fixed active-computer cap. At most
+three recovery requests may be pending for one computer.
 
 The account database contains no plaintext pairing key, Mesh key, prompt,
 command, transcript, or provider credential. It temporarily stores an opaque

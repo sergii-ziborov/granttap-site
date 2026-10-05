@@ -65,16 +65,16 @@ describe("account machine access", () => {
     expect(await machines.claim("owner", opened!.id)).toBeNull();
   });
 
-  it("limits computers and removes their credentials when an account is deleted", async () => {
+  it("keeps more than sixteen computers and removes their credentials when an account is deleted", async () => {
     const db = new SqliteD1();
     const store = new D1AccountStore(db as unknown as D1Database);
     await store.createAccount("owner", { id: "key", accountId: "owner",
       publicKey: new Uint8Array([1]), counter: 0 });
     const machines = new AccountMachines(db as unknown as D1Database);
-    const linked = await Promise.all(Array.from({ length: 16 }, (_, index) =>
+    const linked = await Promise.all(Array.from({ length: 20 }, (_, index) =>
       machines.register("owner", `Mac ${index}`)));
     expect(linked.every(Boolean)).toBe(true);
-    expect(await machines.register("owner", "Too many")).toBeNull();
+    expect((await machines.list("owner")).length).toBe(20);
     const request = await machines.open("owner", linked[0]!.id, phoneKey);
     expect(request).not.toBeNull();
     await store.deleteAccount("owner");

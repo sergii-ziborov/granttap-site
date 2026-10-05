@@ -38,6 +38,9 @@ describe("account machine HTTP boundary", () => {
     const created = await call("machines", "POST", { name: "Mac" });
     expect(created?.status).toBe(201);
     const machine = await created?.json() as { id: string; machineToken: string };
+    expect(await (await call("machine/identity", "GET", undefined, machine.machineToken))?.json())
+      .toEqual({ accountId: "owner", machineId: machine.id });
+    expect((await call("machine/identity", "GET", undefined, "bad"))?.status).toBe(401);
     const list = await call("machines");
     expect(await list?.json()).toMatchObject({ machines: [{ id: machine.id, name: "Mac" }] });
     expect(JSON.stringify(await (await call("machines"))?.json())).not.toContain(machine.machineToken);
@@ -57,5 +60,12 @@ describe("account machine HTTP boundary", () => {
     expect((await call(`requests/${request.id}`))?.status).toBe(404);
     expect((await call(`machines/${machine.id}`, "DELETE"))?.status).toBe(200);
     expect((await call("machine/requests", "GET", undefined, machine.machineToken))?.status).toBe(401);
+    expect((await call("machine/identity", "GET", undefined, machine.machineToken))?.status).toBe(401);
+
+    const replacement = await (await call("machines", "POST", { name: "Mac again" }))?.json() as
+      { id: string; machineToken: string };
+    expect((await call("machine/self", "DELETE", undefined, replacement.machineToken))?.status).toBe(200);
+    expect((await call("machine/self", "DELETE", undefined, replacement.machineToken))?.status).toBe(401);
+    expect((await call("machine/identity", "GET", undefined, replacement.machineToken))?.status).toBe(401);
   });
 });

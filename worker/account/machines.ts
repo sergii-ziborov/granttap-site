@@ -29,9 +29,8 @@ export class AccountMachines {
     try {
       const result = await this.db.prepare(`
         INSERT INTO account_machines(id,account_id,display_name,token_hash,created_at)
-        SELECT ?,id,?,?,? FROM accounts WHERE id=? AND
-          (SELECT COUNT(*) FROM account_machines WHERE account_id=? AND revoked_at IS NULL) < 16
-      `).bind(id, name, hash(machineToken), this.now(), accountId, accountId).run();
+        SELECT ?,id,?,?,? FROM accounts WHERE id=?
+      `).bind(id, name, hash(machineToken), this.now(), accountId).run();
       return result.meta.changes === 1 ? { id, name, machineToken } : null;
     } catch { return null; }
   }
@@ -61,6 +60,11 @@ export class AccountMachines {
     return true;
   }
 
+  async revokeSelf(machineToken: string): Promise<boolean> {
+    const machine = await this.machine(machineToken);
+    return machine ? this.revoke(machine.account_id, machine.id) : false;
+  }
+
   async open(accountId: string, machineId: string, phonePublicKey: string) {
     if (!PUBLIC_KEY.test(phonePublicKey)
       || Buffer.from(phonePublicKey, "base64url").length !== 32) return null;
@@ -84,6 +88,11 @@ export class AccountMachines {
       SELECT id,account_id,display_name,created_at,last_seen_at FROM account_machines
       WHERE token_hash=? AND revoked_at IS NULL
     `).bind(hash(machineToken)).first<MachineRow>();
+  }
+
+  async identity(machineToken: string) {
+    const machine = await this.machine(machineToken);
+    return machine ? { accountId: machine.account_id, machineId: machine.id } : null;
   }
 
   async pending(machineToken: string) {

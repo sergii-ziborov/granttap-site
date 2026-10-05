@@ -10,12 +10,23 @@ export async function routeMachineApi(
   if (!path.startsWith("/api/account/")) return null;
   const action = path.slice("/api/account/".length);
   if (!(action === "machines" || action.startsWith("machines/")
-    || action === "machine/requests" || action.startsWith("machine/requests/")
+    || action === "machine/identity" || action === "machine/self"
+    || action === "machine/requests"
+    || action.startsWith("machine/requests/")
     || action.startsWith("requests/"))) return null;
 
-  if (action === "machine/requests" || action.startsWith("machine/requests/")) {
+  if (action === "machine/identity" || action === "machine/self" || action === "machine/requests"
+    || action.startsWith("machine/requests/")) {
     const token = bearerToken(request);
     if (!token) return json(401, { error: "Machine authorization required." });
+    if (action === "machine/identity" && request.method === "GET") {
+      const identity = await machines.identity(token);
+      return identity ? json(200, identity) : json(401, { error: "Machine access revoked." });
+    }
+    if (action === "machine/self" && request.method === "DELETE") {
+      return await machines.revokeSelf(token)
+        ? json(200, { revoked: true }) : json(401, { error: "Machine access revoked." });
+    }
     if (action === "machine/requests" && request.method === "GET") {
       const requests = await machines.pending(token);
       return requests ? json(200, { requests }) : json(401, { error: "Machine access revoked." });
