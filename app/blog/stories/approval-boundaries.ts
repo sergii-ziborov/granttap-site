@@ -10,7 +10,7 @@ const sources = [
 
 export const approvalBoundaries = composeStory({
   slug: "agent-approvals-at-the-execution-boundary",
-  date: "2026-11-14",
+  date: "2026-10-04",
   cover: "/blog/approval-boundary.webp",
   inlineIllustration: "/blog/agent-approvals-at-the-execution-boundary-a.webp",
   additionalIllustration: "/blog/agent-approvals-at-the-execution-boundary-b.webp",

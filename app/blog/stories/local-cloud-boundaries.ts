@@ -10,7 +10,7 @@ const sources = [
 
 export const localCloudBoundaries = composeStory({
   slug: "local-cloud-hybrid-agent-boundaries",
-  date: "2026-12-05",
+  date: "2026-10-05",
   cover: "/blog/local-cloud-boundaries.webp",
   inlineIllustration: "/blog/local-cloud-hybrid-agent-boundaries-a.webp",
   additionalIllustration: "/blog/local-cloud-hybrid-agent-boundaries-b.webp",

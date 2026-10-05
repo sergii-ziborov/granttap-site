@@ -2,7 +2,7 @@ import type { BlogArticle } from "../articleTypes";
 
 export const governance: BlogArticle = {
   slug: "governance-that-reaches-the-computer",
-  date: "2026-10-17",
+  date: "2026-10-03",
   minutes: 7,
   cover: "/blog/governance-boundary.webp",
   generatedCover: true,

@@ -9,7 +9,7 @@ const sources = [
 
 export const mobileWorkflowMap = composeStory({
   slug: "choose-a-mobile-coding-agent-workflow",
-  date: "2026-11-07",
+  date: "2026-10-03",
   cover: "/blog/mobile-workflow-map.webp",
   inlineIllustration: "/blog/choose-a-mobile-coding-agent-workflow-a.webp",
   additionalIllustration: "/blog/choose-a-mobile-coding-agent-workflow-b.webp",

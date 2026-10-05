@@ -10,7 +10,7 @@ const sources = [
 
 export const usageEvidence = composeStory({
   slug: "what-agent-usage-metrics-can-prove",
-  date: "2026-11-28",
+  date: "2026-10-05",
   cover: "/blog/usage-evidence.webp",
   inlineIllustration: "/blog/what-agent-usage-metrics-can-prove-a.webp",
   additionalIllustration: "/blog/what-agent-usage-metrics-can-prove-b.webp",

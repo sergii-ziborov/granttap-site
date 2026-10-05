@@ -92,9 +92,10 @@ test("journal publishes current stories with accurate status and images", async 
   assert.match(index, /connect-iphone-with-qr/);
   assert.match(index, /why-granttap-is-a-control-center/);
   assert.match(index, /mcp-skills-and-governance-status/);
-  assert.doesNotMatch(index, /choose-a-mobile-coding-agent-workflow/);
-  const future = await render("https://granttap.com/blog/choose-a-mobile-coding-agent-workflow");
-  assert.equal(future.status, 404);
+  assert.match(index, /blog-list-heading[^>]*><h2>All stories<\/h2><span>15/);
+  assert.match(index, /choose-a-mobile-coding-agent-workflow/);
+  const workflow = await render("https://granttap.com/blog/choose-a-mobile-coding-agent-workflow");
+  assert.equal(workflow.status, 200);
   const pairing = await (await render("https://granttap.com/blog/connect-iphone-with-qr")).text();
   assert.match(pairing, /You do not need to add GrantTap under Codex Connected accounts/);
   assert.match(pairing, /Add a device \(Scan QR\)/);

@@ -2,7 +2,7 @@ import type { BlogArticle } from "../articleTypes";
 
 export const awsTelAviv: BlogArticle = {
   slug: "aws-summit-tel-aviv-agentic-systems",
-  date: "2026-10-24",
+  date: "2026-10-03",
   minutes: 6,
   cover: "/blog/tel-aviv-agentic.webp",
   generatedCover: true,

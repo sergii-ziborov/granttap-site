@@ -81,14 +81,14 @@ test("article routes and metadata resolve exact slugs and reject unknown ones", 
   await expect(ArticlePage({ params: Promise.resolve({ slug: "missing" }), searchParams: Promise.resolve({}) })).rejects.toThrow("not found");
 });
 
-test("publication schedule releases stories on the Jerusalem calendar day", () => {
+test("journal availability follows the Jerusalem calendar day", () => {
   expect(publicationDay(new Date("2026-10-02T20:59:59Z"))).toBe("2026-10-02");
   expect(publicationDay(new Date("2026-10-02T21:00:00Z"))).toBe("2026-10-03");
   const first = publishedArticles(new Date("2026-10-03T12:00:00Z"));
   expect(first.map(item => item.slug)).toContain("why-granttap-is-a-control-center");
-  expect(first.map(item => item.slug)).not.toContain("coding-agents-on-your-phone-2026");
-  expect(publishedArticles(new Date("2026-10-31T12:00:00Z"))).toHaveLength(10);
-  expect(publishedArticles(new Date("2026-11-06T21:59:59Z"))).toHaveLength(10);
-  expect(publishedArticles(new Date("2026-11-06T22:00:00Z"))).toHaveLength(11);
-  expect(publishedArticles(new Date("2026-12-05T12:00:00Z"))).toHaveLength(15);
+  expect(first.map(item => item.slug)).toContain("coding-agents-on-your-phone-2026");
+  expect(first).toHaveLength(10);
+  expect(publishedArticles(new Date("2026-10-04T12:00:00Z"))).toHaveLength(13);
+  expect(publishedArticles(new Date("2026-10-04T20:59:59Z"))).toHaveLength(13);
+  expect(publishedArticles(new Date("2026-10-04T21:00:00Z"))).toHaveLength(15);
 });

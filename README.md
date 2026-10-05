@@ -93,10 +93,10 @@ links.
   language, source links, real app captures from deterministic demo fixtures, labelled
   generated covers, and two generated inline illustrations in each story.
 
-The editorial series is dated October 3, 10, 17, 24, and 31; November 7, 14, 21,
-and 28; and December 5, 2026. The blog routes
-and dynamic sitemap release each story at midnight in Asia/Jerusalem; unpublished
-stories return 404. The comparison article states its October 3 source-check date.
+The editorial series is dated October 3–5, 2026, and all fifteen stories are
+available in the journal. The comparison article states its October 3 source-check
+date. Publication dates are evaluated in Asia/Jerusalem; future stories, if added,
+remain unavailable until their date.
 - [Pricing](https://granttap.com/pricing)
 - [Privacy](https://granttap.com/privacy)
 - [Terms](https://granttap.com/terms)

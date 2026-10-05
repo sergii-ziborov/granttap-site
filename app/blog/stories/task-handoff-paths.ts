@@ -9,7 +9,7 @@ const sources = [
 
 export const taskHandoffPaths = composeStory({
   slug: "task-continuity-beyond-an-agent-session",
-  date: "2026-11-21",
+  date: "2026-10-04",
   cover: "/blog/task-handoff-paths.webp",
   inlineIllustration: "/blog/task-continuity-beyond-an-agent-session-a.webp",
   additionalIllustration: "/blog/task-continuity-beyond-an-agent-session-b.webp",

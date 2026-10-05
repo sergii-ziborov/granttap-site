@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BlogIndex } from "./BlogViews";
 import { blogLocale } from "./locale";
-import { publishedArticles, publicationDay } from "./publication";
+import { publishedArticles } from "./publication";
 
 export const dynamic = "force-dynamic";
 
@@ -14,5 +14,5 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
 
 export default async function BlogPage({ searchParams }: { searchParams: Promise<{ lang?: string }> }) {
   const { lang } = await searchParams;
-  return <BlogIndex articles={publishedArticles()} scheduleActive={publicationDay() < "2026-12-05"} locale={blogLocale(lang)} />;
+  return <BlogIndex articles={publishedArticles()} locale={blogLocale(lang)} />;
 }

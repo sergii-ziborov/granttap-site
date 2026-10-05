@@ -2,7 +2,7 @@ import type { BlogArticle } from "../articleTypes";
 
 export const agentLandscape: BlogArticle = {
   slug: "coding-agents-on-your-phone-2026",
-  date: "2026-10-10",
+  date: "2026-10-03",
   minutes: 7,
   cover: "/blog/agent-landscape.webp",
   generatedCover: true,

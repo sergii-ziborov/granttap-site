@@ -2,7 +2,7 @@ import type { BlogArticle } from "../articleTypes";
 
 export const cortexLoom: BlogArticle = {
   slug: "cortex-loom-evidence-per-token",
-  date: "2026-10-31",
+  date: "2026-10-04",
   minutes: 7,
   cover: "/blog/cortex-evidence.webp",
   generatedCover: true,
