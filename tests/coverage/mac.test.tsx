@@ -5,7 +5,7 @@ import MacPage, { generateMetadata } from "../../app/mac/page";
 test("Mac page shows real demo captures and explains both connection paths", async () => {
   render(await MacPage({ searchParams: Promise.resolve({}) }));
   expect(screen.getByRole("heading", { name: "GrantTap for Mac" })).toBeTruthy();
-  expect(screen.getByText(/being prepared for TestFlight/)).toBeTruthy();
+  expect(screen.getByText(/available to invited internal testers through TestFlight/)).toBeTruthy();
   const gallery = screen.getByRole("heading", { name: "The real Mac app" }).parentElement;
   expect(gallery).not.toBeNull();
   expect(within(gallery!).getAllByRole("img")).toHaveLength(5);
@@ -18,7 +18,7 @@ test("Mac page shows real demo captures and explains both connection paths", asy
 test("Mac page localizes content and canonical metadata for Russian", async () => {
   render(await MacPage({ searchParams: Promise.resolve({ lang: "ru" }) }));
   expect(screen.getByRole("heading", { name: "GrantTap для Mac" })).toBeTruthy();
-  expect(screen.getByText(/готовится к TestFlight/)).toBeTruthy();
+  expect(screen.getByText(/доступен приглашённым внутренним тестировщикам через TestFlight/)).toBeTruthy();
   expect(screen.getByText(/одноразовым QR/)).toBeTruthy();
   expect(screen.getByRole("link", { name: "Переключить на английский" }).getAttribute("href"))
     .toBe("/mac");

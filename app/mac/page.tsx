@@ -16,7 +16,7 @@ const content = {
   en: {
     title: "GrantTap for Mac",
     intro: "The SwiftUI control center for coding agents running on your Mac.",
-    availability: "The Mac version is being prepared for TestFlight. The App Store Mac release and its one-time license are not yet available for purchase.",
+    availability: "GrantTap for Mac is available to invited internal testers through TestFlight. The public Mac App Store release and its one-time license are not yet available for purchase.",
     installTitle: "How the Mac app connects",
     steps: [
       "Install GrantTap for Mac and the separate GrantTap MCP helper on the same computer.",
@@ -32,7 +32,7 @@ const content = {
   ru: {
     title: "GrantTap для Mac",
     intro: "SwiftUI-центр управления coding-агентами на вашем Mac.",
-    availability: "Версия для Mac готовится к TestFlight. Выпуск в Mac App Store и разовая покупка лицензии пока недоступны.",
+    availability: "GrantTap для Mac доступен приглашённым внутренним тестировщикам через TestFlight. Публичный выпуск в Mac App Store и разовая покупка лицензии пока недоступны.",
     installTitle: "Как подключается Mac-приложение",
     steps: [
       "Установите GrantTap для Mac и отдельный помощник GrantTap MCP на тот же компьютер.",
