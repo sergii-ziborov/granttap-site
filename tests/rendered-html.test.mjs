@@ -15,6 +15,7 @@ const routes = [
   "/", "/about", "/privacy", "/terms", "/support", "/security", "/data-rights",
   "/accessibility", "/licenses", "/pricing", "/agents/claude-code",
   "/agents/codex", "/agents/cursor", "/agents/grok-build", "/project-mesh",
+  "/mac",
   "/grok-bot", "/apple-watch-coding-agents",
   "/blog", "/blog/why-granttap-is-a-control-center", "/blog/connect-iphone-with-qr", "/blog/task-continuity-across-agents",
   "/blog/linked-projects-without-merging-access", "/blog/architecture-graph-with-evidence",
@@ -32,13 +33,13 @@ test("server-renders one Personal product", async () => {
   assert.match(html, />Grok Build<\/strong>/);
   assert.match(html, /Needs You/);
   assert.match(html, /One Mesh gives the work a home\./);
-  assert.doesNotMatch(html, /Project Mesh|Shared Projects/);
+  assert.doesNotMatch(html, /Shared Projects/);
   assert.match(html, /Claude · MacBook/);
   assert.match(html, /Codex · Workstation/);
   assert.match(html, /A Mesh groups a project&#x27;s repositories, people, computers, and rules/);
   assert.match(html, /The control center is on your computer, too/);
-  assert.match(html, /mac-workspace\.jpg/);
-  assert.match(html, /Conceptual illustration of the Mac workspace/);
+  assert.match(html, /mac-now\.jpg/);
+  assert.match(html, /Actual GrantTap for Mac screen captured from the signed SwiftUI app/);
   assert.match(html, /codex plugin add granttap@granttap/);
   assert.match(html, /claude plugin install granttap@granttap/);
   assert.match(html, /npm install -g granttap-mcp/);
@@ -54,7 +55,7 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /content="Coordinate Claude Code, Codex, Cursor, and Grok Build/i);
   assert.doesNotMatch(html, /Enterprise|GrantTap Web|Open account|browser workspace|organization policy|scheduler|Copilot/i);
   assert.doesNotMatch(html, /href="\/(?:account|enterprise)/);
-  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20260828-1"/i);
+  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20261008-1"/i);
   assert.match(html, /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i);
 });
 
@@ -176,7 +177,13 @@ test("all internal links resolve", async () => {
     const html = await (await render(`https://granttap.com${path}`)).text();
     for (const match of html.matchAll(/<a\b[^>]*href="(\/[^"#?]*)/g)) if (!match[1].startsWith("/_")) links.add(match[1]);
   }
-  for (const path of links) assert.equal((await render(`https://granttap.com${path}`)).status, 200, path);
+  for (const path of links) {
+    if (/\.(?:jpe?g|png|webp)$/.test(path)) {
+      await access(new URL(`../public${path}`, import.meta.url));
+      continue;
+    }
+    assert.equal((await render(`https://granttap.com${path}`)).status, 200, path);
+  }
 });
 
 test("adds production security headers", async () => {

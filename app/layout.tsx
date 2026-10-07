@@ -51,7 +51,7 @@ export const metadata: Metadata = {
       "Coordinate local Claude Code, Codex, Cursor, and Grok Build tasks across Mac, iPhone, iPad, and Apple Watch.",
     images: [
       {
-        url: "/product/iphone-command-center.png?v=20260828-1",
+        url: "/product/iphone-command-center.png?v=20261008-1",
         width: 1320,
         height: 2868,
         alt: "The current GrantTap task list and composer on iPhone.",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title: "All your coding agents. One live control center.",
     description:
       "A secure Personal live control center for local Claude Code, Codex, Cursor, and Grok Build sessions.",
-    images: ["/product/iphone-command-center.png?v=20260828-1"],
+    images: ["/product/iphone-command-center.png?v=20261008-1"],
   },
 };
 

@@ -2,10 +2,11 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Locale } from "./Locale";
 
-type NavKey = "product" | "how" | "security" | "blog" | "pricing" | "support";
+type NavKey = "product" | "mac" | "how" | "security" | "blog" | "pricing" | "support";
 
 const navigation: Array<{ key: NavKey; href: string; en: string; ru: string }> = [
   { key: "product", href: "/#product", en: "Product", ru: "Продукт" },
+  { key: "mac", href: "/mac", en: "Mac", ru: "Mac" },
   { key: "how", href: "/#how", en: "How it works", ru: "Как работает" },
   { key: "security", href: "/#security", en: "Security", ru: "Безопасность" },
   { key: "blog", href: "/blog", en: "Blog", ru: "Блог" },
@@ -48,6 +49,7 @@ export function SiteHeader({ locale, active, languageControl }: {
 }
 
 const guides = [
+  { href: "/mac", en: "GrantTap for Mac", ru: "GrantTap для Mac" },
   { href: "/project-mesh", en: "Mesh", ru: "Mesh" },
   { href: "/agents/claude-code", en: "Claude Code", ru: "Claude Code" },
   { href: "/agents/codex", en: "Codex", ru: "Codex" },

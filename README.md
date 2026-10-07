@@ -7,7 +7,7 @@ and Apple Watch. See what needs your attention, decide from the right device,
 and return to the same Task without losing its history when an agent session or
 computer changes.
 
-[Explore the product](https://granttap.com) · [Read the journal](https://granttap.com/blog) ·
+[Explore the product](https://granttap.com) · [See GrantTap for Mac](https://granttap.com/mac) · [Read the journal](https://granttap.com/blog) ·
 [See availability](https://granttap.com/#availability) · [Get help](https://granttap.com/support)
 
 ## See. Decide. Continue.
@@ -31,9 +31,14 @@ computer changes.
 | --- | --- | --- |
 | ![GrantTap Now, with urgent and active work](public/product/iphone-command-center.png) | ![GrantTap Task conversation and composer](public/product/iphone-chat.png) | ![GrantTap Usage screen](public/product/iphone-mcp-usage.png) |
 
+| Now on Mac | Task conversation on Mac |
+| --- | --- |
+| ![GrantTap Now on Mac](public/product/mac-now.jpg) | ![GrantTap Task conversation on Mac](public/product/mac-task.jpg) |
+
 These are captures of the GrantTap app using deterministic sample work; no
 private task, repository, pairing key, or customer data appears in them. The
-[product page](https://granttap.com) also shows Mesh and Apple Watch screens.
+[product page](https://granttap.com) also shows Mesh and Apple Watch screens;
+the [Mac page](https://granttap.com/mac) shows five SwiftUI captures.
 
 ## Account Mesh and Project Mesh
 
@@ -105,6 +110,8 @@ help](https://granttap.com/support) walks through both.
   boundary GrantTap covers and links to the primary reports.
 - [Mesh](https://granttap.com/project-mesh) — how connected work keeps one Task
   identity across supported executions.
+- [GrantTap for Mac](https://granttap.com/mac) — Mac screens, local helper
+  connection, passkey and QR paths, and release availability.
 - [Security](https://granttap.com/security) — what stays local and what the
   encrypted relay can see.
 - [Pricing and availability](https://granttap.com/pricing) — current Personal
@@ -143,8 +150,8 @@ Cloudflare configuration and is not the live deployment target. Site-only copy
 changes rebuild only the `site` service.
 
 Product captures under `public/product/` use deterministic sample data, never
-private pairing material or customer Tasks. The current homepage iPhone
-screens were refreshed in October 2026. Older graph and code-tower captures
+private pairing material or customer Tasks. The iPhone and Mac screens were
+recaptured from the SwiftUI clients on 2026-10-08. Older graph and code-tower captures
 are explicitly marked as fixtures and do not claim a live repository scan.
 Generated editorial images in `public/visuals/` and the journal are captioned
 as illustrations rather than product captures.

@@ -16,10 +16,10 @@ export async function generateMetadata({ searchParams }: HomeParams): Promise<Me
     description,
     alternates: { canonical: "/?lang=ru", languages: { en: "/", ru: "/?lang=ru" } },
     openGraph: { type: "website", url: "/?lang=ru", siteName: "GrantTap", title, description,
-      images: [{ url: "/product/iphone-command-center.png?v=20260828-1", width: 1320, height: 2868,
+      images: [{ url: "/product/iphone-command-center.png?v=20261008-1", width: 1320, height: 2868,
         alt: "Экран текущей задачи GrantTap на iPhone." }] },
     twitter: { card: "summary_large_image", title, description,
-      images: ["/product/iphone-command-center.png?v=20260828-1"] },
+      images: ["/product/iphone-command-center.png?v=20261008-1"] },
   };
 }
 
