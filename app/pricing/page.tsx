@@ -14,8 +14,8 @@ export default function PricingPage() {
       updated={{ en: "October 7, 2026", ru: "7 октября 2026" }}
       updatedISO="2026-10-07"
       intro={{
-        en: "Start with a 7-day free trial. Personal is priced by how many computers you link — $1.99 for up to two, $3.99 for five, $5.99 for ten, $9.99 for fifteen per month — billed through Apple's App Store. Agents on each computer are unlimited.",
-        ru: "Начните с 7 бесплатных дней. Personal тарифицируется по числу подключённых компьютеров: $1,99 — до двух, $3,99 — до пяти, $5,99 — до десяти, $9,99 — до пятнадцати в месяц; оплату обрабатывает App Store. Агентов на каждом компьютере — без ограничений.",
+        en: "Start with a 7-day free trial. Personal is priced by how many computers you link — $1.99 for up to two, $3.99 for five, $5.99 for ten, $9.99 for fifteen per month — billed through Apple's App Store. The updated two- and fifteen-computer tiers await App Store review; the in-app purchase sheet shows which plans are available. Agents on each computer are unlimited.",
+        ru: "Начните с 7 бесплатных дней. Personal тарифицируется по числу подключённых компьютеров: $1,99 — до двух, $3,99 — до пяти, $5,99 — до десяти, $9,99 — до пятнадцати в месяц; оплату обрабатывает App Store. Обновлённые тарифы на два и пятнадцать компьютеров ожидают проверки App Store; доступные варианты показаны в окне покупки приложения. Агентов на каждом компьютере — без ограничений.",
       }}
       sections={{
         en: [
