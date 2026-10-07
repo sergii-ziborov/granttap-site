@@ -127,7 +127,7 @@
       document.getElementById("title").textContent = accountLink ? "Link this Mac to your account" : auth ? "Connect your coding app" : "Your devices";
       document.getElementById("lead").textContent = auth
         ? accountLink
-          ? "Use your GrantTap passkey on this Mac. Existing QR pairings stay in their room, and your signed-in phone can discover linked computers."
+          ? "Use your GrantTap passkey on this Mac. Existing QR links remain available; your signed-in phone can discover this computer and its Tasks."
           : "Approve this coding app with a phone QR or a GrantTap account passkey on this Mac. QR pairing does not require an account."
         : "This Mac and its controller devices. Add a device, Reconnect, and Add another device show a one-time QR. No GrantTap account is required.";
       if (missingHelper) {

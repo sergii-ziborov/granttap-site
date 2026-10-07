@@ -45,9 +45,11 @@ the [Mac page](https://granttap.com/mac) shows five SwiftUI captures.
 A passkey creates or joins an Account Mesh on the relay before any computer is
 connected. Its **Devices** view lists computers by their user-assigned names;
 one account can contain many computers and Project Meshes. The same passkey in
-the Mac app or MCP connection card joins the existing account. Each Task keeps
-its own chosen computer route, so joining an account does not silently pick a
-machine to execute work.
+the Mac app or MCP connection card joins the existing account. Each computer
+running GrantTap MCP contributes its own encrypted connection and Task catalog;
+the phone combines those catalogs without changing the computer route of any
+Task. A registered computer may be online in the account before its secure
+chat link is ready on the phone. Project Meshes remain separate project scopes.
 
 QR remains a direct device-pairing option without an account. The Mac App Store
 app needs the separately installed local helper to show agent work; installing
