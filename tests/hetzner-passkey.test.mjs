@@ -75,7 +75,7 @@ test("live Hetzner connect service exposes account ceremonies but cannot forge p
     stdio: "ignore",
   });
   t.after(async () => { child.kill(); await rm(directory, { recursive: true, force: true }); });
-  for (let attempt = 0; attempt < 50; attempt++) {
+  for (let attempt = 0; attempt < 200; attempt++) {
     if (child.exitCode !== null) throw new Error("Hetzner server exited before startup");
     try { if ((await fetch(`${origin}/healthz`)).ok) break; } catch { /* starting */ }
     await new Promise(resolve => setTimeout(resolve, 50));

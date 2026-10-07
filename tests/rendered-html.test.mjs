@@ -214,12 +214,14 @@ test("publishes transparent subscription pricing", async () => {
   const html = await (await render("https://granttap.com/pricing")).text();
   assert.match(html, /7-day free trial/i);
   // Every published tier, and the promise that agents are never metered.
-  assert.match(html, /\$1\.99 per month for 1 computer/i);
+  assert.match(html, /\$1\.99 per month for up to 2 computers/i);
+  assert.match(html, /\$9\.99 for up to 15/i);
   assert.match(html, /\$3\.99 for up to 5/i);
   assert.match(html, /\$5\.99 for up to 10/i);
   assert.match(html, /agents are never counted or charged for/i);
   assert.match(html, /cancel/i);
   assert.doesNotMatch(html, /\$2\.99|up to 3 (?:linked )?computers/i);
+  assert.doesNotMatch(html, /16\+|16 or more|more than 15|contact (?:sales|support) for (?:a )?(?:custom|enterprise) plan/i);
   const terms = await (await render("https://granttap.com/terms")).text();
   assert.match(terms, /auto-renewable subscription/i);
 });

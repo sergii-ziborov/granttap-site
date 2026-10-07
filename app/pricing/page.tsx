@@ -11,17 +11,17 @@ export default function PricingPage() {
   return (
     <LegalPage
       title={{ en: "Pricing and subscriptions", ru: "Тарифы и подписка" }}
-      updated={{ en: "September 28, 2026", ru: "28 сентября 2026" }}
-      updatedISO="2026-09-28"
+      updated={{ en: "October 7, 2026", ru: "7 октября 2026" }}
+      updatedISO="2026-10-07"
       intro={{
-        en: "Start with a 7-day free trial. Personal is priced by how many computers you link — $1.99 for one, $3.99 for five, $5.99 for ten per month — billed through Apple's App Store. Agents on each computer are unlimited.",
-        ru: "Начните с 7 бесплатных дней. Personal тарифицируется по числу подключённых компьютеров: $1,99 за один, $3,99 за пять, $5,99 за десять в месяц; оплату обрабатывает App Store. Агентов на каждом компьютере — без ограничений.",
+        en: "Start with a 7-day free trial. Personal is priced by how many computers you link — $1.99 for up to two, $3.99 for five, $5.99 for ten, $9.99 for fifteen per month — billed through Apple's App Store. Agents on each computer are unlimited.",
+        ru: "Начните с 7 бесплатных дней. Personal тарифицируется по числу подключённых компьютеров: $1,99 — до двух, $3,99 — до пяти, $5,99 — до десяти, $9,99 — до пятнадцати в месяц; оплату обрабатывает App Store. Агентов на каждом компьютере — без ограничений.",
       }}
       sections={{
         en: [
           { heading: "Personal", bullets: [
             "7-day free trial for eligible new subscribers.",
-            "$1.99 per month for 1 computer, $3.99 for up to 5, $5.99 for up to 10.",
+            "$1.99 per month for up to 2 computers, $3.99 for up to 5, $5.99 for up to 10, $9.99 for up to 15.",
             "Every computer runs as many coding agents as it can; agents are never counted or charged for.",
             "iPhone and Apple Watch remote, encrypted relay delivery, multi-computer queue, and supported provider integrations.",
             "Cancel in Apple subscription settings at least 24 hours before renewal to avoid the next charge.",
@@ -44,7 +44,7 @@ export default function PricingPage() {
         ru: [
           { heading: "Personal", bullets: [
             "7-дневный бесплатный пробный период для подходящих новых подписчиков.",
-            "$1,99 в месяц за 1 компьютер, $3,99 — до 5, $5,99 — до 10.",
+            "$1,99 в месяц — до 2 компьютеров, $3,99 — до 5, $5,99 — до 10, $9,99 — до 15.",
             "На каждом компьютере запускается сколько угодно coding agents; агенты не считаются и не тарифицируются.",
             "Пульт на iPhone и Apple Watch, зашифрованная relay-доставка, очередь для нескольких компьютеров и поддерживаемые интеграции агентов.",
             "Отмените подписку в настройках Apple не позднее чем за 24 часа до продления, чтобы избежать следующего списания.",

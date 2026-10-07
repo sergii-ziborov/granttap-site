@@ -11,8 +11,8 @@ export default function TermsPage() {
   return (
     <LegalPage
       title={{ en: "Terms of Use", ru: "Условия использования" }}
-      updated={{ en: "September 30, 2026", ru: "30 сентября 2026" }}
-      updatedISO="2026-09-30"
+      updated={{ en: "October 7, 2026", ru: "7 октября 2026" }}
+      updatedISO="2026-10-07"
       intro={{
         en: "These terms cover the GrantTap app, encrypted relay, and related support services. GrantTap extends coding-agent sessions on computers you control; it does not replace the agent or move your project into a GrantTap cloud.",
         ru: "Эти условия относятся к приложению GrantTap, зашифрованному relay и поддержке. GrantTap дополняет сессии кодовых агентов на контролируемых вами компьютерах, а не заменяет агента и не переносит проект в облако GrantTap.",
@@ -57,7 +57,7 @@ export default function TermsPage() {
             heading: "Purchases and refunds",
             paragraphs: [
               "The Mac app is prepared for a one-time $39.99 US license. App Store availability, local price and the purchase receipt govern. A purchased Mac license does not expire when Personal ends and includes running and privately modifying the GrantTap relay for personal or internal use, excluding redistribution, resale or hosting for third parties. Direct mode uses encrypted address discovery; fully self-hosted mode uses your own endpoint. You maintain reachability, server security and backups. The Mac end-user license applies alongside mandatory Apple rules.",
-              "Personal is an optional auto-renewable subscription with a 7-day free trial for eligible new subscribers. Personal is priced by linked computers: $1.99 per month for one, $3.99 for up to five, $5.99 for up to ten, with unlimited agents on each. The exact price and trial eligibility shown by Apple before confirmation control if they differ from this page.",
+              "Personal is an optional auto-renewable subscription with a 7-day free trial for eligible new subscribers. Personal is priced by linked computers: $1.99 per month for up to two, $3.99 for up to five, $5.99 for up to ten, $9.99 for up to fifteen, with unlimited agents on each. The exact price and trial eligibility shown by Apple before confirmation control if they differ from this page.",
               "The subscription renews automatically unless cancelled at least 24 hours before the current period ends. App Store purchases, payment processing, taxes, family sharing, and refunds are handled by Apple. GrantTap does not receive your payment-card details.",
             ],
             links: [
@@ -146,7 +146,7 @@ export default function TermsPage() {
             heading: "Покупки и возвраты",
             paragraphs: [
               "Для Mac готовится разовая лицензия за $39,99 в США; доступность, локальную цену и покупку определяет App Store. Купленная лицензия Mac сохраняется после отмены Personal и включает запуск и частную модификацию relay для личной или внутренней работы, без распространения, перепродажи и хостинга для третьих лиц. Прямой режим использует зашифрованный каталог адресов, автономный — ваш endpoint. Доступность сервера, безопасность и резервные копии обеспечивает владелец. Действуют лицензия Mac и обязательные правила Apple.",
-              "Personal — необязательная автопродлеваемая подписка с 7-дневным бесплатным пробным периодом для подходящих новых подписчиков. Personal тарифицируется по числу компьютеров: $1,99 в месяц за один, $3,99 — до пяти, $5,99 — до десяти, агентов на каждом — без ограничений. Если экран Apple перед подтверждением показывает другие цену или доступность trial, действуют данные Apple.",
+              "Personal — необязательная автопродлеваемая подписка с 7-дневным бесплатным пробным периодом для подходящих новых подписчиков. Personal тарифицируется по числу компьютеров: $1,99 в месяц — до двух, $3,99 — до пяти, $5,99 — до десяти, $9,99 — до пятнадцати, агентов на каждом — без ограничений. Если экран Apple перед подтверждением показывает другие цену или доступность trial, действуют данные Apple.",
               "Подписка продлевается автоматически, если не отменить её минимум за 24 часа до конца периода. Покупки, платежи, налоги, семейный доступ и возвраты обрабатывает Apple. GrantTap не получает данные платёжной карты.",
             ],
             links: [
