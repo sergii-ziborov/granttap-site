@@ -5,10 +5,12 @@ import { boundedJSON, json, sessionCookie, sessionToken, UUID } from "./http";
 import { AccountMachines } from "./machines";
 import { routeMachineApi } from "./machine-api";
 import { AccountBetaRelay } from "./beta-relay";
+import { AccountDeviceInvites, routeDeviceInvites } from "./device-invites";
 
 export async function routeAccountApi(request: Request, auth: AccountAuth,
                                       machines?: AccountMachines,
-                                      betaRelay?: AccountBetaRelay): Promise<Response | null> {
+                                      betaRelay?: AccountBetaRelay,
+                                      deviceInvites?: AccountDeviceInvites): Promise<Response | null> {
   const url = new URL(request.url);
   if (!url.pathname.startsWith("/api/account/")) return null;
   const action = url.pathname.slice("/api/account/".length);
@@ -16,6 +18,11 @@ export async function routeAccountApi(request: Request, auth: AccountAuth,
   const origin = request.headers.get("origin");
   if (isMutation && origin && origin !== "https://granttap.com") {
     return json(403, { error: "Origin not allowed." });
+  }
+
+  if (deviceInvites) {
+    const inviteResponse = await routeDeviceInvites(request, action, auth, deviceInvites);
+    if (inviteResponse) return inviteResponse;
   }
 
   if (machines) {
@@ -73,5 +80,5 @@ export async function routeAccountApi(request: Request, auth: AccountAuth,
 
 export function handleAccountApi(request: Request, db: D1Database): Promise<Response | null> {
   return routeAccountApi(request, new AccountAuth(new D1AccountStore(db)),
-    new AccountMachines(db), new AccountBetaRelay(db));
+    new AccountMachines(db), new AccountBetaRelay(db), new AccountDeviceInvites(db));
 }

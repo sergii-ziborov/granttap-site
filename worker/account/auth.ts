@@ -118,7 +118,7 @@ export class AccountAuth {
       const saved = await this.store.createAccount(ceremony.accountId, {
         ...result.credential, accountId: ceremony.accountId,
       });
-      return saved ? this.issueSession(ceremony.accountId) : null;
+      return saved ? this.createSession(ceremony.accountId) : null;
     } catch { return null; }
   }
 
@@ -141,7 +141,7 @@ export class AccountAuth {
       const result = await this.verifier.authenticate(response, ceremony.challenge, credential);
       if (!result.verified || result.newCounter == null) return null;
       if (!await this.store.updateCounter(credential.id, credential.counter, result.newCounter)) return null;
-      return this.issueSession(credential.accountId);
+      return this.createSession(credential.accountId);
     } catch { return null; }
   }
 
@@ -162,7 +162,7 @@ export class AccountAuth {
     return true;
   }
 
-  private async issueSession(accountId: string) {
+  async createSession(accountId: string) {
     const token = randomBytes(32).toString("base64url");
     await this.store.saveSession(tokenHash(token), accountId, this.now() + SESSION_MS);
     return { accountId, token };

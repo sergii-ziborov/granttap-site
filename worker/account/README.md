@@ -25,6 +25,13 @@ offer producer, and iPhone recovery UI are now present in the companion MCP and
 Apple app. Native passkey and encrypted offer delivery still require a live Mac
 service and a signed app with the `webcredentials:granttap.com` entitlement.
 
+`device-invites.ts` issues a five-minute, single-use account QR to an already
+authenticated controller. The database stores only a hash of its random code;
+redemption consumes it atomically and creates a separate session for the new
+device. At most five codes can be outstanding per account. Deleting the account
+invalidates all codes. The QR grants the whole account, so a computer-only QR
+and a role-limited Project Mesh invite remain separate choices in the app.
+
 `GET /api/account/beta-relay` returns the expiry of an operator-issued relay
 tester grant for the authenticated account, or `null`. A grant never creates a
 subscription and cannot be self-issued through HTTP. The Hetzner SQLite grant
