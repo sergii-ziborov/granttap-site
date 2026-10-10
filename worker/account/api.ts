@@ -4,8 +4,11 @@ import { D1AccountStore } from "./d1-store";
 import { boundedJSON, json, sessionCookie, sessionToken, UUID } from "./http";
 import { AccountMachines } from "./machines";
 import { routeMachineApi } from "./machine-api";
+import { AccountBetaRelay } from "./beta-relay";
 
-export async function routeAccountApi(request: Request, auth: AccountAuth, machines?: AccountMachines): Promise<Response | null> {
+export async function routeAccountApi(request: Request, auth: AccountAuth,
+                                      machines?: AccountMachines,
+                                      betaRelay?: AccountBetaRelay): Promise<Response | null> {
   const url = new URL(request.url);
   if (!url.pathname.startsWith("/api/account/")) return null;
   const action = url.pathname.slice("/api/account/".length);
@@ -50,6 +53,11 @@ export async function routeAccountApi(request: Request, auth: AccountAuth, machi
     const accountId = await auth.accountForToken(sessionToken(request));
     return accountId ? json(200, { accountId }) : json(401, { error: "Sign in required." });
   }
+  if (request.method === "GET" && action === "beta-relay" && betaRelay) {
+    const accountId = await auth.accountForToken(sessionToken(request));
+    return accountId ? json(200, { expiresAt: await betaRelay.activeUntil(accountId) })
+      : json(401, { error: "Sign in required." });
+  }
   if (request.method === "POST" && action === "logout") {
     await auth.logout(sessionToken(request));
     return json(200, { ok: true }, { "set-cookie": sessionCookie("", 0) });
@@ -64,5 +72,6 @@ export async function routeAccountApi(request: Request, auth: AccountAuth, machi
 }
 
 export function handleAccountApi(request: Request, db: D1Database): Promise<Response | null> {
-  return routeAccountApi(request, new AccountAuth(new D1AccountStore(db)), new AccountMachines(db));
+  return routeAccountApi(request, new AccountAuth(new D1AccountStore(db)),
+    new AccountMachines(db), new AccountBetaRelay(db));
 }

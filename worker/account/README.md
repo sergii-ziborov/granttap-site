@@ -25,6 +25,13 @@ offer producer, and iPhone recovery UI are now present in the companion MCP and
 Apple app. Native passkey and encrypted offer delivery still require a live Mac
 service and a signed app with the `webcredentials:granttap.com` entitlement.
 
+`GET /api/account/beta-relay` returns the expiry of an operator-issued relay
+tester grant for the authenticated account, or `null`. A grant never creates a
+subscription and cannot be self-issued through HTTP. The Hetzner SQLite grant
+is revoked by setting `revoked_at` or expires at `expires_at`; the Apple client
+rechecks it while using managed transport. The account session identifies the
+owner, so a client-provided account ID cannot select another grant.
+
 The Worker serves Apple's `webcredentials` association file at
 `/.well-known/apple-app-site-association`. The corresponding native app needs
 the `webcredentials:granttap.com` entitlement and a matching provisioning

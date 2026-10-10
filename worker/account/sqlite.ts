@@ -13,6 +13,7 @@ export class SqliteD1 {
     this.sqlite.exec("PRAGMA busy_timeout=5000");
     this.sqlite.exec(readFileSync(new URL("../../migrations/0001_accounts.sql", import.meta.url), "utf8"));
     this.sqlite.exec(readFileSync(new URL("../../migrations/0002_account_machines.sql", import.meta.url), "utf8"));
+    this.sqlite.exec(readFileSync(new URL("../../migrations/0003_account_beta_relay.sql", import.meta.url), "utf8"));
   }
 
   prepare(sql: string) {
