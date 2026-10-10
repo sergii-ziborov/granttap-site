@@ -40,7 +40,7 @@ test("every article renders its own sections and sources in both languages", () 
 
 test("each editorial story includes a real GrantTap interface with bilingual context", () => {
   const editorial = articles.filter(article => article.date >= "2026-10-03");
-  expect(editorial).toHaveLength(15);
+  expect(editorial).toHaveLength(18);
   for (const article of editorial) {
     expect(article.screenshot).toMatch(/^\/product\/iphone-[\w-]+\.png$/);
     expect(existsSync(join(process.cwd(), "public", article.screenshot!))).toBe(true);
@@ -49,8 +49,8 @@ test("each editorial story includes a real GrantTap interface with bilingual con
   }
 });
 
-test("all twenty bilingual stories have at least 1000 body words and two labeled inline images", () => {
-  expect(articles).toHaveLength(20);
+test("all bilingual stories have at least 1000 body words and two labeled inline images", () => {
+  expect(articles).toHaveLength(23);
   for (const article of articles) {
     expect(article.generatedCover).toBe(true);
     for (const locale of ["en", "ru"] as const) {
@@ -104,4 +104,18 @@ test("new stories link to related guides and their source reports", async () => 
   const view = render(page);
   expect(view.container.querySelector('script[type="application/ld+json"]')?.textContent).toContain('"@type":"BlogPosting"');
   expect((await generateMetadata({ params: Promise.resolve({ slug: article.slug }), searchParams: Promise.resolve({ lang: "ru" }) })).alternates?.canonical).toBe(`/blog/${article.slug}?lang=ru`);
+});
+
+
+test("three research stories exceed 1500 body words per language and contain an infographic", () => {
+  const research = articles.filter(article => article.date === "2026-10-10");
+  expect(research).toHaveLength(3);
+  for (const article of research) {
+    for (const locale of ["en", "ru"] as const) {
+      expect(articleBodyWordCount(article[locale])).toBeGreaterThan(1500);
+      expect(article[locale].illustrationCaption).toMatch(/Infographic|Инфографика/);
+    }
+    expect(article.inlineIllustration).toMatch(/infographic.webp$/);
+    expect(existsSync(join(process.cwd(), "public", article.cover))).toBe(true);
+  }
 });

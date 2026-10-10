@@ -25,13 +25,14 @@ export const cortexLoom: BlogArticle = {
         "The same README explicitly separates context-compiler benchmarks from coding-agent quality. Missing or rate-limited cells are not scores. Comparisons also mix different accounting methods for Claude Code and Cursor, so they cannot be pooled into a single cost claim.",
       ] },
       { heading: "How this informs GrantTap", paragraphs: [
-        "A future GrantTap integration could use repository evidence to select code context for an execution change while keeping revision and unknowns visible. The current handoff capsule carries bounded task and git facts; it is not a claim that Cortex packets are already delivered across every provider.",
+        "GrantTap now links the Cortex context compiler into its local Engine, enabled per Project. Scoped evidence can be compiled while retaining revision and unknowns. Its handoff capsule still carries bounded Task and git facts; compiler availability does not imply delivery across every provider. Our October 10 research tests the actual linked Engine.",
         "Cortex is useful when a task needs unfamiliar callers, contracts, or cross-file relationships. For a tiny edit in a known file, its own documentation says to skip it. A reliable system spends context where it changes the next decision, and measures both completeness and the result of the coding work.",
       ] },
     ],
     screenshotCaption: "Weavatrix architecture graph in GrantTap, using a deterministic demo revision. It does not show the Cortex token benchmark or a live repository scan.",
     closing: "The useful metric is verified evidence per token for the task at hand, followed by whether the agent actually closed that task.",
     sources: [
+      { label: "Cortex inside GrantTap: October 10 research / исследование", url: "/blog/cortex-loom-inside-granttap-token-economy" },
       { label: "Cortex Loom README and measured work", url: "https://github.com/sergii-ziborov/cortex-loom" },
       { label: "Benchmark method and limitations", url: "https://github.com/sergii-ziborov/cortex-loom/blob/main/docs/benchmark.md" },
       { label: "GrantTap architecture evidence guide", url: "/blog/architecture-graph-with-evidence" },
@@ -59,13 +60,14 @@ export const cortexLoom: BlogArticle = {
         "README проекта явно отделяет бенчмарк компилятора контекста от качества coding-агента. Ячейки, не выполненные из-за лимита сессии или 429, не оцениваются. Учёт затрат Claude Code и Cursor тоже устроен по-разному, поэтому их нельзя складывать в одно обещание экономии.",
       ] },
       { heading: "Связь с GrantTap", paragraphs: [
-        "Будущая интеграция GrantTap могла бы отбирать контекст кода при смене execution, сохраняя revision и неизвестные факты видимыми. Текущий handoff capsule переносит ограниченные факты Task и git; это не утверждение, что пакеты Cortex уже доставляются между всеми провайдерами.",
+        "GrantTap уже подключает компилятор Cortex в локальный Engine с включением для конкретного Project. Scoped evidence компилируется с сохранением revision и неизвестных фактов. Handoff capsule продолжает переносить ограниченные факты Task и git; доступность компилятора не означает доставки между всеми провайдерами. Исследование от 10 октября проверяет настоящий Engine.",
         "Cortex полезен при изучении незнакомых вызовов, контрактов и связей между файлами. Для крошечной правки в известном файле его собственная документация советует пропустить этот шаг. Надёжная система тратит контекст там, где он меняет следующее решение, и измеряет как полноту evidence, так и результат работы агента.",
       ] },
     ],
     screenshotCaption: "Архитектурный граф Weavatrix в GrantTap на тестовой ревизии. Он не показывает бенчмарк токенов Cortex или сканирование живого репозитория.",
     closing: "Полезная метрика — проверенные факты на токен для конкретной задачи, а затем реальное завершение самой задачи.",
     sources: [
+      { label: "Cortex inside GrantTap: October 10 research / исследование", url: "/blog/cortex-loom-inside-granttap-token-economy" },
       { label: "Cortex Loom и результаты измерений", url: "https://github.com/sergii-ziborov/cortex-loom" },
       { label: "Методика и ограничения бенчмарка", url: "https://github.com/sergii-ziborov/cortex-loom/blob/main/docs/benchmark.md" },
       { label: "Архитектурные сведения в GrantTap", url: "/blog/architecture-graph-with-evidence" },

@@ -1,3 +1,4 @@
+import { cortexResearch, meshResearch, governanceResearch } from "./stories/research";
 import type { BlogArticle } from "./articleTypes";
 import { extendArticle } from "./longform";
 import { capabilityStatusGuide } from "./stories/capability-status-guide";
@@ -287,6 +288,7 @@ const guides: BlogArticle[] = [
 ];
 
 export const articles: BlogArticle[] = [
+  cortexResearch, meshResearch, governanceResearch,
   iphoneClaudeCodex, granttapMeshGovernance, microsoftAgent365Tools, awsTemporalPolicy, anthropicAgentSecurity,
   localCloudBoundaries, usageEvidence, taskHandoffPaths, approvalBoundaries, mobileWorkflowMap,
   ...[cortexLoom, awsTelAviv, governance, agentLandscape, granttapControl, ...guides].map(extendArticle),

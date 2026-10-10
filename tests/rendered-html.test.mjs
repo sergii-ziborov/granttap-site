@@ -110,7 +110,10 @@ test("journal publishes current stories with accurate status and images", async 
   assert.match(index, /connect-iphone-with-qr/);
   assert.match(index, /why-granttap-is-a-control-center/);
   assert.match(index, /mcp-skills-and-governance-status/);
-  assert.match(index, /blog-list-heading[^>]*><h2>All stories<\/h2><span>20/);
+  assert.match(index, /blog-list-heading[^>]*><h2>All stories<\/h2><span>23/);
+  assert.match(index, /cortex-loom-inside-granttap-token-economy/);
+  assert.match(index, /project-mesh-memory-handoff-less-duplicate-work/);
+  assert.match(index, /granttap-governance-native-enforcement-research/);
   assert.match(index, /microsoft-agent-365-mcp-tool-governance-september-2026/);
   assert.match(index, /anthropic-agent-security-incident-lessons-local-coding-agents/);
   assert.match(index, /choose-a-mobile-coding-agent-workflow/);
