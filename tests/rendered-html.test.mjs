@@ -136,8 +136,8 @@ test("journal publishes current stories with accurate status and images", async 
 test("homepage leaves journal assets and article data to blog routes", async () => {
   const home = await (await render("https://granttap.com/")).text();
   const journal = await (await render("https://granttap.com/blog")).text();
-  assert.doesNotMatch(home, /href="\/blog\.css"|\/blog\/[a-z-]+\.webp|A phone should reduce uncertainty|An agent approval is only as strong/);
-  assert.match(journal, /href="\/blog\.css"/);
+  assert.doesNotMatch(home, /href="\/blog\.css(?:\?[^\"]*)?"|\/blog\/[a-z-]+\.webp|A phone should reduce uncertainty|An agent approval is only as strong/);
+  assert.match(journal, /href="\/blog\.css\?v=20261010-layout"/);
   assert.doesNotMatch(journal, /A phone should reduce uncertainty/);
   const cssAssets = [...home.matchAll(/href="(\/assets\/[^\"]+\.css)"/g)].map(match => match[1]);
   for (const asset of cssAssets) {
