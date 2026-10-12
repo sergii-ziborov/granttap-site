@@ -6,6 +6,7 @@ import { AccountMachines } from "./machines";
 import { routeMachineApi } from "./machine-api";
 import { AccountBetaRelay } from "./beta-relay";
 import { AccountDeviceInvites, routeDeviceInvites } from "./device-invites";
+import { routeManagedSubscriptions, type ManagedBilling } from "./subscriptions/api";
 
 export async function routeAccountApi(request: Request, auth: AccountAuth,
                                       machines?: AccountMachines,
@@ -78,7 +79,10 @@ export async function routeAccountApi(request: Request, auth: AccountAuth,
   return json(405, { error: "Method not allowed." });
 }
 
-export function handleAccountApi(request: Request, db: D1Database): Promise<Response | null> {
-  return routeAccountApi(request, new AccountAuth(new D1AccountStore(db)),
-    new AccountMachines(db), new AccountBetaRelay(db), new AccountDeviceInvites(db));
+export async function handleAccountApi(request: Request, db: D1Database,
+  billing?: ManagedBilling): Promise<Response | null> {
+  const auth = new AccountAuth(new D1AccountStore(db));
+  const machines = new AccountMachines(db);
+  return await routeManagedSubscriptions(request, { db, auth, machines, billing })
+    ?? routeAccountApi(request, auth, machines, new AccountBetaRelay(db), new AccountDeviceInvites(db));
 }

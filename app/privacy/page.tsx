@@ -10,14 +10,15 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return <LegalPage
     title={{ en: "Privacy Policy", ru: "Политика конфиденциальности" }}
-    updated={{ en: "October 5, 2026", ru: "5 октября 2026" }}
-    updatedISO="2026-10-05"
+    updated={{ en: "October 12, 2026", ru: "12 октября 2026" }}
+    updatedISO="2026-10-12"
     intro={{
       en: "This policy covers the GrantTap Mac, iPhone, iPad and Apple Watch apps, its local machine helper, the encrypted relay, and granttap.com. GrantTap creates no advertising profile or readable cloud chat history.",
       ru: "Эта политика относится к GrantTap для Mac, iPhone, iPad и Apple Watch, локальному helper, зашифрованному relay и granttap.com. GrantTap не создаёт рекламный профиль или читаемую облачную историю чатов.",
     }}
     sections={{
       en: [
+        { heading: "Subscription verification", paragraphs: ["Personal uses the signed-in GrantTap account UUID as Apple appAccountToken. The account service independently verifies Apple-signed purchases and retains product IDs, original/renewal transaction IDs, signed time, expiry and revocation status for computer limits. It does not receive payment-card details or your Apple password. Sandbox purchases are not paid production rights. Account deletion removes these service records but does not cancel the Apple subscription."] },
           { heading: "Mac and endpoint discovery", paragraphs: ["App Store purchase evidence is verified by StoreKit; we do not receive payment-card details. The native Mac keeps its separate local MCP access token in its device-only Keychain. Direct mode announces only authenticated encrypted endpoint records with opaque room and recipient identifiers, sizes and expiry. The managed directory cannot decrypt an address; network operators still observe connection IPs and timing. Directory records expire within 15 minutes. In fully self-hosted mode, pairing and chat traffic use your endpoint and do not contact that directory. You administer your own server logs, queues and retention."] },
         {
           heading: "Privacy at a glance",
@@ -45,7 +46,7 @@ export default function PrivacyPage() {
             "Readable content exists only on the computer and Apple devices you authorize, plus tools you explicitly use there. GrantTap does not proxy provider model traffic.",
           ],
           bullets: [
-            "The app stores keys, preferences, delivery state, hidden/history state, a bounded local audit, and capability usage in protected local storage. Mac also stores fetched chat pages in a protected local archive. Clear this copy in Settings → This Mac → Chat history & cache without deleting provider history or device connections.",
+            "Received active-chat pages, original images and fetched Mesh snapshots are saved in protected local storage on iPhone, iPad and Mac. Settings can clear this replica without signing out or deleting pairing keys, queued deliveries, provider history or computer policy. Content not yet received is unavailable offline.",
             "The helper stores local pairing and provider integration configuration under ~/.granttap.",
             "Each Mesh has an additional key. The phone hands it only to computers you have already paired, inside the pairing encryption they already use, so shared Task state, Governance policy, and cost figures travel as ciphertext like everything else.",
             "Report a problem composes its text on your device and hands it to the system share sheet. The report contains no keys, tokens, chat content, or commands, and the app itself sends nothing.",
@@ -72,6 +73,7 @@ export default function PrivacyPage() {
         },
       ],
       ru: [
+        { heading: "Проверка подписки", paragraphs: ["Для Personal UUID аккаунта GrantTap передаётся Apple как appAccountToken. Сервис аккаунта независимо проверяет подписанные Apple покупки и хранит идентификаторы продукта и исходной/обновлённой транзакции, время подписи, срок действия и статус отзыва для контроля числа компьютеров. Данные карты и пароль Apple не передаются. Покупки Sandbox не дают оплаченных production-прав. Удаление аккаунта удаляет эти записи сервиса, но не отменяет подписку Apple."] },
           { heading: "Mac и поиск адреса", paragraphs: ["Покупки App Store проверяет StoreKit; реквизиты платёжной карты нам недоступны. Mac хранит отдельный локальный токен MCP в Keychain только этого устройства. Прямой режим публикует лишь аутентифицированные зашифрованные записи адреса с непрозрачными идентификаторами комнаты и получателя, размерами и сроком действия. Каталог не может расшифровать адрес; сетевые операторы видят IP соединения и время. Записи истекают в пределах 15 минут. В автономном режиме пейринг и чат используют ваш endpoint без обращения к этому каталогу. Логами, очередями и сроками хранения своего сервера управляете вы."] },
         {
           heading: "Коротко",

@@ -85,6 +85,8 @@ export class AccountMachines {
       "UPDATE account_machines SET revoked_at=? WHERE id=? AND account_id=? AND revoked_at IS NULL",
     ).bind(this.now(), machineId, accountId).run();
     if (result.meta.changes !== 1) return false;
+    await this.db.prepare("UPDATE managed_computers SET revoked_at=? WHERE computer_id=? AND account_id=? AND revoked_at IS NULL")
+      .bind(this.now(), machineId, accountId).run();
     await this.db.prepare("DELETE FROM recovery_requests WHERE machine_id=?")
       .bind(machineId).run();
     return true;

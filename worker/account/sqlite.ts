@@ -15,6 +15,7 @@ export class SqliteD1 {
     this.sqlite.exec(readFileSync(new URL("../../migrations/0002_account_machines.sql", import.meta.url), "utf8"));
     this.sqlite.exec(readFileSync(new URL("../../migrations/0003_account_beta_relay.sql", import.meta.url), "utf8"));
     this.sqlite.exec(readFileSync(new URL("../../migrations/0004_account_device_invites.sql", import.meta.url), "utf8"));
+    this.sqlite.exec(readFileSync(new URL("../../migrations/0005_managed_subscriptions.sql", import.meta.url), "utf8"));
   }
 
   prepare(sql: string) {

@@ -30,7 +30,7 @@ export default function PricingPage() {
             "Tiers differ only by linked computers. Move between them in Apple subscription settings; Apple prorates the change and shows the exact amount before it is confirmed.",
           ] },
           { heading: "Mac license and no-subscription mode", paragraphs: [
-            "GrantTap Mac is being prepared for a one-time $39.99 US Mac License purchase. This is a proposed launch price; the actual App Store purchase sheet controls availability and local price. A Mac license remains valid when Personal ends.",
+            "GrantTap Mac uses a one-time $39.99 US Mac License, plus an optional Personal subscription for managed delivery. The confirmed US launch price is $39.99; the App Store purchase sheet controls availability and local price. A Mac license remains valid when Personal ends.",
             "Licensed Mac local control and own-relay operation require no Personal subscription. Direct mode uses only a short-lived encrypted address directory; self-hosted mode uses your endpoint for pairing and delivery without that directory. Supply a reachable TLS endpoint or VPN. This does not open router ports or guarantee background notifications.",
           ] },
           { heading: "Billing", paragraphs: [
@@ -53,7 +53,7 @@ export default function PricingPage() {
             "Тарифы отличаются только числом подключённых компьютеров. Переключайтесь в настройках подписок Apple: Apple пересчитает разницу и покажет точную сумму до подтверждения.",
           ] },
           { heading: "Лицензия Mac и режим без подписки", paragraphs: [
-            "Для GrantTap Mac готовится разовая покупка Mac License за $39,99 в США. Это предполагаемая стартовая цена; доступность и локальную цену определяет окно покупки App Store. Отмена Personal не отменяет лицензию Mac.",
+            "Для GrantTap Mac предусмотрена разовая лицензия Mac License за $39,99 в США и отдельная подписка Personal для managed-доставки. Стартовая цена $39,99 подтверждена; доступность и локальную цену определяет окно покупки App Store. Отмена Personal не отменяет лицензию Mac.",
             "Локальное управление на лицензированном Mac и собственный relay работают без Personal. Прямой режим использует только каталог краткоживущих зашифрованных адресов; автономный режим использует ваш endpoint для пейринга и доставки без этого каталога. Нужен доступный TLS endpoint или VPN. Режим не открывает порты роутера и не гарантирует фоновые уведомления.",
           ] },
           { heading: "Оплата", paragraphs: [

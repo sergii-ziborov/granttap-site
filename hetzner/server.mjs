@@ -13,6 +13,7 @@ import { handleAccountApi } from "../worker/account/api.ts";
 import { sessionCookie } from "../worker/account/http.ts";
 import { SqliteD1 } from "../worker/account/sqlite.ts";
 import { AccountMachines } from "../worker/account/machines.ts";
+import { configuredBilling } from "./billing.ts";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGE = readFileSync(join(ROOT, "public", "connect.html"), "utf8");
@@ -22,6 +23,7 @@ const HOST = process.env.HOST ?? "0.0.0.0";
 const accountDb = new SqliteD1(process.env.GRANTTAP_ACCOUNT_DB ?? join(ROOT, "accounts.sqlite"));
 const accountAuth = new AccountAuth(new D1AccountStore(accountDb));
 const accountMachines = new AccountMachines(accountDb);
+const managedBilling = configuredBilling(process.env);
 function purgeExpiredAccountState() {
   accountDb.sqlite.prepare("DELETE FROM ceremonies WHERE expires_at<=?").run(Date.now());
   accountDb.sqlite.prepare("DELETE FROM sessions WHERE expires_at<=?").run(Date.now());
@@ -232,7 +234,7 @@ const server = createServer(async (req, res) => {
 
   if (url.pathname.startsWith("/api/account/")) {
     try {
-      const response = await handleAccountApi(await webRequest(req), accountDb);
+      const response = await handleAccountApi(await webRequest(req), accountDb, managedBilling);
       if (response) await sendResponse(res, response);
       else json(res, 404, { error: "Not found." });
     } catch (error) {
