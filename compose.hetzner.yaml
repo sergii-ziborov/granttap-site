@@ -45,9 +45,9 @@ services:
       VINEXT_TRUSTED_HOSTS: "granttap.com,www.granttap.com"
     ports:
       - "127.0.0.1:3211:3211"
-    mem_limit: 1024m
-    cpus: 1
-    pids_limit: 256
+    mem_limit: 768m
+    cpus: 0.5
+    pids_limit: 96
     security_opt:
       - no-new-privileges:true
     cap_drop:

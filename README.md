@@ -33,7 +33,7 @@ computer changes.
 
 | Now on Mac | Task conversation on Mac |
 | --- | --- |
-| ![GrantTap Now on Mac](public/product/mac-now.jpg) | ![GrantTap Task conversation on Mac](public/product/mac-task.jpg) |
+| ![GrantTap Now on Mac](public/product/mac-now.png) | ![GrantTap Task conversation on Mac](public/product/mac-task.png) |
 
 These are captures of the GrantTap app using deterministic sample work; no
 private task, repository, pairing key, or customer data appears in them. The
@@ -149,12 +149,16 @@ Live granttap.com uses the Hetzner compose stack. The website runs as `site`;
 `/connect`, `/api/connect`, and `/api/account` use `web` and retain the
 persistent `account_data` volume. `wrangler.production.jsonc` is legacy
 Cloudflare configuration and is not the live deployment target. Site-only copy
-changes rebuild only the `site` service.
+changes rebuild only the `site` service. Production runs that image using
+`hetzner/site-production.compose.yaml` under the separate
+`granttap-site-production` project, with 768 MiB memory, half a CPU and
+96 processes. Set `GRANTTAP_SITE_RELEASE_IMAGE` to the verified image tag;
+the account service keeps its own compose project and persistent volume.
 
 Product captures under `public/product/` use deterministic sample data, never
 private pairing material or customer Tasks. The iPhone, iPad and Watch screens were recaptured from native build179 on
-2026-10-12. Mac captures remain dated 2026-10-08 until its new GUI capture is
-verified. Older graph and code-tower captures
+2026-10-12. Mac captures were refreshed from signed native build181 on
+2026-10-13 in English and Russian. Older graph and code-tower captures
 are explicitly marked as fixtures and do not claim a live repository scan.
 Generated editorial images in `public/visuals/` and the journal are captioned
 as illustrations rather than product captures.

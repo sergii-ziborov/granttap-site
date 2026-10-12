@@ -38,7 +38,7 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /Codex · Workstation/);
   assert.match(html, /A Mesh groups a project&#x27;s repositories, people, computers, and rules/);
   assert.match(html, /The control center is on your computer, too/);
-  assert.match(html, /mac-now\.jpg/);
+  assert.match(html, /mac-now\.png/);
   assert.match(html, /Actual GrantTap for Mac screen captured from the signed SwiftUI app/);
   assert.match(html, /codex plugin add granttap@granttap/);
   assert.match(html, /claude plugin install granttap@granttap/);

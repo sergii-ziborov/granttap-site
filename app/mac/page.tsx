@@ -5,11 +5,11 @@ import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
 type Params = { searchParams: Promise<{ lang?: string }> };
 
 const screens = [
-  { file: "mac-now.jpg", en: "Now", ru: "Сейчас" },
-  { file: "mac-tasks.jpg", en: "Tasks", ru: "Задачи" },
-  { file: "mac-task.jpg", en: "Task conversation", ru: "Чат задачи" },
-  { file: "mac-mesh.jpg", en: "Project Mesh", ru: "Mesh проекта" },
-  { file: "mac-usage.jpg", en: "Usage", ru: "Статистика" },
+  { file: "mac-now.png", en: "Now", ru: "Сейчас" },
+  { file: "mac-tasks.png", en: "Tasks", ru: "Задачи" },
+  { file: "mac-task.png", en: "Task conversation", ru: "Чат задачи" },
+  { file: "mac-mesh.png", en: "Project Mesh", ru: "Mesh проекта" },
+  { file: "mac-usage.png", en: "Usage", ru: "Статистика" },
 ] as const;
 
 const content = {
@@ -54,7 +54,7 @@ export async function generateMetadata({ searchParams }: Params): Promise<Metada
     title: ru ? "GrantTap для Mac" : "GrantTap for Mac",
     description: content[ru ? "ru" : "en"].intro,
     alternates: { canonical: ru ? "/mac?lang=ru" : "/mac", languages: { en: "/mac", ru: "/mac?lang=ru" } },
-    openGraph: { images: [{ url: "/product/mac-now.jpg", width: 2880, height: 1800 }] },
+    openGraph: { images: [{ url: ru ? "/product/mac-now-ru.png" : "/product/mac-now.png", width: 2880, height: 1780 }] },
   };
 }
 
@@ -72,8 +72,8 @@ export default async function MacPage({ searchParams }: Params) {
     <section className="section-shell mac-page-captures">
       <h2>{t.captureTitle}</h2><p>{t.captureNote}</p>
       <div className="mac-page-gallery">{screens.map((screen) =>
-        <figure key={screen.file}><a href={`/product/${screen.file}`} target="_blank" rel="noopener noreferrer">
-          <Image src={`/product/${screen.file}`} alt={`GrantTap for Mac: ${screen[locale]}`} width={2880} height={1800} loading="lazy" unoptimized />
+        <figure key={screen.file}><a href={`/product/${locale === "ru" ? screen.file.replace(".png", "-ru.png") : screen.file}`} target="_blank" rel="noopener noreferrer">
+          <Image src={`/product/${locale === "ru" ? screen.file.replace(".png", "-ru.png") : screen.file}`} alt={`GrantTap for Mac: ${screen[locale]}`} width={2880} height={1780} loading="lazy" unoptimized />
         </a><figcaption>{screen[locale]}</figcaption></figure>)}</div>
     </section>
     <section className="section-shell mac-page-connect"><h2>{t.installTitle}</h2><ol>{t.steps.map(step => <li key={step}>{step}</li>)}</ol><p>{t.more}</p></section>
