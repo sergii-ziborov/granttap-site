@@ -15,6 +15,12 @@ GrantTap can derive useful facts from native activity it already observes. Suppo
 
 Observation has a defined boundary. The system does not turn every shell command into a verified file write, or treat a chosen capability as proof that it was used. A tool count from a transcript is an observed count with that source's limitations. A model's statement remains a report. These distinctions improve reuse: a later Execution can consult an observed path, an explicit decision, and a reported conclusion without confusing their strengths. Economy comes from avoiding repeated mechanical collection and preserving known facts, while tests and source inspection still establish whether a proposed implementation behaves correctly.
 
+## Inspect the work inside a chat
+
+The chat places Files and Agents directly above the composer. Files opens the changes observed in the current reply, with addition and deletion counts and an expandable diff when the provider supplied one. All Files opens the Task's known checkout as a folder tree, with paged file previews. A preview already received is saved privately on the device and can reopen offline; reading a new path still requires its computer. The computer resolves the Task's admitted checkout and rejects paths outside it, external symlinks and protected credential files.
+
+Agents opens the Execution's nested conversations and their known messages. This makes delegated work visible inside the Task. Files, diffs and agents keep their source attribution: the interface does not add historical edit counts to a new reply or attribute a child's changes to its parent. These inspection actions help a person see where work happened before asking the model to repeat a summary.
+
 ## File claims reveal overlap early
 
 A claim helps answer a concrete question: is another Execution already working on this resource? Exact overlap in the same repository and checkout has a different meaning from similar paths in independent worktrees. Logical overlap across checkouts can still be relevant to a later merge, and neighboring module activity may deserve a warning without proving a direct conflict. GrantTap's observed claim tests exercise these distinctions instead of comparing filenames alone. Claims also have an expiry and ownership, so yesterday's activity does not permanently block a resource or falsely imply that a chat is still working there.

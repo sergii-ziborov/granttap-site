@@ -159,6 +159,11 @@ are explicitly marked as fixtures and do not claim a live repository scan.
 Generated editorial images in `public/visuals/` and the journal are captioned
 as illustrations rather than product captures.
 
+The architecture details and chat Files/Agents captures were refreshed from
+native build181 on 2026-10-13 with deterministic test data. The chat exposes
+Modified diffs, the Task checkout tree, retained file previews and nested
+agent conversations above the composer.
+
 The Mac client source and its end-user license are in the
 [GrantTap Apple repository](https://github.com/sergii-ziborov/granttap).
 
