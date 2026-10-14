@@ -4,6 +4,7 @@ import type { JWSTransactionDecodedPayload } from "@apple/app-store-server-libra
 export interface AppleReceipts {
   transaction(signedData: string): Promise<JWSTransactionDecodedPayload>;
   notification(signedData: string): Promise<JWSTransactionDecodedPayload | null>;
+  refresh?(originalId: string): Promise<JWSTransactionDecodedPayload[]>;
 }
 
 /** Trusted roots come from the server's configuration, never a client JWS. */

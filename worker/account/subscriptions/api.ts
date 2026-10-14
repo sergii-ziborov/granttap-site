@@ -5,6 +5,7 @@ import { bearerToken, boundedJSON, json, sessionToken } from "../http";
 import type { AppleReceipts } from "./apple";
 import { ManagedSubscriptions, isManagedSubscription } from "./index";
 import { signManagedTicket } from "./tickets";
+import { reconcileSubscription } from "./reconcile";
 
 export type ManagedBilling = { receipts: AppleReceipts; signingKey: Buffer };
 const ROOM = /^[A-Za-z0-9_-]{8,128}$/;
@@ -15,8 +16,9 @@ export async function routeManagedSubscriptions(request: Request,
   const receiptPath = "/api/account/subscriptions/receipt";
   const notificationPath = "/api/account/subscriptions/notification";
   const admissionPath = "/api/account/machine/admission";
+  const entitlementPath = "/api/account/subscriptions/entitlement";
   const release = /^\/api\/account\/subscriptions\/computers\/([0-9a-f-]{36})$/.exec(path);
-  if (![receiptPath, notificationPath, admissionPath].includes(path) && !release) return null;
+  if (![receiptPath, notificationPath, admissionPath, entitlementPath].includes(path) && !release) return null;
   const origin = request.headers.get("origin");
   if (request.method !== "GET" && origin && origin !== "https://granttap.com") {
     return json(403, { error: "Origin not allowed." });
@@ -24,6 +26,16 @@ export async function routeManagedSubscriptions(request: Request,
   const { billing } = services;
   if (!billing) return json(503, { error: "Managed billing verification is not configured." });
   const ledger = new ManagedSubscriptions(services.db);
+  if (path === entitlementPath) {
+    if (request.method !== "GET") return json(405, { error: "Method not allowed." });
+    const account = await services.auth.accountForToken(sessionToken(request));
+    if (!account) return json(401, { error: "Sign in required." });
+    try { await reconcileSubscription(ledger, billing.receipts, account); }
+    catch { return json(503, { error: "Apple subscription confirmation is temporarily unavailable." }); }
+    const entitlement = await ledger.entitlement(account);
+    return json(200, { entitlement: entitlement ? { ...entitlement,
+      validatedUntil: Math.min(entitlement.expiresAt, Date.now() + 300_000) } : null });
+  }
   if (release) {
     if (request.method !== "DELETE") return json(405, { error: "Method not allowed." });
     const account = await services.auth.accountForToken(sessionToken(request));
@@ -37,6 +49,8 @@ export async function routeManagedSubscriptions(request: Request,
   if (path === admissionPath) {
     const identity = await services.machines.identity(bearerToken(request));
     if (!identity) return json(401, { error: "Machine access revoked." });
+    try { await reconcileSubscription(ledger, billing.receipts, identity.accountId); }
+    catch { return json(503, { error: "Apple subscription confirmation is temporarily unavailable." }); }
     if (typeof body.publicKey !== "string" || !/^[A-Za-z0-9+/]{43}=$/.test(body.publicKey)
       || Buffer.from(body.publicKey, "base64").toString("base64") !== body.publicKey
       || typeof body.room !== "string" || !ROOM.test(body.room)) {

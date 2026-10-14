@@ -12,10 +12,10 @@ export default function PricingPage() {
     <LegalPage
       title={{ en: "Pricing and subscriptions", ru: "Тарифы и подписка" }}
       updated={{ en: "October 7, 2026", ru: "7 октября 2026" }}
-      updatedISO="2026-10-07"
+      updatedISO="2026-10-14"
       intro={{
-        en: "Start with a 7-day free trial. Personal is priced by how many computers you link — $1.99 for up to two, $3.99 for five, $5.99 for ten, $9.99 for fifteen per month — billed through Apple's App Store. The updated two- and fifteen-computer tiers await App Store review; the in-app purchase sheet shows which plans are available. Agents on each computer are unlimited.",
-        ru: "Начните с 7 бесплатных дней. Personal тарифицируется по числу подключённых компьютеров: $1,99 — до двух, $3,99 — до пяти, $5,99 — до десяти, $9,99 — до пятнадцати в месяц; оплату обрабатывает App Store. Обновлённые тарифы на два и пятнадцать компьютеров ожидают проверки App Store; доступные варианты показаны в окне покупки приложения. Агентов на каждом компьютере — без ограничений.",
+        en: "Start with a 7-day free trial. Personal is priced by how many computers you link — $1.99 for up to two, $3.99 for five, $5.99 for ten, $9.99 for fifteen per month — billed through Apple's App Store. The launch plans await App Store approval; the in-app purchase sheet shows which plans are available. Agents on each computer are unlimited.",
+        ru: "Начните с 7 бесплатных дней. Personal тарифицируется по числу подключённых компьютеров: $1,99 — до двух, $3,99 — до пяти, $5,99 — до десяти, $9,99 — до пятнадцати в месяц; оплату обрабатывает App Store. Стартовые тарифы ожидают одобрения App Store; доступные варианты показаны в окне покупки приложения. Агентов на каждом компьютере — без ограничений.",
       }}
       sections={{
         en: [
@@ -31,6 +31,7 @@ export default function PricingPage() {
           ] },
           { heading: "Mac license and no-subscription mode", paragraphs: [
             "GrantTap Mac uses a one-time $39.99 US Mac License, plus an optional Personal subscription for managed delivery. The confirmed US launch price is $39.99; the App Store purchase sheet controls availability and local price. A Mac license remains valid when Personal ends.",
+            "A Mac linked to the same GrantTap account can sync through the managed relay using that account's active Personal plan, including an eligible Apple trial started on iPhone. That companion connection needs no separate Mac trial. Local Mac agent control and self-hosting use the one-time Mac license.",
             "Licensed Mac local control and own-relay operation require no Personal subscription. Direct mode uses only a short-lived encrypted address directory; self-hosted mode uses your endpoint for pairing and delivery without that directory. Supply a reachable TLS endpoint or VPN. This does not open router ports or guarantee background notifications.",
           ] },
           { heading: "Billing", paragraphs: [
@@ -54,6 +55,7 @@ export default function PricingPage() {
           ] },
           { heading: "Лицензия Mac и режим без подписки", paragraphs: [
             "Для GrantTap Mac предусмотрена разовая лицензия Mac License за $39,99 в США и отдельная подписка Personal для managed-доставки. Стартовая цена $39,99 подтверждена; доступность и локальную цену определяет окно покупки App Store. Отмена Personal не отменяет лицензию Mac.",
+            "Mac, связанный с тем же аккаунтом GrantTap, может синхронизироваться через managed relay по активной подписке Personal этого аккаунта, включая доступный пробный период Apple, начатый на iPhone. Для такого подключения отдельный trial на Mac не нужен. Локальное управление агентами Mac и собственный relay открывает разовая лицензия Mac.",
             "Локальное управление на лицензированном Mac и собственный relay работают без Personal. Прямой режим использует только каталог краткоживущих зашифрованных адресов; автономный режим использует ваш endpoint для пейринга и доставки без этого каталога. Нужен доступный TLS endpoint или VPN. Режим не открывает порты роутера и не гарантирует фоновые уведомления.",
           ] },
           { heading: "Оплата", paragraphs: [

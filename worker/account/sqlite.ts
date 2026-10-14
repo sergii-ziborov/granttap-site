@@ -16,6 +16,10 @@ export class SqliteD1 {
     this.sqlite.exec(readFileSync(new URL("../../migrations/0003_account_beta_relay.sql", import.meta.url), "utf8"));
     this.sqlite.exec(readFileSync(new URL("../../migrations/0004_account_device_invites.sql", import.meta.url), "utf8"));
     this.sqlite.exec(readFileSync(new URL("../../migrations/0005_managed_subscriptions.sql", import.meta.url), "utf8"));
+    const columns = this.sqlite.prepare("PRAGMA table_info(account_subscriptions)").all();
+    if (!columns.some(column => column.name === "is_trial")) {
+      this.sqlite.exec(readFileSync(new URL("../../migrations/0006_subscription_trial.sql", import.meta.url), "utf8"));
+    }
   }
 
   prepare(sql: string) {

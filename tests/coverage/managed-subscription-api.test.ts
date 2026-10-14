@@ -9,7 +9,7 @@ import { D1AccountStore } from "../../worker/account/d1-store";
 import { AccountMachines } from "../../worker/account/machines";
 import { ManagedSubscriptions } from "../../worker/account/subscriptions";
 import { routeManagedSubscriptions } from "../../worker/account/subscriptions/api";
-import { appleReceipts } from "../../worker/account/subscriptions/apple";
+import { appleReceipts, type AppleReceipts } from "../../worker/account/subscriptions/apple";
 import { signManagedTicket } from "../../worker/account/subscriptions/tickets";
 
 const account = "12345678-1234-4123-8123-123456789012";
@@ -40,6 +40,36 @@ async function setup() {
 }
 
 describe("managed receipt HTTP boundary", () => {
+  it("recovers a missed Apple refund notification before sharing account rights", async () => {
+    const { request, services, receipt } = await setup();
+    await new ManagedSubscriptions(services.db).acceptVerified(account, receipt);
+    let lookups = 0;
+    (services.billing.receipts as AppleReceipts).refresh = async original => {
+      expect(original).toBe(receipt.originalTransactionId);
+      lookups += 1;
+      return [{ ...receipt, signedDate: receipt.signedDate + 1, revocationDate: Date.now() }];
+    };
+    expect(await (await request("subscriptions/entitlement", undefined, token, "GET"))?.json())
+      .toEqual({ entitlement: null });
+    expect(lookups).toBe(1);
+  });
+
+  it("shares the verified account subscription with a linked client without another purchase", async () => {
+    const { request, services, receipt } = await setup();
+    expect((await request("subscriptions/entitlement", undefined, "wrong", "GET"))?.status).toBe(401);
+    expect(await (await request("subscriptions/entitlement", undefined, token, "GET"))?.json())
+      .toEqual({ entitlement: null });
+    await new ManagedSubscriptions(services.db).acceptVerified(account, receipt);
+    const result = await (await request("subscriptions/entitlement", undefined, token, "GET"))?.json();
+    expect(result.entitlement).toMatchObject({ source: "subscription", limit: 2,
+      productId: receipt.productId, expiresAt: receipt.expiresDate });
+    Object.assign(receipt, { revocationDate: Date.now() });
+    receipt.signedDate += 1;
+    await new ManagedSubscriptions(services.db).acceptVerified(account, receipt);
+    expect(await (await request("subscriptions/entitlement", undefined, token, "GET"))?.json())
+      .toEqual({ entitlement: null });
+  });
+
   it("binds verified receipts, rejects invalid and cross-account data, and never trusts a client tier", async () => {
     const { request, receipt } = await setup();
     expect((await request("subscriptions/receipt", { signedTransaction: "verified-fixture", seats: 100 }))?.status).toBe(200);

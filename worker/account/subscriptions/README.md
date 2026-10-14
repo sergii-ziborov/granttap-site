@@ -1,5 +1,13 @@
 # Managed subscription admission
 
+The authenticated entitlement endpoint shares an Apple-verified account plan
+with linked clients for a five-minute authorization interval. Verified
+introductory free-trial receipts retain Apple's expiry; app updates cannot
+restart the trial. A paid plan takes precedence over temporary testing grants.
+The optional App Store Server API key reconciles existing verified transaction
+identities and missed revocations. Lookups have a six-second deadline and never
+authorize another account or silently extend a missing Apple status.
+
 `ManagedSubscriptions` persists Apple-verified Personal receipts and admits
 stable account computer identities atomically. The authenticated machine token chooses its identity; clients cannot supply a seat identity. Product IDs determine 2/5/10/15 seats;
 client-supplied limits are never used. Receipts are bound to the account UUID

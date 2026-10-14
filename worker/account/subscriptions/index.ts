@@ -7,8 +7,10 @@ const products: Record<string, number> = {
   "com.ziborov.granttap.personal.fleet.monthly": 10,
   "com.ziborov.granttap.personal.studio.monthly": 15,
 };
-type Entitlement = { source: "beta" | "subscription"; limit: number; expiresAt: number; revision: number };
-type ReceiptRow = { seat_limit: number; expires_at: number; signed_date: number; revoked: number };
+type Entitlement = { source: "beta" | "subscription"; limit: number; expiresAt: number;
+  revision: number; productId?: string; isTrial?: boolean };
+type ReceiptRow = { seat_limit: number; expires_at: number; signed_date: number; revoked: number;
+  product_id: string; is_trial: number };
 const COMPUTER = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const finite = (value: unknown): value is number => Number.isSafeInteger(value) && Number(value) >= 0;
 export const isManagedSubscription = (receipt: JWSTransactionDecodedPayload) =>
@@ -17,6 +19,13 @@ export const isManagedSubscription = (receipt: JWSTransactionDecodedPayload) =>
 /** Only the authenticated API may call this with Apple-verified data. */
 export class ManagedSubscriptions {
   constructor(private readonly db: D1Database, private readonly now: () => number = Date.now) {}
+
+  async originalTransaction(accountId: string): Promise<string | null> {
+    const row = await this.db.prepare(`SELECT original_id FROM account_subscriptions
+      WHERE account_id=? ORDER BY purchase_date DESC,signed_date DESC LIMIT 1`)
+      .bind(accountId).first<{ original_id: string }>();
+    return row?.original_id ?? null;
+  }
 
   async acceptVerified(accountId: string, receipt: JWSTransactionDecodedPayload): Promise<boolean> {
     const limit = receipt.productId && products[receipt.productId];
@@ -29,29 +38,33 @@ export class ManagedSubscriptions {
     const revoked = receipt.revocationDate != null || receipt.isUpgraded === true;
     const result = await this.db.prepare(`
       INSERT INTO account_subscriptions(original_id,account_id,transaction_id,product_id,
-        seat_limit,purchase_date,signed_date,expires_at,revoked)
-      SELECT ?,id,?,?,?,?,?,?,? FROM accounts WHERE id=?
+        seat_limit,purchase_date,signed_date,expires_at,revoked,is_trial)
+      SELECT ?,id,?,?,?,?,?,?,?,? FROM accounts WHERE id=?
       ON CONFLICT(original_id) DO UPDATE SET transaction_id=excluded.transaction_id,
         product_id=excluded.product_id,seat_limit=excluded.seat_limit,purchase_date=excluded.purchase_date,
-        signed_date=excluded.signed_date,expires_at=excluded.expires_at,revoked=excluded.revoked
+        signed_date=excluded.signed_date,expires_at=excluded.expires_at,revoked=excluded.revoked,
+        is_trial=excluded.is_trial
       WHERE account_subscriptions.account_id=excluded.account_id
         AND account_subscriptions.signed_date<excluded.signed_date
     `).bind(receipt.originalTransactionId, receipt.transactionId, receipt.productId, limit,
-      receipt.purchaseDate, receipt.signedDate, receipt.expiresDate, revoked ? 1 : 0, accountId).run();
+      receipt.purchaseDate, receipt.signedDate, receipt.expiresDate, revoked ? 1 : 0,
+      receipt.offerType === 1 && receipt.offerDiscountType === "FREE_TRIAL" ? 1 : 0, accountId).run();
     return result.meta.changes === 1;
   }
 
   async entitlement(accountId: string): Promise<Entitlement | null> {
+    const receipt = await this.db.prepare(`SELECT seat_limit,expires_at,signed_date,revoked,product_id,is_trial
+      FROM account_subscriptions WHERE account_id=? ORDER BY purchase_date DESC,signed_date DESC LIMIT 1`)
+      .bind(accountId).first<ReceiptRow>();
+    if (receipt && !receipt.revoked && receipt.expires_at > this.now()) {
+      return { source: "subscription", limit: receipt.seat_limit, expiresAt: receipt.expires_at,
+        revision: receipt.signed_date, productId: receipt.product_id, isTrial: receipt.is_trial === 1 };
+    }
     const beta = await this.db.prepare(`SELECT expires_at FROM account_beta_relay_grants
       WHERE account_id=? AND expires_at>? AND revoked_at IS NULL`)
       .bind(accountId, this.now()).first<{ expires_at: number }>();
     if (beta) return { source: "beta", limit: 100, expiresAt: beta.expires_at, revision: beta.expires_at };
-    const receipt = await this.db.prepare(`SELECT seat_limit,expires_at,signed_date,revoked
-      FROM account_subscriptions WHERE account_id=? ORDER BY purchase_date DESC,signed_date DESC LIMIT 1`)
-      .bind(accountId).first<ReceiptRow>();
-    return receipt && !receipt.revoked && receipt.expires_at > this.now()
-      ? { source: "subscription", limit: receipt.seat_limit, expiresAt: receipt.expires_at,
-          revision: receipt.signed_date } : null;
+    return null;
   }
 
   async admit(accountId: string, computerId: string): Promise<Entitlement | null> {

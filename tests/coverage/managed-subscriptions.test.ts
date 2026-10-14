@@ -21,6 +21,20 @@ function setup() {
 }
 
 describe("managed subscription admission", () => {
+  it("uses Apple trial evidence, gives paid seats priority over beta, and does not reset on refresh", async () => {
+    const { db, service, transaction, advance } = setup();
+    db.sqlite.prepare("INSERT INTO account_beta_relay_grants(account_id,expires_at) VALUES(?,?)")
+      .run(account, 10_000);
+    const trial = transaction(undefined, { offerType: 1, offerDiscountType: "FREE_TRIAL" });
+    await service.acceptVerified(account, trial);
+    expect(await service.entitlement(account)).toMatchObject({ source: "subscription", limit: 2,
+      isTrial: true, expiresAt: 500_000 });
+    await service.acceptVerified(account, trial);
+    expect((await service.entitlement(account))?.expiresAt).toBe(500_000);
+    advance(500_001);
+    expect(await service.entitlement(account)).toBeNull();
+  });
+
   it.each([["solo", 2], ["", 5], ["fleet", 10], ["studio", 15]] as const)(
     "enforces the %s tier atomically and reconnects stable computers", async (tier, limit) => {
       const { service, transaction } = setup();
