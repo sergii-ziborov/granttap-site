@@ -14,8 +14,8 @@ export default function LicensesPage() {
       updated={{ en: "September 28, 2026", ru: "28 сентября 2026" }}
       updatedISO="2026-09-28"
       intro={{
-        en: "GrantTap app, desktop, relay, and website are commercial software. Public source access does not make them MIT-licensed. The MCP project has its own MIT license.",
-        ru: "Приложение GrantTap, desktop, relay и сайт — коммерческое ПО. Публичный доступ к исходникам не делает их MIT-проектами. У MCP-проекта отдельная лицензия MIT.",
+        en: "GrantTap app, desktop, relay, and website are commercial software. Public source access does not make them MIT-licensed. The MCP project is licensed under Apache License 2.0.",
+        ru: "Приложение GrantTap, desktop, relay и сайт — коммерческое ПО. Публичный доступ к исходникам не делает их MIT-проектами. MCP-проект распространяется по Apache License 2.0.",
       }}
       sections={{
         en: [
@@ -30,7 +30,7 @@ export default function LicensesPage() {
           {
             heading: "Open-source project",
             links: [
-              { label: "MCP bridge — MIT", href: "https://github.com/sergii-ziborov/granttap-mcp/blob/main/LICENSE" },
+              { label: "MCP bridge — Apache 2.0", href: "https://github.com/sergii-ziborov/granttap-mcp/blob/main/LICENSE" },
             ],
           },
           {
@@ -57,7 +57,7 @@ export default function LicensesPage() {
           {
             heading: "Проект с открытой лицензией",
             links: [
-              { label: "MCP-мост — MIT", href: "https://github.com/sergii-ziborov/granttap-mcp/blob/main/LICENSE" },
+              { label: "MCP-мост — Apache 2.0", href: "https://github.com/sergii-ziborov/granttap-mcp/blob/main/LICENSE" },
             ],
           },
           {

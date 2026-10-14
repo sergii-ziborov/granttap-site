@@ -84,7 +84,7 @@ export default function TermsPage() {
           {
             heading: "Ownership and open source",
             paragraphs: [
-              "GrantTap branding, app design, Apple-client code, relay, and website remain the property of their owner. The standalone GrantTap MCP is MIT licensed. Earlier relay and website versions released under MIT retain those license rights. Third-party components keep their own licenses; current terms are listed on the Licenses page and in each repository.",
+              "GrantTap branding, app design, Apple-client code, relay, and website remain the property of their owner. The standalone GrantTap MCP is licensed under Apache License 2.0. Earlier relay and website versions released under MIT retain those license rights. Third-party components keep their own licenses; current terms are listed on the Licenses page and in each repository.",
             ],
             links: [{ label: "Licenses and notices", href: "/licenses" }],
           },
@@ -173,7 +173,7 @@ export default function TermsPage() {
           {
             heading: "Права и открытый код",
             paragraphs: [
-              "Бренд GrantTap, дизайн, код Apple-клиентов, relay и сайта остаются собственностью правообладателя. Самостоятельный GrantTap MCP распространяется по MIT. За более ранними версиями relay и сайта, выпущенными по MIT, сохраняются права этой лицензии. У сторонних компонентов собственные лицензии; действующие условия указаны на странице лицензий и в репозиториях.",
+              "Бренд GrantTap, дизайн, код Apple-клиентов, relay и сайта остаются собственностью правообладателя. Самостоятельный GrantTap MCP распространяется по Apache License 2.0. За более ранними версиями relay и сайта, выпущенными по MIT, сохраняются права этой лицензии. У сторонних компонентов собственные лицензии; действующие условия указаны на странице лицензий и в репозиториях.",
             ],
             links: [{ label: "Лицензии и уведомления", href: "/licenses" }],
           },
