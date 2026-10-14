@@ -24,7 +24,7 @@ describe("Apple account subscription reconciliation", () => {
     vi.spyOn(SignedDataVerifier.prototype, "verifyAndDecodeTransaction").mockResolvedValue(receipt);
     expect(await refresh()("original")).toEqual([receipt]);
     const [url, options] = vi.mocked(fetch).mock.calls.at(-1)!;
-    expect(String(url)).toContain("https://api.storekit.itunes.apple.com/inApps/v1/subscriptions/original");
+    expect(String(url)).toContain("https://api.storekit.apple.com/inApps/v1/subscriptions/original");
     expect(options).toMatchObject({ redirect: "error", size: 200_000 });
     expect(options?.signal).toBeInstanceOf(AbortSignal);
   });
