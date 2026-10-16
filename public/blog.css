@@ -5,7 +5,7 @@
 .blog-lead h1, .blog-article-head h1 { margin: 20px 0 22px; font-size: clamp(44px, 6.5vw, 82px); line-height: 1.04; letter-spacing: -.065em; max-width: 980px; }
 .blog-lead>p:not(.blog-eyebrow), .blog-deck { color: #b5b5b7; font-size: clamp(18px, 2vw, 22px); line-height: 1.55; max-width: 740px; }
 .blog-feature-link { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: #17191d; }
-.blog-feature-link>img { display: block; width: 100%; height: auto; }
+.blog-feature-link>img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #14151a; }
 .blog-feature-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; min-width: 0; padding: clamp(24px, 4vw, 48px); }
 .blog-feature-copy small, .blog-card-body small { color: #ffaf8b; font-size: 12px; font-weight: 750; text-transform: uppercase; letter-spacing: .1em; }
 .blog-feature-copy strong { font-size: clamp(30px, 3vw, 44px); line-height: 1.1; letter-spacing: -.045em; }
@@ -18,8 +18,9 @@
 .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
 .blog-card { display: flex; flex-direction: column; border: 1px solid #38383e; border-radius: 22px; overflow: hidden; background: linear-gradient(155deg, #202026, #15171b 78%); box-shadow: inset 0 1px #ffffff0d, 0 18px 38px #0004; transition: transform .25s, border-color .25s, box-shadow .25s; }
 .blog-card:hover { transform: translateY(-5px); border-color: #a06448; box-shadow: 0 28px 52px #0008; }
-.blog-card-image { display: block; flex: 0 0 220px; height: 220px; overflow: hidden; background: #14151a; }
-.blog-card-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+/* Covers are 16:9; the slot keeps that ratio at every width so no part of a cover is cut. */
+.blog-card-image { display: block; flex: 0 0 auto; aspect-ratio: 16 / 9; overflow: hidden; background: #14151a; }
+.blog-card-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .blog-card-body { display: flex; flex: 1; flex-direction: column; min-height: 254px; gap: 14px; padding: 24px; }
 .blog-card-body strong { font-size: 23px; line-height: 1.16; letter-spacing: -.035em; }
 .blog-card-body>span { color: var(--muted); line-height: 1.5; }
@@ -34,7 +35,7 @@
 .blog-article-head .blog-eyebrow span { color: #65676e; margin-inline: 8px; }
 .blog-article-head h1 { max-width: 1000px; }
 .blog-article-cover { overflow: hidden; border-radius: 24px; }
-.blog-article-cover img { width: 100%; max-height: 620px; object-fit: cover; object-position: center 20%; }
+.blog-article-cover img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #14151a; }
 .blog-article-cover figcaption { padding: 12px 4px 0; color: #9a9ba2; font-size: 13px; line-height: 1.5; }
 .blog-prose { width: 100%; margin: 76px 0 100px; color: #c9c8ca; font-size: 18px; line-height: 1.75; }
 .blog-article-rail { position: sticky; top: 28px; margin-top: 76px; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: #17191de8; }
@@ -121,11 +122,9 @@
   .blog-feature-copy>span { font-size: 15px; }
   .blog-list { padding-block: 70px; }
   .blog-grid { grid-template-columns: 1fr; }
-  .blog-card-image { height: 230px; flex-basis: 230px; }
   .blog-article-head { padding-block: 40px 34px; }
   .blog-article-head .blog-eyebrow { margin-top: 48px; }
   .blog-article-cover { width: 100%; border-radius: 0; }
-  .blog-article-cover img { min-height: 290px; max-height: 390px; }
   .blog-prose { margin-block: 52px 70px; font-size: 17px; }
   .blog-prose h2 { font-size: 29px; }
   .blog-graphic { margin-inline: 0; padding: 22px; }

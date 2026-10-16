@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, test } from "vitest";
 import BlogPage, { generateMetadata as indexMetadata } from "../../app/blog/page";
@@ -117,5 +117,25 @@ test("three research stories exceed 1500 body words per language and contain an 
     }
     expect(article.inlineIllustration).toMatch(/infographic.webp$/);
     expect(existsSync(join(process.cwd(), "public", article.cover))).toBe(true);
+  }
+});
+
+function webpSize(path: string) {
+  const bytes = readFileSync(join(process.cwd(), "public", path));
+  const chunk = bytes.toString("latin1", 12, 16);
+  if (chunk === "VP8 ") return { width: bytes.readUInt16LE(26) & 0x3fff, height: bytes.readUInt16LE(28) & 0x3fff };
+  if (chunk === "VP8X") return { width: bytes.readUIntLE(24, 3) + 1, height: bytes.readUIntLE(27, 3) + 1 };
+  const bits = bytes.readUInt32LE(21);
+  return { width: (bits & 0x3fff) + 1, height: ((bits >> 14) & 0x3fff) + 1 };
+}
+
+test("generated journal diagrams are 16:9 and each one is used by a story", () => {
+  const script = readFileSync(join(process.cwd(), "scripts/blog/research-illustrations.mjs"), "utf8");
+  const generated = [...script.matchAll(/scene\("([\w-]+)"/g)].map(match => `/blog/${match[1]}.webp`);
+  expect(generated.length).toBeGreaterThanOrEqual(9);
+  const used = new Set(articles.flatMap(article => [article.cover, article.inlineIllustration, article.additionalIllustration]));
+  for (const path of generated) {
+    expect(webpSize(path), path).toEqual({ width: 1600, height: 900 });
+    expect(used.has(path), path).toBe(true);
   }
 });
