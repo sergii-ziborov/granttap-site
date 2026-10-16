@@ -135,7 +135,8 @@ original permissions. The [MCP runtime](https://github.com/sergii-ziborov/grantt
 is licensed under Apache-2.0; the [ciphertext relay](https://github.com/sergii-ziborov/granttap-relay)
 has its own commercial source license. The separate Engine retains its
 commercial first-party terms. [Full website dependency notices](public/licenses/dependency-notices.txt)
-retain upstream licenses, including bundled notices. The same current Help,
+retain upstream licenses, including bundled notices and the Vinext/Vite
+server dependency and peer graph even where npm labels it as development tooling. The same current Help,
 pricing and legal text is exported offline into About on Apple clients from
 `app/ProductInformation`; see that module’s README.
 
