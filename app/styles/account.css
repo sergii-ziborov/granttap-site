@@ -15,3 +15,7 @@
 .account-machines { list-style: none; padding: 0; margin: 12px 0 24px; }
 .account-machines li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px solid #343436; }
 @media (max-width: 600px) { .account-card { margin: 20px auto; padding: 24px; } }
+
+.account-publishing h3 { margin: 24px 0 12px; }
+.account-publishing-choice { display: flex; align-items: center; gap: 10px; margin-top: 12px; color: var(--muted); font-size: .9rem; }
+.account-publishing-choice input { width: 18px; height: 18px; accent-color: var(--orange); }

@@ -7,7 +7,7 @@ test("renders the Personal product journey and locale control", async () => {
   const user = userEvent.setup();
   render(await Home({ searchParams: Promise.resolve({}) }));
 
-  expect(screen.getByRole("heading", { name: /All your coding agents/i })).toBeTruthy();
+  expect(screen.getByRole("heading", { name: /Your agents.*Your work.*Your control/i })).toBeTruthy();
   const providers = screen.getByRole("region", { name: "Supported providers" });
   expect(within(providers).getByRole("link", { name: "Claude Code" })).toBeTruthy();
   expect(within(providers).getByRole("link", { name: "Codex" })).toBeTruthy();
@@ -53,7 +53,7 @@ test("a Russian journal link opens the product and returns to the Russian journa
   window.localStorage.clear();
   window.history.replaceState(null, "", "/?lang=ru");
   const view = render(await Home({ searchParams: Promise.resolve({ lang: "ru" }) }));
-  expect(await screen.findByRole("heading", { name: /Все ваши coding agents/i })).toBeTruthy();
+  expect(await screen.findByRole("heading", { name: /Ваши агенты/i })).toBeTruthy();
   expect(within(screen.getByRole("navigation", { name: "Основная навигация" })).getByRole("link", { name: "Блог" }).getAttribute("href")).toBe("/blog?lang=ru");
   view.unmount();
   window.history.replaceState(null, "", "/");

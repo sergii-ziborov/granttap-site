@@ -62,7 +62,7 @@
 .mac-page-intro > p:not(.kicker) { max-width: 74ch; color: #c3bfc0; font-size: 19px; line-height: 1.6; }
 .mac-availability { padding: 20px 24px; border: 1px solid #6c4837; border-radius: 16px; background: #241d1b; }
 .mac-page-links { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 24px; }
-.mac-page-links a { color: #ffae89; font-weight: 700; }
+.mac-page-links a:not(.button) { color: #ffae89; font-weight: 700; }
 .mac-page-captures, .mac-page-connect { padding-bottom: 70px; }
 .mac-page-captures > p, .mac-page-connect > p { max-width: 78ch; color: #a6a3a6; line-height: 1.6; }
 .mac-page-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 30px; }

@@ -69,6 +69,8 @@ test("signed-in account lists computers and can revoke access", async () => {
   const fetcher = vi.spyOn(globalThis, "fetch")
     .mockResolvedValueOnce(Response.json({ accountId: "owner" }))
     .mockResolvedValueOnce(Response.json({ machines: [{ id: machineId, name: "MacBook", createdAt: 1, lastSeenAt: null }] }))
+    .mockResolvedValueOnce(Response.json({ accountId: "owner", computers: [{ id: machineId,
+      enabled: true, selected: false }], selectedCount: 0, nextCursor: null, limit: null, source: null }))
     .mockResolvedValueOnce(Response.json({ revoked: true }));
   render(<AccountView />);
   expect(await screen.findByText("MacBook")).toBeTruthy();

@@ -46,8 +46,10 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /granttap setup/);
   assert.match(html, /Native E2EE/);
   assert.match(html, /TestFlight by invitation/);
-  assert.match(html, /GrantTap 1\.0 is available on TestFlight by invitation/);
-  assert.match(html, /we are addressing review feedback/);
+  assert.match(html, /Request an invitation/);
+  assert.match(html, /Your agents\./);
+  assert.match(html, /Planned managed access from/);
+  assert.doesNotMatch(html, /we are addressing review feedback/);
   assert.match(html, /iphone-command-center\.png/);
   assert.match(html, /iphone-chat\.png/);
   assert.match(html, /iphone-mcp-usage\.png/);
@@ -62,7 +64,7 @@ test("server-renders one Personal product", async () => {
 test("Russian homepage is complete in server HTML with matching SEO metadata", async () => {
   const html = await (await render("https://granttap.com/?lang=ru")).text();
   assert.match(html, /<main lang="ru">/);
-  assert.match(html, /Все ваши coding agents/);
+  assert.match(html, /Ваши агенты\./);
   assert.match(html, /<title>GrantTap — Все coding-агенты\. Один центр управления\.<\/title>/);
   assert.match(html, /href="https:\/\/granttap\.com\/\?lang=ru"/);
 });
@@ -78,7 +80,7 @@ test("main, journal, article, and legal routes use the same navigation shell", a
 });
 
 test("editorial pages identify conceptual art and articles expose a working breadcrumb", async () => {
-  for (const [path, image] of [["/about", "device-journey.jpg"], ["/security", "encrypted-route.jpg"], ["/support", "pairing-journey.jpg"], ["/project-mesh", "mesh-network.jpg"]]) {
+  for (const [path, image] of [["/about", "device-journey.jpg"], ["/security", "encrypted-route.jpg"], ["/project-mesh", "mesh-network.jpg"]]) {
     const html = await (await render(`https://granttap.com${path}`)).text();
     assert.match(html, new RegExp(image.replace(".", "\\.")));
   }
@@ -165,7 +167,7 @@ test("publishes only Personal customer routes with canonical metadata", async ()
     const html = await response.text();
     const canonical = path === "/" ? "https://granttap.com/" : `https://granttap.com${path}`;
     assert.match(html, new RegExp(`<link(?=[^>]*rel="canonical")(?=[^>]*href="${canonical.replaceAll("/", "\\/")}")[^>]*>`, "i"));
-    assert.doesNotMatch(html, /Enterprise|GrantTap Web|browser vault|organization policy/i);
+    assert.doesNotMatch(html, /href="\/enterprise|GrantTap Web|browser vault|organization policy/i);
   }
   assert.equal((await render("https://granttap.com/enterprise")).status, 404);
   const account = await (await render("https://granttap.com/account")).text();
@@ -181,7 +183,7 @@ test("all internal links resolve", async () => {
     for (const match of html.matchAll(/<a\b[^>]*href="(\/[^"#?]*)/g)) if (!match[1].startsWith("/_")) links.add(match[1]);
   }
   for (const path of links) {
-    if (/\.(?:jpe?g|png|webp)$/.test(path)) {
+    if (/\.(?:jpe?g|png|webp|txt|json|pdf)$/.test(path)) {
       await access(new URL(`../public${path}`, import.meta.url));
       continue;
     }
@@ -215,7 +217,7 @@ test("publishes actionable Personal support and privacy copy", async () => {
   assert.match(support, /granttap status/);
   assert.match(support, /For Cursor, install the GrantTap Marketplace listing/);
   assert.doesNotMatch(support, /granttap (?:authorize|serve|monitor|hook|web|login)/);
-  const privacy = await readFile(new URL("../app/privacy/page.tsx", import.meta.url), "utf8");
+  const privacy = await (await render("https://granttap.com/privacy")).text();
   assert.match(privacy, /APNs device token/);
   assert.doesNotMatch(privacy, /Enterprise|GrantTap Web/);
 });
@@ -223,12 +225,17 @@ test("publishes actionable Personal support and privacy copy", async () => {
 test("publishes transparent subscription pricing", async () => {
   const html = await (await render("https://granttap.com/pricing")).text();
   assert.match(html, /7-day free trial/i);
-  // Every published tier, and the promise that agents are never metered.
-  assert.match(html, /\$1\.99 per month for up to 2 computers/i);
-  assert.match(html, /\$9\.99 for up to 15/i);
-  assert.match(html, /\$3\.99 for up to 5/i);
-  assert.match(html, /\$5\.99 for up to 10/i);
-  assert.match(html, /agents are never counted or charged for/i);
+  for (const [name, price, limit] of [["Personal", "3.99", 2], ["Personal Plus", "6.99", 5], ["Fleet", "11.99", 15]]) {
+    assert.match(html, new RegExp(`<article[^>]*aria-label="${name}"`));
+    assert.ok(html.includes(`$${price}`));
+    assert.ok(html.includes(`Up to ${limit} managed computers`));
+  }
+  assert.ok(html.includes("$39.99"));
+  assert.match(html, /no separate per-agent or per-task charge/i);
+  assert.match(html, /planned US launch prices/i);
+  assert.match(html, /eligible new subscribers/i);
+  assert.match(html, /href="\/support#contact"/);
+  assert.doesNotMatch(html, /\$1\.99|\$5\.99|\$9\.99|up to 10 computers/i);
   assert.match(html, /cancel/i);
   assert.doesNotMatch(html, /\$2\.99|up to 3 (?:linked )?computers/i);
   assert.doesNotMatch(html, /16\+|16 or more|more than 15|contact (?:sales|support) for (?:a )?(?:custom|enterprise) plan/i);

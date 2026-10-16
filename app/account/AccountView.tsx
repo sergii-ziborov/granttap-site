@@ -5,6 +5,7 @@ import type { PublicKeyCredentialCreationOptionsJSON, PublicKeyCredentialRequest
 import { useEffect, useState } from "react";
 import { LanguageToggle, useLocale } from "../components/Locale";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
+import { ComputerPublishing } from "./ComputerPublishing";
 
 type Ceremony<T> = { ceremonyId: string; options: T };
 type Account = { accountId: string };
@@ -112,7 +113,7 @@ export function AccountView() {
     return () => { active = false; };
   }, [accountId, locale]);
 
-  async function disconnect(machine: Machine) {
+  async function disconnect(machine: Pick<Machine, "id" | "name">) {
     setBusy(true);
     setError(null);
     try {
@@ -170,11 +171,8 @@ export function AccountView() {
         <h2>{t.computers}</h2>
         {machines === null ? <p role="status">{t.loading}</p> : machines.length === 0
           ? <p className="account-boundary">{t.none}</p>
-          : <ul className="account-machines">{machines.map(machine => <li key={machine.id}>
-            <span>{machine.name}</span>
-            <button type="button" disabled={busy} aria-label={`${t.disconnect} ${machine.name}`}
-              onClick={() => void disconnect(machine)}>{t.disconnect}</button>
-          </li>)}</ul>}
+          : <ComputerPublishing key={accountId} accountId={accountId} locale={locale}
+              machines={machines} busy={busy} onDisconnect={machine => void disconnect(machine)} />}
         <p className="account-boundary">{t.noComputer}</p>
         <div className="account-actions">
           <button type="button" disabled={busy} onClick={() => void exit(false)}>{t.signOut}</button>

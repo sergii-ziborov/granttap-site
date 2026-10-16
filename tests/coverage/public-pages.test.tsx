@@ -19,7 +19,7 @@ import TermsPage from "../../app/terms/page";
 
 const pages = [
   ["Accessibility", AccessibilityPage], ["Data choices and deletion", DataRightsPage],
-  ["Licenses and notices", LicensesPage], ["Pricing and subscriptions", PricingPage],
+  ["Licenses and notices", LicensesPage], ["Choose how many computers to connect.", PricingPage],
   ["Privacy Policy", PrivacyPage], ["Security", SecurityPage], ["Support", SupportPage], ["Terms of Use", TermsPage],
 ] as const;
 
@@ -73,6 +73,6 @@ describe("public legal and support pages", () => {
     window.localStorage.setItem("granttap.locale", "ru");
     render(<PricingPage />);
 
-    expect(await screen.findByRole("heading", { name: "Тарифы и подписка", level: 1 })).toBeTruthy();
+    expect(await screen.findByRole("heading", { name: "Выберите, сколько компьютеров подключить", level: 1 })).toBeTruthy();
   });
 });

@@ -119,10 +119,12 @@ help](https://granttap.com/support) walks through both.
 - [Pricing and availability](https://granttap.com/pricing) — current Personal
   tiers and the status of the Mac release.
 
-The iPhone app is currently available through TestFlight by invitation while
-GrantTap 1.0 addresses App Review feedback. A one-time Mac license is being prepared; its
-price and availability are determined by the App Store purchase sheet. The
-website distinguishes those release states from working product paths.
+Mac, iPhone and iPad are available in TestFlight by invitation; Watch is a
+companion through iPhone. Planned first-launch US prices are Personal $3.99/month
+for 2 publishing computers, Personal Plus $6.99 for 5, and Fleet $11.99 for 15.
+Mac Local is $39.99 once for local control and your own relay. An active Personal
+plan covers the managed Mac client without a second purchase. StoreKit provides
+actual local prices, eligibility and availability; paid products are not live.
 
 ## Source and license
 
@@ -130,8 +132,12 @@ This repository contains the public website source under the [GrantTap
 Commercial Source License](LICENSE). Production deployment and redistribution
 under that license require a commercial grant. Earlier MIT releases keep their
 original permissions. The [MCP runtime](https://github.com/sergii-ziborov/granttap-mcp)
-is MIT licensed; the [ciphertext relay](https://github.com/sergii-ziborov/granttap-relay)
-has its own license.
+is licensed under Apache-2.0; the [ciphertext relay](https://github.com/sergii-ziborov/granttap-relay)
+has its own commercial source license. The separate Engine retains its
+commercial first-party terms. [Full website dependency notices](public/licenses/dependency-notices.txt)
+retain upstream licenses, including bundled notices. The same current Help,
+pricing and legal text is exported offline into About on Apple clients from
+`app/ProductInformation`; see that module’s README.
 
 <details>
 <summary>Development and deployment notes</summary>

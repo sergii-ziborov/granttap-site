@@ -7,13 +7,14 @@ import type { Locale } from "./Locale";
 import { MeshExplainer } from "./MeshExplainer";
 import { ProductImage } from "./ProductImage";
 import { LocaleLinks, SiteFooter, SiteHeader } from "./SiteChrome";
+import { installationAction, localizedProductPath } from "../ProductOffer";
 
 type Props = { locale: Locale; t: HomeCopy };
 export function HomeView({ locale, t }: Props) {
   return <main lang={locale}>
     <SiteHeader locale={locale} active="product" languageControl={<LocaleLinks locale={locale} path="/" />} />
-    <Hero t={t} />
-    <Providers t={t} />
+    <Hero t={t} locale={locale} />
+    <Providers t={t} locale={locale} />
     <Product t={t} />
     <Share t={t} />
     <How t={t} />
@@ -21,22 +22,22 @@ export function HomeView({ locale, t }: Props) {
     <CaptureGallery t={t} />
     <Security t={t} />
     <Install t={t} />
-    <Pricing t={t} />
+    <Pricing t={t} locale={locale} />
     <BlogTeaser locale={locale} />
     <SiteFooter locale={locale} />
   </main>;
 }
 
-function Hero({ t }: Pick<Props, "t">) {
+function Hero({ t, locale }: Props) {
   return <section className="hero section-shell" id="top">
-    <div className="hero-copy"><div className="eyebrow"><span className="status-dot" />{t.eyebrow}</div><h1>{t.heroTitle}<span>{t.heroAccent}</span></h1><p className="hero-lede">{t.hero}</p><div className="hero-actions"><a className="button button-primary" href="#availability">{t.heroAction}</a><a className="button button-secondary" href="#product">{t.productAction} ↓</a></div><ul className="hero-notes">{t.proofs.map(item => <li key={item}><b>✓</b> {item}</li>)}</ul></div>
+    <div className="hero-copy"><div className="eyebrow"><span className="status-dot" />{t.eyebrow}</div><h1>{t.heroTitle}<span>{t.heroAccent}</span></h1><p className="hero-lede">{t.hero}</p><div className="hero-actions"><a className="button button-primary" href={installationAction(locale).href}>{installationAction(locale).label}</a><a className="button button-secondary" href="#product">{t.productAction} ↓</a></div><ul className="hero-notes">{t.proofs.map(item => <li key={item}><b>✓</b> {item}</li>)}</ul></div>
     <div className="hero-product" aria-label="GrantTap on iPhone and Apple Watch"><div className="phone-shell"><div className="phone-speaker" /><div className="phone-screen-stack"><ProductImage name="iphone-command-center" alt="GrantTap Now on iPhone" priority /><ProductImage name="iphone-chat" alt="GrantTap task on iPhone" priority /></div></div><div className="watch-shell"><div className="watch-crown" /><div className="watch-screen-stack"><ProductImage name="apple-watch-approval" alt="GrantTap approval on Apple Watch" priority /><ProductImage name="apple-watch-inbox" alt="GrantTap Needs You on Apple Watch" priority /></div></div></div>
   </section>;
 }
 
-function Providers({ t }: Pick<Props, "t">) {
+function Providers({ t, locale }: Props) {
   const providers = [["claude", "Claude Code", "/agents/claude-code"], ["codex", "Codex", "/agents/codex"], ["cursor", t.cursor, "/agents/cursor"], ["grok", t.grok, "/agents/grok-build"]];
-  return <section className="trust-strip" aria-label="Supported providers"><p>{t.providers}</p><div>{providers.map(([id, label, href]) => <a href={href} className={`provider-badge ${id}`} key={id}><Image className="tool-mark" src={`/providers/${id}.png?v=20260820-2`} alt="" width={192} height={192} unoptimized /><strong>{label}</strong></a>)}<span className="provider-note">{t.additional}</span></div></section>;
+  return <section className="trust-strip" aria-label="Supported providers"><p>{t.providers}</p><div>{providers.map(([id, label, href]) => <a href={localizedProductPath(href, locale)} className={`provider-badge ${id}`} key={id}><Image className="tool-mark" src={`/providers/${id}.png?v=20260820-2`} alt="" width={192} height={192} unoptimized /><strong>{label}</strong></a>)}<span className="provider-note">{t.additional}</span></div></section>;
 }
 
 function Product({ t }: Pick<Props, "t">) {
@@ -87,8 +88,9 @@ function Install({ t }: Pick<Props, "t">) {
   return <section className="install-section section-shell" id="install"><Heading kicker={t.installKicker} title={t.installTitle} text={t.installText} /><div className="install-grid">{cards.map(([name, command]) => <article className="install-card" key={name}><strong>{name}</strong><pre><code>{command}</code></pre></article>)}</div><div className="trust-links"><a href="https://github.com/sergii-ziborov/granttap-mcp">{t.source} ↗</a><a href="https://www.npmjs.com/package/granttap-mcp">{t.npm} ↗</a><a href="https://github.com/sergii-ziborov/granttap-relay">{t.relay} ↗</a></div></section>;
 }
 
-function Pricing({ t }: Pick<Props, "t">) {
-  return <><section className="pricing-preview section-shell" id="pricing"><div><p className="kicker">{t.pricingKicker}</p><h2>{t.pricingTitle}</h2><p>{t.pricingText}</p><a className="button button-secondary" href="/pricing">{t.pricingAction}</a></div></section><section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p className="release-copy">{t.releaseText}</p></div><span className="availability-pill">{t.cta}</span></div></section></>;
+function Pricing({ t, locale }: Props) {
+  const action = installationAction(locale);
+  return <><section className="pricing-preview section-shell" id="pricing"><div><p className="kicker">{t.pricingKicker}</p><h2>{t.pricingTitle}</h2><p>{t.pricingText}</p><a className="button button-secondary" href={localizedProductPath("/pricing", locale)}>{t.pricingAction}</a></div></section><section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p className="release-copy">{t.releaseText}</p></div><a className="availability-pill" href={action.href}>{action.label}</a></div></section></>;
 }
 
 function BlogTeaser({ locale }: { locale: Locale }) {

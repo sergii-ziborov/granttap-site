@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
+import { installationAction, launchOffer, localizedProductPath, usdPrice } from "../ProductOffer";
 
 type Params = { searchParams: Promise<{ lang?: string }> };
 
@@ -15,12 +16,12 @@ const screens = [
 const content = {
   en: {
     title: "GrantTap for Mac",
-    intro: "The SwiftUI control center for coding agents running on your Mac.",
-    availability: "GrantTap for Mac is available to invited internal testers through TestFlight. Each new TestFlight build includes a seven-day Mac evaluation from first launch. The public Mac App Store release and its one-time license are not yet available for purchase.",
+    intro: "Your coding-agent tasks, history and project rules on Mac, with linked iPhone and iPad clients.",
+    availability: "Available in TestFlight by invitation. The first commercial release and its paid products are being prepared.",
     installTitle: "How the Mac app connects",
     steps: [
-      "Install GrantTap for Mac and the separate GrantTap MCP helper on the same computer.",
-      "Authorize local Mac access. The app reads local tasks through an authenticated loopback connection.",
+      "Install GrantTap for Mac. Sign in with the same GrantTap passkey to manage linked computers; a controller-only Mac needs no local MCP.",
+      "To work with agents running on this Mac, install the separate GrantTap MCP helper here, run granttap setup, and authorize local Mac access.",
       "Use the same passkey to join your Account Mesh, or pair an iPhone or iPad directly with a one-time QR. A passkey alone does not transfer a device pairing key.",
     ],
     captureTitle: "The real Mac app",
@@ -31,12 +32,12 @@ const content = {
   },
   ru: {
     title: "GrantTap для Mac",
-    intro: "SwiftUI-центр управления coding-агентами на вашем Mac.",
-    availability: "GrantTap для Mac доступен приглашённым внутренним тестировщикам через TestFlight. Каждая новая сборка TestFlight даёт семь дней пробного доступа к Mac версии с первого запуска. Публичный выпуск в Mac App Store и разовая покупка лицензии пока недоступны.",
+    intro: "Задачи coding-агентов, история и правила проекта на Mac со связанными iPhone и iPad.",
+    availability: "Доступно в TestFlight по приглашению. Первый коммерческий релиз и платные продукты готовятся.",
     installTitle: "Как подключается Mac-приложение",
     steps: [
-      "Установите GrantTap для Mac и отдельный помощник GrantTap MCP на тот же компьютер.",
-      "Подтвердите локальный доступ Mac. Приложение получает задачи через защищённое соединение с локальным помощником.",
+      "Установите GrantTap для Mac. Войдите с тем же passkey GrantTap для управления связанными компьютерами: Mac только в роли контроллера не требует локального MCP.",
+      "Для работы с агентами на этом Mac установите сюда отдельный GrantTap MCP, выполните granttap setup и подтвердите локальный доступ.",
       "Войдите с тем же passkey в Mesh аккаунта или напрямую подключите iPhone либо iPad одноразовым QR. Сам passkey не передаёт ключ пары устройств.",
     ],
     captureTitle: "Настоящее приложение Mac",
@@ -62,12 +63,24 @@ export default async function MacPage({ searchParams }: Params) {
   const { lang } = await searchParams;
   const locale = lang === "ru" ? "ru" : "en";
   const t = content[locale];
+  const action = installationAction(locale, "mac");
   return <main lang={locale} className="mac-page">
     <SiteHeader locale={locale} active="mac" languageControl={<LocaleLinks locale={locale} path="/mac" />} />
     <section className="section-shell mac-page-intro">
       <p className="kicker">Mac · SwiftUI</p><h1>{t.title}</h1><p>{t.intro}</p>
       <p className="mac-availability">{t.availability}</p>
-      <div className="mac-page-links"><a href="/support">{t.support} →</a><a href="https://github.com/sergii-ziborov/granttap/tree/main/apps/macos">{t.source} ↗</a></div>
+      <div className="mac-page-links"><a className="button button-primary" href={action.href}>{action.label}</a><a href={localizedProductPath("/support", locale)}>{t.support} →</a><a href="https://github.com/sergii-ziborov/granttap/tree/main/apps/macos">{t.source} ↗</a></div>
+    </section>
+    <section className="section-shell offer-included">
+      <h2>{locale === "ru" ? "Два способа использовать GrantTap на Mac" : "Two ways to use GrantTap on Mac"}</h2>
+      <div className="offer-plans offer-mac-modes">
+        <article className="offer-card"><h3>{locale === "ru" ? "Managed-клиент" : "Managed client"}</h3>
+          <p>{locale === "ru" ? "В составе активной Personal на вашем аккаунте. Отдельная Mac Local для managed-доступа не нужна. Mac только в роли контроллера не занимает место компьютера-исполнителя." : "Included in active Personal on your account. No separate Mac Local purchase is needed for managed access. A controller-only Mac does not use a publishing-computer seat."}</p></article>
+        <article className="offer-card"><h3>Mac Local — {usdPrice(launchOffer.macLocal.usdCents, locale)}</h3>
+          <p>{locale === "ru" ? "Разовая лицензия для локального управления и собственного relay. Personal для этого режима не нужна. Managed-хостинг не включён; вы обеспечиваете доступный TLS endpoint или VPN и собственную инфраструктуру." : "A one-time license for local control and your own relay. No Personal subscription is required for that mode. Managed hosting is not included; you provide a reachable TLS endpoint or VPN and your infrastructure."}</p></article>
+      </div>
+      <p className="offer-note">{locale === "ru" ? "Это планируемые цены первого релиза в США. Доступность и локальную цену показывает окно покупки Apple." : "These are planned US prices for the first release. Apple’s purchase sheet controls availability and local pricing."}</p>
+      <a className="button button-secondary" href={localizedProductPath("/pricing", locale)}>{locale === "ru" ? "Сравнить планы и условия" : "Compare plans and terms"}</a>
     </section>
     <section className="section-shell mac-page-captures">
       <h2>{t.captureTitle}</h2><p>{t.captureNote}</p>

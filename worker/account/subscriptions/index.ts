@@ -1,12 +1,9 @@
 import type { D1Database } from "@cloudflare/workers-types";
 import type { JWSTransactionDecodedPayload } from "@apple/app-store-server-library";
+import { launchOffer } from "../../../app/ProductOffer";
 
-const products: Record<string, number> = {
-  "com.ziborov.granttap.personal.solo.monthly": 2,
-  "com.ziborov.granttap.personal.monthly": 5,
-  "com.ziborov.granttap.personal.fleet.monthly": 10,
-  "com.ziborov.granttap.personal.studio.monthly": 15,
-};
+const products: Record<string, number> = Object.fromEntries(
+  launchOffer.plans.map(plan => [plan.productId, plan.computers]));
 type Entitlement = { source: "beta" | "subscription"; limit: number; expiresAt: number;
   revision: number; productId?: string; isTrial?: boolean };
 type ReceiptRow = { seat_limit: number; expires_at: number; signed_date: number; revoked: number;
@@ -56,7 +53,8 @@ export class ManagedSubscriptions {
     const receipt = await this.db.prepare(`SELECT seat_limit,expires_at,signed_date,revoked,product_id,is_trial
       FROM account_subscriptions WHERE account_id=? ORDER BY purchase_date DESC,signed_date DESC LIMIT 1`)
       .bind(accountId).first<ReceiptRow>();
-    if (receipt && !receipt.revoked && receipt.expires_at > this.now()) {
+    if (receipt && products[receipt.product_id] === receipt.seat_limit
+      && !receipt.revoked && receipt.expires_at > this.now()) {
       return { source: "subscription", limit: receipt.seat_limit, expiresAt: receipt.expires_at,
         revision: receipt.signed_date, productId: receipt.product_id, isTrial: receipt.is_trial === 1 };
     }
@@ -67,7 +65,7 @@ export class ManagedSubscriptions {
     return null;
   }
 
-  async admit(accountId: string, computerId: string): Promise<Entitlement | null> {
+  async admit(accountId: string, computerId: string, explicitEnable = false): Promise<Entitlement | null> {
     if (!COMPUTER.test(computerId)) return null;
     const right = await this.entitlement(accountId);
     if (!right) return null;
@@ -82,21 +80,42 @@ export class ManagedSubscriptions {
     // The count and insertion share one SQLite statement; two last-slot requests cannot both win.
     const result = await this.db.prepare(`
       INSERT INTO managed_computers(computer_id,account_id,expires_at)
-      SELECT ?,?,? WHERE ${current} AND (
+      SELECT ?,?,? WHERE ${current}
+        AND (?=1 OR NOT EXISTS(SELECT 1 FROM managed_computers
+          WHERE computer_id=? AND account_id=? AND revoked_at IS NOT NULL)) AND (
         (SELECT COUNT(*) FROM managed_computers WHERE account_id=? AND revoked_at IS NULL)<?
         OR ? IN (SELECT computer_id FROM managed_computers WHERE account_id=? AND revoked_at IS NULL
           ORDER BY position LIMIT ?))
       ON CONFLICT(computer_id) DO UPDATE SET expires_at=excluded.expires_at,revoked_at=NULL
         WHERE managed_computers.account_id=excluded.account_id
     `).bind(computerId, accountId, expiry, accountId, right.revision, now,
+      explicitEnable ? 1 : 0, computerId, accountId,
       accountId, right.limit, computerId, accountId, right.limit).run();
     return result.meta.changes === 1 ? { ...right, expiresAt: expiry } : null;
   }
 
   async release(accountId: string, computerId: string): Promise<boolean> {
-    const result = await this.db.prepare(`UPDATE managed_computers SET revoked_at=?
-      WHERE account_id=? AND computer_id=? AND revoked_at IS NULL`)
-      .bind(this.now(), accountId, computerId).run();
+    if (!COMPUTER.test(computerId)) return false;
+    const result = await this.db.prepare(`
+      INSERT INTO managed_computers(computer_id,account_id,expires_at,revoked_at)
+      VALUES(?,?,0,?) ON CONFLICT(computer_id) DO UPDATE SET revoked_at=excluded.revoked_at
+      WHERE managed_computers.account_id=excluded.account_id`)
+      .bind(computerId, accountId, this.now()).run();
     return result.meta.changes === 1;
+  }
+
+  async computerStates(accountId: string, computerIds: string[]) {
+    if (!computerIds.length) return new Map<string, { enabled: boolean; selected: boolean }>();
+    const rows = await this.db.prepare(`SELECT computer_id,revoked_at FROM managed_computers
+      WHERE account_id=? AND computer_id IN (${computerIds.map(() => "?").join(",")})`)
+      .bind(accountId, ...computerIds).all<{ computer_id: string; revoked_at: number | null }>();
+    return new Map(rows.results.map(row => [row.computer_id,
+      { enabled: row.revoked_at === null, selected: row.revoked_at === null }]));
+  }
+
+  async selectedComputerCount(accountId: string): Promise<number> {
+    const row = await this.db.prepare(`SELECT COUNT(*) AS count FROM managed_computers
+      WHERE account_id=? AND revoked_at IS NULL`).bind(accountId).first<{ count: number }>();
+    return row?.count ?? 0;
   }
 }

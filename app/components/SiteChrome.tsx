@@ -73,12 +73,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
     </div>
     <nav className="footer-links" aria-label={locale === "ru" ? "Руководства" : "Guides"}>
       <a href={localeHref("/blog", locale)}>{locale === "ru" ? "Журнал" : "Journal"}</a>
-      {guides.map(item => <a href={item.href} key={item.href}>{item[locale]}</a>)}
+      {guides.map(item => <a href={localeHref(item.href, locale)} key={item.href}>{item[locale]}</a>)}
     </nav>
     <nav className="footer-links" aria-label={locale === "ru" ? "Сайт и документы" : "Site and legal"}>
-      <a href="/pricing">{locale === "ru" ? "Цена" : "Pricing"}</a>
-      <a href="/support">{locale === "ru" ? "Помощь" : "Support"}</a>
-      {legal.map(item => <a href={item.href} key={item.href}>{item[locale]}</a>)}
+      <a href={localeHref("/pricing", locale)}>{locale === "ru" ? "Цена" : "Pricing"}</a>
+      <a href={localeHref("/support", locale)}>{locale === "ru" ? "Помощь" : "Support"}</a>
+      {legal.map(item => <a href={localeHref(item.href, locale)} key={item.href}>{item[locale]}</a>)}
     </nav>
     <p>{locale === "ru" ? "© 2026 GrantTap. Не связан с Anthropic, OpenAI, Anysphere, xAI или Apple." : "© 2026 GrantTap. Not affiliated with Anthropic, OpenAI, Anysphere, xAI, or Apple."}</p>
   </footer>;

@@ -6,6 +6,7 @@ COPY hetzner/server.mjs ./hetzner/server.mjs
 COPY hetzner/billing.ts ./hetzner/billing.ts
 COPY hetzner/public ./hetzner/public
 COPY worker/account ./worker/account
+COPY app/ProductOffer/index.ts ./app/ProductOffer/index.ts
 COPY migrations ./migrations
 RUN mkdir /data && chown node:node /data
 USER node

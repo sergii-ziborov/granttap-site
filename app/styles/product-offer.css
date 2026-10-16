@@ -1,0 +1,39 @@
+.offer-intro { padding-top: 56px; padding-bottom: 30px; }
+.offer-intro h1 { max-width: 900px; font-size: clamp(2.3rem, 4.1vw, 3.7rem); line-height: 1.08; letter-spacing: -.045em; }
+.offer-intro > p:not(.kicker) { max-width: 780px; margin-top: 24px; font-size: 1.14rem; line-height: 1.65; }
+.offer-intro .offer-availability { font-size: .95rem; color: var(--muted); }
+.offer-plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding-top: 16px; }
+.offer-mac-modes { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 20px 0; width: 100%; }
+.offer-card { border: 1px solid var(--line); border-radius: 22px; padding: 30px; background: var(--paper, #fff); display: flex; flex-direction: column; align-items: stretch; }
+.offer-card-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.offer-card h2 { font-size: 1.35rem; margin: 0; }
+.offer-card-heading span { color: #9a3b16; background: #fff0e7; border-radius: 20px; padding: 5px 10px; font-size: .77rem; font-weight: 650; }
+.offer-price { margin: 25px 0 14px; color: var(--muted); }
+.offer-price strong { font-size: 2.65rem; line-height: 1; letter-spacing: -.05em; color: var(--ink); }
+.offer-computers { font-weight: 650; }
+.offer-description { line-height: 1.65; color: var(--muted); margin: 16px 0 28px; flex: 1; }
+.offer-card .button { text-align: center; justify-content: center; }
+.offer-card small { color: var(--muted); margin-top: 14px; font-size: .8rem; line-height: 1.5; }
+.offer-included { padding-top: 62px; padding-bottom: 48px; }
+.offer-included h2, .offer-faq h2, .offer-terms h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.025em; }
+.offer-included > p { max-width: 820px; line-height: 1.7; margin: 18px 0; }
+.offer-included ul { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 45px; padding-left: 22px; line-height: 1.6; }
+.offer-note { color: var(--muted); font-size: .9rem; line-height: 1.6; }
+.offer-mac { display: grid; grid-template-columns: 1.5fr 1fr; align-items: center; gap: 40px; padding: 34px; border: 1px solid var(--line); border-radius: 22px; background: var(--panel); }
+.offer-mac h2 { font-size: 1.8rem; margin: 12px 0; }
+.offer-mac p { line-height: 1.65; }
+.offer-mac .offer-price { margin-top: 0; }
+.offer-faq { max-width: 1000px; padding-top: 72px; padding-bottom: 48px; }
+.offer-faq details { border-bottom: 1px solid var(--line); padding: 22px 0; }
+.offer-faq summary { cursor: pointer; font-weight: 650; font-size: 1.04rem; }
+.offer-faq details p { margin-top: 16px; line-height: 1.75; color: var(--muted); }
+.offer-terms { max-width: 1000px; padding-bottom: 76px; }
+.offer-terms > p { margin-top: 18px; line-height: 1.75; }
+.offer-terms nav { display: flex; flex-wrap: wrap; gap: 24px; margin: 22px 0; text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 900px) {
+  .offer-plans { grid-template-columns: 1fr; max-width: 620px; }
+  .offer-card { padding: 26px; }
+  .offer-mac { grid-template-columns: 1fr; gap: 26px; padding: 26px; }
+  .offer-included ul { grid-template-columns: 1fr; gap: 14px; }
+  .offer-intro { padding-top: 44px; }
+}

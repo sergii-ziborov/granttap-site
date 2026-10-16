@@ -40,6 +40,32 @@ async function setup() {
 }
 
 describe("managed receipt HTTP boundary", () => {
+  it("lets only the signed-in owner select computers while preserving their machine identity", async () => {
+    const { request, services, receipt, machine } = await setup();
+    const path = `subscriptions/computers/${machine.id}`;
+    expect((await request("subscriptions/computers", undefined, "wrong", "GET"))?.status).toBe(401);
+    expect((await request("subscriptions/computers"))?.status).toBe(405);
+    expect((await request(path, undefined, token, "GET"))?.status).toBe(405);
+    expect((await request("subscriptions/computers?cursor=invalid", undefined, token, "GET"))?.status).toBe(400);
+    const first = await (await request("subscriptions/computers", undefined, token, "GET"))?.json();
+    expect(first).toMatchObject({ accountId: account, limit: null, selectedCount: 0,
+      computers: [{ id: machine.id, enabled: true, selected: false }] });
+    expect((await request(path, undefined, token, "PUT"))?.status).toBe(403);
+    expect((await request(path, undefined, token, "DELETE"))?.status).toBe(200);
+    expect(await services.machines.identity(machine.machineToken)).not.toBeNull();
+    await new ManagedSubscriptions(services.db).acceptVerified(account, receipt);
+    expect((await request(path, undefined, token, "PUT"))?.status).toBe(200);
+    expect(await (await request("subscriptions/computers", undefined, token, "GET"))?.json())
+      .toMatchObject({ limit: 2, selectedCount: 1,
+        computers: [{ id: machine.id, enabled: true, selected: true }] });
+    expect((await request("subscriptions/computers/22345678-1234-4123-8123-123456789012",
+      undefined, token, "PUT"))?.status).toBe(404);
+    (services.billing.receipts as AppleReceipts).refresh = async () => { throw Error("Apple offline"); };
+    expect((await request(path, undefined, token, "PUT"))?.status).toBe(503);
+    await services.machines.revoke(account, machine.id);
+    expect(await (await request("subscriptions/computers", undefined, token, "GET"))?.json())
+      .toMatchObject({ computers: [], selectedCount: 0 });
+  });
   it("recovers a missed Apple refund notification before sharing account rights", async () => {
     const { request, services, receipt } = await setup();
     await new ManagedSubscriptions(services.db).acceptVerified(account, receipt);
@@ -94,7 +120,11 @@ describe("managed receipt HTTP boundary", () => {
     expect((await request("machine/admission", body, "wrong"))?.status).toBe(401);
     expect((await request("machine/admission", { ...body, room: "bad" }, machine.machineToken))?.status).toBe(400);
     expect((await request(`subscriptions/computers/${machine.id}`, undefined, token, "DELETE"))?.status).toBe(200);
-    expect((await request(`subscriptions/computers/${machine.id}`, undefined, token, "DELETE"))?.status).toBe(404);
+    expect((await request(`subscriptions/computers/${machine.id}`, undefined, token, "DELETE"))?.status).toBe(200);
+    expect((await request("machine/admission", { ...body, enabled: true }, machine.machineToken))?.status).toBe(403);
+    expect((await request(`subscriptions/computers/${machine.id}`, undefined, machine.machineToken, "PUT"))?.status).toBe(401);
+    expect((await request(`subscriptions/computers/${machine.id}`, undefined, token, "PUT"))?.status).toBe(200);
+    expect((await request("machine/admission", body, machine.machineToken))?.status).toBe(200);
   });
 
   it("handles verified notifications, unavailable configuration, methods and origins", async () => {

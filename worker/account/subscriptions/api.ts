@@ -6,6 +6,7 @@ import type { AppleReceipts } from "./apple";
 import { ManagedSubscriptions, isManagedSubscription } from "./index";
 import { signManagedTicket } from "./tickets";
 import { reconcileSubscription } from "./reconcile";
+import { routeManagedComputers } from "./computers";
 
 export type ManagedBilling = { receipts: AppleReceipts; signingKey: Buffer };
 const ROOM = /^[A-Za-z0-9_-]{8,128}$/;
@@ -17,8 +18,9 @@ export async function routeManagedSubscriptions(request: Request,
   const notificationPath = "/api/account/subscriptions/notification";
   const admissionPath = "/api/account/machine/admission";
   const entitlementPath = "/api/account/subscriptions/entitlement";
+  const computersPath = "/api/account/subscriptions/computers";
   const release = /^\/api\/account\/subscriptions\/computers\/([0-9a-f-]{36})$/.exec(path);
-  if (![receiptPath, notificationPath, admissionPath, entitlementPath].includes(path) && !release) return null;
+  if (![receiptPath, notificationPath, admissionPath, entitlementPath, computersPath].includes(path) && !release) return null;
   const origin = request.headers.get("origin");
   if (request.method !== "GET" && origin && origin !== "https://granttap.com") {
     return json(403, { error: "Origin not allowed." });
@@ -26,6 +28,9 @@ export async function routeManagedSubscriptions(request: Request,
   const { billing } = services;
   if (!billing) return json(503, { error: "Managed billing verification is not configured." });
   const ledger = new ManagedSubscriptions(services.db);
+  if (path === computersPath || release) {
+    return routeManagedComputers(request, ledger, services.auth, services.machines, billing.receipts);
+  }
   if (path === entitlementPath) {
     if (request.method !== "GET") return json(405, { error: "Method not allowed." });
     const account = await services.auth.accountForToken(sessionToken(request));
@@ -35,13 +40,6 @@ export async function routeManagedSubscriptions(request: Request,
     const entitlement = await ledger.entitlement(account);
     return json(200, { entitlement: entitlement ? { ...entitlement,
       validatedUntil: Math.min(entitlement.expiresAt, Date.now() + 300_000) } : null });
-  }
-  if (release) {
-    if (request.method !== "DELETE") return json(405, { error: "Method not allowed." });
-    const account = await services.auth.accountForToken(sessionToken(request));
-    if (!account) return json(401, { error: "Sign in required." });
-    return await ledger.release(account, release[1]) ? json(200, { released: true })
-      : json(404, { error: "Computer unavailable." });
   }
   if (request.method !== "POST") return json(405, { error: "Method not allowed." });
   const body = await boundedJSON(request);

@@ -21,6 +21,23 @@ function setup() {
 }
 
 describe("managed subscription admission", () => {
+  it("rejects the unused ten-computer SKU in the first commercial catalog", async () => {
+    const { service, transaction } = setup();
+    expect(await service.acceptVerified(account,
+      transaction("com.ziborov.granttap.personal.fleet.monthly"))).toBe(false);
+    expect(await service.entitlement(account)).toBeNull();
+  });
+
+  it("keeps a computer disabled after a heartbeat and a service restart", async () => {
+    const { db, service, transaction } = setup();
+    await service.acceptVerified(account, transaction());
+    expect(await service.admit(account, computer(0))).not.toBeNull();
+    expect(await service.release(account, computer(0))).toBe(true);
+    expect(await service.admit(account, computer(0))).toBeNull();
+    const reopened = new ManagedSubscriptions(db as unknown as D1Database, () => 1_000);
+    expect(await reopened.admit(account, computer(0))).toBeNull();
+    expect(await reopened.admit(account, computer(1))).not.toBeNull();
+  });
   it("uses Apple trial evidence, gives paid seats priority over beta, and does not reset on refresh", async () => {
     const { db, service, transaction, advance } = setup();
     db.sqlite.prepare("INSERT INTO account_beta_relay_grants(account_id,expires_at) VALUES(?,?)")
@@ -35,7 +52,7 @@ describe("managed subscription admission", () => {
     expect(await service.entitlement(account)).toBeNull();
   });
 
-  it.each([["solo", 2], ["", 5], ["fleet", 10], ["studio", 15]] as const)(
+  it.each([["solo", 2], ["", 5], ["studio", 15]] as const)(
     "enforces the %s tier atomically and reconnects stable computers", async (tier, limit) => {
       const { service, transaction } = setup();
       const product = `com.ziborov.granttap.personal${tier ? `.${tier}` : ""}.monthly`;

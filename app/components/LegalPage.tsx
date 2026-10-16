@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LanguageToggle, useLocale } from "./Locale";
 import { EditorialArt } from "./EditorialArt";
 import { ReadingGrid } from "./ReadingGrid";
 import { SiteFooter, SiteHeader } from "./SiteChrome";
+import { localizedProductPath } from "../ProductOffer";
 
 const LEGAL_LINKS = [
   { href: "/pricing", label: { en: "Pricing", ru: "Тарифы" } },
@@ -25,6 +27,7 @@ type Section = {
   paragraphs?: string[];
   bullets?: string[];
   links?: Array<{ label: string; href: string }>;
+  image?: { name: string; caption: string };
 };
 
 export function LegalPage({
@@ -78,7 +81,7 @@ export function LegalPage({
           <p className="rail-label">{labels.index}</p>
           <nav className="legal-index" aria-label={labels.index}>
             {LEGAL_LINKS.map(({ href, label }) => (
-              <Link href={href} key={href} aria-current={pathname === href ? "page" : undefined}>
+              <Link href={localizedProductPath(href, locale)} key={href} aria-current={pathname === href ? "page" : undefined}>
                 {label[locale]}
               </Link>
             ))}
@@ -90,11 +93,17 @@ export function LegalPage({
             {section.bullets && (
               <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
             )}
+            {section.image && <figure className="help-illustration">
+              <a href={`/product/${section.image.name}.png`} target="_blank" rel="noopener noreferrer">
+                <Image src={`/product/${section.image.name}.png`} alt={section.image.caption}
+                  width={1206} height={2622} loading="lazy" unoptimized />
+              </a><figcaption>{section.image.caption}</figcaption>
+            </figure>}
             {section.links && (
               <div className="legal-links">
                 {section.links.map((link) => (
-                  link.href.startsWith("/") ? (
-                    <Link href={link.href} key={link.href}>{link.label}</Link>
+                  link.href.startsWith("/") && !/\.(txt|json|pdf)(?:[?#]|$)/.test(link.href) ? (
+                    <Link href={localizedProductPath(link.href, locale)} key={link.href}>{link.label}</Link>
                   ) : (
                     <a href={link.href} key={link.href}>
                       {link.label}<span aria-hidden="true"> ↗</span>
@@ -106,7 +115,7 @@ export function LegalPage({
           </section>
         ))}</div></ReadingGrid>
       </article>
-      <div className="legal-contact page-shell">{labels.contact}: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></div>
+      <div className="legal-contact page-shell" id="contact">{labels.contact}: <a href={`mailto:${SUPPORT_EMAIL}`}>{SUPPORT_EMAIL}</a></div>
       <SiteFooter locale={locale} />
     </main>
   );
