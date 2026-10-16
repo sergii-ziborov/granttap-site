@@ -3,7 +3,8 @@ import { articleBodyWordCount } from "../longform/wordCount";
 
 type StoryLocale = Pick<ArticleText, "title" | "summary" | "category" | "closing" | "sources" | "graphic"> & {
   body: string;
-  screenshotCaption: string;
+  /** Present exactly when the story has a product screenshot. */
+  screenshotCaption?: string;
   illustrationCaption: string;
   additionalIllustrationCaption: string;
 };

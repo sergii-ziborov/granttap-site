@@ -346,4 +346,137 @@ const research = "10 OCT 2026";
   written.push(await s.render());
 }
 
+const october16 = "16 OCT 2026";
+
+// --- Moving a Task without losing work (2026-10-16) ---
+{
+  const s = scene("move-a-task-without-losing-work-cover", { date: october16, title: "Move the Task. Keep the work.", subtitle: "Another agent or computer continues from a commit you can name", caption: "Concept illustration · a transfer carries facts and a commit, not a copy of the working tree" });
+  const source = s.box(L, 312, 400, 132);
+  s.label(source, L + 34, 364, "SOURCE", 22, muted, 700);
+  s.label(source, L + 34, 408, "Mac A · Claude Code", 28, ink, 700);
+  const task = s.circle(800, 378, 92);
+  s.label(task, 800, 391, "TASK", 36, dark, 700, "middle");
+  const target = s.box(R - 400, 312, 400, 132);
+  s.label(target, R - 366, 364, "DESTINATION", 22, muted, 700);
+  s.label(target, R - 366, 408, "Mac B · Codex", 28, ink, 700);
+  s.edge(source, task, { color: orange });
+  s.edge(task, target, { color: orange });
+  const stay = s.box(L, 566, 400, 140, { dash: true, stroke: orange });
+  s.label(stay, L + 34, 616, "UNCOMMITTED", 22, orange, 700);
+  s.label(stay, L + 34, 656, "A warning; they stay on Mac A", 22, ink);
+  s.label(stay, L + 34, 688, "unless you checkpoint them", 22, muted);
+  const checkpoint = s.box(600, 566, 400, 140);
+  s.label(checkpoint, 634, 616, "CHECKPOINT", 22, green, 700);
+  s.label(checkpoint, 634, 656, "granttap/checkpoint/…", 22, ink);
+  s.label(checkpoint, 634, 688, "local branch, pushed on request", 22, muted);
+  const confirm = s.box(R - 400, 566, 400, 140);
+  s.label(confirm, R - 366, 616, "CONFIRMED", 22, green, 700);
+  s.label(confirm, R - 366, 656, "Destination checks the commit", 22, ink);
+  s.label(confirm, R - 366, 688, "before the new chat opens", 22, muted);
+  s.edge(source, stay, { arrow: false, dash: true, x: L + 200 });
+  s.edge(task, checkpoint, { arrow: false, dash: true, x: 800 });
+  s.edge(target, confirm, { arrow: false, dash: true, x: R - 200 });
+  written.push(await s.render());
+}
+{
+  const s = scene("move-a-task-without-losing-work-a", { date: october16, title: "Uncommitted work: a warning, not a wall", subtitle: "You choose what the next agent starts from", caption: "Implemented flow · nothing is pushed unless you ask for it on that transfer" });
+  const root = s.box(L, 404, 470, 200, { stroke: orange });
+  s.label(root, L + 36, 460, "WORKING TREE HAS CHANGES", 23, orange, 700);
+  s.label(root, L + 36, 508, "Readiness shows a warning;", 25, ink);
+  s.label(root, L + 36, 548, "the transfer is not refused", 25, ink);
+  const plain = s.box(R - 700, 300, 700, 196);
+  s.label(plain, R - 664, 352, "1 · MOVE FROM THE LAST COMMIT", 24, ink, 700);
+  s.label(plain, R - 664, 398, "Changes stay on the source computer", 24, muted);
+  s.label(plain, R - 664, 440, "The capsule names what stayed behind", 24, muted);
+  const saved = s.box(R - 700, 530, 700, 196, { stroke: green });
+  s.label(saved, R - 664, 582, "2 · CHECKPOINT FIRST", 24, green, 700);
+  s.label(saved, R - 664, 628, "Commit to granttap/checkpoint/<task>", 24, ink);
+  s.label(saved, R - 664, 670, "HEAD, branch and files stay as they were", 24, muted);
+  s.edge(root, plain, { color: muted });
+  s.edge(root, saved, { color: green });
+  written.push(await s.render());
+}
+{
+  const s = scene("move-a-task-without-losing-work-b", { date: october16, title: "Prepared, checked, then opened", subtitle: "The destination confirms the transfer before a new native session exists", caption: "Implemented flow · a failed check is reported, never silently rerouted" });
+  const [, , confirm] = s.flow(296, [["1", "Choose", "Computer, agent, model, note"], ["2", "Prepare", "Capsule + separate worktree"], ["3", "Confirm", "Commit present, no overlap", green]]);
+  const open = s.box(330, 562, 940, 150);
+  s.label(open, 370, 616, "THE NEW CHAT OPENS", 29, green, 700);
+  s.label(open, 370, 664, "Your first message there starts the destination agent", 24, muted);
+  s.edge(confirm, open, { x: 1250, color: green });
+  written.push(await s.render());
+}
+
+// --- Messages that wait for the computer (2026-10-16) ---
+const red = "#e5675a";
+const marks = {
+  queued: (x, y) => `<circle cx="${x}" cy="${y}" r="20" fill="none" stroke="${muted}" stroke-width="3"/><path d="M${x} ${y - 11} L${x} ${y} L${x + 9} ${y + 6}" fill="none" stroke="${muted}" stroke-width="3" stroke-linecap="round"/>`,
+  sent: (x, y) => `<path d="M${x - 14} ${y} L${x - 4} ${y + 10} L${x + 15} ${y - 11}" fill="none" stroke="${muted}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`,
+  delivered: (x, y) => `<circle cx="${x}" cy="${y}" r="20" fill="${green}"/><path d="M${x - 10} ${y} L${x - 3} ${y + 7} L${x + 10} ${y - 7}" fill="none" stroke="${dark}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`,
+  failed: (x, y) => `<circle cx="${x}" cy="${y}" r="20" fill="${red}"/><path d="M${x} ${y - 10} L${x} ${y + 3}" stroke="${dark}" stroke-width="4" stroke-linecap="round"/><circle cx="${x}" cy="${y + 10}" r="2.6" fill="${dark}"/>`,
+};
+{
+  const s = scene("messages-that-wait-for-the-computer-cover", { date: october16, title: "A message that waits for its computer", subtitle: "Sealed on the phone, held as ciphertext, opened on the computer", caption: "Concept illustration · the relay stores and forwards ciphertext; it cannot read the message" });
+  const phone = s.box(L, 312, 400, 132);
+  s.label(phone, L + 34, 364, "IPHONE", 22, muted, 700);
+  s.label(phone, L + 34, 408, "Encrypts the request", 28, ink, 700);
+  const relay = s.circle(800, 378, 92);
+  s.label(relay, 800, 372, "RELAY", 30, dark, 700, "middle");
+  s.label(relay, 800, 404, "QUEUE", 22, dark, 700, "middle");
+  const computer = s.box(R - 400, 312, 400, 132);
+  s.label(computer, R - 366, 364, "COMPUTER", 22, muted, 700);
+  s.label(computer, R - 366, 408, "Decrypts and delivers", 28, ink, 700);
+  s.edge(phone, relay, { color: orange });
+  s.edge(relay, computer, { color: orange });
+  const leave = s.box(L, 566, 400, 140);
+  s.label(leave, L + 34, 616, "HANDED OVER", 22, green, 700);
+  s.label(leave, L + 34, 656, "Once the upload is confirmed,", 22, ink);
+  s.label(leave, L + 34, 688, "the phone may close", 22, muted);
+  const sees = s.box(600, 566, 400, 140, { dash: true, stroke: orange });
+  s.label(sees, 634, 616, "RELAY SEES", 22, orange, 700);
+  s.label(sees, 634, 656, "IDs, timing, size, expiry", 22, ink);
+  s.label(sees, 634, 688, "never the text itself", 22, muted);
+  const later = s.box(R - 400, 566, 400, 140);
+  s.label(later, R - 366, 616, "WHEN IT RECONNECTS", 22, green, 700);
+  s.label(later, R - 366, 656, "The waiting request arrives,", 22, ink);
+  s.label(later, R - 366, 688, "unless it has expired", 22, muted);
+  s.edge(phone, leave, { arrow: false, dash: true, x: L + 200 });
+  s.edge(relay, sees, { arrow: false, dash: true, x: 800 });
+  s.edge(computer, later, { arrow: false, dash: true, x: R - 200 });
+  written.push(await s.render());
+}
+{
+  const s = scene("messages-that-wait-for-the-computer-a", { date: october16, title: "Four marks on your message", subtitle: "Each one answers a different question about delivery", caption: "Marks on your own messages · Delivered means the computer confirmed it, not that the work is done" });
+  const gap = 90, w = (R - L - 2 * gap) / 3, y = 300, h = 170;
+  const step = (x, mark, title, line1, line2, color = ink) => {
+    const n = s.box(x, y, w, h);
+    n.decor = marks[mark](x + 52, y + 56);
+    s.label(n, x + 92, y + 66, title, 30, color, 700);
+    s.label(n, x + 32, y + 116, line1, 22, ink);
+    s.label(n, x + 32, y + 148, line2, 22, muted);
+    return n;
+  };
+  const queued = step(L, "queued", "Queued", "Waiting to leave the phone", "Keep GrantTap connected");
+  const sent = step(L + w + gap, "sent", "Sent", "It left the phone", "On its way through the relay");
+  const delivered = step(L + 2 * (w + gap), "delivered", "Delivered", "The computer confirmed it", "The reply comes as a message", green);
+  s.edge(queued, sent, { color: orange });
+  s.edge(sent, delivered, { color: orange });
+  const failed = s.box(L + w + gap, 556, w, 160, { stroke: red });
+  failed.decor = marks.failed(L + w + gap + 52, 612);
+  s.label(failed, L + w + gap + 92, 622, "Not delivered", 30, red, 700);
+  s.label(failed, L + w + gap + 32, 668, "Retry repeats the delivery,", 22, ink);
+  s.label(failed, L + w + gap + 32, 698, "not the agent's work", 22, muted);
+  s.edge(sent, failed, { color: red, dash: true, x: L + w + gap + w / 2 });
+  written.push(await s.render());
+}
+{
+  const s = scene("messages-that-wait-for-the-computer-b", { date: october16, title: "Content-blind, not metadata-blind", subtitle: "What a waiting message looks like from the relay's side", caption: "From GrantTap's Security and Privacy pages · queues are bounded and expire" });
+  const relaySide = s.box(L, 296, 690, 420, { dash: true, stroke: orange });
+  s.label(relaySide, L + 36, 352, "THE RELAY CAN SEE", 26, orange, 700);
+  ["Opaque room, task and message IDs", "Sender and recipient roles", "Timing, expiry and ciphertext size", "Delivery status and retry state", "IP address and push routing metadata"].forEach((line, i) => s.label(relaySide, L + 36, 410 + i * 56, line, 25, ink));
+  const endpoints = s.box(R - 690, 296, 690, 420, { stroke: green });
+  s.label(endpoints, R - 654, 352, "READABLE ONLY ON YOUR DEVICES", 26, green, 700);
+  ["The message text and attachments", "The agent's replies and questions", "Commands, approvals and decisions", "Per-task keys, created locally", "Repositories and provider sign-ins"].forEach((line, i) => s.label(endpoints, R - 654, 410 + i * 56, line, 25, ink));
+  written.push(await s.render());
+}
+
 console.log(`Wrote ${written.length} illustrations: ${written.join(", ")}`);

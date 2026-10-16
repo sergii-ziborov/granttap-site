@@ -1,6 +1,8 @@
 import type { BlogArticle } from "./articleTypes";
 
 const editorialPaths: Record<string, string[]> = {
+  "move-a-task-without-losing-work": ["project-mesh-memory-handoff-less-duplicate-work", "task-continuity-beyond-an-agent-session", "messages-that-wait-for-the-computer"],
+  "messages-that-wait-for-the-computer": ["control-claude-code-codex-iphone-granttap", "move-a-task-without-losing-work", "local-cloud-hybrid-agent-boundaries"],
   "cortex-loom-inside-granttap-token-economy": ["project-mesh-memory-handoff-less-duplicate-work", "granttap-governance-native-enforcement-research", "cortex-loom-evidence-per-token"],
   "project-mesh-memory-handoff-less-duplicate-work": ["cortex-loom-inside-granttap-token-economy", "granttap-governance-native-enforcement-research", "task-continuity-beyond-an-agent-session"],
   "granttap-governance-native-enforcement-research": ["project-mesh-memory-handoff-less-duplicate-work", "cortex-loom-inside-granttap-token-economy", "mcp-skills-and-governance-status"],

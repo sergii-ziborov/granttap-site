@@ -30,8 +30,14 @@ test("every article renders its own sections and sources in both languages", () 
       const view = render(<BlogArticleView article={article} articles={articles} locale={locale} />);
       expect(screen.getByRole("heading", { name: article[locale].title })).toBeTruthy();
       expect(screen.getByText(article[locale].closing)).toBeTruthy();
-      if (article[locale].screenshotCaption) expect(screen.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
-      expect(screen.getByText(locale === "en" ? "GrantTap screen · sample data" : "Экран GrantTap · тестовые данные")).toBeTruthy();
+      const captureLabel = screen.queryByText(locale === "en" ? "GrantTap screen · sample data" : "Экран GrantTap · тестовые данные");
+      if (article.screenshot) {
+        expect(screen.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
+        expect(captureLabel).toBeTruthy();
+      } else {
+        expect(article[locale].screenshotCaption).toBeUndefined();
+        expect(captureLabel).toBeNull();
+      }
       expect(screen.getByRole("heading", { name: locale === "en" ? "Sources" : "Источники" })).toBeTruthy();
       view.unmount();
     }
@@ -40,8 +46,10 @@ test("every article renders its own sections and sources in both languages", () 
 
 test("each editorial story includes a real GrantTap interface with bilingual context", () => {
   const editorial = articles.filter(article => article.date >= "2026-10-03");
-  expect(editorial).toHaveLength(18);
-  for (const article of editorial) {
+  expect(editorial).toHaveLength(20);
+  // A story shows a capture only when one shows its feature; none shows message delivery marks yet.
+  expect(editorial.filter(article => !article.screenshot).map(article => article.slug)).toEqual(["messages-that-wait-for-the-computer"]);
+  for (const article of editorial.filter(item => item.screenshot)) {
     expect(article.screenshot).toMatch(/^\/product\/iphone-[\w-]+\.png$/);
     expect(existsSync(join(process.cwd(), "public", article.screenshot!))).toBe(true);
     expect(article.en.screenshotCaption?.length).toBeGreaterThan(30);
@@ -50,7 +58,7 @@ test("each editorial story includes a real GrantTap interface with bilingual con
 });
 
 test("all bilingual stories have at least 1000 body words and two labeled inline images", () => {
-  expect(articles).toHaveLength(23);
+  expect(articles).toHaveLength(25);
   for (const article of articles) {
     expect(article.generatedCover).toBe(true);
     for (const locale of ["en", "ru"] as const) {
@@ -137,5 +145,23 @@ test("generated journal diagrams are 16:9 and each one is used by a story", () =
   for (const path of generated) {
     expect(webpSize(path), path).toEqual({ width: 1600, height: 900 });
     expect(used.has(path), path).toBe(true);
+  }
+});
+
+test("October 16 guides match or exceed the journal's typical story", () => {
+  const fresh = articles.filter(article => article.date === "2026-10-16");
+  expect(fresh.map(article => article.slug)).toEqual(["move-a-task-without-losing-work", "messages-that-wait-for-the-computer"]);
+  const others = articles.filter(article => article.date !== "2026-10-16");
+  const median = (values: number[]) => { const sorted = [...values].sort((a, b) => a - b); const middle = sorted.length >> 1; return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2; };
+  for (const article of fresh) {
+    expect(article.minutes).toBeGreaterThanOrEqual(median(others.map(other => other.minutes)));
+    for (const locale of ["en", "ru"] as const) {
+      expect(articleBodyWordCount(article[locale])).toBeGreaterThanOrEqual(median(others.map(other => articleBodyWordCount(other[locale]))));
+      expect(article[locale].sections.length).toBeGreaterThanOrEqual(median(others.map(other => other[locale].sections.length)));
+      expect(article[locale].illustrationCaption).toMatch(/Infographic|Инфографика/);
+    }
+    expect(article.cover).toBe(`/blog/${article.slug}-cover.webp`);
+    expect(article.inlineIllustration).toBe(`/blog/${article.slug}-a.webp`);
+    expect(article.additionalIllustration).toBe(`/blog/${article.slug}-b.webp`);
   }
 });

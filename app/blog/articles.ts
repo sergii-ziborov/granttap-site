@@ -1,4 +1,5 @@
 import { cortexResearch, meshResearch, governanceResearch } from "./stories/research";
+import { taskTransferStory, waitingMessagesStory } from "./stories/october16";
 import type { BlogArticle } from "./articleTypes";
 import { extendArticle } from "./longform";
 import { capabilityStatusGuide } from "./stories/capability-status-guide";
@@ -288,6 +289,7 @@ const guides: BlogArticle[] = [
 ];
 
 export const articles: BlogArticle[] = [
+  taskTransferStory, waitingMessagesStory,
   cortexResearch, meshResearch, governanceResearch,
   iphoneClaudeCodex, granttapMeshGovernance, microsoftAgent365Tools, awsTemporalPolicy, anthropicAgentSecurity,
   localCloudBoundaries, usageEvidence, taskHandoffPaths, approvalBoundaries, mobileWorkflowMap,

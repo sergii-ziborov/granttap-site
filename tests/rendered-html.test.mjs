@@ -20,6 +20,7 @@ const routes = [
   "/blog", "/blog/why-granttap-is-a-control-center", "/blog/connect-iphone-with-qr", "/blog/task-continuity-across-agents",
   "/blog/linked-projects-without-merging-access", "/blog/architecture-graph-with-evidence",
   "/blog/mcp-skills-and-governance-status",
+  "/blog/move-a-task-without-losing-work", "/blog/messages-that-wait-for-the-computer",
 ];
 
 test("server-renders one Personal product", async () => {
@@ -112,7 +113,9 @@ test("journal publishes current stories with accurate status and images", async 
   assert.match(index, /connect-iphone-with-qr/);
   assert.match(index, /why-granttap-is-a-control-center/);
   assert.match(index, /mcp-skills-and-governance-status/);
-  assert.match(index, /blog-list-heading[^>]*><h2>All stories<\/h2><span>23/);
+  assert.match(index, /blog-list-heading[^>]*><h2>All stories<\/h2><span>25/);
+  assert.match(index, /move-a-task-without-losing-work/);
+  assert.match(index, /messages-that-wait-for-the-computer/);
   assert.match(index, /cortex-loom-inside-granttap-token-economy/);
   assert.match(index, /project-mesh-memory-handoff-less-duplicate-work/);
   assert.match(index, /granttap-governance-native-enforcement-research/);
