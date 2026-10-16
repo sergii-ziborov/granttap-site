@@ -32,7 +32,7 @@ export default function ProjectMeshPage() {
       { title: "Reported at the end", text: "A Task can be exported as a PDF or CSV with available observations and their source. Missing history and sampled resource values remain identified as such." },
     ]}
     limits={[
-      "A capsule carries committed facts, not files; uncommitted work blocks departure.",
+      "A capsule carries committed facts, not files. From runtime 0.8.70, uncommitted work stays on the source computer with a warning unless it is checkpointed to a local branch.",
       "GrantTap never pushes, fetches, merges, or resolves resource conflicts by itself.",
       "Cursor has scoped author attribution but no phase-one remote start. Grok Build has no trusted caller hook yet.",
       "A pin is not a secure VM. Isolation from a toggle is not claimed.",

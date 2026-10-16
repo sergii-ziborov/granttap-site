@@ -9,8 +9,8 @@ const pages = [
   ["security", "2026-08-28"], ["data-rights", "2026-08-28"],
   ["accessibility", "2026-08-28"], ["licenses", "2026-09-25"],
   ["pricing", "2026-09-28"], ["mac", "2026-10-08"], ["agents/claude-code", "2026-08-28"],
-  ["agents/codex", "2026-08-28"], ["agents/cursor", "2026-08-28"],
-  ["agents/grok-build", "2026-08-28"], ["project-mesh", "2026-08-28"],
+  ["agents/codex", "2026-10-16"], ["agents/cursor", "2026-08-28"],
+  ["agents/grok-build", "2026-08-28"], ["project-mesh", "2026-10-16"],
   ["grok-bot", "2026-08-28"], ["apple-watch-coding-agents", "2026-08-28"],
 ];
 

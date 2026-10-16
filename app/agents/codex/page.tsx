@@ -23,7 +23,7 @@ export default function CodexPage() {
     limits={[
       "Both installed GrantTap hooks must be reviewed and trusted in Codex before enforcement is considered ready.",
       "GrantTap does not broaden Codex approval policy or silently push and fetch Git state.",
-      "Uncommitted work blocks a commit-based handoff instead of being left behind.",
+      "A handoff is commit-based: from runtime 0.8.70, uncommitted work stays on the source computer with a warning unless it is checkpointed to a local branch.",
     ]}
     related={[{ href: "/project-mesh", label: "Mesh" }, { href: "/apple-watch-coding-agents", label: "Apple Watch" }, { href: "/agents/claude-code", label: "Claude Code" }]}
   />;

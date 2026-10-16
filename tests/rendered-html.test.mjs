@@ -99,7 +99,7 @@ test("provider and Mesh guides publish exact capability boundaries", async () =>
   assert.match(grok, /Agent-authored scoped Mesh events are therefore not offered/);
   const mesh = await (await render("https://granttap.com/project-mesh")).text();
   assert.match(mesh, /never reopens a previous native execution/);
-  assert.match(mesh, /uncommitted work blocks departure/);
+  assert.match(mesh, /uncommitted work stays on the source computer with a warning/);
   const watch = await (await render("https://granttap.com/apple-watch-coding-agents")).text();
   assert.match(watch, /One Needs You list/);
   assert.match(watch, /Mesh handoffs, conflicts, questions, and failures/);
