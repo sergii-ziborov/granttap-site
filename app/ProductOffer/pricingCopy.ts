@@ -2,7 +2,7 @@ export const pricingCopy = {
   en: {
     kicker: "One GrantTap. Three sizes.", title: "Choose how many computers to connect.",
     intro: "Every plan includes GrantTap’s core features. Pay for managed computers, not individual agents.",
-    availability: "Available in TestFlight by invitation. These are planned US prices for the first commercial release; paid products are not available yet.",
+    availability: "TestFlight includes all features without a purchase or subscription. These are planned US prices for the first commercial release; paid products are not available yet.",
     plans: "Monthly managed plans", startHere: "Start here", month: "/ month",
     computers: (count: number) => `Up to ${count} managed computers`,
     descriptions: ["For your main machine and one more computer.", "For several working machines and projects.", "For a larger personal fleet of computers."],
@@ -30,7 +30,7 @@ export const pricingCopy = {
   ru: {
     kicker: "Один GrantTap. Три масштаба.", title: "Выберите, сколько компьютеров подключить",
     intro: "Все основные возможности GrantTap — в каждом плане. Платите за managed-компьютеры, а не за каждого агента.",
-    availability: "Доступно в TestFlight по приглашению. Здесь планируемые цены первого коммерческого релиза в США; платные продукты пока недоступны.",
+    availability: "В TestFlight все функции доступны без покупки и подписки. Здесь планируемые цены первого коммерческого релиза в США; платные продукты пока недоступны.",
     plans: "Месячные managed-планы", startHere: "Начните здесь", month: "/ месяц",
     computers: (count: number) => `До ${count} managed-компьютеров`,
     descriptions: ["Для вашей основной машины и второго рабочего компьютера.", "Для нескольких рабочих машин и проектов.", "Для большого личного набора компьютеров."],

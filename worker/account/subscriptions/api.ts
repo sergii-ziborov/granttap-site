@@ -6,6 +6,7 @@ import type { AppleReceipts } from "./apple";
 import { ManagedSubscriptions, isManagedSubscription } from "./index";
 import { signManagedTicket } from "./tickets";
 import { reconcileSubscription } from "./reconcile";
+import { routeTestFlight } from "../testflight";
 import { routeManagedComputers } from "./computers";
 
 export type ManagedBilling = { receipts: AppleReceipts; signingKey: Buffer };
@@ -14,19 +15,21 @@ const ROOM = /^[A-Za-z0-9_-]{8,128}$/;
 export async function routeManagedSubscriptions(request: Request,
   services: { db: D1Database; auth: AccountAuth; machines: AccountMachines; billing?: ManagedBilling }): Promise<Response | null> {
   const path = new URL(request.url).pathname;
+  const testFlightPath = "/api/account/subscriptions/testflight";
   const receiptPath = "/api/account/subscriptions/receipt";
   const notificationPath = "/api/account/subscriptions/notification";
   const admissionPath = "/api/account/machine/admission";
   const entitlementPath = "/api/account/subscriptions/entitlement";
   const computersPath = "/api/account/subscriptions/computers";
   const release = /^\/api\/account\/subscriptions\/computers\/([0-9a-f-]{36})$/.exec(path);
-  if (![receiptPath, notificationPath, admissionPath, entitlementPath, computersPath].includes(path) && !release) return null;
+  if (![receiptPath, notificationPath, admissionPath, entitlementPath, computersPath, testFlightPath].includes(path) && !release) return null;
   const origin = request.headers.get("origin");
   if (request.method !== "GET" && origin && origin !== "https://granttap.com") {
     return json(403, { error: "Origin not allowed." });
   }
   const { billing } = services;
   if (!billing) return json(503, { error: "Managed billing verification is not configured." });
+  if (path === testFlightPath) return routeTestFlight(request, services.db, services.auth, billing.receipts);
   const ledger = new ManagedSubscriptions(services.db);
   if (path === computersPath || release) {
     return routeManagedComputers(request, ledger, services.auth, services.machines, billing.receipts);
