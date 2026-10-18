@@ -9,6 +9,8 @@ describe("published version history", () => {
       const section = help.sections.find(s => s.heading === (locale === "ru" ? "История версий" : "Version history"));
       expect(section).toBeDefined();
       expect(section?.bullets?.join(" ")).toContain("201");
+      expect(section?.bullets?.join(" ")).toContain("202");
+      expect(section?.bullets?.join(" ")).toContain("0.8.75");
       expect(section?.bullets?.join(" ")).toContain("199");
       expect(section?.bullets?.join(" ")).toContain("0.8.74");
       expect(section?.links?.[0].href).toContain("/granttap-mcp");
