@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 COPY hetzner/server.mjs ./hetzner/server.mjs
+COPY hetzner/connect ./hetzner/connect
 COPY hetzner/billing.ts ./hetzner/billing.ts
 COPY hetzner/public ./hetzner/public
 COPY worker/account ./worker/account

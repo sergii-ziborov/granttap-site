@@ -8,6 +8,7 @@ import { signManagedTicket } from "./tickets";
 import { reconcileSubscription } from "./reconcile";
 import { routeTestFlight } from "../testflight";
 import { routeManagedComputers } from "./computers";
+import { AccountMachineEndpoints } from "../control-access";
 
 export type ManagedBilling = { receipts: AppleReceipts; signingKey: Buffer };
 const ROOM = /^[A-Za-z0-9_-]{8,128}$/;
@@ -59,6 +60,9 @@ export async function routeManagedSubscriptions(request: Request,
     }
     const right = await ledger.admit(identity.accountId, identity.machineId);
     if (!right) return json(403, { error: "No active managed access or the computer limit has been reached." });
+    if (!await new AccountMachineEndpoints(services.db).publish(identity, body.room, body.publicKey)) {
+      return json(403, { error: "Computer access was revoked." });
+    }
     return json(200, { ticket: signManagedTicket(billing.signingKey,
       { version: 1, accountId: identity.accountId, computerId: identity.machineId, publicKey: body.publicKey,
         room: body.room, expiresAt: right.expiresAt }), expiresAt: right.expiresAt, source: right.source });

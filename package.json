@@ -29,7 +29,9 @@
     "node-fetch": "2.7.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "tsx": "^4.23.15"
+    "tsx": "^4.23.15",
+    "tweetnacl": "^1.0.3",
+    "ws": "^8.22.0"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.63.1",
@@ -42,11 +44,14 @@
     "@types/node": "22.19.19",
     "@types/react": "19.2.18",
     "@types/react-dom": "19.2.4",
+    "@types/ws": "^8.18.2",
     "@vitejs/plugin-react": "6.0.5",
     "@vitejs/plugin-rsc": "0.5.32",
     "@vitest/coverage-v8": "4.1.11",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.12",
+    "fake-indexeddb": "^6.2.6",
+    "granttap-mcp": "0.8.75",
     "jsdom": "^27.2.0",
     "react-server-dom-webpack": "19.2.8",
     "tailwindcss": "4.3.3",
