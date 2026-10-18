@@ -7,6 +7,7 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     heading: "История версий",
     paragraphs: ["Приложения для iPhone, iPad и Mac доступны по приглашению через TestFlight. Номер сборки указан в разделе «О приложении». Компьютерный MCP обновляется отдельно."],
     bullets: [
+      "Приложения 204 · TestFlight · 18 октября 2026. Переход из уведомления открывает нужное подтверждение или вопрос. Вертикальная прокрутка Now и Tasks не перехватывается жестом карточки. Исправлены повтор после отказа компьютера и дубли компьютеров в Mesh. Варианты Cursor сгруппированы по семействам, уровни рассуждений идут от высокого к низкому. Обновление компьютерного MCP публикуется отдельно.",
       "Приложения 203 · TestFlight · 18 октября 2026. Сохранение Mesh выполняется в фоне и объединяет частые обновления. Health и история чатов остаются отзывчивыми во время записи; данные сохраняются перед уходом приложения в фон.",
       "Приложения 202 · TestFlight · 18 октября 2026. Сообщения и очередь в новом чате сохраняются на relay до открытия задачи на компьютере. Смена временного ID чата и повторный Send now сохраняют статус доставки. Для этого обновите компьютерный MCP до 0.8.75.",
       "MCP 0.8.75. Очередь ожидает открытия исходной задачи и продолжает именно её после возвращения компьютера. Сохраняется проверка устройства, провайдера и проекта; повторная доставка не создаёт вторую задачу.",
@@ -19,6 +20,7 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     heading: "Version history",
     paragraphs: ["The iPhone, iPad and Mac apps are available by TestFlight invitation. Find the build number in About. The computer MCP updates separately."],
     bullets: [
+      "Apps 204 · TestFlight · October 18, 2026. Tapping a notification opens its approval or question. Card swipe gestures no longer intercept vertical scrolling in Now and Tasks. Fixed retry after a computer refusal and duplicate computers in Mesh. Cursor variants are grouped by family with higher reasoning levels first. The computer MCP update is published separately.",
       "Apps 203 · TestFlight · October 18, 2026. Mesh persistence runs in the background and coalesces frequent updates. Health and chat history remain responsive while snapshots save; pending writes finish before the app suspends.",
       "Apps 202 · TestFlight · October 18, 2026. Messages and queues in a new chat save to the relay before the computer opens its task. Chat ID changes and repeated Send now preserve delivery state. Update the computer MCP to 0.8.75 for this behavior.",
       "MCP 0.8.75. Queued follow-ups wait for the original task and continue that chat after the computer returns. Controller, provider and Project checks remain in place; repeated delivery does not create a second task.",
