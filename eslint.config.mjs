@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Local release packages contain generated bundles, not source.
     ".release/**",
+    ".runtime/**",
   ]),
 ]);
 
