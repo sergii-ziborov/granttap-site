@@ -132,7 +132,8 @@ This repository contains the public website source under the [GrantTap
 Commercial Source License](LICENSE). Production deployment and redistribution
 under that license require a commercial grant. Earlier MIT releases keep their
 original permissions. The [MCP runtime](https://github.com/sergii-ziborov/granttap-mcp)
-is licensed under Apache-2.0; the [ciphertext relay](https://github.com/sergii-ziborov/granttap-relay)
+uses its commercial source license from 0.8.76 onward; copies through 0.8.75
+retain Apache-2.0. The [ciphertext relay](https://github.com/sergii-ziborov/granttap-relay)
 has its own commercial source license. The separate Engine retains its
 commercial first-party terms. [Full website dependency notices](public/licenses/dependency-notices.txt)
 retain upstream licenses, including bundled notices and the Vinext/Vite
@@ -211,3 +212,16 @@ erasing local history. Beta grants and own-relay use remain separate.
 The server configuration is described in [the admission module](worker/account/subscriptions/README.md).
 Commercial relay mode must be enabled and verified before claiming paid
 server enforcement; the current public availability is TestFlight beta.
+
+### Browser control (Beta)
+
+The [browser client](https://granttap.com/control) uses the same GrantTap account
+passkey and requires a verified subscription or official test entitlement. Pair
+each computer explicitly. The browser saves encryption keys in its own storage;
+website code running in that origin can access them, so it offers weaker key
+isolation than the native app's protected storage. Pair only a browser you trust.
+
+Now, Task history, approvals, questions, message delivery, queues, Mesh, Health,
+new Tasks and usage are implemented. Transfer, commit preparation, file browsing
+and report export remain available in the native app. Browser access uses the
+existing Apple entitlement; independent web checkout is not enabled.

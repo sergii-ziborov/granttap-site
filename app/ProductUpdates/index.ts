@@ -7,6 +7,7 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     heading: "История версий",
     paragraphs: ["Приложения для iPhone, iPad и Mac доступны по приглашению через TestFlight. Номер сборки указан в разделе «О приложении». Компьютерный MCP обновляется отдельно."],
     bullets: [
+      "MCP 0.8.77 · 18 октября 2026. Подтверждения Cursor продолжают исходную задачу, а её история доступна во время запроса и после перезапуска. Health автоматически подготавливает встроенный Engine для Mac и Linux x64; граф восстанавливается после запуска Engine без задержки открытия чатов.",
       "Приложения 204 · TestFlight · 18 октября 2026. Переход из уведомления открывает нужное подтверждение или вопрос. Вертикальная прокрутка Now и Tasks не перехватывается жестом карточки. Исправлены повтор после отказа компьютера и дубли компьютеров в Mesh. Варианты Cursor сгруппированы по семействам, уровни рассуждений идут от высокого к низкому. Обновление компьютерного MCP публикуется отдельно.",
       "Приложения 203 · TestFlight · 18 октября 2026. Сохранение Mesh выполняется в фоне и объединяет частые обновления. Health и история чатов остаются отзывчивыми во время записи; данные сохраняются перед уходом приложения в фон.",
       "Приложения 202 · TestFlight · 18 октября 2026. Сообщения и очередь в новом чате сохраняются на relay до открытия задачи на компьютере. Смена временного ID чата и повторный Send now сохраняют статус доставки. Для этого обновите компьютерный MCP до 0.8.75.",
@@ -15,11 +16,12 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
       "Приложения 199 · TestFlight · 17 октября 2026. В переносе доступны модели и уровень рассуждений Claude Code, Codex и Grok Build. Добавлен перенос в облако Claude или Codex через исходный компьютер с MCP 0.8.72. Исправлены повторные переподключения после отказа relay.",
       "MCP 0.8.74. Вопросы Cursor, варианты ответа и видимые предупреждения передаются в GrantTap. Сохранённые чаты Cursor открываются без ожидания проверки незакоммиченных изменений. Подготовка переноса поддерживает создание коммита до передачи задачи.",
     ],
-    links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.75" }],
+    links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.77" }],
   } : {
     heading: "Version history",
     paragraphs: ["The iPhone, iPad and Mac apps are available by TestFlight invitation. Find the build number in About. The computer MCP updates separately."],
     bullets: [
+      "MCP 0.8.77 · October 18, 2026. Cursor approvals continue the original Task, whose history remains readable during a request and after restart. Health automatically prepares the bundled Engine on Mac and Linux x64; graphs recover when the Engine starts without delaying chat access.",
       "Apps 204 · TestFlight · October 18, 2026. Tapping a notification opens its approval or question. Card swipe gestures no longer intercept vertical scrolling in Now and Tasks. Fixed retry after a computer refusal and duplicate computers in Mesh. Cursor variants are grouped by family with higher reasoning levels first. The computer MCP update is published separately.",
       "Apps 203 · TestFlight · October 18, 2026. Mesh persistence runs in the background and coalesces frequent updates. Health and chat history remain responsive while snapshots save; pending writes finish before the app suspends.",
       "Apps 202 · TestFlight · October 18, 2026. Messages and queues in a new chat save to the relay before the computer opens its task. Chat ID changes and repeated Send now preserve delivery state. Update the computer MCP to 0.8.75 for this behavior.",
@@ -28,6 +30,6 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
       "Apps 199 · TestFlight · October 17, 2026. Transfer offers Claude Code, Codex and Grok Build models and reasoning effort. Claude or Codex cloud transfers run through the source computer with MCP 0.8.72. Fixed repeated reconnections after relay admission is refused.",
       "MCP 0.8.74. Cursor questions, answer choices and visible warnings reach GrantTap. Retained Cursor chats open without waiting for the working-tree check. Transfer preparation supports committing changes before handing off a task.",
     ],
-    links: [{ label: "Computer MCP version on npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.75" }],
+    links: [{ label: "Computer MCP version on npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.77" }],
   };
 }
