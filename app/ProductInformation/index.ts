@@ -9,6 +9,7 @@ import licensesRU from "./Resources/Product-licenses-ru.json";
 import { localizedProductPath, monthlyPlansSummary, launchOffer, usdPrice, type OfferLocale } from "../ProductOffer";
 import { pricingCopy } from "../ProductOffer/pricingCopy";
 import { pricingDocument } from "./pricingDocument";
+import { versionHistory } from "../ProductUpdates";
 
 export type ProductDocumentName = "support" | "terms" | "privacy" | "licenses" | "pricing";
 export type ProductDocument = { title: string; updated: string; intro: string; sections: {
@@ -31,8 +32,9 @@ export function customerDocument(name: ProductDocumentName, locale: OfferLocale)
   const document = JSON.parse(JSON.stringify(source), (_key, value) => typeof value === "string"
     ? value.replace(/\{\{[A-Z_]+\}\}/g, token => substitutions[token] ?? token) : value) as ProductDocument;
   if (name === "support") {
+    document.updated = "2026-10-18";
     const contact = document.sections.pop()!;
-    document.sections.push(...pricingCopy[locale].faq.map(([heading, answer]) =>
+    document.sections.push(versionHistory(locale), ...pricingCopy[locale].faq.map(([heading, answer]) =>
       ({ heading, paragraphs: [answer] })), contact);
   }
   for (const section of document.sections) {
