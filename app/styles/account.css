@@ -6,10 +6,10 @@
 .account-card dt { color: #a7a3a0; font-size: 13px; }
 .account-card dd { overflow-wrap: anywhere; margin: 6px 0 0; font-family: ui-monospace, monospace; }
 .account-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
-.account-actions button { border: 1px solid #77716e; border-radius: 12px; background: #272628; color: #fff; padding: 12px 16px; font-weight: 600; cursor: pointer; }
-.account-actions button:first-child { border-color: #e56f37; background: #c44d20; }
+.account-actions :is(button, a) { border: 1px solid #77716e; border-radius: 12px; background: #272628; color: #fff; padding: 12px 16px; font-weight: 600; cursor: pointer; text-decoration: none; }
+.account-actions :is(button, a):first-child { border-color: #e56f37; background: #c44d20; }
 .account-actions button:disabled { opacity: .5; cursor: wait; }
-.account-actions button:focus-visible { outline: 3px solid #ff9a67; outline-offset: 3px; }
+.account-actions :is(button, a):focus-visible { outline: 3px solid #ff9a67; outline-offset: 3px; }
 .account-card .account-boundary, .account-card .account-note { font-size: 14px; }
 .account-card .account-error { color: #ff9b86; }
 .account-machines { list-style: none; padding: 0; margin: 12px 0 24px; }

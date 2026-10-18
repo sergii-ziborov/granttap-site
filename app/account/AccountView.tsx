@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { LanguageToggle, useLocale } from "../components/Locale";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 import { ComputerPublishing } from "./ComputerPublishing";
+import { accountReturnPath } from "./return-path";
 
 type Ceremony<T> = { ceremonyId: string; options: T };
 type Account = { accountId: string };
@@ -20,7 +21,8 @@ const copy = {
     signIn: "Sign in with passkey",
     createNote: "Already have an account? Sign in first. Creating another account will not find your existing computers.",
     account: "Account ID",
-    noComputer: "On iPhone, open Devices to sign in to your Account Mesh. Add a device by QR only when you want a direct computer link. This website cannot read pairing keys.",
+    noComputer: "GrantTap Web stores its own keys in this browser. Browser extensions, injected scripts or a compromised browser profile can expose them; the native app offers stronger isolation. Pairing a native device by QR is a separate connection.",
+    openControl: "Open GrantTap Web",
     computers: "Connected computers",
     disconnect: "Disconnect",
     none: "Your Account Mesh is ready. No computers have joined yet, so chats are empty. Sign in with the same passkey in GrantTap MCP to add one whenever you need it.",
@@ -39,7 +41,8 @@ const copy = {
     signIn: "Войти по passkey",
     createNote: "Уже есть аккаунт? Сначала войдите. Новый аккаунт не найдёт ваши прежние компьютеры.",
     account: "ID аккаунта",
-    noComputer: "На iPhone откройте «Устройства», чтобы войти в Mesh аккаунта. Сканируйте QR только для прямого подключения компьютера. Сайт не видит ключей подключения.",
+    noComputer: "GrantTap Web хранит собственные ключи в этом браузере. Расширения, внедрённый скрипт или взлом профиля браузера могут раскрыть их; нативное приложение лучше изолирует ключи. Подключение нативного устройства по QR выполняется отдельно.",
+    openControl: "Открыть GrantTap Web",
     computers: "Подключённые компьютеры",
     disconnect: "Отключить",
     none: "Mesh аккаунта готов. Компьютеров пока нет, поэтому чаты пусты. Когда понадобится, войдите с тем же passkey в GrantTap MCP, чтобы добавить компьютер.",
@@ -99,7 +102,11 @@ export function AccountView() {
     let active = true;
     void fetch(base + "me", { credentials: "same-origin" })
       .then(async response => response.ok ? await response.json() as Account : null)
-      .then(account => { if (active) setAccountId(account?.accountId ?? null); })
+      .then(account => { if (active) {
+        setAccountId(account?.accountId ?? null);
+        const destination = account && accountReturnPath(window.location.search);
+        if (destination) window.location.assign(destination);
+      } })
       .catch(() => { if (active) setAccountId(null); });
     return () => { active = false; };
   }, []);
@@ -141,6 +148,8 @@ export function AccountView() {
       });
       setMachines(null);
       setAccountId(account.accountId);
+      const destination = accountReturnPath(window.location.search);
+      if (destination) window.location.assign(destination);
     } catch (cause) {
       setError(cause instanceof Error && cause.message === "Passkey unavailable" ? t.unavailable : t.failed);
     } finally { setBusy(false); }
@@ -175,6 +184,7 @@ export function AccountView() {
               machines={machines} busy={busy} onDisconnect={machine => void disconnect(machine)} />}
         <p className="account-boundary">{t.noComputer}</p>
         <div className="account-actions">
+          <a href="/control">{t.openControl}</a>
           <button type="button" disabled={busy} onClick={() => void exit(false)}>{t.signOut}</button>
           <button type="button" disabled={busy} onClick={() => void exit(true)}>{t.delete}</button>
         </div>

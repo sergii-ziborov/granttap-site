@@ -2,6 +2,8 @@ import type { ActivityEntry, ApprovalRequest, MeshSnapshot, Payload, SessionInfo
 export type ComputerSnapshot = {
   sessions: SessionInfo[]; approvals: ApprovalRequest[]; meshes: MeshSnapshot[];
   transcript: Record<string, ActivityEntry[]>; lastSeenAt?: number; generatedAt?: number;
+  controls?: Record<string, { action: "pause" | "resume"; ok: boolean; message: string;
+    createdAt: number; paused?: boolean; appliedAt?: number }>;
 };
 export const emptyComputer = (): ComputerSnapshot => ({ sessions: [], approvals: [], meshes: [], transcript: {} });
 
@@ -10,9 +12,24 @@ export function applyControlPayload(previous: ComputerSnapshot, payload: Payload
   if (payload.type === "sessions.status") {
     if (payload.generatedAt < (previous.generatedAt ?? 0)) return previous;
     const current = new Set(payload.sessions.map(item => item.sessionId));
-    return { ...previous, sessions: [...payload.sessions,
-      ...(payload.history ?? []).filter(item => !current.has(item.sessionId))].slice(0, 400),
+    const sessions = [...payload.sessions, ...(payload.history ?? []).filter(item => !current.has(item.sessionId))].slice(0, 400);
+    return { ...previous, sessions: sessions.map(session => {
+      const control = previous.controls?.[session.sessionId];
+      return control?.paused !== undefined && (control.appliedAt ?? 0) > payload.generatedAt
+        ? { ...session, paused: control.paused } : session;
+    }),
       generatedAt: payload.generatedAt };
+  }
+  if (payload.type === "session.control.result") {
+    const old = previous.controls?.[payload.sessionId];
+    if (old && old.createdAt >= payload.createdAt) return previous;
+    const paused = payload.ok ? payload.action === "pause" : old?.paused;
+    const appliedAt = payload.ok ? payload.createdAt : old?.appliedAt;
+    return { ...previous, controls: Object.fromEntries(Object.entries({ ...previous.controls,
+      [payload.sessionId]: { action: payload.action, ok: payload.ok, message: payload.message,
+        createdAt: payload.createdAt, paused, appliedAt } }).slice(-100)),
+      sessions: payload.ok ? previous.sessions.map(session => session.sessionId === payload.sessionId
+        ? { ...session, paused } : session) : previous.sessions };
   }
   if (payload.type === "machine.heartbeat") return { ...previous, lastSeenAt: Date.now() };
   if (payload.type === "approval.request") return { ...previous,

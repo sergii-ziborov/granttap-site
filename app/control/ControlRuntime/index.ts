@@ -6,6 +6,7 @@ import { applyControlPayload, emptyComputer, type ComputerSnapshot } from "../Co
 import type { ApprovalRequest, Payload } from "../ControlProtocol";
 import type { BrowserPairing } from "../Cryptography";
 import { BrowserRelayConnection } from "../RelayConnection";
+import { messageHistoryPosition, outgoingEchoes } from "./message-echo";
 
 export type ControlView = { computers: Record<string, ComputerSnapshot>; connections: Record<string, string>;
   deliveries: Record<string, DeliveryState>; error?: string };
@@ -28,6 +29,11 @@ export class ControlRuntime {
     this.outgoing = Object.fromEntries(Object.entries(outgoing).filter(([, row]) => machines.has(row.machineId)));
     this.patch({ computers: Object.fromEntries(Object.entries(computers).filter(([id]) => machines.has(id))),
       deliveries: Object.fromEntries(Object.entries(this.outgoing).map(([id, row]) => [id, row.delivery])) });
+    for (const machineId of machines) {
+      const sessions = new Set(Object.values(this.outgoing).flatMap(row => row.machineId === machineId
+        && row.payload.type === "user.message" && row.payload.sessionId ? [row.payload.sessionId] : []));
+      for (const sessionId of sessions) await this.confirmMessageEchoes(machineId, sessionId);
+    }
     if (this.disposed) return;
     for (const pairing of keys.pairings) if (machines.has(pairing.machineId)) this.connect(pairing, keys);
   }
@@ -49,7 +55,8 @@ export class ControlRuntime {
 
   async submit(machineId: string, payload: Payload, deliveryId: string) {
     if (this.disposed) throw Error("This browser control session is closed.");
-    const row = await this.outbox.put(this.accountId, { id: deliveryId, machineId, payload, delivery: { state: "sending" } });
+    const row = await this.outbox.put(this.accountId, { id: deliveryId, machineId, payload, delivery: { state: "sending" },
+      historyAfter: this.historyPosition(machineId, payload) });
     this.outgoing[deliveryId] = row; this.presentDelivery(deliveryId, row.delivery);
     if (["stored", "accepted"].includes(row.delivery.state)) return;
     if (row.delivery.rejected) throw Error(row.delivery.error || "The computer rejected this command. Send a new action to retry.");
@@ -105,7 +112,7 @@ export class ControlRuntime {
   outgoingMessages(machineId: string, sessionId: string) {
     return Object.values(this.outgoing).filter(row => row.machineId === machineId
       && row.payload.type === "user.message" && row.payload.sessionId === sessionId
-      && row.delivery.state !== "accepted" && !row.delivery.supersededBy);
+      && !row.delivery.echoedBy && !row.delivery.supersededBy);
   }
   async retryMessage(deliveryId: string) {
     if (this.disposed) throw Error("This browser control session is closed.");
@@ -114,7 +121,8 @@ export class ControlRuntime {
       throw Error("This message is not available for retry.");
     }
     if (!old.delivery.rejected) return this.submit(old.machineId, old.payload, old.id);
-    const next = await this.outbox.replaceRejected(this.accountId, old.id, "user-message-" + crypto.randomUUID());
+    const next = await this.outbox.replaceRejected(this.accountId, old.id, "user-message-" + crypto.randomUUID(),
+      this.historyPosition(old.machineId, old.payload));
     old.delivery = { ...old.delivery, supersededBy: next.id }; this.outgoing[next.id] = next;
     this.presentDelivery(old.id, old.delivery); this.presentDelivery(next.id, next.delivery); return this.transmit(next);
   }
@@ -139,10 +147,27 @@ export class ControlRuntime {
     }
     if (payload.type === "delivery.receipt") await this.delivery("user-message-" + payload.messageId,
       { state: payload.status === "accepted" ? "accepted" : "failed", error: payload.error, rejected: payload.status !== "accepted" }, machineId, payload.sessionId);
+    if (payload.type === "session.activity" || payload.type === "delivery.receipt" && payload.status === "accepted") {
+      if (payload.sessionId) await this.confirmMessageEchoes(machineId, payload.sessionId);
+    }
     if (payload.type === "approval.resolved") {
       const row = this.approvalCommand(machineId, payload.requestId, payload.sessionId);
       if (row) await this.delivery(row.id, { state: payload.status === "applied" ? "accepted" : "failed",
         error: payload.status === "applied" ? undefined : payload.status, rejected: payload.status !== "applied" }, machineId, payload.sessionId);
+    }
+  }
+  private historyPosition(machineId: string, payload: Payload) {
+    const entries = payload.type === "user.message" && payload.sessionId
+      ? this.view.computers[machineId]?.transcript[payload.sessionId] ?? [] : [];
+    return messageHistoryPosition(payload, entries);
+  }
+  private async confirmMessageEchoes(machineId: string, sessionId: string) {
+    const rows = Object.values(this.outgoing).filter(row => row.machineId === machineId
+      && row.payload.type === "user.message" && row.payload.sessionId === sessionId);
+    const entries = this.view.computers[machineId]?.transcript[sessionId] ?? [];
+    for (const [id, entryId] of outgoingEchoes(rows, entries)) {
+      const saved = await this.outbox.confirmEcho(this.accountId, id, entryId);
+      if (saved) { this.outgoing[id].delivery = saved; this.presentDelivery(id, saved); }
     }
   }
   private async persist() {

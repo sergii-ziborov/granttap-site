@@ -19,4 +19,6 @@ it("retains a rejected message and attachment, shows Retry failure, and reflects
   expect(screen.getByText("Saving on relay…")).toBeTruthy(); expect(screen.getAllByText("Synthetic pending text")).toHaveLength(1);
   view.rerender(<OutgoingMessages commands={[{ ...command, id: "user-message-new", delivery: { state: "stored" } }]} retry={retry} />);
   expect(screen.getByText("Saved on relay · waiting for computer")).toBeTruthy(); expect(screen.queryByRole("button", { name: "Retry message" })).toBeNull();
+  view.rerender(<OutgoingMessages commands={[{ ...command, delivery: { state: "accepted" } }]} retry={retry} />);
+  expect(screen.getByText("Received by computer")).toBeTruthy(); expect(screen.getByText("Synthetic pending text")).toBeTruthy();
 });

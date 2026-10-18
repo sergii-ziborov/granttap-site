@@ -55,3 +55,25 @@ it("bounds retained transcripts for both history pages and streaming agent event
   expect(state.transcript["task-39"].map(item => item.id)).toEqual(["a", "b"]);
   expect(applyControlPayload(state, { type: "hello", role: "machine", deviceName: "Fixture", createdAt: 4 } as Payload)).toBe(state);
 });
+
+it("changes pause state only after a successful computer acknowledgement and retains a refusal", () => {
+  let state = applyControlPayload(emptyComputer(), SessionsStatus.parse({ type: "sessions.status", machine: "Fixture",
+    sessions: [session, { ...session, sessionId: "other", paused: true }], generatedAt: 10 }));
+  state = applyControlPayload(state, { type: "session.control.result", sessionId: "task", action: "pause", ok: true,
+    message: "Paused", createdAt: 20 });
+  expect(state.sessions[0].paused).toBe(true);
+  state = applyControlPayload(state, SessionsStatus.parse({ type: "sessions.status", machine: "Fixture",
+    sessions: [session], generatedAt: 15 }));
+  expect(state.sessions[0].paused).toBe(true);
+  state = applyControlPayload(state, { type: "session.control.result", sessionId: "task", action: "resume", ok: false,
+    message: "Synthetic resume refused", createdAt: 30 });
+  expect(state.sessions[0].paused).toBe(true);
+  expect(state.controls?.task.message).toBe("Synthetic resume refused");
+  expect(applyControlPayload(state, { type: "session.control.result", sessionId: "task", action: "resume", ok: true,
+    message: "Outdated", createdAt: 25 })).toBe(state);
+  state = applyControlPayload(state, SessionsStatus.parse({ type: "sessions.status", machine: "Fixture",
+    sessions: [{ ...session, paused: true }, { ...session, sessionId: "other", paused: true }], generatedAt: 35 }));
+  state = applyControlPayload(state, { type: "session.control.result", sessionId: "task", action: "resume", ok: true,
+    message: "Resumed", createdAt: 40 });
+  expect(state.sessions.map(item => [item.sessionId, item.paused])).toEqual([["task", false], ["other", true]]);
+});

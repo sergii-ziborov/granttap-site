@@ -14,3 +14,11 @@ the durable outbox independently of the computer's availability.
 
 Public entry: `index.tsx`. Local behavior tests cover composition, attachment
 retention, control failure, subscription lifetime and queued message recovery.
+
+The viewport initially opens the latest messages. Live updates follow only while
+the reader stays at the bottom; revealing earlier messages preserves the reading
+position. Pause and resume remain pending after transport send until a computer
+result or an authoritative changed state arrives. A native refusal stays visible.
+An unanswered live control times out with an explicit retry; it cannot leave the
+button locked indefinitely. This timeout does not delay relay-durable messages
+or approval decisions.

@@ -25,7 +25,7 @@ export function ChatComposer({ session, meshes, submit }: { session: SessionInfo
         ...(attachments.length ? { attachments } : {}), ...(model ? { model } : {}),
         ...(effort && supported.includes(effort as NonNullable<UserMessage["effort"]>) ? { effort: effort as UserMessage["effort"] } : {}) };
       await submit(message); setText(""); setFiles([]); retry.current = null;
-      setState("Saved on relay · the computer will receive it when available");
+      setState("Saved on relay");
     } catch (error) { setState(error instanceof Error ? error.message : "Relay storage was not confirmed."); }
     finally { setSaving(false); }
   };

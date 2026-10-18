@@ -65,7 +65,7 @@ function Workspace({ account, connect, forget }: WorkspaceProps) {
     <div className="gt-main"><header className="gt-toolbar"><h1>{current ? "Task" : section}</h1>
       <div className="gt-relay-state" data-connected={Object.values(view.connections).includes("connected")}><i />{Object.values(view.connections).includes("connected") ? "Relay connected" : "Relay not connected"}</div></header>
       {view.error && <p role="status" className="gt-notice">{view.error}</p>}
-      {current ? <TaskChat key={current.session.sessionId} runtime={account.runtime} machineId={current.machineId}
+      {current ? <TaskChat key={current.machineId + ":" + current.session.sessionId} runtime={account.runtime} machineId={current.machineId}
         session={current.session} view={view} back={() => setSelected(undefined)} />
         : <div className="gt-content">
           {section === "Computers" ? <ComputerList account={account} view={view} connect={connect} forget={forget} />

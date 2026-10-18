@@ -9,3 +9,8 @@ acceptance remain separate durable states. Pending commands are never evicted to
 make space; only acknowledged commands can be pruned. Forgetting the browser also
 removes its command outbox. These browser protections remain weaker than native
 operating-system key storage against compromised website code or extensions.
+
+Message records retain the observed native history position at submission.
+Computer acceptance preserves the visible text until a distinct later native
+user echo is confirmed. Its identity is stored durably without changing the
+immutable command or lowering an accepted delivery state.

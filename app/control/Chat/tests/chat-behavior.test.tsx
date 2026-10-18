@@ -48,3 +48,31 @@ it("expands earlier bounded history and tool evidence, and clears a stale contro
   await act(async () => {}); expect(f.sent.at(-1)).toMatchObject({ type: "session.control", action: "resume", sessionId: "task" });
   fireEvent.click(screen.getByRole("button", { name: "Back to Tasks" })); expect(back).toHaveBeenCalledOnce();
 });
+
+it("keeps a sent pause pending until the computer confirms it and displays a native refusal", async () => {
+  const f = fixture(); f.allowControl();
+  const result = render(<TaskChat runtime={f.control} machineId="computer" session={session} view={f.view} back={() => {}} />);
+  fireEvent.click(screen.getByRole("button", { name: "Pause" })); await act(async () => {});
+  const waiting = screen.getByRole("button", { name: "Waiting for computer…" }) as HTMLButtonElement;
+  expect(waiting.disabled).toBe(true);
+  const refused = { ...f.view, computers: { computer: { ...f.view.computers.computer, controls: {
+    task: { action: "pause" as const, ok: false, message: "Synthetic policy refused pause", createdAt: 5 } } } } };
+  result.rerender(<TaskChat runtime={f.control} machineId="computer" session={session} view={refused} back={() => {}} />);
+  expect(screen.getByRole("alert").textContent).toBe("Synthetic policy refused pause");
+  expect((screen.getByRole("button", { name: "Pause" }) as HTMLButtonElement).disabled).toBe(false);
+});
+
+it("allows retry when an unavailable computer never acknowledges a live pause command", async () => {
+  vi.useFakeTimers(); const f = fixture(); f.allowControl();
+  const result = render(<TaskChat runtime={f.control} machineId="computer" session={session} view={f.view} back={() => {}} />);
+  try {
+    fireEvent.click(screen.getByRole("button", { name: "Pause" })); await act(async () => {});
+    expect((screen.getByRole("button", { name: "Waiting for computer…" }) as HTMLButtonElement).disabled).toBe(true);
+    await act(() => vi.advanceTimersByTimeAsync(8_000));
+    expect(screen.getByRole("alert").textContent).toMatch(/not confirmed/);
+    const retry = screen.getByRole("button", { name: "Pause" }) as HTMLButtonElement;
+    expect(retry.disabled).toBe(false); fireEvent.click(retry); await act(async () => {});
+    expect(screen.queryByRole("alert")).toBeNull();
+    expect(f.sent.filter(item => item.type === "session.control")).toHaveLength(2);
+  } finally { result.unmount(); vi.useRealTimers(); }
+});

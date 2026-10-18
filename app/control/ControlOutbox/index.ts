@@ -1,8 +1,9 @@
 import { BrowserKeysStorage, type EncryptedKeys } from "../BrowserKeys";
 import type { Payload } from "../ControlProtocol";
 
-export type DeliveryState = { state: "sending" | "stored" | "accepted" | "failed"; error?: string; rejected?: boolean; supersededBy?: string };
-export type OutgoingCommand = { id: string; machineId: string; payload: Payload; delivery: DeliveryState };
+export type DeliveryState = { state: "sending" | "stored" | "accepted" | "failed"; error?: string; rejected?: boolean; supersededBy?: string; echoedBy?: string };
+export type OutgoingCommand = { id: string; machineId: string; payload: Payload; delivery: DeliveryState;
+  historyAfter?: { entryId?: string; createdAt: number } };
 
 /** Persists immutable command intent before transmission, scoped to one signed-in account. */
 export class BrowserControlOutbox {
@@ -31,7 +32,7 @@ export class BrowserControlOutbox {
       rows[command.id] = command; return command;
     });
   }
-  replaceRejected(accountId: string, oldId: string, nextId: string): Promise<OutgoingCommand> {
+  replaceRejected(accountId: string, oldId: string, nextId: string, historyAfter?: OutgoingCommand["historyAfter"]): Promise<OutgoingCommand> {
     return this.change(accountId, rows => {
       const old = rows[oldId];
       if (!old || old.payload.type !== "user.message" || !old.delivery.rejected || old.delivery.supersededBy) {
@@ -40,7 +41,7 @@ export class BrowserControlOutbox {
       if (rows[nextId] || Object.keys(rows).length >= 200) throw Error("The browser outbox is full.");
       const messageId = nextId.slice("user-message-".length);
       const next: OutgoingCommand = { id: nextId, machineId: old.machineId, payload: { ...old.payload,
-        messageId, createdAt: Date.now() }, delivery: { state: "sending" } };
+        messageId, createdAt: Date.now() }, delivery: { state: "sending" }, historyAfter };
       old.delivery.supersededBy = nextId; rows[nextId] = next; return next;
     });
   }
@@ -49,6 +50,15 @@ export class BrowserControlOutbox {
       const row = rows[id];
       if (row && row.delivery.state !== "accepted"
         && !(row.delivery.rejected && ["sending", "stored"].includes(delivery.state))) row.delivery = delivery;
+      return row?.delivery;
+    });
+  }
+  confirmEcho(accountId: string, id: string, entryId: string): Promise<DeliveryState | undefined> {
+    return this.change(accountId, rows => {
+      const row = rows[id];
+      if (row?.payload.type === "user.message" && row.delivery.state === "accepted" && !row.delivery.echoedBy) {
+        row.delivery = { ...row.delivery, echoedBy: entryId };
+      }
       return row?.delivery;
     });
   }
@@ -95,5 +105,7 @@ function validCommand(id: string, value: unknown): value is OutgoingCommand {
   if (!value || typeof value !== "object") return false;
   const row = value as OutgoingCommand;
   return row.id === id && typeof row.machineId === "string" && typeof row.payload?.type === "string"
-    && ["sending", "stored", "accepted", "failed"].includes(row.delivery?.state);
+    && ["sending", "stored", "accepted", "failed"].includes(row.delivery?.state)
+    && (!row.historyAfter || Number.isFinite(row.historyAfter.createdAt)
+      && (row.historyAfter.entryId === undefined || typeof row.historyAfter.entryId === "string" && row.historyAfter.entryId.length <= 1_024));
 }

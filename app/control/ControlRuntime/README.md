@@ -15,3 +15,8 @@ computer receipt takes precedence over a late transport failure; losing a
 relay acknowledgement cannot turn an accepted message back into a failed draft.
 Incoming cache writes coalesce; cryptographic grants are durable before ACK.
 Closing or forgetting the account closes every connection.
+
+A computer receipt does not remove the sent message. Its text remains visible
+until a later matching native user entry appears. Native history position,
+one-to-one matching and durable echo identities keep repeated prompts distinct
+and prevent accepted messages reappearing after reload or history pagination.

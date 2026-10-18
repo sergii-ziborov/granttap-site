@@ -14,6 +14,11 @@ The browser receives an HttpOnly session cookie; the account API omits bearer
 tokens from browser responses. Native clients store their bearer token in the
 platform Keychain.
 
+The browser page links to GrantTap Web and explains browser key storage and its
+weaker isolation. A successful passkey sign-in returns to `/control` only for the
+single literal `returnTo=control`; arbitrary and duplicate destinations are
+rejected. It never accepts an external return URL.
+
 The `/connect` MCP authorization page uses a fresh passkey assertion from this
 account service to approve a coding app on Mac. That approval issues a local
 MCP OAuth token and does not create a computer pairing or restore a phone.

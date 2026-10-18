@@ -155,14 +155,19 @@ it("keeps equal provider request IDs on different computers independent through 
 });
 it("treats an authenticated computer receipt as success when a relay storage acknowledgement is lost", async () => {
   network.sent = []; network.fail = true;
-  const runtime = new ControlRuntime(crypto.randomUUID(), new BrowserKeyVault());
+  const accountId = crypto.randomUUID(), vault = new BrowserKeyVault(), runtime = new ControlRuntime(accountId, vault);
   await runtime.restore(keys, new Set(["machine"]));
   network.afterSend = async () => network.receivers.get("machine")!({ type: "delivery.receipt", sessionId: "task",
     messageId: "ack-lost", status: "accepted", receivedAt: 2 });
   const message: Payload = { type: "user.message", sessionId: "task", messageId: "ack-lost", text: "Synthetic message", createdAt: 1 };
   await expect(runtime.submit("machine", message, "user-message-ack-lost")).resolves.toBeUndefined();
   expect(runtime.snapshot().deliveries["user-message-ack-lost"].state).toBe("accepted");
-  expect(runtime.outgoingMessages("machine", "task")).toEqual([]); await runtime.forget();
+  expect(runtime.outgoingMessages("machine", "task")).toMatchObject([{ payload: { text: "Synthetic message" }, delivery: { state: "accepted" } }]);
+  await network.receivers.get("machine")!({ type: "session.activity", sessionId: "task", agent: "cursor", state: "idle",
+    entries: [{ id: "native-user", kind: "user", text: "Synthetic message", createdAt: 3 }], generatedAt: 4 });
+  expect(runtime.outgoingMessages("machine", "task")).toEqual([]);
+  runtime.dispose(); const reopened = new ControlRuntime(accountId, vault); await reopened.restore(keys, new Set(["machine"]));
+  expect(reopened.outgoingMessages("machine", "task")).toEqual([]); await reopened.forget();
 });
 it("does not accept a receipt for another Task, and keeps unconfirmed new Tasks visible until the computer accepts them", async () => {
   network.sent = []; const accountId = crypto.randomUUID(), runtime = new ControlRuntime(accountId, new BrowserKeyVault());
@@ -216,4 +221,34 @@ it("retains a computer-expired approval as a rejected decision rather than repor
   expect(runtime.snapshot().deliveries[id]).toMatchObject({ state: "failed", rejected: true, error: "expired" });
   await expect(runtime.decision("machine", request, "allow")).rejects.toThrow("expired");
   expect(network.sent).toHaveLength(1); await runtime.forget();
+});
+
+it("keeps native history arriving before its receipt separate from acceptance and ignores another computer's echo", async () => {
+  const runtime = new ControlRuntime(crypto.randomUUID(), new BrowserKeyVault());
+  await runtime.restore({ pairings: [pairing, { ...pairing, machineId: "other" }], grants: [] }, new Set(["machine", "other"]));
+  const history: Payload = { type: "session.activity", sessionId: "task", agent: "cursor", state: "idle", generatedAt: 2,
+    entries: [{ id: "native", kind: "user", text: "Synthetic echo", createdAt: 2 }] };
+  await runtime.submit("machine", { type: "user.message", messageId: "echo", sessionId: "task", text: "Synthetic echo", createdAt: 1 }, "user-message-echo");
+  await network.receivers.get("other")!(history);
+  expect(runtime.outgoingMessages("machine", "task")).toHaveLength(1);
+  await network.receivers.get("machine")!(history);
+  expect(runtime.snapshot().deliveries["user-message-echo"].state).toBe("stored");
+  await network.receivers.get("machine")!({ type: "delivery.receipt", sessionId: "task", messageId: "echo", status: "accepted", receivedAt: 3 });
+  expect(runtime.outgoingMessages("machine", "task")).toEqual([]); await runtime.forget();
+});
+
+it("a rejected-message retry captures a fresh native position and cannot reuse the first attempt's echo", async () => {
+  network.sent = []; const runtime = new ControlRuntime(crypto.randomUUID(), new BrowserKeyVault());
+  await runtime.restore(keys, new Set(["machine"]));
+  const entry = { id: "old-native", kind: "user" as const, text: "Synthetic repeat", createdAt: 2 };
+  await runtime.submit("machine", { type: "user.message", messageId: "old", sessionId: "task", text: entry.text, createdAt: 1 }, "user-message-old");
+  await network.receivers.get("machine")!({ type: "session.activity", sessionId: "task", agent: "cursor", state: "idle", entries: [entry], generatedAt: 3 });
+  await network.receivers.get("machine")!({ type: "delivery.receipt", messageId: "old", sessionId: "task", status: "rejected", receivedAt: 4 });
+  await runtime.retryMessage("user-message-old");
+  const sent = network.sent.at(-1)!; const message = sent.payload as { messageId: string };
+  await network.receivers.get("machine")!({ type: "delivery.receipt", messageId: message.messageId, sessionId: "task", status: "accepted", receivedAt: 5 });
+  expect(runtime.outgoingMessages("machine", "task")).toHaveLength(1);
+  await network.receivers.get("machine")!({ type: "session.activity", sessionId: "task", agent: "cursor", state: "idle",
+    entries: [entry, { ...entry, id: "new-native", createdAt: 6 }], generatedAt: 7 });
+  expect(runtime.outgoingMessages("machine", "task")).toEqual([]); await runtime.forget();
 });
