@@ -7,6 +7,7 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     heading: "История версий",
     paragraphs: ["Приложения для iPhone, iPad и Mac доступны по приглашению через TestFlight. Номер сборки указан в разделе «О приложении». Компьютерный MCP обновляется отдельно."],
     bullets: [
+      "Приложения 203 · TestFlight · 18 октября 2026. Сохранение Mesh выполняется в фоне и объединяет частые обновления. Health и история чатов остаются отзывчивыми во время записи; данные сохраняются перед уходом приложения в фон.",
       "Приложения 202 · TestFlight · 18 октября 2026. Сообщения и очередь в новом чате сохраняются на relay до открытия задачи на компьютере. Смена временного ID чата и повторный Send now сохраняют статус доставки. Для этого обновите компьютерный MCP до 0.8.75.",
       "MCP 0.8.75. Очередь ожидает открытия исходной задачи и продолжает именно её после возвращения компьютера. Сохраняется проверка устройства, провайдера и проекта; повторная доставка не создаёт вторую задачу.",
       "Приложения 201 · TestFlight · 18 октября 2026. Полный доступ в тестовой версии без покупки подписки. Подтверждения и сообщения показывают сохранение на relay, не ожидая включения компьютера. Отдельная отправка новых сообщений очереди не блокируется ожиданием старых. Адаптирован чат для iPhone Duo, поворота экрана и клавиатуры.",
@@ -18,6 +19,7 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     heading: "Version history",
     paragraphs: ["The iPhone, iPad and Mac apps are available by TestFlight invitation. Find the build number in About. The computer MCP updates separately."],
     bullets: [
+      "Apps 203 · TestFlight · October 18, 2026. Mesh persistence runs in the background and coalesces frequent updates. Health and chat history remain responsive while snapshots save; pending writes finish before the app suspends.",
       "Apps 202 · TestFlight · October 18, 2026. Messages and queues in a new chat save to the relay before the computer opens its task. Chat ID changes and repeated Send now preserve delivery state. Update the computer MCP to 0.8.75 for this behavior.",
       "MCP 0.8.75. Queued follow-ups wait for the original task and continue that chat after the computer returns. Controller, provider and Project checks remain in place; repeated delivery does not create a second task.",
       "Apps 201 · TestFlight · October 18, 2026. Full beta access without buying a subscription. Approvals and messages confirm relay storage without waiting for the computer. New queue uploads do not wait behind older receipt requests. Adaptive chat for iPhone Duo, rotation and the keyboard.",
