@@ -1,6 +1,9 @@
 name: granttap-site-production
 services:
   site:
+    labels:
+      io.hostwatch.workload: granttap-web
+      io.podman.compose.service: site
     container_name: granttap-web-site-1
     image: ${GRANTTAP_SITE_RELEASE_IMAGE:?Set the verified site image tag}
     restart: unless-stopped
