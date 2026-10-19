@@ -2,6 +2,9 @@ name: granttap-web
 
 services:
   web:
+    labels:
+      io.hostwatch.workload: granttap-web
+      io.podman.compose.service: web
     build:
       context: .
       dockerfile: hetzner/Dockerfile
@@ -33,6 +36,9 @@ services:
       start_period: 5s
 
   site:
+    labels:
+      io.hostwatch.workload: granttap-web
+      io.podman.compose.service: site
     build:
       context: .
       dockerfile: hetzner/site.Dockerfile
