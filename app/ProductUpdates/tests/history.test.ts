@@ -10,7 +10,8 @@ describe("published version history", () => {
       expect(section).toBeDefined();
       expect(section?.bullets?.join(" ")).toContain("201");
       expect(section?.bullets?.join(" ")).toContain("202");
-      expect(section?.bullets?.[0]).toContain("0.8.78");
+      expect(section?.bullets?.[0]).toContain("205");
+      expect(section?.bullets?.join(" ")).toContain("0.8.78");
       expect(section?.bullets?.join(" ")).toContain("0.8.77");
       expect(section?.bullets?.join(" ")).toContain("204");
       expect(section?.bullets?.join(" ")).toContain("203");
