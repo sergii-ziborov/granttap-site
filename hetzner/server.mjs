@@ -17,6 +17,7 @@ import { ConnectRequests } from "./connect/requests.mjs";
 import { json, html, webRequest, sendResponse } from "./connect/http.mjs";
 import { routeConnectRequest } from "./connect/api.mjs";
 import { configuredBilling } from "./billing.ts";
+import { accountClientAccess } from './client-access.mjs';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGE = readFileSync(join(ROOT, "public", "connect.html"), "utf8");
@@ -27,6 +28,7 @@ const accountDb = new SqliteD1(process.env.GRANTTAP_ACCOUNT_DB ?? join(ROOT, "ac
 const accountAuth = new AccountAuth(new D1AccountStore(accountDb));
 const accountMachines = new AccountMachines(accountDb);
 const managedBilling = configuredBilling(process.env);
+const clientAccess = accountClientAccess({ db: accountDb, auth: accountAuth, machines: accountMachines });
 function purgeExpiredAccountState() {
   accountDb.sqlite.prepare("DELETE FROM ceremonies WHERE expires_at<=?").run(Date.now());
   accountDb.sqlite.prepare("DELETE FROM sessions WHERE expires_at<=?").run(Date.now());
@@ -41,6 +43,8 @@ const server = createServer(async (req, res) => {
     json(res, 200, { ok: true, service: "granttap-web" });
     return;
   }
+  try { if (clientAccess && !(await clientAccess.http(req, res))) return; }
+  catch { json(res, 503, { error: "Account service unavailable." }); return; }
   if (req.method === "GET" && (url.pathname === "/connect" || url.pathname === "/connect/")) {
     html(res, 200, PAGE);
     return;
@@ -67,7 +71,9 @@ const server = createServer(async (req, res) => {
   json(res, 404, { error: "Not found." });
 });
 
-attachControlTransport(server, request => handleAccountApi(request, accountDb, managedBilling));
+attachControlTransport(server, request => handleAccountApi(request, accountDb, managedBilling), {
+  admitClient: clientAccess ? request => clientAccess.socket(request) : undefined,
+});
 
 server.listen(PORT, HOST, () => {
   process.stdout.write(`[granttap-web] listening on ${HOST}:${PORT}\n`);

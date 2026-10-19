@@ -7,7 +7,7 @@ import { attachControlTransport } from "../../worker/account/control-transport";
 
 const cleanups: Array<() => Promise<void>> = [];
 afterEach(async () => { for (const cleanup of cleanups.splice(0).reverse()) await cleanup(); });
-async function fixture(allowed = true, renewalMs = 10_000) {
+async function fixture(allowed = true, renewalMs = 10_000, admissionOptions = {}) {
   const upstream = new WebSocketServer({ port: 0, host: "127.0.0.1" });
   await once(upstream, "listening");
   const hello = { computerId: "12345678-1234-4123-8123-123456789012", room: "a".repeat(32),
@@ -28,7 +28,7 @@ async function fixture(allowed = true, renewalMs = 10_000) {
   };
   const server: Server = createServer();
   const stop = attachControlTransport(server, api,
-    { relayUrl: `ws://127.0.0.1:${(upstream.address() as { port: number }).port}`, renewalMs });
+    { relayUrl: `ws://127.0.0.1:${(upstream.address() as { port: number }).port}`, renewalMs, ...admissionOptions });
   await new Promise<void>(resolve => server.listen(0, "127.0.0.1", resolve));
   const clients: WebSocket[] = [];
   const connect = (origin = "https://granttap.com") => {
@@ -112,4 +112,12 @@ it("never forwards binary identity frames or plaintext agent commands", async ()
   const ready = once(client, "message"); client.send(JSON.stringify({ type: "control.connect", ...f.hello })); await ready;
   const closed = once(client, "close"); client.send(JSON.stringify({ type: "user.message", text: "Synthetic plaintext must not be forwarded" }));
   expect((await closed)[0]).toBe(4403);
+});
+
+it("applies verified client policy before accepting a control websocket", async () => {
+  const f = await fixture(true, 10_000, { admitClient: async () => ({allowed:false,category:"subscriber",reason:"device-connections"}) });
+  const client = f.connect(), [, response] = await once(client, "unexpected-response");
+  expect(response.statusCode).toBe(429);
+  expect(response.headers["x-hostwatch-client-limit"]).toBe("device-connections");
+  response.resume(); client.terminate(); expect(f.upstream.clients.size).toBe(0);
 });

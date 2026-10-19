@@ -65,7 +65,7 @@ export async function routeManagedSubscriptions(request: Request,
     }
     return json(200, { ticket: signManagedTicket(billing.signingKey,
       { version: 1, accountId: identity.accountId, computerId: identity.machineId, publicKey: body.publicKey,
-        room: body.room, expiresAt: right.expiresAt }), expiresAt: right.expiresAt, source: right.source });
+        room: body.room, expiresAt: right.expiresAt, source: right.source }), expiresAt: right.expiresAt, source: right.source });
   }
   const account = path === receiptPath
     ? await services.auth.accountForToken(sessionToken(request)) : null;
