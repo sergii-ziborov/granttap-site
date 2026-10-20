@@ -18,11 +18,12 @@ export async function authoritySnapshot(db,tag,now=Date.now(),databasePath=null)
  const computers=(await db.prepare(`SELECT m.id,m.account_id,max(coalesce(m.last_seen_at,0),coalesce(e.updated_at,0)) AS last_seen
   FROM account_machines m LEFT JOIN account_machine_endpoints e ON e.machine_id=m.id
   WHERE m.revoked_at IS NULL LIMIT 4097`).bind().all()).results;
- const fileBytes=path=>{try{return path?statSync(path).size:null;}catch{return null;}};
+ const fileBytes=(path,missing=null)=>{try{return path?statSync(path).size:null;}catch(error){return error.code==='ENOENT'?missing:null;}};
+ const databaseBytes=fileBytes(databasePath);
  return {inventory,computerRegistry:computers.slice(0,4096).map(x=>({tag:tag('computer',`${x.account_id}:${x.id}`),account:tag('account',x.account_id)})),complete:rows.length<=4096&&computers.length<=4096,
   entities:computers.slice(0,4096).filter(x=>x.last_seen>now-86400000&&x.last_seen<=now).map(x=>({tag:tag('computer',`${x.account_id}:${x.id}`),account:tag('account',x.account_id),kind:'computer',online:false,lastSeen:new Date(x.last_seen).toISOString()})),
   gauges:{registeredComputers:computers.length<=4096?computers.length:null,registeredControllers:null,
-   databaseBytes:fileBytes(databasePath),walBytes:fileBytes(databasePath?databasePath+'-wal':null)},counters:{},latencies:{}};
+   databaseBytes,walBytes:databaseBytes==null?null:fileBytes(databasePath+'-wal',0)},counters:{},latencies:{}};
 }
 export function startAuthorityCapacity(db,env=process.env,controlSockets=()=>null){
  const seen=new Map();
