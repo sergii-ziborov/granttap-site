@@ -4,7 +4,7 @@ import { ManagedSubscriptions } from '../worker/account/subscriptions/index.ts';
 import { sessionToken } from '../worker/account/http.ts';
 import { clientAccessFromEnv } from './hostwatch-client.mjs';
 
-export function accountClientAccess({ db, auth, machines, env = process.env, adapter = clientAccessFromEnv(env) }) {
+export function accountClientAccess({ db, auth, machines, env = process.env, adapter = clientAccessFromEnv(env), observe = (_account) => {} }) {
   if (!adapter) return null;
   const ledger = new ManagedSubscriptions(db);
   const trusted = new Set((env.HOSTWATCH_TRUSTED_PROXY_IPS ?? '').split(','));
@@ -22,6 +22,7 @@ export function accountClientAccess({ db, auth, machines, env = process.env, ada
     const forwarded = req.headers['x-real-ip'];
     const clientIp = trusted.has(peer) && typeof forwarded === 'string' && isIP(forwarded) ? forwarded : peer;
     if (!account) return { category: 'anonymous', clientIp };
+    observe(account);
     const right = await ledger.entitlement(account);
     return { category: right?.source === 'subscription' ? 'subscriber' : right?.source === 'beta' ? 'beta' : 'registered',
       account, device, clientIp, expiresAt: Math.min(Date.now() + 30000, right?.expiresAt ?? Infinity) };

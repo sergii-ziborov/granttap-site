@@ -20,7 +20,7 @@ export function attachControlTransport(server: Server, api: ControlApi, options:
   server.on("upgrade", upgrade);
   const stop = () => { server.off("upgrade", upgrade); sockets.clients.forEach(socket => socket.terminate()); sockets.close(); };
   server.once("close", stop);
-  return stop;
+  return Object.assign(stop, { capacity: () => sockets.clients.size });
 }
 
 async function authorizeUpgrade(request: IncomingMessage, socket: Duplex, head: Buffer,

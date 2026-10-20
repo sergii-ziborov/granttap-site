@@ -17,6 +17,7 @@ import { ConnectRequests } from "./connect/requests.mjs";
 import { json, html, webRequest, sendResponse } from "./connect/http.mjs";
 import { routeConnectRequest } from "./connect/api.mjs";
 import { configuredBilling } from "./billing.ts";
+import { startAuthorityCapacity } from './capacity/index.mjs';
 import { accountClientAccess } from './client-access.mjs';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
@@ -25,10 +26,11 @@ const STORE_PATH = process.env.GRANTTAP_CONNECT_STORE ?? join(ROOT, "connect-sto
 const PORT = Number(process.env.PORT ?? 3210);
 const HOST = process.env.HOST ?? "0.0.0.0";
 const accountDb = new SqliteD1(process.env.GRANTTAP_ACCOUNT_DB ?? join(ROOT, "accounts.sqlite"));
+const capacity = startAuthorityCapacity(accountDb, process.env, () => controlTransport.capacity());
 const accountAuth = new AccountAuth(new D1AccountStore(accountDb));
 const accountMachines = new AccountMachines(accountDb);
 const managedBilling = configuredBilling(process.env);
-const clientAccess = accountClientAccess({ db: accountDb, auth: accountAuth, machines: accountMachines });
+const clientAccess = accountClientAccess({ db: accountDb, auth: accountAuth, machines: accountMachines, observe: account => capacity?.accountSeen(account) });
 function purgeExpiredAccountState() {
   accountDb.sqlite.prepare("DELETE FROM ceremonies WHERE expires_at<=?").run(Date.now());
   accountDb.sqlite.prepare("DELETE FROM sessions WHERE expires_at<=?").run(Date.now());
@@ -71,10 +73,11 @@ const server = createServer(async (req, res) => {
   json(res, 404, { error: "Not found." });
 });
 
-attachControlTransport(server, request => handleAccountApi(request, accountDb, managedBilling), {
+const controlTransport = attachControlTransport(server, request => handleAccountApi(request, accountDb, managedBilling), {
   admitClient: clientAccess ? request => clientAccess.socket(request) : undefined,
 });
 
+server.once('close', () => capacity?.close());
 server.listen(PORT, HOST, () => {
   process.stdout.write(`[granttap-web] listening on ${HOST}:${PORT}\n`);
 });

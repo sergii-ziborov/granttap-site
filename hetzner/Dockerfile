@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 COPY hetzner/server.mjs ./hetzner/server.mjs
+COPY hetzner/capacity ./hetzner/capacity
 COPY hetzner/client-access.mjs ./hetzner/client-access.mjs
 COPY hetzner/hostwatch-client.mjs ./hetzner/hostwatch-client.mjs
 COPY hetzner/connect ./hetzner/connect
