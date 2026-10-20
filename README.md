@@ -120,8 +120,8 @@ help](https://granttap.com/support) walks through both.
   tiers and the status of the Mac release.
 
 Mac, iPhone and iPad are available in TestFlight by invitation; Watch is a
-companion through iPhone. Planned first-launch US prices are Personal $3.99/month
-for 2 publishing computers, Personal Plus $6.99 for 5, and Fleet $11.99 for 15.
+companion through iPhone. Planned first-launch US prices are Personal $4.99/month
+for 2 publishing computers, Personal Plus $7.99 for 5, and Fleet $13.99 for 15.
 Mac Local is $39.99 once for local control and your own relay. An active Personal
 plan covers the managed Mac client without a second purchase. StoreKit provides
 actual local prices, eligibility and availability; paid products are not live.

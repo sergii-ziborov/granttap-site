@@ -228,7 +228,7 @@ test("publishes actionable Personal support and privacy copy", async () => {
 test("publishes transparent subscription pricing", async () => {
   const html = await (await render("https://granttap.com/pricing")).text();
   assert.match(html, /7-day free trial/i);
-  for (const [name, price, limit] of [["Personal", "3.99", 2], ["Personal Plus", "6.99", 5], ["Fleet", "11.99", 15]]) {
+  for (const [name, price, limit] of [["Personal", "4.99", 2], ["Personal Plus", "7.99", 5], ["Fleet", "13.99", 15]]) {
     assert.match(html, new RegExp(`<article[^>]*aria-label="${name}"`));
     assert.ok(html.includes(`$${price}`));
     assert.ok(html.includes(`Up to ${limit} managed computers`));

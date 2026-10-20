@@ -2,13 +2,13 @@ export type OfferLocale = "en" | "ru";
 
 /** Display catalog. Only Apple-verified receipts grant account entitlements. */
 export const launchOffer = {
-  version: "first-launch-2026-10", currency: "USD", billingPeriod: "month",
+  version: "first-launch-2026-10-20", currency: "USD", billingPeriod: "month",
   plans: [
-    { key: "personal", label: "Personal", usdCents: 399, computers: 2,
+    { key: "personal", label: "Personal", usdCents: 499, computers: 2,
       productId: "com.ziborov.granttap.personal.solo.monthly" },
-    { key: "personal_plus", label: "Personal Plus", usdCents: 699, computers: 5,
+    { key: "personal_plus", label: "Personal Plus", usdCents: 799, computers: 5,
       productId: "com.ziborov.granttap.personal.monthly" },
-    { key: "fleet", label: "Fleet", usdCents: 1199, computers: 15,
+    { key: "fleet", label: "Fleet", usdCents: 1399, computers: 15,
       productId: "com.ziborov.granttap.personal.studio.monthly" },
   ],
   macLocal: { label: "Mac Local", usdCents: 3999, billingPeriod: "one_time",

@@ -26,7 +26,7 @@ describe("the same customer documents on the website and offline Apple clients",
 
   it("explains all three launch plans and the separate one-time purchase", () => {
     expect(launchOffer.plans.map(p => [p.label, p.usdCents, p.computers])).toEqual([
-      ["Personal", 399, 2], ["Personal Plus", 699, 5], ["Fleet", 1199, 15],
+      ["Personal", 499, 2], ["Personal Plus", 799, 5], ["Fleet", 1399, 15],
     ]);
     const doc = customerDocument("pricing", "en");
     for (const plan of launchOffer.plans) {

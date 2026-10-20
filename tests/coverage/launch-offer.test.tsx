@@ -5,8 +5,8 @@ import PricingPage from "../../app/pricing/page";
 
 test("first launch offers three monthly plans and a separate one-time Mac purchase", () => {
   render(<PricingPage />);
-  for (const [name, price, computers] of [["Personal", "$3.99", "2"],
-    ["Personal Plus", "$6.99", "5"], ["Fleet", "$11.99", "15"]]) {
+  for (const [name, price, computers] of [["Personal", "$4.99", "2"],
+    ["Personal Plus", "$7.99", "5"], ["Fleet", "$13.99", "15"]]) {
     const card = screen.getByRole("article", { name });
     expect(within(card).getByText(price)).toBeTruthy();
     expect(within(card).getByText(`Up to ${computers} managed computers`)).toBeTruthy();
