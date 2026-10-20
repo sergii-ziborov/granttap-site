@@ -22,3 +22,13 @@ rejected. It never accepts an external return URL.
 The `/connect` MCP authorization page uses a fresh passkey assertion from this
 account service to approve a coding app on Mac. That approval issues a local
 MCP OAuth token and does not create a computer pairing or restore a phone.
+
+## Subscription support
+
+[SubscriptionSupport](SubscriptionSupport.tsx) preserves a direct link to Apple
+subscription settings and offers optional feedback to signed-in accounts. It
+does not cancel a subscription or run a web checkout. Eligible Apple promotional
+offers are confirmed in the native app through StoreKit. Feedback tests live in
+[tests/subscription-support.test.tsx](tests/subscription-support.test.tsx); the
+HTTP, receipt-history and durable-state contract belongs to
+[SubscriptionRetention](../../worker/account/subscription-retention/README.md).

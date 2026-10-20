@@ -96,8 +96,10 @@ granttap setup
 3. Open Now to see active work and decisions. For a direct device link instead,
    choose **Add a device** in the connection card and scan its one-time QR.
 
-A GrantTap account passkey is optional. QR pairing works without an account;
-passkey sign-in can also approve a coding-app connection on a Mac with the local
+Managed hosting requires a GrantTap account with verified subscription or official
+testing access. QR pairing creates a direct device link; it does not grant managed
+service rights. Local control and an own relay use the separate Mac Local license.
+Passkey sign-in can also approve a coding-app connection on a Mac with the local
 bridge. Joining the Account Mesh and approving a coding app are different
 steps. [Connection
 help](https://granttap.com/support) walks through both.

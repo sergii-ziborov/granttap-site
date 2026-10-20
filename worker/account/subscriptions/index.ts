@@ -1,5 +1,6 @@
 import type { D1Database } from "@cloudflare/workers-types";
 import type { JWSTransactionDecodedPayload } from "@apple/app-store-server-library";
+import { SubscriptionRetention } from "../subscription-retention";
 import { launchOffer } from "../../../app/ProductOffer";
 
 const products: Record<string, number> = Object.fromEntries(
@@ -46,6 +47,7 @@ export class ManagedSubscriptions {
     `).bind(receipt.originalTransactionId, receipt.transactionId, receipt.productId, limit,
       receipt.purchaseDate, receipt.signedDate, receipt.expiresDate, revoked ? 1 : 0,
       receipt.offerType === 1 && receipt.offerDiscountType === "FREE_TRIAL" ? 1 : 0, accountId).run();
+    await new SubscriptionRetention(this.db, this.now).recordVerifiedPurchase(accountId, receipt);
     return result.meta.changes === 1;
   }
 

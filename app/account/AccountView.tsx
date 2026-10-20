@@ -5,6 +5,7 @@ import type { PublicKeyCredentialCreationOptionsJSON, PublicKeyCredentialRequest
 import { useEffect, useState } from "react";
 import { LanguageToggle, useLocale } from "../components/Locale";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
+import { SubscriptionSupport } from "./SubscriptionSupport";
 import { ComputerPublishing } from "./ComputerPublishing";
 import { accountReturnPath } from "./return-path";
 
@@ -183,6 +184,7 @@ export function AccountView() {
           : <ComputerPublishing key={accountId} accountId={accountId} locale={locale}
               machines={machines} busy={busy} onDisconnect={machine => void disconnect(machine)} />}
         <p className="account-boundary">{t.noComputer}</p>
+        <SubscriptionSupport key={accountId + ":subscription"} locale={locale} />
         <div className="account-actions">
           <a href="/control">{t.openControl}</a>
           <button type="button" disabled={busy} onClick={() => void exit(false)}>{t.signOut}</button>

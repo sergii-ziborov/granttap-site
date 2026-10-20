@@ -1,3 +1,5 @@
+import { SubscriptionCancellationFeedback } from "../subscription-retention/feedback";
+import { routeSubscriptionRetention, type RetentionBilling } from "../subscription-retention/api";
 import type { D1Database } from "@cloudflare/workers-types";
 import type { AccountAuth } from "../auth";
 import type { AccountMachines } from "../machines";
@@ -10,11 +12,13 @@ import { routeTestFlight } from "../testflight";
 import { routeManagedComputers } from "./computers";
 import { AccountMachineEndpoints } from "../control-access";
 
-export type ManagedBilling = { receipts: AppleReceipts; signingKey: Buffer };
+export type ManagedBilling = { receipts: AppleReceipts; signingKey: Buffer; retention?: RetentionBilling };
 const ROOM = /^[A-Za-z0-9_-]{8,128}$/;
 
 export async function routeManagedSubscriptions(request: Request,
   services: { db: D1Database; auth: AccountAuth; machines: AccountMachines; billing?: ManagedBilling }): Promise<Response | null> {
+  const retentionResponse = await routeSubscriptionRetention(request, services);
+  if (retentionResponse) return retentionResponse;
   const path = new URL(request.url).pathname;
   const testFlightPath = "/api/account/subscriptions/testflight";
   const receiptPath = "/api/account/subscriptions/receipt";
@@ -31,6 +35,7 @@ export async function routeManagedSubscriptions(request: Request,
   const { billing } = services;
   if (!billing) return json(503, { error: "Managed billing verification is not configured." });
   if (path === testFlightPath) return routeTestFlight(request, services.db, services.auth, billing.receipts);
+  await new SubscriptionCancellationFeedback(services.db, billing.signingKey).prune();
   const ledger = new ManagedSubscriptions(services.db);
   if (path === computersPath || release) {
     return routeManagedComputers(request, ledger, services.auth, services.machines, billing.receipts);

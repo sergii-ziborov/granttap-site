@@ -50,7 +50,7 @@ export function PricingView() {
       <h2>{t.termsTitle}</h2><p>{t.trial}</p><p>{t.billing}</p><p>{t.localPrice}</p>
       <nav aria-label={t.termsTitle}>{[["/terms", t.terms], ["/privacy", t.privacy], ["/support", t.help]].map(([path, label]) =>
         <a key={path} href={localizedProductPath(path, locale)}>{label}</a>)}</nav>
-      <p className="offer-note">{t.updated} <time dateTime="2026-10-16">2026-10-16</time></p>
+      <p className="offer-note">{t.updated} <time dateTime={launchOffer.updatedOn}>{launchOffer.updatedOn}</time></p>
     </section>
     <SiteFooter locale={locale} />
   </main>;

@@ -2,7 +2,7 @@ export type OfferLocale = "en" | "ru";
 
 /** Display catalog. Only Apple-verified receipts grant account entitlements. */
 export const launchOffer = {
-  version: "first-launch-2026-10-20", currency: "USD", billingPeriod: "month",
+  version: "first-launch-2026-10-20", updatedOn: "2026-10-20", currency: "USD", billingPeriod: "month",
   plans: [
     { key: "personal", label: "Personal", usdCents: 499, computers: 2,
       productId: "com.ziborov.granttap.personal.solo.monthly" },

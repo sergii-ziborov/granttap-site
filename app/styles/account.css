@@ -19,3 +19,9 @@
 .account-publishing h3 { margin: 24px 0 12px; }
 .account-publishing-choice { display: flex; align-items: center; gap: 10px; margin-top: 12px; color: var(--muted); font-size: .9rem; }
 .account-publishing-choice input { width: 18px; height: 18px; accent-color: var(--orange); }
+
+.account-boundary form :is(select, textarea) { width: 100%; max-width: 100%; padding: 12px; border: 1px solid #77716e; border-radius: 10px; background: #272628; color: inherit; font: inherit; }
+.account-boundary form textarea { resize: vertical; }
+.account-boundary form button { min-height: 44px; padding: 10px 16px; border: 1px solid #e56f37; border-radius: 10px; background: #c44d20; color: #fff; font: inherit; cursor: pointer; }
+.account-boundary form button:disabled { opacity: .55; cursor: default; }
+.account-boundary form :is(button, select, textarea):focus-visible { outline: 3px solid #ff9a67; outline-offset: 3px; }

@@ -8,7 +8,7 @@ export default defineConfig({
     server: { deps: { inline: ["granttap-mcp"] } },
     environment: "jsdom",
     setupFiles: ["./tests/coverage/setup.tsx"],
-    include: ["tests/coverage/**/*.test.{ts,tsx}", "app/**/tests/*.test.{ts,tsx}"],
+    include: ["tests/coverage/**/*.test.{ts,tsx}", "app/**/tests/*.test.{ts,tsx}", "worker/**/tests/*.test.ts"],
     coverage: {
       provider: "v8",
       include: ["app/**/*.{ts,tsx}", "worker/**/*.ts"],

@@ -2,7 +2,7 @@ import { AppStoreServerAPIClient, Environment, SignedDataVerifier, Status } from
 import type { AppleReceipts } from "./apple";
 import fetch from "node-fetch";
 
-class BoundedAppleClient extends AppStoreServerAPIClient {
+export class BoundedAppleClient extends AppStoreServerAPIClient {
   protected makeFetchRequest(path: string, query: URLSearchParams, method: string,
     body: string | Buffer | undefined, headers: Record<string, string>): Promise<fetch.Response> {
     return fetch(`https://api.storekit.apple.com${path}?${query}`, {

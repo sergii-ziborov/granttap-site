@@ -2,6 +2,7 @@ import {statSync} from 'node:fs';
 import {ManagedSubscriptions} from '../../worker/account/subscriptions/index.ts';
 import {capacityReporter} from './client.mjs';
 
+/** @param {string | null} [databasePath] */
 export async function authoritySnapshot(db,tag,now=Date.now(),databasePath=null){
  const ledger=new ManagedSubscriptions(db,()=>now),inventory=[];
  const rows=(await db.prepare('SELECT id FROM accounts ORDER BY created_at LIMIT 4097').bind().all()).results;
