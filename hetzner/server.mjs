@@ -81,3 +81,14 @@ server.once('close', () => capacity?.close());
 server.listen(PORT, HOST, () => {
   process.stdout.write(`[granttap-web] listening on ${HOST}:${PORT}\n`);
 });
+
+let stopping = false;
+for (const signal of ['SIGTERM','SIGINT']) process.once(signal, () => {
+  if (stopping) return; stopping = true;
+  const force = setTimeout(() => process.exit(1), 5000); force.unref();
+  void (async () => {
+    await controlTransport.shutdown(); await clientAccess?.close();
+    await new Promise(resolve => server.close(resolve)); capacity?.close();
+    clearTimeout(force); process.exit(0);
+  })().catch(() => process.exit(1));
+});

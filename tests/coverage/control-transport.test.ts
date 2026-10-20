@@ -40,7 +40,7 @@ async function fixture(allowed = true, renewalMs = 10_000, admissionOptions = {}
     upstream.clients.forEach(client => client.terminate()); stop();
     await new Promise<void>(resolve => server.close(() => resolve()));
     await new Promise<void>(resolve => upstream.close(() => resolve())); });
-  return { hello, upstream, apiCalls, connect, access };
+  return { hello, upstream, apiCalls, connect, access, stop };
 }
 
 it("checks the account before connecting and forwards only encrypted, room-bound control frames", async () => {
@@ -120,4 +120,10 @@ it("applies verified client policy before accepting a control websocket", async 
   expect(response.statusCode).toBe(429);
   expect(response.headers["x-hostwatch-client-limit"]).toBe("device-connections");
   response.resume(); client.terminate(); expect(f.upstream.clients.size).toBe(0);
+});
+
+it("releases browser control sockets cleanly for a rolling server restart", async () => {
+ const f=await fixture(),client=f.connect();await once(client,"open");
+ const closed=once(client,"close");await f.stop.shutdown();
+ expect((await closed)[0]).toBe(1001);expect(f.stop.capacity()).toBe(0);
 });

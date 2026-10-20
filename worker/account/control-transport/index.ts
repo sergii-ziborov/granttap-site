@@ -20,7 +20,14 @@ export function attachControlTransport(server: Server, api: ControlApi, options:
   server.on("upgrade", upgrade);
   const stop = () => { server.off("upgrade", upgrade); sockets.clients.forEach(socket => socket.terminate()); sockets.close(); };
   server.once("close", stop);
-  return Object.assign(stop, { capacity: () => sockets.clients.size });
+  return Object.assign(stop, { capacity: () => sockets.clients.size, async shutdown() {
+    server.off("upgrade", upgrade);
+    const closed = [...sockets.clients].map(client => new Promise<void>(resolve => {
+      client.once("close", () => resolve()); client.close(1001, "service-restart");
+    }));
+    const force = setTimeout(() => { sockets.clients.forEach(client => client.terminate()); }, 1000);
+    force.unref(); await Promise.allSettled(closed); clearTimeout(force);
+  } });
 }
 
 async function authorizeUpgrade(request: IncomingMessage, socket: Duplex, head: Buffer,

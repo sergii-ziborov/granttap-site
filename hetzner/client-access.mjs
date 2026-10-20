@@ -28,6 +28,7 @@ export function accountClientAccess({ db, auth, machines, env = process.env, ada
       account, device, clientIp, expiresAt: Math.min(Date.now() + 30000, right?.expiresAt ?? Infinity) };
   }
   return {
+    close: () => adapter.close?.(),
     async http(req, res) {
       const d = await adapter.admit(await identity(req));
       res.setHeader('X-Hostwatch-Client-Category', d.category);
