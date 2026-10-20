@@ -7,7 +7,8 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     heading: "История версий",
     paragraphs: ["Приложения для iPhone, iPad и Mac доступны по приглашению через TestFlight. Номер сборки указан в разделе «О приложении». Компьютерный MCP обновляется отдельно."],
     bullets: [
-      "Приложения 206 · TestFlight · 19 октября 2026. На iPhone, iPad и Mac используется один локальный просмотрщик Repo Lens: башни, секции исходников, направленные связи и внешние сервисы. Камера учитывает узкий экран; обзор всей карты не обрезает башни и не скрывает их туманом. Исправлены поиск, прокрутка длинных списков секций и касания панелей. Полная карта и частичные сведения об исходниках обозначаются отдельно.",
+      "MCP 0.8.81 · 20 октября 2026. Полная инструкция по установке, аккаунту, подключениям и доставке сообщений. Обновлены тарифы Personal $4.99, Personal Plus $7.99 и Fleet $13.99. Уточнены пробный период, бесплатный TestFlight, ограничения провайдеров и восстановление соединения.",
+      "MCP 0.8.80 · 19 октября 2026. Переподключение соблюдает время ожидания, которое сообщает relay при перегрузке. Зашифрованные ожидающие сообщения сохраняются при повторном подключении; подтверждение хранения и ответ агента показываются как разные этапы.",
       "Приложения 205 · TestFlight · 19 октября 2026. Неудавшуюся доставку можно отменить прямо в чате и Needs You. Подтверждённое сообщение не возвращается в очередь из-за старого таймера или квитанции после Retry. Для отправленной строки старой очереди доступна проверка истории без повторной отправки. Кнопка со значком робота называется «Агенты»; список обновляется и в открытом окне.",
       "MCP 0.8.79 · 19 октября 2026. Исправлено чтение агентов Codex с унаследованной историей. Они сохраняют собственные ID и связь с родительской задачей. История родителя не показывается как диалог каждого агента.",
       "MCP 0.8.78 · 19 октября 2026. Сообщения с телефона продолжают уже открытый чат Codex, в том числе во время ответа. Исправлен конфликт одновременного запуска этого чата. Повтор той же отправки не запускает ход ещё раз. Pause передаёт запрос остановки в этот чат; вложенные файлы остаются доступны агенту после приёма сообщения.",
@@ -20,12 +21,13 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
       "Приложения 199 · TestFlight · 17 октября 2026. В переносе доступны модели и уровень рассуждений Claude Code, Codex и Grok Build. Добавлен перенос в облако Claude или Codex через исходный компьютер с MCP 0.8.72. Исправлены повторные переподключения после отказа relay.",
       "MCP 0.8.74. Вопросы Cursor, варианты ответа и видимые предупреждения передаются в GrantTap. Сохранённые чаты Cursor открываются без ожидания проверки незакоммиченных изменений. Подготовка переноса поддерживает создание коммита до передачи задачи.",
     ],
-    links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.79" }],
+    links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.81" }],
   } : {
     heading: "Version history",
     paragraphs: ["The iPhone, iPad and Mac apps are available by TestFlight invitation. Find the build number in About. The computer MCP updates separately."],
     bullets: [
-      "Apps 206 · TestFlight · October 19, 2026. iPhone, iPad and Mac share the local Repo Lens viewer: towers, source sections, directed links and external services. Camera framing accounts for narrow screens; Fit keeps received towers inside the overview and visible through fog. Fixed source search, long section lists and panel touch controls. Complete maps and partial source details have distinct labels.",
+      "MCP 0.8.81 · October 20, 2026. Complete installation, account, connection and message delivery guide. Updated Personal $4.99, Personal Plus $7.99 and Fleet $13.99 pricing. Clarified the trial, free TestFlight access, provider limits and connection recovery.",
+      "MCP 0.8.80 · October 19, 2026. Reconnection respects the retry delay returned by a congested relay. Pending encrypted messages survive reconnects; relay storage and an agent response remain separate delivery stages.",
       "Apps 205 · TestFlight · October 19, 2026. Cancel a failed delivery in its chat or Needs You. Native transcript confirmation retires sent messages; old timers and receipts cannot revive them after Retry. Submitted legacy queue entries offer a history check without resending. The robot button is named Agents, and its list updates while open.",
       "MCP 0.8.79 · October 19, 2026. Fixed Codex agents with inherited parent history. They retain their own IDs and relationship to the parent Task. Copied parent history is excluded from each agent conversation.",
       "MCP 0.8.78 · October 19, 2026. Phone messages continue the same open Codex chat, including during a response. Fixed conflicting attempts to start that chat. Repeating the same submission does not start the turn again. Pause sends the stop request to that chat; attached files remain available to the agent after message admission.",
@@ -38,6 +40,6 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
       "Apps 199 · TestFlight · October 17, 2026. Transfer offers Claude Code, Codex and Grok Build models and reasoning effort. Claude or Codex cloud transfers run through the source computer with MCP 0.8.72. Fixed repeated reconnections after relay admission is refused.",
       "MCP 0.8.74. Cursor questions, answer choices and visible warnings reach GrantTap. Retained Cursor chats open without waiting for the working-tree check. Transfer preparation supports committing changes before handing off a task.",
     ],
-    links: [{ label: "Computer MCP version on npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.79" }],
+    links: [{ label: "Computer MCP version on npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.81" }],
   };
 }
