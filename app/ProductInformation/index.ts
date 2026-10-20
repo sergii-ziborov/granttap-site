@@ -10,6 +10,7 @@ import { localizedProductPath, monthlyPlansSummary, launchOffer, usdPrice, type 
 import { pricingCopy } from "../ProductOffer/pricingCopy";
 import { pricingDocument } from "./pricingDocument";
 import { versionHistory } from "../ProductUpdates";
+import { cancellationSupport } from "../ProductOffer/cancellationSupport";
 
 export type ProductDocumentName = "support" | "terms" | "privacy" | "licenses" | "pricing";
 export type ProductDocument = { title: string; updated: string; intro: string; sections: {
@@ -32,10 +33,11 @@ export function customerDocument(name: ProductDocumentName, locale: OfferLocale)
   const document = JSON.parse(JSON.stringify(source), (_key, value) => typeof value === "string"
     ? value.replace(/\{\{[A-Z_]+\}\}/g, token => substitutions[token] ?? token) : value) as ProductDocument;
   if (name === "support") {
-    document.updated = "2026-10-18";
+    document.updated = launchOffer.updatedOn;
     const contact = document.sections.pop()!;
+    const cancellation = cancellationSupport(locale);
     document.sections.push(versionHistory(locale), ...pricingCopy[locale].faq.map(([heading, answer]) =>
-      ({ heading, paragraphs: [answer] })), contact);
+      heading === cancellation.heading ? cancellation : { heading, paragraphs: [answer] }), contact);
   }
   for (const section of document.sections) {
     for (const link of section.links ?? []) {

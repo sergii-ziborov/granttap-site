@@ -4,6 +4,7 @@ import { LanguageToggle, useLocale } from "../components/Locale";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 import { installationAction, launchOffer, localizedProductPath, usdPrice } from ".";
 import { pricingCopy } from "./pricingCopy";
+import { cancellationSupport } from "./cancellationSupport";
 
 export function PricingView() {
   const { locale, setLocale } = useLocale();
@@ -43,7 +44,8 @@ export function PricingView() {
     <section className="section-shell offer-faq">
       <h2>{t.faqTitle}</h2>
       {t.faq.map(([question, answer]) => <details key={question}>
-        <summary>{question}</summary><p>{answer}</p>
+        <summary>{question}</summary>{(question === cancellationSupport(locale).heading
+          ? cancellationSupport(locale).paragraphs : [answer]).map(text => <p key={text}>{text}</p>)}
       </details>)}
     </section>
     <section className="section-shell offer-terms">
