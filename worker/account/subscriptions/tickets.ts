@@ -1,6 +1,6 @@
 import { createHmac } from "node:crypto";
 
-export type ManagedTicket = { version: 1; accountId: string; computerId: string; publicKey: string; room: string; expiresAt: number };
+export type ManagedTicket = { version: 1; accountId: string; computerId: string; publicKey: string; room: string; expiresAt: number; source?: "subscription" | "beta" };
 export type ControllerTicket = Omit<ManagedTicket, "version"> & { version: 2; role: "phone" };
 
 export function signManagedTicket(secret: Buffer, claim: ManagedTicket | ControllerTicket): string {

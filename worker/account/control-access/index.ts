@@ -55,5 +55,5 @@ async function controllerAdmission(request: Request, services: ControlServices, 
   }
   return json(200, { ticket: signManagedTicket(services.billing.signingKey, { version: 2, role: "phone",
     accountId, computerId: body.computerId, publicKey: body.publicKey, room: body.room,
-    expiresAt: right.expiresAt }), expiresAt: right.expiresAt, source: right.source });
+    expiresAt: right.expiresAt, source: right.source }), expiresAt: right.expiresAt, source: right.source });
 }

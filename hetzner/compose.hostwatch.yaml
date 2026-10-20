@@ -1,0 +1,12 @@
+# Optional private client identity adapter. Apply after installing the agent socket and app key.
+# Pin trusted proxies to the actual node gateways and page gateway address.
+services:
+  web:
+    environment:
+      HOSTWATCH_CLIENT_ACCESS_SITE: granttap-web
+      HOSTWATCH_CLIENT_ACCESS_SOCKET: /hostwatch-client-access/api.sock
+      HOSTWATCH_CLIENT_ACCESS_KEY_FILE: /run/secrets/hostwatch-client-access.key
+      HOSTWATCH_TRUSTED_PROXY_IPS: 10.88.0.1
+    volumes:
+      - /run/hostwatch-client-access:/hostwatch-client-access:ro
+      - /srv/secrets/hostwatch-client-access/granttap-web.key:/run/secrets/hostwatch-client-access.key:ro

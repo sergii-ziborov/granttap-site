@@ -10,10 +10,12 @@ describe("published version history", () => {
       expect(section).toBeDefined();
       expect(section?.bullets?.join(" ")).toContain("201");
       expect(section?.bullets?.join(" ")).toContain("202");
-      expect(section?.bullets?.[0]).toContain("205");
+      expect(section?.bullets?.[0]).toContain("206");
       expect(section?.bullets?.join(" ")).toContain("0.8.79");
       expect(section?.bullets?.join(" ")).toContain("0.8.78");
       expect(section?.bullets?.join(" ")).toContain("0.8.77");
+      expect(section?.bullets?.join(" ")).toContain("205");
+      expect(section?.bullets?.[0]).toContain("Repo Lens");
       expect(section?.bullets?.join(" ")).toContain("204");
       expect(section?.bullets?.join(" ")).toContain("203");
       expect(section?.bullets?.join(" ")).toContain("0.8.75");
