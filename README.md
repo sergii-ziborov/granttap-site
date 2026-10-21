@@ -227,3 +227,11 @@ Now, Task history, approvals, questions, message delivery, queues, Mesh, Health,
 new Tasks and usage are implemented. Transfer, commit preparation, file browsing
 and report export remain available in the native app. Browser access uses the
 existing Apple entitlement; independent web checkout is not enabled.
+
+### Production Node maintenance
+
+The static-site image pins Node.js 22.23.3 in both build and runtime stages.
+Rebuild and verify the candidate image when updating this version; changing an
+npm dependency cannot patch the Node binary or its built-in HTTP client.
+The deployed site bundles its server and does not include `node_modules`.
+Scan the exact deployed revision and retain prior release reports as history.
