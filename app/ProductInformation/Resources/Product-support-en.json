@@ -1,6 +1,6 @@
 {
   "title": "Support",
-  "updated": "2026-10-16",
+  "updated": "2026-10-21",
   "intro": "Install GrantTap → connect an execution computer with GrantTap MCP → open your Task. This guide explains account passkeys, direct pairing, Mac access, connection modes and recovery.",
   "sections": [
     {
@@ -63,7 +63,7 @@
       "bullets": [
         "Check the task computer is awake, its MCP is running and the expected account or direct pairing is selected. Run granttap status before changing pairings.",
         "Confirm internet access and use a wss:// relay URL.",
-        "A website “seen” or account Online label confirms registration, not chat delivery. Chats are available after the phone has a secure link and receives that computer’s Task catalog.",
+        "Relay connectivity and computer availability are separate. A returning device can receive saved encrypted catalogs, Mesh and recent chat heads from a compatible relay while its computer is offline. New execution and history not yet published still require that computer.",
         "The Account Mesh combines Tasks from all linked MCP computers. Reconnect repairs the affected computer link; it does not switch all chats to a default computer.",
         "Check iOS Notifications and Background App Refresh. APNs timing is controlled by Apple and cannot be guaranteed.",
         "Never send pairing tokens, room credentials, provider credentials, prompts, or repository paths in support messages."
@@ -96,7 +96,7 @@
       "heading": "Sending, queueing and scheduled work",
       "paragraphs": [
         "Open the intended Task and check its computer and provider before sending. Its route stays with that Task. A different active computer in Devices does not silently move an existing chat.",
-        "After the encrypted upload is confirmed, the relay can retain a queued request until its due time or expiry and deliver it when the target computer reconnects, even if the phone is closed. Before that confirmation, keep GrantTap connected so the local pending upload can finish. Queue limits, expiry, revocation and available provider operations still apply.",
+        "After the encrypted upload is confirmed, the relay can retain a queued request until its due time or expiry and deliver it when the target computer reconnects, even if the phone is closed. Before that confirmation, keep GrantTap connected so the local pending upload can finish. Queue limits, expiry, revocation and available provider operations still apply. Compatible Apple clients can rebuild the local queue from the relay using the existing pairing; closing the app does not cancel confirmed queued work.",
         "Use Queue to inspect, change the supported delivery time or cancel a waiting request. Retry acts on failed delivery; it is not proof the agent completed the work. If an acknowledgement is uncertain, inspect the Task before creating another copy of the same request."
       ]
     },
