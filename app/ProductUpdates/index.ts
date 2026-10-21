@@ -7,6 +7,8 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     heading: "История версий",
     paragraphs: ["Приложения для iPhone, iPad и Mac доступны по приглашению через TestFlight. Номер сборки указан в разделе «О приложении». Компьютерный MCP обновляется отдельно."],
     bullets: [
+      "Приложения 209 · TestFlight · 21 октября 2026. Выбранные секции сохраняют свои цвета. Остальные строки файла не выдаются за функции и не заслоняют измеренные секции. Небольшие файлы занимают область просмотра; зум меняет масштаб небольшими обратимыми шагами и отменяет отложенные движения камеры. Настройки карты разделены на окраску, контекст исходника, подписи и связи; видны счётчики измеренных проверок. В Graph разделены «Карта кода», «Архитектура» и «Подробности отчёта».",
+      "MCP 0.8.86 · 21 октября 2026. Сканирование чатов уступает время relay, после переподключения публикуется свежий список, а история Usage больше не задерживает следующее обновление чатов. Проверки репозиториев выполняются асинхронно с ограниченным числом Git-процессов. Сохранённая переписка остаётся доступной во время сканирования.",
       "Приложения 208 · TestFlight · 21 октября 2026. Health различает актуальные частичные отчёты, сохранённые данные и настоящие ошибки обновления. Добавлены фильтры, сортировка и диагностика. Пустой фильтр можно сбросить прямо в списке. У карты отдельная легенда, настройки подсветки типов и размера секций, статических проверок функций, подписей и связей. Результат и измерения функции показываются перед длинными сведениями об отчёте. Панели сохраняют доступ к кнопкам камеры.",
       "MCP 0.8.83 и Engine 0.1.2 · 21 октября 2026. Исправлены анализ старых привязок папок и определение текущей Git-версии. Игнорируемые служебные папки не попадают в анализ. В ограниченном отчёте сохраняются измеренные функции и разные типы секций. Зелёный и красный обозначают результат выбранных статических проверок; код без измерений остаётся неизвестным, а частичная карта не выдаётся за полный анализ.",
       "Приложения 207 · TestFlight · 21 октября 2026. Карта кода открывается в Repo Lens без преждевременного возврата к старому виду. Башни сохраняют измеренный размер файла, даже если передано мало секций; известные секции и остальные строки исходного файла показываются отдельно. Исправлены загрузка и повторное открытие отчёта; проверен просмотр в портретной и альбомной ориентации.",
@@ -26,11 +28,13 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
       "Приложения 199 · TestFlight · 17 октября 2026. В переносе доступны модели и уровень рассуждений Claude Code, Codex и Grok Build. Добавлен перенос в облако Claude или Codex через исходный компьютер с MCP 0.8.72. Исправлены повторные переподключения после отказа relay.",
       "MCP 0.8.74. Вопросы Cursor, варианты ответа и видимые предупреждения передаются в GrantTap. Сохранённые чаты Cursor открываются без ожидания проверки незакоммиченных изменений. Подготовка переноса поддерживает создание коммита до передачи задачи.",
     ],
-    links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.83" }],
+    links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.86" }],
   } : {
     heading: "Version history",
     paragraphs: ["The iPhone, iPad and Mac apps are available by TestFlight invitation. Find the build number in About. The computer MCP updates separately."],
     bullets: [
+      "Apps 209 · TestFlight · October 21, 2026. Selected source sections retain their colours. Neutral file lines no longer appear as functions or overwhelm the measured sections. Short files fill the inspection area; zoom uses small reversible steps and cancels delayed camera movement. Map settings group colour, source context, labels and links, with measured-check counts. Graph separates Code map, Architecture and Report details.",
+      "MCP 0.8.86 · October 21, 2026. Chat catalog scans yield to relay traffic, reconnects publish a fresh catalog, and Usage history no longer delays the next chat update. Repository checks run asynchronously with bounded Git concurrency. Saved transcripts remain readable while scans refresh.",
       "Apps 208 · TestFlight · October 21, 2026. Health separates current partial reports, saved evidence and actual refresh failures. Added filters, sorting and diagnostics. Empty filters can be cleared in the list. The code city has an independent Legend and controls for section kind, size, static function checks, labels and links. Function results and measurements appear before long report provenance. Panels leave camera controls available.",
       "MCP 0.8.83 and Engine 0.1.2 · October 21, 2026. Fixed analysis of retired checkout bindings and current Git revision detection. Ignored service folders stay outside analysis. Bounded reports retain measured functions and representative symbol kinds. Green and red describe selected static checks; unmeasured code remains unknown, and a partial map is not presented as a complete analysis.",
       "Apps 207 · TestFlight · October 21, 2026. The code city opens in Repo Lens without an early switch to the old view. Towers retain their measured source lines when only a few sections are reported; known sections and the remaining source body stay distinct. Fixed report loading and reloading, with verified portrait and landscape inspection.",
@@ -50,6 +54,6 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
       "Apps 199 · TestFlight · October 17, 2026. Transfer offers Claude Code, Codex and Grok Build models and reasoning effort. Claude or Codex cloud transfers run through the source computer with MCP 0.8.72. Fixed repeated reconnections after relay admission is refused.",
       "MCP 0.8.74. Cursor questions, answer choices and visible warnings reach GrantTap. Retained Cursor chats open without waiting for the working-tree check. Transfer preparation supports committing changes before handing off a task.",
     ],
-    links: [{ label: "Computer MCP version on npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.83" }],
+    links: [{ label: "Computer MCP version on npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.86" }],
   };
 }
