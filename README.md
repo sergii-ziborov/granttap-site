@@ -19,11 +19,24 @@ computer changes.
   failed delivery on iPhone or Apple Watch. The decision stays attached to the
   Task and its execution.
 - **Continue where it belongs.** Follow the same Task across supported local
-  Claude Code and Codex sessions. Cursor and Grok Build can join the shared
-  view where their installed integrations expose the needed behavior.
+  Claude Code, Codex, Cursor, and Grok Build sessions where their installed
+  integrations expose the needed behavior.
 - **Set the rules once.** Mesh Governance lets you allow, ask, or deny skills,
   MCP servers, and shell access for a Mesh. Linked computers report whether
   they applied those rules.
+
+## Grok Build
+
+See local Grok conversations, their workspace, computer, and reported model in
+the same Task catalog as your other agents. Read visible requests and answers,
+then send a follow-up to the same native session through the installed Grok CLI.
+The execution computer must be available and already signed in to Grok.
+
+GrantTap excludes hidden reasoning and synthetic system context from the
+conversation. Grok model access and charges stay with your Grok account. Remote
+capability enforcement and scoped agent-authored Mesh events are not claimed for
+this integration. [Read the Grok Build guide](https://granttap.com/agents/grok-build).
+[Grok Bot](https://granttap.com/grok-bot) is a separate scoped Mesh participant.
 
 ## The real app
 
