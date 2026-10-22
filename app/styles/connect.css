@@ -162,13 +162,17 @@
 }
 
 .connect-actions button,
+.connect-actions .primary,
 .connect-actions .ghost {
+  display: inline-flex;
+  align-items: center;
   min-height: 44px;
   padding: 10px 18px;
   border: 0;
   border-radius: 999px;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .connect-actions .primary {
