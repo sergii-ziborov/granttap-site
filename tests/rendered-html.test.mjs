@@ -95,8 +95,8 @@ test("editorial pages identify conceptual art and articles expose a working brea
 
 test("provider and Mesh guides publish exact capability boundaries", async () => {
   const grok = await (await render("https://granttap.com/agents/grok-build")).text();
-  assert.match(grok, /does not yet expose a trusted caller hook/);
-  assert.match(grok, /Agent-authored scoped Mesh events are therefore not offered/);
+  assert.match(grok, /GrantTap integration does not currently have a trusted caller hook/);
+  assert.match(grok, /Agent-authored scoped Mesh events are not offered through this local integration/);
   const mesh = await (await render("https://granttap.com/project-mesh")).text();
   assert.match(mesh, /never reopens a previous native execution/);
   assert.match(mesh, /uncommitted work stays on the source computer with a warning/);
