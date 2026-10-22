@@ -34,7 +34,7 @@ export interface AccountStore {
   credential(id: string): Promise<StoredCredential | null>;
   updateCounter(id: string, previous: number, counter: number): Promise<boolean>;
   saveSession(hash: string, accountId: string, expiresAt: number): Promise<void>;
-  session(hash: string): Promise<{ accountId: string; expiresAt: number } | null>;
+  session(hash: string): Promise<{ accountId: string; expiresAt: number; loginTokenId?: string } | null>;
   removeSession(hash: string): Promise<void>;
   deleteAccount(accountId: string): Promise<void>;
 }
@@ -149,6 +149,12 @@ export class AccountAuth {
     if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return null;
     const session = await this.store.session(tokenHash(token));
     return session && session.expiresAt > this.now() ? session.accountId : null;
+  }
+
+  async canManageCredentials(token: string): Promise<boolean> {
+    if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return false;
+    const session = await this.store.session(tokenHash(token));
+    return !!session && session.expiresAt > this.now() && !session.loginTokenId;
   }
 
   async logout(token: string): Promise<void> {

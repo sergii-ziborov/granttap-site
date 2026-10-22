@@ -8,6 +8,7 @@ import { AccountBetaRelay } from "./beta-relay";
 import { AccountDeviceInvites, routeDeviceInvites } from "./device-invites";
 import { routeManagedSubscriptions, type ManagedBilling } from "./subscriptions/api";
 import { routeControlAccess } from "./control-access";
+import { routeLoginTokens } from "./login-tokens";
 
 export async function routeAccountApi(request: Request, auth: AccountAuth,
                                       machines?: AccountMachines,
@@ -84,7 +85,8 @@ export async function handleAccountApi(request: Request, db: D1Database,
   billing?: ManagedBilling): Promise<Response | null> {
   const auth = new AccountAuth(new D1AccountStore(db));
   const machines = new AccountMachines(db);
-  return await routeControlAccess(request, { db, auth, billing })
+  return await routeLoginTokens(request, db, auth)
+    ?? await routeControlAccess(request, { db, auth, billing })
     ?? await routeManagedSubscriptions(request, { db, auth, machines, billing })
     ?? routeAccountApi(request, auth, machines, new AccountBetaRelay(db), new AccountDeviceInvites(db));
 }

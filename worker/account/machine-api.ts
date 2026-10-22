@@ -63,6 +63,9 @@ export async function routeMachineApi(
       return json(200, { machines: await machines.list(accountId) });
     }
     if (request.method === "POST") {
+      if (!await auth.canManageCredentials(sessionToken(request))) {
+        return json(403, { error: "Sign in with a passkey to link a computer." });
+      }
       if (request.headers.has("origin") || request.headers.has("sec-fetch-site")) {
         return json(403, { error: "Register computers from GrantTap for Mac." });
       }

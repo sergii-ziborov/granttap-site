@@ -44,6 +44,9 @@ export async function routeDeviceInvites(request: Request, action: string,
     }
     const accountId = await auth.accountForToken(bearerToken(request));
     if (!accountId) return json(401, { error: "Sign in required." });
+    if (!await auth.canManageCredentials(bearerToken(request))) {
+      return json(403, { error: "Sign in with a passkey to invite another account device." });
+    }
     const invite = await invites.issue(accountId);
     return invite ? json(200, invite) : json(429, { error: "Too many active device invitations." });
   }

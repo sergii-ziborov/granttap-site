@@ -53,6 +53,17 @@ private task, repository, pairing key, or customer data appears in them. The
 [product page](https://granttap.com) also shows Mesh and Apple Watch screens;
 the [Mac page](https://granttap.com/mac) shows five SwiftUI captures.
 
+## Sign-in tokens and links
+
+Alongside passkeys and QR pairing, the native app can sign in to a GrantTap
+account with a token or private link. In **Devices → Sign-in tokens**, a signed-in
+account can generate a named token with an expiry (15 minutes to 30 days) and
+1–100 uses, then copy it or share its login link. The secret is shown once.
+Revoking a token also ends the account sessions created with it. Existing QR
+pairings are independent. Token sessions cannot generate further credentials;
+sign in with a passkey to manage tokens or link a new computer. Provider sign-in
+remains separate. [Open a sign-in link](https://granttap.com/sign-in).
+
 ## Account Mesh and Project Mesh
 
 A passkey creates or joins an Account Mesh on the relay before any computer is

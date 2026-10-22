@@ -9,7 +9,8 @@ type CredentialRow = {
   id: string; account_id: string; public_key: string;
   counter: number; transports: string;
 };
-type SessionRow = { account_id: string; expires_at: number };
+type SessionRow = { account_id: string; expires_at: number; linked_session: string | null;
+  login_token_id: string | null; login_account: string | null; token_expiry: number | null; revoked_at: number | null };
 
 export class D1AccountStore implements AccountStore {
   constructor(private readonly db: D1Database) {}
@@ -59,10 +60,16 @@ export class D1AccountStore implements AccountStore {
       .bind(hash, accountId, expiresAt).run();
   }
 
-  async session(hash: string): Promise<{ accountId: string; expiresAt: number } | null> {
-    const row = await this.db.prepare("SELECT account_id,expires_at FROM sessions WHERE token_hash=?")
+  async session(hash: string): Promise<{ accountId: string; expiresAt: number; loginTokenId?: string } | null> {
+    const row = await this.db.prepare("SELECT s.account_id,s.expires_at,l.session_hash AS linked_session,"
+      + "t.id AS login_token_id,t.account_id AS login_account,t.expires_at AS token_expiry,t.revoked_at "
+      + "FROM sessions s LEFT JOIN account_login_token_sessions l ON l.session_hash=s.token_hash "
+      + "LEFT JOIN account_login_tokens t ON t.id=l.login_token_id WHERE s.token_hash=?")
       .bind(hash).first<SessionRow>();
-    return row && { accountId: row.account_id, expiresAt: row.expires_at };
+    if (!row || row.linked_session && (!row.login_token_id || row.revoked_at !== null
+      || row.login_account !== row.account_id || row.token_expiry === null)) return null;
+    return { accountId: row.account_id, expiresAt: Math.min(row.expires_at, row.token_expiry ?? row.expires_at),
+      ...(row.login_token_id ? { loginTokenId: row.login_token_id } : {}) };
   }
 
   async removeSession(hash: string) {

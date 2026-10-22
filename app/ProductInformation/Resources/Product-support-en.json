@@ -1,6 +1,6 @@
 {
   "title": "Support",
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "intro": "Install GrantTap → connect an execution computer with GrantTap MCP → open your Task. This guide explains account passkeys, direct pairing, Mac access, connection modes and recovery.",
   "sections": [
     {
@@ -8,7 +8,8 @@
       "paragraphs": [
         "An Account Mesh exists as soon as you create or sign in to your Personal account, even with no computer. It can contain many Projects and their Meshes. Use the same passkey in GrantTap MCP to add a computer. Every linked computer running MCP contributes its own Task catalog to the account; each Task keeps its computer route. On a trusted iPhone, Devices → Add another iPhone or iPad offers a five-minute, one-use Account Mesh QR for a new device. It creates a separate session and discovers all linked MCP computers, including computers added later.",
         "The same screen can request a QR for one computer. A Project Mesh invite has its own role and permissions; it does not open the whole account. A GrantTap passkey is not Sign in with Apple. Apple Passwords can sync it through iCloud if you save it there.",
-        "On a Mac with the local GrantTap bridge, granttap.com/connect can request a fresh passkey assertion to approve one coding-app connection. The Mac must still authorize its local MCP bridge. You can review and revoke account devices in the account page."
+        "On a Mac with the local GrantTap bridge, granttap.com/connect can request a fresh passkey assertion to approve one coding-app connection. The Mac must still authorize its local MCP bridge. You can review and revoke account devices in the account page.",
+        "To sign in without a passkey on this device, choose Devices > Sign in with token and paste a private GrantTap token or link. Opening a link asks you to confirm; it does not sign in automatically. In a passkey-connected account, Devices > Sign-in tokens creates a named token with an expiry and sign-in limit, shares its link, and revokes it. Revocation also ends its account sessions. Existing QR pairings remain independent. Token access does not sign in to coding providers and cannot create more tokens or enroll a new computer."
       ],
       "image": {
         "name": "help-devices",
