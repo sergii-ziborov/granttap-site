@@ -2,7 +2,7 @@
   "name": "granttap-web",
   "version": "0.1.0",
   "private": true,
-  "description": "Product website for GrantTap \u2014 Mesh, Governance, and coding-agent coordination across Mac, iPhone, iPad, and Apple Watch.",
+  "description": "Product website for GrantTap — Mesh, Governance, and coding-agent coordination across Mac, iPhone, iPad, and Apple Watch.",
   "homepage": "https://granttap.com",
   "repository": {
     "type": "git",
@@ -52,7 +52,7 @@
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.12",
     "fake-indexeddb": "^6.2.6",
-    "granttap-mcp": "0.8.105",
+    "granttap-mcp": "0.8.107",
     "jsdom": "^27.2.0",
     "react-server-dom-webpack": "19.2.8",
     "tailwindcss": "4.3.3",
