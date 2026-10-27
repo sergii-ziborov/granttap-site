@@ -38,6 +38,7 @@ export const guideCatalog: GuideMeta[] = [
   page("project-configuration", "Настройки проекта и секреты", "Инструкции, Knowledge, Restrictions и переменные Environment — по шагам.", "coordination", "настройки,instructions,environment,переменные,секреты,restrictions"),
   page("engine", "Engine: установка и готовность", "Чем Engine отличается от MCP и откуда берутся анализ и доказательства.", "coordination", "engine,движок,cortex,диагностика,готовность,library"),
   page("graph-health", "Graph, Health и кодовые башни", "Архитектурные отчёты, поиск, источники и недоступные данные.", "coordination", "graph,health,граф,башни,анализ,repo lens"),
+  page("restrictions", "Restrictions: качество и архитектура", "Редактируемые лимиты, POODR, Clean Code и свои Markdown-инструкции.", "rules", "restrictions,рестрикшинс,poodr,пудр,ruby,clean code,архитектура,лимиты,markdown,инструкции"),
   page("governance", "Governance: Allow, Ask, Deny", "Практическое управление возможностями на уровне проекта.", "rules", "governance,говерненс,правила,allow,ask,deny,политика"),
   page("skills-mcp-shell", "Skills, MCP и Shell", "Каталог возможностей, точечные правила и реальное использование.", "rules", "skills,skill,mcp,shell,терминал,инструменты,capability"),
   page("capability-setup", "Настроить инструменты по шагам", "От подключения в coding app до подтверждённого правила на компьютере.", "rules", "настроить,инструменты,mcp,skills,shell,coverage,pending"),

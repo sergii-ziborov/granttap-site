@@ -14,9 +14,9 @@ describe("real screenshot gallery", () => {
     fireEvent.click(screen.getByRole("button", { name: "Подключение · 2" }));
     expect(screen.getAllByRole("img")).toHaveLength(2);
     expect(screen.getByRole("img", { name: "Devices: вход и подключение компьютера" })).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "Все экраны · 17" }));
+    fireEvent.click(screen.getByRole("button", { name: "Все экраны · 20" }));
     expect(screen.getAllByRole("img")).toHaveLength(captures.length);
-    expect(screen.getByRole("status").textContent).toContain("17");
+    expect(screen.getByRole("status").textContent).toContain("20");
     fireEvent.click(screen.getByRole("button", { name: "Mac · 2" }));
     expect(screen.getAllByRole("img")).toHaveLength(2);
     expect(screen.getAllByText(/Сборка 181/)).toHaveLength(2);

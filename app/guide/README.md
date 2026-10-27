@@ -19,8 +19,8 @@ ZIP for the complete walkthrough. It contains no network calls or credentials.
 The in-app Demo shown in figures and the user's own Lab are separate examples.
 
 Four ImageGen editorial illustrations live in `public/guide/illustrations`.
-They are labelled conceptual artwork, separately from the 17 original product
-captures. `ScreenshotGallery` filters actual screens by reader journey and opens
+They are labelled conceptual artwork, separately from the original product
+captures and three Restrictions candidate captures. `ScreenshotGallery` filters actual screens by reader journey and opens
 their original images; `screenNotes` adds short instructional notes without
 editing screenshot pixels. Article covers and illustrated learning paths use
 the same cream, forest and coral art direction.

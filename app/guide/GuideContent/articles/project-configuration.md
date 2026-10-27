@@ -6,13 +6,13 @@
 | --- | --- |
 | Объяснение цели, соглашение или решение | Сообщение Task, native project instructions или Knowledge |
 | Какие действия разрешены | Project → Governance |
-| Ограничения размера файлов и функций | Project → Restrictions |
+| Ограничения размера файлов и функций | [Project → Restrictions](/guide/restrictions) |
 | Значения для новых agent processes | Project → Environment variables |
 
 Откройте **Mesh**, выберите нужный Project и проверьте его repositories и computers. На странице проекта находятся отдельные строки Knowledge, Governance, Restrictions и Environment variables. Настройки относятся к выбранному Mesh; linked Project сохраняет свои значения и права.
 
-:::note Отдельного Project Instructions editor пока нет
-В этой версии нет универсального экрана, который редактирует произвольный текст инструкций и применяет его ко всем провайдерам с общей квитанцией. Ниже описаны существующие способы, без выдуманной кнопки Apply instructions.
+:::note Новый редактор инструкций
+[Restrictions](/guide/restrictions) расширяются редактируемыми лимитами, принципами POODR / Clean Code, архитектурными предпочтениями и Markdown. Для них нужны совместимые версии телефона и Mac; текущая доступность и границы применения описаны в отдельной главе. Ниже также сохранены способы работы с native instructions и Knowledge.
 :::
 
 ## Как задавать и менять инструкции {#instructions}
@@ -32,6 +32,8 @@
 Это запись контекста с источником и Task, а не изменение native instructions файла и не Deny policy. Подготовленный context packet также не подтверждает, что агент его получил. Исправление решения заменяет его для будущего контекста, сохраняя историю. Подробнее — [Knowledge](/guide/knowledge-context) и [доказательства](/guide/audit-evidence).
 
 ## Измеримые Restrictions {#restrictions}
+
+Подробная глава: [лимиты, пресеты, архитектура, свои инструкции и проверка на Lab](/guide/restrictions).
 
 В **Project → Restrictions** есть **Apply to**: This Mesh, Mesh and repository либо Sync from repository. Первый вариант относится к Mesh; второй позволяет поделиться управляемыми правилами с repository tooling; третий читает GrantTap restrictions из точно выбранного repository binding.
 
