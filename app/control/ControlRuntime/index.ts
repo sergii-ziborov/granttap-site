@@ -65,7 +65,7 @@ export class ControlRuntime {
   private transmit(row: OutgoingCommand): Promise<void> {
     const previous = this.sending.get(row.id); if (previous) return previous;
     const sending = (async () => {
-      await this.delivery(row.id, { state: "sending" });
+      if (row.delivery.state !== "sending") await this.delivery(row.id, { state: "sending" });
       try {
         const connection = this.connections.get(row.machineId);
         if (!connection || this.disposed) throw Error("Connect this browser to the Task's computer first.");

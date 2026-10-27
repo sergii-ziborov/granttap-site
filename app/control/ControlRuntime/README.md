@@ -5,6 +5,10 @@ writes. It imports public protocol and browser modules only. Confirmations and
 messages use relay-durable identifiers. `stored` is relay acceptance; only a
 native receipt or resolution becomes `accepted`. Failures remain visible.
 Immutable outgoing commands are committed through `ControlOutbox` before transmission.
+The first committed `sending` state admits transmission directly; it is not
+encrypted and written a second time before contacting relay. Failed retries
+still persist their transition back to `sending`. Relay storage remains pending
+until its `stored` state is committed, including when that later write is slow.
 A reload restores relay storage status and retries only commands without a
 computer rejection or relay confirmation. Computer receipts must match the
 command's authenticated machine. Retrying transport preserves the original

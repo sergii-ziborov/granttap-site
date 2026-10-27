@@ -28,17 +28,19 @@ test("every article renders its own sections and sources in both languages", () 
   for (const article of articles) {
     for (const locale of ["en", "ru"] as const) {
       const view = render(<BlogArticleView article={article} articles={articles} locale={locale} />);
-      expect(screen.getByRole("heading", { name: article[locale].title })).toBeTruthy();
-      expect(screen.getByText(article[locale].closing)).toBeTruthy();
-      const captureLabel = screen.queryByText(locale === "en" ? "GrantTap screen · sample data" : "Экран GrantTap · тестовые данные");
+      expect(view.getByRole("heading", { name: article[locale].title, level: 1 })).toBeTruthy();
+      expect(view.getByText(article[locale].closing)).toBeTruthy();
+      const captureLabel = view.queryByText(locale === "en" ? "GrantTap screen · sample data" : "Экран GrantTap · тестовые данные");
       if (article.screenshot) {
-        expect(screen.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
+        expect(view.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
         expect(captureLabel).toBeTruthy();
       } else {
         expect(article[locale].screenshotCaption).toBeUndefined();
         expect(captureLabel).toBeNull();
       }
-      expect(screen.getByRole("heading", { name: locale === "en" ? "Sources" : "Источники" })).toBeTruthy();
+      const sourcesLabel = locale === "en" ? "Sources" : "Источники";
+      const sources = view.getByRole("region", { name: sourcesLabel });
+      expect(within(sources).getByRole("heading", { name: sourcesLabel, level: 2 })).toBeTruthy();
       view.unmount();
     }
   }

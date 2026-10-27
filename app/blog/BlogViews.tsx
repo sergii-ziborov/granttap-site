@@ -81,7 +81,7 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
           {index === Math.floor(t.sections.length / 2) && article.additionalIllustration && t.additionalIllustrationCaption && <figure className="blog-illustration"><Image src={article.additionalIllustration} alt={t.additionalIllustrationCaption} width={1400} height={788} loading="lazy" unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{t.additionalIllustrationCaption}</figcaption></figure>}
         </section>)}
         <aside className="blog-note">{t.closing}</aside>
-        {t.sources && <section className="blog-sources"><h2>{locale === "ru" ? "Источники" : "Sources"}</h2><ul>{t.sources.map(source => <li key={source.url}><a href={source.url} target={source.url.startsWith("http") ? "_blank" : undefined} rel={source.url.startsWith("http") ? "noopener noreferrer" : undefined}>{source.label} ↗</a></li>)}</ul></section>}
+        {t.sources && <section className="blog-sources" aria-label={locale === "ru" ? "Источники" : "Sources"}><h2>{locale === "ru" ? "Источники" : "Sources"}</h2><ul>{t.sources.map(source => <li key={source.url}><a href={source.url} target={source.url.startsWith("http") ? "_blank" : undefined} rel={source.url.startsWith("http") ? "noopener noreferrer" : undefined}>{source.label} ↗</a></li>)}</ul></section>}
       </div></ReadingGrid>
     </article>
     <section className="section-shell blog-related" aria-label={locale === "ru" ? "Читайте также" : "Related reading"}>
