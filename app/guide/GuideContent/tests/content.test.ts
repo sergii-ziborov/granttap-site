@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { guideCatalog, guideGroups } from "../catalog";
 import { guideContent, guideSearchIndex } from "..";
 import { parseGuide } from "../../GuideReader/markdown";
-import captures from "../../../../public/guide/screens/manifest.json";
+import captures from "../screenshots.json";
 
 describe("published handbook integrity", () => {
   it("resolves every authored chapter link, anchor and downloadable practice file", () => {

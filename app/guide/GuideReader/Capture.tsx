@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import captures from "../../../public/guide/screens/manifest.json";
+import captures from "../GuideContent/screenshots.json";
 
 export function Capture({ id }: { id: string }) {
   const item = captures.find(value => value.id === id);

@@ -10,7 +10,7 @@ coding provider and ciphertext relay. Receipt stages never imply another stage.
 The observed “about 30 seconds” is not a measured average or delivery guarantee.
 
 All product figures are real captures on deterministic sample work. Their public
-manifest under `public/guide/screens` retains date, build, language, dimensions and
+catalog in `GuideContent/screenshots.json` retains date, build, language, dimensions and
 SHA-256. The Mac figures explicitly show an older build. Screens are not AI mockups
 or evidence that the sample actions ran against a live provider.
 

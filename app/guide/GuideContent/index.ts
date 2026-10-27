@@ -36,6 +36,7 @@ import chapter32 from "./articles/updates.md?raw";
 import chapter33 from "./articles/self-hosted.md?raw";
 import chapter34 from "./articles/limits.md?raw";
 import chapter35 from "./articles/troubleshooting.md?raw";
+import projectConfiguration from "./articles/project-configuration.md?raw";
 import chapter36 from "./articles/glossary.md?raw";
 
 export const guideContent: Record<string, string> = {
@@ -59,6 +60,7 @@ export const guideContent: Record<string, string> = {
   "handoff": chapter17,
   "delegation": chapter18,
   "knowledge-context": chapter19,
+  "project-configuration": projectConfiguration,
   "engine": chapter20,
   "graph-health": chapter21,
   "governance": chapter22,

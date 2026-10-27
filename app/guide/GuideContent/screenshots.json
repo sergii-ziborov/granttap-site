@@ -101,7 +101,7 @@
     "width": 1206,
     "height": 2622,
     "sha256": "ceb0c77760cc0cb05672b48e378fc09124d842e1817117353f033618f859a46c",
-    "caption": "GrantTap 230, Simulator, учебная задача. Этапы доставки заданы fixture; Delete удаляет локальную запись."
+    "caption": "GrantTap 230, Simulator, учебная задача. Показаны учебные состояния доставки; Delete удаляет локальную запись."
   },
   {
     "id": "question-attachments",

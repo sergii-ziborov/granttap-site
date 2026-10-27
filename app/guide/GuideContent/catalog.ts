@@ -35,6 +35,7 @@ export const guideCatalog: GuideMeta[] = [
   page("handoff", "Перенос задачи между агентами", "Подготовка, checkpoint, ветки и открытие назначения.", "coordination", "transfer,handoff,перенос,ветка,checkpoint,commit"),
   page("delegation", "Делегирование и dot", "Одноразовое расписание, внимание человека и границы облачного помощника.", "coordination", "dot,делегировать,расписание,run later,schedule,фон"),
   page("knowledge-context", "Knowledge, память и контекст", "Структурированные знания и пакеты контекста с явными границами.", "coordination", "knowledge,память,контекст,cortex,loom,packet"),
+  page("project-configuration", "Настройки проекта и секреты", "Инструкции, Knowledge, Restrictions и переменные Environment — по шагам.", "coordination", "настройки,instructions,environment,переменные,секреты,restrictions"),
   page("engine", "Engine: установка и готовность", "Чем Engine отличается от MCP и откуда берутся анализ и доказательства.", "coordination", "engine,движок,cortex,диагностика,готовность,library"),
   page("graph-health", "Graph, Health и кодовые башни", "Архитектурные отчёты, поиск, источники и недоступные данные.", "coordination", "graph,health,граф,башни,анализ,repo lens"),
   page("governance", "Governance: Allow, Ask, Deny", "Практическое управление возможностями на уровне проекта.", "rules", "governance,говерненс,правила,allow,ask,deny,политика"),
