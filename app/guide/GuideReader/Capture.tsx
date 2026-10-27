@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useEffect, useRef, useState } from "react";
 import captures from "../GuideContent/screenshots.json";
 import { screenNotes } from "../GuideContent/screenNotes";
@@ -12,13 +14,14 @@ export function Capture({ id }: { id: string }) {
   useEffect(() => {
     if (!open) return;
     const element = dialog.current;
+    const opener = trigger.current;
     element?.showModal();
-    return () => { element?.close(); trigger.current?.focus(); };
+    return () => { element?.close(); opener?.focus(); };
   }, [open]);
   if (!item) return null;
   return <figure className={`guide-capture ${item.width > item.height ? "wide" : "phone"}`}>
     <button ref={trigger} className="capture-open" onClick={() => setOpen(true)} aria-label={`Увеличить: ${item.title}`}>
-      <img src={item.file} alt={item.title} width={item.width} height={item.height} loading="lazy" />
+      <Image unoptimized src={item.file} alt={item.title} width={item.width} height={item.height} loading="lazy" />
       <span className="guide-capture-zoom" aria-hidden="true">↗ Увеличить</span>
     </button>
     <figcaption><span className="capture-label">Настоящий экран · учебные данные</span>
@@ -31,7 +34,7 @@ export function Capture({ id }: { id: string }) {
       <div className="lightbox-toolbar"><span>{item.title}</span>
         <button autoFocus onClick={() => setOpen(false)} aria-label="Закрыть изображение">Закрыть <kbd>Esc</kbd></button>
       </div>
-      <img src={item.file} alt={item.title} width={item.width} height={item.height} />
+      <Image unoptimized src={item.file} alt={item.title} width={item.width} height={item.height} />
     </dialog>}
   </figure>;
 }
