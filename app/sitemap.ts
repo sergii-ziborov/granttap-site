@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { publishedArticles, publicationDay } from "./blog/publication";
+import { guideCatalog } from "./guide/GuideContent/catalog";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: path === "" ? 1 : .7,
     })),
     { url: "https://granttap.com/blog", lastModified: today, changeFrequency: "weekly", priority: .8 },
+    { url: "https://granttap.com/guide", lastModified: "2026-10-27", changeFrequency: "monthly", priority: .8 },
+    ...guideCatalog.map(page => ({ url: `https://granttap.com/guide/${page.slug}`, lastModified: "2026-10-27", changeFrequency: "monthly" as const, priority: .7 })),
     ...publishedArticles().map(article => ({
       url: `https://granttap.com/blog/${article.slug}`,
       lastModified: article.date,

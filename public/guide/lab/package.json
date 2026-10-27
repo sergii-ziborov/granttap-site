@@ -1,0 +1,9 @@
+{
+  "name": "granttap-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Учебный проект из руководства GrantTap. Без сети и зависимостей.",
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node --test order.test.mjs" }
+}
