@@ -6,6 +6,7 @@ import { guideCatalog, guideGroups } from "../catalog";
 import { guideContent, guideSearchIndex } from "..";
 import { parseGuide } from "../../GuideReader/markdown";
 import captures from "../screenshots.json";
+import { illustrations } from "../illustrations";
 
 describe("published handbook integrity", () => {
   it("resolves every authored chapter link, anchor and downloadable practice file", () => {
@@ -39,6 +40,15 @@ describe("published handbook integrity", () => {
       expect(createHash("sha256").update(bytes).digest("hex"), capture.id).toBe(capture.sha256);
       expect(capture.build).toBeTruthy(); expect(capture.date).toMatch(/^2026-/);
       expect(capture.width).toBeGreaterThan(300); expect(capture.caption).toBeTruthy();
+    }
+  });
+  it("includes the separate ImageGen artwork as real optimized image assets", () => {
+    for (const illustration of Object.values(illustrations)) {
+      const bytes = readFileSync(resolve("public", illustration.file.slice(1)));
+      expect(bytes.subarray(0, 4).toString()).toBe("RIFF");
+      expect(bytes.subarray(8, 12).toString()).toBe("WEBP");
+      expect(bytes.length).toBeGreaterThan(10_000);
+      expect(illustration.alt).toContain("иллюстрация");
     }
   });
 });

@@ -27,6 +27,7 @@
   color-scheme: dark;
 }
 .guide-app button, .guide-app input { font: inherit; }
+.guide-app figcaption { margin: 0; padding: 0; border: 0; }
 .guide-app button { cursor: pointer; }
 .guide-app button:disabled { cursor: default; }
 .guide-app :focus-visible { outline: 3px solid var(--g-teal); outline-offset: 4px; }

@@ -1,6 +1,8 @@
 import { GuideReader } from ".";
 import { parseGuide, plainText } from "./markdown";
 import { guideCatalog, guideGroups, type GuideMeta } from "../GuideContent/catalog";
+import { groupIllustration } from "../GuideContent/illustrations";
+import { Artwork } from "./Artwork";
 
 export function GuideArticle({ page, content }: { page: GuideMeta; content: string }) {
   const sections = parseGuide(content); const current = guideCatalog.findIndex(item => item.slug === page.slug);
@@ -13,6 +15,7 @@ export function GuideArticle({ page, content }: { page: GuideMeta; content: stri
         <h1>{page.title}</h1><p>{page.summary}</p>
         <div className="guide-article-meta"><span>{minutes} мин чтения</span><span>Обновлено 27.10.2026</span><a href="/guide/demo-project">Учебные данные</a></div>
       </header>
+      <Artwork id={groupIllustration[page.group] || "workspace"} />
       <details className="guide-mobile-toc"><summary>В этой главе · {sections.length - 1} разделов</summary>
         <nav>{sections.filter(section => section.title).map(section => <a href={`#${section.id}`} key={section.id}>{section.title}</a>)}</nav>
       </details>

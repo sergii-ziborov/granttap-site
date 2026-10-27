@@ -16,7 +16,8 @@ describe("reading and inspecting examples", () => {
     const text = "Введение\r\n\n## Шаги {#steps}\nПродолжение\nв том же абзаце.\n\n- Один\n- Два\n\n1. Начать\n2. Закончить\n\n| Шаг | Результат |\n| --- | --- |\n| **Send** | Принято |\n\n:::capture now\n\n:::diagram task\n\n:::warning Внимание\nПервое.\n\nВторое.\n:::\n\n:::exercise Практика\nПопробуйте.\n:::\n\n:::note\nПримечание.\n:::\n\n```bash\n# Только учебная папка\nnpm test\n```";
     render(<GuideReader sections={parseGuide(text)} />);
     expect(screen.getByRole("heading", { name: /Шаги/ })).toBeTruthy();
-    expect(screen.getAllByRole("list")).toHaveLength(2);
+    expect(screen.getByText("Один").closest("ul")?.children).toHaveLength(2);
+    expect(screen.getByText("Начать").closest("ol")?.children).toHaveLength(2);
     expect(screen.getByRole("cell", { name: "Принято" })).toBeTruthy();
     expect(screen.getByText("Второе.")).toBeTruthy();
     expect(screen.getByRole("img", { name: "Сейчас: решения и вопросы" })).toBeTruthy();
