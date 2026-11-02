@@ -10,6 +10,7 @@ import { fileURLToPath } from "node:url";
 import { AccountAuth } from "../worker/account/auth.ts";
 import { D1AccountStore } from "../worker/account/d1-store.ts";
 import { handleAccountApi } from "../worker/account/api.ts";
+import { handleRuntimeFaultsApi } from "../worker/runtime-faults/index.ts";
 import { SqliteD1 } from "../worker/account/sqlite.ts";
 import { AccountMachines } from "../worker/account/machines.ts";
 import { attachControlTransport } from "../worker/account/control-transport/index.ts";
@@ -61,6 +62,16 @@ const server = createServer(async (req, res) => {
       const tooLarge = error instanceof Error && error.message === "Request too large";
       json(res, tooLarge ? 413 : 500, { error: tooLarge
         ? "Account request is too large." : "Account service unavailable." });
+    }
+    return;
+  }
+
+  if (url.pathname === "/api/runtime-faults") {
+    try {
+      await sendResponse(res, await handleRuntimeFaultsApi(await webRequest(req), accountDb));
+    } catch (error) {
+      const tooLarge = error instanceof Error && error.message === "Request too large";
+      json(res, tooLarge ? 413 : 500, { error: tooLarge ? "Report is too large." : "Report service unavailable." });
     }
     return;
   }

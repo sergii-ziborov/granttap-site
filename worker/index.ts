@@ -3,6 +3,7 @@ import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } fr
 import handler from "vinext/server/app-router-entry";
 import { handleConnectApi } from "./connect-api";
 import { handleAccountApi } from "./account/api";
+import { handleRuntimeFaultsApi } from "./runtime-faults";
 import { AccountAuth } from "./account/auth";
 import { D1AccountStore } from "./account/d1-store";
 import { AccountMachines } from "./account/machines";
@@ -105,6 +106,9 @@ const worker = {
     const database = env?.ACCOUNTS_DB;
     const account = database ? await handleAccountApi(request, database) : null;
     if (account) return withSecurityHeaders(request, account);
+
+    const fault = database ? await handleRuntimeFaultsApi(request, database) : null;
+    if (fault) return withSecurityHeaders(request, fault);
 
     const connect = await handleConnectApi(request,
       database ? new AccountAuth(new D1AccountStore(database)) : undefined,

@@ -10,6 +10,7 @@ COPY hetzner/connect ./hetzner/connect
 COPY hetzner/billing.ts ./hetzner/billing.ts
 COPY hetzner/public ./hetzner/public
 COPY worker/account ./worker/account
+COPY worker/runtime-faults ./worker/runtime-faults
 COPY app/ProductOffer/index.ts ./app/ProductOffer/index.ts
 COPY migrations ./migrations
 RUN mkdir /data && chown node:node /data

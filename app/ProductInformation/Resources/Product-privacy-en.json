@@ -1,6 +1,6 @@
 {
   "title": "Privacy Policy",
-  "updated": "2026-10-22",
+  "updated": "2026-11-02",
   "intro": "This policy covers the GrantTap Mac, iPhone, iPad and Apple Watch apps, its local machine helper, the encrypted relay, and granttap.com. GrantTap creates no advertising profile or readable cloud chat history.",
   "sections": [
     {
@@ -76,7 +76,7 @@
       "heading": "Service providers, website, and changes",
       "paragraphs": [
         "Hetzner hosts the current relay, website and account bridge; Cloudflare provides DNS. Apple provides APNs, system speech and biometric APIs, and App Store services under Apple's terms. These providers do not receive GrantTap decryption keys from the app.",
-        "The website stores your language choice locally and uses an HttpOnly session cookie when you sign in to an account. It uses no advertising or product analytics. Material policy changes will be posted here with a new effective date."
+        "The website stores your language choice locally and uses an HttpOnly session cookie when you sign in to an account. It uses no advertising or product analytics. If the GrantTap MCP background process hangs on your computer, it sends an anonymous fault report: the fault type and duration, the restart count, the GrantTap and Node versions, and the platform and architecture. It contains no prompts, file paths, names or keys, the website stores no account or address with it and deletes it after 90 days, and setting GRANTTAP_DISABLE_FAULT_REPORTS=1 turns it off. Material policy changes will be posted here with a new effective date."
       ]
     }
   ]
