@@ -74,7 +74,7 @@ test("main, journal, article, and legal routes use the same navigation shell", a
   for (const path of ["/", "/blog", "/blog/connect-iphone-with-qr", "/data-rights"]) {
     const html = await (await render(`https://granttap.com${path}`)).text();
     assert.match(html, /class="site-header page-shell"/);
-    for (const label of ["Product", "How it works", "Security", "Blog", "Pricing", "Support"]) {
+    for (const label of ["Product", "Guide", "Security", "Blog", "Pricing", "Support"]) {
       assert.match(html, new RegExp(`>${label}<`), `${path}: ${label}`);
     }
   }
@@ -213,7 +213,9 @@ test("robots and dynamic sitemap expose only published customer routes", async (
   const sitemap = await (await render("https://granttap.com/sitemap.xml")).text();
   assert.match(robots, /Sitemap: https:\/\/granttap\.com\/sitemap\.xml/);
   for (const path of routes) assert.match(sitemap, new RegExp(`<loc>https:\/\/granttap\.com${path.replace("/", "\\/")}<\/loc>`));
-  assert.doesNotMatch(`${robots}\n${sitemap}`, /chatgpt\.site|enterprise|account/i);
+  assert.doesNotMatch(`${robots}\n${sitemap}`, /chatgpt\.site|<loc>https:\/\/granttap\.com\/(?:enterprise|account)(?:[/?<])/i);
+  assert.match(sitemap, /<loc>https:\/\/granttap\.com\/guide<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/granttap\.com\/guide\/device-management<\/loc>/);
 });
 
 test("publishes actionable Personal support and privacy copy", async () => {

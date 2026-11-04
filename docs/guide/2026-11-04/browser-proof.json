@@ -1,0 +1,81 @@
+{
+  "base": "http://127.0.0.1:3215",
+  "checks": [
+    {
+      "name": "desktop home",
+      "width": 1440,
+      "scroll": 1440,
+      "h1": "Ваши агенты.Ваша работа.Шаг за шагом.",
+      "theme": "dark",
+      "heroImages": [
+        {
+          "loaded": true,
+          "src": "/guide/screens/devices-overview.png"
+        },
+        {
+          "loaded": true,
+          "src": "/guide/screens/chat.png"
+        }
+      ]
+    },
+    {
+      "name": "full text search",
+      "matches": [
+        "/guide/provider-sign-in#claude",
+        "/guide/provider-sign-in",
+        "/guide/provider-sign-in#start",
+        "/guide/provider-sign-in#browser",
+        "/guide/provider-sign-in#resume",
+        "/guide/provider-sign-in#unknown",
+        "/guide/provider-sign-in#scope",
+        "/guide/quick-start#connect",
+        "/guide/engine#custom-path",
+        "/guide/skills-mcp-shell#overview",
+        "/guide/skills-mcp-shell#catalog",
+        "/guide/device-management#verify"
+      ]
+    },
+    {
+      "name": "desktop chapter",
+      "width": 1440,
+      "scroll": 1440,
+      "h1": "Devices: управление компьютером",
+      "theme": "dark",
+      "heroImages": []
+    },
+    {
+      "name": "mobile home",
+      "width": 390,
+      "scroll": 390,
+      "h1": "Ваши агенты.Ваша работа.Шаг за шагом.",
+      "theme": "dark",
+      "heroImages": [
+        {
+          "loaded": true,
+          "src": "/guide/screens/devices-overview.png"
+        },
+        {
+          "loaded": true,
+          "src": "/guide/screens/chat.png"
+        }
+      ]
+    },
+    {
+      "name": "mobile sign-in chapter",
+      "width": 390,
+      "scroll": 390,
+      "h1": "Вход в Claude, Codex, Grok и Cursor",
+      "theme": "dark",
+      "heroImages": []
+    },
+    {
+      "name": "mobile light theme",
+      "width": 390,
+      "scroll": 390,
+      "h1": "Вход в Claude, Codex, Grok и Cursor",
+      "theme": "light",
+      "heroImages": []
+    }
+  ],
+  "errors": []
+}

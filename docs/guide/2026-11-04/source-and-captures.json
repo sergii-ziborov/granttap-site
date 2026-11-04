@@ -1,0 +1,21 @@
+{
+  "preparedOn": "2026-11-04",
+  "nativeSource": "9d947d62",
+  "nativeBuild": "250",
+  "mcpSource": "54ddf6f",
+  "mcpVersion": "0.8.143",
+  "chapters": 48,
+  "screens": 34,
+  "freshBuild250Screens": 20,
+  "wordCountApprox": 36050,
+  "nativeUI": {
+    "firstBundlePassed": 8,
+    "secondBundlePassed": 3,
+    "failed": 0,
+    "device": "iPhone 17 Pro",
+    "runtime": "iOS 26.5 Simulator",
+    "scope": "Isolated demo fixtures. No real provider login, automation creation or user-project transfer."
+  },
+  "previousGuideSource": "4a4ce05",
+  "publicationScope": "Website guide; no native binary or MCP release."
+}

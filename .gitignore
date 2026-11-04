@@ -46,3 +46,6 @@ next-env.d.ts
 tsconfig.tsbuildinfo
 
 .runtime/
+
+# Derived from the public guide during build.
+/public/guide/search-index.json

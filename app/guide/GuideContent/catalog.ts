@@ -1,0 +1,66 @@
+export type GuideMeta = {
+  slug: string; title: string; summary: string; group: string; keywords: string[];
+};
+
+export const guideGroups = [
+  { id: "start", title: "Начать пользоваться", icon: "↗" },
+  { id: "daily", title: "Работа каждый день", icon: "◉" },
+  { id: "messages", title: "Сообщения и доставка", icon: "↗" },
+  { id: "coordination", title: "Проекты и агенты", icon: "◇" },
+  { id: "rules", title: "Governance и доверие", icon: "⌘" },
+  { id: "support", title: "Устройства и помощь", icon: "+" },
+];
+
+const page = (slug: string, title: string, summary: string, group: string, keywords: string): GuideMeta =>
+  ({ slug, title, summary, group, keywords: keywords.split(",") });
+
+export const guideCatalog: GuideMeta[] = [
+  page("quick-start", "Первый день с GrantTap", "От подключения до первого ответа с телефона — по шагам.", "start", "старт,начало,быстрый старт,обзор"),
+  page("installation", "Установка приложения и MCP", "Что установить на iPhone, на Mac и в coding app.", "start", "мсп,mcp,плагин,cli,npm,установка"),
+  page("pairing", "Подключение телефона и компьютера", "Passkey, Account Mesh и прямое соединение по QR.", "start", "qr,пасски,passkey,привязка,подключение,аккаунт"),
+  page("mac-app", "Приложение для Mac", "Локальный доступ, разрешение мосту и работа на большом экране.", "start", "mac,мак,catalyst,authorize,pkce,bridge"),
+  page("demo-project", "Учебный проект", "Безопасная практика: задачи, вопросы, файлы и правила.", "start", "демо,demo,lab,учебный,пример"),
+  page("walkthrough", "Практикум: от задачи до результата", "Скачиваемый GrantTap Lab и полный проверяемый сценарий.", "start", "практикум,пример,lab,скачать,тесты,корзина"),
+  page("new-task", "Создать задачу с телефона", "Project, компьютер, рабочая папка, провайдер и подтверждение запуска.", "daily", "new task,создать,новая задача,workspace,run on"),
+  page("now-tasks", "Now и список задач", "Что требует внимания, что работает и как читать состояние.", "daily", "now,tasks,working,needs you,idle,статус"),
+  page("task-execution", "Task, Execution и история", "Одна задача и несколько сеансов, компьютеров и вложенных агентов.", "daily", "task,execution,история,агенты,ветка,сеанс"),
+  page("chat", "Чат, модель и управление", "Сообщения, модель, effort, контекст и режим одобрения.", "daily", "чат,модель,opus,effort,контекст,stop,compact"),
+  page("questions-approvals", "Вопросы и подтверждения", "Ответить, приложить файл, пропустить вопрос и понять квитанцию.", "daily", "reply,вопрос,approval,skip,отменить,подтвердить"),
+  page("files-voice", "Файлы, изображения и голос", "Вложения, предпросмотр, Files и вложенные Agents.", "daily", "фото,картинка,файл,markdown,pdf,голос,files"),
+  page("transcript-sources", "Files, Agents и источники активности", "Diff, вложенные разговоры, журнал запуска и измерения ресурсов.", "daily", "files,agents,агенты,пусто,grok,инструменты,cpu,память,журнал,синхронизация"),
+  page("automations", "Automations: изменить и отключить", "Существующие расписания Codex в чате, пауза, время и подтверждение.", "daily", "automations,автоматизации,расписание,часики,pause,отключить,rrule"),
+  page("message-delivery", "Как доставляется сообщение", "Телефон → реле → компьютер → агент → видимый чат.", "messages", "го,доставка,saved on relay,30 секунд,задержка,квитанция"),
+  page("message-queue", "Очередь, Cancel и Delete", "Отложенная отправка, Send now, отмена и удаление зависшей записи.", "messages", "queue,кью,очередь,cancel,delete,удалить,send now"),
+  page("request-recovery", "Восстановить запрос без дублей", "Loading, Applying, Retry и проверка исходной операции.", "messages", "request,loading,applying,завис,повтор,дубликат,send now,retry"),
+  page("notifications", "Уведомления и повторные вопросы", "Что означает push и почему ответ может ещё ждать компьютер.", "messages", "push,уведомления,повтор,answered,needs you"),
+  page("providers", "Claude, Codex, Cursor и Grok", "Где работает нативный сеанс и почему возможности различаются.", "coordination", "claude,codex,cursor,grok,cli,desktop,dot"),
+  page("mesh-projects", "Проекты, репозитории и Mesh", "Разделяем Account Mesh, Project Mesh и принадлежность задачи.", "coordination", "mesh,проект,репозиторий,git,workspace,аккаунт"),
+  page("handoff", "Перенос задачи между агентами", "Подготовка, checkpoint, ветки и открытие назначения.", "coordination", "transfer,handoff,перенос,ветка,checkpoint,commit"),
+  page("workspaces", "Рабочие папки и поиск репозиториев", "Поиск назначения, работа без Git, путь, модель и checkpoint.", "coordination", "workspace,репо,поиск,папка,repository,без git"),
+  page("delegation", "Делегирование и dot", "Одноразовое расписание, внимание человека и границы облачного помощника.", "coordination", "dot,делегировать,расписание,run later,schedule,фон"),
+  page("knowledge-context", "Knowledge, память и контекст", "Структурированные знания и пакеты контекста с явными границами.", "coordination", "knowledge,память,контекст,cortex,loom,packet"),
+  page("project-configuration", "Настройки проекта и секреты", "Инструкции, Knowledge, Restrictions и переменные Environment — по шагам.", "coordination", "настройки,instructions,environment,переменные,секреты,restrictions"),
+  page("engine", "Engine: установка и готовность", "Чем Engine отличается от MCP и откуда берутся анализ и доказательства.", "coordination", "engine,движок,cortex,диагностика,готовность,library"),
+  page("graph-health", "Graph, Health и кодовые башни", "Архитектурные отчёты, поиск, источники и недоступные данные.", "coordination", "graph,health,граф,башни,анализ,repo lens"),
+  page("governance", "Governance: Allow, Ask, Deny", "Практическое управление возможностями на уровне проекта.", "rules", "governance,говерненс,правила,allow,ask,deny,политика"),
+  page("skills-mcp-shell", "Skills, MCP и Shell", "Каталог возможностей, точечные правила и реальное использование.", "rules", "skills,skill,mcp,shell,терминал,инструменты,capability"),
+  page("capability-setup", "Настроить инструменты по шагам", "От подключения в coding app до подтверждённого правила на компьютере.", "rules", "настроить,инструменты,mcp,skills,shell,coverage,pending"),
+  page("members", "Участники и доступ", "Роли, приглашения, repository grants и отдельные устройства.", "rules", "участник,viewer,member,admin,доступ,приглашение"),
+  page("audit-evidence", "Runtime, аудит и доказательства", "Запрос, результат, отказ и подтверждённое изменение — разные факты.", "rules", "runtime,аудит,invocation,engine,доказательство,claim"),
+  page("security", "Безопасность и приватность", "Ключи устройств, реле, локальные данные и границы доверия.", "rules", "безопасность,ключи,шифрование,приватность,секреты"),
+  page("security-lock", "PIN, Face ID и приватность экрана", "Локальная блокировка, фоновый экран и независимые уровни доступа.", "rules", "face id,touch id,pin,блокировка,биометрия,приватность"),
+  page("usage-reports", "Usage и отчёты", "Токены, контекст, время, ресурсы и экспорт PDF/CSV.", "support", "usage,токены,статистика,расход,pdf,csv,отчёт"),
+  page("device-management", "Devices: управление компьютером", "Версии MCP и агентов, обновление, перезапуск и подтверждения.", "support", "devices,девайсы,управление,update,restart,версия"),
+  page("provider-sign-in", "Вход в Claude, Codex, Grok и Cursor", "Авторизация на выбранном компьютере, код, продолжение и отмена входа.", "support", "вход,логин,авторизация,авторизоваться,разлогинился,sign in,authorization,код,claude,grok,codex,cursor"),
+  page("cache-storage", "Кэш, размер и очистка", "Хранение на телефоне и компьютере: что можно очистить и что сохранится.", "support", "кэш,кеш,cache,размер,место,очистить,storage,retention"),
+  page("devices-watch", "iPad, Watch и другие устройства", "Что удобно делать на каждом устройстве и где есть ограничения.", "support", "ipad,watch,часы,устройства,браузер"),
+  page("browser-control", "GrantTap в браузере", "Control center, подключение, локальные данные и границы веб-клиента.", "support", "браузер,browser,control,веб,сайт"),
+  page("offline-storage", "Офлайн и хранение истории", "Закрытый телефон, спящий Mac, кэш и восстановление связи.", "support", "офлайн,offline,кэш,история,сон,закрыт,хранение"),
+  page("account-recovery", "Аккаунты и восстановление доступа", "Потерянное устройство, несколько Mac и точечное восстановление связи.", "support", "восстановить,потерян,аккаунт,passkey,отзыв,unlink,reconnect"),
+  page("updates", "Обновления и версии", "Приложение, плагин и runtime обновляются разными способами.", "support", "обновление,testflight,версия,auto update,автообновление"),
+  page("self-hosted", "Собственное реле", "Когда нужен свой relay и что остаётся на вашей стороне.", "support", "relay,реле,self hosted,vpn,tls,сервер"),
+  page("limits", "Возможности, Beta и ограничения", "Что доступно сейчас, от чего зависит функция и что не гарантируется.", "support", "лимиты,beta,testflight,подписка,цена,ограничения"),
+  page("troubleshooting", "Если что-то не работает", "Проверки для зависшей доставки, чатов, уведомлений и Governance.", "support", "ошибка,не работает,не отправляется,зависло,диагностика"),
+  page("coverage", "Покрытие, версии и скриншоты", "Какие функции описаны, на какой версии и что подтверждают изображения.", "support", "источники,покрытие,скриншоты,версии,проверка,guide"),
+  page("glossary", "Словарь интерфейса", "Термины GrantTap и английские статусы простыми словами.", "support", "словарь,термины,перевод,статусы"),
+];

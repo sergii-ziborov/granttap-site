@@ -7,7 +7,7 @@ type NavKey = "product" | "mac" | "how" | "security" | "blog" | "pricing" | "sup
 const navigation: Array<{ key: NavKey; href: string; en: string; ru: string }> = [
   { key: "product", href: "/#product", en: "Product", ru: "Продукт" },
   { key: "mac", href: "/mac", en: "Mac", ru: "Mac" },
-  { key: "how", href: "/#how", en: "How it works", ru: "Как работает" },
+  { key: "how", href: "/guide", en: "Guide", ru: "Руководство" },
   { key: "security", href: "/#security", en: "Security", ru: "Безопасность" },
   { key: "blog", href: "/blog", en: "Blog", ru: "Блог" },
   { key: "pricing", href: "/pricing", en: "Pricing", ru: "Цена" },
@@ -49,6 +49,7 @@ export function SiteHeader({ locale, active, languageControl }: {
 }
 
 const guides = [
+  { href: "/guide", en: "User guide (RU)", ru: "Руководство пользователя" },
   { href: "/mac", en: "GrantTap for Mac", ru: "GrantTap для Mac" },
   { href: "/project-mesh", en: "Mesh", ru: "Mesh" },
   { href: "/agents/claude-code", en: "Claude Code", ru: "Claude Code" },
