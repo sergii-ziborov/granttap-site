@@ -1,6 +1,7 @@
 import { composeStory } from "../compose";
 import { body as deliveryEn } from "./delivery-en";
 import { body as deliveryRu } from "./delivery-ru";
+import { additionalNovemberStories } from "./more";
 
 export const novemberStories = [composeStory({
   slug: "granttap-message-delivery-working-status", date: "2026-11-03",
@@ -25,4 +26,4 @@ export const novemberStories = [composeStory({
     closing: "Сохраняйте одну инструкцию, проверяйте подтверждения её пути и определяйте статус задачи по наблюдаемому исполнению.",
     sources: [{ label: "GrantTap: ожидающие сообщения", url: "/blog/messages-that-wait-for-the-computer" }, { label: "Справка GrantTap", url: "/support" }, { label: "Граница безопасности GrantTap", url: "/security" }, { label: "Исходники runtime GrantTap", url: "https://github.com/sergii-ziborov/granttap-mcp" }],
   },
-})];
+}), ...additionalNovemberStories];
