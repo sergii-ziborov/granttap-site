@@ -1,0 +1,305 @@
+{
+  "mode": "built-in image_gen",
+  "images": [
+    {
+      "key": "nov-image-01",
+      "destination": "public/blog/november2026/delivery-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial cover for the GrantTap Journal article 'From Send to Started: understand agent delivery'. Primary request: a wide 16:9 premium editorial illustration of a small orange message capsule travelling between a handheld phone, a neutral encrypted transit prism, and a desktop coding workstation, with clearly distinct physical stages and the final workstation only beginning to light up. Style: tactile matte paper and carefully lit architectural 3D, warm ivory background, graphite and restrained orange accents, precise shadows, elegant magazine composition. Make the signal route readable without words. Constraints: conceptual illustration, not a real app screenshot; no logos, no letters, no numbers, no labels, no QR codes, no watermark, no people, no duplicated phones. Single cohesive landscape image, generous breathing room.",
+      "sourceAssetId": "exec-832e96c4-0da6-4965-b6a7-983ac29640f2.png",
+      "originalSha256": "214c9a588af7caf84049f7eccb9d0250e10563fa8ecab8f49190cb5cb61895cc",
+      "webpSha256": "33e785d3f614dcbb7f758638a392909fef807f4043156a27de6e096157d90953",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "02-delivery-stages",
+      "destination": "public/blog/november2026/delivery-stages.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration for GrantTap message delivery. Wide landscape 16:9, tactile ivory paper and graphite architectural miniatures with orange highlights. Show three separate trays along one route: an orange sealed message capsule resting in a transit tray, a receipt card reaching a desktop tray, and a different glowing work lamp beside the final tray. Clear visual distinction between stored message, received message, and active work. Purely conceptual magazine illustration, not an app screenshot or a factual telemetry chart. No words, letters, numbers, logos, watermark, people or QR codes.",
+      "sourceAssetId": "exec-f22da94d-9235-42ad-9bec-e3f4f584a6a9.png",
+      "originalSha256": "2a1c93d6c5c99459778cd2ea47262fec27f83b1d5471ba076d60d84c6448770d",
+      "webpSha256": "34eb9662dfc2a8e0f820722801455b6756bd05059031d4d4d946655a54e83836",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "03-delivery-recovery",
+      "destination": "public/blog/november2026/delivery-recovery.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about recovering a delayed agent message without sending a duplicate. Wide landscape 16:9, matte paper sculpture, ivory background, graphite forms, orange accents. One single orange capsule on a continuous route bends around a temporary closed gate toward a desktop workstation; a small observation lens looks at the same capsule from above. The capsule remains singular, calm and precise composition. No duplicate capsules, no text, labels, numbers, logos, QR codes, people, actual user interface or watermark.",
+      "sourceAssetId": "exec-53013209-aa35-4e09-92ad-65b1d8fb0950.png",
+      "originalSha256": "72f70bc6400900abab100531e5d8d0d9e6d46abeb0e3b30afa70b240dde3e5e9",
+      "webpSha256": "c617145f79b0c32d085c0019681b33b79d19534a41b5ef87eb7aaf62c2237936",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "04-devices-cover",
+      "destination": "public/blog/november2026/devices-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: GrantTap Journal editorial cover about managing coding-agent devices. Wide landscape 16:9; elegant tactile paper and ceramic miniature of one graphite desktop computer surrounded by three clearly distinct maintenance objects: a fitted version module, a key in a small secure holder, and a tidy stack of reusable cache tiles. A slim handheld controller stands nearby. Warm ivory setting with orange accents and soft studio shadows. Conceptual scene, not a real screenshot. No text, letters, numbers, brand logos, QR codes, people or watermark.",
+      "sourceAssetId": "exec-9ace8e03-b74f-4970-abc6-baacab283f13.png",
+      "originalSha256": "f83d8b2d127b5e474e4634751b8fcb3d01cbe6fb32764a4fafd3f939c186e466",
+      "webpSha256": "9275a5c74f155c2bd2814d583bf0742242b0c4e5a80496ae27271c5cf3813912",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "05-devices-identity",
+      "destination": "public/blog/november2026/devices-identity.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original supporting editorial illustration for GrantTap device maintenance and provider login. Wide landscape 16:9. On an ivory tabletop show two separate secure key holders beside a graphite computer, with one fitted orange key and one clearly empty holder, and a small phone observing them. Make the distinction between a connected computer and an authenticated tool visible through the separated objects. Tactile matte paper sculpture, warm shadows, restrained orange highlights, sophisticated magazine style. No text, labels, letters, numbers, logos, people, QR codes, watermark, or imitation app screens.",
+      "sourceAssetId": "exec-5cb54cce-d16b-41cd-8838-7b85325539c5.png",
+      "originalSha256": "34d870258dc0a2820b001c3bb2fbb6be41299ac09c18958a25116ded2771ef92",
+      "webpSha256": "d2bb992351e0b2f6a1c022d7afb164a877cb3404fbf1c854eb54c39ee8808910",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "06-devices-cache",
+      "destination": "public/blog/november2026/devices-cache.webp",
+      "prompt": "Use case: stylized-concept. Asset type: editorial illustration for a GrantTap article about safe cache maintenance. Landscape 16:9. A graphite desktop workstation with a clean architectural cutaway: small reusable orange tiles in a removable tray in the foreground, while a separate closed ivory archive box remains safely intact behind it. Show cache as replaceable material and retained work as a distinct archive, without charts or interface. Premium matte paper and ceramic, warm ivory backdrop, graphite outlines, subtle orange details, soft shadows. No words, labels, letters, numbers, people, brand logos, QR codes or watermark.",
+      "sourceAssetId": "exec-6b4482b2-49cd-4d74-945c-356a63a796cf.png",
+      "originalSha256": "8480f98494314c5c1eb6092a4bc760b3b8409f50a26607189f122508327ad41e",
+      "webpSha256": "02ef304cbc86d0e7ff891096af26eb2855656bb269aacbd0a319392834641e41",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "07-context-cover",
+      "destination": "public/blog/november2026/context-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original GrantTap Journal cover about useful context for a long-running coding agent. Wide landscape 16:9. An elegant open graphite book-like repository feeds a few selected orange evidence cards through a precise narrow aperture into a compact organized folio beside a desktop computer. Other source pages remain visible and accessible behind it. Metaphor for choosing grounded context rather than cramming everything into memory. Tactile matte paper architectural sculpture, warm ivory and graphite with orange accents, thoughtful clean editorial composition. No words, letters, numbers, logos, people, QR codes, watermark or actual app interface.",
+      "sourceAssetId": "exec-31023a59-ea3e-4a02-ba53-98f350ba66e5.png",
+      "originalSha256": "9c98cb28fca78e56681545a657a1011de9c2ed6b80da819901dae06c589e071d",
+      "webpSha256": "892ec6e65adcd7ec5cc0c336e3a4fe7c573679f207f551ec229a2f9cfe54a043",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "08-context-citations",
+      "destination": "public/blog/november2026/context-citations.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original supporting editorial illustration about evidence and source references in a coding-agent context. Wide landscape 16:9. Several cream repository pages on a graphite architectural shelf, with three fine orange threads linking selected portions of those pages to three small evidence cards in a compact open folio. Keep every thread physically traceable, no confusing crossing. Warm ivory paper sculpture, premium editorial lighting, restrained orange accents, clean quiet background. Conceptual visualization only, not a benchmark or screenshot. No readable text, letters, numbers, logos, people, QR codes or watermark.",
+      "sourceAssetId": "exec-ec205e20-aa01-4789-8218-8d33e7f8f681.png",
+      "originalSha256": "8d76b1a31961c4cb0fc4b502bd9f09c401a7acd55345d7ee4757272bc39b8d46",
+      "webpSha256": "c2a6e1436585b7c9bc1355e05ddc65f6131c75f1e51b28725bc031cc244f57d4",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "09-context-refresh",
+      "destination": "public/blog/november2026/context-refresh.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration for a GrantTap article about refreshing stale context. Wide landscape 16:9. Two adjacent shallow paper trays represent an older source snapshot and a newly revised source snapshot. A small graphite inspection lens examines one changed orange insert in the newer tray; a compact evidence folio is being refreshed with that single insert, while source pages remain on the shelf. Tactile matte paper and ceramic architectural miniature, ivory, graphite, orange, soft studio shadows. No words, letters, numbers, dates, arrows with labels, brand logos, people, QR codes, actual user interface or watermark.",
+      "sourceAssetId": "exec-1c502f88-a2eb-4400-99a4-4b24193b0d13.png",
+      "originalSha256": "76cfe2814c5acf3acf0da160e1e9fcf5b41b68eae2637bd2715bbe6855f95f18",
+      "webpSha256": "4fbb86715cdfa9a66e94078cc289103fa64f0a834325c9e1dfc06b40e704c751",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "10-parallel-cover",
+      "destination": "public/blog/november2026/parallel-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: GrantTap Journal editorial cover about parallel coding tasks. Wide 16:9 landscape. Three separate graphite work benches each carry a different orange code-shaped paper component; their independent paper paths converge only at one controlled assembly table in the foreground. Clear separation of work areas and deliberate final integration. Tactile matte paper architectural miniature, warm ivory background, graphite and orange palette, beautiful precise studio lighting. No text, letters, numbers, provider logos, people, actual app screens, QR codes or watermark.",
+      "sourceAssetId": "exec-48fc2893-06fa-4c03-a970-4dbe730bdb6d.png",
+      "originalSha256": "8b11f95cb6a74a242b75570116e027a4d7be6c733551ee0cce970b8ebf847ee8",
+      "webpSha256": "8f30937b8b279e1310fc28627843881c72c668424c452cd30b60a0f08b57c2f9",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "11-parallel-worktrees",
+      "destination": "public/blog/november2026/parallel-worktrees.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about separate Git worktrees for agent tasks. Wide landscape 16:9. One shared graphite repository cabinet feeds two separate ivory work desks through clean parallel paths; each desk holds a distinct orange paper construction in progress and its own small lamp. Both remain visibly separate while sharing the cabinet. Premium paper sculpture and ceramic aesthetic, ivory background, warm shadows, restrained orange highlights. Conceptual only, no readable words, letters, numbers, logos, people, QR codes, real user interface or watermark.",
+      "sourceAssetId": "exec-a416d0c6-7c74-4188-9eab-145e4e486ed2.png",
+      "originalSha256": "14fe58faa2f21ef36eb761234c8398717bd28094007018cc005781e2da9b7048",
+      "webpSha256": "b923da70a9f97caa434fb9a0cc0907634302673d880e37775a4b6db9087b11bb",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "12-parallel-integration",
+      "destination": "public/blog/november2026/parallel-integration.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about reviewing and integrating parallel agent changes. Wide landscape 16:9. Three orange and graphite paper components from separate shallow trays meet at a single precise assembly jig under a large inspection lens. The pieces have complementary shapes and only fit in one coherent arrangement; unused material remains in its own trays. Clean ivory tabletop, tactile matte paper, warm editorial studio shadows, carefully composed. No words, numbers, letters, logos, people, QR codes, actual interface or watermark.",
+      "sourceAssetId": "exec-4a58bb92-b0a6-4854-9b5a-4b31ba1d39d4.png",
+      "originalSha256": "6cbda629022f93f7c8a48eee7f5839b143091ecc73c3fd7fc11e1f373809dcfc",
+      "webpSha256": "13225902896a59e2b5779b361321051dbae806a6a33dc1c36b0bb75eaf83e793",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "16-brief-cover",
+      "destination": "public/blog/november2026/brief-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original GrantTap Journal cover about writing a clear task brief for a coding agent. Landscape 16:9. A slim phone presents a small organized stack of blank cream task cards to a graphite desktop workstation; one precise orange path links the selected task card to a neatly bounded paper construction area. The scene communicates an understandable objective and clear scope. Premium tactile paper sculpture and ceramic, warm ivory backdrop, restrained orange highlights, elegant soft shadows. No readable text, letters, numbers, logos, people, QR codes, watermark or actual app interface.",
+      "sourceAssetId": "exec-e05c5f6e-d4a5-4ec1-9724-4652e36cd881.png",
+      "originalSha256": "3c34a4b16dd4921ec5e0b67034f3db0c19cfa8c48c7c84b83543d1a98d248a2a",
+      "webpSha256": "c70c2d24d7463d91aeaa118d9ffb528f3a915389769bea46ae00b45425a1ebc9",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "17-brief-scenario",
+      "destination": "public/blog/november2026/brief-scenario.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about describing a reproducible user scenario for GrantTap tasks. Landscape 16:9. Three ivory miniature stages on a tabletop: a phone with a single orange gesture dot, a small graphite gate with an orange token at its entrance, and a desktop lamp illuminating a final paper result. Connect the stages with one continuous orange paper ribbon. Clean warm paper architecture, graphite, ivory and orange, careful shadows, magazine quality. Conceptual image only, no words, numbers, letters, logos, people, QR codes, watermark or real interface.",
+      "sourceAssetId": "exec-614f03a5-3d09-49eb-a6b5-8227076a9720.png",
+      "originalSha256": "3b50ccb6f814167f5f7ae619796c124ab375cce30f8f0f621de755eaea1a4a06",
+      "webpSha256": "c6367a9dda0776237da5e1b990b84752d4fdf9080de3d483f0570f5086f3658c",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "18-brief-criteria",
+      "destination": "public/blog/november2026/brief-criteria.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original supporting editorial illustration about checking acceptance criteria for a coding task. Landscape 16:9. An ivory task card with three abstract embossed rows is aligned beside three matching orange physical test pieces on a precise graphite measuring board; a small inspection lens and a neat completed paper prototype sit nearby. It conveys that an outcome is checked against concrete criteria. Tactile matte paper and ceramic, warm ivory, graphite and orange, restrained editorial composition. No readable text, letters, numbers, checkmark lists with words, logos, people, QR codes, actual app interface or watermark.",
+      "sourceAssetId": "exec-2acf9046-dc4c-4b24-9975-9bca4ea30d62.png",
+      "originalSha256": "0797deded783442c06f90e828b630b7d6832bd748d5e2374a435359007f7b068",
+      "webpSha256": "b3092910692f1c836bb82d29d276437b6b20e0d0f39f4f16f0567b9edeb279ae",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "19-approvals-cover",
+      "destination": "public/blog/november2026/approvals-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: GrantTap Journal cover for a guide to the lifecycle of an agent approval. Wide landscape 16:9. A graphite gate in a paper architectural landscape has one precisely fitted orange key card passing from a nearby phone toward its lock, while a separate older cream card rests in a closed tray outside the active path. Emphasize one decision matched to one gate. Premium matte paper and ceramic, ivory background, warm shadows, elegant orange accents. No words, letters, numbers, logos, people, QR codes, actual application UI or watermark.",
+      "sourceAssetId": "exec-43b6f2ed-1c65-4295-9ce3-f4efec6716b5.png",
+      "originalSha256": "799d420f0d06a4505ec33a3c88d79c76e41f531cb1fcefda90b5b5e7315d91fc",
+      "webpSha256": "81f7e1cf8a0ec1ec5e399b7d9e890d4b78f29684882ff551b03acd326235da97",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "20-approvals-identity",
+      "destination": "public/blog/november2026/approvals-identity.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting GrantTap editorial illustration about matching one approval to one exact request. Wide landscape 16:9. Two distinct graphite gates have different fitted geometric key slots; one orange key card matches only the foreground gate, while the other gate remains closed. A slim ivory phone sits near the foreground card. Precise tactile paper architecture, warm ivory backdrop, graphite, restrained orange, clean shadows. No words, letters, numbers, logos, people, QR codes, actual app interface or watermark.",
+      "sourceAssetId": "exec-78601aba-b73e-4e1b-84e6-ce933a0bfb11.png",
+      "originalSha256": "d8d690d452f4112becfff58798e9112907c544fc463c7665c9499513c75b6208",
+      "webpSha256": "edb577915fee05752458f0cebcdcef1c560a996c6c21d155cda86f6fba77ccee",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "21-approvals-receipt",
+      "destination": "public/blog/november2026/approvals-receipt.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original supporting editorial illustration about receiving confirmation that an agent approval was applied. Wide 16:9. An orange key card has opened a graphite miniature gate beside a computer; a separate small cream receipt card travels back along a thin orange ribbon toward a phone. Show a complete loop of a decision and its acknowledgment, with no diagram labels. Premium matte paper and ceramic, ivory studio background, elegant warm shadows, magazine quality. No text, letters, numbers, brand logos, people, QR codes, actual screenshots or watermark.",
+      "sourceAssetId": "exec-43eed602-b29a-4cd7-adb0-e439cf5d6bcd.png",
+      "originalSha256": "2a98ea4f24c33f202859cb97f738c3db721423ea0b4835d94d5c7fd4e66e2755",
+      "webpSha256": "131096f6b029293050c376ee17cf1c9aa7777975f324d7728d4af71e903d84df",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "22-privacy-cover",
+      "destination": "public/blog/november2026/privacy-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: GrantTap Journal editorial cover about privacy boundaries in agent workflows. Wide 16:9. A phone and graphite workstation each contain an open readable cream paper card, connected through a central translucent faceted enclosure holding a sealed orange capsule. Separate endpoints are clearly visible outside the enclosure. The image represents readable endpoints and protected transit, without suggesting universal security. Premium tactile paper and ceramic, ivory backdrop, graphite, restrained orange accents, elegant soft shadows. No text, letters, numbers, logos, people, QR codes, actual app UI or watermark.",
+      "sourceAssetId": "exec-1d69785a-ba45-4602-849a-8df9d8c7d85d.png",
+      "originalSha256": "c8022b2c631e7936cc3e09d62775a69439c8d1d6ef1c4323bb2f43b796cfe423",
+      "webpSha256": "1350c429b2c9ff8ba21051db9d793c8119038afda24fc01a59c72f0e65cbbeb3",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "23-privacy-endpoints",
+      "destination": "public/blog/november2026/privacy-endpoints.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration for GrantTap about trusted devices and separate access. Wide landscape 16:9. Two neatly separated ivory device plinths: one holds a phone beside a fitted orange physical key, the other holds a browser-like neutral glass panel with a different key holder. In the background a graphite computer remains distinct. Emphasize different trust boundaries without padlock promises. Tactile paper architectural still life, warm ivory and graphite, orange highlights, studio shadows. No words, letters, numbers, brand logos, people, QR codes, real interface or watermark.",
+      "sourceAssetId": "exec-1ed6dd52-c85a-46b9-aa11-cc9a668727b9.png",
+      "originalSha256": "f206349ffc6f8664774479ecdc997834f71da15751e973390d6c728cc162686b",
+      "webpSha256": "f27641658dc25a003bf97587f5ca8be1af30638e93cc8c61da359a87fb481f1e",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "24-privacy-diagnostics",
+      "destination": "public/blog/november2026/privacy-diagnostics.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original supporting editorial illustration about sharing minimal safe diagnostic evidence. Wide landscape 16:9. A graphite archive cabinet contains many cream pages; a small inspection tray in foreground holds only two selected orange evidence cards, while a closed fitted key box stays separate inside the cabinet. A simple paper lens examines the selected cards. Calm premium paper sculpture, ivory background, restrained graphite and orange, soft detailed lighting. Conceptual image, no readable text, letters, numbers, logos, people, QR codes, real application screens or watermark.",
+      "sourceAssetId": "exec-b613886f-dc02-47bf-802b-f787d0ae7728.png",
+      "originalSha256": "a856ac5debe4aa46f216b4d9caf573d353afc7da8ffacc7e1624643a7c420bd3",
+      "webpSha256": "97e1f4b9c6e1938efc26cfa69f3d6588eddfb8046d5407d0ee69ab90331501d2",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "25-automations-cover",
+      "destination": "public/blog/november2026/automations-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original GrantTap Journal cover about useful bounded agent automation. Wide landscape 16:9. An orange paper path makes one orderly loop through a graphite computer workbench and a small inspection station, with a prominent physical stop gate within reach of a slim ivory phone. One completed cream result card rests in a tray; no clutter or multiple repeated jobs. Premium matte paper and ceramic sculpture, warm ivory, graphite and orange palette, soft precise shadows. No clocks, words, letters, numbers, logos, people, QR codes, app UI or watermark.",
+      "sourceAssetId": "exec-c3336fbf-5807-4938-a816-85c069b1ae79.png",
+      "originalSha256": "8fca341b6adf1d37df730437aa54efe950c73ad0c1ee1153877b1d1f9a7e27cd",
+      "webpSha256": "63c11cc0be71b7ba3d0f31156be2876ac64405218243efa2607df198b30fdfd8",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "26-automations-overlap",
+      "destination": "public/blog/november2026/automations-overlap.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about avoiding overlapping scheduled agent work. Wide landscape 16:9. A single orange paper task block is working inside a graphite assembly station, while a second different cream block waits neatly behind a small closed gate on the same path. A separate empty exit tray shows the completion boundary. Tactile architectural paper miniature, warm ivory background, graphite and orange accents, elegant magazine lighting. No clocks, readable text, letters, numbers, logos, people, QR codes, real interface or watermark.",
+      "sourceAssetId": "exec-4457dbaa-99e9-4337-990b-8c54069bbd2b.png",
+      "originalSha256": "867def26111cc4db0a092331088ed369df53771d1f33e8b2a4ce4e65b75a6a24",
+      "webpSha256": "457bc17766a1276bfa28405df9d52724cc955e6682fa25b3137f108538eacd78",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "27-automations-stop",
+      "destination": "public/blog/november2026/automations-stop.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about disabling future automation while retaining completed task history. Wide landscape 16:9. A clean orange looped paper route is physically disconnected at a graphite stop gate, while a nearby closed ivory archive tray safely retains several completed result cards. A neutral phone controller faces the gate. Calm premium paper and ceramic still life, warm ivory, graphite, restrained orange, soft shadows. No clocks, words, letters, numbers, logos, people, QR codes, actual app screens or watermark.",
+      "sourceAssetId": "exec-783f2169-f90d-4ad9-bfc1-e9a26ce51ac8.png",
+      "originalSha256": "b2cf270b1e05f01febf42b1dcd70081ac9296df7884a9944dcefedc11328531e",
+      "webpSha256": "bc019ba91dea37f6d51f96c4e39d978b6ab3dc2a0c9bb38333c2fa6be830d8da",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "13-verification-cover",
+      "destination": "public/blog/november2026/verification-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original GrantTap Journal cover about verifying agent work before a release. Wide landscape 16:9. A graphite source folio, a small orange test specimen on an inspection bench, a sealed cream artifact box with a matching orange inset, and a desktop display are arranged along one clean continuous path. Emphasize traceability from source through checking to a delivered artifact. Premium tactile paper architecture and ceramic, warm ivory background, graphite and restrained orange, elegant studio shadows. Conceptual scene, no words, letters, numbers, logos, people, QR codes, actual app screenshots or watermark.",
+      "sourceAssetId": "exec-052c761f-09ba-4587-9ccb-e3ccca322bd1.png",
+      "originalSha256": "b37f4b0ef49644f65afe2d276af80cf411fff538bd9626a3e38bf2b94d4b0f04",
+      "webpSha256": "17200d607e1c478e6c6eef3f57f21e340d52a59167b7e8cecb182dae3603433b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "14-verification-artifact",
+      "destination": "public/blog/november2026/verification-artifact.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about artifact provenance for GrantTap tasks. Landscape 16:9. An open graphite folio with abstract source sheets is linked by one fine orange thread to a single sealed ivory package with a complementary orange geometric seal. A magnifying lens inspects the seam of the package. The concept is one identifiable artifact connected to its source. Premium matte paper and ceramic, ivory studio background, restrained orange accents, precise soft shadows. No readable text, letters, numbers, real hash strings, logos, people, QR codes or watermark.",
+      "sourceAssetId": "exec-ed2bb641-f11a-486a-9652-be36a0dbefdc.png",
+      "originalSha256": "7b6e55217fd8d6707c42bf25779530b19ccf8b1fbdddd023532fb79a4b853fe9",
+      "webpSha256": "dc9776ef52a0f0e95ea0da4939c886edc4d6dfcd6927fdcc06e03a93d01dc328",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "15-verification-evidence",
+      "destination": "public/blog/november2026/verification-evidence.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original supporting editorial illustration about checking the version users actually receive. Wide landscape 16:9. One orange sealed artifact box sits beside a graphite workstation and a slim phone; the same unique geometric orange inset appears on a small cream result card under an inspection lens, forming a clear visual correspondence. Distinguish the artifact, receiving device and evidence rather than drawing a real interface. Tactile matte paper architectural miniature, warm ivory backdrop, graphite and orange, elegant shadows. No words, letters, numbers, logos, people, QR codes or watermark.",
+      "sourceAssetId": "exec-9c22de4e-b21a-42bc-b914-1d3440f21cfb.png",
+      "originalSha256": "6cdc213d45b05c163817c7fc87f11796a2fc6aa6a06ed13634a0120b906c2568",
+      "webpSha256": "955daabbad5a7ff2ed7d7a6c0c9d493e1a6d0e63c408ce5f5a5b368dc61ef66e",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "28-models-cover",
+      "destination": "public/blog/november2026/models-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original GrantTap Journal cover about choosing a ready agent for a specific task. Wide landscape 16:9. Three graphite tool stations offer different fitted geometric sockets, while one orange task piece rests on an ivory selection table; a clear path leads only to the station whose socket actually fits. A slim phone observes the selection. Show practical compatibility, not a ranking or competition. Premium tactile paper and ceramic, warm ivory background, restrained orange highlights, elegant shadows. No words, letters, numbers, provider logos, people, QR codes, actual app UI or watermark.",
+      "sourceAssetId": "exec-d0e2b597-3936-41c7-9954-1bd1faf34309.png",
+      "originalSha256": "c8ec8fcb874dedc582577555c95c11a027b03402897463fa38c75602398c77ae",
+      "webpSha256": "3a08fd98d8380e25a08287afd4ad3c3bf64a13c485fd4fd70f1126bed77dd452",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "29-models-readiness",
+      "destination": "public/blog/november2026/models-readiness.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about agent readiness beyond a model name. Wide landscape 16:9. A graphite desktop workstation is surrounded by three separate fitted prerequisites: a small orange key in a secure holder, an accessible cream project folio, and an orange tool module aligned with an empty socket. Each is visible and distinct. Premium matte paper and ceramic architectural still life, warm ivory, graphite and orange, studio shadows. Conceptual only, no text, letters, numbers, logos, people, QR codes, actual screenshots or watermark.",
+      "sourceAssetId": "exec-a9fea7f3-45fb-4118-950a-ad28405c54aa.png",
+      "originalSha256": "df18b9bde2128b02489bead6777906d992c77242f5b773907fc19a75ddfbb0e5",
+      "webpSha256": "6c47cf63ecc6fcc2fc45d6e8a25328aa2fcbc46add59ab956b7d8b457da781c7",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "30-models-comparison",
+      "destination": "public/blog/november2026/models-comparison.webp",
+      "prompt": "Use case: stylized-concept. Asset type: supporting editorial illustration about comparing agent routes with one bounded representative task. Landscape 16:9. Two separate graphite miniature workbenches receive identical cream geometric specimens; their resulting orange components are inspected against a single precise fitted template at a central review table. Equal calm composition, no podium, no winner, no score or performance claims. Tactile paper sculpture, warm ivory setting, restrained orange accents, soft architectural shadows, magazine quality. No words, letters, numbers, logos, people, QR codes, real app screens or watermark.",
+      "sourceAssetId": "exec-954e82c3-753d-4061-be03-a67b29b7f80c.png",
+      "originalSha256": "ccd015aaa8010bd5a8189e9761becc12f71bc7d5da496713fc01765165948e22",
+      "webpSha256": "0c7305adebba873d2ae92bd81e2efdbf7b6bebcb57725656eefc6aab4d1411ae",
+      "width": 1672,
+      "height": 941
+    }
+  ]
+}

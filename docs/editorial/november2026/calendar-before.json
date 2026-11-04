@@ -1,0 +1,161 @@
+{
+  "checkedOn": "2026-11-04",
+  "timeZone": "Asia/Jerusalem",
+  "horizonEnd": "2026-11-30",
+  "articles": [
+    {
+      "date": "2026-10-16",
+      "slug": "move-a-task-without-losing-work",
+      "title": "Move a Task to another agent without losing work"
+    },
+    {
+      "date": "2026-10-16",
+      "slug": "messages-that-wait-for-the-computer",
+      "title": "Messages that wait for the computer"
+    },
+    {
+      "date": "2026-10-10",
+      "slug": "cortex-loom-inside-granttap-token-economy",
+      "title": "Cortex Loom inside GrantTap: where token savings come from"
+    },
+    {
+      "date": "2026-10-10",
+      "slug": "project-mesh-memory-handoff-less-duplicate-work",
+      "title": "Project Mesh: preserve work instead of doing it twice"
+    },
+    {
+      "date": "2026-10-10",
+      "slug": "granttap-governance-native-enforcement-research",
+      "title": "GrantTap governance: a decision that reaches the tool"
+    },
+    {
+      "date": "2026-10-05",
+      "slug": "control-claude-code-codex-iphone-granttap",
+      "title": "How to control Claude Code and Codex from iPhone with GrantTap"
+    },
+    {
+      "date": "2026-10-05",
+      "slug": "granttap-mesh-governance-allow-ask-deny-local-agents",
+      "title": "GrantTap Mesh Governance: allow, ask, and deny for local coding agents"
+    },
+    {
+      "date": "2026-10-05",
+      "slug": "microsoft-agent-365-mcp-tool-governance-september-2026",
+      "title": "Microsoft Agent 365 expands MCP tool governance: what local coding agents should learn"
+    },
+    {
+      "date": "2026-10-05",
+      "slug": "aws-agentcore-temporal-policy-agent-security-2026",
+      "title": "AWS AgentCore temporal policies make agent history part of authorization"
+    },
+    {
+      "date": "2026-10-05",
+      "slug": "anthropic-agent-security-incident-lessons-local-coding-agents",
+      "title": "Anthropic's agent security disclosure: the boundary must exist outside the prompt"
+    },
+    {
+      "date": "2026-10-05",
+      "slug": "local-cloud-hybrid-agent-boundaries",
+      "title": "Local, cloud, or hybrid: map an agent's real data boundary"
+    },
+    {
+      "date": "2026-10-05",
+      "slug": "what-agent-usage-metrics-can-prove",
+      "title": "What agent usage metrics can prove—and what they cannot"
+    },
+    {
+      "date": "2026-10-04",
+      "slug": "task-continuity-beyond-an-agent-session",
+      "title": "A task can outlive an agent session. Here is what must travel with it"
+    },
+    {
+      "date": "2026-10-04",
+      "slug": "agent-approvals-at-the-execution-boundary",
+      "title": "An agent approval is only as strong as its execution boundary"
+    },
+    {
+      "date": "2026-10-03",
+      "slug": "choose-a-mobile-coding-agent-workflow",
+      "title": "Choosing a mobile coding-agent workflow by the work it must finish"
+    },
+    {
+      "date": "2026-10-04",
+      "slug": "cortex-loom-evidence-per-token",
+      "title": "Cortex Loom: fewer context tokens, with the gaps visible"
+    },
+    {
+      "date": "2026-10-03",
+      "slug": "aws-summit-tel-aviv-agentic-systems",
+      "title": "What the AWS Summit Tel Aviv agenda says about agents"
+    },
+    {
+      "date": "2026-10-03",
+      "slug": "governance-that-reaches-the-computer",
+      "title": "Agent governance must reach the computer"
+    },
+    {
+      "date": "2026-10-03",
+      "slug": "coding-agents-on-your-phone-2026",
+      "title": "Coding agents on your phone: what each approach controls"
+    },
+    {
+      "date": "2026-10-03",
+      "slug": "why-granttap-is-a-control-center",
+      "title": "Why GrantTap is a control center for local agents"
+    },
+    {
+      "date": "2026-09-24",
+      "slug": "connect-iphone-with-qr",
+      "title": "Connect your iPhone without another account"
+    },
+    {
+      "date": "2026-09-24",
+      "slug": "task-continuity-across-agents",
+      "title": "One Task, several executions"
+    },
+    {
+      "date": "2026-09-24",
+      "slug": "linked-projects-without-merging-access",
+      "title": "Linked Mesh spaces keep separate permissions"
+    },
+    {
+      "date": "2026-09-24",
+      "slug": "architecture-graph-with-evidence",
+      "title": "A graph should answer a code question"
+    },
+    {
+      "date": "2026-09-24",
+      "slug": "mcp-skills-and-governance-status",
+      "title": "Configured, available, used: three different facts"
+    }
+  ],
+  "emptyDates": [
+    "2026-11-04",
+    "2026-11-05",
+    "2026-11-06",
+    "2026-11-07",
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15",
+    "2026-11-16",
+    "2026-11-17",
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21",
+    "2026-11-22",
+    "2026-11-23",
+    "2026-11-24",
+    "2026-11-25",
+    "2026-11-26",
+    "2026-11-27",
+    "2026-11-28",
+    "2026-11-29",
+    "2026-11-30"
+  ]
+}
