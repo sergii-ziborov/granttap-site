@@ -23,3 +23,13 @@ Existing journal publication scheduling remains request-time based. Candidate
 and production checks retain the ten bilingual articles and their dated visibility.
 
 Public checks and deployment identity are recorded with the final release.
+
+Final result: 25 guide unit/interaction tests and 25 production tests passed;
+typecheck passed. Lint has no errors and retains one pre-existing unused-variable
+warning in hetzner/client-access.mjs. The public HTTPS check verified all 48
+chapters, all 34 screenshot hashes, 359 search sections, the exact ZIP download,
+missing-chapter 404, shared navigation and the desktop/mobile browser journeys.
+
+Serving source: 6b91f536f0088ece4b0415576a07680bb3b1df52. Container is healthy;
+the previous serving image is retained for rollback. 31 current journal entries
+and future publication gates were verified. See public-proof.json.

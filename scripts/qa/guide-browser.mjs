@@ -58,8 +58,15 @@ try {
   await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await ready('/guide'); await layout('desktop home'); await capture('desktop-home');
   await evaluate('document.querySelector(".guide-search-trigger").click()'); await sleep(200);
-  await send('Input.insertText', { text: 'авторизация' }); await sleep(200);
-  const matches = await evaluate('[...document.querySelectorAll(".guide-search-results a")].map(a=>a.getAttribute("href"))');
+  await send('Input.insertText', { text: 'авторизация' });
+  let matches = [];
+  // The search index is loaded on demand; public-network latency can exceed
+  // the interaction delay used by the local production check.
+  for (let i = 0; i < 100; i++) {
+    matches = await evaluate('[...document.querySelectorAll(".guide-search-results a")].map(a=>a.getAttribute("href"))');
+    if (matches.some(href => href.includes('provider-sign-in'))) break;
+    await sleep(100);
+  }
   assert.ok(matches.some(href => href.includes('provider-sign-in')), 'search finds sign-in'); proof.checks.push({ name: 'full text search', matches }); await capture('desktop-search');
   await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   await sleep(100); assert.equal(await evaluate('document.querySelectorAll("dialog[open]").length'), 0);
