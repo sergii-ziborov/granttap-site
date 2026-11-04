@@ -57,7 +57,9 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         <h1>{t.title}</h1>
         <p className="blog-deck">{t.summary}</p>
       </div>
-      <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{locale === "ru" ? "Образ статьи создан специально для этого материала. Экраны GrantTap ниже сняты отдельно на тестовых данных." : "Created for this story. GrantTap screens below are separate captures made with sample data."}</figcaption>}</figure>
+      <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{article.screenshot
+        ? (locale === "ru" ? "Образ статьи создан специально для этого материала. Экраны GrantTap ниже сняты отдельно на тестовых данных." : "Created for this story. GrantTap screens below are separate captures made with sample data.")
+        : (locale === "ru" ? "Сгенерированная иллюстрация к материалу. Она передаёт идею статьи и не является экраном приложения." : "AI-generated editorial illustration of the story's ideas, not an application screenshot.")}</figcaption>}</figure>
       <ReadingGrid className="blog-reading-grid section-shell" railClassName="blog-article-rail"
         railLabel={locale === "ru" ? "Содержание статьи" : "Article contents"} rail={<>
         <p>{locale === "ru" ? "В статье" : "In this story"}</p>

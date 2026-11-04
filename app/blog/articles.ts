@@ -1,3 +1,4 @@
+import { novemberStories } from "./stories/november2026";
 import { cortexResearch, meshResearch, governanceResearch } from "./stories/research";
 import { taskTransferStory, waitingMessagesStory } from "./stories/october16";
 import type { BlogArticle } from "./articleTypes";
@@ -289,6 +290,7 @@ const guides: BlogArticle[] = [
 ];
 
 export const articles: BlogArticle[] = [
+  ...novemberStories,
   taskTransferStory, waitingMessagesStory,
   cortexResearch, meshResearch, governanceResearch,
   iphoneClaudeCodex, granttapMeshGovernance, microsoftAgent365Tools, awsTemporalPolicy, anthropicAgentSecurity,

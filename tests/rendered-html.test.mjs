@@ -113,7 +113,10 @@ test("journal publishes current stories with accurate status and images", async 
   assert.match(index, /connect-iphone-with-qr/);
   assert.match(index, /why-granttap-is-a-control-center/);
   assert.match(index, /mcp-skills-and-governance-status/);
-  assert.match(index, /blog-list-heading[^>]*><h2>All stories<\/h2><span>25/);
+  const visibleCards = [...index.matchAll(/class="blog-card"/g)].length;
+  assert.ok(visibleCards >= 25);
+  const displayedCount = index.match(/blog-list-heading[^>]*><h2>All stories<\/h2><span>(\d+)/);
+  assert.equal(Number(displayedCount?.[1]), visibleCards);
   assert.match(index, /move-a-task-without-losing-work/);
   assert.match(index, /messages-that-wait-for-the-computer/);
   assert.match(index, /cortex-loom-inside-granttap-token-economy/);
