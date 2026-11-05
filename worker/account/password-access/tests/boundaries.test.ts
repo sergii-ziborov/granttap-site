@@ -21,6 +21,21 @@ test('password KDF normalizes Unicode, uses strict records and checks the origin
  expect(validPassword(null)).toBe(false);expect(validPassword('a'.repeat(14))).toBe(false);expect(validPassword('a'.repeat(128))).toBe(true);expect(validPassword('a'.repeat(129))).toBe(false);
 });
 
+test('account registration and sign-in apply the same NFC length limit as password storage',async()=>{
+ const {wire}=database();const decomposed='e\u0301'.repeat(128);const normalized=decomposed.normalize('NFC');
+ expect(Array.from(decomposed).length).toBe(256);expect(Array.from(normalized).length).toBe(128);
+ const created=await handleAccountApi(request('register','POST',{login:'unicode.fixture',password:decomposed}),wire);
+ expect(created!.status).toBe(201);const account=await created!.json();
+ for(const candidate of [decomposed,normalized]){
+  const signedIn=await handleAccountApi(request('sign-in','POST',{login:'unicode.fixture',password:candidate}),wire);
+  expect(signedIn!.status).toBe(200);expect((await signedIn!.json()).accountId).toBe(account.accountId);
+ }
+ for(const action of ['register','sign-in']){
+  const rejected=await handleAccountApi(request(action,'POST',{login:'too.long.fixture',password:decomposed+'x'}),wire);
+  expect(rejected!.status).toBe(400);
+ }
+});
+
 test('attempt reservations are persistent, expire, and enforce both login and proxy-address budgets',async()=>{
  const {db,wire}=database();const now=Date.now();
  for(let n=0;n<12;n++)expect(await reservePasswordAttempt(wire,'one.login','one.ip',now)).toBe(true);

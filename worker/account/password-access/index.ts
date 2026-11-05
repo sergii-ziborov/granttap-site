@@ -21,7 +21,7 @@ async function passwordRoute(request:Request,db:D1Database,auth:AccountAuth):Pro
  if(action==='credential')return manageCredential(request,db,auth,credentials);
  if(request.method!=='POST'||!['register','sign-in'].includes(action))return json(405,{error:'Method not allowed.'});
  const body=await boundedJSON(request);const login=normalizeLogin(body?.login);const password=body?.password;
- if(!login||typeof password!=='string'||Array.from(password).length>128
+ if(!login||typeof password!=='string'||Array.from(password.normalize('NFC')).length>128
   ||(action==='register'&&!validPassword(password)))return json(400,{error:'Use a 3–64 character login and a password of 15–128 characters.'});
  const ip=request.headers.get('x-real-ip')||request.headers.get('cf-connecting-ip')||'unavailable';
  if(!await reservePasswordAttempt(db,login,ip))return limited();
