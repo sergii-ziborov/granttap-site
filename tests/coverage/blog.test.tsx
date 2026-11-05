@@ -14,7 +14,7 @@ test("journal lists released stories and keeps language in its links", async () 
   expect(screen.getByRole("heading", { name: "Agent work you can understand and control." })).toBeTruthy();
   const list = screen.getByRole("region", { name: "All articles" });
   expect(within(list).getAllByRole("link")).toHaveLength(publishedArticles().length);
-  expect(screen.getByRole("link", { name: "Switch to Russian" }).getAttribute("href")).toBe("/blog?lang=ru");
+  expect(screen.getByRole("link", { name: "RU — Switch to Russian" }).getAttribute("href")).toBe("/blog?lang=ru");
   english.unmount();
   render(await BlogPage({ searchParams: Promise.resolve({ lang: "ru" }) }));
   expect(screen.getByRole("heading", { name: "Работа агентов, которую можно понять и контролировать." })).toBeTruthy();

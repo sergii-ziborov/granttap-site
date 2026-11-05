@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
+import { localizedMetadata } from "../../SearchMetadata";
 import { CapabilityPage } from "../../components/CapabilityPage";
 
-export const metadata: Metadata = {
-  title: "Codex across Mac, iPhone, iPad, and Apple Watch",
-  description: "See, approve, continue, and hand off local Codex tasks with GrantTap Personal.",
-  alternates: { canonical: "/agents/codex" },
-};
+export const metadata = localizedMetadata("/agents/codex", "en", "Codex across Mac, iPhone, iPad, and Apple Watch", "See, approve, continue, and hand off local Codex tasks with GrantTap Personal.", { bilingual: false });
 
 export default function CodexPage() {
   return <CapabilityPage

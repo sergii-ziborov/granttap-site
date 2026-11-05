@@ -1,38 +1,24 @@
 import type { MetadataRoute } from "next";
-import { publishedArticles, publicationDay } from "./blog/publication";
+import { publishedArticles, articlePublicationDate } from "./blog/publication";
 import { guideCatalog } from "./guide/GuideContent/catalog";
+import { publicPageCopy } from "./SearchMetadata/pages";
+import { siteOrigin } from "./SearchMetadata";
 
 export const dynamic = "force-dynamic";
-
-const pages = [
-  ["", ""], ["about", "2026-09-28"], ["privacy", "2026-08-28"],
-  ["terms", "2026-09-25"], ["support", "2026-11-05"],
-  ["security", "2026-08-28"], ["data-rights", "2026-08-28"],
-  ["accessibility", "2026-08-28"], ["licenses", "2026-09-25"],
-  ["pricing", "2026-09-28"], ["mac", "2026-10-08"], ["agents/claude-code", "2026-11-05"],
-  ["agents/codex", "2026-11-05"], ["agents/cursor", "2026-11-05"],
-  ["agents/grok-build", "2026-11-05"], ["project-mesh", "2026-10-16"],
-  ["grok-bot", "2026-08-28"], ["apple-watch-coding-agents", "2026-08-28"],
-];
-
+function translated(path: string, updated: string, priority = .7): MetadataRoute.Sitemap {
+  const languages = { en: siteOrigin + path, ru: `${siteOrigin}${path}?lang=ru`, "x-default": siteOrigin + path };
+  return ["", "?lang=ru"].map(query => ({ url: siteOrigin + path + query,
+    lastModified: updated, changeFrequency: "monthly", priority, alternates: { languages } }));
+}
 export default function sitemap(): MetadataRoute.Sitemap {
-  const today = publicationDay();
+  const articles = publishedArticles();
+  const latest = articles.reduce((day, article) => [day, article.reviewedOn || articlePublicationDate(article)].sort().at(-1)!, "2026-11-05");
   return [
-    ...pages.map(([path, updated]) => ({
-      url: `https://granttap.com/${path}`,
-      lastModified: updated || today,
-      changeFrequency: path === "" ? "weekly" as const : "monthly" as const,
-      priority: path === "" ? 1 : .7,
-    })),
-    { url: "https://granttap.com/blog", lastModified: today, changeFrequency: "weekly", priority: .8 },
-    ...["", ...guideCatalog.map(page => `/${page.slug}`)].map(path => ({
-      url: `https://granttap.com/guide${path}`, lastModified: "2026-11-05", changeFrequency: "monthly" as const, priority: .8,
-    })),
-    ...publishedArticles().map(article => ({
-      url: `https://granttap.com/blog/${article.slug}`,
-      lastModified: article.reviewedOn || article.date,
-      changeFrequency: "monthly" as const,
-      priority: .7,
-    })),
+    ...Object.entries(publicPageCopy).flatMap(([path, page]) => translated(path, page.updated, path === "/" ? 1 : .7)),
+    ...translated("/mac", "2026-11-05"), ...translated("/blog", latest, .8),
+    ...["agents/claude-code", "agents/codex", "agents/cursor", "agents/grok-build", "project-mesh", "grok-bot", "apple-watch-coding-agents"].map(path => ({ url: `${siteOrigin}/${path}`, lastModified: "2026-11-05", changeFrequency: "monthly" as const, priority: .7 })),
+    ...["", ...guideCatalog.map(page => `/${page.slug}`)].map(path => ({ url: `${siteOrigin}/guide${path}`,
+      lastModified: "2026-11-05", changeFrequency: "monthly" as const, priority: .8, alternates: { languages: { ru: `${siteOrigin}/guide${path}` } } })),
+    ...articles.flatMap(article => translated(`/blog/${article.slug}`, article.reviewedOn || articlePublicationDate(article))),
   ];
 }

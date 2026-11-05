@@ -4,8 +4,8 @@ export const copy = {
   en: {
     cta: "TestFlight by invitation",
     eyebrow: "Personal live control for local coding agents",
-    heroTitle: "Your agents.",
-    heroAccent: "Your work. Your control.",
+    heroTitle: "Claude Code. Codex.",
+    heroAccent: "Within reach on iPhone.",
     hero: "Bring tasks, history and project rules into one place. Follow supported coding agents on your computers and continue their work from Mac, iPhone and iPad. Apple Watch offers quick decisions through your paired iPhone.",
     heroAction: "Request an invitation",
     productAction: "See the product",
@@ -114,8 +114,8 @@ export const copy = {
   ru: {
     cta: "TestFlight по приглашению",
     eyebrow: "Personal live control для локальных coding agents",
-    heroTitle: "Ваши агенты.",
-    heroAccent: "Работа под вашим контролем.",
+    heroTitle: "Claude Code. Codex.",
+    heroAccent: "Под рукой на iPhone.",
     hero: "Соберите задачи, историю и правила проекта в одном месте. Следите за поддерживаемыми coding-агентами на своих компьютерах и продолжайте работу с Mac, iPhone и iPad. Apple Watch помогает быстро ответить через связанный iPhone.",
     heroAction: "Запросить приглашение",
     productAction: "Посмотреть продукт",

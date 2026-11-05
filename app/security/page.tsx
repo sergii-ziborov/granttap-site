@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import { metadataForPage } from "../SearchMetadata/pages";
+import { pageLocale, type PublicPageProps } from "../SearchMetadata";
 import { LegalPage } from "../components/LegalPage";
 
-export const metadata: Metadata = { title: "Security", description: "The exact GrantTap Personal encryption and trust boundary.", alternates: { canonical: "/security" } };
+export function generateMetadata(props: PublicPageProps = {}) { return metadataForPage("/security", props); }
 
-export default function SecurityPage() {
-  return <LegalPage
+export default async function SecurityPage(props: PublicPageProps = {}) {
+  return <LegalPage initialLocale={await pageLocale(props)}
     title={{ en: "Security", ru: "Безопасность" }}
     updated={{ en: "August 23, 2026", ru: "23 августа 2026" }}
     updatedISO="2026-08-23"

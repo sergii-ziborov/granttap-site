@@ -1,10 +1,9 @@
 import { render, screen, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { expect, test } from "vitest";
 import PricingPage from "../../app/pricing/page";
 
-test("first launch offers three monthly plans and a separate one-time Mac purchase", () => {
-  render(<PricingPage />);
+test("first launch offers three monthly plans and a separate one-time Mac purchase", async () => {
+  render(await PricingPage());
   for (const [name, price, computers] of [["Personal", "$4.99", "2"],
     ["Personal Plus", "$7.99", "5"], ["Fleet", "$13.99", "15"]]) {
     const card = screen.getByRole("article", { name });
@@ -17,9 +16,7 @@ test("first launch offers three monthly plans and a separate one-time Mac purcha
 });
 
 test("Russian pricing keeps the locale through its real installation and help paths", async () => {
-  const user = userEvent.setup();
-  render(<PricingPage />);
-  await user.click(screen.getByRole("button", { name: "Switch to Russian" }));
+  render(await PricingPage({ searchParams: Promise.resolve({ lang: "ru" }) }));
   expect(screen.getByRole("heading", { name: "Выберите, сколько компьютеров подключить" })).toBeTruthy();
   expect(screen.getByRole("link", { name: "Подробнее о Mac Local" }).getAttribute("href")).toBe("/mac?lang=ru");
   expect(screen.getAllByRole("link", { name: "Запросить приглашение" })

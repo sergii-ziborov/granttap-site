@@ -1,12 +1,12 @@
 /* The guide shares the site's graphite, orange, typography and chrome. */
 .guide-app {
-  --g-bg:#101114;
-  --g-panel:#181a1e;
-  --g-raised:#202329;
-  --g-ink:#f5f2ee;
-  --g-muted:#a9a6a2;
-  --g-line:#303238;
-  --g-accent:#ff865f;
+  --g-bg:var(--paper);
+  --g-panel:var(--panel);
+  --g-raised:var(--panel-raised);
+  --g-ink:var(--ink);
+  --g-muted:var(--muted);
+  --g-line:var(--line);
+  --g-accent:var(--accent-ink);
   --g-tint:#291e1a;
   --g-teal:var(--g-accent);
   background:var(--g-bg);
@@ -15,17 +15,7 @@
   font-family:var(--font-sans);
   overflow-wrap:break-word
 }
-.guide-app[data-theme=light] {
-  --g-bg:#faf9f7;
-  --g-panel:#fff;
-  --g-raised:#efeeeb;
-  --g-ink:#202126;
-  --g-muted:#656366;
-  --g-line:#dedbd7;
-  --g-accent:#aa3613;
-  --g-tint:#fbede6;
-  color-scheme:light
-}
+
 .guide-app :where(button,input) {
   font:inherit
 }

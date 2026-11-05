@@ -5,7 +5,7 @@ import { body as RU } from "./config-ru";
 export const configStory = composeStory({
   "slug": "granttap-agent-environment-config-secrets",
   "date": "2026-10-17",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/practical2026-five/config-cover.webp",
   "inlineIllustration": "/blog/practical2026-five/config-validation.webp",
   "additionalIllustration": "/blog/practical2026-five/config-rotation.webp",

@@ -1,18 +1,18 @@
 "use client";
 
-import { LanguageToggle, useLocale } from "../components/Locale";
-import { SiteFooter, SiteHeader } from "../components/SiteChrome";
+import type { Locale } from "../components/Locale";
+import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
 import { installationAction, launchOffer, localizedProductPath, usdPrice } from ".";
 import { pricingCopy } from "./pricingCopy";
 import { cancellationSupport } from "./cancellationSupport";
 
-export function PricingView() {
-  const { locale, setLocale } = useLocale();
+export function PricingView({ initialLocale = "en" }: { initialLocale?: Locale }) {
+  const locale = initialLocale;
   const t = pricingCopy[locale];
   const action = installationAction(locale);
   return <main className="offer-page" lang={locale}>
     <SiteHeader locale={locale} active="pricing"
-      languageControl={<LanguageToggle locale={locale} setLocale={setLocale} />} />
+      languageControl={<LocaleLinks locale={locale} path="/pricing" />} />
     <section className="section-shell offer-intro">
       <p className="kicker">{t.kicker}</p><h1>{t.title}</h1><p>{t.intro}</p>
       <p className="offer-availability">{t.availability}</p>

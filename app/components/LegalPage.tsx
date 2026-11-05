@@ -3,10 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { LanguageToggle, useLocale } from "./Locale";
+import type { Locale } from "./Locale";
 import { EditorialArt } from "./EditorialArt";
 import { ReadingGrid } from "./ReadingGrid";
-import { SiteFooter, SiteHeader } from "./SiteChrome";
+import { LocaleLinks, SiteFooter, SiteHeader } from "./SiteChrome";
 import { localizedProductPath } from "../ProductOffer";
 
 const LEGAL_LINKS = [
@@ -31,6 +31,7 @@ type Section = {
 };
 
 export function LegalPage({
+  initialLocale = "en",
   title,
   updated,
   updatedISO,
@@ -38,6 +39,7 @@ export function LegalPage({
   art,
   sections,
 }: {
+  initialLocale?: Locale;
   title: { en: string; ru: string };
   updated: { en: string; ru: string };
   updatedISO: string;
@@ -45,7 +47,7 @@ export function LegalPage({
   art?: { src: string; width: number; height: number; caption: { en: string; ru: string } };
   sections: { en: Section[]; ru: Section[] };
 }) {
-  const { locale, setLocale } = useLocale();
+  const locale = initialLocale;
   const pathname = usePathname();
   const labels =
     locale === "en"
@@ -68,7 +70,7 @@ export function LegalPage({
     <main className="legal-shell" lang={locale}>
       <a className="skip-link" href="#legal-content">{labels.skip}</a>
       <SiteHeader locale={locale} active={pathname === "/pricing" ? "pricing" : pathname === "/support" ? "support" : undefined}
-        languageControl={<LanguageToggle locale={locale} setLocale={setLocale} />} />
+        languageControl={<LocaleLinks locale={locale} path={pathname || "/"} />} />
       <article className="legal-document" id="legal-content">
         <div className="legal-head">
           <p className="kicker">{labels.footer}</p>

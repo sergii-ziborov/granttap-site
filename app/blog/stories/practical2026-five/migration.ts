@@ -5,7 +5,7 @@ import { body as RU } from "./migration-ru";
 export const migrationStory = composeStory({
   "slug": "granttap-agent-database-migration-rehearsal",
   "date": "2026-10-18",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/practical2026-five/migration-cover.webp",
   "inlineIllustration": "/blog/practical2026-five/migration-backfill.webp",
   "additionalIllustration": "/blog/practical2026-five/migration-restore.webp",

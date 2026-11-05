@@ -9,7 +9,7 @@ type StoryLocale = Pick<ArticleText, "title" | "summary" | "category" | "closing
   additionalIllustrationCaption: string;
 };
 
-type StoryDraft = Pick<BlogArticle, "slug" | "date" | "reviewedOn" | "cover" | "screenshot" | "inlineIllustration" | "additionalIllustration"> & {
+type StoryDraft = Pick<BlogArticle, "slug" | "date" | "reviewedOn" | "publishedOn" | "cover" | "screenshot" | "inlineIllustration" | "additionalIllustration"> & {
   en: StoryLocale;
   ru: StoryLocale;
 };
@@ -38,6 +38,7 @@ export function composeStory(draft: StoryDraft): BlogArticle {
     slug: draft.slug,
     date: draft.date,
     reviewedOn: draft.reviewedOn,
+    publishedOn: draft.publishedOn,
     minutes: Math.ceil(Math.max(articleBodyWordCount(en), articleBodyWordCount(ru)) / 180),
     cover: draft.cover,
     generatedCover: true,

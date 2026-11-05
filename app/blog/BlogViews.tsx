@@ -4,6 +4,7 @@ import { ReadingGrid } from "../components/ReadingGrid";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
 import type { BlogArticle, BlogLocale } from "./articleTypes";
 import { inlineStoryLinks } from "./InlineStoryLinks";
+import { articlePublicationDate } from "./publication";
 import { relatedArticles } from "./related";
 
 function blogHref(path: string, locale: BlogLocale) {
@@ -11,7 +12,7 @@ function blogHref(path: string, locale: BlogLocale) {
 }
 
 export function BlogIndex({ articles, locale }: { articles: BlogArticle[]; locale: BlogLocale }) {
-  const first = articles[0];
+  const first = articles.find(article => article.slug === "granttap-light-dark-auto-theme-testing") || articles[0];
   return <main className="blog-shell" lang={locale}>
     <SiteHeader locale={locale} active="blog" languageControl={<LocaleLinks locale={locale} path="/blog" />} />
     <section className="blog-lead section-shell">
@@ -58,6 +59,7 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         <h1>{t.title}</h1>
         <p className="blog-deck">{t.summary}</p>
       </div>
+      <p className="section-shell blog-byline"><a href={blogHref("/about", locale)}>GrantTap</a> · {locale === "ru" ? "Опубликовано" : "Published"} <time dateTime={articlePublicationDate(article)}>{articlePublicationDate(article)}</time>{articlePublicationDate(article) !== article.date && <span> · {locale === "ru" ? "Слот архива" : "Archive slot"}: {article.date}</span>}</p>
       <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{article.screenshot
         ? (locale === "ru" ? "Образ статьи создан специально для этого материала. Экраны GrantTap ниже сняты отдельно на тестовых данных." : "Created for this story. GrantTap screens below are separate captures made with sample data.")
         : (locale === "ru" ? "Сгенерированная иллюстрация к материалу. Она передаёт идею статьи и не является экраном приложения." : "AI-generated editorial illustration of the story's ideas, not an application screenshot.")}</figcaption>}</figure>

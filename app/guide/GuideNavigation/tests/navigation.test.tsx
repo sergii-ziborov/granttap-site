@@ -29,10 +29,10 @@ describe("guide navigation", () => {
     const view = render(<GuideShell current="message-delivery" searchIndex={guideSearchIndex}>Читать</GuideShell>);
     expect(screen.getByRole("link", { name: "Как доставляется сообщение" }).getAttribute("aria-current")).toBe("page");
     expect(document.documentElement.lang).toBe("ru");
-    fireEvent.click(screen.getByRole("button", { name: "Включить светлую тему" }));
-    expect(localStorage.getItem("granttap.guide.theme")).toBe("light");
-    fireEvent.click(screen.getByRole("button", { name: "Включить тёмную тему" }));
-    expect(localStorage.getItem("granttap.guide.theme")).toBe("dark");
+    fireEvent.change(screen.getByLabelText("Цветовая тема"), { target: { value: "light" } });
+    expect(localStorage.getItem("granttap.theme")).toBe("light");
+    fireEvent.change(screen.getByLabelText("Цветовая тема"), { target: { value: "dark" } });
+    expect(localStorage.getItem("granttap.theme")).toBe("dark");
     view.unmount(); expect(document.documentElement.lang).toBe("en");
   });
   it("opens search by shortcut, filters all chapters, navigates results and closes with Escape", () => {
@@ -58,7 +58,7 @@ describe("guide navigation", () => {
     const get = vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => { throw new Error("private mode"); });
     const set = vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("private mode"); });
     render(<GuideShell searchIndex={guideSearchIndex}>Читать</GuideShell>);
-    fireEvent.click(screen.getByRole("button", { name: "Включить светлую тему" }));
+    fireEvent.change(screen.getByLabelText("Цветовая тема"), { target: { value: "light" } });
     fireEvent.click(screen.getByRole("button", { name: "Поиск по руководству ⌘ K" }));
     fireEvent.click(screen.getByRole("dialog"));
     expect(screen.queryByRole("dialog")).toBeNull();

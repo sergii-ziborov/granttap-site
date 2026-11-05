@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
+import { metadataForPage } from "../SearchMetadata/pages";
+import { pageLocale, type PublicPageProps } from "../SearchMetadata";
 import { LegalPage } from "../components/LegalPage";
 import { documentProps } from "../ProductInformation";
 
-export const metadata: Metadata = {
-  title: "Support", description: "GrantTap setup, connection guides, troubleshooting and frequently asked questions.",
-  alternates: { canonical: "/support" },
-};
+export function generateMetadata(props: PublicPageProps = {}) { return metadataForPage("/support", props); }
 
-export default function Page() { return <LegalPage {...documentProps("support")} />; }
+export default async function Page(props: PublicPageProps = {}) { return <LegalPage initialLocale={await pageLocale(props)} {...documentProps("support")} />; }

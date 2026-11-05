@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
+import { localizedMetadata } from "../SearchMetadata";
 import { CapabilityPage } from "../components/CapabilityPage";
 
-export const metadata: Metadata = {
-  title: "Grok Bot as a scoped Mesh participant",
-  description: "Connect a persistent Grok Bot endpoint with explicit Mesh, actor, operation, and expiry scope.",
-  alternates: { canonical: "/grok-bot" },
-};
+export const metadata = localizedMetadata("/grok-bot", "en", "Grok Bot as a scoped Mesh participant", "Connect a persistent Grok Bot endpoint with explicit Mesh, actor, operation, and expiry scope.", { bilingual: false });
 
 export default function GrokBotPage() {
   return <CapabilityPage

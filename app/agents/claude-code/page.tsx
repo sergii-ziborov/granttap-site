@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
+import { localizedMetadata } from "../../SearchMetadata";
 import { CapabilityPage } from "../../components/CapabilityPage";
 
-export const metadata: Metadata = {
-  title: "Claude Code on iPhone and Apple Watch",
-  description: "See, approve, continue, and hand off local Claude Code tasks with GrantTap Personal.",
-  alternates: { canonical: "/agents/claude-code" },
-};
+export const metadata = localizedMetadata("/agents/claude-code", "en", "Claude Code on iPhone and Apple Watch", "See, approve, continue, and hand off local Claude Code tasks with GrantTap Personal.", { bilingual: false });
 
 export default function ClaudeCodePage() {
   return <CapabilityPage

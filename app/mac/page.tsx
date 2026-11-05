@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizedMetadata } from "../SearchMetadata";
 import Image from "next/image";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
 import { installationAction, launchOffer, localizedProductPath, usdPrice } from "../ProductOffer";
@@ -51,12 +52,8 @@ const content = {
 export async function generateMetadata({ searchParams }: Params): Promise<Metadata> {
   const { lang } = await searchParams;
   const ru = lang === "ru";
-  return {
-    title: ru ? "GrantTap для Mac" : "GrantTap for Mac",
-    description: content[ru ? "ru" : "en"].intro,
-    alternates: { canonical: ru ? "/mac?lang=ru" : "/mac", languages: { en: "/mac", ru: "/mac?lang=ru" } },
-    openGraph: { images: [{ url: ru ? "/product/mac-now-ru.png" : "/product/mac-now.png", width: 2880, height: 1780 }] },
-  };
+  const locale = ru ? "ru" : "en";
+  return localizedMetadata("/mac", locale, content[locale].title, content[locale].intro);
 }
 
 export default async function MacPage({ searchParams }: Params) {

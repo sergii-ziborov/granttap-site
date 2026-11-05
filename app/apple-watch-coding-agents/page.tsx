@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
+import { localizedMetadata } from "../SearchMetadata";
 import { CapabilityPage } from "../components/CapabilityPage";
 
-export const metadata: Metadata = {
-  title: "Coding agents on Apple Watch",
-  description: "See Needs You, approve, answer, and send short coding-agent turns from Apple Watch through the paired iPhone.",
-  alternates: { canonical: "/apple-watch-coding-agents" },
-};
+export const metadata = localizedMetadata("/apple-watch-coding-agents", "en", "Coding agents on Apple Watch", "See Needs You, approve, answer, and send short coding-agent turns from Apple Watch through the paired iPhone.", { bilingual: false });
 
 export default function AppleWatchPage() {
   return <CapabilityPage

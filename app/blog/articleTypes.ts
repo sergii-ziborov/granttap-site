@@ -23,6 +23,8 @@ export type BlogArticle = {
   slug: string;
   date: string;
   reviewedOn?: string;
+  /** Actual page publication; date remains the requested archive slot. */
+  publishedOn?: string;
   minutes: number;
   cover: string;
   generatedCover?: boolean;

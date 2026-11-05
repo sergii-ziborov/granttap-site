@@ -4,7 +4,7 @@ import { body as deliveryRu } from "./delivery-ru";
 import { additionalNovemberStories } from "./more";
 
 export const novemberStories = [composeStory({
-  slug: "granttap-message-delivery-working-status", date: "2026-11-03",
+  slug: "granttap-message-delivery-working-status", date: "2026-11-03", publishedOn: "2026-11-04",
   cover: "/blog/november2026/delivery-cover.webp",
   inlineIllustration: "/blog/november2026/delivery-stages.webp",
   additionalIllustration: "/blog/november2026/delivery-recovery.webp",

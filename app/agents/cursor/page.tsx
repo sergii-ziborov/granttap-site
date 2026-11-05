@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
+import { localizedMetadata } from "../../SearchMetadata";
 import { CapabilityPage } from "../../components/CapabilityPage";
 
-export const metadata: Metadata = {
-  title: "Cursor integration",
-  description: "See Cursor tasks, continue supported local sessions, and inspect the controls available through GrantTap.",
-  alternates: { canonical: "/agents/cursor" },
-};
+export const metadata = localizedMetadata("/agents/cursor", "en", "Cursor integration", "See Cursor tasks, continue supported local sessions, and inspect the controls available through GrantTap.", { bilingual: false });
 
 export default function CursorPage() {
   return <CapabilityPage

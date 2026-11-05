@@ -1,0 +1,156 @@
+{
+  "mode": "built-in image_gen",
+  "preparedOn": "2026-11-05",
+  "images": [
+    {
+      "key": "access-cover",
+      "destination": "public/blog/seo2026-guides/access-cover.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. An ivory file cabinet behind a graphite doorway, one matching orange key held in its separate fitted tray. Concept: a file-access denial requires identifying the correct process and permission layer. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-1dcd64be-13e0-4b3e-9ce8-f78b59355029.png",
+      "originalSha256": "c3b55b4972967004581efb8c327f749bed2cf993645697464a22d10c377939f2",
+      "webpSha256": "d47506562688ecda1af9b1713ed41feb265e664e0ee6fcd1a3cfd69d377fba0a",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "access-layers",
+      "destination": "public/blog/seo2026-guides/access-layers.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. Three successive tactile architectural thresholds, one ivory, one graphite and one orange, with a single blank paper document visible beyond them. Concept: operating-system access, agent policy and repository scope are separate checks. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-66a05c2b-4a23-4079-bc5b-7fcb5d7314a0.png",
+      "originalSha256": "627b4ac1e6e52a6ed076fc0306a819e6ea20c247b4aa079ec06c7a7ceeae6fed",
+      "webpSha256": "b04c65ed605f7067f7670375b10b31c5f531e4c2edc55122087c325ad0e02cad",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "access-proof",
+      "destination": "public/blog/seo2026-guides/access-proof.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. A small graphite magnifying lens examining one harmless ivory document in a selected tray, surrounding drawers remaining closed. Concept: verify the narrow access needed rather than opening every folder. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-db7fd2c4-8a57-48b5-b11b-59ac34be38f1.png",
+      "originalSha256": "164175733f7e4968b7ae75fbe1dfbeab01629687c31bdb8cd495b104979f7daf",
+      "webpSha256": "4b3147f0f1ffe3a48e2e3db02199509a10fe56e353f86e4359033fc612e13c6a",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "checkout-cover",
+      "destination": "public/blog/seo2026-guides/checkout-cover.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. Two nearly identical graphite architectural workspaces on separate ivory islands, one containing an orange bookmark and the other an ivory bookmark. Concept: similarly named checkouts can hold different working state. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-39f3570d-e72f-4cf0-840f-14cd10477bdc.png",
+      "originalSha256": "2a2b1a8e1cb0a8e5ced9969ee0ca666fcaed96972b05616ed9ad9e0a80411a28",
+      "webpSha256": "c2220ca58cf9068442e36213a834c53ee2aef6c124f7615df6e07b51a5ba8d42",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "checkout-handoff",
+      "destination": "public/blog/seo2026-guides/checkout-handoff.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. Two separate matte workbench trays joined by a narrow orange bridge, a sealed ivory checkpoint box moving between them while loose graphite paper sheets stay behind. Concept: committed handoff and uncommitted edits have different scope. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-5743ac8f-e917-4ce5-b525-7e905a3604c2.png",
+      "originalSha256": "f5584411c81c86246455a49128eb474d4c7a94e8e682410fb4583052c58c6c00",
+      "webpSha256": "8dfb280bf599c5a07a6c0eb49afd8f7a5a2436cd5bfd646b1b6a560251ccedd9",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "checkout-identity",
+      "destination": "public/blog/seo2026-guides/checkout-identity.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. A precision still life of a graphite directory box, an ivory revision tile and an orange location pin aligned without merging. Concept: working directory, branch and revision establish source identity. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-f8ad3ce0-432a-4bc2-be36-78d354072c27.png",
+      "originalSha256": "4c1b03e909f069a2b2f4ea3b678d32c06adc04d209217e3e57286fa5be6cc5f0",
+      "webpSha256": "4fcbb82f8ac73323c2da88842f5337381a59d0a130fb226096cfcb525ce30922",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "sleep-cover",
+      "destination": "public/blog/seo2026-guides/sleep-cover.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. A graphite laptop sculpture resting beside a small ivory handheld device, separated by a gap in a thin orange communication thread. Concept: a sleeping execution computer cannot complete work merely because the phone is connected. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-bb4280c5-43fb-4196-bb61-be4a104fdf51.png",
+      "originalSha256": "7c5c462a1b8c17db527ff62f22b0cebe5b170bf51d880e0198be070112175775",
+      "webpSha256": "7a9867bb6825a55cd5a1e18602e39c4ee8ff5309e41bfcfea086906f12dfb634",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "sleep-return",
+      "destination": "public/blog/seo2026-guides/sleep-return.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. An ivory handheld controller retaining a blank paper draft while an orange thread reconnects to a graphite workstation sculpture. Concept: recover the original operation after the computer returns. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-be9d3a94-67d9-4198-9920-17bc07bdbae7.png",
+      "originalSha256": "f405a8ac04b8a1d8225c9fd215304d46777f8b9c786f0fa62df4c2fe6f85e924",
+      "webpSha256": "a044d504594259cf7f9741fa73cba08c6855576387289c67fbd34a456b19f4a7",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "sleep-states",
+      "destination": "public/blog/seo2026-guides/sleep-states.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. A wide landscape still life of three folded graphite laptop models with distinct physical poses, an illuminated orange hinge on one and a small disconnected ivory cable beside another. Concept: display off, system sleep and network loss differ. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-98d9f847-75eb-4a70-9844-aaab3b61a218.png",
+      "originalSha256": "4d6f71e3981e68178a14688b913c030aeea71506d18b8a21dfe9dbabfde214aa",
+      "webpSha256": "925cd97711cfb887a715d7625da7f1cac37d3ca2584d8816faba86734b6f1e01",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "themes-auto",
+      "destination": "public/blog/seo2026-guides/themes-auto.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. A graphite and ivory split circular dial above a small three-position ceramic selector, one orange position, without labels. Concept: system-following Auto and explicit appearance choices. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-22909fd1-ba00-4984-bbd0-e2702d52cc51.png",
+      "originalSha256": "4b8687863275618a31226a63385b38ec5c9291ef77627129e02f19b2c9c5e8ff",
+      "webpSha256": "ccadc8c736f1f8f860c5a90524d3943f07483d409004566b9d43a99d4be8aa1b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "themes-cover",
+      "destination": "public/blog/seo2026-guides/themes-cover.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. Two complementary architectural reading rooms side by side, warm ivory daylight and deep graphite evening, joined by a restrained orange accent ribbon. Concept: one readable website in light and dark appearances. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-a4dfa262-e475-468d-8718-022f2c998598.png",
+      "originalSha256": "b3134267b40c8d8059a02e9f2d44fc4e772cec043fc6f1e06892b5915edb3421",
+      "webpSha256": "3840e04ee47a1846d668ac913047926c9fe55eff2fe9aff0455b5d1b61df8537",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "themes-verify",
+      "destination": "public/blog/seo2026-guides/themes-verify.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. Two matching small rectangular reading surfaces, one ivory and one graphite, inspected under a large orange-rimmed magnifying lens; abstract blocks only, no actual UI. Concept: verifying readable states across appearances. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-406ff913-e4e0-4261-968c-b49d2be8a865.png",
+      "originalSha256": "709f23da55c17c8f2cccbbf0d4ceb517f036c561d63300137a3bd082a5f917a3",
+      "webpSha256": "87db69fc10a08f4db5192b6e9c34fc945c807d183f21710cbd392722b15f58e6",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "tools-check",
+      "destination": "public/blog/seo2026-guides/tools-check.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. Three distinct tactile components in separate fitted compartments, one connected by a fine orange thread to a finished blank record card. Concept: installed, available and observed use are different facts. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-c1468c66-0206-4440-82aa-f5724ee84a7f.png",
+      "originalSha256": "0f8aed620540207ac8299c80347212969784245b52ba9c4634ad34c675796ae8",
+      "webpSha256": "80f7206277f96650e88662b80e67a20841134324850803a80aa01a918e9cc59a",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "tools-cover",
+      "destination": "public/blog/seo2026-guides/tools-cover.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. Three distinct crafted objects on a warm ivory workbench: an open graphite instruction folio, an ivory precision tool socket and a small orange mechanical event switch. Concept: skills, MCP tools and hooks perform different roles. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-65f807c1-fba3-463b-a3a5-23c6f2955e9f.png",
+      "originalSha256": "e9c70b940ba22889f17b0c7c38e2cb5a1ada9e9f7ded92aa09b9acaae744d0cf",
+      "webpSha256": "1df5fc41fac6122da50cecb984be892b0aaa0bf38a4afe7fa23d6b8316c786ed",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "tools-workflow",
+      "destination": "public/blog/seo2026-guides/tools-workflow.webp",
+      "prompt": "Create an original premium editorial illustration for GrantTap, landscape 16:9, high resolution. A folded ivory instruction strip leading to a graphite tool dock, with a separate orange latch operating at the boundary. Concept: a workflow calls a tool while enforcement belongs to the execution boundary. Use tactile paper and matte ceramic, warm ivory, graphite and restrained burnt orange, precise architectural composition, soft realistic studio lighting, generous negative space. Conceptual editorial art, never an actual app screenshot or a measured result. No people, letters, numbers, readable text, logos, watermarks, QR codes or fake charts.",
+      "sourceAssetId": "exec-fffc9090-07a5-4847-941a-683e44f48a9c.png",
+      "originalSha256": "12da11b9e345af732c02c800c8f3ade826a6470b2c241d3c898fb702abc9a836",
+      "webpSha256": "0bc70969518f9d1ba937bb1be22d7140e62855dab018b036ea1b97a17810b23a",
+      "width": 1672,
+      "height": 941
+    }
+  ]
+}

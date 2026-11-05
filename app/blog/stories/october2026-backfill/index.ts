@@ -14,7 +14,7 @@ export const octoberBackfillStories = [
 composeStory({
   "slug": "granttap-evaluate-coding-agent-own-task",
   "date": "2026-10-25",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-backfill/evaluation-cover.webp",
   "inlineIllustration": "/blog/october2026-backfill/evaluation-scenario.webp",
   "additionalIllustration": "/blog/october2026-backfill/evaluation-evidence.webp",
@@ -78,7 +78,7 @@ composeStory({
 composeStory({
   "slug": "granttap-untrusted-content-agent-tool-boundaries",
   "date": "2026-10-26",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-backfill/injection-cover.webp",
   "inlineIllustration": "/blog/october2026-backfill/injection-boundary.webp",
   "additionalIllustration": "/blog/october2026-backfill/injection-response.webp",
@@ -145,7 +145,7 @@ composeStory({
 composeStory({
   "slug": "granttap-review-agent-diffs-from-phone",
   "date": "2026-10-27",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-backfill/review-cover.webp",
   "inlineIllustration": "/blog/october2026-backfill/review-scope.webp",
   "additionalIllustration": "/blog/october2026-backfill/review-acceptance.webp",
@@ -212,7 +212,7 @@ composeStory({
 composeStory({
   "slug": "granttap-agent-processes-cpu-memory-disk",
   "date": "2026-10-28",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-backfill/resources-cover.webp",
   "inlineIllustration": "/blog/october2026-backfill/resources-ownership.webp",
   "additionalIllustration": "/blog/october2026-backfill/resources-recovery.webp",
@@ -279,7 +279,7 @@ composeStory({
 composeStory({
   "slug": "granttap-share-agent-project-colleague-access",
   "date": "2026-10-29",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-backfill/team-cover.webp",
   "inlineIllustration": "/blog/october2026-backfill/team-scope.webp",
   "additionalIllustration": "/blog/october2026-backfill/team-offboarding.webp",

@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import { metadataForPage } from "../SearchMetadata/pages";
+import { pageLocale, type PublicPageProps } from "../SearchMetadata";
 import { LegalPage } from "../components/LegalPage";
 
-export const metadata: Metadata = { title: "Data choices and deletion", description: "How to manage or delete GrantTap Personal data.", alternates: { canonical: "/data-rights" } };
+export function generateMetadata(props: PublicPageProps = {}) { return metadataForPage("/data-rights", props); }
 
-export default function DataRightsPage() {
-  return <LegalPage
+export default async function DataRightsPage(props: PublicPageProps = {}) {
+  return <LegalPage initialLocale={await pageLocale(props)}
     title={{ en: "Data choices and deletion", ru: "Управление и удаление данных" }}
     updated={{ en: "September 30, 2026", ru: "30 сентября 2026" }}
     updatedISO="2026-09-30"

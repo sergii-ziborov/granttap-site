@@ -5,7 +5,7 @@ import { body as RU } from "./compat-ru";
 export const compatStory = composeStory({
   "slug": "granttap-agent-api-client-server-compatibility",
   "date": "2026-10-19",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/practical2026-five/compat-cover.webp",
   "inlineIllustration": "/blog/practical2026-five/compat-matrix.webp",
   "additionalIllustration": "/blog/practical2026-five/compat-rollout.webp",

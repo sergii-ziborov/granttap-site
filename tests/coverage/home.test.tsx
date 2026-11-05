@@ -7,7 +7,7 @@ test("renders the Personal product journey and locale control", async () => {
   const user = userEvent.setup();
   render(await Home({ searchParams: Promise.resolve({}) }));
 
-  expect(screen.getByRole("heading", { name: /Your agents.*Your work.*Your control/i })).toBeTruthy();
+  expect(screen.getByRole("heading", { name: /Claude Code.*Codex.*Within reach/i })).toBeTruthy();
   const providers = screen.getByRole("region", { name: "Supported providers" });
   expect(within(providers).getByRole("link", { name: "Claude Code" })).toBeTruthy();
   expect(within(providers).getByRole("link", { name: "Codex" })).toBeTruthy();
@@ -21,7 +21,7 @@ test("renders the Personal product journey and locale control", async () => {
   expect(screen.getByText(/Install GrantTap from Cursor Marketplace/)).toBeTruthy();
   expect(screen.getAllByText(/npm install -g granttap-mcp/).length).toBeGreaterThan(0);
   expect(screen.queryByText(/Enterprise|Open account|GrantTap Web/i)).toBeNull();
-  expect(screen.getByRole("img", { name: "GrantTap live task chat" })).toBeTruthy();
+  expect(screen.getByRole("img", { name: "GrantTap Now on iPhone" })).toBeTruthy();
 
   const previews = screen.getAllByRole("button", { name: /Open full-size/i });
   expect(previews.length).toBeGreaterThanOrEqual(3);
@@ -46,14 +46,14 @@ test("renders the Personal product journey and locale control", async () => {
   fireEvent.mouseDown(usageDialog);
   expect(screen.queryByRole("dialog")).toBeNull();
 
-  expect(screen.getByRole("link", { name: "Switch to Russian" }).getAttribute("href")).toBe("/?lang=ru");
+  expect(screen.getByRole("link", { name: "RU — Switch to Russian" }).getAttribute("href")).toBe("/?lang=ru");
 });
 
 test("a Russian journal link opens the product and returns to the Russian journal", async () => {
   window.localStorage.clear();
   window.history.replaceState(null, "", "/?lang=ru");
   const view = render(await Home({ searchParams: Promise.resolve({ lang: "ru" }) }));
-  expect(await screen.findByRole("heading", { name: /Ваши агенты/i })).toBeTruthy();
+  expect(await screen.findByRole("heading", { name: /Claude Code.*Codex/i })).toBeTruthy();
   expect(within(screen.getByRole("navigation", { name: "Основная навигация" })).getByRole("link", { name: "Блог" }).getAttribute("href")).toBe("/blog?lang=ru");
   view.unmount();
   window.history.replaceState(null, "", "/");

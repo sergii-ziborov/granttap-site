@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
+import { localizedMetadata } from "../SearchMetadata";
 import { CapabilityPage } from "../components/CapabilityPage";
 
-export const metadata: Metadata = {
-  title: "Mesh for coding-agent handoffs",
-  description: "A Mesh can connect multiple repositories while Tasks keep their identity across agents and computers.",
-  alternates: { canonical: "/project-mesh" },
-};
+export const metadata = localizedMetadata("/project-mesh", "en", "Mesh for coding-agent handoffs", "A Mesh can connect multiple repositories while Tasks keep their identity across agents and computers.", { bilingual: false });
 
 export default function ProjectMeshPage() {
   return <CapabilityPage

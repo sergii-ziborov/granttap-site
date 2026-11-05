@@ -5,7 +5,7 @@ import { body as RU } from "./build-ru";
 export const buildStory = composeStory({
   "slug": "granttap-agent-long-builds-process-results",
   "date": "2026-10-15",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/practical2026-five/build-cover.webp",
   "inlineIllustration": "/blog/practical2026-five/build-pipeline.webp",
   "additionalIllustration": "/blog/practical2026-five/build-recovery.webp",

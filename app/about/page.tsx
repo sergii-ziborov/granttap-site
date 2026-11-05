@@ -1,17 +1,14 @@
-import type { Metadata } from "next";
+import { metadataForPage } from "../SearchMetadata/pages";
+import { pageLocale, type PublicPageProps } from "../SearchMetadata";
 import { LegalPage } from "../components/LegalPage";
 
-export const metadata: Metadata = {
-  title: "About GrantTap",
-  description: "The people, devices, and engineering systems behind GrantTap.",
-  alternates: { canonical: "/about" },
-};
+export function generateMetadata(props: PublicPageProps = {}) { return metadataForPage("/about", props); }
 
-export default function AboutPage() {
-  return <LegalPage
+export default async function AboutPage(props: PublicPageProps = {}) {
+  return <LegalPage initialLocale={await pageLocale(props)}
     title={{ en: "About GrantTap", ru: "О GrantTap" }}
-    updated={{ en: "September 28, 2026", ru: "28 сентября 2026" }}
-    updatedISO="2026-09-28"
+    updated={{ en: "November 5, 2026", ru: "5 ноября 2026" }}
+    updatedISO="2026-11-05"
     intro={{
       en: "GrantTap helps you stay close to the work your local coding agents do. See the Task, make a timely decision, and continue with the right context from Mac, iPhone, iPad, or Apple Watch.",
       ru: "GrantTap помогает оставаться рядом с работой локальных coding-агентов. Следите за Task, вовремя принимайте решения и продолжайте с нужным контекстом на Mac, iPhone, iPad или Apple Watch.",
@@ -19,11 +16,13 @@ export default function AboutPage() {
     art={{ src: "/visuals/device-journey.jpg", width: 1774, height: 887, caption: { en: "Generated illustration of GrantTap's device journey. The screens are conceptual, not product captures.", ru: "Сгенерированная иллюстрация работы на разных устройствах. Экраны условные, не снимки приложения." } }}
     sections={{
       en: [
+        { heading: "How we prepare our guides", paragraphs: ["GrantTap guides combine first-party product evidence with linked primary documentation. AI assists with drafting, translation and illustrations. Generated art is labeled separately from real product captures, and practical examples are identified as examples. Publication dates describe when a page was released; an archive slot is shown separately for retrospective material. We revise product instructions when verified behavior changes and keep provider limitations explicit."], links: [{ label: "Complete product guide (Russian)", href: "/guide" }, { label: "Practical agent guides", href: "/blog" }, { label: "Report a correction", href: "/support" }] },
         { heading: "Four surfaces, one Mesh", paragraphs: ["The proposed one-time Mac license and optional Personal subscription cover different needs: licensed local control and own relay remain available without Personal. Mac, iPhone, and iPad use the shared Apple client for Mesh spaces, Tasks, decisions, usage, and graph evidence where their connection supports it. Apple Watch keeps urgent work visible and sends short decisions through its paired iPhone."] },
         { heading: "Engineering system", paragraphs: ["GrantTap MCP connects coding agents and machine hooks. GrantTap Engine stores chat and Task records and combines Weavatrix repository evidence with Cortex context compilation. Mesh preserves Task identity across executions and machines while the relay carries encrypted envelopes without reading their contents."] },
         { heading: "Independent product", paragraphs: ["GrantTap is developed by Serhii Ziborov. References to Claude Code, Codex, Cursor, Grok Build, Apple, Weavatrix, and Cortex describe integrations or separately licensed components; they do not imply endorsement by their providers. The current legal licensor is identified in the product licenses and Terms of Use."], links: [{ label: "Terms of Use", href: "/terms" }, { label: "Licenses and notices", href: "/licenses" }] },
       ],
       ru: [
+        { heading: "Как мы готовим руководства", paragraphs: ["В руководствах GrantTap мы соединяем сведения из собственного продукта со ссылками на первичную документацию. ИИ помогает с черновиками, переводом и иллюстрациями. Сгенерированные изображения подписаны отдельно от реальных снимков интерфейса, а учебные ситуации обозначены как примеры. Дата публикации показывает выход страницы; у ретроспективных материалов отдельно указан слот архива. Инструкции обновляются по проверенному поведению, а ограничения провайдеров остаются явными."], links: [{ label: "Полное руководство продукта", href: "/guide" }, { label: "Практические статьи", href: "/blog" }, { label: "Сообщить об исправлении", href: "/support" }] },
         { heading: "Единая Mesh на четырёх устройствах", paragraphs: ["Разовая лицензия Mac и необязательная Personal решают разные задачи: локальное управление и свой relay доступны без Personal. Mac, iPhone и iPad показывают одни и те же пространства Mesh, Tasks, решения, статистику и граф через общий Apple-клиент. Apple Watch держит срочные события на виду и отправляет короткие решения через связанный iPhone."] },
         { heading: "Инженерная система", paragraphs: ["GrantTap MCP связывает coding-агентов и машинные hooks. GrantTap Engine хранит записи чатов и Tasks и соединяет сведения Weavatrix о репозиториях с контекстом Cortex. Mesh сохраняет идентичность Task при смене исполнения и компьютера, а relay переносит зашифрованные сообщения без доступа к содержимому."] },
         { heading: "Независимый продукт", paragraphs: ["GrantTap разрабатывает Serhii Ziborov. Названия Claude Code, Codex, Cursor, Grok Build, Apple, Weavatrix и Cortex обозначают интеграции или отдельно лицензированные компоненты и не означают одобрения их владельцами. Действующий правообладатель указан в лицензиях и условиях использования."], links: [{ label: "Условия использования", href: "/terms" }, { label: "Лицензии и уведомления", href: "/licenses" }] },

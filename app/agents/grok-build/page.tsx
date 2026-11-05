@@ -1,11 +1,7 @@
-import type { Metadata } from "next";
+import { localizedMetadata } from "../../SearchMetadata";
 import { CapabilityPage } from "../../components/CapabilityPage";
 
-export const metadata: Metadata = {
-  title: "Grok Build integration",
-  description: "Follow Grok Build conversations from Mac, iPhone, and iPad, and send the next request back to the same local session.",
-  alternates: { canonical: "/agents/grok-build" },
-};
+export const metadata = localizedMetadata("/agents/grok-build", "en", "Grok Build integration", "Follow Grok Build conversations from Mac, iPhone, and iPad, and send the next request back to the same local session.", { bilingual: false });
 
 export default function GrokBuildPage() {
   return <CapabilityPage

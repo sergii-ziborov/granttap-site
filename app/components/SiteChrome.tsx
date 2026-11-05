@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import type { Locale } from "./Locale";
+import { ThemeSelector } from "../Appearance";
 
 type NavKey = "product" | "mac" | "how" | "security" | "blog" | "pricing" | "support";
 
@@ -22,8 +23,8 @@ function localeHref(href: string, locale: Locale) {
 
 export function LocaleLinks({ locale, path }: { locale: Locale; path: string }) {
   return <div className="language-toggle site-language-links" role="group" aria-label={locale === "ru" ? "Язык" : "Language"}>
-    <a href={path} aria-current={locale === "en" ? "true" : undefined} aria-label={locale === "en" ? "English, selected" : "Переключить на английский"}>EN</a>
-    <a href={`${path}?lang=ru`} aria-current={locale === "ru" ? "true" : undefined} aria-label={locale === "ru" ? "Русский, выбран" : "Switch to Russian"}>RU</a>
+    <a href={path} aria-current={locale === "en" ? "true" : undefined} aria-label={locale === "en" ? "EN — English, selected" : "EN — Переключить на английский"}>EN</a>
+    <a href={`${path}?lang=ru`} aria-current={locale === "ru" ? "true" : undefined} aria-label={locale === "ru" ? "RU — Русский, выбран" : "RU — Switch to Russian"}>RU</a>
   </div>;
 }
 
@@ -36,10 +37,10 @@ export function SiteHeader({ locale, active, languageControl }: {
     aria-current={active === item.key ? "page" : undefined}>{item[locale]}</a>);
   return <header className="site-header page-shell">
     <a className="brand" href={localeHref("/", locale)} aria-label="GrantTap home">
-      <Image src="/app-icon.png" alt="" width={34} height={34} priority unoptimized /><span>GrantTap</span>
+      <Image src="/brand/icon-72.webp" alt="" width={34} height={34} priority unoptimized /><span>GrantTap</span>
     </a>
     <nav className="site-nav" aria-label={locale === "ru" ? "Основная навигация" : "Primary navigation"}>{links}</nav>
-    <div className="site-header-actions">{languageControl}
+    <div className="site-header-actions">{languageControl}<ThemeSelector locale={locale} />
       <a className="nav-cta" href={localeHref("/#install", locale)}>{locale === "ru" ? "Установка" : "Install"} <span aria-hidden="true">↗</span></a>
     </div>
     <details className="site-menu"><summary>{locale === "ru" ? "Меню" : "Menu"}</summary>
@@ -69,7 +70,7 @@ const legal = [
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   return <footer className="site-footer page-shell">
-    <div className="footer-brand"><Image src="/app-icon.png" alt="" width={34} height={34} unoptimized />
+    <div className="footer-brand"><Image src="/brand/icon-72.webp" alt="" width={34} height={34} unoptimized />
       <span><strong>GrantTap</strong><small>{locale === "ru" ? "Контроль локальных coding agents" : "Local coding agents, in view"}</small></span>
     </div>
     <nav className="footer-links" aria-label={locale === "ru" ? "Руководства" : "Guides"}>

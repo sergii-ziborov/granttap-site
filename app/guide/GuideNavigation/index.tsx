@@ -7,7 +7,6 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { guideCatalog, guideGroups } from "../GuideContent/catalog";
 import { SearchDialog } from "./SearchDialog";
 import type { SearchEntry } from "./search";
-import { useGuideTheme } from "./theme";
 
 function Sidebar({ current, close }: { current?: string; close: () => void }) {
   return <>
@@ -31,7 +30,6 @@ export function GuideShell({ current, searchIndex, children }: {
   const [searchError, setSearchError] = useState(false);
   const drawer = useRef<HTMLElement>(null);
   const menuButton = useRef<HTMLButtonElement>(null);
-  const { theme, toggleTheme } = useGuideTheme();
   useEffect(() => {
     if (!searchOpen || index || searchError) return;
     const controller = new AbortController();
@@ -60,7 +58,7 @@ export function GuideShell({ current, searchIndex, children }: {
     window.addEventListener("keydown", key);
     return () => { document.documentElement.lang = previous; window.removeEventListener("keydown", key); };
   }, []);
-  return <main className="guide-app" data-theme={theme} lang="ru">
+  return <main className="guide-app" lang="ru">
     <a className="guide-skip" href="#guide-main">Перейти к содержанию</a>
     <SiteHeader locale="ru" active="how" />
     <header className="guide-topbar">
@@ -69,7 +67,6 @@ export function GuideShell({ current, searchIndex, children }: {
         <span aria-hidden="true">⌕</span> Поиск по руководству <kbd>⌘ K</kbd>
       </button>
       <nav className="guide-top-links" aria-label="Сайт GrantTap"><Link href="/?lang=ru">О продукте ↗</Link>
-        <button onClick={toggleTheme} aria-label={theme === "light" ? "Включить тёмную тему" : "Включить светлую тему"}>{theme === "light" ? "☾" : "☀"}</button>
       </nav>
       <button ref={menuButton} className="guide-menu-button" aria-expanded={menuOpen} aria-controls="guide-sidebar" onClick={() => setMenuOpen(value => !value)}>
         {menuOpen ? "Закрыть" : "Разделы"}<span aria-hidden="true">☰</span></button>

@@ -5,7 +5,7 @@ import { body as RU } from "./calendar-ru";
 export const calendarStory = composeStory({
   "slug": "granttap-agent-time-zones-calendar-tests",
   "date": "2026-10-14",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/practical2026-five/calendar-cover.webp",
   "inlineIllustration": "/blog/practical2026-five/calendar-boundary.webp",
   "additionalIllustration": "/blog/practical2026-five/calendar-evidence.webp",

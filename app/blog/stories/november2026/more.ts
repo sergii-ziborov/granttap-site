@@ -31,7 +31,7 @@ export function novemberStory(draft: Draft) {
     };
   };
   const path = (name: string) => `/blog/november2026/${draft.key}-${name}.webp`;
-  return composeStory({ slug: draft.slug, date: draft.date, cover: path(draft.images[0]),
+  return composeStory({ slug: draft.slug, date: draft.date, publishedOn: draft.date < "2026-11-04" ? "2026-11-04" : draft.date, cover: path(draft.images[0]),
     inlineIllustration: path(draft.images[1]), additionalIllustration: path(draft.images[2]), en: text("en"), ru: text("ru") });
 }
 

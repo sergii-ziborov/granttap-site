@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, expect, test } from "vitest";
 import AccessibilityPage from "../../app/accessibility/page";
 import ClaudeCodePage from "../../app/agents/claude-code/page";
@@ -34,8 +33,8 @@ const guides = [
 ] as const;
 
 describe("public legal and support pages", () => {
-  test.each(pages)("renders %s with its customer-facing content", (title, Page) => {
-    render(<Page />);
+  test.each(pages)("renders %s with its customer-facing content", async (title, Page) => {
+    render(await Page());
     expect(screen.getByRole("heading", { name: title, level: 1 })).toBeTruthy();
     expect(screen.getByRole("link", { name: "GrantTap home" }).getAttribute("href")).toBe("/");
   });
@@ -55,24 +54,15 @@ describe("public legal and support pages", () => {
     expect(screen.getByText("Available where the local runtime supports it")).toBeTruthy();
   });
 
-  test("switches legal pages to Russian and saves the visitor choice", async () => {
-    const user = userEvent.setup();
-    render(<PrivacyPage />);
-
-    await user.click(screen.getByRole("button", { name: "Switch to Russian" }));
-
+  test("Russian legal URLs render Russian immediately and expose a crawlable English link", async () => {
+    render(await PrivacyPage({ searchParams: Promise.resolve({ lang: "ru" }) }));
     expect(screen.getByRole("heading", { name: "Политика конфиденциальности", level: 1 })).toBeTruthy();
-    expect(window.localStorage.getItem("granttap.locale")).toBe("ru");
-    expect(document.documentElement.lang).toBe("ru");
-
-    await user.click(screen.getByRole("button", { name: "Переключить на английский" }));
-    expect(screen.getByRole("heading", { name: "Privacy Policy", level: 1 })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /EN — Переключить на английский/ }).getAttribute("href")).toBe("/");
   });
 
-  test("restores a saved Russian preference after hydration", async () => {
+  test("an English pricing URL remains English even when a previous private flow saved Russian", async () => {
     window.localStorage.setItem("granttap.locale", "ru");
-    render(<PricingPage />);
-
-    expect(await screen.findByRole("heading", { name: "Выберите, сколько компьютеров подключить", level: 1 })).toBeTruthy();
+    render(await PricingPage());
+    expect(screen.getByRole("heading", { name: "Choose how many computers to connect.", level: 1 })).toBeTruthy();
   });
 });

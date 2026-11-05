@@ -1,4 +1,7 @@
 import { articles } from "./articles";
+import type { BlogArticle } from "./articleTypes";
+
+export function articlePublicationDate(article: BlogArticle): string { return article.publishedOn || article.date; }
 
 export function publicationDay(now = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", {
@@ -8,7 +11,7 @@ export function publicationDay(now = new Date()): string {
 
 export function publishedArticles(now = new Date()) {
   const today = publicationDay(now);
-  return articles.filter(article => article.date <= today)
+  return articles.filter(article => article.date <= today && articlePublicationDate(article) <= today)
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 

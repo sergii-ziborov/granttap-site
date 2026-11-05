@@ -14,7 +14,7 @@ export const octoberNextFiveStories = [
 composeStory({
   "slug": "granttap-graph-health-investigate-code-boundaries",
   "date": "2026-10-20",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-next-five/graph-cover.webp",
   "inlineIllustration": "/blog/october2026-next-five/graph-scenario.webp",
   "additionalIllustration": "/blog/october2026-next-five/graph-evidence.webp",
@@ -73,7 +73,7 @@ composeStory({
 composeStory({
   "slug": "granttap-design-mcp-tool-contracts",
   "date": "2026-10-21",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-next-five/mcp-cover.webp",
   "inlineIllustration": "/blog/october2026-next-five/mcp-scenario.webp",
   "additionalIllustration": "/blog/october2026-next-five/mcp-evidence.webp",
@@ -140,7 +140,7 @@ composeStory({
 composeStory({
   "slug": "granttap-agent-dependency-upgrade-lockfile",
   "date": "2026-10-22",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-next-five/upgrade-cover.webp",
   "inlineIllustration": "/blog/october2026-next-five/upgrade-scenario.webp",
   "additionalIllustration": "/blog/october2026-next-five/upgrade-evidence.webp",
@@ -207,7 +207,7 @@ composeStory({
 composeStory({
   "slug": "granttap-accessible-mobile-agent-control",
   "date": "2026-10-23",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-next-five/accessible-cover.webp",
   "inlineIllustration": "/blog/october2026-next-five/accessible-scenario.webp",
   "additionalIllustration": "/blog/october2026-next-five/accessible-evidence.webp",
@@ -282,7 +282,7 @@ composeStory({
 composeStory({
   "slug": "granttap-agent-incident-timeline-reproduction",
   "date": "2026-10-24",
-  "reviewedOn": "2026-11-05",
+  "reviewedOn": "2026-11-05", "publishedOn": "2026-11-05",
   "cover": "/blog/october2026-next-five/incident-cover.webp",
   "inlineIllustration": "/blog/october2026-next-five/incident-scenario.webp",
   "additionalIllustration": "/blog/october2026-next-five/incident-evidence.webp",

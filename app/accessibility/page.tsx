@@ -1,15 +1,12 @@
-import type { Metadata } from "next";
+import { metadataForPage } from "../SearchMetadata/pages";
+import { pageLocale, type PublicPageProps } from "../SearchMetadata";
 import { LegalPage } from "../components/LegalPage";
 
-export const metadata: Metadata = {
-  title: "Accessibility",
-  description: "GrantTap accessibility approach, website support, known verification limits, and barrier reporting.",
-  alternates: { canonical: "/accessibility" },
-};
+export function generateMetadata(props: PublicPageProps = {}) { return metadataForPage("/accessibility", props); }
 
-export default function AccessibilityPage() {
+export default async function AccessibilityPage(props: PublicPageProps = {}) {
   return (
-    <LegalPage
+    <LegalPage initialLocale={await pageLocale(props)}
       title={{ en: "Accessibility", ru: "Доступность" }}
       updated={{ en: "August 2, 2026", ru: "2 августа 2026" }}
       updatedISO="2026-08-02"
