@@ -73,3 +73,10 @@ provider links, and the preserved future gates before/after activation.
 
 This is a website/content release. No new Apple binary or provider runtime was
 published, and illustrative native screens do not constitute live OAuth tests.
+
+Final public verification passed on November 5: ten localized article pages
+contain 2,524–2,677 visible body words, all fifteen image hashes match, fourteen
+current product/help pages respond, mobile review notes remain visible, and
+ten desktop/mobile browser journeys report no JavaScript exceptions. The site
+is healthy on source 0626fb8c12713c2f5eb807b43d8aab75479e88be; the previous
+serving container is retained for rollback. See public-proof.json.
