@@ -524,5 +524,18 @@
     "height": 2622,
     "sha256": "b38aeaf34f28912fbc153a40e76e373b903f9ce78ad29aff9ab6fef7b4d5a483",
     "caption": "Реальный нативный preview заголовка, списка и жирного текста на учебных данных. Предварительный вариант редактора, безопасные учебные данные."
+  },
+  {
+    "id": "account-password-253",
+    "file": "/guide/screens/account-password-253.png",
+    "title": "Создание аккаунта с логином и паролем",
+    "build": "253",
+    "date": "2026-11-05",
+    "locale": "en",
+    "demo": true,
+    "width": 1206,
+    "height": 2622,
+    "sha256": "4e22c23e27559866bf2c11d9c337e2f9a8b166649ac1f8e6b90ebdf0ae532015",
+    "caption": "Настоящий экран iPhone Simulator из UI-теста сборки 253, commit b66d1b83. Поля пусты; личные данные и действующие credentials отсутствуют."
   }
 ]

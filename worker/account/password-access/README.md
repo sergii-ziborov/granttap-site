@@ -23,7 +23,9 @@ SQLite, separately from the website image.
 Authenticated users may add credentials to their existing account. Replacing an
 existing credential requires the current password and revokes account sessions;
 it returns a new session. Computer registrations and independent QR pairings are
-not removed. Passkeys remain an alternate access method; password reset without
+not removed. Existing passkeys remain an alternate access method for accounts that already
+have them. Adding a new passkey to a password-only account is not implemented.
+Password reset without
 the current password is not an implemented email recovery flow.
 
 Tests live beside the module and use the real prepared SQLite surface. They
