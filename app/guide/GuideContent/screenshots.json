@@ -485,5 +485,44 @@
     "capturedAt": "2026-11-04T21:19:41.048000+00:00",
     "caption": "Панель Files, Agents и Automations. Синтетическая история показывает область текущего запроса. Сборка 250, iOS Simulator, изолированные учебные данные.",
     "sourceTest": "ChatActivityRailUITests/testReplyRailCountsOnlyCurrentRecordedChangesAndOpensModifiedDiffs()"
+  },
+  {
+    "id": "restrictions-checks",
+    "file": "/guide/screens/restrictions-checks.png",
+    "title": "Restrictions: редактируемые проверки",
+    "build": "231 · preview",
+    "date": "2026-10-27",
+    "locale": "en",
+    "demo": true,
+    "width": 1206,
+    "height": 2622,
+    "sha256": "dad91bbef8175a4c56f03a03d91389abd9a04c790538abafed8135966b8bba01",
+    "caption": "Числа редактируются в полях. Пресет POODR inspired задаёт функцию до 5 строк; на снимке безопасный Demo. Предварительный вариант редактора, безопасные учебные данные."
+  },
+  {
+    "id": "restrictions-guidance",
+    "file": "/guide/screens/restrictions-guidance.png",
+    "title": "Рекомендации агенту и цели дизайна",
+    "build": "231 · preview",
+    "date": "2026-10-27",
+    "locale": "en",
+    "demo": true,
+    "width": 1206,
+    "height": 2622,
+    "sha256": "28f4d10790ec5c2f105ce046cd58daa4fc59200d90806bbbe33b251245014315",
+    "caption": "Принципы и цели 100/4 показаны отдельно от машинных проверок. Demo; список прокручен. Предварительный вариант редактора, безопасные учебные данные."
+  },
+  {
+    "id": "restrictions-markdown",
+    "file": "/guide/screens/restrictions-markdown.png",
+    "title": "Markdown: предварительный просмотр",
+    "build": "231 · preview",
+    "date": "2026-10-27",
+    "locale": "en",
+    "demo": true,
+    "width": 1206,
+    "height": 2622,
+    "sha256": "b38aeaf34f28912fbc153a40e76e373b903f9ce78ad29aff9ab6fef7b4d5a483",
+    "caption": "Реальный нативный preview заголовка, списка и жирного текста на учебных данных. Предварительный вариант редактора, безопасные учебные данные."
   }
 ]

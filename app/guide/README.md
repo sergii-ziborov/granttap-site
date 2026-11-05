@@ -2,7 +2,7 @@
 
 Public entry: https://granttap.com/guide (Russian). Updated 4 November 2026; content rechecked 5 November 2026.
 
-48 chapters cover setup, Tasks/Executions, delivery and recovery, native questions,
+49 chapters cover setup, Tasks/Executions, delivery and recovery, native questions,
 Files/Agents, existing Codex automations, searchable workspaces and handoff,
 Mesh/Knowledge/Engine/Graph/Health, governance, devices, provider sign-in/updates,
 cache, browser control, privacy and recovery. The coverage chapter records limits.
@@ -13,7 +13,7 @@ keyboard access, screenshot enlargement and a downloadable practice project.
 Authored Markdown supports explicit anchors, tables, callouts, code, captures and
 three interactive diagrams. It never executes authored HTML.
 
-34 real screenshot files have SHA-256, build, date, locale and scenario in
+37 real screenshot files have SHA-256, build, date, locale and scenario in
 GuideContent/screenshots.json. 20 are build 250 Simulator captures from isolated
 native demo/UI fixtures. Earlier iPhone 230 and Mac 181 captures retain their
 actual provenance; they are never relabelled as new. Device versions, codes and

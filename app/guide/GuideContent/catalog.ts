@@ -44,6 +44,7 @@ export const guideCatalog: GuideMeta[] = [
   page("graph-health", "Graph, Health и кодовые башни", "Архитектурные отчёты, поиск, источники и недоступные данные.", "coordination", "graph,health,граф,башни,анализ,repo lens"),
   page("governance", "Governance: Allow, Ask, Deny", "Практическое управление возможностями на уровне проекта.", "rules", "governance,говерненс,правила,allow,ask,deny,политика"),
   page("skills-mcp-shell", "Skills, MCP и Shell", "Каталог возможностей, точечные правила и реальное использование.", "rules", "skills,skill,mcp,shell,терминал,инструменты,capability"),
+  page("restrictions", "Restrictions: проверки и рекомендации", "Редактируемые лимиты, принципы, архитектура и Markdown с подтверждением компьютера.", "rules", "restrictions,poodr,clean code,архитектура,markdown,лимиты,пресет"),
   page("capability-setup", "Настроить инструменты по шагам", "От подключения в coding app до подтверждённого правила на компьютере.", "rules", "настроить,инструменты,mcp,skills,shell,coverage,pending"),
   page("members", "Участники и доступ", "Роли, приглашения, repository grants и отдельные устройства.", "rules", "участник,viewer,member,admin,доступ,приглашение"),
   page("audit-evidence", "Runtime, аудит и доказательства", "Запрос, результат, отказ и подтверждённое изменение — разные факты.", "rules", "runtime,аудит,invocation,engine,доказательство,claim"),
