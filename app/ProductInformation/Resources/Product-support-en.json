@@ -1,12 +1,12 @@
 {
   "title": "Support",
   "updated": "2026-11-05",
-  "intro": "Install GrantTap → connect an execution computer with GrantTap MCP → open your Task. This guide explains account passkeys, direct pairing, Mac access, connection modes and recovery.",
+  "intro": "Install GrantTap → connect an execution computer with GrantTap MCP → open your Task. This guide explains username/password and passkey sign-in, direct pairing, Mac access, connection modes and recovery.",
   "sections": [
     {
       "heading": "Complete illustrated user guide",
       "paragraphs": [
-        "The Russian user guide at /guide covers 48 chapters with 34 real app screenshots, including current build-250 Simulator captures. It explains setup, Tasks and Executions, delivery, Files, Agents, existing Codex automations, transfer, workspaces, Devices, login, updates, cache, Mesh, Governance and recovery. Every screenshot retains its actual build, date and sample-data provenance."
+        "The Russian user guide at /guide covers 49 chapters with 38 real native screenshots, including the build-253 password form from Simulator. It explains setup, Tasks and Executions, delivery, Files, Agents, existing Codex automations, transfer, workspaces, Devices, login, updates, cache, Mesh, Governance and recovery. Every screenshot retains its actual build, date and sample-data provenance."
       ],
       "links": [
         {

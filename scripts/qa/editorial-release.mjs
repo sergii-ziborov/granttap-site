@@ -37,7 +37,7 @@ for (const image of images) {
 }
 for (const route of ['/support', '/support?lang=ru', '/guide', '/guide/providers', '/guide/device-management', '/agents/claude-code', '/agents/codex', '/agents/cursor', '/agents/grok-build', '/pricing', '/privacy', '/terms', '/mac', '/project-mesh']) {
   const dom = await html(route); const d = dom.window.document;
-  if (route.startsWith('/support')) { assert.ok(d.body.textContent.includes('0.8.148')); assert.ok(d.body.textContent.includes('250')); assert.ok(d.querySelector('a[href^="/guide/provider-sign-in"]')); }
+  if (route.startsWith('/support')) { assert.ok(d.body.textContent.includes('0.8.149')); assert.ok(d.body.textContent.includes('250')); assert.ok(d.querySelector('a[href^="/guide/provider-sign-in"]')); }
   if (route === '/guide') assert.ok(d.body.textContent.includes('5 ноября 2026'));
   proof.pages.push({ route, status: 200 }); dom.window.close();
 }

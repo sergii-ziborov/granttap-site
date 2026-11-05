@@ -8,6 +8,7 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     paragraphs: ["Приложения для iPhone, iPad и Mac доступны по приглашению через TestFlight. Номер сборки указан в разделе «О приложении». Компьютерный MCP обновляется отдельно. Ниже — выбранные опубликованные изменения; статусы каждого компонента проверяются независимо."],
     bullets: [
       "Приложение 250 · внутренний TestFlight · 3 ноября 2026. Projects группируются по собственным и привязанным репозиториям, а не по случайно посещённым задачами папкам. Маршруты чатов не пересчитываются для каждого фрагмента ответа в главном потоке. Доступность подтверждена для внутренней группы; это не утверждение о публичном App Store или внешнем beta-review.",
+      "MCP 0.8.149 · опубликован и проверен в npm 5 ноября 2026. Устаревшая HTTP-сессия возвращает Session not found, чтобы клиент мог начать новое MCP-подключение. Bootstrap для Claude и Cursor закреплён на одной версии пакета. Публикация проверена отдельно от установленного runtime.",
       "MCP 0.8.148 · опубликован и проверен в npm 5 ноября 2026. Большие списки Mesh передаются страницами в пределах кадра Engine; слишком большой ответ desktop bridge возвращает явную ошибку и не завершает процесс. Версия пакета проверяется отдельно от установленного runtime.",
       "MCP 0.8.147 · npm-релиз проверен 5 ноября 2026. Неактивные session MCP освобождают relay-соединение; monitor показывает причину отказа соединения и имеет ограниченное восстановление. Graph учитывает все привязанные репозитории. Публикация npm не обновляет уже работающий процесс автоматически.",
       "MCP 0.8.143 · npm-релиз проверен 5 ноября 2026. Служебные заметки Claude Tool loaded. не попадают в видимую переписку и заголовки. В предыдущем 0.8.142 улучшены работа monitor при заполненном диске, обработка зависшего списка процессов и проверка runtime-обновления после освобождения monitor.",
@@ -32,12 +33,13 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
       "Приложения 199 · TestFlight · 17 октября 2026. В переносе доступны модели и уровень рассуждений Claude Code, Codex и Grok Build. Добавлен перенос в облако Claude или Codex через исходный компьютер с MCP 0.8.72. Исправлены повторные переподключения после отказа relay.",
       "MCP 0.8.74. Вопросы Cursor, варианты ответа и видимые предупреждения передаются в GrantTap. Сохранённые чаты Cursor открываются без ожидания проверки незакоммиченных изменений. Подготовка переноса поддерживает создание коммита до передачи задачи.",
     ],
-    links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.148" }],
+    links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.149" }],
   } : {
     heading: "Version history",
     paragraphs: ["The iPhone, iPad and Mac apps are available by TestFlight invitation. Find the build number in About. The computer MCP updates separately."],
     bullets: [
       "App 250 · internal TestFlight · November 3, 2026. Projects group by their own and bound repositories, not folders merely visited by their Tasks. Chat routing is not recalculated on the main thread for every reply fragment. Availability was confirmed for the internal group; this does not assert a public App Store release or external beta approval.",
+      "MCP 0.8.149 · published and verified on npm November 5, 2026. A stale HTTP session returns Session not found so a client can initialize a fresh MCP connection. Claude and Cursor bootstraps pin the same package version. Publication is verified separately from the installed runtime.",
       "MCP 0.8.148 · published and verified on npm November 5, 2026. Large Mesh lists use pages within the Engine frame budget; an oversized desktop bridge response returns an explicit error without terminating the process. The published package and the installed runtime are checked separately.",
       "MCP 0.8.147 · npm release checked November 5, 2026. Idle session MCPs release their relay connection; the monitor names connection refusals and has bounded recovery. Graph includes every bound repository. An npm publication does not automatically update an already running process.",
       "MCP 0.8.143 · npm release checked November 5, 2026. Claude’s Tool loaded. housekeeping notes stay out of visible chats and titles. Preceding 0.8.142 improved monitor behavior on a full disk, handling of a hung process listing, and runtime update verification after the monitor becomes idle.",
@@ -62,6 +64,6 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
       "Apps 199 · TestFlight · October 17, 2026. Transfer offers Claude Code, Codex and Grok Build models and reasoning effort. Claude or Codex cloud transfers run through the source computer with MCP 0.8.72. Fixed repeated reconnections after relay admission is refused.",
       "MCP 0.8.74. Cursor questions, answer choices and visible warnings reach GrantTap. Retained Cursor chats open without waiting for the working-tree check. Transfer preparation supports committing changes before handing off a task.",
     ],
-    links: [{ label: "Computer MCP version on npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.148" }],
+    links: [{ label: "Computer MCP version on npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.149" }],
   };
 }
