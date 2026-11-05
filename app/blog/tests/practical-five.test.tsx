@@ -34,8 +34,8 @@ test("the five workshops fill only existing gaps and preserve later publication 
   expect(calendar.beforeGaps.filter(date => !calendar.afterGaps.includes(date))).toEqual(slots.map(([date]) => date));
   expect(calendar.afterGaps).toHaveLength(15);
   expect(calendar.afterGaps.slice(-3)).toEqual(["2026-10-11", "2026-10-12", "2026-10-13"]);
-  expect(publishedArticles(new Date("2026-11-05T12:00:00Z"))).toHaveLength(47);
-  expect(publishedArticles(new Date("2026-11-08T12:00:00Z"))).toHaveLength(50);
+  expect(publishedArticles(new Date("2026-11-05T12:00:00Z"))).toHaveLength(52);
+  expect(publishedArticles(new Date("2026-11-08T12:00:00Z"))).toHaveLength(55);
   for (const locale of ["en", "ru"] as const) {
     const paragraphs = practicalFiveStories.flatMap(article => [...article[locale].intro, ...article[locale].sections.flatMap(section => section.paragraphs)]);
     expect(new Set(paragraphs).size).toBe(paragraphs.length);

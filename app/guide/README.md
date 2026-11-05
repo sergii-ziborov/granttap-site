@@ -20,7 +20,7 @@ actual provenance; they are never relabelled as new. Device versions, codes and
 measurements in fixtures are examples. Separate ImageGen art is labelled as art.
 Do not replace a product screenshot with an AI-drawn imitation.
 
-Source basis: native main 9d947d62 (build 250), MCP main 54ddf6f (0.8.143),
+Source basis: native main 9d947d62 (build 250), MCP main 5053922 (0.8.148),
 and the website revision containing this file. Captures do not establish live
 provider authentication, successful user-project transfer or physical-device QA.
 Native bundled Learn content has its own release lifecycle.

@@ -1,0 +1,118 @@
+{
+  "preparedOn": "2026-11-05",
+  "timeZone": "Asia/Jerusalem",
+  "rangeStart": "2026-09-24",
+  "beforeGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13"
+  ],
+  "articles": [
+    {
+      "slug": "granttap-mcp-skills-hooks-practical-guide",
+      "date": "2026-10-08",
+      "publishedOn": "2026-11-05",
+      "reviewedOn": "2026-11-05",
+      "title": "MCP, skills и hooks: какое расширение агента вам действительно нужно",
+      "words": {
+        "en": 2560,
+        "ru": 2525
+      },
+      "images": [
+        "/blog/seo2026-guides/tools-cover.webp",
+        "/blog/seo2026-guides/tools-workflow.webp",
+        "/blog/seo2026-guides/tools-check.webp"
+      ]
+    },
+    {
+      "slug": "granttap-sleeping-mac-agent-delivery",
+      "date": "2026-10-09",
+      "publishedOn": "2026-11-05",
+      "reviewedOn": "2026-11-05",
+      "title": "Почему спящий Mac не отвечает агентом: проверяем всю доставку",
+      "words": {
+        "en": 2559,
+        "ru": 2544
+      },
+      "images": [
+        "/blog/seo2026-guides/sleep-cover.webp",
+        "/blog/seo2026-guides/sleep-states.webp",
+        "/blog/seo2026-guides/sleep-return.webp"
+      ]
+    },
+    {
+      "slug": "granttap-macos-agent-file-permissions",
+      "date": "2026-10-11",
+      "publishedOn": "2026-11-05",
+      "reviewedOn": "2026-11-05",
+      "title": "Агенту запрещён доступ на macOS: найдите настоящую границу",
+      "words": {
+        "en": 2761,
+        "ru": 2606
+      },
+      "images": [
+        "/blog/seo2026-guides/access-cover.webp",
+        "/blog/seo2026-guides/access-layers.webp",
+        "/blog/seo2026-guides/access-proof.webp"
+      ]
+    },
+    {
+      "slug": "granttap-agent-wrong-checkout-worktree",
+      "date": "2026-10-12",
+      "publishedOn": "2026-11-05",
+      "reviewedOn": "2026-11-05",
+      "title": "Агент изменил файл, а приложение старое: проверьте checkout",
+      "words": {
+        "en": 2614,
+        "ru": 2622
+      },
+      "images": [
+        "/blog/seo2026-guides/checkout-cover.webp",
+        "/blog/seo2026-guides/checkout-identity.webp",
+        "/blog/seo2026-guides/checkout-handoff.webp"
+      ]
+    },
+    {
+      "slug": "granttap-light-dark-auto-theme-testing",
+      "date": "2026-10-13",
+      "publishedOn": "2026-11-05",
+      "reviewedOn": "2026-11-05",
+      "title": "Светлая, тёмная и авто: тема сайта с понятным поведением",
+      "words": {
+        "en": 2630,
+        "ru": 2614
+      },
+      "images": [
+        "/blog/seo2026-guides/themes-cover.webp",
+        "/blog/seo2026-guides/themes-auto.webp",
+        "/blog/seo2026-guides/themes-verify.webp"
+      ]
+    }
+  ],
+  "afterGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07"
+  ],
+  "currentPublishedCount": 52,
+  "totalPrepared": 55
+}

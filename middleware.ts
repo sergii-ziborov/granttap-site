@@ -7,7 +7,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(url.pathname + url.search, "https://granttap.com"), 308);
   }
   const headers = new Headers(request.headers);
-  headers.set("x-granttap-locale", url.pathname.startsWith("/guide") || url.searchParams.get("lang") === "ru" ? "ru" : "en");
+  const englishOnly = url.pathname.startsWith("/agents/") || ["/project-mesh", "/grok-bot", "/apple-watch-coding-agents"].includes(url.pathname);
+  headers.set("x-granttap-locale", url.pathname.startsWith("/guide") || (!englishOnly && url.searchParams.get("lang") === "ru") ? "ru" : "en");
   return NextResponse.next({ request: { headers } });
 }
 

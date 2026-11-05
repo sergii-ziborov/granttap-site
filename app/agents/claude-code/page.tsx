@@ -20,7 +20,7 @@ export default function ClaudeCodePage() {
     limits={[
       "Claude Code remains the execution environment; GrantTap is not a model proxy or remote terminal.",
       "Provider controls and the computer's own policy remain authoritative.",
-      "A Task handoff moves bounded committed facts, not hidden reasoning or an entire transcript.",
+      "Supported Task transfers carry the complete retained visible root conversation within the transfer bound. Hidden reasoning is excluded; unreadable, changing or oversized history blocks the transfer. Local files still require the separate checkpoint and repository path.",
     ]}
     related={[{ href: "/guide/providers", label: "Provider behavior guide (RU)" }, { href: "/guide/provider-sign-in", label: "Provider sign-in guide (RU)" }, { href: "/project-mesh", label: "Mesh" }, { href: "/apple-watch-coding-agents", label: "Apple Watch" }, { href: "/agents/codex", label: "Codex" }]}
   />;

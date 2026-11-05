@@ -9,52 +9,7 @@ import { D1AccountStore } from "./account/d1-store";
 import { AccountMachines } from "./account/machines";
 import type { D1Database } from "@cloudflare/workers-types";
 
-const CANONICAL_ORIGIN = "https://granttap.com";
-const REDIRECT_HOSTS = new Set([
-  "granttap.serhiiright.chatgpt.site",
-  "www.granttap.com",
-]);
-
-const CONTENT_SECURITY_POLICY = [
-  "default-src 'self'",
-  "base-uri 'self'",
-  "connect-src 'self'",
-  "font-src 'self' data:",
-  "form-action 'self'",
-  "frame-ancestors 'none'",
-  "img-src 'self' data: blob:",
-  "manifest-src 'self'",
-  "media-src 'self' blob:",
-  "object-src 'none'",
-  // vinext currently serializes the RSC payload into inline hydration scripts.
-  // Keep inline scripts/styles scoped to this origin until nonce support lands.
-  "script-src 'self' 'unsafe-inline'",
-  "style-src 'self' 'unsafe-inline'",
-  "worker-src 'self' blob:",
-  "upgrade-insecure-requests",
-].join("; ");
-
-function withSecurityHeaders(request: Request, response: Response): Response {
-  const headers = new Headers(response.headers);
-  headers.set("Content-Security-Policy", CONTENT_SECURITY_POLICY);
-  headers.set("Permissions-Policy", "camera=(), display-capture=(), geolocation=(), microphone=(), payment=(), usb=()");
-  headers.set("Referrer-Policy", "no-referrer");
-  headers.set("X-Content-Type-Options", "nosniff");
-  headers.set("X-Frame-Options", "DENY");
-  headers.set("X-Permitted-Cross-Domain-Policies", "none");
-
-  if (new URL(request.url).protocol === "https:") {
-    headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains");
-  } else {
-    headers.delete("Strict-Transport-Security");
-  }
-
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers,
-  });
-}
+import { canonicalRedirect, withSecurityHeaders } from "./site-policy";
 
 interface AssetFetcher {
   fetch(request: Request): Promise<Response>;
@@ -87,15 +42,8 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
-    if (REDIRECT_HOSTS.has(url.hostname)) {
-      return withSecurityHeaders(
-        request,
-        Response.redirect(
-          new URL(`${url.pathname}${url.search}`, CANONICAL_ORIGIN),
-          308,
-        ),
-      );
-    }
+    const redirect = canonicalRedirect(url);
+    if (redirect) return withSecurityHeaders(request, Response.redirect(redirect, 308));
 
     if (url.pathname === "/.well-known/apple-app-site-association") {
       return withSecurityHeaders(request, new Response(JSON.stringify({

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { QuickChecks } from "./QuickChecks";
 import Link from "next/link";
 import { ReadingGrid } from "../components/ReadingGrid";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
@@ -61,7 +62,7 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
       </div>
       <p className="section-shell blog-byline"><a href={blogHref("/about", locale)}>GrantTap</a> · {locale === "ru" ? "Опубликовано" : "Published"} <time dateTime={articlePublicationDate(article)}>{articlePublicationDate(article)}</time>{articlePublicationDate(article) !== article.date && <span> · {locale === "ru" ? "Слот архива" : "Archive slot"}: {article.date}</span>}</p>
       <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{article.screenshot
-        ? (locale === "ru" ? "Образ статьи создан специально для этого материала. Экраны GrantTap ниже сняты отдельно на тестовых данных." : "Created for this story. GrantTap screens below are separate captures made with sample data.")
+        ? (locale === "ru" ? "Образ статьи создан специально для этого материала. Настоящие снимки GrantTap ниже имеют отдельные подписи." : "Created for this story. Actual GrantTap captures below are identified separately in their captions.")
         : (locale === "ru" ? "Сгенерированная иллюстрация к материалу. Она передаёт идею статьи и не является экраном приложения." : "AI-generated editorial illustration of the story's ideas, not an application screenshot.")}</figcaption>}</figure>
       <ReadingGrid className="blog-reading-grid section-shell" railClassName="blog-article-rail"
         railLabel={locale === "ru" ? "Содержание статьи" : "Article contents"} rail={<>
@@ -86,11 +87,12 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
             {row.value !== undefined && <div className="blog-graphic-track" aria-label={`${row.label}: ${row.detail}`}><i style={{ width: `${row.value}%` }} /></div>}
           </div>)}</div>
         </figure>}
+        {t.practice && <QuickChecks practice={t.practice} />}
         {t.sections.map((section, index) => <section id={`article-section-${index + 1}`} key={section.heading}>
           <h2>{section.heading}</h2>
           {section.paragraphs.map(paragraph => <p key={paragraph}>{inlineStoryLinks(paragraph, locale)}</p>)}
           {index === 0 && article.inlineIllustration && t.illustrationCaption && <figure className="blog-illustration"><Image src={article.inlineIllustration} alt={t.illustrationCaption} width={1400} height={788} loading="lazy" unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{t.illustrationCaption}</figcaption></figure>}
-          {index === t.sections.length - 1 && article.screenshot && t.screenshotCaption && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Экран GrantTap · тестовые данные" : "GrantTap screen · sample data"}</strong>{t.screenshotCaption}</figcaption></figure>}
+          {index === t.sections.length - 1 && article.screenshot && t.screenshotCaption && <figure className="blog-screenshot"><Image src={article.screenshot} alt={t.screenshotCaption} width={720} height={1560} unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Настоящий снимок GrantTap" : "Actual GrantTap capture"}</strong>{t.screenshotCaption}</figcaption></figure>}
           {index === Math.floor(t.sections.length / 2) && article.additionalIllustration && t.additionalIllustrationCaption && <figure className="blog-illustration"><Image src={article.additionalIllustration} alt={t.additionalIllustrationCaption} width={1400} height={788} loading="lazy" unoptimized /><figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{t.additionalIllustrationCaption}</figcaption></figure>}
         </section>)}
         <aside className="blog-note">{t.closing}</aside>

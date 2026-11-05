@@ -13,7 +13,7 @@ export default function ProjectMeshPage() {
     facts={[
       { title: "Compact shared state", text: "Tasks carry status, dependencies, resource claims, explicit decisions, and remaining work—not hidden reasoning." },
       { title: "Human attention", text: "Product, security, destructive, unresolved conflict, and failed-handoff events reach Needs You on iPhone and Apple Watch." },
-      { title: "Authenticated handoff", text: "Claude Code ↔ Codex handoffs use a bounded capsule, phone authorization, a separate target worktree, and a receipt." },
+      { title: "Authenticated handoff", text: "Supported transfers carry Task facts and the complete retained visible root conversation within a checked bound. Authorization, destination preparation and a correlated receipt remain separate steps; uncommitted files require a deliberate checkpoint." },
       { title: "Current ownership", text: "The Task route follows the current owner and never reopens a previous native execution after transfer." },
       { title: "Mesh Governance", text: "Skills, MCP servers, and shell are allowed, asked, or denied in a Mesh—for a kind or one named capability. Each computer reports its applied revision and enforcement coverage." },
       { title: "Observed usage", text: "Task and computer observations retain their source and coverage. Account quota, token usage, and sampled machine resources have different meanings and are not added into one cost figure." },

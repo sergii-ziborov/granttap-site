@@ -281,3 +281,25 @@ configuration, database migrations and API compatibility. Each has at least
 These are original workshops prepared on November 5, not earlier-day news.
 See [editorial provenance](docs/editorial/practical2026-five) for the source links,
 archive metadata and the fifteen original prompts and asset paths.
+
+## Website appearance and discovery
+
+The public site shares Auto, Light and Dark across product pages, the guide and
+journal. The preference follows system changes in Auto, survives reloads when
+storage is available and synchronizes open tabs. English and Russian public
+pages use their own URLs and reciprocal language links. The Russian guide and
+English-only capability pages advertise only their actual language.
+
+The journal has 55 prepared bilingual stories, 52 published as of November 5,
+2026. Retrospective archive slots keep a separate actual publication date in
+visible text, RSS and structured data. The five latest workshops cover MCP,
+skills and hooks; sleeping-computer delivery; macOS file access; workspace and
+artifact identity; and website appearance. Every workshop has at least 2500
+main-body words per language and three distinct editorial illustrations.
+
+Production runs the Node standalone build plus the bundled Hetzner entry point.
+`npm test` verifies an isolated package with only production dependencies,
+localized metadata in head, canonical/HTTPS redirects, security headers, real
+asset bytes, Brotli responses and guide links. `npm run test:coverage`,
+`npm run typecheck` and `npm run lint` are the other release checks. Browser QA
+scripts check appearance, article layouts and original image hashes.

@@ -1,0 +1,45 @@
+{
+  "reviewedOn": "2026-11-05",
+  "method": "Author review against primary documentation, current implementation, rendered HTML and browser behavior; not an independent human review.",
+  "actualPublication": "2026-11-05",
+  "archiveSlots": [
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13"
+  ],
+  "bodyWordsExclude": [
+    "headings",
+    "captions",
+    "sources",
+    "quick-check panels"
+  ],
+  "minimumWordsPerLocale": 2525,
+  "newGeneratedIllustrations": 15,
+  "actualBrowserCapture": "site-theme-light.png, Chromium, release candidate, 390x844 CSS px, November 5",
+  "claims": [
+    "Illustrations are labeled as conceptual, not interface evidence.",
+    "Diagnostic examples are proposed checks, not claims of testing a reader’s computer.",
+    "Auto/Light/Dark describes the website, not a newly introduced native setting.",
+    "Archive slots and actual publication are distinct in visible text, RSS and structured data.",
+    "Provider policy, availability, receipt and confirmed execution remain separate."
+  ],
+  "lastVerifiedPublicMcp": "0.8.148",
+  "publishedPackageIntegrity": "sha512-u2bLVsfM5cbg+LAhzJqhbB6DdkaaEvuHqvEr+nQ5+OSMOr+um1ipyNlmTDryezNETYuiaKgN8Pbnsx/AasgEKg==",
+  "localBrowserMatrix": 108,
+  "articleBrowserChecks": 20,
+  "futurePreparedStoriesRemainGated": true,
+  "remainingArchiveGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07"
+  ]
+}

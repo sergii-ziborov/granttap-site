@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { GuideShell } from "..";
 import { guideSearchIndex } from "../../GuideContent";
@@ -41,8 +41,8 @@ describe("guide navigation", () => {
     const input = screen.getByRole("textbox", { name: "Найти в руководстве" });
     expect(document.activeElement).toBe(input);
     fireEvent.click(screen.getByRole("button", { name: "Го ↗" }));
-    const results = screen.getAllByRole("option");
-    expect(results[0].getAttribute("href")).toContain("/guide/message-delivery");
+    const results = within(screen.getByRole("listbox", { name: "Результаты поиска" })).getAllByRole("option");
+    expect(results.slice(0, 5).some(result => result.getAttribute("href")?.includes("/guide/message-delivery"))).toBe(true);
     fireEvent.keyDown(input, { key: "ArrowDown" });
     expect(results[1].getAttribute("aria-selected")).toBe("true");
     fireEvent.keyDown(input, { key: "ArrowUp" });

@@ -2,13 +2,13 @@ import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render(url = "https://granttap.com/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request(url, { headers: { accept: "text/html" } }), {
-    ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
-  }, { waitUntil() {}, passThroughOnException() {} });
+import { productionSite } from "./production-site.mjs";
+const request = await productionSite();
+const render = (url = "https://granttap.com/") => request(url);
+function assertCanonical(html, expected) {
+  const href = html.match(/<link(?=[^>]*rel="canonical")(?=[^>]*href="([^"]+)")[^>]*>/i)?.[1];
+  assert.ok(href, "Canonical is present in server HTML");
+  assert.equal(new URL(href.replaceAll("&amp;", "&")).href, new URL(expected).href);
 }
 
 const routes = [
@@ -27,8 +27,8 @@ test("server-renders one Personal product", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /All your coding agents\./);
-  assert.match(html, /One live control center\./);
+  assert.match(html, /Claude Code and Codex/);
+  assert.match(html, /Within reach on iPhone/);
   assert.match(html, /Claude Code · Codex · Cursor · Grok Build/);
   assert.match(html, />Cursor<\/strong>/);
   assert.match(html, />Grok Build<\/strong>/);
@@ -48,25 +48,23 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /Native E2EE/);
   assert.match(html, /TestFlight by invitation/);
   assert.match(html, /Request an invitation/);
-  assert.match(html, /Your agents\./);
+  assert.match(html, /Within reach on iPhone/);
   assert.match(html, /Planned managed access from/);
   assert.doesNotMatch(html, /we are addressing review feedback/);
   assert.match(html, /iphone-command-center\.png/);
-  assert.match(html, /iphone-chat\.png/);
-  assert.match(html, /iphone-mcp-usage\.png/);
   assert.match(html, /apple-watch-approval\.png/);
-  assert.match(html, /content="Coordinate Claude Code, Codex, Cursor, and Grok Build/i);
+  assert.match(html, /content="Follow local coding agents/i);
   assert.doesNotMatch(html, /Enterprise|GrantTap Web|Open account|browser workspace|organization policy|scheduler|Copilot/i);
   assert.doesNotMatch(html, /href="\/(?:account|enterprise)/);
-  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/product\/iphone-command-center\.png\?v=20261008-1"/i);
-  assert.match(html, /<link(?=[^>]*rel="canonical")(?=[^>]*href="https:\/\/granttap\.com\/")[^>]*>/i);
+  assert.match(html, /property="og:image" content="https:\/\/granttap\.com\/brand\/share-en\.png"/i);
+  assertCanonical(html, "https://granttap.com/");
 });
 
 test("Russian homepage is complete in server HTML with matching SEO metadata", async () => {
   const html = await (await render("https://granttap.com/?lang=ru")).text();
   assert.match(html, /<main lang="ru">/);
-  assert.match(html, /Ваши агенты\./);
-  assert.match(html, /<title>GrantTap — Все coding-агенты\. Один центр управления\.<\/title>/);
+  assert.match(html, /Под рукой на iPhone/);
+  assert.match(html, /<title>GrantTap: Claude Code и Codex с iPhone, iPad и Mac.*?<\/title>/);
   assert.match(html, /href="https:\/\/granttap\.com\/\?lang=ru"/);
 });
 
@@ -172,7 +170,7 @@ test("publishes only Personal customer routes with canonical metadata", async ()
     assert.equal(response.status, 200, path);
     const html = await response.text();
     const canonical = path === "/" ? "https://granttap.com/" : `https://granttap.com${path}`;
-    assert.match(html, new RegExp(`<link(?=[^>]*rel="canonical")(?=[^>]*href="${canonical.replaceAll("/", "\\/")}")[^>]*>`, "i"));
+    assertCanonical(html, canonical);
     assert.doesNotMatch(html, /href="\/enterprise|GrantTap Web|browser vault|organization policy/i);
   }
   assert.equal((await render("https://granttap.com/enterprise")).status, 404);
@@ -240,7 +238,7 @@ test("publishes transparent subscription pricing", async () => {
   }
   assert.ok(html.includes("$39.99"));
   assert.match(html, /no separate per-agent or per-task charge/i);
-  assert.match(html, /planned US launch prices/i);
+  assert.match(html, /planned US prices for the first commercial release/i);
   assert.match(html, /eligible new subscribers/i);
   assert.match(html, /href="\/support#contact"/);
   assert.doesNotMatch(html, /\$1\.99|\$5\.99|\$9\.99|up to 10 computers/i);

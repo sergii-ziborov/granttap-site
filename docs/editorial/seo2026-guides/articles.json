@@ -1,0 +1,196 @@
+[
+  {
+    "key": "tools",
+    "date": "2026-10-08",
+    "slug": "granttap-mcp-skills-hooks-practical-guide",
+    "images": [
+      "tools-cover",
+      "tools-workflow",
+      "tools-check"
+    ],
+    "en": [
+      "MCP, skills and hooks: choose the right agent extension",
+      "A working map of tools, reusable instructions and lifecycle events, with a small fixture that separates availability, permission and actual use.",
+      "Choose the extension that owns the missing behavior, then verify it in a bounded task."
+    ],
+    "ru": [
+      "MCP, skills и hooks: какое расширение агента вам действительно нужно",
+      "Практическая карта инструментов, повторяемых инструкций и событий: проверяем доступность, разрешение и настоящее использование на небольшом примере.",
+      "Выберите механизм, которому принадлежит нужное поведение, и проверьте его на ограниченной задаче."
+    ],
+    "sources": [
+      [
+        "Claude Code: MCP",
+        "https://code.claude.com/docs/en/mcp"
+      ],
+      [
+        "Claude Code: skills",
+        "https://code.claude.com/docs/en/skills"
+      ],
+      [
+        "Claude Code: hooks",
+        "https://code.claude.com/docs/en/hooks"
+      ],
+      [
+        "OpenAI: skills",
+        "https://developers.openai.com/plugins/concepts/skills"
+      ],
+      [
+        "GrantTap: capability catalog",
+        "/guide/capability-catalog"
+      ]
+    ]
+  },
+  {
+    "key": "sleep",
+    "date": "2026-10-09",
+    "slug": "granttap-sleeping-mac-agent-delivery",
+    "images": [
+      "sleep-cover",
+      "sleep-states",
+      "sleep-return"
+    ],
+    "en": [
+      "Why a sleeping Mac does not answer your coding-agent message",
+      "Distinguish display sleep, system sleep, relay storage, computer receipt and agent activity before retrying the original message.",
+      "Recover the original operation from its last confirmed boundary before creating another one."
+    ],
+    "ru": [
+      "Почему спящий Mac не отвечает агентом: проверяем всю доставку",
+      "Отделяем выключенный экран, сон системы, сохранение на relay, приём компьютером и начало работы агента до повторной отправки.",
+      "Восстанавливайте исходную операцию от последнего подтверждённого этапа, прежде чем создавать новую."
+    ],
+    "sources": [
+      [
+        "Apple: battery settings",
+        "https://support.apple.com/guide/mac-help/change-battery-settings-mchlfc3b7879/mac"
+      ],
+      [
+        "GrantTap: message delivery",
+        "/guide/message-delivery"
+      ],
+      [
+        "GrantTap: device management",
+        "/guide/device-management"
+      ],
+      [
+        "GrantTap: provider sign-in",
+        "/guide/provider-sign-in"
+      ]
+    ]
+  },
+  {
+    "key": "access",
+    "date": "2026-10-11",
+    "slug": "granttap-macos-agent-file-permissions",
+    "images": [
+      "access-cover",
+      "access-layers",
+      "access-proof"
+    ],
+    "en": [
+      "Agent permission denied on macOS: find the actual boundary",
+      "A focused file-access investigation: identify the path, process, owner, system permission and provider policy before changing access.",
+      "Repair the narrow missing permission and repeat the original operation from the original process."
+    ],
+    "ru": [
+      "Агенту запрещён доступ на macOS: найдите настоящую границу",
+      "Диагностика доступа к файлам: путь, процесс, владелец, системное разрешение и политика провайдера до изменения прав.",
+      "Восстановите минимальное недостающее разрешение и повторите исходную операцию из исходного процесса."
+    ],
+    "sources": [
+      [
+        "Apple: control access to files and folders",
+        "https://support.apple.com/guide/mac-help/control-access-to-files-and-folders-on-mac-mchld5a35146/mac"
+      ],
+      [
+        "Apple Platform Security: privacy controls",
+        "https://support.apple.com/en-ca/guide/security/secddd1d86a6/web"
+      ],
+      [
+        "GrantTap: restrictions",
+        "/guide/restrictions"
+      ],
+      [
+        "GrantTap: provider boundaries",
+        "/guide/providers"
+      ]
+    ]
+  },
+  {
+    "key": "checkout",
+    "date": "2026-10-12",
+    "slug": "granttap-agent-wrong-checkout-worktree",
+    "images": [
+      "checkout-cover",
+      "checkout-identity",
+      "checkout-handoff"
+    ],
+    "en": [
+      "The agent changed the file. Why is the app still old?",
+      "Trace the real workspace, Git revision, local edits, build inputs and deployed artifact before repeating a correct change in the wrong checkout.",
+      "Keep the Task stable and make the source-to-artifact relationship explicit."
+    ],
+    "ru": [
+      "Агент изменил файл, а приложение старое: проверьте checkout",
+      "Рабочая папка, Git-ревизия, локальные правки, входы сборки и развёрнутый артефакт: найдите расхождение до повторного редактирования.",
+      "Сохраните цель Task и явно установите связь между исходниками и наблюдаемым артефактом."
+    ],
+    "sources": [
+      [
+        "Git: worktree",
+        "https://git-scm.com/docs/git-worktree"
+      ],
+      [
+        "Git: status",
+        "https://git-scm.com/docs/git-status"
+      ],
+      [
+        "GrantTap: Task and Execution",
+        "/guide/task-execution"
+      ],
+      [
+        "GrantTap: handoff",
+        "/guide/handoff"
+      ]
+    ]
+  },
+  {
+    "key": "themes",
+    "date": "2026-10-13",
+    "slug": "granttap-light-dark-auto-theme-testing",
+    "images": [
+      "themes-cover",
+      "themes-auto",
+      "themes-verify"
+    ],
+    "en": [
+      "Light, Dark and Auto: a website theme that keeps its promise",
+      "GrantTap’s website as a practical case study: system changes, explicit overrides, storage failures, first paint, cross-tab updates and readable technical pages.",
+      "Verify the preference transitions and the reading experience, not only the background color."
+    ],
+    "ru": [
+      "Светлая, тёмная и авто: тема сайта с понятным поведением",
+      "Практический разбор сайта GrantTap: система, ручной выбор, отказ хранилища, первый рендеринг, соседние вкладки и читаемые технические страницы.",
+      "Проверяйте переходы предпочтения и удобство чтения, а не только цвет фона."
+    ],
+    "sources": [
+      [
+        "web.dev: prefers-color-scheme",
+        "https://web.dev/articles/prefers-color-scheme"
+      ],
+      [
+        "MDN: storage event",
+        "https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event"
+      ],
+      [
+        "MDN: prefers-color-scheme",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"
+      ],
+      [
+        "GrantTap Journal",
+        "/blog"
+      ]
+    ]
+  }
+]

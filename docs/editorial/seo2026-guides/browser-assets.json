@@ -1,0 +1,27 @@
+{
+  "capturedOn": "2026-11-05",
+  "records": [
+    {
+      "destination": "public/brand/share-en.png",
+      "width": 1200,
+      "height": 630,
+      "kind": "HTML-rendered brand card",
+      "sha256": "193bd16b3367e3066778f0456989ec39c21f2465d969a7be690beea237d42735"
+    },
+    {
+      "destination": "public/brand/share-ru.png",
+      "width": 1200,
+      "height": 630,
+      "kind": "HTML-rendered brand card",
+      "sha256": "53538cadd049545a424bc07f3d264d960c682831bfc1fd91e8b3700ab89a8c63"
+    },
+    {
+      "destination": "public/blog/seo2026-guides/site-theme-light.png",
+      "url": "http://127.0.0.1:3218/?lang=ru",
+      "width": 390,
+      "height": 844,
+      "kind": "Actual Chromium capture of the November 5 website release candidate, light appearance",
+      "sha256": "63a372e261a7f4dd8d75628d4ecdc617353934bac8fdb5273371c73df9c70986"
+    }
+  ]
+}

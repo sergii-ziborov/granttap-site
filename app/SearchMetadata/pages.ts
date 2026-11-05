@@ -4,7 +4,7 @@ import { localizedMetadata, pageLocale } from ".";
 type PageCopy = { title: LocalizedText; description: LocalizedText; updated: string };
 export const publicPageCopy: Record<string, PageCopy> = {
   "/": {
-    title: { en: "Claude Code and Codex on iPhone, iPad & Mac", ru: "Claude Code и Codex с iPhone, iPad и Mac" },
+    title: { en: "GrantTap: Claude Code and Codex on iPhone, iPad & Mac", ru: "GrantTap: Claude Code и Codex с iPhone, iPad и Mac" },
     description: { en: "Follow local coding agents, review approvals and continue Tasks from iPhone, iPad, Mac and Apple Watch. Explore GrantTap setup, screenshots and provider limits.", ru: "Следите за локальными coding-агентами, отвечайте на запросы и продолжайте задачи с iPhone, iPad, Mac и Apple Watch. Настройка, скриншоты и границы поддержки." }, updated: "2026-11-05",
   },
   "/about": { title: { en: "About GrantTap and its practical guides", ru: "О GrantTap и практических руководствах" }, description: { en: "Meet the independent product by Serhii Ziborov. Learn how GrantTap connects local coding agents and how its guides label sources, examples and screenshots.", ru: "Независимый продукт Serhii Ziborov для управления coding-агентами. Как устроены GrantTap, источники руководств, учебные примеры и подписи скриншотов." }, updated: "2026-11-05" },

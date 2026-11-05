@@ -4,7 +4,7 @@ import { AppearanceController, ThemeSelector } from "..";
 import { applyPreference, preferenceKey, readPreference, setPreference, subscribePreference, themeChange, validPreference } from "../preference";
 import { appearanceBootstrap } from "../bootstrap";
 
-afterEach(() => { vi.restoreAllMocks(); delete document.documentElement.dataset.theme; delete document.documentElement.dataset.themeMode; });
+afterEach(() => { vi.restoreAllMocks(); setPreference("auto"); delete document.documentElement.dataset.theme; delete document.documentElement.dataset.themeMode; });
 function system(light = false) {
   const listeners = new Set<() => void>();
   const media = { matches: light, addEventListener: (_: string, fn: () => void) => listeners.add(fn), removeEventListener: (_: string, fn: () => void) => listeners.delete(fn) };
@@ -55,4 +55,10 @@ test("The prepaint script resolves saved, legacy, automatic and unavailable-stor
   window.eval(appearanceBootstrap); expect(document.documentElement.dataset.theme).toBe("dark");
   vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => { throw new Error("blocked"); });
   window.eval(appearanceBootstrap); expect(document.documentElement.dataset.theme).toBe("light");
+});
+
+test("A quota or read-only write failure does not leave the chooser stuck on an older readable preference", () => {
+  system(); localStorage.setItem(preferenceKey, "dark");
+  vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("quota"); });
+  setPreference("light"); expect(readPreference()).toBe("light"); expect(document.documentElement.dataset.theme).toBe("light");
 });

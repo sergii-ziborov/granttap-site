@@ -57,7 +57,7 @@ describe("public legal and support pages", () => {
   test("Russian legal URLs render Russian immediately and expose a crawlable English link", async () => {
     render(await PrivacyPage({ searchParams: Promise.resolve({ lang: "ru" }) }));
     expect(screen.getByRole("heading", { name: "Политика конфиденциальности", level: 1 })).toBeTruthy();
-    expect(screen.getByRole("link", { name: /EN — Переключить на английский/ }).getAttribute("href")).toBe("/");
+    expect(screen.getByRole("link", { name: /EN — Переключить на английский/ }).getAttribute("href")).toBe("/privacy");
   });
 
   test("an English pricing URL remains English even when a previous private flow saved Russian", async () => {

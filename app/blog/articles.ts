@@ -1,4 +1,5 @@
 import { practicalFiveStories } from "./stories/practical2026-five";
+import { seoGuideStories } from "./stories/seo2026-guides";
 import { octoberNextFiveStories } from "./stories/october2026-next-five";
 import { octoberBackfillStories } from "./stories/october2026-backfill";
 import { novemberStories } from "./stories/november2026";
@@ -26,6 +27,7 @@ export type { BlogArticle, BlogLocale } from "./articleTypes";
 
 
 export const articles: BlogArticle[] = [
+  ...seoGuideStories,
   ...novemberStories, ...octoberBackfillStories,
   ...octoberNextFiveStories,
   ...practicalFiveStories,

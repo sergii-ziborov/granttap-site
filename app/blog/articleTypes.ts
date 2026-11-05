@@ -11,6 +11,7 @@ export type ArticleText = {
   additionalIllustrationCaption?: string;
   closing: string;
   editorialNote?: string;
+  practice?: { title: string; intro: string; steps: { title: string; detail: string; code?: string }[] };
   sources?: { label: string; url: string }[];
   graphic?: {
     title: string;

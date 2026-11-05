@@ -20,7 +20,7 @@ test("Mac page localizes content and canonical metadata for Russian", async () =
   expect(screen.getByRole("heading", { name: "GrantTap для Mac" })).toBeTruthy();
   expect(screen.getByText(/Доступно в TestFlight по приглашению/)).toBeTruthy();
   expect(screen.getByText(/одноразовым QR/)).toBeTruthy();
-  expect(screen.getByRole("link", { name: "Переключить на английский" }).getAttribute("href"))
+  expect(screen.getByRole("link", { name: "EN — Переключить на английский" }).getAttribute("href"))
     .toBe("/mac");
   expect((await generateMetadata({ searchParams: Promise.resolve({ lang: "ru" }) })).alternates?.canonical)
     .toBe("/mac?lang=ru");

@@ -26,7 +26,7 @@ describe("published version history", () => {
       expect(section?.bullets?.join(" ")).toContain("0.8.75");
       expect(section?.bullets?.join(" ")).toContain("199");
       expect(section?.bullets?.join(" ")).toContain("0.8.74");
-      expect(section?.links?.[0].href).toContain("/granttap-mcp/v/0.8.143");
+      expect(section?.links?.[0].href).toContain("/granttap-mcp/v/0.8.148");
     }
   });
 });

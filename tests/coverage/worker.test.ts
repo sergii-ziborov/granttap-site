@@ -29,7 +29,7 @@ test("redirects alternate hosts with production security headers", async () => {
 
 test("adds headers to app responses and omits HSTS on HTTP", async () => {
   doubles.app.mockResolvedValueOnce(new Response("app"));
-  const response = await worker.fetch(new Request("http://granttap.com/support"), env, context);
+  const response = await worker.fetch(new Request("http://localhost/support"), env, context);
 
   expect(response.headers.get("content-security-policy")).toContain("frame-ancestors 'none'");
   expect(response.headers.get("strict-transport-security")).toBeNull();

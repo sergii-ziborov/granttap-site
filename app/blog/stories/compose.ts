@@ -1,7 +1,7 @@
 import type { ArticleText, BlogArticle } from "../articleTypes";
 import { articleBodyWordCount } from "../longform/wordCount";
 
-type StoryLocale = Pick<ArticleText, "title" | "summary" | "category" | "closing" | "sources" | "graphic" | "editorialNote"> & {
+type StoryLocale = Pick<ArticleText, "title" | "summary" | "category" | "closing" | "sources" | "graphic" | "editorialNote" | "practice"> & {
   body: string;
   /** Present exactly when the story has a product screenshot. */
   screenshotCaption?: string;

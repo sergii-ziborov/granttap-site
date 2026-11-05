@@ -16,7 +16,7 @@ const navigation: Array<{ key: NavKey; href: string; en: string; ru: string }> =
 ];
 
 function localeHref(href: string, locale: Locale) {
-  if (locale === "en") return href;
+  if (locale === "en" || href.startsWith("/guide")) return href;
   const [path, hash] = href.split("#");
   return `${path || "/"}?lang=ru${hash ? `#${hash}` : ""}`;
 }

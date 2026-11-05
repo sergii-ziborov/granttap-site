@@ -18,7 +18,7 @@ export async function browserSession() {
     const socket=new WebSocket(target.webSocketDebuggerUrl);sockets.push(socket);
     await new Promise((resolve,reject)=>{socket.once('open',resolve);socket.once('error',reject);});
     let id=0;const pending=new Map();const errors=[];
-    socket.on('message',bytes=>{const message=JSON.parse(bytes);if(message.id){const call=pending.get(message.id);pending.delete(message.id);message.error?call?.reject(message.error):call?.resolve(message.result);}if(message.method==='Runtime.exceptionThrown')errors.push(message.params.exceptionDetails.text);});
+    socket.on('message',bytes=>{const message=JSON.parse(bytes);if(message.id){const call=pending.get(message.id);pending.delete(message.id);if(message.error)call?.reject(message.error);else call?.resolve(message.result);}if(message.method==='Runtime.exceptionThrown')errors.push(message.params.exceptionDetails.text);});
     const send=(method,params={})=>new Promise((resolve,reject)=>{const next=++id;pending.set(next,{resolve,reject});socket.send(JSON.stringify({id:next,method,params}));});
     const evaluate=async expression=>{const result=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});assert.ok(!result.exceptionDetails,JSON.stringify(result.exceptionDetails));return result.result.value;};
     await send('Page.enable');await send('Runtime.enable');

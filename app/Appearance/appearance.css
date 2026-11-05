@@ -1,5 +1,7 @@
 :root {
   color-scheme: dark;
+  --muted: #aaa7ae;
+  --dim: #a09ba5;
   --accent-ink: #ffae89;
   --soft-panel: #17191de8;
 }
@@ -88,8 +90,6 @@ html[data-theme="dark"] .gt-control { --gt-bg: #1c1f20; --gt-panel: #25292a; --g
 }
 
 .phone-screen-stack img:only-child, .watch-screen-stack img:only-child { animation: none; opacity: 1; }
-.mesh-art figcaption { color: var(--muted); }
-
 .hero-copy .eyebrow, .hero-copy h1, .hero-copy .hero-lede { animation: none; }
 .blog-byline { color: var(--muted); font-size: 13px; margin-block: -24px 28px; }
 .blog-byline a { color: var(--accent-ink); }

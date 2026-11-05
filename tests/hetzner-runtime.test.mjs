@@ -19,7 +19,8 @@ test("the production site serves pages and exact download bytes without developm
   t.after(() => rmSync(root, { recursive: true, force: true }));
   mkdirSync(join(root, "hetzner"));
   cpSync(".runtime/site-start.mjs", join(root, "hetzner/site-start.mjs"));
-  cpSync("dist", join(root, "dist"), { recursive: true });
+  cpSync("dist/standalone/dist", join(root, "dist"), { recursive: true });
+  cpSync("dist/standalone/node_modules", join(root, "node_modules"), { recursive: true });
   writeFileSync(join(root, "package.json"), '{"type":"module"}');
   const download = join(root, "dist/client/downloads/engine/0.0.0-fixture"); mkdirSync(download, { recursive: true });
   const bytes = Buffer.from([0, 1, 255, 11, 55, 0]); writeFileSync(join(download, "granttap-engine-darwin-arm64"), bytes);

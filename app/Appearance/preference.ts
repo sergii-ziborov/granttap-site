@@ -2,12 +2,14 @@ export type ThemePreference = "auto" | "light" | "dark";
 export const preferenceKey = "granttap.theme";
 export const themeChange = "granttap-theme-change";
 let temporaryPreference: ThemePreference = "auto";
+let unsavedPreference: ThemePreference | undefined;
 
 export function validPreference(value: unknown): value is ThemePreference {
   return value === "auto" || value === "light" || value === "dark";
 }
 
 export function readPreference(): ThemePreference {
+  if (unsavedPreference) return unsavedPreference;
   try {
     const saved = localStorage.getItem(preferenceKey);
     if (validPreference(saved)) return saved;
@@ -30,14 +32,18 @@ export function setPreference(value: ThemePreference) {
   try {
     localStorage.setItem(preferenceKey, value);
     localStorage.removeItem("granttap.guide.theme");
-  } catch { /* The choice remains usable for this page when storage is unavailable. */ }
+    unsavedPreference = undefined;
+  } catch { unsavedPreference = value; }
   applyPreference();
   window.dispatchEvent(new Event(themeChange));
 }
 
 export function subscribePreference(listener: () => void) {
   const storage = (event: StorageEvent) => {
-    if (event.key === preferenceKey || event.key === "granttap.guide.theme" || event.key === null) listener();
+    if (event.key === preferenceKey || event.key === "granttap.guide.theme" || event.key === null) {
+      unsavedPreference = undefined;
+      listener();
+    }
   };
   window.addEventListener("storage", storage);
   window.addEventListener(themeChange, listener);

@@ -137,3 +137,11 @@
 .blog-current-guide strong { display:block;color:var(--ink);font-size:12px; }
 .blog-current-guide p { margin:8px 0;color:var(--muted);font-size:13px; }
 .blog-current-guide a { color:var(--orange);font-size:12px; }
+
+.blog-practice { padding: 26px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); margin-block: 32px; }
+.blog-practice h2 { margin-top: 0; }
+.blog-practice ol { padding-left: 24px; }
+.blog-practice li { padding-left: 6px; margin-block: 24px; }
+.blog-practice h3 { font-size: 19px; color: var(--ink); }
+.blog-practice pre { max-width: 100%; overflow: auto; padding: 16px; border-radius: 10px; background: var(--black); border: 1px solid var(--line); font: 13px/1.65 var(--font-mono, monospace); color: var(--ink); }
+@media (max-width: 640px) { .blog-practice { padding: 20px; } }

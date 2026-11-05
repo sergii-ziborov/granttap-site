@@ -20,7 +20,7 @@ test("journal lists released stories and keeps language in its links", async () 
   expect(screen.getByRole("heading", { name: "Работа агентов, которую можно понять и контролировать." })).toBeTruthy();
   expect(screen.getByRole("main").getAttribute("lang")).toBe("ru");
   expect(screen.getByRole("region", { name: "Все статьи" })).toBeTruthy();
-  expect(screen.getByRole("link", { name: "Переключить на английский" }).getAttribute("href")).toBe("/blog");
+  expect(screen.getByRole("link", { name: "EN — Переключить на английский" }).getAttribute("href")).toBe("/blog");
   expect(screen.getByRole("link", { name: /Читать статью/ }).getAttribute("href")).toMatch(/\?lang=ru$/);
 });
 
@@ -30,7 +30,7 @@ test.each(articles.flatMap(article => (["en", "ru"] as const).map(locale => ({ a
     const view = render(<BlogArticleView article={article} articles={articles} locale={locale} />);
     expect(screen.getByRole("heading", { name: article[locale].title })).toBeTruthy();
     expect(screen.getByText(article[locale].closing)).toBeTruthy();
-    const captureLabel = screen.queryByText(locale === "en" ? "GrantTap screen · sample data" : "Экран GrantTap · тестовые данные");
+    const captureLabel = screen.queryByText(locale === "en" ? "Actual GrantTap capture" : "Настоящий снимок GrantTap");
     if (article.screenshot) {
       expect(screen.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
       expect(captureLabel).toBeTruthy();
@@ -94,7 +94,7 @@ test("article routes and metadata resolve exact slugs and reject unknown ones", 
   const metadata = await generateMetadata({ params: Promise.resolve({ slug }) });
   expect(metadata.alternates).toMatchObject({ canonical: `/blog/${slug}`, languages: { en: `/blog/${slug}`, ru: `/blog/${slug}?lang=ru` } });
   expect((await generateMetadata({ params: Promise.resolve({ slug }), searchParams: Promise.resolve({ lang: "ru" }) })).title).toBe(getArticle(slug)?.ru.title);
-  expect((await indexMetadata({ searchParams: Promise.resolve({ lang: "ru" }) })).title).toBe("Журнал");
+  expect((await indexMetadata({ searchParams: Promise.resolve({ lang: "ru" }) })).title).toBe("Практические статьи об ИИ и coding-агентах");
   expect(await generateMetadata({ params: Promise.resolve({ slug: "missing" }) })).toEqual({});
   render(await ArticlePage({ params: Promise.resolve({ slug }), searchParams: Promise.resolve({}) }));
   expect(screen.getByRole("heading", { name: getArticle(slug)?.en.title })).toBeTruthy();

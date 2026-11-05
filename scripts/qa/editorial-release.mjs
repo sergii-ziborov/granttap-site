@@ -22,7 +22,7 @@ for (const row of calendar.articles) {
     assert.ok(d.querySelector('.blog-prose > .blog-current-guide'), route);
     assert.ok(d.querySelector('.blog-current-guide').textContent.includes('2026-11-05'));
     const source = JSON.parse(d.querySelector('script[type="application/ld+json"]').textContent);
-    assert.equal(source.datePublished, row.date); assert.equal(source.dateModified, '2026-11-05');
+    assert.equal(source.datePublished, row.publishedOn || row.date); assert.equal(source.dateModified, '2026-11-05');
     const references = [...d.querySelectorAll('.blog-article img')].map(image => image.getAttribute('src'));
     for (const path of row.images) assert.ok(references.includes(path), path);
     assert.ok(d.querySelector('link[rel="canonical"]').href.endsWith(route));
@@ -37,7 +37,7 @@ for (const image of images) {
 }
 for (const route of ['/support', '/support?lang=ru', '/guide', '/guide/providers', '/guide/device-management', '/agents/claude-code', '/agents/codex', '/agents/cursor', '/agents/grok-build', '/pricing', '/privacy', '/terms', '/mac', '/project-mesh']) {
   const dom = await html(route); const d = dom.window.document;
-  if (route.startsWith('/support')) { assert.ok(d.body.textContent.includes('0.8.143')); assert.ok(d.body.textContent.includes('250')); assert.ok(d.querySelector('a[href^="/guide/provider-sign-in"]')); }
+  if (route.startsWith('/support')) { assert.ok(d.body.textContent.includes('0.8.148')); assert.ok(d.body.textContent.includes('250')); assert.ok(d.querySelector('a[href^="/guide/provider-sign-in"]')); }
   if (route === '/guide') assert.ok(d.body.textContent.includes('5 ноября 2026'));
   proof.pages.push({ route, status: 200 }); dom.window.close();
 }

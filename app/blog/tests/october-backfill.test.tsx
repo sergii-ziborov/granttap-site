@@ -20,8 +20,8 @@ describe("reviewed retrospective field guides", () => {
         expect(article[locale].editorialNote).toContain(locale === "en" ? "editorial slot" : "редакционный слот");
       }
     }
-    expect(publishedArticles(new Date("2026-11-05T12:00:00Z"))).toHaveLength(47);
-    expect(publishedArticles(new Date("2026-11-08T12:00:00Z"))).toHaveLength(50);
+    expect(publishedArticles(new Date("2026-11-05T12:00:00Z"))).toHaveLength(52);
+    expect(publishedArticles(new Date("2026-11-08T12:00:00Z"))).toHaveLength(55);
   });
   it("ships fifteen distinct generated originals and verified web assets", () => {
     const paths = octoberBackfillStories.flatMap(article => [article.cover, article.inlineIllustration!, article.additionalIllustration!]);
@@ -43,6 +43,6 @@ describe("reviewed retrospective field guides", () => {
     expect(notice.closest(".reading-rail")).toBeNull();
     expect(screen.getByText(/Материал подготовлен и проверен 5 ноября/)).toBeTruthy();
     const view = render(<div>{inlineStoryLinks("[Ресурсы](/guide/transcript-sources#resources)", "ru")}</div>);
-    expect(view.getByRole("link", { name: "Ресурсы" }).getAttribute("href")).toBe("/guide/transcript-sources?lang=ru#resources");
+    expect(view.getByRole("link", { name: "Ресурсы" }).getAttribute("href")).toBe("/guide/transcript-sources#resources");
   });
 });

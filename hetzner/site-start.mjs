@@ -1,5 +1,6 @@
 import { startProdServer } from "vinext/server/prod-server";
 import { installEngineDownloads } from "./engine-downloads/index.mjs";
+import { installSitePolicy } from "./site-policy/index.mjs";
 
 const port = Number(process.env.PORT ?? "3211");
 const host = process.env.HOST ?? "0.0.0.0";
@@ -14,3 +15,4 @@ const { server } = await startProdServer({
   outDir: new URL("../dist", import.meta.url).pathname,
 });
 installEngineDownloads(server, new URL("../dist/client/downloads/engine", import.meta.url).pathname);
+installSitePolicy(server);
