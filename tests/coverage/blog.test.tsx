@@ -11,17 +11,18 @@ import { publishedArticles, publicationDay } from "../../app/blog/publication";
 
 test("journal lists released stories and keeps language in its links", async () => {
   const english = render(await BlogPage({ searchParams: Promise.resolve({}) }));
-  expect(screen.getByRole("heading", { name: "Agent work you can understand and control." })).toBeTruthy();
+  expect(screen.getByRole("heading", { level: 1, name: "Agent work you can understand and control." })).toBeTruthy();
   const list = screen.getByRole("region", { name: "All articles" });
   expect(within(list).getAllByRole("link")).toHaveLength(publishedArticles().length);
-  expect(screen.getByRole("link", { name: "RU — Switch to Russian" }).getAttribute("href")).toBe("/blog?lang=ru");
+  expect(within(screen.getByRole("banner")).getByRole("link", { name: "RU — Switch to Russian" }).getAttribute("href")).toBe("/blog?lang=ru");
   english.unmount();
   render(await BlogPage({ searchParams: Promise.resolve({ lang: "ru" }) }));
-  expect(screen.getByRole("heading", { name: "Работа агентов, которую можно понять и контролировать." })).toBeTruthy();
+  expect(screen.getByRole("heading", { level: 1, name: "Работа агентов, которую можно понять и контролировать." })).toBeTruthy();
   expect(screen.getByRole("main").getAttribute("lang")).toBe("ru");
   expect(screen.getByRole("region", { name: "Все статьи" })).toBeTruthy();
-  expect(screen.getByRole("link", { name: "EN — Переключить на английский" }).getAttribute("href")).toBe("/blog");
-  expect(screen.getByRole("link", { name: /Читать статью/ }).getAttribute("href")).toMatch(/\?lang=ru$/);
+  expect(within(screen.getByRole("banner")).getByRole("link", { name: "EN — Переключить на английский" }).getAttribute("href")).toBe("/blog");
+  const featured = screen.getByRole("region", { name: "Главная статья" });
+  expect(within(featured).getByRole("link", { name: /Читать статью/ }).getAttribute("href")).toMatch(/\?lang=ru$/);
 });
 
 test.each(articles.flatMap(article => (["en", "ru"] as const).map(locale => ({ article, locale }))))(

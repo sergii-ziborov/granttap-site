@@ -14,16 +14,14 @@ describe("guide routes and authored rendering", () => {
     expect(screen.getByRole("link", { name: "Начать с первого подключения ↗" }).getAttribute("href")).toBe("/guide/quick-start");
     expect(screen.getAllByRole("img").length).toBeGreaterThan(3);
   });
-  it("renders every chapter with working heading IDs and previous/next navigation", () => {
-    for (const page of guideCatalog) {
-      const view = render(<GuideArticle page={page} content={guideContent[page.slug]} />);
-      expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(page.title);
-      expect(screen.getByRole("navigation", { name: "Между главами" })).toBeTruthy();
-      for (const link of view.container.querySelectorAll('a[href^="#"]')) {
-        expect(view.container.querySelector(link.getAttribute("href")!)).not.toBeNull();
-      }
-      view.unmount();
+  it.each(guideCatalog)("renders $slug with working heading IDs and previous/next navigation", page => {
+    const view = render(<GuideArticle page={page} content={guideContent[page.slug]} />);
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(page.title);
+    expect(screen.getByRole("navigation", { name: "Между главами" })).toBeTruthy();
+    for (const link of view.container.querySelectorAll('a[href^="#"]')) {
+      expect(view.container.querySelector(link.getAttribute("href")!)).not.toBeNull();
     }
+    view.unmount();
   });
   it("resolves known routes and metadata while rejecting unknown chapters", async () => {
     expect(generateStaticParams()).toEqual(guideCatalog.map(({ slug }) => ({ slug })));
