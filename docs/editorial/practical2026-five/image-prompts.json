@@ -1,0 +1,156 @@
+{
+  "mode": "built-in image_gen",
+  "preparedOn": "2026-11-05",
+  "images": [
+    {
+      "key": "build-cover",
+      "destination": "public/blog/practical2026-five/build-cover.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A graphite workshop press assembling a single orange ceramic bridge segment, beside an untouched finished ivory model. Concept: a running build and the separately verified artifact. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-50bd2e72-b654-4cfa-96be-09f6207fa765.png",
+      "originalSha256": "dee65b85dc0a9f4d9f833ee28d0127325c7503055e42bf378b12a9ee8afe6c56",
+      "webpSha256": "7f9d41cddc2e0af12e1f09424e4a35afbfcaa827eaecca419958ba84d7714ead",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "build-pipeline",
+      "destination": "public/blog/practical2026-five/build-pipeline.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Three tactile paper chutes arranged in sequence, an orange bead stopped in the middle chute while a graphite bead exits the final empty chute. Concept: a middle pipeline failure must not be hidden by a successful last step. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-9c4329b9-7277-4c9b-a16d-9be2e7a6d8ef.png",
+      "originalSha256": "be30207b0d4ec95e93595900bc1433f70cd631295f2adac1d3445377ecf4668a",
+      "webpSha256": "77eef9187221e1f253d03d0b8ad0452cf85df738920a41a32b1a57f84b3bf22f",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "build-recovery",
+      "destination": "public/blog/practical2026-five/build-recovery.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A graphite spool holding an orange thread leading to a small sealed ivory artifact box and a blank evidence card. Concept: reconnecting to the same long-running operation instead of starting a duplicate. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-1bc1c5fe-e5b4-4173-8807-babd91d47c4d.png",
+      "originalSha256": "51027439c65724176394710262dc21ca5026abc868c9934ca7c574b69341e283",
+      "webpSha256": "b749ce0a4b23fcb8669a5a5ecc41b903cc26ca7fd1a321bc8bdb0b63602921a0",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "calendar-boundary",
+      "destination": "public/blog/practical2026-five/calendar-boundary.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A thin orange line crossing a graphite architectural midnight threshold between two ivory rooms, seen in cutaway with generous negative space. Concept: testing the exact boundary between two dates, without numbers or written labels. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-3624bb2c-63eb-474a-bd29-ab05baecc317.png",
+      "originalSha256": "22773300d53cbe5eb50ee46b8de5d57270d2b286a541e8772f14269a79f2dfbf",
+      "webpSha256": "b0f65a3d6f48154c6c00ae5cac068fd43d3bc46663c38944ecb314a3c91f9e39",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "calendar-cover",
+      "destination": "public/blog/practical2026-five/calendar-cover.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A sculptural calendar-like stack of blank ivory paper sheets beside two graphite circular dials of different orientations, a restrained orange thread connecting the same point on both. Concept: one instant, different local calendar representations. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-bbd087d7-c55a-4085-8cb7-8fc3ed616d34.png",
+      "originalSha256": "3f64045fa5b9a510aab2090ce02564a5191543f2e452e9444207c6fc41154fa8",
+      "webpSha256": "3c94bc05d7ab9c768642d7d6386d7a4e23da46cb82412d61b8e36ed0a5841a9d",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "calendar-evidence",
+      "destination": "public/blog/practical2026-five/calendar-evidence.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An ivory display tray with two distinct matte circular clock mechanisms and a small orange bookmark between blank date cards. Concept: distinguishing a recurring local appointment from an absolute expiry instant. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-2b0f66a5-54f8-45b4-a654-a07fb0f7571e.png",
+      "originalSha256": "76e89f4c85e8e6513c91aae8b5698052af760052ef211146c930921aab39e519",
+      "webpSha256": "0ae2facdb3ba839fa40e9cc6374d01ac1f088cb615df8ea80493e73f21fb365f",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "compat-cover",
+      "destination": "public/blog/practical2026-five/compat-cover.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An older graphite connector and a newer ivory connector both fitting a sculpted orange adapter on a warm ivory table. Concept: API compatibility across independently updated clients. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-c097607d-a647-41ca-8488-f3d3f927e187.png",
+      "originalSha256": "d12607d3b6c51ae8d2af4af4931efe98513695d08d8d680a06be3841830f9050",
+      "webpSha256": "0158b9e9b75261dc99a1f9d11e936ee50853bc4244c3a6c36cd1cd2b5e01727d",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "compat-matrix",
+      "destination": "public/blog/practical2026-five/compat-matrix.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Four small architectural bridges in a two-by-two arrangement, each joining distinctly textured graphite and ivory ends; one bridge has a visible orange missing joint. Concept: checking client-server version combinations, no charts or text. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-3865a17d-b3a1-4844-836a-ec322154c0fe.png",
+      "originalSha256": "49735a456f86c69489470acb99ea3a98a2f3441466ea5d394413729255be5ad0",
+      "webpSha256": "3125aa117e0b1da6bd22ac6ab5c3e3daf7bcae727191f8ba655d9bb08c2ca149",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "compat-rollout",
+      "destination": "public/blog/practical2026-five/compat-rollout.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Three graphite platforms at different heights joined by an orange removable bridge, a white spare bridge kept nearby. Concept: staged deployment with a retained compatible recovery path. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-5fcdcea1-5a4b-4af9-9fea-90a1c1e6089e.png",
+      "originalSha256": "9a4676a9edef1c0b77c75096d5c6ff6161a3a4949303438bbc45f34b6c094438",
+      "webpSha256": "613412ed97476907e7938ff06b85e5f483e4ed74f558bd655eecc24a7b60108b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "config-cover",
+      "destination": "public/blog/practical2026-five/config-cover.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An architectural cutaway of three separate graphite rooms with different fitted ivory keys; one small orange key fits only its matching room. Concept: environment configuration and credentials have explicit scope. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-62d17fa5-87f6-46fc-96ec-c22f2136c22d.png",
+      "originalSha256": "52411fc1427c5b1c85ed02c8dd6ad1b675db9931124e098631d30445758f7f2b",
+      "webpSha256": "ed618bc553c1699deef9d39fefcb355f351640da6aa23387ab0d6c3ef00fe1e2",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "config-rotation",
+      "destination": "public/blog/practical2026-five/config-rotation.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Two separate graphite lock housings, an older ivory key in an archive tray and a newly fitted orange key in the active housing. Concept: a controlled credential rotation with explicit target. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-0a1c9561-aa41-454f-8cfd-5f8e5995d0dc.png",
+      "originalSha256": "1e0e3cae6c95702c362ee6b63afa005159d7d32fbea71425ce6f9427dfd79a2d",
+      "webpSha256": "e1ab9d5d6d7f9822a45bea6ca4123141ce0a22b6489704b4ec4ed036ebc18f8b",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "config-validation",
+      "destination": "public/blog/practical2026-five/config-validation.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An ivory precision gauge with three ceramic inserts, two fitting and one orange mismatched piece resting outside, photographed as an abstract editorial still life. Concept: validate configuration before executing the action. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-1ba4e1a1-249c-4b3b-a97b-a44b3423ed6e.png",
+      "originalSha256": "c69a7b060bde8862ad01d57e2ad1f0858866ffef191e3d4f2af0bf2fbd9ae823",
+      "webpSha256": "d98542f996dde4b7983e66ac4b1242d66c622b704260070a91e569fd3f796120",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "migration-backfill",
+      "destination": "public/blog/practical2026-five/migration-backfill.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An ivory tray of orderly graphite ceramic tokens with one orange token being carefully transferred into a parallel fitted tray, the originals still present. Concept: bounded resumable backfill, not destructive replacement. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-bf519f35-ebb7-48d7-ac5b-785cca906dbe.png",
+      "originalSha256": "e177e091de347f2d2932fbdc0a538c2f03ec1d3b64e0dc121242d7ac065f5ab2",
+      "webpSha256": "bf6fa3ef883cb433e5861b9efa833f0f5ca9f214ae9e6a5078cf0ebec21b4cf6",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "migration-cover",
+      "destination": "public/blog/practical2026-five/migration-cover.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Two graphite archive cabinets on an ivory table connected by a narrow orange bridge, blank paper cards moving in an orderly row. Concept: evolving stored data while preserving an older reader. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-3772aa2c-232b-4f39-bdaf-6ae3ff984d40.png",
+      "originalSha256": "6881c837cda8a62f40a98daf9ee22f28efc859499a6bc258c317a8df4bdfff08",
+      "webpSha256": "9df2526ed03a0b4f1f8a5067947da7de7e3e14195e7c36cd071a702aa5a87c46",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "migration-restore",
+      "destination": "public/blog/practical2026-five/migration-restore.webp",
+      "prompt": "Create a premium original editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An elegant matte graphite storage box and an independently opened ivory duplicate box, one orange card inspected through a small magnifying lens. Concept: a backup needs a demonstrated restoration. Established visual language: warm ivory, graphite, restrained burnt orange, tactile paper and matte ceramic materials, realistic soft studio light, architectural precision, calm generous negative space. Conceptual art only, not an actual product screen or performance result. No people, readable text, letters, numbers, logos, QR codes, watermarks or fake dashboards.",
+      "sourceAssetId": "exec-a0e34784-1f5c-46bd-b318-5723fd324b64.png",
+      "originalSha256": "5da4ffd14ba9c0b72e635e503ffcd4d5ea4479e08393003659f8a5285c5650f1",
+      "webpSha256": "437768e80b42a584f373c4253164666cf086d8a82fc75388f45b02aba0878ff4",
+      "width": 1672,
+      "height": 941
+    }
+  ]
+}

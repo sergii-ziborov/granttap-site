@@ -19,8 +19,8 @@ describe("five more retrospective articles", () => {
     expect(calendar.beforeGaps.filter(date => !calendar.afterGaps.includes(date))).toEqual(octoberNextFiveStories.map(article => article.date));
     expect(calendar.afterGaps).toHaveLength(20);
     expect(calendar.afterGaps.slice(-3)).toEqual(["2026-10-17", "2026-10-18", "2026-10-19"]);
-    expect(publishedArticles(new Date("2026-11-05T12:00:00Z"))).toHaveLength(42);
-    expect(publishedArticles(new Date("2026-11-08T12:00:00Z"))).toHaveLength(45);
+    expect(publishedArticles(new Date("2026-11-05T12:00:00Z"))).toHaveLength(47);
+    expect(publishedArticles(new Date("2026-11-08T12:00:00Z"))).toHaveLength(50);
     for (const article of octoberNextFiveStories) {
       expect(article.reviewedOn).toBe("2026-11-05");
       for (const locale of ["en", "ru"] as const) {

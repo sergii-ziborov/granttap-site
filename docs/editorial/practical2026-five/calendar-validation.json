@@ -1,0 +1,123 @@
+{
+  "preparedOn": "2026-11-05",
+  "timeZone": "Asia/Jerusalem",
+  "rangeStart": "2026-09-24",
+  "beforeGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19"
+  ],
+  "articles": [
+    {
+      "slug": "granttap-agent-time-zones-calendar-tests",
+      "date": "2026-10-14",
+      "reviewedOn": "2026-11-05",
+      "title": "Даты и часовые пояса: какие правила нужно объяснить агенту",
+      "words": {
+        "en": 2634,
+        "ru": 2569
+      },
+      "images": [
+        "/blog/practical2026-five/calendar-cover.webp",
+        "/blog/practical2026-five/calendar-boundary.webp",
+        "/blog/practical2026-five/calendar-evidence.webp"
+      ]
+    },
+    {
+      "slug": "granttap-agent-long-builds-process-results",
+      "date": "2026-10-15",
+      "reviewedOn": "2026-11-05",
+      "title": "Долгая сборка без догадок: процесс, pipeline и настоящий результат",
+      "words": {
+        "en": 2626,
+        "ru": 2619
+      },
+      "images": [
+        "/blog/practical2026-five/build-cover.webp",
+        "/blog/practical2026-five/build-pipeline.webp",
+        "/blog/practical2026-five/build-recovery.webp"
+      ]
+    },
+    {
+      "slug": "granttap-agent-environment-config-secrets",
+      "date": "2026-10-17",
+      "reviewedOn": "2026-11-05",
+      "title": "Окружение агента без секретов в чате: от настройки до работающего процесса",
+      "words": {
+        "en": 2664,
+        "ru": 2644
+      },
+      "images": [
+        "/blog/practical2026-five/config-cover.webp",
+        "/blog/practical2026-five/config-validation.webp",
+        "/blog/practical2026-five/config-rotation.webp"
+      ]
+    },
+    {
+      "slug": "granttap-agent-database-migration-rehearsal",
+      "date": "2026-10-18",
+      "reviewedOn": "2026-11-05",
+      "title": "Миграция базы с агентом: сохранность данных и репетиция восстановления",
+      "words": {
+        "en": 2629,
+        "ru": 2668
+      },
+      "images": [
+        "/blog/practical2026-five/migration-cover.webp",
+        "/blog/practical2026-five/migration-backfill.webp",
+        "/blog/practical2026-five/migration-restore.webp"
+      ]
+    },
+    {
+      "slug": "granttap-agent-api-client-server-compatibility",
+      "date": "2026-10-19",
+      "reviewedOn": "2026-11-05",
+      "title": "Совместимость API, когда клиент и сервер обновляются не одновременно",
+      "words": {
+        "en": 2653,
+        "ru": 2700
+      },
+      "images": [
+        "/blog/practical2026-five/compat-cover.webp",
+        "/blog/practical2026-five/compat-matrix.webp",
+        "/blog/practical2026-five/compat-rollout.webp"
+      ]
+    }
+  ],
+  "afterGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13"
+  ],
+  "currentPublishedCount": 47,
+  "totalPrepared": 50
+}

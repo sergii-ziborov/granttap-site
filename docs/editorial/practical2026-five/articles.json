@@ -1,0 +1,192 @@
+[
+  {
+    "key": "calendar",
+    "date": "2026-10-14",
+    "slug": "granttap-agent-time-zones-calendar-tests",
+    "en": [
+      "Time zones and calendar rules: give an agent the right temporal contract",
+      "A practical workshop on publication dates, expiry, recurrence, fixed clocks and boundary tests across devices and locales.",
+      "Keep the temporal meaning explicit, then test the boundary that determines the user outcome."
+    ],
+    "ru": [
+      "Даты и часовые пояса: какие правила нужно объяснить агенту",
+      "Практикум о дне публикации, сроке ссылки, повторении, управляемых часах и проверке границ между устройствами и языками.",
+      "Сначала определите смысл времени, затем проверьте границу пользовательского результата."
+    ],
+    "sources": [
+      [
+        "IANA: Time Zone Database",
+        "https://www.iana.org/time-zones"
+      ],
+      [
+        "Unicode: Date and time formatting",
+        "https://www.unicode.org/reports/tr35/tr35-dates.html"
+      ],
+      [
+        "GrantTap: automations",
+        "/guide/automations"
+      ],
+      [
+        "GrantTap: evidence",
+        "/guide/audit-evidence"
+      ]
+    ],
+    "images": [
+      "/blog/practical2026-five/calendar-cover.webp",
+      "/blog/practical2026-five/calendar-boundary.webp",
+      "/blog/practical2026-five/calendar-evidence.webp"
+    ]
+  },
+  {
+    "key": "build",
+    "date": "2026-10-15",
+    "slug": "granttap-agent-long-builds-process-results",
+    "en": [
+      "Long builds without guesswork: processes, pipelines and artifacts",
+      "Keep the original run identifiable, catch intermediate failures, recover after interruption and verify the actual artifact.",
+      "Inspect the original run and its artifact before deciding to create another build."
+    ],
+    "ru": [
+      "Долгая сборка без догадок: процесс, pipeline и настоящий результат",
+      "Как сохранить исходный запуск, заметить промежуточный отказ, вернуться после обрыва и проверить собранный артефакт.",
+      "Перед повторной сборкой проверьте исходный запуск и относящийся к нему артефакт."
+    ],
+    "sources": [
+      [
+        "Node.js: Child process",
+        "https://nodejs.org/api/child_process.html"
+      ],
+      [
+        "GNU Bash: Pipelines",
+        "https://www.gnu.org/software/bash/manual/html_node/Pipelines.html"
+      ],
+      [
+        "GrantTap: Task and Execution",
+        "/guide/task-execution"
+      ],
+      [
+        "GrantTap: evidence",
+        "/guide/audit-evidence"
+      ]
+    ],
+    "images": [
+      "/blog/practical2026-five/build-cover.webp",
+      "/blog/practical2026-five/build-pipeline.webp",
+      "/blog/practical2026-five/build-recovery.webp"
+    ]
+  },
+  {
+    "key": "config",
+    "date": "2026-10-17",
+    "slug": "granttap-agent-environment-config-secrets",
+    "en": [
+      "Configure an agent project without putting secrets in the chat",
+      "A reproducible environment contract: required fields, validation, precedence, process lifecycle and separate authentication layers.",
+      "Find the missing condition at the right layer and verify the process that actually consumes it."
+    ],
+    "ru": [
+      "Окружение агента без секретов в чате: от настройки до работающего процесса",
+      "Воспроизводимый контракт конфигурации: обязательные поля, валидация, порядок источников, lifecycle процесса и уровни авторизации.",
+      "Найдите недостающее условие на правильном слое и проверьте настоящий процесс-потребитель."
+    ],
+    "sources": [
+      [
+        "Node.js: Environment variables",
+        "https://nodejs.org/api/environment_variables.html"
+      ],
+      [
+        "Git: gitignore",
+        "https://git-scm.com/docs/gitignore"
+      ],
+      [
+        "GrantTap: provider sign-in",
+        "/guide/provider-sign-in"
+      ],
+      [
+        "GrantTap: device management",
+        "/guide/device-management"
+      ]
+    ],
+    "images": [
+      "/blog/practical2026-five/config-cover.webp",
+      "/blog/practical2026-five/config-validation.webp",
+      "/blog/practical2026-five/config-rotation.webp"
+    ]
+  },
+  {
+    "key": "migration",
+    "date": "2026-10-18",
+    "slug": "granttap-agent-database-migration-rehearsal",
+    "en": [
+      "Database migrations with an agent: rehearse the transition and recovery",
+      "Preserved values, concurrent writers, resumable backfills, integrity checks and a demonstrated restore before a live change.",
+      "Review the data invariant, supported consumers and recovery evidence together."
+    ],
+    "ru": [
+      "Миграция базы с агентом: сохранность данных и репетиция восстановления",
+      "Инварианты, конкурентная запись, продолжаемый перенос, проверка целостности и подтверждённое восстановление до live-изменений.",
+      "Оценивайте инвариант данных, поддерживаемых потребителей и свидетельства восстановления вместе."
+    ],
+    "sources": [
+      [
+        "PostgreSQL 18: ALTER TABLE",
+        "https://www.postgresql.org/docs/18/sql-altertable.html"
+      ],
+      [
+        "Prisma: Expand-and-contract migrations",
+        "https://www.prisma.io/docs/guides/database/data-migration"
+      ],
+      [
+        "GrantTap: evidence",
+        "/guide/audit-evidence"
+      ],
+      [
+        "GrantTap: handoff",
+        "/guide/handoff"
+      ]
+    ],
+    "images": [
+      "/blog/practical2026-five/migration-cover.webp",
+      "/blog/practical2026-five/migration-backfill.webp",
+      "/blog/practical2026-five/migration-restore.webp"
+    ]
+  },
+  {
+    "key": "compat",
+    "date": "2026-10-19",
+    "slug": "granttap-agent-api-client-server-compatibility",
+    "en": [
+      "API compatibility when clients and servers update separately",
+      "Test the supported version pairs, unknown states, queued data, capabilities and rollout order instead of trusting the newest local pair.",
+      "A compatibility claim should name the version pair, behavior and evidence that support it."
+    ],
+    "ru": [
+      "Совместимость API, когда клиент и сервер обновляются не одновременно",
+      "Матрица версий, неизвестные состояния, сохранённая очередь, capabilities и порядок выпуска вместо проверки одной новой пары.",
+      "Утверждение о совместимости называет пару версий, поведение и подтверждающее наблюдение."
+    ],
+    "sources": [
+      [
+        "Google AIP-180: Backwards compatibility",
+        "https://google.aip.dev/180"
+      ],
+      [
+        "GrantTap: updates",
+        "/guide/updates"
+      ],
+      [
+        "GrantTap: device management",
+        "/guide/device-management"
+      ],
+      [
+        "GrantTap: provider boundaries",
+        "/guide/providers"
+      ]
+    ],
+    "images": [
+      "/blog/practical2026-five/compat-cover.webp",
+      "/blog/practical2026-five/compat-matrix.webp",
+      "/blog/practical2026-five/compat-rollout.webp"
+    ]
+  }
+]

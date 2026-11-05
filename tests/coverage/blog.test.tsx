@@ -24,28 +24,39 @@ test("journal lists released stories and keeps language in its links", async () 
   expect(screen.getByRole("link", { name: /Читать статью/ }).getAttribute("href")).toMatch(/\?lang=ru$/);
 });
 
-test("every article renders its own sections and sources in both languages", () => {
-  for (const article of articles) {
-    for (const locale of ["en", "ru"] as const) {
-      const view = render(<BlogArticleView article={article} articles={articles} locale={locale} />);
-      expect(screen.getByRole("heading", { name: article[locale].title })).toBeTruthy();
-      expect(screen.getByText(article[locale].closing)).toBeTruthy();
-      const captureLabel = screen.queryByText(locale === "en" ? "GrantTap screen · sample data" : "Экран GrantTap · тестовые данные");
-      if (article.screenshot) {
-        expect(screen.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
-        expect(captureLabel).toBeTruthy();
-      } else {
-        expect(article[locale].screenshotCaption).toBeUndefined();
-        expect(captureLabel).toBeNull();
-      }
-      expect(screen.getByRole("heading", { name: locale === "en" ? "Sources" : "Источники" })).toBeTruthy();
-      view.unmount();
+test.each(articles.flatMap(article => (["en", "ru"] as const).map(locale => ({ article, locale }))))(
+  "article $article.slug renders its own content in $locale",
+  ({ article, locale }) => {
+    const view = render(<BlogArticleView article={article} articles={articles} locale={locale} />);
+    expect(screen.getByRole("heading", { name: article[locale].title })).toBeTruthy();
+    expect(screen.getByText(article[locale].closing)).toBeTruthy();
+    const captureLabel = screen.queryByText(locale === "en" ? "GrantTap screen · sample data" : "Экран GrantTap · тестовые данные");
+    if (article.screenshot) {
+      expect(screen.getByRole("img", { name: article[locale].screenshotCaption })).toBeTruthy();
+      expect(captureLabel).toBeTruthy();
+    } else {
+      expect(article[locale].screenshotCaption).toBeUndefined();
+      expect(captureLabel).toBeNull();
     }
-  }
-});
+    expect(screen.getByRole("heading", { name: locale === "en" ? "Sources" : "Источники" })).toBeTruthy();
+    view.unmount();
+  },
+);
 
 test("each editorial story includes a real GrantTap interface with bilingual context", () => {
-  const editorial = articles.filter(article => article.date >= "2026-10-03" && article.date < "2026-10-20");
+  const legacySlugs = new Set([
+    "move-a-task-without-losing-work", "messages-that-wait-for-the-computer",
+    "cortex-loom-inside-granttap-token-economy", "project-mesh-memory-handoff-less-duplicate-work",
+    "granttap-governance-native-enforcement-research", "control-claude-code-codex-iphone-granttap",
+    "granttap-mesh-governance-allow-ask-deny-local-agents", "microsoft-agent-365-mcp-tool-governance-september-2026",
+    "aws-agentcore-temporal-policy-agent-security-2026", "anthropic-agent-security-incident-lessons-local-coding-agents",
+    "local-cloud-hybrid-agent-boundaries", "what-agent-usage-metrics-can-prove",
+    "task-continuity-beyond-an-agent-session", "agent-approvals-at-the-execution-boundary",
+    "choose-a-mobile-coding-agent-workflow", "cortex-loom-evidence-per-token",
+    "aws-summit-tel-aviv-agentic-systems", "governance-that-reaches-the-computer",
+    "coding-agents-on-your-phone-2026", "why-granttap-is-a-control-center",
+  ]);
+  const editorial = articles.filter(article => legacySlugs.has(article.slug));
   expect(editorial).toHaveLength(20);
   // A story shows a capture only when one shows its feature; none shows message delivery marks yet.
   expect(editorial.filter(article => !article.screenshot).map(article => article.slug)).toEqual(["messages-that-wait-for-the-computer"]);
@@ -152,7 +163,7 @@ test("October 16 guides match or exceed the journal available at their publicati
   const fresh = articles.filter(article => article.date === "2026-10-16");
   expect(fresh.map(article => article.slug)).toEqual(["move-a-task-without-losing-work", "messages-that-wait-for-the-computer"]);
   // Later longform batches must not move this historical comparison baseline.
-  const others = articles.filter(article => article.date < "2026-10-16");
+  const others = articles.filter(article => article.date < "2026-10-16" && (!article.reviewedOn || article.reviewedOn <= "2026-10-16"));
   const median = (values: number[]) => { const sorted = [...values].sort((a, b) => a - b); const middle = sorted.length >> 1; return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2; };
   for (const article of fresh) {
     expect(article.minutes).toBeGreaterThanOrEqual(median(others.map(other => other.minutes)));

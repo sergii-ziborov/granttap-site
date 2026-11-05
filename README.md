@@ -273,7 +273,11 @@ The documentation basis is native build 250 (verified internal TestFlight group,
 This does not assert public App Store or external beta approval. Original dates
 of historical release notes, legal policies, news and screenshots are preserved.
 
-Five new bilingual long-form articles fill October 25–29. They are original field
-guides prepared on 5 November, rather than reports of events allegedly occurring
-on those archival dates. See docs/editorial/october2026-backfill for word counts,
-calendar gaps, sources and all fifteen built-in ImageGen prompts/assets.
+The journal now has 47 published bilingual articles on November 5, with three
+existing November 6–8 stories still gated by their publication dates. New practical
+workshops fill October 14, 15 and 17–19: time zones, long builds, environment
+configuration, database migrations and API compatibility. Each has at least
+2,500 body words per language and three new conceptual ImageGen illustrations.
+These are original workshops prepared on November 5, not earlier-day news.
+See [editorial provenance](docs/editorial/practical2026-five) for the source links,
+archive metadata and the fifteen original prompts and asset paths.
