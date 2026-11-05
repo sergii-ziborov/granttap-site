@@ -10,14 +10,18 @@
 
 | Что восстанавливаете | Чем оно подтверждается |
 | --- | --- |
-| GrantTap Account Mesh | Тем же passkey или предусмотренным account sign-in |
+| GrantTap Account Mesh | Тем же логином и паролем, passkey или предусмотренным account sign-in |
 | Apple purchase | Apple Account покупателя и Restore purchases |
 | Coding provider | Его собственным входом и подпиской |
 | Доступ к Project | Выбранными membership, repository grants и computer permissions |
 
 Passkey GrantTap не является Sign in with Apple. Apple Passwords может синхронизировать его через iCloud, но успешный Apple purchase не выбирает нужный GrantTap account. Вход в OpenAI или Claude также не возвращает автоматически device pairing.
 
-В Devices → Account Mesh есть **Sign in with passkey** и отдельное **Create a GrantTap account**. Для восстановления существующей работы выбирайте вход, а не намеренное создание другого аккаунта. Если вошли не туда, предусмотрен **Use a different passkey**. Проверьте выбранный credential provider на обоих устройствах.
+В Devices → Account Mesh доступны **Sign in with password**, **Sign in with passkey** и **Create account with passkey**. В форме пароля можно выбрать **Create account**: логин содержит 3–64 латинских символа, цифры, точки, дефисы или подчёркивания; новый пароль — 15–128 символов. Регистр логина не важен; регистр и пробелы пароля важны. Для восстановления выбирайте вход в существующий аккаунт. **Switch account** позволяет сменить аккаунт.
+
+Подключённый аккаунт → **Login and password** добавляет пароль к существующему аккаунту или меняет его с проверкой текущего пароля. Смена завершает прежние сессии аккаунта, сохраняя связанные компьютеры и независимые QR-подключения. Автоматического сброса по email нет: сохраните пароль в менеджере и дополнительный passkey. Доступ к coding-провайдеру настраивается отдельно.
+
+Обычный вход паролем не ограничивает подключение собственного компьютера: на Mac войдите в тот же аккаунт или используйте существующий QR-путь. Компьютер, подготовленный для проверки приложения, — отдельный изолированный стенд; его наличие не заменяет и не блокирует вашу машину.
 
 ## Сначала read-only проверки {#check-first}
 
@@ -35,7 +39,7 @@ granttap status
 
 ## Добавить или вернуть телефон {#new-phone}
 
-Если passkey доступен на новом iPhone, войдите им в GrantTap. Account sync обнаруживает online компьютеры и запрашивает защищённые pairing offers. Старые Tasks сохраняют source computer route. Offline Mac может потребовать возвращения в сеть, прежде чем его связь восстановится.
+На новом iPhone войдите в прежний аккаунт с логином и паролем или доступным passkey. Account sync обнаруживает online компьютеры и запрашивает защищённые pairing offers. Старые Tasks сохраняют source computer route. Offline Mac может потребовать возвращения в сеть, прежде чем его связь восстановится.
 
 Если рядом есть доверенный controller со входом, откройте Devices → **Add another iPhone or iPad (Show QR)**. Account invitation одноразовое и действует пять минут. Новый телефон получает собственную account session; действующий код нельзя публиковать или отправлять постороннему.
 
@@ -61,7 +65,7 @@ Project invite не открывает весь личный аккаунт, а 
 
 Используйте другой доверенный controller или доступный аккаунт. Для device, получившего Project membership, владелец открывает его member detail и удаляет соответствующий link. Это прекращает новое forwarding в этой области; уже полученные данные не возвращаются назад.
 
-Если доступ был выдан через **Sign-in token**, войдите с passkey, откройте Devices → Account Mesh → **Sign-in tokens**, выберите нужную запись и **Revoke token** с подтверждением. Отзыв завершает созданные этим token account sessions. Независимые encrypted computer pairings от этого не исчезают.
+Если доступ был выдан через **Sign-in token**, войдите напрямую с паролем или passkey, откройте Devices → Account Mesh → **Sign-in tokens**, выберите нужную запись и **Revoke token** с подтверждением. Отзыв завершает созданные этим token account sessions. Независимые encrypted computer pairings от этого не исчезают.
 
 На [странице аккаунта](https://granttap.com/account) можно отключить выбранный account-linked computer. Это отзыв computer link, а не универсальная кнопка удаления всех credentials потерянного iPhone. Не подменяйте эти операции одинаковым словом «отключил».
 

@@ -25,3 +25,40 @@
 .account-boundary form button { min-height: 44px; padding: 10px 16px; border: 1px solid #e56f37; border-radius: 10px; background: #c44d20; color: #fff; font: inherit; cursor: pointer; }
 .account-boundary form button:disabled { opacity: .55; cursor: default; }
 .account-boundary form :is(button, select, textarea):focus-visible { outline: 3px solid #ff9a67; outline-offset: 3px; }
+.account-password-form { margin-block: 24px; padding-block: 20px; border-block: 1px solid var(--line); }
+.account-password-form fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 14px; }
+.account-password-form legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.account-password-form label { display: grid; gap: 7px; font-size: 14px; color: var(--ink); }
+.account-password-form input:not([type="checkbox"]) { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--panel); color: var(--ink); font: inherit; }
+.account-password-form .account-password-register { display: flex; align-items: center; gap: 10px; }
+.account-password-form input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--orange); }
+.account-password-form p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.account-password-form button { min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px; background: var(--panel-raised); color: var(--ink); cursor: pointer; }
+.account-password-form button:disabled { opacity: .55; cursor: default; }
+html[data-theme="light"] .account-page, html[data-theme="light"] .account-card { background: var(--paper); color: var(--ink); }
+
+/* Password access: one primary action, persistent labels, quiet alternatives. */
+.account-card:has(.account-password-form) { max-width: 520px; padding: clamp(24px, 5vw, 36px); background: var(--panel); border-color: var(--line); }
+.account-card:has(.account-password-form) h1 { margin-bottom: 12px; font-size: clamp(27px, 6vw, 34px); line-height: 1.15; letter-spacing: -.035em; }
+.account-card:has(.account-password-form) > p { font-size: 14px; color: var(--muted); }
+.account-password-form { margin: 28px 0 0; padding: 0; border: 0; }
+.account-password-form h2 { margin: 0 0 20px; color: var(--ink); font-size: 19px; font-weight: 600; letter-spacing: -.02em; }
+.account-password-form fieldset { gap: 18px; }
+.account-password-form label { gap: 8px; font-weight: 500; }
+.account-password-form input:not([type="checkbox"]) { min-height: 50px; padding: 12px 14px; background: var(--paper); border-radius: 12px; transition: border-color .15s, box-shadow .15s; }
+.account-password-form input:not([type="checkbox"]):focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.account-password-form button { min-height: 50px; background: #c44d20; border-color: #c44d20; color: #fff; font: inherit; font-weight: 600; border-radius: 12px; }
+.account-password-form button:hover:not(:disabled) { background: #a63e18; border-color: #a63e18; }
+.account-password-form :is(button, input[type="checkbox"]):focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.account-password-form button:disabled { opacity: 1; color: var(--muted); background: var(--panel-raised); border-color: var(--line); }
+.account-password-form .account-password-register { justify-content: center; gap: 9px; color: var(--muted); font-size: 13px; font-weight: 400; cursor: pointer; }
+.account-password-form input[type="checkbox"] { width: 18px; height: 18px; margin: 0; flex: 0 0 auto; }
+.account-password-form .account-password-hint { margin: -6px 0 0; }
+.account-password-form .account-password-boundary { margin: 20px 0 0; text-align: center; font-size: 12px; }
+.account-password-form .account-password-status { margin: 14px 0 0; text-align: center; }
+.account-password-form .account-error { margin: 0; color: #ff9b86; }
+html[data-theme="light"] .account-password-form .account-error { color: #a52c20; }
+.account-card:has(.account-password-form) > .account-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+.account-card:has(.account-password-form) > .account-actions button { background: transparent; color: var(--ink); border-color: var(--line); min-height: 48px; }
+.account-card:has(.account-password-form) > .account-actions button + button { min-height: 36px; padding: 6px 12px; border-color: transparent; font-size: 13px; font-weight: 500; color: var(--muted); }
+.account-card:has(.account-password-form) .account-note { margin: 16px 0 0; font-size: 12px; text-align: center; }

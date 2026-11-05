@@ -1,4 +1,5 @@
 "use client";
+import { AccountPassword } from "./AccountPassword";
 
 import { startAuthentication, startRegistration } from "@simplewebauthn/browser";
 import type { PublicKeyCredentialCreationOptionsJSON, PublicKeyCredentialRequestOptionsJSON } from "@simplewebauthn/browser";
@@ -17,7 +18,7 @@ const base = "/api/account/";
 const copy = {
   en: {
     title: "Your GrantTap account",
-    lead: "Your Account Mesh exists even before any computer joins. It can hold many Projects and their Meshes. Sign in with the same passkey on iPhone and in GrantTap MCP to link devices to this account; each Task keeps its computer route.",
+    lead: "Sign in to see your projects and connected computers. You can add your own computer at any time.",
     create: "Create an account with passkey",
     signIn: "Sign in with passkey",
     createNote: "Already have an account? Sign in first. Creating another account will not find your existing computers.",
@@ -37,7 +38,7 @@ const copy = {
   },
   ru: {
     title: "Ваш аккаунт GrantTap",
-    lead: "Mesh аккаунта существует ещё до подключения компьютеров. Он может содержать множество проектов и их Mesh. Войдите с тем же passkey на iPhone и в GrantTap MCP, чтобы связать устройства с аккаунтом; у каждой задачи остаётся свой маршрут к компьютеру.",
+    lead: "Войдите, чтобы видеть проекты и подключённые компьютеры. Свой компьютер можно добавить в любой момент.",
     create: "Создать аккаунт с passkey",
     signIn: "Войти по passkey",
     createNote: "Уже есть аккаунт? Сначала войдите. Новый аккаунт не найдёт ваши прежние компьютеры.",
@@ -191,6 +192,11 @@ export function AccountView() {
           <button type="button" disabled={busy} onClick={() => void exit(true)}>{t.delete}</button>
         </div>
       </> : <>
+        <AccountPassword locale={locale} disabled={busy} onBusyChange={setBusy} onSignedIn={id => {
+          setMachines(null); setError(null); setAccountId(id);
+          const destination = accountReturnPath(window.location.search);
+          if (destination) window.location.assign(destination);
+        }} />
         <div className="account-actions">
           <button type="button" disabled={busy} onClick={() => void enter("authentication")}>{t.signIn}</button>
           <button type="button" disabled={busy} onClick={() => void enter("registration")}>{t.create}</button>

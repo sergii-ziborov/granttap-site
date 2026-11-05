@@ -1,6 +1,6 @@
 # Account page
 
-`AccountView.tsx` is the browser passkey entry point. It uses the account API
+`AccountView.tsx` is the browser password and passkey entry point. It uses the account API
 served by Hetzner in production and creates no local pairing credential. The
 iPhone, iPad, and Mac apps can create or join an Account Mesh without any
 computer. Their Devices screens show its linked computers. A local MCP can use
@@ -15,7 +15,7 @@ tokens from browser responses. Native clients store their bearer token in the
 platform Keychain.
 
 The browser page links to GrantTap Web and explains browser key storage and its
-weaker isolation. A successful passkey sign-in returns to `/control` only for the
+weaker isolation. A successful account sign-in returns to `/control` only for the
 single literal `returnTo=control`; arbitrary and duplicate destinations are
 rejected. It never accepts an external return URL.
 

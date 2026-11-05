@@ -3,7 +3,7 @@ import { AccountView } from "./AccountView";
 
 export const metadata: Metadata = {
   title: "Account",
-  description: "Sign in to your GrantTap account with a passkey.",
+  description: "Sign in to your GrantTap account with a password or passkey.",
   alternates: { canonical: "/account" },
   robots: { index: false, follow: false },
 };
