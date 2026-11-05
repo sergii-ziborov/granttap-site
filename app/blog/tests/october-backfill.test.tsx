@@ -20,8 +20,8 @@ describe("reviewed retrospective field guides", () => {
         expect(article[locale].editorialNote).toContain(locale === "en" ? "editorial slot" : "редакционный слот");
       }
     }
-    expect(publishedArticles(new Date("2026-11-05T12:00:00Z"))).toHaveLength(37);
-    expect(publishedArticles(new Date("2026-11-08T12:00:00Z"))).toHaveLength(40);
+    expect(publishedArticles(new Date("2026-11-05T12:00:00Z"))).toHaveLength(42);
+    expect(publishedArticles(new Date("2026-11-08T12:00:00Z"))).toHaveLength(45);
   });
   it("ships fifteen distinct generated originals and verified web assets", () => {
     const paths = octoberBackfillStories.flatMap(article => [article.cover, article.inlineIllustration!, article.additionalIllustration!]);

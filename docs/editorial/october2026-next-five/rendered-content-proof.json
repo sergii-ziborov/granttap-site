@@ -1,0 +1,208 @@
+{
+  "base": "http://127.0.0.1:3216",
+  "checkedOn": "2026-11-05",
+  "articles": [
+    {
+      "route": "/blog/granttap-graph-health-investigate-code-boundaries",
+      "date": "2026-10-20",
+      "locale": "en",
+      "visibleBodyWords": 2549,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-graph-health-investigate-code-boundaries?lang=ru",
+      "date": "2026-10-20",
+      "locale": "ru",
+      "visibleBodyWords": 2556,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-design-mcp-tool-contracts",
+      "date": "2026-10-21",
+      "locale": "en",
+      "visibleBodyWords": 2658,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-design-mcp-tool-contracts?lang=ru",
+      "date": "2026-10-21",
+      "locale": "ru",
+      "visibleBodyWords": 2609,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-agent-dependency-upgrade-lockfile",
+      "date": "2026-10-22",
+      "locale": "en",
+      "visibleBodyWords": 2545,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-agent-dependency-upgrade-lockfile?lang=ru",
+      "date": "2026-10-22",
+      "locale": "ru",
+      "visibleBodyWords": 2618,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-accessible-mobile-agent-control",
+      "date": "2026-10-23",
+      "locale": "en",
+      "visibleBodyWords": 2565,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-accessible-mobile-agent-control?lang=ru",
+      "date": "2026-10-23",
+      "locale": "ru",
+      "visibleBodyWords": 2717,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-agent-incident-timeline-reproduction",
+      "date": "2026-10-24",
+      "locale": "en",
+      "visibleBodyWords": 2543,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-agent-incident-timeline-reproduction?lang=ru",
+      "date": "2026-10-24",
+      "locale": "ru",
+      "visibleBodyWords": 2557,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    }
+  ],
+  "images": [
+    {
+      "route": "/blog/october2026-next-five/accessible-cover.webp",
+      "sha256": "897d6d7250c34994a69cb836388ad088743441ee38118cbf6673a4309c921e9d"
+    },
+    {
+      "route": "/blog/october2026-next-five/accessible-evidence.webp",
+      "sha256": "b3b1b46b76a0f56f6ce25f8e6d0471e375c73a075848f9eaf4ea1bfd504ff4af"
+    },
+    {
+      "route": "/blog/october2026-next-five/accessible-scenario.webp",
+      "sha256": "95914155545780e45a0ad586ab5bf14f5eb458cebc4f95adea241beadfa82042"
+    },
+    {
+      "route": "/blog/october2026-next-five/graph-cover.webp",
+      "sha256": "e769f1fa056a5a5337bda4fa5012dba467335bcfdd3ecc1d6c5b4d8c12ef54d2"
+    },
+    {
+      "route": "/blog/october2026-next-five/graph-evidence.webp",
+      "sha256": "53a4974af95b11108e9a705cd71a662e2a31671087b6cc192c3f122f63f7e4df"
+    },
+    {
+      "route": "/blog/october2026-next-five/graph-scenario.webp",
+      "sha256": "0afa8699cbc8c537598a7e86fe88e28d4c12d3328bd3418c76742e21473dec8a"
+    },
+    {
+      "route": "/blog/october2026-next-five/incident-cover.webp",
+      "sha256": "d4055b85358c5d02edc38e968e679b8450d2cd3e21092563b80c315b032f75e0"
+    },
+    {
+      "route": "/blog/october2026-next-five/incident-evidence.webp",
+      "sha256": "7d5b4e4a5a531f099a4b51d9f1e2c83bf5e89af7aee24113185aa6f86a81b316"
+    },
+    {
+      "route": "/blog/october2026-next-five/incident-scenario.webp",
+      "sha256": "2dc7fcbd86ee4b06f7cb6d5935e0eef95ed09bff83c95aa9a92a85fddd4838cb"
+    },
+    {
+      "route": "/blog/october2026-next-five/mcp-cover.webp",
+      "sha256": "cc437f4c2cb818ee82f4fab1de710d4c8c82a868cc153257119ca3b2e0d8b835"
+    },
+    {
+      "route": "/blog/october2026-next-five/mcp-evidence.webp",
+      "sha256": "106461abc987d21c5c79b5e42e064a4feb0211fce55ea7d4d0a3acdd30704194"
+    },
+    {
+      "route": "/blog/october2026-next-five/mcp-scenario.webp",
+      "sha256": "a7bbea8d77a399aa348d032a6280ec2f63b591252a164e17c5299e373f9b31cc"
+    },
+    {
+      "route": "/blog/october2026-next-five/upgrade-cover.webp",
+      "sha256": "7a2fd47ff9df28a01f83a0fef6c063d98c50cf9470511db4cd30abd5efcfa9fc"
+    },
+    {
+      "route": "/blog/october2026-next-five/upgrade-evidence.webp",
+      "sha256": "f1a69e41899d279fd341265262a0bb0576dea0e23b6f88ecb03f7ab463732d3d"
+    },
+    {
+      "route": "/blog/october2026-next-five/upgrade-scenario.webp",
+      "sha256": "e2545a96e1bf76573998cc067bfc1fff62e0da3a14630239c176b343d9be0559"
+    }
+  ],
+  "pages": [
+    {
+      "route": "/support",
+      "status": 200
+    },
+    {
+      "route": "/support?lang=ru",
+      "status": 200
+    },
+    {
+      "route": "/guide",
+      "status": 200
+    },
+    {
+      "route": "/guide/providers",
+      "status": 200
+    },
+    {
+      "route": "/guide/device-management",
+      "status": 200
+    },
+    {
+      "route": "/agents/claude-code",
+      "status": 200
+    },
+    {
+      "route": "/agents/codex",
+      "status": 200
+    },
+    {
+      "route": "/agents/cursor",
+      "status": 200
+    },
+    {
+      "route": "/agents/grok-build",
+      "status": 200
+    },
+    {
+      "route": "/pricing",
+      "status": 200
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/terms",
+      "status": 200
+    },
+    {
+      "route": "/mac",
+      "status": 200
+    },
+    {
+      "route": "/project-mesh",
+      "status": 200
+    }
+  ],
+  "publishedArticleCount": 42,
+  "futureGatesPreserved": true
+}

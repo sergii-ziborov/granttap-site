@@ -8,6 +8,9 @@ import WebSocket from 'ws';
 // Inspect published editorial pages only. No pairing, login or real automation changes.
 const base = process.argv[2] || 'http://127.0.0.1:3215';
 const output = process.argv[3] || '/tmp/granttap-editorial-browser';
+const batch = process.argv[4] || 'october2026-backfill';
+assert.match(batch, /^[a-z0-9-]+$/);
+const stories = JSON.parse(await readFile(`docs/editorial/${batch}/articles.json`, 'utf8'));
 await mkdir(output, { recursive: true });
 const profile = await mkdtemp(path.join(tmpdir(), 'granttap-guide-chrome-'));
 const chrome = spawn(process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
@@ -49,25 +52,27 @@ try {
     await writeFile(path.join(output, name + '.png'), Buffer.from(data, 'base64'));
   }
   await send('Page.enable'); await send('Runtime.enable');
-  const cases = [
-    ['/blog/granttap-evaluate-coding-agent-own-task?lang=ru','evaluation'],
-    ['/blog/granttap-untrusted-content-agent-tool-boundaries?lang=ru','injection'],
-    ['/blog/granttap-review-agent-diffs-from-phone?lang=ru','review'],
-    ['/blog/granttap-agent-processes-cpu-memory-disk?lang=ru','resources'],
-    ['/blog/granttap-share-agent-project-colleague-access?lang=ru','team'],
-  ];
+  const cases = stories.flatMap(row => ['en', 'ru'].map(locale => ['/blog/' + row.slug + (locale === 'ru' ? '?lang=ru' : ''), row.key + '-' + locale]));
   for (const [width,height,mobile] of [[1440,1000,false],[390,844,true]]) {
     await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile});
     for(const [route,name] of cases){
       await ready(route);
       const state=await evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth,title:document.querySelector("h1").textContent,images:[...document.querySelectorAll(".blog-article img")].map(i=>i.getAttribute("src")),note:document.querySelector(".blog-current-guide").textContent})');
-      assert.ok(state.scroll<=state.width,JSON.stringify(state));assert.ok(state.images.filter(x=>x.includes("october2026-backfill")).length>=3);assert.ok(state.note.includes('2026-11-05'));
+      assert.ok(state.scroll<=state.width,JSON.stringify(state));assert.ok(state.images.filter(x=>x.includes(batch)).length>=3);assert.ok(state.note.includes('2026-11-05'));
+      await evaluate('[...document.querySelectorAll(".blog-article img")].forEach(i=>{i.loading="eager"})');
+      let imagesLoaded = false;
+      for (let attempt = 0; attempt < 150; attempt++) {
+        imagesLoaded = await evaluate('[...document.querySelectorAll(".blog-article img")].every(i=>i.complete && i.naturalWidth>0)');
+        if (imagesLoaded) break;
+        await sleep(100);
+      }
+      assert.ok(imagesLoaded, route + ': article images loaded');
       await capture((mobile?'mobile-':'desktop-')+name);
       await evaluate('document.documentElement.style.scrollBehavior="auto"; window.scrollTo(0,document.querySelector(".blog-current-guide").getBoundingClientRect().top+scrollY)');await sleep(400);
       state.readingScrollY=await evaluate('scrollY');
       assert.ok(state.readingScrollY>0,'article scrolls to reading text');
       assert.ok(await evaluate('document.querySelector(".blog-current-guide").getBoundingClientRect().height>0'),'review notice remains visible on mobile');
-      if(name==='review')await capture((mobile?'mobile-':'desktop-')+name+'-reading');
+      if(name===stories[0].key+'-ru')await capture((mobile?'mobile-':'desktop-')+name+'-reading');
       proof.checks.push({name:(mobile?'mobile ':'desktop ')+name,...state});
     }
   }

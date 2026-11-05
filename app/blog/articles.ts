@@ -1,3 +1,4 @@
+import { octoberNextFiveStories } from "./stories/october2026-next-five";
 import { octoberBackfillStories } from "./stories/october2026-backfill";
 import { novemberStories } from "./stories/november2026";
 import { cortexResearch, meshResearch, governanceResearch } from "./stories/research";
@@ -292,6 +293,7 @@ const guides: BlogArticle[] = [
 
 export const articles: BlogArticle[] = [
   ...novemberStories, ...octoberBackfillStories,
+  ...octoberNextFiveStories,
   taskTransferStory, waitingMessagesStory,
   cortexResearch, meshResearch, governanceResearch,
   iphoneClaudeCodex, granttapMeshGovernance, microsoftAgent365Tools, awsTemporalPolicy, anthropicAgentSecurity,

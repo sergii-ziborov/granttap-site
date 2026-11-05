@@ -1,0 +1,196 @@
+[
+  {
+    "key": "graph",
+    "date": "2026-10-20",
+    "slug": "granttap-graph-health-investigate-code-boundaries",
+    "en": [
+      "Use Graph and Health to investigate a code boundary",
+      "A practical investigation method: report identity, structural hypotheses, source inspection and a controlled integration check.",
+      "Use the map to choose a check, and let the check determine the conclusion."
+    ],
+    "ru": [
+      "Как исследовать границы кода через Graph и Health",
+      "Практический маршрут: происхождение отчёта, структурные гипотезы, чтение исходников и контролируемая проверка интеграции.",
+      "Карта помогает выбрать проверку, а вывод определяет её наблюдаемый результат."
+    ],
+    "screen": "graph",
+    "sources": [
+      [
+        "GrantTap: Graph and Health",
+        "/guide/graph-health"
+      ],
+      [
+        "GrantTap: Runtime and evidence",
+        "/guide/audit-evidence"
+      ],
+      [
+        "GrantTap: workspaces",
+        "/guide/workspaces"
+      ]
+    ],
+    "images": [
+      "/blog/october2026-next-five/graph-cover.webp",
+      "/blog/october2026-next-five/graph-scenario.webp",
+      "/blog/october2026-next-five/graph-evidence.webp"
+    ]
+  },
+  {
+    "key": "mcp",
+    "date": "2026-10-21",
+    "slug": "granttap-design-mcp-tool-contracts",
+    "en": [
+      "Design MCP tools that remain understandable after a failed call",
+      "A tool-contract workshop covering explicit targets, structured results, failures, repeated requests, cancellation and authorization.",
+      "A useful tool explains its target, its effects and the next step when the outcome is uncertain."
+    ],
+    "ru": [
+      "Как проектировать понятные контракты MCP-инструментов",
+      "Практикум по целям, структурированным ответам, ошибкам, повторам, отмене и правам доступа на примере собственного сервиса.",
+      "Полезный инструмент объясняет цель, эффект и следующий шаг при неизвестном исходе."
+    ],
+    "screen": "mcp-details",
+    "sources": [
+      [
+        "MCP: Tools, specification 2025-06-18",
+        "https://modelcontextprotocol.io/specification/2025-06-18/server/tools"
+      ],
+      [
+        "GrantTap: request decisions",
+        "/guide/questions-approvals"
+      ],
+      [
+        "GrantTap: evidence",
+        "/guide/audit-evidence"
+      ],
+      [
+        "GrantTap: provider sign-in",
+        "/guide/provider-sign-in"
+      ]
+    ],
+    "images": [
+      "/blog/october2026-next-five/mcp-cover.webp",
+      "/blog/october2026-next-five/mcp-scenario.webp",
+      "/blog/october2026-next-five/mcp-evidence.webp"
+    ]
+  },
+  {
+    "key": "upgrade",
+    "date": "2026-10-22",
+    "slug": "granttap-agent-dependency-upgrade-lockfile",
+    "en": [
+      "Upgrade a dependency with an agent and keep the project reproducible",
+      "From the reason for an update through lockfile review, clean installation, application checks and a verified rollback baseline.",
+      "Review the complete reproducible change, not only the version number."
+    ],
+    "ru": [
+      "Обновление зависимостей с агентом без потери воспроизводимости",
+      "От причины обновления до ревью lockfile, чистой установки, проверки поведения приложения и понятного возврата.",
+      "Проверяйте целое воспроизводимое изменение, а не только новый номер версии."
+    ],
+    "screen": "modified-files",
+    "sources": [
+      [
+        "npm: npm ci, CLI v11",
+        "https://docs.npmjs.com/cli/v11/commands/npm-ci/"
+      ],
+      [
+        "GrantTap: Files and voice",
+        "/guide/files-voice"
+      ],
+      [
+        "GrantTap: workspaces",
+        "/guide/workspaces"
+      ],
+      [
+        "GrantTap: evidence",
+        "/guide/audit-evidence"
+      ]
+    ],
+    "images": [
+      "/blog/october2026-next-five/upgrade-cover.webp",
+      "/blog/october2026-next-five/upgrade-scenario.webp",
+      "/blog/october2026-next-five/upgrade-evidence.webp"
+    ]
+  },
+  {
+    "key": "accessible",
+    "date": "2026-10-23",
+    "slug": "granttap-accessible-mobile-agent-control",
+    "en": [
+      "Make mobile agent control readable and recoverable",
+      "A practical accessibility workshop for meaningful statuses, stable scrolling, large text, voice drafts, notifications and deliberate actions.",
+      "Assess the whole decision journey with the settings and device the person actually uses."
+    ],
+    "ru": [
+      "Понятное и доступное управление агентом с телефона",
+      "Практические проверки статусов, прокрутки, увеличенного текста, голосовых черновиков, уведомлений и восстановления после перерыва.",
+      "Проверяйте весь путь решения на настоящем устройстве и с нужными человеку настройками."
+    ],
+    "screen": "approval-details",
+    "sources": [
+      [
+        "W3C: Understanding WCAG 2.2 status messages",
+        "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+      ],
+      [
+        "GrantTap: requests and approvals",
+        "/guide/questions-approvals"
+      ],
+      [
+        "GrantTap: request recovery",
+        "/guide/request-recovery"
+      ],
+      [
+        "GrantTap: notifications",
+        "/guide/notifications"
+      ],
+      [
+        "GrantTap: Devices and Watch",
+        "/guide/devices-watch"
+      ]
+    ],
+    "images": [
+      "/blog/october2026-next-five/accessible-cover.webp",
+      "/blog/october2026-next-five/accessible-scenario.webp",
+      "/blog/october2026-next-five/accessible-evidence.webp"
+    ]
+  },
+  {
+    "key": "incident",
+    "date": "2026-10-24",
+    "slug": "granttap-agent-incident-timeline-reproduction",
+    "en": [
+      "Reconstruct an agent-assisted incident from evidence",
+      "A practical method for recovery, timelines, source and artifact identity, minimal reproductions and useful follow-up work.",
+      "Keep the symptom, the evidence and the remaining uncertainty connected to the same incident."
+    ],
+    "ru": [
+      "Как разобрать сбой после работы агента по свидетельствам",
+      "Практический метод: восстановление, timeline, идентичность source и artifact, минимальное воспроизведение и проверяемое улучшение.",
+      "Связывайте симптом, свидетельства и оставшиеся вопросы с одним конкретным инцидентом."
+    ],
+    "sources": [
+      [
+        "Git: git bisect",
+        "https://git-scm.com/docs/git-bisect"
+      ],
+      [
+        "GrantTap: Task and Execution",
+        "/guide/task-execution"
+      ],
+      [
+        "GrantTap: activity sources",
+        "/guide/transcript-sources"
+      ],
+      [
+        "GrantTap: Runtime and evidence",
+        "/guide/audit-evidence"
+      ]
+    ],
+    "images": [
+      "/blog/october2026-next-five/incident-cover.webp",
+      "/blog/october2026-next-five/incident-scenario.webp",
+      "/blog/october2026-next-five/incident-evidence.webp"
+    ]
+  }
+]

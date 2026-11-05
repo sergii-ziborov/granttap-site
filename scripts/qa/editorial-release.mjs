@@ -5,8 +5,11 @@ import { JSDOM } from 'jsdom';
 
 const base = process.argv[2] || 'http://127.0.0.1:3216';
 const output = process.argv[3] || '/tmp/granttap-editorial-http-proof.json';
-const calendar = JSON.parse(await readFile('docs/editorial/october2026-backfill/calendar-validation.json', 'utf8'));
-const images = JSON.parse(await readFile('docs/editorial/october2026-backfill/image-prompts.json', 'utf8')).images;
+const batch = process.argv[4] || 'october2026-backfill';
+assert.match(batch, /^[a-z0-9-]+$/);
+const calendar = JSON.parse(await readFile(`docs/editorial/${batch}/calendar-validation.json`, 'utf8'));
+const publishedCount = calendar.currentPublishedCount || 42;
+const images = JSON.parse(await readFile(`docs/editorial/${batch}/image-prompts.json`, 'utf8')).images;
 const proof = { base, checkedOn: '2026-11-05', articles: [], images: [], pages: [] };
 async function html(path) { const r = await fetch(base + path); assert.equal(r.status, 200, path); return new JSDOM(await r.text()); }
 for (const row of calendar.articles) {
@@ -38,11 +41,11 @@ for (const route of ['/support', '/support?lang=ru', '/guide', '/guide/providers
   if (route === '/guide') assert.ok(d.body.textContent.includes('5 ноября 2026'));
   proof.pages.push({ route, status: 200 }); dom.window.close();
 }
-const index = await html('/blog'); assert.equal(index.window.document.querySelectorAll('.blog-card').length, 37); index.window.close();
+const index = await html('/blog'); assert.equal(index.window.document.querySelectorAll('.blog-card').length, publishedCount); index.window.close();
 // Slugs are taken from deployed editorial metadata rather than guessed titles.
 const source = await readFile('docs/editorial/november2026/calendar-validation.json', 'utf8');
 for (const row of JSON.parse(source).articles.filter(row => row.date > '2026-11-05')) {
   const r = await fetch(base + '/blog/' + row.slug); assert.equal(r.status, 404, row.slug);
 }
-proof.publishedArticleCount = 37; proof.futureGatesPreserved = true;
-await writeFile(output, JSON.stringify(proof, null, 2)); console.log(JSON.stringify({ articles: proof.articles.length, images: proof.images.length, pages: proof.pages.length, published: 37, output }));
+proof.publishedArticleCount = publishedCount; proof.futureGatesPreserved = true;
+await writeFile(output, JSON.stringify(proof, null, 2)); console.log(JSON.stringify({ articles: proof.articles.length, images: proof.images.length, pages: proof.pages.length, published: publishedCount, output }));

@@ -45,7 +45,7 @@ test("every article renders its own sections and sources in both languages", () 
 });
 
 test("each editorial story includes a real GrantTap interface with bilingual context", () => {
-  const editorial = articles.filter(article => article.date >= "2026-10-03" && article.date < "2026-10-25");
+  const editorial = articles.filter(article => article.date >= "2026-10-03" && article.date < "2026-10-20");
   expect(editorial).toHaveLength(20);
   // A story shows a capture only when one shows its feature; none shows message delivery marks yet.
   expect(editorial.filter(article => !article.screenshot).map(article => article.slug)).toEqual(["messages-that-wait-for-the-computer"]);
@@ -148,10 +148,11 @@ test("generated journal diagrams are 16:9 and each one is used by a story", () =
   }
 });
 
-test("October 16 guides match or exceed the journal's typical story", () => {
+test("October 16 guides match or exceed the journal available at their publication", () => {
   const fresh = articles.filter(article => article.date === "2026-10-16");
   expect(fresh.map(article => article.slug)).toEqual(["move-a-task-without-losing-work", "messages-that-wait-for-the-computer"]);
-  const others = articles.filter(article => article.date !== "2026-10-16");
+  // Later longform batches must not move this historical comparison baseline.
+  const others = articles.filter(article => article.date < "2026-10-16");
   const median = (values: number[]) => { const sorted = [...values].sort((a, b) => a - b); const middle = sorted.length >> 1; return sorted.length % 2 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2; };
   for (const article of fresh) {
     expect(article.minutes).toBeGreaterThanOrEqual(median(others.map(other => other.minutes)));

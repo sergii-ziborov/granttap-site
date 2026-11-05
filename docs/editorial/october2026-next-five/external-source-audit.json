@@ -1,0 +1,29 @@
+{
+  "checkedOn": "2026-11-05",
+  "sources": [
+    {
+      "url": "https://docs.npmjs.com/cli/v11/commands/npm-ci/",
+      "status": 200,
+      "primary": true,
+      "readThroughWeb": true
+    },
+    {
+      "url": "https://git-scm.com/docs/git-bisect",
+      "status": 200,
+      "primary": true,
+      "readThroughWeb": true
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+      "status": 200,
+      "primary": true,
+      "readThroughWeb": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "status": 200,
+      "primary": true,
+      "readThroughWeb": true
+    }
+  ]
+}

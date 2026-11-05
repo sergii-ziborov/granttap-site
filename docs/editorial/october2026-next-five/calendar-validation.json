@@ -1,0 +1,133 @@
+{
+  "preparedOn": "2026-11-05",
+  "timeZone": "Asia/Jerusalem",
+  "rangeStart": "2026-09-24",
+  "beforeGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-23",
+    "2026-10-24"
+  ],
+  "articles": [
+    {
+      "slug": "granttap-graph-health-investigate-code-boundaries",
+      "date": "2026-10-20",
+      "reviewedOn": "2026-11-05",
+      "title": "Как исследовать границы кода через Graph и Health",
+      "words": {
+        "en": 2549,
+        "ru": 2556
+      },
+      "images": [
+        "/blog/october2026-next-five/graph-cover.webp",
+        "/blog/october2026-next-five/graph-scenario.webp",
+        "/blog/october2026-next-five/graph-evidence.webp"
+      ]
+    },
+    {
+      "slug": "granttap-design-mcp-tool-contracts",
+      "date": "2026-10-21",
+      "reviewedOn": "2026-11-05",
+      "title": "Как проектировать понятные контракты MCP-инструментов",
+      "words": {
+        "en": 2658,
+        "ru": 2609
+      },
+      "images": [
+        "/blog/october2026-next-five/mcp-cover.webp",
+        "/blog/october2026-next-five/mcp-scenario.webp",
+        "/blog/october2026-next-five/mcp-evidence.webp"
+      ]
+    },
+    {
+      "slug": "granttap-agent-dependency-upgrade-lockfile",
+      "date": "2026-10-22",
+      "reviewedOn": "2026-11-05",
+      "title": "Обновление зависимостей с агентом без потери воспроизводимости",
+      "words": {
+        "en": 2545,
+        "ru": 2618
+      },
+      "images": [
+        "/blog/october2026-next-five/upgrade-cover.webp",
+        "/blog/october2026-next-five/upgrade-scenario.webp",
+        "/blog/october2026-next-five/upgrade-evidence.webp"
+      ]
+    },
+    {
+      "slug": "granttap-accessible-mobile-agent-control",
+      "date": "2026-10-23",
+      "reviewedOn": "2026-11-05",
+      "title": "Понятное и доступное управление агентом с телефона",
+      "words": {
+        "en": 2565,
+        "ru": 2717
+      },
+      "images": [
+        "/blog/october2026-next-five/accessible-cover.webp",
+        "/blog/october2026-next-five/accessible-scenario.webp",
+        "/blog/october2026-next-five/accessible-evidence.webp"
+      ]
+    },
+    {
+      "slug": "granttap-agent-incident-timeline-reproduction",
+      "date": "2026-10-24",
+      "reviewedOn": "2026-11-05",
+      "title": "Как разобрать сбой после работы агента по свидетельствам",
+      "words": {
+        "en": 2543,
+        "ru": 2557
+      },
+      "images": [
+        "/blog/october2026-next-five/incident-cover.webp",
+        "/blog/october2026-next-five/incident-scenario.webp",
+        "/blog/october2026-next-five/incident-evidence.webp"
+      ]
+    }
+  ],
+  "afterGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19"
+  ],
+  "currentPublishedCount": 42,
+  "totalPrepared": 45
+}

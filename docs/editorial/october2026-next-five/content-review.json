@@ -1,0 +1,22 @@
+{
+  "checkedOn": "2026-11-05",
+  "scope": "Five additional bilingual retrospective articles, archive slots October 20–24. Website-only content release.",
+  "basis": {
+    "guide": "48 chapters, review November 5, 2026",
+    "nativeSource": "9d947d62154642705c44294e27c5996e4ed4244d",
+    "nativeBuild": "250",
+    "mcpSource": "54ddf6f43984a9e20167bd4fe1edc1d732e4c734",
+    "publishedMcp": "0.8.143"
+  },
+  "distinctions": [
+    "Original workshops use hypothetical examples, not invented news or incident reports.",
+    "Graph completeness and color do not establish runtime correctness.",
+    "MCP design examples are proposed contracts, not released GrantTap APIs.",
+    "Dependency installation, application behavior and publication require separate evidence.",
+    "Accessibility checks are recommended scenarios, not a completed formal accessibility audit.",
+    "Incident evidence remains scoped; missing data is not a complete audit chain.",
+    "Four reused genuine native captures preserve their actual build, date, Simulator and fixture provenance.",
+    "Fifteen new built-in image_gen illustrations are conceptual, not screenshots or measurement evidence.",
+    "No native build, provider login or real automation was created or tested by this editorial release."
+  ]
+}

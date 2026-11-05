@@ -1,0 +1,156 @@
+{
+  "mode": "built-in image_gen",
+  "preparedOn": "2026-11-05",
+  "images": [
+    {
+      "key": "accessible-cover",
+      "destination": "public/blog/october2026-next-five/accessible-cover.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An abstract graphite handheld controller with large tactile orange and ivory controls, open negative space, concentric soft sound waves sculpted into the paper below. Concept: comprehensible mobile control without real app UI. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-56287562-d2d0-476f-9e95-3d8a9e026ca3.png",
+      "originalSha256": "10d7587f019f959690966c4b56811b4c302bc02a892fedf9e4dc369ee28a894f",
+      "webpSha256": "897d6d7250c34994a69cb836388ad088743441ee38118cbf6673a4309c921e9d",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "accessible-evidence",
+      "destination": "public/blog/october2026-next-five/accessible-evidence.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A sculptural ivory path with wide separated stepping stones, an orange handrail guiding around a gap, a graphite resting platform. Concept: readable and recoverable mobile interaction under interruption. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-db4074da-8412-49de-8afc-2967b9f2a132.png",
+      "originalSha256": "0e30f3d859ac7382bdde77ff841f030339ba7f5448903449bbe8bd604d047dfc",
+      "webpSha256": "b3b1b46b76a0f56f6ce25f8e6d0471e375c73a075848f9eaf4ea1bfd504ff4af",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "accessible-scenario",
+      "destination": "public/blog/october2026-next-five/accessible-scenario.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Three large tactile ceramic tokens with distinct embossed abstract shapes, arranged on a graphite surface under warm studio light; one orange token selected by a subtle raised ring. Concept: status distinguished by shape and position as well as color. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-02469ecb-719a-41dd-a92d-cbea6a9f1390.png",
+      "originalSha256": "617c8cff4dee10af225a8c4d005441a875dc328b34575dbbf09881977e149aee",
+      "webpSha256": "95914155545780e45a0ad586ab5bf14f5eb458cebc4f95adea241beadfa82042",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "graph-cover",
+      "destination": "public/blog/october2026-next-five/graph-cover.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An architectural tabletop map made of graphite ceramic building blocks linked by fine orange threads, one small magnifying glass inspecting a single junction, a broad empty ivory margin. Concept: investigating relationships between code components. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-bab8d31c-d258-4469-b509-5bbb56c3a4c7.png",
+      "originalSha256": "89ad52a679c32d5a9d5d133dc0997511edd6fb9ab9e11ea7b0d792e7b8924450",
+      "webpSha256": "e769f1fa056a5a5337bda4fa5012dba467335bcfdd3ecc1d6c5b4d8c12ef54d2",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "graph-evidence",
+      "destination": "public/blog/october2026-next-five/graph-evidence.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A carefully lit archive tray containing three graphite evidence tiles, a translucent frosted sheet over one tile and an empty outlined compartment. Concept: available, partial and missing evidence, no charts or text. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-a0c81150-9a56-4dc2-828d-e56e3418ea8f.png",
+      "originalSha256": "7f8f7fa8b5cc96fa79e6bf9692639fb987879cfa97c3a88d9095f01fb80f990f",
+      "webpSha256": "53a4974af95b11108e9a705cd71a662e2a31671087b6cc192c3f122f63f7e4df",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "graph-scenario",
+      "destination": "public/blog/october2026-next-five/graph-scenario.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Three separate layered paper islands on an ivory table, orange bridges between them, a small amber lens revealing a hidden seam beneath one bridge. Concept: checking an integration boundary instead of judging isolated components. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-4d8826d0-cac7-4a99-86a7-052d8a9a2792.png",
+      "originalSha256": "ebb27fb24343e7c5ed84c72eb73f24fbd01ea0a399b474aa81bb2d76cec88e9d",
+      "webpSha256": "0afa8699cbc8c537598a7e86fe88e28d4c12d3328bd3418c76742e21473dec8a",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "incident-cover",
+      "destination": "public/blog/october2026-next-five/incident-cover.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An elegant forensic tabletop still life: graphite fragments arranged along a thin orange thread, a magnifying lens over one fragment, blank ivory record cards. Concept: reconstructing a software incident from evidence. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-613767de-3f61-41eb-a78e-fd9b6c66535b.png",
+      "originalSha256": "2f036fc58e523c4c31f55a1445d9132fcc6a471019fd1681f75de8216e25d532",
+      "webpSha256": "d4055b85358c5d02edc38e968e679b8450d2cd3e21092563b80c315b032f75e0",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "incident-evidence",
+      "destination": "public/blog/october2026-next-five/incident-evidence.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A graphite archive drawer containing ordered blank paper cards, one orange bookmark between two cards, a separate small white sealed box. Concept: a verified timeline and a minimal reproducible case. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-46add7cb-59a6-44a0-9725-23e4874e410a.png",
+      "originalSha256": "6c318e3497bd46af9d7cd7ad109c6fb936e444bba775eafdc51ce69f67af7992",
+      "webpSha256": "7d5b4e4a5a531f099a4b51d9f1e2c83bf5e89af7aee24113185aa6f86a81b316",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "incident-scenario",
+      "destination": "public/blog/october2026-next-five/incident-scenario.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A split architectural model of an ivory bridge: one intact graphite section and one displaced orange joint, with carefully ordered components beside it. Concept: isolating the first failing boundary without inventing a cause. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-8baa61a0-9e39-4cde-81fe-e78da0bd6ee4.png",
+      "originalSha256": "4b798181777ac689bc7f59d4632bec8fb636163bf7ec1ba6be6779bd4e6cac78",
+      "webpSha256": "2dc7fcbd86ee4b06f7cb6d5935e0eef95ed09bff83c95aa9a92a85fddd4838cb",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "mcp-cover",
+      "destination": "public/blog/october2026-next-five/mcp-cover.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An elegant cutaway mechanical tool socket: one graphite input piece fitting precisely into a sculpted ivory adapter, an orange output capsule emerging. Concept: a clear contract between an AI agent and an external tool. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-5e117541-3772-445e-a576-d178b0cc491b.png",
+      "originalSha256": "1c5fbc4156c0d7980ad943b899cd7815b5f215416d7e7703658a2c6666aad801",
+      "webpSha256": "cc437f4c2cb818ee82f4fab1de710d4c8c82a868cc153257119ca3b2e0d8b835",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "mcp-evidence",
+      "destination": "public/blog/october2026-next-five/mcp-evidence.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A three-part exploded still life of a precision mechanical connector, frosted transparent protective shell, small orange latch and graphite receiving dock. Concept: schema, authorization and real execution are separate layers. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-57b5889d-0048-47da-bacd-580e96cbec10.png",
+      "originalSha256": "4599be3c49ff5cb83dc27e7d2055b55a6365b179c2d79e7ea1d8fe78eacad7b1",
+      "webpSha256": "106461abc987d21c5c79b5e42e064a4feb0211fce55ea7d4d0a3acdd30704194",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "mcp-scenario",
+      "destination": "public/blog/october2026-next-five/mcp-scenario.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Two separated tactile conveyor lanes on a white studio table: upper lane an orange capsule arriving intact, lower lane a graphite capsule halted by a tiny ceramic gate. Concept: valid tool result versus a controlled tool failure. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-727a361f-7d8b-46ed-883d-815b9d0ec8e0.png",
+      "originalSha256": "47904c33656b6fa880cf606b4b4e03220e413fea7ce3747c0353ca8b455ff35e",
+      "webpSha256": "a7bbea8d77a399aa348d032a6280ec2f63b591252a164e17c5299e373f9b31cc",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "upgrade-cover",
+      "destination": "public/blog/october2026-next-five/upgrade-cover.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. A pair of graphite mechanical gears on ivory paper, a single new orange gear waiting beside its matching socket, finely aligned registration marks without symbols. Concept: upgrading one dependency at a time. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-94379d88-a746-4b59-a3ab-052822ae1573.png",
+      "originalSha256": "f4e2257350ce264b299f24a1b1747c94d25083caaa94efabf0395c7089a3e03e",
+      "webpSha256": "7a2fd47ff9df28a01f83a0fef6c063d98c50cf9470511db4cd30abd5efcfa9fc",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "upgrade-evidence",
+      "destination": "public/blog/october2026-next-five/upgrade-evidence.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. An ivory case holding a graphite original component, a fitted orange replacement, and a sealed blank paper envelope. Concept: retaining a reversible dependency update and its evidence. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-f09dc2eb-a76e-4294-b0ca-6480f92adc13.png",
+      "originalSha256": "d48e292ac3ac770bdfa24e808ec4d7541f2ab12ec56ea378612e13e4038fe5a4",
+      "webpSha256": "f1a69e41899d279fd341265262a0bb0576dea0e23b6f88ecb03f7ab463732d3d",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "upgrade-scenario",
+      "destination": "public/blog/october2026-next-five/upgrade-scenario.webp",
+      "prompt": "Create a premium editorial illustration for the GrantTap blog, landscape 16:9, high resolution. Two parallel small architectural models on a pale table, old graphite bridge on one and carefully installed orange bridge on the other, identical surrounding blocks. Concept: comparing controlled baseline and updated environment. Use the established graphite, warm ivory and restrained burnt-orange palette, tactile paper and matte ceramic materials, sophisticated soft shadows, calm precision, generous negative space, coherent single composition. Conceptual illustration only: no actual software interface, no readable text, no letters, numbers, logos, QR codes, watermark, people, fake metrics or decorative dashboards.",
+      "sourceAssetId": "exec-6fbb94d7-d292-4d2c-8973-3cb47d20a962.png",
+      "originalSha256": "5421132ad0650b23c206fb9ef738e78790fdbe463c73f7a0b088f0c2f64f4d51",
+      "webpSha256": "e2545a96e1bf76573998cc067bfc1fff62e0da3a14630239c176b343d9be0559",
+      "width": 1672,
+      "height": 941
+    }
+  ]
+}
