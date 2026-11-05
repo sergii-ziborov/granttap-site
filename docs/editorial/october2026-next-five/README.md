@@ -69,3 +69,14 @@ overflow, visible reading notices and no JavaScript exceptions. Browser image
 waiting is bounded; it no longer waits indefinitely on responsive-image decode.
 The historical October 16 quality comparison now uses the journal available at
 that date instead of drifting upward whenever future longform stories are added.
+
+Public verification also passed: 10 localized article pages contain 2,543–2,717
+visible body words, all 15 generated asset hashes match, and 14 product/help routes
+respond. All 20 desktop/phone browser journeys passed in both languages with no
+JavaScript exceptions. The serving container is healthy on source commit
+`9a7b67b8c0fee5ee529f9107215ae4f243a43456`, image
+`73118439f3048a0a7b45ccfec3a5a425b15b7ec04b13d550a7ca9707874585a2`.
+Candidate and live checks additionally verified all 48 guide chapters, 34 guide
+capture hashes and the search index. The preceding site container is retained
+for rollback. Account and relay services were not changed. Local preview and
+owned headless browser processes were stopped after verification.

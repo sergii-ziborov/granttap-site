@@ -1,0 +1,282 @@
+{
+  "base": "https://granttap.com",
+  "checks": [
+    {
+      "name": "desktop graph-en",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Use Graph and Health to investigate a code boundary",
+      "images": [
+        "/blog/october2026-next-five/graph-cover.webp",
+        "/blog/october2026-next-five/graph-scenario.webp",
+        "/blog/october2026-next-five/graph-evidence.webp",
+        "/guide/screens/graph.png"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 1332
+    },
+    {
+      "name": "desktop graph-ru",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Как исследовать границы кода через Graph и Health",
+      "images": [
+        "/blog/october2026-next-five/graph-cover.webp",
+        "/blog/october2026-next-five/graph-scenario.webp",
+        "/blog/october2026-next-five/graph-evidence.webp",
+        "/guide/screens/graph.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1332
+    },
+    {
+      "name": "desktop mcp-en",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Design MCP tools that remain understandable after a failed call",
+      "images": [
+        "/blog/october2026-next-five/mcp-cover.webp",
+        "/blog/october2026-next-five/mcp-scenario.webp",
+        "/blog/october2026-next-five/mcp-evidence.webp",
+        "/guide/screens/mcp-details.png"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 1417
+    },
+    {
+      "name": "desktop mcp-ru",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Как проектировать понятные контракты MCP-инструментов",
+      "images": [
+        "/blog/october2026-next-five/mcp-cover.webp",
+        "/blog/october2026-next-five/mcp-scenario.webp",
+        "/blog/october2026-next-five/mcp-evidence.webp",
+        "/guide/screens/mcp-details.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1417
+    },
+    {
+      "name": "desktop upgrade-en",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Upgrade a dependency with an agent and keep the project reproducible",
+      "images": [
+        "/blog/october2026-next-five/upgrade-cover.webp",
+        "/blog/october2026-next-five/upgrade-scenario.webp",
+        "/blog/october2026-next-five/upgrade-evidence.webp",
+        "/guide/screens/modified-files.png"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 1417
+    },
+    {
+      "name": "desktop upgrade-ru",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Обновление зависимостей с агентом без потери воспроизводимости",
+      "images": [
+        "/blog/october2026-next-five/upgrade-cover.webp",
+        "/blog/october2026-next-five/upgrade-scenario.webp",
+        "/blog/october2026-next-five/upgrade-evidence.webp",
+        "/guide/screens/modified-files.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1417
+    },
+    {
+      "name": "desktop accessible-en",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Make mobile agent control readable and recoverable",
+      "images": [
+        "/blog/october2026-next-five/accessible-cover.webp",
+        "/blog/october2026-next-five/accessible-scenario.webp",
+        "/blog/october2026-next-five/accessible-evidence.webp",
+        "/guide/screens/approval-details.png"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 1332
+    },
+    {
+      "name": "desktop accessible-ru",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Понятное и доступное управление агентом с телефона",
+      "images": [
+        "/blog/october2026-next-five/accessible-cover.webp",
+        "/blog/october2026-next-five/accessible-scenario.webp",
+        "/blog/october2026-next-five/accessible-evidence.webp",
+        "/guide/screens/approval-details.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1417
+    },
+    {
+      "name": "desktop incident-en",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Reconstruct an agent-assisted incident from evidence",
+      "images": [
+        "/blog/october2026-next-five/incident-cover.webp",
+        "/blog/october2026-next-five/incident-scenario.webp",
+        "/blog/october2026-next-five/incident-evidence.webp"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 1417
+    },
+    {
+      "name": "desktop incident-ru",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Как разобрать сбой после работы агента по свидетельствам",
+      "images": [
+        "/blog/october2026-next-five/incident-cover.webp",
+        "/blog/october2026-next-five/incident-scenario.webp",
+        "/blog/october2026-next-five/incident-evidence.webp"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1417
+    },
+    {
+      "name": "mobile graph-en",
+      "width": 390,
+      "scroll": 390,
+      "title": "Use Graph and Health to investigate a code boundary",
+      "images": [
+        "/blog/october2026-next-five/graph-cover.webp",
+        "/blog/october2026-next-five/graph-scenario.webp",
+        "/blog/october2026-next-five/graph-evidence.webp",
+        "/guide/screens/graph.png"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 960
+    },
+    {
+      "name": "mobile graph-ru",
+      "width": 390,
+      "scroll": 390,
+      "title": "Как исследовать границы кода через Graph и Health",
+      "images": [
+        "/blog/october2026-next-five/graph-cover.webp",
+        "/blog/october2026-next-five/graph-scenario.webp",
+        "/blog/october2026-next-five/graph-evidence.webp",
+        "/guide/screens/graph.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 960
+    },
+    {
+      "name": "mobile mcp-en",
+      "width": 390,
+      "scroll": 390,
+      "title": "Design MCP tools that remain understandable after a failed call",
+      "images": [
+        "/blog/october2026-next-five/mcp-cover.webp",
+        "/blog/october2026-next-five/mcp-scenario.webp",
+        "/blog/october2026-next-five/mcp-evidence.webp",
+        "/guide/screens/mcp-details.png"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 933
+    },
+    {
+      "name": "mobile mcp-ru",
+      "width": 390,
+      "scroll": 390,
+      "title": "Как проектировать понятные контракты MCP-инструментов",
+      "images": [
+        "/blog/october2026-next-five/mcp-cover.webp",
+        "/blog/october2026-next-five/mcp-scenario.webp",
+        "/blog/october2026-next-five/mcp-evidence.webp",
+        "/guide/screens/mcp-details.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1006
+    },
+    {
+      "name": "mobile upgrade-en",
+      "width": 390,
+      "scroll": 390,
+      "title": "Upgrade a dependency with an agent and keep the project reproducible",
+      "images": [
+        "/blog/october2026-next-five/upgrade-cover.webp",
+        "/blog/october2026-next-five/upgrade-scenario.webp",
+        "/blog/october2026-next-five/upgrade-evidence.webp",
+        "/guide/screens/modified-files.png"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 978
+    },
+    {
+      "name": "mobile upgrade-ru",
+      "width": 414,
+      "scroll": 414,
+      "title": "Обновление зависимостей с агентом без потери воспроизводимости",
+      "images": [
+        "/blog/october2026-next-five/upgrade-cover.webp",
+        "/blog/october2026-next-five/upgrade-scenario.webp",
+        "/blog/october2026-next-five/upgrade-evidence.webp",
+        "/guide/screens/modified-files.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 978
+    },
+    {
+      "name": "mobile accessible-en",
+      "width": 390,
+      "scroll": 390,
+      "title": "Make mobile agent control readable and recoverable",
+      "images": [
+        "/blog/october2026-next-five/accessible-cover.webp",
+        "/blog/october2026-next-five/accessible-scenario.webp",
+        "/blog/october2026-next-five/accessible-evidence.webp",
+        "/guide/screens/approval-details.png"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 915
+    },
+    {
+      "name": "mobile accessible-ru",
+      "width": 390,
+      "scroll": 390,
+      "title": "Понятное и доступное управление агентом с телефона",
+      "images": [
+        "/blog/october2026-next-five/accessible-cover.webp",
+        "/blog/october2026-next-five/accessible-scenario.webp",
+        "/blog/october2026-next-five/accessible-evidence.webp",
+        "/guide/screens/approval-details.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1006
+    },
+    {
+      "name": "mobile incident-en",
+      "width": 390,
+      "scroll": 390,
+      "title": "Reconstruct an agent-assisted incident from evidence",
+      "images": [
+        "/blog/october2026-next-five/incident-cover.webp",
+        "/blog/october2026-next-five/incident-scenario.webp",
+        "/blog/october2026-next-five/incident-evidence.webp"
+      ],
+      "note": "Reviewed 2026-11-05Prepared and checked on November 5, 2026. The archive date is an editorial slot; this is a practical guide, not a report of events occurring on that earlier day.Complete GrantTap guide (Russian) ↗",
+      "readingScrollY": 933
+    },
+    {
+      "name": "mobile incident-ru",
+      "width": 390,
+      "scroll": 390,
+      "title": "Как разобрать сбой после работы агента по свидетельствам",
+      "images": [
+        "/blog/october2026-next-five/incident-cover.webp",
+        "/blog/october2026-next-five/incident-scenario.webp",
+        "/blog/october2026-next-five/incident-evidence.webp"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 960
+    }
+  ],
+  "errors": []
+}
