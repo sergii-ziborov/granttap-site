@@ -18,7 +18,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
     title: copy.title,
     description: copy.summary,
     alternates: { canonical, languages: { en: `/blog/${article.slug}`, ru: `/blog/${article.slug}?lang=ru` } },
-    openGraph: { type: "article", publishedTime: article.date, title: copy.title, description: copy.summary, images: [{ url: article.cover, width: 1600, height: 900, alt: copy.title }] },
+    openGraph: { type: "article", publishedTime: article.date, modifiedTime: article.reviewedOn || article.date, title: copy.title, description: copy.summary, images: [{ url: article.cover, width: 1600, height: 900, alt: copy.title }] },
     twitter: { card: "summary_large_image", title: copy.title, description: copy.summary, images: [article.cover] },
   };
 }
@@ -38,6 +38,7 @@ export default async function ArticlePage({ params, searchParams }: { params: Pr
     description: copy.summary,
     image: `https://granttap.com${article.cover}`,
     datePublished: article.date,
+    dateModified: article.reviewedOn || article.date,
     inLanguage: locale,
     author: { "@type": "Organization", name: "GrantTap" },
     publisher: { "@type": "Organization", name: "GrantTap", url: "https://granttap.com" },

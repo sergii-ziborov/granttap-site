@@ -1,4 +1,4 @@
 /* eslint-disable @next/next/no-css-tags -- vinext bundles imported route CSS into the homepage asset. */
 export default function BlogLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <><link rel="stylesheet" href="/blog.css?v=20261016-covers" />{children}</>;
+  return <><link rel="stylesheet" href="/blog.css?v=20261105-reviewed-archive" />{children}</>;
 }

@@ -1,0 +1,147 @@
+{
+  "preparedOn": "2026-11-05",
+  "timeZone": "Asia/Jerusalem",
+  "rangeStart": "2026-09-24",
+  "beforeGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-23",
+    "2026-10-24",
+    "2026-10-25",
+    "2026-10-26",
+    "2026-10-27",
+    "2026-10-28",
+    "2026-10-29"
+  ],
+  "articles": [
+    {
+      "slug": "granttap-evaluate-coding-agent-own-task",
+      "date": "2026-10-25",
+      "reviewedOn": "2026-11-05",
+      "title": "Как оценить coding-агента на собственной задаче",
+      "words": {
+        "en": 2569,
+        "ru": 2615
+      },
+      "images": [
+        "/blog/october2026-backfill/evaluation-cover.webp",
+        "/blog/october2026-backfill/evaluation-scenario.webp",
+        "/blog/october2026-backfill/evaluation-evidence.webp"
+      ]
+    },
+    {
+      "slug": "granttap-untrusted-content-agent-tool-boundaries",
+      "date": "2026-10-26",
+      "reviewedOn": "2026-11-05",
+      "title": "Когда документ пытается командовать coding-агентом",
+      "words": {
+        "en": 2572,
+        "ru": 2557
+      },
+      "images": [
+        "/blog/october2026-backfill/injection-cover.webp",
+        "/blog/october2026-backfill/injection-boundary.webp",
+        "/blog/october2026-backfill/injection-response.webp"
+      ],
+      "screenshot": "/guide/screens/approval-details.png"
+    },
+    {
+      "slug": "granttap-review-agent-diffs-from-phone",
+      "date": "2026-10-27",
+      "reviewedOn": "2026-11-05",
+      "title": "Ревью правок агента с телефона: от Files до приёмки",
+      "words": {
+        "en": 2662,
+        "ru": 2558
+      },
+      "images": [
+        "/blog/october2026-backfill/review-cover.webp",
+        "/blog/october2026-backfill/review-scope.webp",
+        "/blog/october2026-backfill/review-acceptance.webp"
+      ],
+      "screenshot": "/guide/screens/modified-files.png"
+    },
+    {
+      "slug": "granttap-agent-processes-cpu-memory-disk",
+      "date": "2026-10-28",
+      "reviewedOn": "2026-11-05",
+      "title": "Почему компьютер агента загружен: процессы, CPU, память и диск",
+      "words": {
+        "en": 2677,
+        "ru": 2524
+      },
+      "images": [
+        "/blog/october2026-backfill/resources-cover.webp",
+        "/blog/october2026-backfill/resources-ownership.webp",
+        "/blog/october2026-backfill/resources-recovery.webp"
+      ],
+      "screenshot": "/guide/screens/computer-controls.png"
+    },
+    {
+      "slug": "granttap-share-agent-project-colleague-access",
+      "date": "2026-10-29",
+      "reviewedOn": "2026-11-05",
+      "title": "Как подключить коллегу к AI-проекту и сохранить границы доступа",
+      "words": {
+        "en": 2635,
+        "ru": 2659
+      },
+      "images": [
+        "/blog/october2026-backfill/team-cover.webp",
+        "/blog/october2026-backfill/team-scope.webp",
+        "/blog/october2026-backfill/team-offboarding.webp"
+      ],
+      "screenshot": "/guide/screens/mesh.png"
+    }
+  ],
+  "remainingGaps": [
+    "2026-09-25",
+    "2026-09-26",
+    "2026-09-27",
+    "2026-09-28",
+    "2026-09-29",
+    "2026-09-30",
+    "2026-10-01",
+    "2026-10-02",
+    "2026-10-06",
+    "2026-10-07",
+    "2026-10-08",
+    "2026-10-09",
+    "2026-10-11",
+    "2026-10-12",
+    "2026-10-13",
+    "2026-10-14",
+    "2026-10-15",
+    "2026-10-17",
+    "2026-10-18",
+    "2026-10-19",
+    "2026-10-20",
+    "2026-10-21",
+    "2026-10-22",
+    "2026-10-23",
+    "2026-10-24"
+  ],
+  "publishedOnNovember5": 37,
+  "totalPrepared": 40
+}

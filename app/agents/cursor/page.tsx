@@ -25,6 +25,6 @@ export default function CursorPage() {
       "The first remote-start handoff path is Claude Code ↔ Codex; Cursor does not claim that parity yet.",
       "Where Cursor cannot deterministically enforce a capability, GrantTap reports observation rather than a false block guarantee.",
     ]}
-    related={[{ href: "/project-mesh", label: "Mesh" }, { href: "/agents/grok-build", label: "Grok Build" }, { href: "/support", label: "Setup help" }]}
+    related={[{ href: "/guide/providers", label: "Current provider behavior guide (RU)" }, { href: "/guide/device-management", label: "Devices, updates and sign-in (RU)" }, { href: "/project-mesh", label: "Mesh" }, { href: "/agents/grok-build", label: "Grok Build" }, { href: "/support", label: "Setup help" }]}
   />;
 }

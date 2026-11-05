@@ -1,8 +1,88 @@
 {
   "title": "Support",
-  "updated": "2026-10-22",
+  "updated": "2026-11-05",
   "intro": "Install GrantTap → connect an execution computer with GrantTap MCP → open your Task. This guide explains account passkeys, direct pairing, Mac access, connection modes and recovery.",
   "sections": [
+    {
+      "heading": "Complete illustrated user guide",
+      "paragraphs": [
+        "The Russian user guide at /guide covers 48 chapters with 34 real app screenshots, including current build-250 Simulator captures. It explains setup, Tasks and Executions, delivery, Files, Agents, existing Codex automations, transfer, workspaces, Devices, login, updates, cache, Mesh, Governance and recovery. Every screenshot retains its actual build, date and sample-data provenance."
+      ],
+      "links": [
+        {
+          "label": "Open the complete guide (Russian)",
+          "href": "/guide"
+        }
+      ]
+    },
+    {
+      "heading": "Devices: runtime, providers and sign-in",
+      "paragraphs": [
+        "In Devices, select the computer that owns the Task and open Manage computer. The primary MCP version is the process actually running; an installed version waiting for activation is shown separately. Check for an update, read the result, and confirm a restart when required. A new phone build does not update every computer runtime or already open MCP process.",
+        "Coding agents expose supported Sign in, Continue sign-in, Update and Restart actions for Claude Code, Codex, Grok and Cursor on that computer. Sign-in opens the provider page; a supported Claude flow also accepts its authorization code. Updates use the installation method supported by the computer. Unknown status, an absent CLI and an unsupported updater remain distinct states. Provider restart affects GrantTap-started CLI requests, not every unrelated desktop session."
+      ],
+      "links": [
+        {
+          "label": "Devices and versions",
+          "href": "/guide/device-management"
+        },
+        {
+          "label": "Provider sign-in",
+          "href": "/guide/provider-sign-in"
+        }
+      ]
+    },
+    {
+      "heading": "Cache and observed resource use",
+      "paragraphs": [
+        "Phone chat cache and a computer’s disposable MCP cache have separate sizes and controls. Computer cleanup removes only the rebuildable indexes and unused downloads identified by that runtime; it preserves projects, chats, credentials and the working MCP. A measured provider folder is not automatically safe to delete.",
+        "Direct process measurements, attributed shares and unknown historical use are labelled separately. Do not add a process group to its included child rows again. Estimated context is separate from provider-reported tokens and billing."
+      ],
+      "links": [
+        {
+          "label": "Cache size and cleanup",
+          "href": "/guide/cache-storage"
+        },
+        {
+          "label": "Activity and resource sources",
+          "href": "/guide/transcript-sources"
+        }
+      ]
+    },
+    {
+      "heading": "Files, Agents and Automations in the chat",
+      "paragraphs": [
+        "Files distinguishes changes recorded for the selected request from the available workspace tree. Cached or partial data remains identified as such. Agents can show known child conversations for the selected request or the whole chat; an empty list does not prove that no main-agent work occurred.",
+        "Automations manages existing supported Codex schedules related to the Task’s executions. Pause affects future runs, not a turn already in progress. Editing shows the computer’s time zone and waits for its confirmation. A one-off Schedule message is a separate queued operation."
+      ],
+      "links": [
+        {
+          "label": "Files and Agents",
+          "href": "/guide/transcript-sources"
+        },
+        {
+          "label": "Existing Codex automations",
+          "href": "/guide/automations"
+        }
+      ]
+    },
+    {
+      "heading": "Transfer, workspace and request recovery",
+      "paragraphs": [
+        "The transfer workspace picker supports search and an ordinary-folder path where the route permits it; a Task without Git must not be assigned an unrelated repository. Check the destination computer, workspace and provider-specific model options. Request queued, Source confirmed and Destination ready are distinct transfer stages.",
+        "For a Request that is still loading or an unconfirmed Applying state, refresh the original operation and check the owning computer. Refresh status does not send a new prompt. A retry should preserve the original delivery identity where supported; it is not evidence that the previous operation never executed. Claude’s supported prompt hook can supply unread mobile-run journal context on the next desktop prompt, rather than instantly changing an already running turn."
+      ],
+      "links": [
+        {
+          "label": "Search workspaces",
+          "href": "/guide/workspaces"
+        },
+        {
+          "label": "Recover a request",
+          "href": "/guide/request-recovery"
+        }
+      ]
+    },
     {
       "heading": "Account passkey and QR",
       "paragraphs": [

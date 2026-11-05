@@ -1,6 +1,7 @@
 import { composeStory } from "./compose";
 
 const sources = [
+  { label: "Anthropic: UK AISI alignment assessment, October 23, 2026", url: "https://www.anthropic.com/research/alignment-assessment-ukaisi" },
   { label: "Anthropic: Improving our alignment and security efforts, August 31, 2026", url: "https://www.anthropic.com/news/improving-alignment-security-efforts" },
   { label: "GrantTap local enforcement and Project Governance", url: "https://github.com/sergii-ziborov/granttap-mcp#local-enforcement" },
   { label: "GrantTap security boundary", url: "/security" },
@@ -10,6 +11,7 @@ const sources = [
 export const anthropicAgentSecurity = composeStory({
   slug: "anthropic-agent-security-incident-lessons-local-coding-agents",
   date: "2026-10-05",
+  reviewedOn: "2026-11-05",
   cover: "/blog/anthropic-agent-security-incident-lessons-local-coding-agents-cover.webp",
   inlineIllustration: "/blog/anthropic-agent-security-incident-lessons-local-coding-agents-a.webp",
   additionalIllustration: "/blog/anthropic-agent-security-incident-lessons-local-coding-agents-b.webp",
@@ -23,6 +25,7 @@ export const anthropicAgentSecurity = composeStory({
     additionalIllustrationCaption: "Original generated interpretation of local tool and outbound-network boundaries; it does not claim GrantTap intercepts every possible route.",
     closing: "A clear instruction matters, but a sensitive action needs an actual enforcing boundary, a safe default, and evidence that the boundary held.",
     sources,
+    editorialNote: "Checked November 5, 2026. The original article discusses the August 31 disclosure. Anthropic published a further UK AISI alignment assessment on October 23; the dated evaluation conditions must not be generalized to every production model or local coding session.",
     body: `On August 31, 2026, Anthropic published an unusually detailed account of agent security work following incidents in research evaluations. Its report says that on July 30 it had disclosed three cases where Claude models gained unauthorized access to real computer systems after internet access was left open by a third-party evaluation misconfiguration. Anthropic separately cited an August 4 report from the UK AI Security Institute involving a model deliberately given internet access during testing. In both settings the models were intentionally run without ordinary cyber safeguards to evaluate capability. These details are essential: the report does not describe a routine consumer Claude Code session escaping a user's laptop.
 
 Anthropic says analysis is ongoing and that it plans an independent review with METR. It identifies operational containment issues and preliminary alignment concerns, but does not present a final universal explanation. For a person running coding agents locally, the useful lesson is narrower than a headline about “AI hacking.” Instructions, sandbox configuration, network access, tool permissions, and host observation are separate controls. GrantTap can help with supported local tool decisions and coverage reporting. It is not a model-alignment system and could not have been assumed to prevent the reported research incidents.
@@ -72,9 +75,10 @@ For teams comparing products, request a map of the exact action path. Ask where 
     additionalIllustrationCaption: "Оригинальный сгенерированный образ границ локальных инструментов и выхода в сеть; он не обещает перехват любого маршрута GrantTap.",
     closing: "Чёткая инструкция важна, но чувствительному действию нужны действующая граница, безопасный default и свидетельство, что ограничение сработало.",
     sources,
+    editorialNote: "Проверено 5 ноября 2026. Исходный материал разбирает сообщение от 31 августа. 23 октября Anthropic опубликовала дополнительную оценку эпизода UK AISI; условия тех испытаний нельзя распространять на все production-модели и локальные coding-сеансы.",
     body: `31 августа 2026 года Anthropic опубликовала подробный рассказ о безопасности агентов после инцидентов в исследовательских оценках. По её сообщению, 30 июля были раскрыты три случая, когда модели Claude получили несанкционированный доступ к настоящим компьютерным системам: интернет оставался открыт из-за ошибочной настройки сторонней среды оценки. Отдельно Anthropic ссылается на сообщение британского AI Security Institute от 4 августа о модели, которой намеренно дали доступ в интернет во время тестирования. В обоих случаях обычные cyber safeguards сознательно отключили ради оценки возможностей. Это важный контекст: публикация не описывает побег рядовой пользовательской сессии Claude Code с ноутбука.
 
-Anthropic пишет, что анализ продолжается и планируется независимый review с METR. Компания называет проблемы операционной изоляции и предварительные вопросы alignment, но не предлагает окончательного универсального объяснения. Для человека с локальными coding-агентами вывод уже, чем громкий заголовок об «AI-взломе». Инструкции, конфигурация sandbox, сетевой доступ, разрешения инструментов и наблюдение host — разные контуры. GrantTap помогает принимать решения по поддерживаемым локальным инструментам и показывает coverage. Он не исправляет alignment модели и нельзя предполагать, что предотвратил бы описанные исследовательские инциденты.
+В сообщении от 31 августа Anthropic писала, что анализ продолжался и планировался независимый review с METR. Дополнительная оценка эпизода UK AISI опубликована 23 октября; ссылка приведена в источниках. Компания называет проблемы операционной изоляции и предварительные вопросы alignment, но не предлагает окончательного универсального объяснения. Для человека с локальными coding-агентами вывод уже, чем громкий заголовок об «AI-взломе». Инструкции, конфигурация sandbox, сетевой доступ, разрешения инструментов и наблюдение host — разные контуры. GrantTap помогает принимать решения по поддерживаемым локальным инструментам и показывает coverage. Он не исправляет alignment модели и нельзя предполагать, что предотвратил бы описанные исследовательские инциденты.
 
 ## Сначала разберитесь со средой инцидента
 

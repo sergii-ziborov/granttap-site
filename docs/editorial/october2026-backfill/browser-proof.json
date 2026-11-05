@@ -1,0 +1,144 @@
+{
+  "base": "http://127.0.0.1:3216",
+  "checks": [
+    {
+      "name": "desktop evaluation",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Как оценить coding-агента на собственной задаче",
+      "images": [
+        "/blog/october2026-backfill/evaluation-cover.webp",
+        "/blog/october2026-backfill/evaluation-scenario.webp",
+        "/blog/october2026-backfill/evaluation-evidence.webp"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1366
+    },
+    {
+      "name": "desktop injection",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Когда документ пытается командовать coding-агентом",
+      "images": [
+        "/blog/october2026-backfill/injection-cover.webp",
+        "/blog/october2026-backfill/injection-boundary.webp",
+        "/blog/october2026-backfill/injection-response.webp",
+        "/guide/screens/approval-details.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1451
+    },
+    {
+      "name": "desktop review",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Ревью правок агента с телефона: от Files до приёмки",
+      "images": [
+        "/blog/october2026-backfill/review-cover.webp",
+        "/blog/october2026-backfill/review-scope.webp",
+        "/blog/october2026-backfill/review-acceptance.webp",
+        "/guide/screens/modified-files.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1451
+    },
+    {
+      "name": "desktop resources",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Почему компьютер агента загружен: процессы, CPU, память и диск",
+      "images": [
+        "/blog/october2026-backfill/resources-cover.webp",
+        "/blog/october2026-backfill/resources-ownership.webp",
+        "/blog/october2026-backfill/resources-recovery.webp",
+        "/guide/screens/computer-controls.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1451
+    },
+    {
+      "name": "desktop team",
+      "width": 1440,
+      "scroll": 1440,
+      "title": "Как подключить коллегу к AI-проекту и сохранить границы доступа",
+      "images": [
+        "/blog/october2026-backfill/team-cover.webp",
+        "/blog/october2026-backfill/team-scope.webp",
+        "/blog/october2026-backfill/team-offboarding.webp",
+        "/guide/screens/mesh.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1451
+    },
+    {
+      "name": "mobile evaluation",
+      "width": 390,
+      "scroll": 390,
+      "title": "Как оценить coding-агента на собственной задаче",
+      "images": [
+        "/blog/october2026-backfill/evaluation-cover.webp",
+        "/blog/october2026-backfill/evaluation-scenario.webp",
+        "/blog/october2026-backfill/evaluation-evidence.webp"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1016
+    },
+    {
+      "name": "mobile injection",
+      "width": 390,
+      "scroll": 390,
+      "title": "Когда документ пытается командовать coding-агентом",
+      "images": [
+        "/blog/october2026-backfill/injection-cover.webp",
+        "/blog/october2026-backfill/injection-boundary.webp",
+        "/blog/october2026-backfill/injection-response.webp",
+        "/guide/screens/approval-details.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 988
+    },
+    {
+      "name": "mobile review",
+      "width": 390,
+      "scroll": 390,
+      "title": "Ревью правок агента с телефона: от Files до приёмки",
+      "images": [
+        "/blog/october2026-backfill/review-cover.webp",
+        "/blog/october2026-backfill/review-scope.webp",
+        "/blog/october2026-backfill/review-acceptance.webp",
+        "/guide/screens/modified-files.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 988
+    },
+    {
+      "name": "mobile resources",
+      "width": 390,
+      "scroll": 390,
+      "title": "Почему компьютер агента загружен: процессы, CPU, память и диск",
+      "images": [
+        "/blog/october2026-backfill/resources-cover.webp",
+        "/blog/october2026-backfill/resources-ownership.webp",
+        "/blog/october2026-backfill/resources-recovery.webp",
+        "/guide/screens/computer-controls.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1034
+    },
+    {
+      "name": "mobile team",
+      "width": 390,
+      "scroll": 390,
+      "title": "Как подключить коллегу к AI-проекту и сохранить границы доступа",
+      "images": [
+        "/blog/october2026-backfill/team-cover.webp",
+        "/blog/october2026-backfill/team-scope.webp",
+        "/blog/october2026-backfill/team-offboarding.webp",
+        "/guide/screens/mesh.png"
+      ],
+      "note": "Проверено 2026-11-05Материал подготовлен и проверен 5 ноября 2026 года. Дата в архиве — редакционный слот; это практическое руководство, а не сообщение о событиях того дня.Полное руководство GrantTap ↗",
+      "readingScrollY": 1034
+    }
+  ],
+  "errors": []
+}

@@ -6,12 +6,12 @@ export const dynamic = "force-dynamic";
 
 const pages = [
   ["", ""], ["about", "2026-09-28"], ["privacy", "2026-08-28"],
-  ["terms", "2026-09-25"], ["support", "2026-08-28"],
+  ["terms", "2026-09-25"], ["support", "2026-11-05"],
   ["security", "2026-08-28"], ["data-rights", "2026-08-28"],
   ["accessibility", "2026-08-28"], ["licenses", "2026-09-25"],
-  ["pricing", "2026-09-28"], ["mac", "2026-10-08"], ["agents/claude-code", "2026-08-28"],
-  ["agents/codex", "2026-10-16"], ["agents/cursor", "2026-08-28"],
-  ["agents/grok-build", "2026-10-22"], ["project-mesh", "2026-10-16"],
+  ["pricing", "2026-09-28"], ["mac", "2026-10-08"], ["agents/claude-code", "2026-11-05"],
+  ["agents/codex", "2026-11-05"], ["agents/cursor", "2026-11-05"],
+  ["agents/grok-build", "2026-11-05"], ["project-mesh", "2026-10-16"],
   ["grok-bot", "2026-08-28"], ["apple-watch-coding-agents", "2026-08-28"],
 ];
 
@@ -26,11 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     { url: "https://granttap.com/blog", lastModified: today, changeFrequency: "weekly", priority: .8 },
     ...["", ...guideCatalog.map(page => `/${page.slug}`)].map(path => ({
-      url: `https://granttap.com/guide${path}`, lastModified: "2026-11-04", changeFrequency: "monthly" as const, priority: .8,
+      url: `https://granttap.com/guide${path}`, lastModified: "2026-11-05", changeFrequency: "monthly" as const, priority: .8,
     })),
     ...publishedArticles().map(article => ({
       url: `https://granttap.com/blog/${article.slug}`,
-      lastModified: article.date,
+      lastModified: article.reviewedOn || article.date,
       changeFrequency: "monthly" as const,
       priority: .7,
     })),

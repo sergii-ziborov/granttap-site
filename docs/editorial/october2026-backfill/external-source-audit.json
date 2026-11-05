@@ -1,0 +1,192 @@
+{
+  "checkedOn": "2026-11-05",
+  "sources": [
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-mcp",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-mcp"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-site#browser-control-beta",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-site"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+      "status": 200,
+      "finalUrl": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices"
+    },
+    {
+      "url": "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents",
+      "status": 200,
+      "finalUrl": "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents"
+    },
+    {
+      "url": "https://git-scm.com/docs/git-worktree",
+      "status": 200,
+      "finalUrl": "https://git-scm.com/docs/git-worktree"
+    },
+    {
+      "url": "https://www.anthropic.com/research/building-effective-agents",
+      "status": 200,
+      "finalUrl": "https://www.anthropic.com/research/building-effective-agents"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+      "status": 200,
+      "finalUrl": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices",
+      "status": 200,
+      "finalUrl": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices"
+    },
+    {
+      "url": "https://git-scm.com/docs/git-diff",
+      "status": 200,
+      "finalUrl": "https://git-scm.com/docs/git-diff"
+    },
+    {
+      "url": "https://support.apple.com/guide/activity-monitor/view-cpu-activity-actmntr43452/mac",
+      "status": 200,
+      "finalUrl": "https://support.apple.com/guide/activity-monitor/view-cpu-activity-actmntr43452/mac"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-mcp#project-mesh-and-task-handoff",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-mcp"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-relay",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-relay"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/cortex-loom",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/cortex-loom"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/cortex-loom/blob/main/docs/architecture.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/cortex-loom/blob/main/docs/architecture.md"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-mcp#project-governance",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-mcp"
+    },
+    {
+      "url": "https://techcommunity.microsoft.com/blog/agent-365-blog/whats-new-in-agent-365---september-2026/4560803",
+      "status": 200,
+      "finalUrl": "https://techcommunity.microsoft.com/blog/agent-365-blog/whats-new-in-agent-365---september-2026/4560803"
+    },
+    {
+      "url": "https://aws.amazon.com/blogs/machine-learning/securing-ai-agents-with-temporal-policies-in-amazon-bedrock-agentcore/",
+      "status": 200,
+      "finalUrl": "https://aws.amazon.com/blogs/machine-learning/securing-ai-agents-with-temporal-policies-in-amazon-bedrock-agentcore/"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
+      "status": 200,
+      "finalUrl": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html"
+    },
+    {
+      "url": "https://www.anthropic.com/research/alignment-assessment-ukaisi",
+      "status": 200,
+      "finalUrl": "https://www.anthropic.com/research/alignment-assessment-ukaisi"
+    },
+    {
+      "url": "https://www.anthropic.com/news/improving-alignment-security-efforts",
+      "status": 200,
+      "finalUrl": "https://www.anthropic.com/news/improving-alignment-security-efforts"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-mcp#local-enforcement",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-mcp"
+    },
+    {
+      "url": "https://code.claude.com/docs/en/remote-control",
+      "status": 200,
+      "finalUrl": "https://code.claude.com/docs/en/remote-control"
+    },
+    {
+      "url": "https://cursor.com/docs/cloud-agent/mobile",
+      "status": 200,
+      "finalUrl": "https://cursor.com/docs/cloud-agent/mobile"
+    },
+    {
+      "url": "https://cursor.com/docs/cloud-agent/security",
+      "status": 200,
+      "finalUrl": "https://cursor.com/docs/cloud-agent/security"
+    },
+    {
+      "url": "https://openai.com/index/work-with-codex-from-anywhere/",
+      "status": 403,
+      "finalUrl": "https://openai.com/index/work-with-codex-from-anywhere/",
+      "alternateVerification": {
+        "method": "web.run official page read",
+        "checkedOn": "2026-11-05",
+        "title": "Work with Codex from anywhere",
+        "published": "2026-05-14",
+        "reason": "Direct automated HTTP request received 403; page was readable through web tool."
+      }
+    },
+    {
+      "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html",
+      "status": 200,
+      "finalUrl": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-runtime-metrics.html",
+      "status": 200,
+      "finalUrl": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-runtime-metrics.html"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "status": 200,
+      "finalUrl": "https://developers.openai.com/api/docs/pricing"
+    },
+    {
+      "url": "https://cursor.com/docs/agent/security/run-modes",
+      "status": 200,
+      "finalUrl": "https://cursor.com/docs/agent/security/run-modes"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-mcp#supported-providers",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-mcp"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/cortex-loom/blob/main/docs/benchmark.md",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/cortex-loom/blob/main/docs/benchmark.md"
+    },
+    {
+      "url": "https://aws.amazon.com/events/summits/tel-aviv/",
+      "status": 200,
+      "finalUrl": "https://aws.amazon.com/events/summits/tel-aviv/"
+    },
+    {
+      "url": "https://aws.amazon.com/events/summits/tel-aviv/agenda/",
+      "status": 200,
+      "finalUrl": "https://aws.amazon.com/events/summits/tel-aviv/agenda/"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-mcp#install",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-mcp"
+    },
+    {
+      "url": "https://github.com/sergii-ziborov/granttap-mcp#members-roles-and-computers-of-their-own",
+      "status": 200,
+      "finalUrl": "https://github.com/sergii-ziborov/granttap-mcp"
+    },
+    {
+      "url": "https://github.com/Weavatrix/weavatrix-md",
+      "status": 200,
+      "finalUrl": "https://github.com/Weavatrix/weavatrix-md"
+    }
+  ]
+}

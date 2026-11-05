@@ -259,3 +259,21 @@ Rebuild and verify the candidate image when updating this version; changing an
 npm dependency cannot patch the Node binary or its built-in HTTP client.
 The deployed site bundles its server and does not include `node_modules`.
 Scan the exact deployed revision and retain prior release reports as history.
+
+## Current documentation snapshot — 5 November 2026
+
+The [complete Russian guide](https://granttap.com/guide) has 48 chapters and 34
+provenance-labelled native screenshots. Current instructions cover Devices,
+provider sign-in/update/restart, cache, Files/Agents, existing Codex automations,
+searchable workspaces, request recovery and the supported provider boundaries.
+Support in both languages and provider pages point to that reference.
+
+The documentation basis is native build 250 (verified internal TestFlight group,
+3 November) and public granttap-mcp 0.8.143 (registry checked 5 November).
+This does not assert public App Store or external beta approval. Original dates
+of historical release notes, legal policies, news and screenshots are preserved.
+
+Five new bilingual long-form articles fill October 25–29. They are original field
+guides prepared on 5 November, rather than reports of events allegedly occurring
+on those archival dates. See docs/editorial/october2026-backfill for word counts,
+calendar gaps, sources and all fifteen built-in ImageGen prompts/assets.

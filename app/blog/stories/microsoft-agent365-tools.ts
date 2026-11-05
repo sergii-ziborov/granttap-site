@@ -10,6 +10,7 @@ const sources = [
 export const microsoftAgent365Tools = composeStory({
   slug: "microsoft-agent-365-mcp-tool-governance-september-2026",
   date: "2026-10-05",
+  reviewedOn: "2026-11-05",
   cover: "/blog/microsoft-agent-365-mcp-tool-governance-september-2026-cover.webp",
   inlineIllustration: "/blog/microsoft-agent-365-mcp-tool-governance-september-2026-a.webp",
   additionalIllustration: "/blog/microsoft-agent-365-mcp-tool-governance-september-2026-b.webp",
@@ -23,6 +24,7 @@ export const microsoftAgent365Tools = composeStory({
     additionalIllustrationCaption: "Original generated interpretation of a tool inventory; the objects are conceptual, not measured tenant assets.",
     closing: "The shared lesson is to name the tool, the policy owner, the enforcing runtime, and the observed call. The products apply that lesson at different scales and on different paths.",
     sources,
+    editorialNote: "Checked November 5, 2026 against Microsoft’s September 30 announcement. Release labels describe that announcement, not independent tests of every tenant. Current GrantTap controls are documented separately in the user guide.",
     body: `Microsoft's September 30, 2026 Agent 365 update is a useful sign of where agent governance is going. Its Tools management is described as generally available for MCP servers, plugins, skills, and connectors. The same announcement says developers can register custom MCP servers for administrator review in public preview, Agent Management Rules are in public preview, and an Azure API Management integration begins rolling out from September 30. These are Microsoft's stated release statuses, not independent verification that every tenant or agent route already has every control.
 
 The interesting point for a developer running Claude Code or Codex on a personal computer is structural. A tool may be discoverable, approved, actually reachable, invoked, and successful at different times. Treating those states as one green check makes governance hard to trust. GrantTap has a much smaller, personal and local scope than Agent 365. It coordinates supported local coding tools through Project Mesh and host-reported capability coverage. It does not claim a Microsoft tenant inventory, Entra identity governance, or Azure API Management enforcement. We use Microsoft's news as an occasion to ask better questions of our own path.
@@ -72,6 +74,7 @@ The local lesson from Microsoft's release is still valuable: make tools first-cl
     additionalIllustrationCaption: "Оригинальная сгенерированная интерпретация каталога инструментов; объекты условны и не обозначают измеренный tenant.",
     closing: "Общий вывод: называйте инструмент, владельца правила, исполняющий runtime и наблюдаемый вызов. Продукты применяют этот принцип в разном масштабе и на разных маршрутах.",
     sources,
+    editorialNote: "Проверено 5 ноября 2026 по сообщению Microsoft от 30 сентября. Статусы относятся к той публикации и не являются независимой проверкой всех tenant. Текущие возможности GrantTap описаны отдельно в руководстве.",
     body: `Обновление Agent 365 от Microsoft, опубликованное 30 сентября 2026 года, показывает направление развития agent governance. По описанию компании, Tools management стало общедоступным для MCP servers, plugins, skills и connectors. Та же публикация относит регистрацию собственных MCP servers для проверки администратором и Agent Management Rules к public preview; интеграция с Azure API Management начинает развёртываться с 30 сентября. Это статусы, объявленные Microsoft, а не независимое подтверждение, что каждая функция уже работает в любом tenant и на любом маршруте агента.
 
 Для разработчика, запускающего Claude Code или Codex на своём компьютере, полезна сама структура. Инструмент может быть обнаружен, одобрен, доступен на хосте, реально вызван и успешно завершён в разные моменты. Один зелёный значок для всех этих состояний делает governance ненадёжным. GrantTap имеет гораздо более узкий персональный и локальный охват, чем Agent 365. Он координирует поддерживаемые coding tools через Project Mesh и показывает coverage, сообщаемое компьютером. Мы не называем его инвентарём tenant Microsoft, управлением Entra identities или механизмом Azure API Management. Новость помогает точнее задать вопросы о собственном маршруте.

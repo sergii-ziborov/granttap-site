@@ -1,0 +1,196 @@
+[
+  {
+    "key": "evaluation",
+    "date": "2026-10-25",
+    "slug": "granttap-evaluate-coding-agent-own-task",
+    "images": [
+      "cover",
+      "scenario",
+      "evidence"
+    ],
+    "en": [
+      "Evaluate a coding agent on work you can actually verify",
+      "A practical evaluation method for your own repository: comparable starting conditions, meaningful acceptance, human intervention, observable evidence and a specific routing decision.",
+      "Keep the task bounded, preserve its conditions, and choose the next route from observed results."
+    ],
+    "ru": [
+      "Как оценить coding-агента на собственной задаче",
+      "Практическая оценка в своём репозитории: одинаковые условия, содержательная приёмка, помощь человека, наблюдаемые свидетельства и конкретный выбор следующего маршрута.",
+      "Ограничьте задачу, сохраните условия и выбирайте следующий маршрут по наблюдаемому результату."
+    ],
+    "sources": [
+      [
+        "GrantTap: sources of activity",
+        "/guide/transcript-sources"
+      ],
+      [
+        "GrantTap: Task and Execution",
+        "/guide/task-execution"
+      ],
+      [
+        "GrantTap: provider readiness",
+        "/guide/providers"
+      ],
+      [
+        "Anthropic: Building effective agents (2024)",
+        "https://www.anthropic.com/research/building-effective-agents"
+      ]
+    ]
+  },
+  {
+    "key": "injection",
+    "date": "2026-10-26",
+    "slug": "granttap-untrusted-content-agent-tool-boundaries",
+    "images": [
+      "cover",
+      "boundary",
+      "response"
+    ],
+    "screenshot": "approval-details",
+    "en": [
+      "When a document tries to instruct your coding agent",
+      "Separate authorized instructions from retrieved material. Inspect tool inputs, preserve provenance, limit credentials and verify the execution boundary without claiming a universal prompt-injection shield.",
+      "Keep instructions tied to their authority and actions tied to a supported execution boundary."
+    ],
+    "ru": [
+      "Когда документ пытается командовать coding-агентом",
+      "Разделяйте указания владельца и извлечённые данные. Проверяйте вызов инструмента, происхождение текста, доступ к секретам и реальную границу исполнения.",
+      "Связывайте инструкцию с полномочиями, а действие — с поддержанной границей исполнения."
+    ],
+    "sources": [
+      [
+        "GrantTap: Governance",
+        "/guide/governance"
+      ],
+      [
+        "GrantTap: evidence and audit",
+        "/guide/audit-evidence"
+      ],
+      [
+        "MCP specification 2025-06-18: tools",
+        "https://modelcontextprotocol.io/specification/2025-06-18/server/tools"
+      ],
+      [
+        "MCP security best practices",
+        "https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices"
+      ]
+    ]
+  },
+  {
+    "key": "review",
+    "date": "2026-10-27",
+    "slug": "granttap-review-agent-diffs-from-phone",
+    "images": [
+      "cover",
+      "scope",
+      "acceptance"
+    ],
+    "screenshot": "modified-files",
+    "en": [
+      "Review an agent patch from your phone without losing the evidence",
+      "A focused mobile review: identify the Task and Execution, choose the right request, read Modified and All files, inspect tests and distinguish accepted code from a published release.",
+      "Connect the request, the exact change, the meaningful check and the outcome you accept."
+    ],
+    "ru": [
+      "Ревью правок агента с телефона: от Files до приёмки",
+      "Пошаговое мобильное ревью: Task и Execution, область запроса, Modified и All files, тесты, дочерние разговоры и отличие принятой правки от опубликованного релиза.",
+      "Свяжите запрос, конкретную правку, содержательную проверку и принимаемый результат."
+    ],
+    "sources": [
+      [
+        "GrantTap: Files and activity",
+        "/guide/transcript-sources"
+      ],
+      [
+        "GrantTap: task identity",
+        "/guide/task-execution"
+      ],
+      [
+        "GrantTap: audit evidence",
+        "/guide/audit-evidence"
+      ],
+      [
+        "Git: diff documentation",
+        "https://git-scm.com/docs/git-diff"
+      ]
+    ]
+  },
+  {
+    "key": "resources",
+    "date": "2026-10-28",
+    "slug": "granttap-agent-processes-cpu-memory-disk",
+    "images": [
+      "cover",
+      "ownership",
+      "recovery"
+    ],
+    "screenshot": "computer-controls",
+    "en": [
+      "Why is the agent computer busy? Read processes, CPU, memory and disk",
+      "Investigate local load by ownership, interval and useful work. Understand process groups, measured versus attributed use, safe cache cleanup, runtime versions and targeted restarts.",
+      "Keep projects intact, stop only understood work and verify that the intended agent route still responds."
+    ],
+    "ru": [
+      "Почему компьютер агента загружен: процессы, CPU, память и диск",
+      "Исследуйте нагрузку по владельцу и времени. Разберите группы процессов, прямые замеры и attributed, очистку кэша, версии runtime и перезапуск в правильной области.",
+      "Сохраняйте проекты, останавливайте понятную работу и проверяйте ответ нужного маршрута агента."
+    ],
+    "sources": [
+      [
+        "GrantTap: device management",
+        "/guide/device-management"
+      ],
+      [
+        "GrantTap: cache and storage",
+        "/guide/cache-storage"
+      ],
+      [
+        "GrantTap: resource attribution",
+        "/guide/transcript-sources#resources"
+      ],
+      [
+        "Apple: CPU activity in Activity Monitor",
+        "https://support.apple.com/guide/activity-monitor/view-cpu-activity-actmntr43452/mac"
+      ]
+    ]
+  },
+  {
+    "key": "team",
+    "date": "2026-10-29",
+    "slug": "granttap-share-agent-project-colleague-access",
+    "images": [
+      "cover",
+      "scope",
+      "offboarding"
+    ],
+    "screenshot": "mesh",
+    "en": [
+      "Bring a colleague into an agent project with clear access",
+      "A collaboration lifecycle across person, device, project and computer: scoped roles, repository grants, useful context, secrets, verified handoff and honest offboarding.",
+      "Make the allowed work understandable, preserve its evidence and remove future access at the right boundary."
+    ],
+    "ru": [
+      "Как подключить коллегу к AI-проекту и сохранить границы доступа",
+      "Жизненный цикл сотрудничества: человек, устройство, проект, компьютер, роли, grants репозиториев, контекст, секреты, проверяемый handoff и точечный отзыв.",
+      "Сделайте разрешённую работу понятной, сохраните свидетельства и снимайте будущий доступ в правильной области."
+    ],
+    "sources": [
+      [
+        "GrantTap: members and roles",
+        "/guide/members"
+      ],
+      [
+        "GrantTap: project configuration",
+        "/guide/project-configuration"
+      ],
+      [
+        "GrantTap: handoff",
+        "/guide/handoff"
+      ],
+      [
+        "GrantTap: account recovery",
+        "/guide/account-recovery"
+      ]
+    ]
+  }
+]

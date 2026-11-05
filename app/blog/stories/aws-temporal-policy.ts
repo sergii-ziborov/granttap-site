@@ -10,6 +10,7 @@ const sources = [
 export const awsTemporalPolicy = composeStory({
   slug: "aws-agentcore-temporal-policy-agent-security-2026",
   date: "2026-10-05",
+  reviewedOn: "2026-11-05",
   cover: "/blog/aws-agentcore-temporal-policy-agent-security-2026-cover.webp",
   inlineIllustration: "/blog/aws-agentcore-temporal-policy-agent-security-2026-a.webp",
   additionalIllustration: "/blog/aws-agentcore-temporal-policy-agent-security-2026-b.webp",
@@ -23,6 +24,7 @@ export const awsTemporalPolicy = composeStory({
     additionalIllustrationCaption: "Original generated concept of past actions informing a gate; it does not show GrantTap trajectory-aware enforcement.",
     closing: "For any agent, ask which exact actions pass through the enforcing boundary and which previous events that boundary can actually remember.",
     sources,
+    editorialNote: "Checked November 5, 2026 against the AWS article dated August 6. The AWS mechanism and the narrower GrantTap comparison remain separate; this does not assert that GrantTap implements AgentCore temporal policies.",
     body: `An agent may make a series of individually reasonable tool calls whose combined effect is unsafe. A read from an untrusted source can be followed by an unexpected network transfer. Several small operations can exceed a budget that no single operation breaches. On August 6, 2026, AWS published a detailed explanation of temporal policies for Amazon Bedrock AgentCore. The important change is that a request routed through AgentCore Gateway can be judged against earlier events in the same trajectory rather than against its arguments alone.
 
 This is news about an AWS gateway, not a new feature announcement for GrantTap. GrantTap's current Project Governance applies allow, ask, and deny rules for supported local coding-agent capabilities, with coverage reported by each computer. It does not advertise AWS-style trajectory state, cumulative trading limits, or a universal gateway for every provider-native action. The AWS design still provides a sharp question for any local controller: does the decision point know enough history to justify this exact action, and can the agent bypass that point? The answer depends on the route, not on the word “policy” in a menu.
@@ -72,6 +74,7 @@ Readers can compare the local side in [Project Mesh](/project-mesh), the [Projec
     additionalIllustrationCaption: "Оригинальная сгенерированная сцена учёта предыдущих действий; она не изображает trajectory-aware enforcement в GrantTap.",
     closing: "Для любого агента спрашивайте, какие конкретные действия проходят через контрольную точку и какие предыдущие события эта точка действительно помнит.",
     sources,
+    editorialNote: "Проверено 5 ноября 2026 по статье AWS от 6 августа. Механизм AWS и более узкий пример GrantTap разделены; GrantTap не объявляется реализацией temporal policies AgentCore.",
     body: `Агент может выполнить несколько по отдельности разумных вызовов инструментов, которые вместе создают опасный результат. За чтением недоверенного источника может последовать неожиданная передача данных в сеть. Несколько небольших операций способны превысить общий лимит, хотя ни одна отдельно его не нарушает. 6 августа 2026 года AWS опубликовала подробный разбор temporal policies для Amazon Bedrock AgentCore. Изменение состоит в том, что запрос через AgentCore Gateway можно оценить в контексте прежних событий той же trajectory, а не только по текущим аргументам.
 
 Это новость об AWS gateway, а не объявление новой функции GrantTap. Нынешний Project Governance GrantTap применяет allow, ask и deny к поддерживаемым возможностям локальных coding-агентов, а каждый компьютер сообщает покрытие. Мы не заявляем AWS-подобное состояние trajectory, суммарные лимиты сделок или универсальный gateway для всех native действий провайдера. Но схема AWS даёт сильный вопрос и для локального контроллера: знает ли место принятия решения достаточно истории для этого действия и может ли агент обойти его? Ответ зависит от маршрута, а не от слова «policy» в меню.

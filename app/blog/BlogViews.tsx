@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ReadingGrid } from "../components/ReadingGrid";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
 import type { BlogArticle, BlogLocale } from "./articleTypes";
@@ -65,7 +66,15 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         <p>{locale === "ru" ? "В статье" : "In this story"}</p>
         <nav>{t.sections.map((section, index) => <a href={`#article-section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span>{section.heading}</a>)}</nav>
         <small>{article.minutes} {locale === "ru" ? "мин чтения" : "min read"} · {article.date}</small>
+
       </>}><div className="blog-prose">
+        <aside className="blog-current-guide">
+          <strong>{article.reviewedOn ? (locale === "ru" ? `Проверено ${article.reviewedOn}` : `Reviewed ${article.reviewedOn}`) : (locale === "ru" ? "Актуальные инструкции" : "Current instructions")}</strong>
+          <p>{t.editorialNote || (locale === "ru"
+            ? "Дата материала сохранена. Порядок работы с текущими интеграциями, Devices, входом, обновлениями и кэшем сверяйте с полным руководством. Исторические скриншоты сохраняют свои реальные версии."
+            : "The article retains its editorial date. Consult the complete guide for current integrations, Devices, sign-in, updates and cache controls. Historical screenshots retain their actual versions.")}</p>
+          <Link href="/guide">{locale === "ru" ? "Полное руководство GrantTap ↗" : "Complete GrantTap guide (Russian) ↗"}</Link>
+        </aside>
         {t.intro.map(paragraph => <p className="blog-intro" key={paragraph}>{inlineStoryLinks(paragraph, locale)}</p>)}
         {t.graphic && <figure className="blog-graphic">
           <figcaption><strong>{t.graphic.title}</strong><span>{t.graphic.caption}</span></figcaption>

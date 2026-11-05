@@ -1,0 +1,208 @@
+{
+  "base": "http://127.0.0.1:3216",
+  "checkedOn": "2026-11-05",
+  "articles": [
+    {
+      "route": "/blog/granttap-evaluate-coding-agent-own-task",
+      "date": "2026-10-25",
+      "locale": "en",
+      "visibleBodyWords": 2569,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-evaluate-coding-agent-own-task?lang=ru",
+      "date": "2026-10-25",
+      "locale": "ru",
+      "visibleBodyWords": 2615,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-untrusted-content-agent-tool-boundaries",
+      "date": "2026-10-26",
+      "locale": "en",
+      "visibleBodyWords": 2572,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-untrusted-content-agent-tool-boundaries?lang=ru",
+      "date": "2026-10-26",
+      "locale": "ru",
+      "visibleBodyWords": 2557,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-review-agent-diffs-from-phone",
+      "date": "2026-10-27",
+      "locale": "en",
+      "visibleBodyWords": 2662,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-review-agent-diffs-from-phone?lang=ru",
+      "date": "2026-10-27",
+      "locale": "ru",
+      "visibleBodyWords": 2558,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-agent-processes-cpu-memory-disk",
+      "date": "2026-10-28",
+      "locale": "en",
+      "visibleBodyWords": 2677,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-agent-processes-cpu-memory-disk?lang=ru",
+      "date": "2026-10-28",
+      "locale": "ru",
+      "visibleBodyWords": 2524,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-share-agent-project-colleague-access",
+      "date": "2026-10-29",
+      "locale": "en",
+      "visibleBodyWords": 2635,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    },
+    {
+      "route": "/blog/granttap-share-agent-project-colleague-access?lang=ru",
+      "date": "2026-10-29",
+      "locale": "ru",
+      "visibleBodyWords": 2659,
+      "conceptualImages": 3,
+      "reviewNoteInMainText": true
+    }
+  ],
+  "images": [
+    {
+      "route": "/blog/october2026-backfill/evaluation-cover.webp",
+      "sha256": "21de43019b4d85eb9f9995c6773431d78b1826a18f68b597b71d8f0fd082530e"
+    },
+    {
+      "route": "/blog/october2026-backfill/evaluation-evidence.webp",
+      "sha256": "66e06bffa0856cb66ee26c2785db547a8ae57e0c21e5d2393933dba1bd1c7940"
+    },
+    {
+      "route": "/blog/october2026-backfill/evaluation-scenario.webp",
+      "sha256": "92ec2490138569d200b2d9e7a300f620e3bcc170a6eeaa89bf930cbc7d5cf067"
+    },
+    {
+      "route": "/blog/october2026-backfill/injection-boundary.webp",
+      "sha256": "abd6f271dea3c3a23e92eed4f2a6539e2fddfd59a76d30ce9ad1338eb297004f"
+    },
+    {
+      "route": "/blog/october2026-backfill/injection-cover.webp",
+      "sha256": "8aaa9a08009f0dd6c1a677332946317add688b1d8b2bb09f89a1ee868a658d4e"
+    },
+    {
+      "route": "/blog/october2026-backfill/injection-response.webp",
+      "sha256": "2d45a9b808a0d24ad46a096d90b92dbdf66888ecb5a92a9735324cf7d12379f6"
+    },
+    {
+      "route": "/blog/october2026-backfill/resources-cover.webp",
+      "sha256": "900e23a4e7b2022cbf9fa53c5d6563e914a9f2ef852e5ed8d136be99017eb4c2"
+    },
+    {
+      "route": "/blog/october2026-backfill/resources-ownership.webp",
+      "sha256": "63da86347c2c8bebb13f762b7ea47cf72e85984c82e0fcce5f2e9b15b7b3d970"
+    },
+    {
+      "route": "/blog/october2026-backfill/resources-recovery.webp",
+      "sha256": "2256873c0e4e41b3b25c1167e7c81328c213e04cfaebfcf88b2e2cdc6af942b5"
+    },
+    {
+      "route": "/blog/october2026-backfill/review-acceptance.webp",
+      "sha256": "44be67d2508ad67aedf2fe2961634bdd71d81faffcb71d4ff341e89e74692747"
+    },
+    {
+      "route": "/blog/october2026-backfill/review-cover.webp",
+      "sha256": "e0136fcce1196eb1476fb9f28aab93e85d7d82c02545a81d764840b329e22404"
+    },
+    {
+      "route": "/blog/october2026-backfill/review-scope.webp",
+      "sha256": "0aa29de6c65e5936a76224035cfa79f3f2da3812b102101410124f6f67bc5b87"
+    },
+    {
+      "route": "/blog/october2026-backfill/team-cover.webp",
+      "sha256": "25b6e139001bdd973560bc2b7d2e57d40970e83d5c396c3cd391c481d7932ede"
+    },
+    {
+      "route": "/blog/october2026-backfill/team-offboarding.webp",
+      "sha256": "01ac7b19580807fa55a913255babd94ccedb347f90685d101bcb6d75976898d9"
+    },
+    {
+      "route": "/blog/october2026-backfill/team-scope.webp",
+      "sha256": "038ad357eb66caff16bcc8019c63e6d2a9a9676009681578d3efb38093a61c16"
+    }
+  ],
+  "pages": [
+    {
+      "route": "/support",
+      "status": 200
+    },
+    {
+      "route": "/support?lang=ru",
+      "status": 200
+    },
+    {
+      "route": "/guide",
+      "status": 200
+    },
+    {
+      "route": "/guide/providers",
+      "status": 200
+    },
+    {
+      "route": "/guide/device-management",
+      "status": 200
+    },
+    {
+      "route": "/agents/claude-code",
+      "status": 200
+    },
+    {
+      "route": "/agents/codex",
+      "status": 200
+    },
+    {
+      "route": "/agents/cursor",
+      "status": 200
+    },
+    {
+      "route": "/agents/grok-build",
+      "status": 200
+    },
+    {
+      "route": "/pricing",
+      "status": 200
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/terms",
+      "status": 200
+    },
+    {
+      "route": "/mac",
+      "status": 200
+    },
+    {
+      "route": "/project-mesh",
+      "status": 200
+    }
+  ],
+  "publishedArticleCount": 37,
+  "futureGatesPreserved": true
+}

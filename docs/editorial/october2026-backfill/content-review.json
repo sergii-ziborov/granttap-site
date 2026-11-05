@@ -1,0 +1,28 @@
+{
+  "checkedOn": "2026-11-05",
+  "scope": "Public website copy, help, guide, provider pages and journal references; no new native binary or provider runtime release.",
+  "sources": {
+    "nativeMain": "9d947d62154642705c44294e27c5996e4ed4244d",
+    "nativeBuild": "250",
+    "verifiedInternalTestFlight": "2026-11-03T19:07:57.613Z",
+    "nativeDistribution": "VALID / IN_BETA_TESTING / verified internal group; external READY_FOR_BETA_SUBMISSION does not establish external beta approval",
+    "mcpMain": "54ddf6f43984a9e20167bd4fe1edc1d732e4c734",
+    "publicNpmVersion": "0.8.143",
+    "registryCheckedOn": "2026-11-05"
+  },
+  "updated": [
+    "Bilingual support: Devices, provider login/update/restart, separate caches, Files/Agents/Automations, searchable workspaces, original-operation recovery",
+    "Version history: verified internal build 250 and published MCP 0.8.143; explicit selective chronology",
+    "Guide: 48 chapters reviewed against the same current source basis; individual screenshot provenance preserved",
+    "Four provider landing pages: current workflow links; Claude history/cache and prompt-time journal behavior clarified",
+    "All journal pages: current guide reference; prepared/reviewed dates and archival dates separated",
+    "Three dated news articles: release statuses kept in original context; Anthropic October 23 follow-up added",
+    "Sitemap and article dateModified metadata follow actual reviewed content",
+    "Russian inline source links preserve fragments and query parameters"
+  ],
+  "retained": [
+    "Legal effective dates and planned-price labels: no new commercial launch or policy is invented",
+    "Original news dates and original screenshot build/date captions",
+    "Existing future-story publication gates for November 6–8"
+  ]
+}

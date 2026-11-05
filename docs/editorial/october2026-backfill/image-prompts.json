@@ -1,0 +1,156 @@
+{
+  "mode": "built-in image_gen",
+  "preparedOn": "2026-11-05",
+  "images": [
+    {
+      "key": "evaluation-cover",
+      "destination": "public/blog/october2026-backfill/evaluation-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original wide 16:9 editorial cover for GrantTap Journal, article about evaluating a coding agent on a real bounded task. Scene: an elegant tactile laboratory workbench in warm ivory and graphite, three identical small architectural code modules each on its own test tray, one orange measurement caliper and a small neutral notebook with blank pages. Visual idea: compare consistent conditions and observable outcomes, without showing a winner or numerical benchmark. Premium editorial still-life, restrained orange accent matching GrantTap, soft directional shadows, generous composition. No words, letters, numbers, logos, UI mockups, QR, watermark or people. Conceptual illustration, not a screenshot or actual measured result.",
+      "sourceAssetId": "exec-41606b82-1b11-4988-b96b-d05c3a10c23f.png",
+      "originalSha256": "f2c2e7eef1c92bfdf9b0ebdd32d81e2110b5cced563d74a55a811dcacede0a36",
+      "webpSha256": "21de43019b4d85eb9f9995c6773431d78b1826a18f68b597b71d8f0fd082530e",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "evaluation-evidence",
+      "destination": "public/blog/october2026-backfill/evaluation-evidence.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: a glass magnifying lens over three tangible evidence objects: a small revised code tile, an unmarked test receipt and a neatly bound blank change notebook; careful inspection, no score. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-6de608ae-fb66-44d9-bcba-73f6d5ca8cb0.png",
+      "originalSha256": "fc489f6e33ef18d17333d2c911889c1b00fc0a3791f3d0940b1aefa6f7313303",
+      "webpSha256": "66e06bffa0856cb66ee26c2785db547a8ae57e0c21e5d2393933dba1bd1c7940",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "evaluation-scenario",
+      "destination": "public/blog/october2026-backfill/evaluation-scenario.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: two identical small code-workshop trays with matching blank starting cards and a single orange starting lever between them; identical conditions before an experiment, no winner. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-9dfaf841-8554-4bf9-b086-210a3d250de1.png",
+      "originalSha256": "af8a80b6519af73c9375b45bb5b563a79b97a68647bebee44168e09f9936c377",
+      "webpSha256": "92ec2490138569d200b2d9e7a300f620e3bcc170a6eeaa89bf930cbc7d5cf067",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "injection-boundary",
+      "destination": "public/blog/october2026-backfill/injection-boundary.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: an open blank document containing a folded orange paper arrow that points toward a closed credential drawer, with a transparent guard wall interrupting that arrow; illustrate suspicious embedded directions being treated as data. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-a9996cdb-4cd4-4b4c-b6f8-93564c2dc364.png",
+      "originalSha256": "36f789f381951fc02c216bbea4fc4aab68f8fec0b1e3cb212cb531244ba7f758",
+      "webpSha256": "abd6f271dea3c3a23e92eed4f2a6539e2fddfd59a76d30ce9ad1338eb297004f",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "injection-cover",
+      "destination": "public/blog/october2026-backfill/injection-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: a trusted orange instruction ribbon approaching a graphite code workshop while unrelated paper scraps remain behind a translucent partition; a visible boundary between instructions and retrieved material. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-914f6b43-5e0a-449d-930e-3e8cea4fb979.png",
+      "originalSha256": "16cf14bb3c9224bfaaac99018bb361391838944b3804cf0688085049eef90529",
+      "webpSha256": "8aaa9a08009f0dd6c1a677332946317add688b1d8b2bb09f89a1ee868a658d4e",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "injection-response",
+      "destination": "public/blog/october2026-backfill/injection-response.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: a sealed unmarked envelope with an unknown paper fragment, a magnifier and a closed tool latch on a tidy desk; preserve evidence and inspect before enabling a tool. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-bebd2df7-51bb-489e-b8e6-a4f6b7c5a9f0.png",
+      "originalSha256": "84a5eb8d0f09c588fa8ee8abaf0f545b210afe3aada24d325c4e03dafcda979a",
+      "webpSha256": "2d45a9b808a0d24ad46a096d90b92dbdf66888ecb5a92a9735324cf7d12379f6",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "resources-cover",
+      "destination": "public/blog/october2026-backfill/resources-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: a quiet graphite coding workstation beside a restrained fan rotor and an orange process-tree sculpture; tactile architectural scene about finding what makes an AI workstation busy, no readings or numeric gauges. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-5ea8a97f-025f-4cae-aa26-b0eefa0e7249.png",
+      "originalSha256": "b4109d75f021e2df70f0639599f032805c129ca82bb7d4ba32b06956f80cc848",
+      "webpSha256": "900e23a4e7b2022cbf9fa53c5d6563e914a9f2ef852e5ed8d136be99017eb4c2",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "resources-ownership",
+      "destination": "public/blog/october2026-backfill/resources-ownership.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: one orange parent node branching into several matte graphite child blocks on a workbench, with a subtle frame around the whole tree; one measured process group and its descendants, not duplicated totals. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-3fc30aa0-aac6-40ee-9eac-712a745cdbfa.png",
+      "originalSha256": "c013a67c803edbcc209dc0f764a2b1d2dba5aabf541d2e0cc636d1872fc97b18",
+      "webpSha256": "63da86347c2c8bebb13f762b7ea47cf72e85984c82e0fcce5f2e9b15b7b3d970",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "resources-recovery",
+      "destination": "public/blog/october2026-backfill/resources-recovery.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: three separate storage trays: rebuildable pale index tiles, an intact orange project folder and a closed credential box; a small cleaning brush touches only the pale tiles. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-70494c94-5c40-4ebe-8ae9-77f5d012a809.png",
+      "originalSha256": "5e34489cbc1f79553a5a22860ee3a490168664fab1d3a1b3a7f73220cd9841c7",
+      "webpSha256": "2256873c0e4e41b3b25c1167e7c81328c213e04cfaebfcf88b2e2cdc6af942b5",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "review-acceptance",
+      "destination": "public/blog/october2026-backfill/review-acceptance.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: a small patch tile held next to a test fixture and a separate sealed release box, arranged as distinct evidence stages; reviewed source, verification and release are different objects. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-218756af-9769-4569-ba87-efa9ea83ede2.png",
+      "originalSha256": "2311876e8e214beb60abd66af4431371a8887761585c24b64e063b066304e91d",
+      "webpSha256": "44be67d2508ad67aedf2fe2961634bdd71d81faffcb71d4ff341e89e74692747",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "review-cover",
+      "destination": "public/blog/october2026-backfill/review-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: a neutral handheld phone in landscape orientation beside a physical before-and-after pair of code tiles with orange additions and graphite removed strips; abstract surface with no readable screen text. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-77bdb761-e90d-4a5a-b72f-d90f36702262.png",
+      "originalSha256": "d33ccd69603aa4248ad0ce1c3e55e41385a473669a338caa9abff9313a43f2ed",
+      "webpSha256": "e0136fcce1196eb1476fb9f28aab93e85d7d82c02545a81d764840b329e22404",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "review-scope",
+      "destination": "public/blog/october2026-backfill/review-scope.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: one selected orange request card connected to exactly three changed file folders, with older graphite folders physically set apart on a lower shelf; the scope of the selected request is unambiguous. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-6b812bf1-563c-42a8-a253-361e1fb5316f.png",
+      "originalSha256": "aa935a03d5c057a05a87b747e7fa252436b49f79cd5ba57feff586d630d5a758",
+      "webpSha256": "0aa29de6c65e5936a76224035cfa79f3f2da3812b102101410124f6f67bc5b87",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "team-cover",
+      "destination": "public/blog/october2026-backfill/team-cover.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: two distinct graphite workstations connected through one small shared project model, with separate orange fitted access keys resting beside each computer; collaboration with individual identities. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-5cc66446-bea0-45e4-8d81-77c9cddf05ec.png",
+      "originalSha256": "43e954c675565daad648c1b97c6fa9c05ff1bf5f7d93c0ff1919166be0e7170e",
+      "webpSha256": "25b6e139001bdd973560bc2b7d2e57d40970e83d5c396c3cd391c481d7932ede",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "team-offboarding",
+      "destination": "public/blog/october2026-backfill/team-offboarding.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: an orange key withdrawn from a shared project gate while two intact independent work folders stay on their own desks; revoke access without pretending to erase already copied knowledge. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-e5a9be69-cc33-4ac8-878c-827a29719167.png",
+      "originalSha256": "5fe7c48f0bd0b4ad658f5303753b6847cfdb38c53bca63dbc598cb5a1a34185b",
+      "webpSha256": "01ac7b19580807fa55a913255babd94ccedb347f90685d101bcb6d75976898d9",
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "key": "team-scope",
+      "destination": "public/blog/october2026-backfill/team-scope.webp",
+      "prompt": "Use case: stylized-concept. Asset type: original editorial illustration for GrantTap Journal. Wide 16:9 landscape, premium tactile matte paper and architectural 3D still life, warm ivory background, graphite and restrained orange accents, soft editorial studio light, precise shadows, calm magazine composition. Primary scene: three nested but visibly distinct architectural boundaries around a shared code model: person access, device access and project access, illustrated with separate unmarked fitted keys. Constraints: one cohesive image; conceptual illustration only, no measured result, no product screenshot, no logos, no words, no letters, no numbers, no watermark, no QR, no people.",
+      "sourceAssetId": "exec-02122f6e-3bdc-4e25-93ae-5cee9af7cd10.png",
+      "originalSha256": "b00750b79752e49aa3337492dd5f882a6d976b10bbce600b5438d8a0716fb4d9",
+      "webpSha256": "038ad357eb66caff16bcc8019c63e6d2a9a9676009681578d3efb38093a61c16",
+      "width": 1672,
+      "height": 941
+    }
+  ]
+}

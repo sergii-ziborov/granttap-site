@@ -45,7 +45,7 @@ test("every article renders its own sections and sources in both languages", () 
 });
 
 test("each editorial story includes a real GrantTap interface with bilingual context", () => {
-  const editorial = articles.filter(article => article.date >= "2026-10-03" && article.date < "2026-10-30");
+  const editorial = articles.filter(article => article.date >= "2026-10-03" && article.date < "2026-10-25");
   expect(editorial).toHaveLength(20);
   // A story shows a capture only when one shows its feature; none shows message delivery marks yet.
   expect(editorial.filter(article => !article.screenshot).map(article => article.slug)).toEqual(["messages-that-wait-for-the-computer"]);

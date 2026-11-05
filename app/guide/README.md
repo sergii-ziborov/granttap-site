@@ -1,6 +1,6 @@
 # GrantTap user guide
 
-Public entry: https://granttap.com/guide (Russian). Updated 4 November 2026.
+Public entry: https://granttap.com/guide (Russian). Updated 4 November 2026; content rechecked 5 November 2026.
 
 48 chapters cover setup, Tasks/Executions, delivery and recovery, native questions,
 Files/Agents, existing Codex automations, searchable workspaces and handoff,

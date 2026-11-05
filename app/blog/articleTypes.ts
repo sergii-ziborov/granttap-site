@@ -10,6 +10,7 @@ export type ArticleText = {
   illustrationCaption?: string;
   additionalIllustrationCaption?: string;
   closing: string;
+  editorialNote?: string;
   sources?: { label: string; url: string }[];
   graphic?: {
     title: string;
@@ -21,6 +22,7 @@ export type ArticleText = {
 export type BlogArticle = {
   slug: string;
   date: string;
+  reviewedOn?: string;
   minutes: number;
   cover: string;
   generatedCover?: boolean;

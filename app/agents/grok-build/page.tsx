@@ -27,6 +27,6 @@ export default function GrokBuildPage() {
       "Grok authentication, model availability, usage limits, and model charges belong to your Grok account. A GrantTap subscription does not include Grok model access.",
       "Only activity actually exposed by the installed integration is shown. A missing usage measurement is unknown, not proof that a tool was unused.",
     ]}
-    related={[{ href: "/connect", label: "Connect a computer" }, { href: "/grok-bot", label: "Grok Bot" }, { href: "/project-mesh", label: "Mesh" }, { href: "/agents/cursor", label: "Cursor" }]}
+    related={[{ href: "/guide/providers", label: "Current provider behavior guide (RU)" }, { href: "/guide/device-management", label: "Devices, updates and sign-in (RU)" }, { href: "/connect", label: "Connect a computer" }, { href: "/grok-bot", label: "Grok Bot" }, { href: "/project-mesh", label: "Mesh" }, { href: "/agents/cursor", label: "Cursor" }]}
   />;
 }

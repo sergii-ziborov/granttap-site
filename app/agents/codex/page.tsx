@@ -25,6 +25,6 @@ export default function CodexPage() {
       "GrantTap does not broaden Codex approval policy or silently push and fetch Git state.",
       "A handoff is commit-based: from runtime 0.8.70, uncommitted work stays on the source computer with a warning unless it is checkpointed to a local branch.",
     ]}
-    related={[{ href: "/project-mesh", label: "Mesh" }, { href: "/apple-watch-coding-agents", label: "Apple Watch" }, { href: "/agents/claude-code", label: "Claude Code" }]}
+    related={[{ href: "/guide/providers", label: "Current provider behavior guide (RU)" }, { href: "/guide/device-management", label: "Devices, updates and sign-in (RU)" }, { href: "/project-mesh", label: "Mesh" }, { href: "/apple-watch-coding-agents", label: "Apple Watch" }, { href: "/agents/claude-code", label: "Claude Code" }]}
   />;
 }

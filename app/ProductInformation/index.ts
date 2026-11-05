@@ -33,7 +33,7 @@ export function customerDocument(name: ProductDocumentName, locale: OfferLocale)
   const document = JSON.parse(JSON.stringify(source), (_key, value) => typeof value === "string"
     ? value.replace(/\{\{[A-Z_]+\}\}/g, token => substitutions[token] ?? token) : value) as ProductDocument;
   if (name === "support") {
-    document.updated = launchOffer.updatedOn;
+    document.updated = [source.updated, launchOffer.updatedOn].sort().at(-1)!;
     const contact = document.sections.pop()!;
     const cancellation = cancellationSupport(locale);
     document.sections.push(versionHistory(locale), ...pricingCopy[locale].faq.map(([heading, answer]) =>

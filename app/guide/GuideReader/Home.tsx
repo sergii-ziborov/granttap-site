@@ -14,7 +14,7 @@ const paths = [
 export function GuideHome() {
   return <div className="guide-home">
     <section className="guide-home-hero">
-      <div className="guide-hero-copy"><span className="guide-eyebrow">Руководство GrantTap · 4 ноября 2026</span>
+      <div className="guide-hero-copy"><span className="guide-eyebrow">Руководство GrantTap · 5 ноября 2026</span>
         <h1>Ваши агенты.<br />Ваша работа.<br /><em>Шаг за шагом.</em></h1>
         <p>Подключите компьютер, продолжите задачу с телефона и проверьте результат. С настоящими экранами, подробными инструкциями и объяснением каждого статуса.</p>
         <div className="guide-hero-actions"><Link className="guide-primary" href="/guide/quick-start">Начать с первого подключения <span>↗</span></Link>

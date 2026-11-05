@@ -1,7 +1,7 @@
 import type { ArticleText, BlogArticle } from "../articleTypes";
 import { articleBodyWordCount } from "../longform/wordCount";
 
-type StoryLocale = Pick<ArticleText, "title" | "summary" | "category" | "closing" | "sources" | "graphic"> & {
+type StoryLocale = Pick<ArticleText, "title" | "summary" | "category" | "closing" | "sources" | "graphic" | "editorialNote"> & {
   body: string;
   /** Present exactly when the story has a product screenshot. */
   screenshotCaption?: string;
@@ -9,7 +9,7 @@ type StoryLocale = Pick<ArticleText, "title" | "summary" | "category" | "closing
   additionalIllustrationCaption: string;
 };
 
-type StoryDraft = Pick<BlogArticle, "slug" | "date" | "cover" | "screenshot" | "inlineIllustration" | "additionalIllustration"> & {
+type StoryDraft = Pick<BlogArticle, "slug" | "date" | "reviewedOn" | "cover" | "screenshot" | "inlineIllustration" | "additionalIllustration"> & {
   en: StoryLocale;
   ru: StoryLocale;
 };
@@ -37,6 +37,7 @@ export function composeStory(draft: StoryDraft): BlogArticle {
   return {
     slug: draft.slug,
     date: draft.date,
+    reviewedOn: draft.reviewedOn,
     minutes: Math.ceil(Math.max(articleBodyWordCount(en), articleBodyWordCount(ru)) / 180),
     cover: draft.cover,
     generatedCover: true,

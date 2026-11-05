@@ -132,3 +132,8 @@
   .blog-graphic-row { grid-template-columns: 30px 1fr; gap: 7px; }
   .blog-graphic-row>span:nth-child(3), .blog-graphic-track { grid-column: 2; }
 }
+
+.blog-current-guide { padding:20px 22px;margin:24px 0 32px;border:1px solid var(--line);border-left:2px solid var(--orange);border-radius:8px;background:var(--panel);font-size:13px;line-height:1.7; }
+.blog-current-guide strong { display:block;color:var(--ink);font-size:12px; }
+.blog-current-guide p { margin:8px 0;color:var(--muted);font-size:13px; }
+.blog-current-guide a { color:var(--orange);font-size:12px; }
