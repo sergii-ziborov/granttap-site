@@ -10,6 +10,7 @@ import { routeManagedSubscriptions, type ManagedBilling } from "./subscriptions/
 import { routeControlAccess } from "./control-access";
 import { routePasswordAccess } from "./password-access";
 import { routeLoginTokens } from "./login-tokens";
+import { routeBrowserTokenAccess } from "./browser-token-access";
 
 export async function routeAccountApi(request: Request, auth: AccountAuth,
                                       machines?: AccountMachines,
@@ -87,6 +88,7 @@ export async function handleAccountApi(request: Request, db: D1Database,
   const auth = new AccountAuth(new D1AccountStore(db));
   const machines = new AccountMachines(db);
   return await routePasswordAccess(request, db, auth)
+    ?? await routeBrowserTokenAccess(request, db, auth)
     ?? await routeLoginTokens(request, db, auth)
     ?? await routeControlAccess(request, { db, auth, billing })
     ?? await routeManagedSubscriptions(request, { db, auth, machines, billing })

@@ -25,7 +25,7 @@ function AccessGate({ status, error, retry }: { status: string; error: string; r
     <p className="gt-eyebrow">GrantTap Web</p><h1>Your agents. Wherever you are.</h1>
     <p>Continue Tasks, answer questions and keep work moving across your computers.</p>
     {status === "loading" ? <p role="status">Verifying your account…</p> : status === "signin"
-      ? <><a className="gt-primary" href="/account?returnTo=control">Sign in with a passkey →</a>
+      ? <><a className="gt-primary" href="/account?returnTo=control">Sign in or create an account →</a>
         <p className="gt-muted">Use the same account as your GrantTap computers.</p></>
       : status === "subscription" ? <><h2>GrantTap access is required</h2>
         <p>An active subscription, eligible subscription trial or verified TestFlight access unlocks control.</p>

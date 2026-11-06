@@ -7,6 +7,8 @@ export function BrowserSafety({ compact = false }: { compact?: boolean }) {
   return <aside className="gt-browser-safety"><span aria-hidden="true">◈</span><div><h3>Browser storage is less secure than the native app.</h3>
     <p>This browser stores encryption keys and an encrypted history cache on this device. Website code and extensions with access to this site can use those keys.
       A compromised website or browser can expose your control session. Native apps add operating-system key storage and signed application code.</p>
+    <p>Messages are decrypted in this browser. Code served by granttap.com can access the messages you read and what you type.
+      GrantTap sends encrypted chat content to relay; browser control still requires trust in the website and your browser.</p>
     {!compact && <p>Use a trusted browser profile. Avoid shared computers. “Forget this browser” removes local keys and history. Relay stores encrypted messages;
       the website transport sees account and routing information, not your private encryption keys.</p>}
     <a href="/privacy#browser-control">Read about browser security ↗</a></div></aside>;

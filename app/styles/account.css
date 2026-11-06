@@ -62,3 +62,15 @@ html[data-theme="light"] .account-password-form .account-error { color: #a52c20;
 .account-card:has(.account-password-form) > .account-actions button { background: transparent; color: var(--ink); border-color: var(--line); min-height: 48px; }
 .account-card:has(.account-password-form) > .account-actions button + button { min-height: 36px; padding: 6px 12px; border-color: transparent; font-size: 13px; font-weight: 500; color: var(--muted); }
 .account-card:has(.account-password-form) .account-note { margin: 16px 0 0; font-size: 12px; text-align: center; }
+.account-token-access { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
+.account-token-access p { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.account-token-access summary { cursor: pointer; min-height: 44px; font-weight: 600; }
+.account-token-access :is(summary, input, button):focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.account-token-access fieldset { display: grid; gap: 16px; border: 0; margin: 0; padding: 0; }
+.account-token-access legend { font-size: 14px; margin-bottom: 16px; }
+.account-token-access label { display: grid; gap: 8px; font-size: 14px; line-height: 1.5; }
+.account-token-access input[type="password"] { width: 100%; min-height: 48px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: var(--paper); }
+.account-token-access .account-token-consent { display: flex; align-items: flex-start; gap: 10px; }
+.account-token-consent input { flex: 0 0 auto; width: 20px; height: 20px; accent-color: var(--orange); }
+.account-token-access button { min-height: 48px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: var(--panel-raised); cursor: pointer; }
+.account-token-access button:disabled { color: var(--muted); cursor: default; }

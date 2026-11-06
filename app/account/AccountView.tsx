@@ -1,5 +1,6 @@
 "use client";
 import { AccountPassword } from "./AccountPassword";
+import { AccountTokenAccess } from "./AccountTokenAccess";
 
 import { startAuthentication, startRegistration } from "@simplewebauthn/browser";
 import type { PublicKeyCredentialCreationOptionsJSON, PublicKeyCredentialRequestOptionsJSON } from "@simplewebauthn/browser";
@@ -22,6 +23,7 @@ const copy = {
     create: "Create an account with passkey",
     signIn: "Sign in with passkey",
     createNote: "Already have an account? Sign in first. Creating another account will not find your existing computers.",
+    qrNote: "Passkey on your phone? In the passkey prompt, choose another device when offered and scan its QR with your phone.",
     account: "Account ID",
     noComputer: "GrantTap Web stores its own keys in this browser. Browser extensions, injected scripts or a compromised browser profile can expose them; the native app offers stronger isolation. Pairing a native device by QR is a separate connection.",
     openControl: "Open GrantTap Web",
@@ -42,6 +44,7 @@ const copy = {
     create: "Создать аккаунт с passkey",
     signIn: "Войти по passkey",
     createNote: "Уже есть аккаунт? Сначала войдите. Новый аккаунт не найдёт ваши прежние компьютеры.",
+    qrNote: "Passkey на телефоне? В системном окне выберите другое устройство, если этот вариант доступен, и отсканируйте QR телефоном.",
     account: "ID аккаунта",
     noComputer: "GrantTap Web хранит собственные ключи в этом браузере. Расширения, внедрённый скрипт или взлом профиля браузера могут раскрыть их; нативное приложение лучше изолирует ключи. Подключение нативного устройства по QR выполняется отдельно.",
     openControl: "Открыть GrantTap Web",
@@ -202,6 +205,12 @@ export function AccountView() {
           <button type="button" disabled={busy} onClick={() => void enter("registration")}>{t.create}</button>
         </div>
         <p className="account-note">{t.createNote}</p>
+        <p className="account-note">{t.qrNote}</p>
+        <AccountTokenAccess locale={locale} disabled={busy} onBusyChange={setBusy} onSignedIn={id => {
+          setMachines(null); setError(null); setAccountId(id);
+          const destination = accountReturnPath(window.location.search);
+          if (destination) window.location.assign(destination);
+        }} />
       </>}
       {error && <p role="alert" className="account-error">{error}</p>}
     </section></main>

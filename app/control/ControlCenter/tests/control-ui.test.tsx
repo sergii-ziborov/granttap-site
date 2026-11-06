@@ -12,7 +12,7 @@ vi.mock("../../RelayConnection", async () => {
 afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 it("requires the account and entitlement before rendering control", async () => {
   await browserFixture("signin"); const first = render(<ControlCenter />);
-  expect(await screen.findByRole("link", { name: "Sign in with a passkey →" })).toBeTruthy(); first.unmount();
+  expect(await screen.findByRole("link", { name: "Sign in or create an account →" })).toBeTruthy(); first.unmount();
   await browserFixture("subscription"); render(<ControlCenter />);
   expect(await screen.findByText("GrantTap access is required")).toBeTruthy();
   expect(screen.queryByRole("navigation", { name: "GrantTap" })).toBeNull();
