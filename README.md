@@ -257,7 +257,8 @@ existing Apple entitlement; independent web checkout is not enabled.
 The static-site image pins Node.js 22.23.3 in both build and runtime stages.
 Rebuild and verify the candidate image when updating this version; changing an
 npm dependency cannot patch the Node binary or its built-in HTTP client.
-The deployed site bundles its server and does not include `node_modules`.
+The deployed site bundles its server and includes only the production
+dependencies traced into Vinext's standalone output, not development dependencies.
 Scan the exact deployed revision and retain prior release reports as history.
 
 ## Current documentation snapshot — 5 November 2026

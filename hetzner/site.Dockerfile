@@ -13,7 +13,8 @@ ENV PORT=3211
 ENV HOST=0.0.0.0
 ENV VINEXT_TRUST_PROXY=1
 ENV VINEXT_TRUSTED_HOSTS=granttap.com,www.granttap.com
-COPY --from=build /app/dist ./dist
+COPY --from=build /app/dist/standalone/dist ./dist
+COPY --from=build /app/dist/standalone/node_modules ./node_modules
 COPY --from=build /app/.runtime/site-start.mjs ./hetzner/site-start.mjs
 USER node
 EXPOSE 3211
