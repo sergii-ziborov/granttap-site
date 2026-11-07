@@ -15,7 +15,7 @@ ENV VINEXT_TRUST_PROXY=1
 ENV VINEXT_TRUSTED_HOSTS=granttap.com,www.granttap.com
 COPY --from=build /app/dist/standalone/dist ./dist
 COPY --from=build /app/dist/standalone/node_modules ./node_modules
-COPY --from=build /app/.runtime/site-start.mjs ./hetzner/site-start.mjs
+COPY --from=build /app/.runtime/site-start.mjs ./.runtime/site-start.mjs
 USER node
 EXPOSE 3211
-CMD ["node", "hetzner/site-start.mjs"]
+CMD ["node", "/app/.runtime/site-start.mjs"]

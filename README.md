@@ -298,7 +298,10 @@ skills and hooks; sleeping-computer delivery; macOS file access; workspace and
 artifact identity; and website appearance. Every workshop has at least 2500
 main-body words per language and three distinct editorial illustrations.
 
-Production runs the Node standalone build plus the bundled Hetzner entry point.
+Production runs the Node standalone build plus the bundled Hetzner entry point
+at `/app/.runtime/site-start.mjs`. The image command and the installed Hostwatch
+deployment profile use that same absolute path; verify the configured command
+with `/account` before replacing the serving container.
 `npm test` verifies an isolated package with only production dependencies,
 localized metadata in head, canonical/HTTPS redirects, security headers, real
 asset bytes, Brotli responses and guide links. `npm run test:coverage`,
