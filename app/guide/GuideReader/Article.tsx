@@ -12,7 +12,7 @@ export function GuideArticle({ page, content }: { page: GuideMeta; content: stri
       <nav className="guide-breadcrumb" aria-label="Путь"><Link href="/guide">Руководство</Link><span>/</span><span>{group?.title}</span></nav>
       <header className="guide-article-head"><span className="guide-eyebrow">{group?.title}</span>
         <h1>{page.title}</h1><p>{page.summary}</p>
-        <div className="guide-article-meta"><span>{minutes} мин чтения</span><span>Обновлено 05.11.2026</span><Link href="/guide/coverage">Версии и проверка</Link></div>
+        <div className="guide-article-meta"><span>{minutes} мин чтения</span><span>Обновлено 07.11.2026</span><Link href="/guide/coverage">Версии и проверка</Link></div>
       </header>
       <details className="guide-mobile-toc"><summary>В этой главе · {sections.length - 1} разделов</summary>
         <nav>{sections.filter(section => section.title).map(section => <a href={`#${section.id}`} key={section.id}>{section.title}</a>)}</nav>

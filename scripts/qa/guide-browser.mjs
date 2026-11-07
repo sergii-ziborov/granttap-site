@@ -49,7 +49,7 @@ try {
     await writeFile(path.join(output, name + '.png'), Buffer.from(data, 'base64'));
   }
   async function layout(name) {
-    const state = await evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth,h1:document.querySelector("h1").textContent,theme:document.querySelector(".guide-app").dataset.theme,heroImages:[...document.querySelectorAll(".guide-hero-screens img")].map(i=>({loaded:i.complete&&i.naturalWidth>0,src:i.getAttribute("src")}))})');
+    const state = await evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth,h1:document.querySelector("h1").textContent,theme:document.documentElement.dataset.theme,heroImages:[...document.querySelectorAll(".guide-hero-screens img")].map(i=>({loaded:i.complete&&i.naturalWidth>0,src:i.getAttribute("src")}))})');
     assert.ok(state.scroll <= state.width, `${name}: horizontal overflow ${state.scroll}/${state.width}`);
     assert.ok(state.heroImages.every(image => image.loaded), `${name}: missing hero image`);
     proof.checks.push({ name, ...state });
@@ -88,8 +88,8 @@ try {
   await evaluate('document.querySelector(".guide-capture").scrollIntoView()'); await sleep(400); await capture('mobile-inline-screen');
   await evaluate('document.querySelector(".capture-open").click()'); await sleep(150); await capture('mobile-screenshot');
   await evaluate('document.querySelector(".lightbox-toolbar button").click()');
-  await evaluate('document.querySelector(".guide-top-links button").click()');
-  assert.equal(await evaluate('document.querySelector(".guide-app").dataset.theme'), 'light'); await layout('mobile light theme'); await capture('mobile-light');
+  await evaluate('(() => { const select = document.querySelector(".site-theme-picker select"); select.value = "light"; select.dispatchEvent(new Event("change", { bubbles: true })); })()');
+  assert.equal(await evaluate('document.documentElement.dataset.theme'), 'light'); await layout('mobile light theme'); await capture('mobile-light');
   assert.deepEqual(proof.errors, [], 'no browser exceptions');
   await writeFile(path.join(output, 'proof.json'), JSON.stringify(proof, null, 2));
   console.log(JSON.stringify({ checks: proof.checks.map(x=>x.name), errors: proof.errors, output }));

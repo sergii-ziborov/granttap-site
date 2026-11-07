@@ -14,7 +14,7 @@ const paths = [
 export function GuideHome() {
   return <div className="guide-home">
     <section className="guide-home-hero">
-      <div className="guide-hero-copy"><span className="guide-eyebrow">Руководство GrantTap · 5 ноября 2026</span>
+      <div className="guide-hero-copy"><span className="guide-eyebrow">Руководство GrantTap · 7 ноября 2026</span>
         <h1>Ваши агенты.<br />Ваша работа.<br /><em>Шаг за шагом.</em></h1>
         <p>Подключите компьютер, продолжите задачу с телефона и проверьте результат. С настоящими экранами, подробными инструкциями и объяснением каждого статуса.</p>
         <div className="guide-hero-actions"><Link className="guide-primary" href="/guide/quick-start">Начать с первого подключения <span>↗</span></Link>
@@ -40,6 +40,6 @@ export function GuideHome() {
         {guideCatalog.filter(page => page.group === group.id).map(page => <Link href={`/guide/${page.slug}`} key={page.slug}><strong>{page.title}</strong><span>{page.summary}</span><b aria-hidden="true">↗</b></Link>)}
       </section>)}</div></section>
     <section className="guide-lab-feature"><Image unoptimized src="/guide/illustrations/mesh.webp" alt="Художественная иллюстрация: части проекта соединены мостами" width={1672} height={941} loading="lazy" /><div><span className="guide-eyebrow">Практика без ваших секретов</span><h2>Попробуйте на<br /><em>GrantTap Lab.</em></h2><p>Скачайте небольшой учебный проект. Поставьте задачу, изучите правки и проверьте результат тестами. Демо в приложении отдельно показывает интерфейс без подключения компьютера.</p><Link className="guide-primary" href="/guide/walkthrough">Открыть практикум ↗</Link><small>Художественная иллюстрация · ImageGen</small></div></section>
-    <aside className="guide-beta-note"><strong>Версии и границы проверки</strong><p>Содержание сверено с приложением 250 и MCP 0.8.148. Новые снимки получены в Simulator; у сохранённых ранних экранов указана их сборка. Демо показывает интерфейс, а не подтверждает реальную доставку или авторизацию.</p><Link href="/guide/coverage">Покрытие, источники и скриншоты ↗</Link></aside>
+    <aside className="guide-beta-note"><strong>Версии и границы проверки</strong><p>Источники инструкций и ограничения перечислены в главе «Покрытие». Новые снимки получены в Simulator; у сохранённых ранних экранов указана их сборка. Демо показывает интерфейс, а не подтверждает реальную доставку или авторизацию.</p><Link href="/guide/coverage">Покрытие, источники и скриншоты ↗</Link></aside>
   </div>;
 }

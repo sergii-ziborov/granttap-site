@@ -1,8 +1,8 @@
 # GrantTap user guide
 
-Public entry: https://granttap.com/guide (Russian). Updated 4 November 2026; content rechecked 5 November 2026.
+Public entry: https://granttap.com/guide (Russian). Updated 7 November 2026.
 
-49 chapters cover setup, Tasks/Executions, delivery and recovery, native questions,
+50 chapters cover setup, Tasks/Executions, delivery and recovery, native questions,
 Files/Agents, existing Codex automations, searchable workspaces and handoff,
 Mesh/Knowledge/Engine/Graph/Health, governance, devices, provider sign-in/updates,
 cache, browser control, privacy and recovery. The coverage chapter records limits.
@@ -13,17 +13,17 @@ keyboard access, screenshot enlargement and a downloadable practice project.
 Authored Markdown supports explicit anchors, tables, callouts, code, captures and
 three interactive diagrams. It never executes authored HTML.
 
-37 real screenshot files have SHA-256, build, date, locale and scenario in
+38 real screenshot files have SHA-256, build, date, locale and scenario in
 GuideContent/screenshots.json. 20 are build 250 Simulator captures from isolated
 native demo/UI fixtures. Earlier iPhone 230 and Mac 181 captures retain their
 actual provenance; they are never relabelled as new. Device versions, codes and
 measurements in fixtures are examples. Separate ImageGen art is labelled as art.
 Do not replace a product screenshot with an AI-drawn imitation.
 
-Source basis: native main 9d947d62 (build 250), MCP main 5053922 (0.8.148),
+Behavior source basis: native 18c8d4b (build 259), MCP 20ad47e (0.8.158 candidate),
 and the website revision containing this file. Captures do not establish live
 provider authentication, successful user-project transfer or physical-device QA.
-Native bundled Learn content has its own release lifecycle.
+Native bundled Learn content is exported with `npm run guide:export -- --apple-root /path/to/apple`. This snapshot documents current CLI queue behavior without promising mid-turn steering. License and purchase instructions link to the canonical full legal documents.
 
 ## Maintain
 

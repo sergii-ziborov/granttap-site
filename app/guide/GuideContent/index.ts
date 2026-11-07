@@ -1,4 +1,5 @@
 import restrictions from "./articles/restrictions.md?raw";
+import licensesAndPurchases from "./articles/licenses-and-purchases.md?raw";
 import { guideCatalog } from "./catalog";
 import { buildSearchIndex } from "../GuideNavigation/search";
 import chapter0 from "./articles/quick-start.md?raw";
@@ -52,6 +53,7 @@ import extra8 from "./articles/transcript-sources.md?raw";
 import extra9 from "./articles/coverage.md?raw";
 
 export const guideContent: Record<string, string> = {
+  "licenses-and-purchases": licensesAndPurchases,
   restrictions,
   "device-management": extra0,
   "provider-sign-in": extra1,

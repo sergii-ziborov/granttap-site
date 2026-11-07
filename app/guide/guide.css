@@ -33,11 +33,11 @@
   color:var(--ink)
 }
 .guide-app .site-header {
-  background:#101114
+  background:var(--paper)
 }
 .guide-app .site-footer {
-  background:#101114;
-  border-top:1px solid #2c2f35;
+  background:var(--paper);
+  border-top:1px solid var(--line);
   padding-bottom:32px
 }
 .guide-app .site-menu {
