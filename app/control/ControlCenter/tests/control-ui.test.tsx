@@ -1,6 +1,6 @@
 import "fake-indexeddb/auto";
 import { afterEach, expect, it, vi } from "vitest";
-import { act, cleanup, render, screen, within } from "@testing-library/react";
+import { act, cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ControlCenter } from "..";
 import { browserFixture } from "./browser-fixture";
@@ -28,7 +28,9 @@ it("opens a large conversation, sends to relay without a native receipt, and pre
   await user.selectOptions(screen.getByRole("combobox", { name: "Model" }), "fixture-model");
   await user.selectOptions(screen.getByRole("combobox", { name: "Effort" }), "ultra");
   await user.click(screen.getByRole("button", { name: "Send message" }));
-  expect(await screen.findByText("Saved on relay", { exact: true })).toBeTruthy();
+  const composer = screen.getByRole("region", { name: "Message this Task" });
+  await waitFor(() => expect(within(composer).getByRole("status").textContent).toBe("Saved on relay"),
+    { timeout: 10_000 });
   expect(f.received.find(payload => payload.type === "user.message")).toMatchObject({ text: "A synthetic follow-up", effort: "ultra", model: "fixture-model" });
 });
 it("shows native questions and permissions for all four providers and sends the decision immediately", async () => {
