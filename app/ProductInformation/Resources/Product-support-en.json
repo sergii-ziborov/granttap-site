@@ -116,7 +116,7 @@
     {
       "heading": "Connect a computer",
       "bullets": [
-        "Install Node.js 22 or newer.",
+        "Install Node.js 22.13.0 or newer.",
         "Run npm install -g granttap-mcp.",
         "Run granttap setup. It detects providers, installs supported hooks, and starts or repairs the helper.",
         "Open the GrantTap connection card in the coding app and choose Add a device. Scan its one-time QR in GrantTap on iPhone.",

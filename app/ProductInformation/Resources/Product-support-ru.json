@@ -116,7 +116,7 @@
     {
       "heading": "Подключить компьютер",
       "bullets": [
-        "Установите Node.js 22 или новее.",
+        "Установите Node.js 22.13.0 или новее.",
         "Выполните npm install -g granttap-mcp.",
         "Выполните granttap setup. Команда найдёт providers, установит hooks и запустит или исправит helper.",
         "В панели GrantTap в coding app выберите Add a device и отсканируйте одноразовый QR приложением на iPhone.",

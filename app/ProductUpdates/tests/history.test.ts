@@ -12,7 +12,8 @@ describe("published version history", () => {
       expect(section?.bullets?.join(" ")).toContain("202");
       expect(section?.bullets?.[0]).toContain("273");
       expect(section?.bullets?.[0]).toContain("App Review");
-      expect(section?.bullets?.[1]).toContain("0.8.165");
+      expect(section?.bullets?.[1]).toContain("0.8.166");
+      expect(section?.bullets?.[2]).toContain("0.8.165");
       expect(section?.bullets?.join(" ")).toContain("250");
       expect(section?.bullets?.join(" ")).toContain("0.8.83");
       expect(section?.bullets?.join(" ")).toContain("Engine 0.1.2");
@@ -29,7 +30,7 @@ describe("published version history", () => {
       expect(section?.bullets?.join(" ")).toContain("0.8.75");
       expect(section?.bullets?.join(" ")).toContain("199");
       expect(section?.bullets?.join(" ")).toContain("0.8.74");
-      expect(section?.links?.[0].href).toContain("/granttap-mcp/v/0.8.165");
+      expect(section?.links?.[0].href).toContain("/granttap-mcp/v/0.8.166");
     }
   });
 });
