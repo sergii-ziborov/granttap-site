@@ -7,7 +7,7 @@ import type { Locale } from "./Locale";
 import { MeshExplainer } from "./MeshExplainer";
 import { ProductImage } from "./ProductImage";
 import { LocaleLinks, SiteFooter, SiteHeader } from "./SiteChrome";
-import { installationAction, localizedProductPath } from "../ProductOffer";
+import { installationAction, localizedProductPath, releaseAvailability } from "../ProductOffer";
 
 type Props = { locale: Locale; t: HomeCopy };
 export function HomeView({ locale, t }: Props) {
@@ -90,7 +90,8 @@ function Install({ t }: Pick<Props, "t">) {
 
 function Pricing({ t, locale }: Props) {
   const action = installationAction(locale);
-  return <><section className="pricing-preview section-shell" id="pricing"><div><p className="kicker">{t.pricingKicker}</p><h2>{t.pricingTitle}</h2><p>{t.pricingText}</p><a className="button button-secondary" href={localizedProductPath("/pricing", locale)}>{t.pricingAction}</a></div></section><section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><div><p className="kicker">{t.releaseKicker}</p><h2>{t.releaseTitle}</h2><p className="release-copy">{t.releaseText}</p></div><a className="availability-pill" href={action.href}>{action.label}</a></div></section></>;
+  const live = Boolean(releaseAvailability.ios.storeURL);
+  return <><section className="pricing-preview section-shell" id="pricing"><div><p className="kicker">{t.pricingKicker}</p><h2>{t.pricingTitle}</h2><p>{t.pricingText}</p><a className="button button-secondary" href={localizedProductPath("/pricing", locale)}>{t.pricingAction}</a></div></section><section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><div><p className="kicker">{t.releaseKicker}</p><h2>{live ? t.releaseLiveTitle : t.releaseTitle}</h2><p className="release-copy">{live ? t.releaseLiveText : t.releaseText}</p></div><a className="availability-pill" href={action.href}>{action.label}</a></div></section></>;
 }
 
 function BlogTeaser({ locale }: { locale: Locale }) {

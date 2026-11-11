@@ -71,6 +71,18 @@
 .mac-page-gallery img { display: block; width: 100%; height: auto; }
 .mac-page-gallery figcaption { padding: 12px 18px; font-weight: 700; }
 .mac-page-connect ol { display: grid; gap: 14px; max-width: 78ch; padding-left: 25px; line-height: 1.6; }
+.iphone-page .mac-page-connect .desktop-facts { margin-top: 26px; }
+.iphone-page .mac-page-connect h2 + p { max-width: 78ch; }
+.iphone-page-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 18px; margin-top: 30px; }
+.iphone-page-gallery figure { margin: 0; overflow: hidden; border: 1px solid #3a3539; border-radius: 22px; background: #151417; }
+.iphone-page-gallery img { display: block; width: 100%; height: auto; }
+.iphone-page-gallery figcaption { margin: 0; padding: 10px 14px; border-top: 1px solid #3a3539; color: inherit; font-size: 14px; font-weight: 700; }
+.iphone-page .mac-page-connect h2, .iphone-page .mac-page-captures h2 { margin: 0 0 12px; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -.025em; }
+.iphone-page .mac-page-connect ol + h2 { margin-top: 48px; }
+.iphone-page .mac-page-connect ol { list-style: decimal; }
+.iphone-page .mac-page-connect li::marker { color: #f39166; font-weight: 700; }
+.iphone-page .offer-faq { max-width: none; padding-top: 24px; }
+.iphone-page-legal { margin-top: 26px; }
 
 .editorial-art { margin: 0 0 48px; }
 .editorial-art img { display: block; width: 100%; max-height: 560px; object-fit: cover; border: 1px solid #39343a; border-radius: 22px; }
@@ -89,6 +101,7 @@
   .desktop-capture-pair { grid-template-columns: 1fr; }
   .mac-page-gallery { grid-template-columns: 1fr; }
   .mac-page-gallery figure:first-child { grid-column: auto; }
+  .iphone-page-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .desktop-facts article { min-height: 0; }
 }
 

@@ -3,10 +3,11 @@ import type { ReactNode } from "react";
 import type { Locale } from "./Locale";
 import { ThemeSelector } from "../Appearance";
 
-type NavKey = "product" | "mac" | "how" | "security" | "blog" | "pricing" | "support";
+type NavKey = "product" | "iphone" | "mac" | "how" | "security" | "blog" | "pricing" | "support";
 
 const navigation: Array<{ key: NavKey; href: string; en: string; ru: string }> = [
   { key: "product", href: "/#product", en: "Product", ru: "Продукт" },
+  { key: "iphone", href: "/iphone", en: "iPhone", ru: "iPhone" },
   { key: "mac", href: "/mac", en: "Mac", ru: "Mac" },
   { key: "how", href: "/guide", en: "Guide", ru: "Руководство" },
   { key: "security", href: "/#security", en: "Security", ru: "Безопасность" },

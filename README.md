@@ -7,7 +7,7 @@ and Apple Watch. See what needs your attention, decide from the right device,
 and return to the same Task without losing its history when an agent session or
 computer changes.
 
-[Explore the product](https://granttap.com) · [See GrantTap for Mac](https://granttap.com/mac) · [Read the journal](https://granttap.com/blog) ·
+[Explore the product](https://granttap.com) · [GrantTap for iPhone](https://granttap.com/iphone) · [See GrantTap for Mac](https://granttap.com/mac) · [Read the journal](https://granttap.com/blog) ·
 [See availability](https://granttap.com/#availability) · [Get help](https://granttap.com/support)
 
 ## See. Decide. Continue.
@@ -269,9 +269,13 @@ provider sign-in/update/restart, cache, Files/Agents, existing Codex automations
 searchable workspaces, request recovery and the supported provider boundaries.
 Support in both languages and provider pages point to that reference.
 
-The documentation basis is native build 250 (verified internal TestFlight group,
-3 November) and public granttap-mcp 0.8.143 (registry checked 5 November).
-This does not assert public App Store or external beta approval. Original dates
+The documentation basis is native build 273 (internal TestFlight, submitted to
+App Review as version 1.0 on 11 November) and public granttap-mcp 0.8.165
+(npm, 11 November). This does not assert App Store approval or external beta
+approval. `app/ProductOffer` holds the App Store state: once Apple publishes
+1.0, set `releaseAvailability.ios` to `live` with `appStoreListingURL`, and every
+install action, the home availability card and `/iphone` switch to the App Store
+link and Safari's Smart App Banner. Original dates
 of historical release notes, legal policies, news and screenshots are preserved.
 
 The journal now has 47 published bilingual articles on November 5, with three

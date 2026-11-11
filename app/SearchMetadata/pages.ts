@@ -1,12 +1,15 @@
 import type { LocalizedText, PublicPageProps } from ".";
 import { localizedMetadata, pageLocale } from ".";
+import { iphoneCopy } from "../iphone/copy";
 
 type PageCopy = { title: LocalizedText; description: LocalizedText; updated: string };
 export const publicPageCopy: Record<string, PageCopy> = {
   "/": {
     title: { en: "GrantTap: Claude Code and Codex on iPhone, iPad & Mac", ru: "GrantTap: Claude Code и Codex с iPhone, iPad и Mac" },
-    description: { en: "Follow local coding agents, review approvals and continue Tasks from iPhone, iPad, Mac and Apple Watch. Explore GrantTap setup, screenshots and provider limits.", ru: "Следите за локальными coding-агентами, отвечайте на запросы и продолжайте задачи с iPhone, iPad, Mac и Apple Watch. Настройка, скриншоты и границы поддержки." }, updated: "2026-11-05",
+    description: { en: "Follow local coding agents, review approvals and continue Tasks from iPhone, iPad, Mac and Apple Watch. Explore GrantTap setup, screenshots and provider limits.", ru: "Следите за локальными coding-агентами, отвечайте на запросы и продолжайте задачи с iPhone, iPad, Mac и Apple Watch. Настройка, скриншоты и границы поддержки." }, updated: "2026-11-11",
   },
+  "/iphone": { title: { en: iphoneCopy.en.seoTitle, ru: iphoneCopy.ru.seoTitle },
+    description: { en: iphoneCopy.en.description, ru: iphoneCopy.ru.description }, updated: "2026-11-11" },
   "/about": { title: { en: "About GrantTap and its practical guides", ru: "О GrantTap и практических руководствах" }, description: { en: "Meet the independent product by Serhii Ziborov. Learn how GrantTap connects local coding agents and how its guides label sources, examples and screenshots.", ru: "Независимый продукт Serhii Ziborov для управления coding-агентами. Как устроены GrantTap, источники руководств, учебные примеры и подписи скриншотов." }, updated: "2026-11-05" },
   "/support": { title: { en: "GrantTap support: setup and troubleshooting", ru: "Помощь GrantTap: подключение и решение проблем" }, description: { en: "Connect a computer, fix message delivery, restore provider sign-in and manage MCP updates or cache. Find the current GrantTap guide and support contact.", ru: "Подключение компьютера, доставка сообщений, вход провайдеров, обновление MCP и очистка кэша. Актуальное руководство GrantTap и контакт поддержки." }, updated: "2026-11-05" },
   "/pricing": { title: { en: "GrantTap pricing and planned subscriptions", ru: "Тарифы GrantTap и планируемые подписки" }, description: { en: "Compare planned Personal managed-computer subscriptions and the separate Mac Local license. Read purchase conditions, cancellation and provider limitations.", ru: "Сравните планируемые подписки Personal и отдельную лицензию Mac Local. Условия покупки, отмена, количество компьютеров и ограничения провайдеров." }, updated: "2026-09-28" },
