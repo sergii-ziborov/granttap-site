@@ -43,13 +43,27 @@ test("new account creation and account deletion are explicit actions", async () 
   const confirm = vi.spyOn(window, "confirm").mockReturnValue(true);
 
   render(<AccountView />);
-  await userEvent.click(await screen.findByRole("button", { name: "Create an account with passkey" }));
+  await userEvent.click(await screen.findByRole("button", { name: "Create account with passkey" }));
   expect(passkeys.create).toHaveBeenCalledWith({ optionsJSON: { challenge: "create-challenge" } });
   await waitFor(() => expect(screen.getByText("created-account")).toBeTruthy());
   await userEvent.click(screen.getByRole("button", { name: "Delete account" }));
   expect(confirm).toHaveBeenCalledTimes(1);
   await waitFor(() => expect(screen.getByRole("button", { name: "Sign in with passkey" })).toBeTruthy());
   expect(fetcher).toHaveBeenCalledTimes(5);
+});
+
+test("the QR method asks the browser for a phone passkey and reports failure beside it", async () => {
+  vi.spyOn(globalThis, "fetch")
+    .mockResolvedValueOnce(new Response("{}", { status: 401 }))
+    .mockResolvedValueOnce(Response.json({ ceremonyId: "phone", options: { challenge: "phone-challenge" } }))
+    .mockResolvedValueOnce(new Response("{}", { status: 401 }));
+  passkeys.get.mockResolvedValue({ id: "phone" });
+  render(<AccountView />);
+  await userEvent.click(await screen.findByRole("radio", { name: "QR code" }));
+  await userEvent.click(screen.getByRole("button", { name: "Show a QR for my phone" }));
+  expect(passkeys.get).toHaveBeenCalledWith({ optionsJSON: { challenge: "phone-challenge", hints: ["hybrid"] } });
+  const alert = await screen.findByRole("alert");
+  expect(alert.closest("section")?.getAttribute("aria-label")).toBe("QR code");
 });
 
 test("failed passkey verification leaves the account signed out", async () => {

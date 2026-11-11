@@ -11,7 +11,7 @@
 .account-actions button:disabled { opacity: .5; cursor: wait; }
 .account-actions :is(button, a):focus-visible { outline: 3px solid #ff9a67; outline-offset: 3px; }
 .account-card .account-boundary, .account-card .account-note { font-size: 14px; }
-.account-card .account-error { color: #ff9b86; }
+.account-card .account-error { color: var(--error-ink); }
 .account-machines { list-style: none; padding: 0; margin: 12px 0 24px; }
 .account-machines li { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px solid #343436; }
 @media (max-width: 600px) { .account-card { margin: 20px auto; padding: 24px; } }
@@ -25,52 +25,66 @@
 .account-boundary form button { min-height: 44px; padding: 10px 16px; border: 1px solid #e56f37; border-radius: 10px; background: #c44d20; color: #fff; font: inherit; cursor: pointer; }
 .account-boundary form button:disabled { opacity: .55; cursor: default; }
 .account-boundary form :is(button, select, textarea):focus-visible { outline: 3px solid #ff9a67; outline-offset: 3px; }
-.account-password-form { margin-block: 24px; padding-block: 20px; border-block: 1px solid var(--line); }
-.account-password-form fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 14px; }
-.account-password-form legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.account-password-form label { display: grid; gap: 7px; font-size: 14px; color: var(--ink); }
-.account-password-form input:not([type="checkbox"]) { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--panel); color: var(--ink); font: inherit; }
-.account-password-form .account-password-register { display: flex; align-items: center; gap: 10px; }
-.account-password-form input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--orange); }
-.account-password-form p { color: var(--muted); font-size: 13px; line-height: 1.6; }
-.account-password-form button { min-height: 44px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px; background: var(--panel-raised); color: var(--ink); cursor: pointer; }
-.account-password-form button:disabled { opacity: .55; cursor: default; }
 html[data-theme="light"] .account-page, html[data-theme="light"] .account-card { background: var(--paper); color: var(--ink); }
 
-/* Password access: one primary action, persistent labels, quiet alternatives. */
-.account-card:has(.account-password-form) { max-width: 520px; padding: clamp(24px, 5vw, 36px); background: var(--panel); border-color: var(--line); }
-.account-card:has(.account-password-form) h1 { margin-bottom: 12px; font-size: clamp(27px, 6vw, 34px); line-height: 1.15; letter-spacing: -.035em; }
-.account-card:has(.account-password-form) > p { font-size: 14px; color: var(--muted); }
-.account-password-form { margin: 28px 0 0; padding: 0; border: 0; }
-.account-password-form h2 { margin: 0 0 20px; color: var(--ink); font-size: 19px; font-weight: 600; letter-spacing: -.02em; }
-.account-password-form fieldset { gap: 18px; }
-.account-password-form label { gap: 8px; font-weight: 500; }
-.account-password-form input:not([type="checkbox"]) { min-height: 50px; padding: 12px 14px; background: var(--paper); border-radius: 12px; transition: border-color .15s, box-shadow .15s; }
-.account-password-form input:not([type="checkbox"]):focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
-.account-password-form button { min-height: 50px; background: #c44d20; border-color: #c44d20; color: #fff; font: inherit; font-weight: 600; border-radius: 12px; }
-.account-password-form button:hover:not(:disabled) { background: #a63e18; border-color: #a63e18; }
-.account-password-form :is(button, input[type="checkbox"]):focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
-.account-password-form button:disabled { opacity: 1; color: var(--muted); background: var(--panel-raised); border-color: var(--line); }
-.account-password-form .account-password-register { justify-content: center; gap: 9px; color: var(--muted); font-size: 13px; font-weight: 400; cursor: pointer; }
-.account-password-form input[type="checkbox"] { width: 18px; height: 18px; margin: 0; flex: 0 0 auto; }
-.account-password-form .account-password-hint { margin: -6px 0 0; }
-.account-password-form .account-password-boundary { margin: 20px 0 0; text-align: center; font-size: 12px; }
-.account-password-form .account-password-status { margin: 14px 0 0; text-align: center; }
-.account-password-form .account-error { margin: 0; color: #ff9b86; }
-html[data-theme="light"] .account-password-form .account-error { color: #a52c20; }
-.account-card:has(.account-password-form) > .account-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
-.account-card:has(.account-password-form) > .account-actions button { background: transparent; color: var(--ink); border-color: var(--line); min-height: 48px; }
-.account-card:has(.account-password-form) > .account-actions button + button { min-height: 36px; padding: 6px 12px; border-color: transparent; font-size: 13px; font-weight: 500; color: var(--muted); }
-.account-card:has(.account-password-form) .account-note { margin: 16px 0 0; font-size: 12px; text-align: center; }
-.account-token-access { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
-.account-token-access p { color: var(--muted); font-size: 14px; line-height: 1.5; }
-.account-token-access summary { cursor: pointer; min-height: 44px; font-weight: 600; }
-.account-token-access :is(summary, input, button):focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
-.account-token-access fieldset { display: grid; gap: 16px; border: 0; margin: 0; padding: 0; }
-.account-token-access legend { font-size: 14px; margin-bottom: 16px; }
-.account-token-access label { display: grid; gap: 8px; font-size: 14px; line-height: 1.5; }
-.account-token-access input[type="password"] { width: 100%; min-height: 48px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: var(--paper); }
-.account-token-access .account-token-consent { display: flex; align-items: flex-start; gap: 10px; }
-.account-token-consent input { flex: 0 0 auto; width: 20px; height: 20px; accent-color: var(--orange); }
-.account-token-access button { min-height: 48px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: var(--panel-raised); cursor: pointer; }
-.account-token-access button:disabled { color: var(--muted); cursor: default; }
+/* Sign-in: one method at a time, persistent labels, feedback beside its field, rem-based text. */
+.account-card { --field-line: #6b7079; --error-ink: #ff9b86; }
+html[data-theme="light"] .account-card { --field-line: #8a837a; --error-ink: #a52c20; }
+.account-card:has(.account-methods) { max-width: 520px; padding: clamp(20px, 5vw, 36px); background: var(--panel); border-color: var(--line); }
+html[data-theme="light"] .account-card:has(.account-methods) { background: var(--panel); }
+.account-card:has(.account-methods) h1 { margin-bottom: 12px; font-size: clamp(1.7rem, 6vw, 2.15rem); line-height: 1.15; letter-spacing: -.035em; }
+.account-card:has(.account-methods) > p { font-size: .875rem; color: var(--muted); }
+.account-visually-hidden, .account-methods legend, .account-password-form legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; padding: 0; }
+.account-methods fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.account-method-choice > div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.account-method { position: relative; flex: 1 1 5.5rem; min-width: 0; overflow-wrap: anywhere; display: grid; align-content: center; justify-items: center; gap: 2px; min-height: 64px; padding: 10px 6px; border: 1px solid var(--field-line); border-radius: 14px; color: var(--ink); font-size: .9375rem; font-weight: 600; text-align: center; cursor: pointer; }
+.account-method input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: inherit; }
+.account-method small { color: var(--muted); font-size: .75rem; font-weight: 500; }
+.account-method:has(input:checked) { border-color: var(--orange); background: color-mix(in srgb, var(--orange) 12%, transparent); box-shadow: inset 0 0 0 1px var(--orange); }
+.account-method:has(input:checked) small { color: var(--accent-ink, var(--orange)); }
+.account-method:has(input:focus-visible) { outline: 3px solid var(--orange); outline-offset: 3px; }
+.account-method:has(input:disabled) { cursor: default; opacity: .6; }
+.account-method-panel { display: grid; gap: 14px; margin-top: 24px; }
+.account-method-panel > p { margin: 0; color: var(--muted); font-size: .9375rem; line-height: 1.5; }
+.account-method-panel .account-note { font-size: .8125rem; text-align: center; }
+.account-card .account-error { margin: 0; color: var(--error-ink); font-size: .875rem; line-height: 1.45; }
+
+.account-submit, .account-quiet { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 50px; padding: 10px 16px; border: 1px solid #c44d20; border-radius: 12px; background: #c44d20; color: #fff; font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; }
+.account-submit:hover:not(:disabled) { background: #a63e18; border-color: #a63e18; }
+.account-submit:disabled { color: var(--muted); background: var(--panel-raised); border-color: var(--line); cursor: default; }
+[aria-busy="true"] .account-submit:disabled { color: #fff; background: #c44d20; border-color: #c44d20; cursor: progress; }
+.account-quiet { min-height: 44px; border-color: transparent; background: transparent; color: var(--ink); font-size: .9375rem; font-weight: 500; }
+.account-quiet:hover:not(:disabled) { border-color: var(--line); }
+.account-quiet:disabled { opacity: .55; cursor: default; }
+.account-methods :is(.account-submit, .account-quiet):focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.account-spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: account-spin .8s linear infinite; }
+@keyframes account-spin { to { transform: rotate(1turn); } }
+@media (prefers-reduced-motion: reduce) { .account-spinner { animation-duration: 2.4s; } }
+
+.account-password-form { margin: 0; }
+.account-password-form h2 { margin: 0 0 16px; color: var(--ink); font-size: 1.1875rem; font-weight: 600; letter-spacing: -.02em; }
+.account-password-form fieldset { display: grid; gap: 16px; border: 0; margin: 0; padding: 0; min-width: 0; }
+.account-segmented { display: grid; grid-template-columns: 1fr 1fr; padding: 3px; border-radius: 12px; background: var(--panel-raised); }
+.account-segmented label { position: relative; display: grid; place-items: center; min-height: 40px; padding: 6px 8px; border-radius: 9px; color: var(--muted); font-size: .875rem; font-weight: 600; text-align: center; cursor: pointer; }
+.account-segmented input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: inherit; }
+.account-segmented label:has(input:checked) { background: var(--paper); color: var(--ink); box-shadow: 0 1px 3px #0003; }
+.account-segmented label:has(input:focus-visible) { outline: 3px solid var(--orange); outline-offset: 1px; }
+.account-field { display: grid; gap: 8px; }
+.account-field label { color: var(--ink); font-size: .875rem; font-weight: 500; }
+.account-field input { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid var(--field-line); border-radius: 12px; background: var(--paper); color: var(--ink); font: inherit; font-size: 1rem; }
+.account-field input:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+.account-field.invalid input { border-color: var(--error-ink); box-shadow: inset 0 0 0 1px var(--error-ink); }
+.account-field :is(.account-field-hint, .account-field-error) { margin: 0; font-size: .8125rem; line-height: 1.45; }
+.account-field .account-field-hint { color: var(--muted); }
+.account-field .account-field-error { color: var(--error-ink); }
+.account-field .account-field-error::before { content: "! "; font-weight: 700; }
+.account-password-form .account-password-boundary { margin: 16px 0 0; color: var(--muted); font-size: .8125rem; text-align: center; }
+
+.account-token-access { display: grid; gap: 12px; margin-top: 12px; padding-top: 20px; border-top: 1px solid var(--line); }
+.account-token-access h3 { margin: 0; color: var(--ink); font-size: 1rem; font-weight: 600; }
+.account-token-access > p { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.5; }
+.account-token-access fieldset { display: grid; gap: 14px; border: 0; margin: 0; padding: 0; min-width: 0; }
+.account-token-access legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.account-token-access .account-token-consent { display: flex; align-items: flex-start; gap: 10px; color: var(--ink); font-size: .875rem; line-height: 1.5; }
+.account-token-consent input { flex: 0 0 auto; width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--orange); }
+.account-token-consent input:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }

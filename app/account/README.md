@@ -14,7 +14,18 @@ The browser receives an HttpOnly session cookie; the account API omits bearer
 tokens from browser responses. Native clients store their bearer token in the
 platform Keychain.
 
-`AccountTokenAccess` accepts a temporary key or a trusted QR sign-in link only
+`SignInMethods` offers one explicit choice between the three sign-in methods,
+in the same order and wording as the native app: Passkey (recommended, the
+default), QR code and Password. The QR method asks the browser for a phone
+passkey (`hints: ["hybrid"]`, so a QR appears for the iPhone camera) and also
+holds the sign-in token form. `AccountPassword` keeps its Sign in / Create
+account choice, explains invalid input beside the affected field, attaches an
+unavailable login to the login field, and shows progress inside the submit
+button without moving the layout. Passkey failures appear beside the passkey
+buttons. Field borders and error text keep at least 3:1 and 4.5:1 contrast in
+both themes, and text sizes follow the browser's font-size setting.
+
+`AccountTokenAccess` accepts a temporary token or a trusted QR sign-in link only
 after explicit submission and acknowledgement of browser-code access to decrypted
 messages and input. Redemption preserves grant expiry, usage limits and revocation.
 Cross-device passkey QR remains a system-authenticator option when available.

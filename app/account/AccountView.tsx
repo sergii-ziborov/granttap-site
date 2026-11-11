@@ -1,6 +1,5 @@
 "use client";
-import { AccountPassword } from "./AccountPassword";
-import { AccountTokenAccess } from "./AccountTokenAccess";
+import { SignInMethods } from "./SignInMethods";
 
 import { startAuthentication, startRegistration } from "@simplewebauthn/browser";
 import type { PublicKeyCredentialCreationOptionsJSON, PublicKeyCredentialRequestOptionsJSON } from "@simplewebauthn/browser";
@@ -20,10 +19,6 @@ const copy = {
   en: {
     title: "Your GrantTap account",
     lead: "Sign in to see your projects and connected computers. You can add your own computer at any time.",
-    create: "Create an account with passkey",
-    signIn: "Sign in with passkey",
-    createNote: "Already have an account? Sign in first. Creating another account will not find your existing computers.",
-    qrNote: "Passkey on your phone? In the passkey prompt, choose another device when offered and scan its QR with your phone.",
     account: "Account ID",
     noComputer: "GrantTap Web stores its own keys in this browser. Browser extensions, injected scripts or a compromised browser profile can expose them; the native app offers stronger isolation. Pairing a native device by QR is a separate connection.",
     openControl: "Open GrantTap Web",
@@ -41,10 +36,6 @@ const copy = {
   ru: {
     title: "Ваш аккаунт GrantTap",
     lead: "Войдите, чтобы видеть проекты и подключённые компьютеры. Свой компьютер можно добавить в любой момент.",
-    create: "Создать аккаунт с passkey",
-    signIn: "Войти по passkey",
-    createNote: "Уже есть аккаунт? Сначала войдите. Новый аккаунт не найдёт ваши прежние компьютеры.",
-    qrNote: "Passkey на телефоне? В системном окне выберите другое устройство, если этот вариант доступен, и отсканируйте QR телефоном.",
     account: "ID аккаунта",
     noComputer: "GrantTap Web хранит собственные ключи в этом браузере. Расширения, внедрённый скрипт или взлом профиля браузера могут раскрыть их; нативное приложение лучше изолирует ключи. Подключение нативного устройства по QR выполняется отдельно.",
     openControl: "Открыть GrantTap Web",
@@ -137,7 +128,7 @@ export function AccountView() {
     finally { setBusy(false); }
   }
 
-  async function enter(kind: "registration" | "authentication") {
+  async function enter(kind: "registration" | "authentication", crossDevice = false) {
     setBusy(true);
     setError(null);
     try {
@@ -147,7 +138,9 @@ export function AccountView() {
         : await post<Ceremony<PublicKeyCredentialRequestOptionsJSON>>("authentication/options");
       const response = kind === "registration"
         ? await startRegistration({ optionsJSON: ceremony.options as PublicKeyCredentialCreationOptionsJSON })
-        : await startAuthentication({ optionsJSON: ceremony.options as PublicKeyCredentialRequestOptionsJSON });
+        : await startAuthentication({ optionsJSON: crossDevice
+          ? { ...ceremony.options as PublicKeyCredentialRequestOptionsJSON, hints: ["hybrid"] }
+          : ceremony.options as PublicKeyCredentialRequestOptionsJSON });
       const account = await post<Account>(kind + "/verify", {
         ceremonyId: ceremony.ceremonyId, response,
       });
@@ -195,24 +188,14 @@ export function AccountView() {
           <button type="button" disabled={busy} onClick={() => void exit(true)}>{t.delete}</button>
         </div>
       </> : <>
-        <AccountPassword locale={locale} disabled={busy} onBusyChange={setBusy} onSignedIn={id => {
-          setMachines(null); setError(null); setAccountId(id);
-          const destination = accountReturnPath(window.location.search);
-          if (destination) window.location.assign(destination);
-        }} />
-        <div className="account-actions">
-          <button type="button" disabled={busy} onClick={() => void enter("authentication")}>{t.signIn}</button>
-          <button type="button" disabled={busy} onClick={() => void enter("registration")}>{t.create}</button>
-        </div>
-        <p className="account-note">{t.createNote}</p>
-        <p className="account-note">{t.qrNote}</p>
-        <AccountTokenAccess locale={locale} disabled={busy} onBusyChange={setBusy} onSignedIn={id => {
-          setMachines(null); setError(null); setAccountId(id);
-          const destination = accountReturnPath(window.location.search);
-          if (destination) window.location.assign(destination);
-        }} />
+        <SignInMethods locale={locale} busy={busy} error={error} onBusyChange={setBusy}
+          onPasskey={(kind, crossDevice) => void enter(kind, crossDevice)} onSignedIn={id => {
+            setMachines(null); setError(null); setAccountId(id);
+            const destination = accountReturnPath(window.location.search);
+            if (destination) window.location.assign(destination);
+          }} />
       </>}
-      {error && <p role="alert" className="account-error">{error}</p>}
+      {accountId && error && <p role="alert" className="account-error">{error}</p>}
     </section></main>
     <SiteFooter locale={locale} />
   </div>;

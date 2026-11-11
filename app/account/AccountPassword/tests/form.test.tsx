@@ -18,7 +18,7 @@ test('submits credentials in the body and adopts only the account identity witho
 test('registration requires a long confirmed password and retains the normal passkey route in the parent',async()=>{
  const fetch=vi.fn().mockResolvedValue({ok:true,status:201,json:async()=>({accountId})});vi.stubGlobal('fetch',fetch);
  render(<AccountPassword locale="en" onSignedIn={()=>{}} onBusyChange={()=>{}}/>);
- fireEvent.click(screen.getByRole('checkbox',{name:'Create a new account'}));fill();
+ fireEvent.click(screen.getByRole('radio',{name:'Create account'}));fill();
  expect(screen.getByRole('button',{name:'Create account'})).toHaveProperty('disabled',true);
  fireEvent.change(screen.getByLabelText('Confirm password'),{target:{value:password}});
  fireEvent.click(screen.getByRole('button',{name:'Create account'}));
