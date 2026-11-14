@@ -19,6 +19,9 @@ test("Russian pricing keeps the locale through its real installation and help pa
   render(await PricingPage({ searchParams: Promise.resolve({ lang: "ru" }) }));
   expect(screen.getByRole("heading", { name: "Выберите, сколько компьютеров подключить" })).toBeTruthy();
   expect(screen.getByRole("link", { name: "Подробнее о Mac Local" }).getAttribute("href")).toBe("/mac?lang=ru");
-  expect(screen.getAllByRole("link", { name: "Запросить приглашение" })
-    .every(link => link.getAttribute("href") === "/support?lang=ru#contact")).toBe(true);
+  const install = screen.getAllByRole("link", { name: "Загрузить в App Store" });
+  expect(install).toHaveLength(3);
+  expect(install.every(link => link.getAttribute("href") === "https://apps.apple.com/app/id6809739366")).toBe(true);
+  expect(screen.getAllByRole("link", { name: "Помощь и FAQ" })
+    .every(link => link.getAttribute("href") === "/support?lang=ru")).toBe(true);
 });

@@ -75,7 +75,7 @@ the phone combines those catalogs without changing the computer route of any
 Task. A registered computer may be online in the account before its secure
 chat link is ready on the phone. Project Meshes remain separate project scopes.
 
-QR remains a direct device-pairing option without an account. The Mac App Store
+QR remains a direct device-pairing option without an account. The Mac
 app needs the separately installed local helper to show agent work; installing
 the app alone still lets you join the Account Mesh.
 
@@ -145,12 +145,15 @@ help](https://granttap.com/support) walks through both.
 - [Pricing and availability](https://granttap.com/pricing) — current Personal
   tiers and the status of the Mac release.
 
-Mac, iPhone and iPad are available in TestFlight by invitation; Watch is a
-companion through iPhone. Planned first-launch US prices are Personal $4.99/month
-for 2 publishing computers, Personal Plus $7.99 for 5, and Fleet $13.99 for 15.
-Mac Local is $39.99 once for local control and your own relay. An active Personal
-plan covers the managed Mac client without a second purchase. StoreKit provides
-actual local prices, eligibility and availability; paid products are not live.
+GrantTap 1.0 for iPhone and iPad is a free download on the
+[App Store](https://apps.apple.com/app/id6809739366) (since 13 November 2026);
+Watch is a companion through iPhone. The Mac app is available in TestFlight by
+invitation. US prices are Personal $4.99/month for 2 publishing computers,
+Personal Plus $7.99 for 5, and Fleet $13.99 for 15, sold through Apple in the
+iPhone and iPad app. Mac Local is $39.99 once for local control and your own
+relay, bought in the Mac app. An active Personal plan covers the managed Mac
+client without a second purchase. StoreKit provides actual local prices,
+eligibility and availability.
 
 ## Source and license
 
@@ -237,7 +240,8 @@ erasing local history. Beta grants and own-relay use remain separate.
 
 The server configuration is described in [the admission module](worker/account/subscriptions/README.md).
 Commercial relay mode must be enabled and verified before claiming paid
-server enforcement; the current public availability is TestFlight beta.
+server enforcement. iPhone and iPad are on the App Store; the Mac app is a
+TestFlight beta by invitation.
 
 ### Browser control (Beta)
 
@@ -269,13 +273,13 @@ provider sign-in/update/restart, cache, Files/Agents, existing Codex automations
 searchable workspaces, request recovery and the supported provider boundaries.
 Support in both languages and provider pages point to that reference.
 
-The documentation basis is native build 273 (internal TestFlight, submitted to
-App Review as version 1.0 on 11 November) and public granttap-mcp 0.8.165
-(npm, 11 November). This does not assert App Store approval or external beta
-approval. `app/ProductOffer` holds the App Store state: once Apple publishes
-1.0, set `releaseAvailability.ios` to `live` with `appStoreListingURL`, and every
-install action, the home availability card and `/iphone` switch to the App Store
-link and Safari's Smart App Banner. Original dates
+The documentation basis is native build 289 (version 1.0.1, submitted to App
+Review on 14 November) and public granttap-mcp 0.8.177 (npm, 14 November).
+Version 1.0 (build 273) for iPhone and iPad has been on the App Store since
+13 November; the Mac app remains a TestFlight build by invitation.
+`app/ProductOffer` holds the App Store state: `releaseAvailability.ios` is `live`
+with `appStoreListingURL`, so every iPhone install action, the home availability
+card and `/iphone` use the App Store link and Safari's Smart App Banner. Original dates
 of historical release notes, legal policies, news and screenshots are preserved.
 
 The journal now has 47 published bilingual articles on November 5, with three

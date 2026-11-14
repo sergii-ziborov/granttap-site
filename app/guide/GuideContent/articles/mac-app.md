@@ -14,7 +14,7 @@ Mac screenshots в руководстве — настоящий подписа�
 
 ## Установка и первый запуск {#setup}
 
-Устанавливайте Mac app через фактически доступный вам Apple или иной подтверждённый путь распространения. Страница исходников и developer build script не являются consumer installer. Доступная TestFlight-сборка также не означает публичный App Store release или подтверждённую покупку.
+GrantTap для Mac доступен по приглашению в TestFlight; запросите его через [поддержку](/support?lang=ru#contact). В отличие от версии для iPhone и iPad, в App Store Mac-версия не опубликована. Страница исходников и developer build script не являются consumer installer. TestFlight-сборка также не означает подтверждённую покупку.
 
 Для исполнения на этом компьютере установите helper:
 

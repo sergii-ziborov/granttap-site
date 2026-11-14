@@ -2,7 +2,7 @@ export type OfferLocale = "en" | "ru";
 
 /** Display catalog. Only Apple-verified receipts grant account entitlements. */
 export const launchOffer = {
-  version: "first-launch-2026-10-20", updatedOn: "2026-10-20", currency: "USD", billingPeriod: "month",
+  version: "first-launch-2026-10-20", updatedOn: "2026-11-14", currency: "USD", billingPeriod: "month",
   plans: [
     { key: "personal", label: "Personal", usdCents: 499, computers: 2,
       productId: "com.ziborov.granttap.personal.solo.monthly" },
@@ -21,15 +21,22 @@ export type StoreState = "invitation" | "review" | "live";
 export const appStoreId = "6809739366";
 export const appStoreListingURL = `https://apps.apple.com/app/id${appStoreId}`;
 
+type VersionInReview = { version: string; submittedOn: string };
+
 /**
  * Store availability is verified separately from copy and prices. After Apple
  * publishes a version, set its state to "live" and storeURL to appStoreListingURL.
+ * `inReview` names a later version Apple is reviewing while the published one stays live.
+ * Purchases: subscriptions are sold in the App Store iPhone and iPad app; Mac Local's
+ * purchase screen is in the Mac app, so it follows the Mac app's availability.
  */
 export const releaseAvailability = {
-  checkedOn: "2026-11-11",
-  ios: { state: "review" as StoreState, storeURL: null as string | null, submittedOn: "2026-11-11", version: "1.0" },
-  mac: { state: "invitation" as StoreState, storeURL: null as string | null, submittedOn: null as string | null, version: "1.0" },
-  managedPurchases: "planned", macLocalPurchase: "planned",
+  checkedOn: "2026-11-14",
+  ios: { state: "live" as StoreState, storeURL: appStoreListingURL as string | null, submittedOn: "2026-11-11",
+    version: "1.0", inReview: { version: "1.0.1", submittedOn: "2026-11-14" } as VersionInReview | null },
+  mac: { state: "invitation" as StoreState, storeURL: null as string | null, submittedOn: null as string | null,
+    version: "1.0", inReview: null as VersionInReview | null },
+  managedPurchases: "live" as StoreState, macLocalPurchase: "invitation" as StoreState,
 } as const;
 
 export function localizedProductPath(path: string, locale: OfferLocale): string {
@@ -61,15 +68,23 @@ function calendarDate(day: string | null, locale: OfferLocale): string {
 export function availabilityNote(locale: OfferLocale, platform: "ios" | "mac" = "ios"): string {
   const release = releaseAvailability[platform];
   const device = platform === "mac" ? "Mac" : locale === "ru" ? "iPhone и iPad" : "iPhone and iPad";
-  if (release.storeURL) return locale === "ru"
-    ? `GrantTap ${release.version} для ${device} — бесплатная загрузка в App Store. Подписки и Mac Local оформляются через Apple.`
-    : `GrantTap ${release.version} for ${device} is a free download on the App Store. Subscriptions and Mac Local are purchased through Apple.`;
+  if (release.storeURL) {
+    const purchases = platform === "mac"
+      ? locale === "ru" ? "Подписки и Mac Local оформляются через Apple." : "Subscriptions and Mac Local are purchased through Apple."
+      : locale === "ru" ? "Подписки оформляются через Apple в приложении." : "Subscriptions are purchased through Apple in the app.";
+    const next = release.inReview ? locale === "ru"
+      ? ` Версия ${release.inReview.version} отправлена в App Review ${calendarDate(release.inReview.submittedOn, locale)}.`
+      : ` Version ${release.inReview.version} was submitted to App Review on ${calendarDate(release.inReview.submittedOn, locale)}.` : "";
+    return locale === "ru"
+      ? `GrantTap ${release.version} для ${device} — бесплатная загрузка в App Store. ${purchases}${next}`
+      : `GrantTap ${release.version} for ${device} is a free download on the App Store. ${purchases}${next}`;
+  }
   if (release.state === "review") return locale === "ru"
     ? `GrantTap ${release.version} для ${device} отправлен в App Review ${calendarDate(release.submittedOn, locale)}. Пока Apple его не опубликует, сборки доступны по приглашению в TestFlight.`
     : `GrantTap ${release.version} for ${device} was submitted to App Review on ${calendarDate(release.submittedOn, locale)}. Until Apple publishes it, builds are available by TestFlight invitation.`;
   return locale === "ru"
-    ? `GrantTap для ${device} доступен по приглашению в TestFlight. Первый коммерческий релиз готовится.`
-    : `GrantTap for ${device} is available by TestFlight invitation. The first commercial release is being prepared.`;
+    ? `GrantTap для ${device} доступен по приглашению в TestFlight.`
+    : `GrantTap for ${device} is available by TestFlight invitation.`;
 }
 
 export function monthlyPlansSummary(locale: OfferLocale): string {

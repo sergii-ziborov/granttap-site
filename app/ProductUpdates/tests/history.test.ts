@@ -10,10 +10,17 @@ describe("published version history", () => {
       expect(section).toBeDefined();
       expect(section?.bullets?.join(" ")).toContain("201");
       expect(section?.bullets?.join(" ")).toContain("202");
-      expect(section?.bullets?.[0]).toContain("273");
+      expect(section?.paragraphs?.[0]).toContain("App Store");
+      expect(section?.bullets?.[0]).toContain("1.0.1");
+      expect(section?.bullets?.[0]).toContain("289");
       expect(section?.bullets?.[0]).toContain("App Review");
-      expect(section?.bullets?.[1]).toContain("0.8.166");
-      expect(section?.bullets?.[2]).toContain("0.8.165");
+      expect(section?.bullets?.[1]).toContain("0.8.177");
+      expect(section?.bullets?.[4]).toContain("App Store");
+      expect(section?.bullets?.[4]).toContain("273");
+      expect(section?.bullets?.[6]).toContain("0.8.167");
+      expect(section?.bullets?.[7]).toContain("273");
+      expect(section?.bullets?.[8]).toContain("0.8.166");
+      expect(section?.bullets?.[9]).toContain("0.8.165");
       expect(section?.bullets?.join(" ")).toContain("250");
       expect(section?.bullets?.join(" ")).toContain("0.8.83");
       expect(section?.bullets?.join(" ")).toContain("Engine 0.1.2");
@@ -30,7 +37,7 @@ describe("published version history", () => {
       expect(section?.bullets?.join(" ")).toContain("0.8.75");
       expect(section?.bullets?.join(" ")).toContain("199");
       expect(section?.bullets?.join(" ")).toContain("0.8.74");
-      expect(section?.links?.[0].href).toContain("/granttap-mcp/v/0.8.166");
+      expect(section?.links?.[0].href).toContain("/granttap-mcp/v/0.8.177");
     }
   });
 });

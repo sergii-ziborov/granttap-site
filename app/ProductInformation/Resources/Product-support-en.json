@@ -1,6 +1,6 @@
 {
   "title": "Support",
-  "updated": "2026-11-05",
+  "updated": "2026-11-14",
   "intro": "Install GrantTap → connect an execution computer with GrantTap MCP → open your Task. This guide explains username/password and passkey sign-in, direct pairing, Mac access, connection modes and recovery.",
   "sections": [
     {
@@ -108,7 +108,7 @@
     {
       "heading": "Purchase, restore and connection modes",
       "paragraphs": [
-        "Planned US launch prices: {{MONTHLY_PLANS}} Mac Local: {{MAC_LOCAL_USD}} once. Apple’s purchase sheet controls availability, local pricing and any eligible trial. Models and AI tokens are separate.",
+        "US prices: {{MONTHLY_PLANS}} Mac Local: {{MAC_LOCAL_USD}} once. Subscriptions are sold through Apple in GrantTap for iPhone and iPad; Mac Local is bought in the Mac app. Apple’s purchase sheet controls availability, local pricing and any eligible trial. Models and AI tokens are separate.",
         "Use Restore purchases in Settings with the same Apple Account that made the purchase. Manage subscription opens Apple's controls. Deleting the app does not cancel a subscription.",
         "Active Personal includes linked Mac managed access; no additional Mac Local purchase is required for that path. Mac Local opens local control and your own relay without a Personal subscription. Managed hosting is not part of the one-time purchase."
       ]

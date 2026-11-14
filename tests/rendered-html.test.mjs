@@ -46,10 +46,12 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /npm install -g granttap-mcp/);
   assert.match(html, /granttap setup/);
   assert.match(html, /Native E2EE/);
-  assert.match(html, /TestFlight by invitation/);
-  assert.match(html, /Request an invitation/);
+  assert.match(html, /Get GrantTap on the App Store\./);
+  assert.match(html, /href="https:\/\/apps\.apple\.com\/app\/id6809739366"[^>]*>Download on the App Store</);
+  assert.match(html, /GrantTap for Mac is available by TestFlight invitation/);
   assert.match(html, /Within reach on iPhone/);
-  assert.match(html, /Planned managed access from/);
+  assert.match(html, /Managed access from/);
+  assert.doesNotMatch(html, /Planned managed access|in App Review\./);
   assert.doesNotMatch(html, /we are addressing review feedback/);
   assert.match(html, /iphone-command-center\.png/);
   assert.match(html, /apple-watch-approval\.png/);
@@ -238,9 +240,10 @@ test("publishes transparent subscription pricing", async () => {
   }
   assert.ok(html.includes("$39.99"));
   assert.match(html, /no separate per-agent or per-task charge/i);
-  assert.match(html, /planned US prices for the first commercial release/i);
+  assert.match(html, /free download on the App Store, and the monthly plans are sold in it through Apple/i);
+  assert.doesNotMatch(html, /planned US prices|paid products are not available/i);
   assert.match(html, /eligible new subscribers/i);
-  assert.match(html, /href="\/support#contact"/);
+  assert.match(html, /href="https:\/\/apps\.apple\.com\/app\/id6809739366"/);
   assert.doesNotMatch(html, /\$1\.99|\$5\.99|\$9\.99|up to 10 computers/i);
   assert.match(html, /cancel/i);
   assert.doesNotMatch(html, /\$2\.99|up to 3 (?:linked )?computers/i);

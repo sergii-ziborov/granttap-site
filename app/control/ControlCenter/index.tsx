@@ -30,7 +30,7 @@ function AccessGate({ status, error, retry }: { status: string; error: string; r
       : status === "subscription" ? <><h2>GrantTap access is required</h2>
         <p>An active subscription, eligible subscription trial or verified TestFlight access unlocks control.</p>
         <div className="gt-actions"><a className="gt-primary" href="/pricing">View plans</a><a href="/account">Manage account</a></div>
-        <p className="gt-muted">Eligible subscriptions include a 7-day trial. Official TestFlight testing does not require a purchase or consume this trial.</p>
+        <p className="gt-muted">Subscribe in GrantTap for iPhone or iPad from the App Store, then check again. Eligible subscriptions include a 7-day trial. Official TestFlight testing does not require a purchase or consume this trial.</p>
         <button onClick={retry}>Check again</button></>
       : <><p role="alert">{error || "Account verification is temporarily unavailable."}</p><button onClick={retry}>Retry</button></>}
     <BrowserSafety compact />

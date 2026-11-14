@@ -16,7 +16,7 @@ function Sidebar({ current, close }: { current?: string; close: () => void }) {
       {guideCatalog.filter(page => page.group === group.id).map(page => <Link key={page.slug} href={`/guide/${page.slug}`}
         aria-current={current === page.slug ? "page" : undefined} onClick={close}>{page.title}</Link>)}
     </details>)}</nav>
-    <div className="guide-sidebar-bottom"><span className="guide-version-dot" />Обновлено 7 ноября 2026
+    <div className="guide-sidebar-bottom"><span className="guide-version-dot" />Обновлено 14 ноября 2026
       <small>Сборки снимков — в подписях</small><Link href="/guide/coverage">Что описано и проверено ↗</Link><Link href="/support?lang=ru">Помощь и связь ↗</Link></div>
   </>;
 }

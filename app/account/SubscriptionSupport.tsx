@@ -9,14 +9,14 @@ const copy = {
     comment: "Comment (optional)", send: "Send feedback", sending: "Saving…", retry: "Retry saving feedback", saved: "Thank you. Your feedback was saved.",
     failed: "Could not save your feedback. Please try again.",
     note: "Apple handles cancellation. Access continues until the current period ends. Cancel a free trial at least 24 hours before it ends to avoid renewal.",
-    offer: "Eligible existing subscribers can check for a one-month discounted offer in the GrantTap app under Subscription → Manage or cancel. Apple confirms the localized price and regular renewal before purchase. TestFlight remains free.",
+    offer: "Eligible existing subscribers can check for a one-month discounted offer in GrantTap for iPhone or iPad under Settings → Subscription → Manage or cancel. Apple confirms the localized price and regular renewal before purchase. TestFlight testing remains free.",
     privacy: "Feedback is optional and goes to GrantTap support. Comments are encrypted at rest, kept for up to 90 days, and removed with your account. Sending feedback does not cancel or change a subscription." },
   ru: { title: "Поддержка по подписке", manage: "Управление и отмена в Apple", reason: "Причина (необязательно)",
     choose: "Выберите причину", labels: ["Цена", "Техническая проблема", "Не хватает функции", "Не пользуюсь", "Другое"],
     comment: "Комментарий (необязательно)", send: "Отправить отзыв", sending: "Сохраняем…", retry: "Повторить сохранение отзыва", saved: "Спасибо. Ваш отзыв сохранён.",
     failed: "Не удалось сохранить отзыв. Попробуйте ещё раз.",
     note: "Отмена выполняется в Apple. Доступ сохраняется до конца текущего периода. Чтобы пробная подписка не продлилась, отмените её минимум за 24 часа до окончания.",
-    offer: "Подписчики могут проверить предложение на один месяц со скидкой в приложении GrantTap: Подписка → Управление или отмена. Apple покажет местную цену и обычное продление перед покупкой. TestFlight остаётся бесплатным.",
+    offer: "Подписчики могут проверить предложение на один месяц со скидкой в GrantTap для iPhone или iPad: Настройки → Подписка → Управление или отмена. Apple покажет местную цену и обычное продление перед покупкой. Тестирование в TestFlight остаётся бесплатным.",
     privacy: "Отзыв необязателен и направляется в поддержку GrantTap. Комментарии зашифрованы при хранении, сохраняются до 90 дней и удаляются вместе с аккаунтом. Отзыв не отменяет и не меняет подписку." },
 };
 

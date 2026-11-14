@@ -18,7 +18,7 @@ const content = {
   en: {
     title: "GrantTap for Mac",
     intro: "Your coding-agent tasks, history and project rules on Mac, with linked iPhone and iPad clients.",
-    availability: "Available in TestFlight by invitation. The first commercial release and its paid products are being prepared.",
+    availability: "Available in TestFlight by invitation. GrantTap for iPhone and iPad is a free download on the App Store.",
     installTitle: "How the Mac app connects",
     steps: [
       "Install GrantTap for Mac. Sign in with the same GrantTap passkey to manage linked computers; a controller-only Mac needs no local MCP.",
@@ -34,7 +34,7 @@ const content = {
   ru: {
     title: "GrantTap для Mac",
     intro: "Задачи coding-агентов, история и правила проекта на Mac со связанными iPhone и iPad.",
-    availability: "Доступно в TestFlight по приглашению. Первый коммерческий релиз и платные продукты готовятся.",
+    availability: "Доступно в TestFlight по приглашению. GrantTap для iPhone и iPad бесплатно загружается из App Store.",
     installTitle: "Как подключается Mac-приложение",
     steps: [
       "Установите GrantTap для Mac. Войдите с тем же passkey GrantTap для управления связанными компьютерами: Mac только в роли контроллера не требует локального MCP.",
@@ -76,7 +76,7 @@ export default async function MacPage({ searchParams }: Params) {
         <article className="offer-card"><h3>Mac Local — {usdPrice(launchOffer.macLocal.usdCents, locale)}</h3>
           <p>{locale === "ru" ? "Разовая лицензия для локального управления и собственного relay. Personal для этого режима не нужна. Managed-хостинг не включён; вы обеспечиваете доступный TLS endpoint или VPN и собственную инфраструктуру." : "A one-time license for local control and your own relay. No Personal subscription is required for that mode. Managed hosting is not included; you provide a reachable TLS endpoint or VPN and your infrastructure."}</p></article>
       </div>
-      <p className="offer-note">{locale === "ru" ? "Это планируемые цены первого релиза в США. Доступность и локальную цену показывает окно покупки Apple." : "These are planned US prices for the first release. Apple’s purchase sheet controls availability and local pricing."}</p>
+      <p className="offer-note">{locale === "ru" ? "Цены в США. Personal оформляется в GrantTap для iPhone и iPad, Mac Local покупается в приложении для Mac. Доступность и локальную цену показывает окно покупки Apple." : "US prices. Personal is sold in GrantTap for iPhone and iPad; Mac Local is bought in the Mac app. Apple’s purchase sheet controls availability and local pricing."}</p>
       <a className="button button-secondary" href={localizedProductPath("/pricing", locale)}>{locale === "ru" ? "Сравнить планы и условия" : "Compare plans and terms"}</a>
     </section>
     <section className="section-shell mac-page-captures">
