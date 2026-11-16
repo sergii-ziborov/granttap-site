@@ -17,8 +17,18 @@ Linked computer slots survive network failures. A downgrade keeps the oldest
 allowed computers; replacement explicitly releases a slot. Expiry and refund
 stop admission while preserving computer identity and local content. Relay
 leases last at most five minutes. Separate beta grants have their own expiry and are not purchases. Verified
-TestFlight app transactions can obtain beta access through `../testflight`;
-operator revocation always wins. Self-hosted relays do not use this API.
+TestFlight app transactions can obtain beta access through `../testflight`,
+limited to a seven-day trial per account; operator revocation always wins.
+Self-hosted relays do not use this API.
+
+The receipt endpoint verifies a transaction as Production first. A transaction
+that Apple signed for the Sandbox (TestFlight and App Review purchases) is kept
+in `account_sandbox_subscriptions`, apart from production purchases, and is
+never queried in Apple's production API or offered retention pricing. A
+production plan takes precedence, then a sandbox plan, then the TestFlight
+grant. Sandbox plans and TestFlight grants are signed for the relay as testing
+access (`source: "beta"`). The entitlement endpoint also returns `trial` and
+`subscription: { active, environment, productId, expiresAt, isTrial }`.
 
 The HTTP boundary verifies Apple's signatures before calling the ledger.
 Tests are in `tests/coverage/managed-subscriptions.test.ts`.

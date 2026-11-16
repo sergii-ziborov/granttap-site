@@ -26,6 +26,19 @@ export class SqliteD1 {
     if (!columns.some(column => column.name === "is_trial")) {
       this.sqlite.exec(readFileSync(new URL("0006_subscription_trial.sql", migrationsRoot), "utf8"));
     }
+    const grants = this.sqlite.prepare("PRAGMA table_info(account_beta_relay_grants)").all();
+    if (!grants.some(column => column.name === "trial_started_at")) {
+      // Grants that exist when the column is added start their trial now, in one transaction.
+      this.sqlite.exec("BEGIN");
+      try {
+        this.sqlite.exec(readFileSync(new URL("0014_testflight_trial.sql", migrationsRoot), "utf8"));
+        this.sqlite.exec("COMMIT");
+      } catch (error) {
+        this.sqlite.exec("ROLLBACK");
+        throw error;
+      }
+    }
+    this.sqlite.exec(readFileSync(new URL("0015_testflight_trial_evidence.sql", migrationsRoot), "utf8"));
   }
 
   prepare(sql: string) {

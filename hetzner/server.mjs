@@ -20,12 +20,14 @@ import { routeConnectRequest } from "./connect/api.mjs";
 import { configuredBilling } from "./billing.ts";
 import { startAuthorityCapacity } from './capacity/index.mjs';
 import { accountClientAccess } from './client-access.mjs';
+import { trialPolicy } from '../worker/account/testflight/trial.ts';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGE = readFileSync(join(ROOT, "public", "connect.html"), "utf8");
 const STORE_PATH = process.env.GRANTTAP_CONNECT_STORE ?? join(ROOT, "connect-store.json");
 const PORT = Number(process.env.PORT ?? 3210);
 const HOST = process.env.HOST ?? "0.0.0.0";
+trialPolicy(process.env); // A malformed trial exemption list stops startup instead of being ignored.
 const accountDb = new SqliteD1(process.env.GRANTTAP_ACCOUNT_DB ?? join(ROOT, "accounts.sqlite"), new URL("../migrations/", import.meta.url));
 const capacity = startAuthorityCapacity(accountDb, process.env, () => controlTransport.capacity());
 const accountAuth = new AccountAuth(new D1AccountStore(accountDb));

@@ -41,7 +41,10 @@ describe("TestFlight managed access without a subscription", () => {
     const response = await send();
     expect(response?.status).toBe(200);
     const data = await response?.json();
-    expect(data).toEqual({ expiresAt: receipt.receiptCreationDate + 90 * 86400_000 });
+    const started = data.trial.startedAt;
+    expect(started).toBeGreaterThanOrEqual(receipt.receiptCreationDate);
+    expect(data).toEqual({ expiresAt: started + 7 * 86400_000,
+      trial: { startedAt: started, endsAt: started + 7 * 86400_000, active: true, exempt: false } });
     const reopened = new ManagedSubscriptions(d1);
     expect(await reopened.entitlement("owner")).toMatchObject({ source: "beta", limit: 100 });
     expect(await reopened.entitlement("other")).toBeNull();

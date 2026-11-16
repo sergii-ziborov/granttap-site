@@ -1,6 +1,7 @@
 import {statSync} from 'node:fs';
 import {ManagedSubscriptions} from '../../worker/account/subscriptions/index.ts';
 import {capacityReporter} from './client.mjs';
+import {ticketSource} from '../../worker/account/subscriptions/tickets.ts';
 
 /** @param {string | null} [databasePath] */
 export async function authoritySnapshot(db,tag,now=Date.now(),databasePath=null){
@@ -12,9 +13,10 @@ export async function authoritySnapshot(db,tag,now=Date.now(),databasePath=null)
   if(!right){
    const receipt=await db.prepare('SELECT expires_at,revoked FROM account_subscriptions WHERE account_id=? ORDER BY purchase_date DESC,signed_date DESC LIMIT 1').bind(row.id).first();
    const beta=receipt?null:await db.prepare('SELECT expires_at,revoked_at FROM account_beta_relay_grants WHERE account_id=?').bind(row.id).first();
-   inactive=receipt?Boolean(receipt.revoked)||receipt.expires_at<=now:beta?beta.revoked_at!=null||beta.expires_at<=now:false;
+   // Without an entitlement, a remaining beta grant is revoked, expired or past its trial.
+   inactive=receipt?Boolean(receipt.revoked)||receipt.expires_at<=now:Boolean(beta);
   }
-  inventory.push({tag:tag('account',row.id),tier:right?.source==='beta'?'beta':right?.source==='subscription'?right.isTrial?'trial':'paid':inactive?'expired':'unknown',synthetic:false});
+  inventory.push({tag:tag('account',row.id),tier:right?ticketSource(right)==='beta'?'beta':right.isTrial?'trial':'paid':inactive?'expired':'unknown',synthetic:false});
  }
  const computers=(await db.prepare(`SELECT m.id,m.account_id,max(coalesce(m.last_seen_at,0),coalesce(e.updated_at,0)) AS last_seen
   FROM account_machines m LEFT JOIN account_machine_endpoints e ON e.machine_id=m.id

@@ -76,7 +76,8 @@ describe("managed receipt HTTP boundary", () => {
       return [{ ...receipt, signedDate: receipt.signedDate + 1, revocationDate: Date.now() }];
     };
     expect(await (await request("subscriptions/entitlement", undefined, token, "GET"))?.json())
-      .toEqual({ entitlement: null });
+      .toEqual({ entitlement: null, trial: null,
+        subscription: { active: false, environment: null, productId: null, expiresAt: null, isTrial: false } });
     expect(lookups).toBe(1);
   });
 
@@ -84,16 +85,20 @@ describe("managed receipt HTTP boundary", () => {
     const { request, services, receipt } = await setup();
     expect((await request("subscriptions/entitlement", undefined, "wrong", "GET"))?.status).toBe(401);
     expect(await (await request("subscriptions/entitlement", undefined, token, "GET"))?.json())
-      .toEqual({ entitlement: null });
+      .toEqual({ entitlement: null, trial: null,
+        subscription: { active: false, environment: null, productId: null, expiresAt: null, isTrial: false } });
     await new ManagedSubscriptions(services.db).acceptVerified(account, receipt);
     const result = await (await request("subscriptions/entitlement", undefined, token, "GET"))?.json();
     expect(result.entitlement).toMatchObject({ source: "subscription", limit: 2,
-      productId: receipt.productId, expiresAt: receipt.expiresDate });
+      productId: receipt.productId, expiresAt: receipt.expiresDate, environment: "production" });
+    expect(result.subscription).toEqual({ active: true, environment: "production",
+      productId: receipt.productId, expiresAt: receipt.expiresDate, isTrial: false });
     Object.assign(receipt, { revocationDate: Date.now() });
     receipt.signedDate += 1;
     await new ManagedSubscriptions(services.db).acceptVerified(account, receipt);
     expect(await (await request("subscriptions/entitlement", undefined, token, "GET"))?.json())
-      .toEqual({ entitlement: null });
+      .toEqual({ entitlement: null, trial: null,
+        subscription: { active: false, environment: null, productId: null, expiresAt: null, isTrial: false } });
   });
 
   it("binds verified receipts, rejects invalid and cross-account data, and never trusts a client tier", async () => {
@@ -146,5 +151,6 @@ describe("managed receipt HTTP boundary", () => {
     const verifier = appleReceipts(roots);
     await expect(verifier.transaction("unsigned")).rejects.toThrow();
     await expect(verifier.notification("unsigned")).rejects.toThrow();
+    await expect(verifier.sandboxTransaction!("unsigned")).rejects.toThrow();
   });
 });

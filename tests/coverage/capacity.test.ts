@@ -15,6 +15,11 @@ it('authority exports only keyed identities and verified current tiers, keeping 
  expect(value.gauges.registeredControllers).toBeNull();expect(value.gauges.registeredComputers).toBe(0);
  db.sqlite.prepare('UPDATE account_beta_relay_grants SET revoked_at=1').run();
  expect((await authoritySnapshot(db,capacityIdentity(Buffer.from('k'.repeat(64))))).inventory[0].tier).toBe('expired');
+ db.sqlite.prepare('UPDATE account_beta_relay_grants SET revoked_at=NULL,trial_started_at=?').run(Date.now()-8*86400000);
+ expect((await authoritySnapshot(db,capacityIdentity(Buffer.from('k'.repeat(64))))).inventory[0].tier).toBe('expired');
+ db.sqlite.prepare(`INSERT INTO account_sandbox_subscriptions(original_id,account_id,transaction_id,product_id,seat_limit,purchase_date,signed_date,expires_at)
+  VALUES('o',?,'t','com.ziborov.granttap.personal.solo.monthly',2,1,1,?)`).run(id,Date.now()+60000);
+ expect((await authoritySnapshot(db,capacityIdentity(Buffer.from('k'.repeat(64))))).inventory[0].tier).toBe('beta');
  db.sqlite.close();
 });
 it('measures an absent WAL as zero only when the configured database itself is measurable',async()=>{

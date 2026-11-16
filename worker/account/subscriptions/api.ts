@@ -6,7 +6,7 @@ import type { AccountMachines } from "../machines";
 import { bearerToken, boundedJSON, json, sessionToken } from "../http";
 import type { AppleReceipts } from "./apple";
 import { ManagedSubscriptions, isManagedSubscription } from "./index";
-import { signManagedTicket } from "./tickets";
+import { signManagedTicket, ticketSource } from "./tickets";
 import { reconcileSubscription } from "./reconcile";
 import { routeTestFlight } from "../testflight";
 import { routeManagedComputers } from "./computers";
@@ -48,7 +48,8 @@ export async function routeManagedSubscriptions(request: Request,
     catch { return json(503, { error: "Apple subscription confirmation is temporarily unavailable." }); }
     const entitlement = await ledger.entitlement(account);
     return json(200, { entitlement: entitlement ? { ...entitlement,
-      validatedUntil: Math.min(entitlement.expiresAt, Date.now() + 300_000) } : null });
+      validatedUntil: Math.min(entitlement.expiresAt, Date.now() + 300_000) } : null,
+      trial: await ledger.trial(account), subscription: await ledger.subscription(account) });
   }
   if (request.method !== "POST") return json(405, { error: "Method not allowed." });
   const body = await boundedJSON(request);
@@ -68,9 +69,10 @@ export async function routeManagedSubscriptions(request: Request,
     if (!await new AccountMachineEndpoints(services.db).publish(identity, body.room, body.publicKey)) {
       return json(403, { error: "Computer access was revoked." });
     }
+    const source = ticketSource(right);
     return json(200, { ticket: signManagedTicket(billing.signingKey,
       { version: 1, accountId: identity.accountId, computerId: identity.machineId, publicKey: body.publicKey,
-        room: body.room, expiresAt: right.expiresAt, source: right.source }), expiresAt: right.expiresAt, source: right.source });
+        room: body.room, expiresAt: right.expiresAt, source }), expiresAt: right.expiresAt, source });
   }
   const account = path === receiptPath
     ? await services.auth.accountForToken(sessionToken(request)) : null;
@@ -80,14 +82,24 @@ export async function routeManagedSubscriptions(request: Request,
     return json(400, { error: "A signed Apple receipt is required." });
   }
   try {
-    const receipt = path === receiptPath ? await billing.receipts.transaction(signed)
-      : await billing.receipts.notification(signed);
+    let sandbox = false;
+    let receipt;
+    if (path !== receiptPath) receipt = await billing.receipts.notification(signed);
+    else {
+      // Production verification is tried first; only a signed sandbox purchase falls through.
+      try { receipt = await billing.receipts.transaction(signed); }
+      catch (error) {
+        if (!billing.receipts.sandboxTransaction) throw error;
+        receipt = await billing.receipts.sandboxTransaction(signed);
+        sandbox = true;
+      }
+    }
     if (!receipt || !isManagedSubscription(receipt)) return json(200, { accepted: false });
     const owner = (account ?? receipt.appAccountToken)?.toLowerCase();
     if (!owner || owner.toLowerCase() !== receipt.appAccountToken?.toLowerCase()) {
       return json(403, { error: "The purchase is linked to a different GrantTap account." });
     }
-    const accepted = await ledger.acceptVerified(owner, receipt);
+    const accepted = sandbox ? await ledger.acceptSandbox(owner, receipt) : await ledger.acceptVerified(owner, receipt);
     return json(200, { accepted, entitlement: await ledger.entitlement(owner) });
   } catch { return json(400, { error: "Apple could not verify this receipt." }); }
 }

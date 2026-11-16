@@ -17,6 +17,11 @@ it("uses verified account entitlement and a session-bound device, not public cla
  expect(contexts[0].device).not.toContain(token);
  db.sqlite.prepare("UPDATE account_beta_relay_grants SET revoked_at=1 WHERE account_id=?").run(account);
  await service!.http(req,response); expect(contexts[1].category).toBe("registered");
+ db.sqlite.prepare(`INSERT INTO account_sandbox_subscriptions(original_id,account_id,transaction_id,product_id,seat_limit,purchase_date,signed_date,expires_at)
+  VALUES('o',?,'t','com.ziborov.granttap.personal.solo.monthly',2,1,1,?)`).run(account,Date.now()+60000);
+ await service!.http(req,response); expect(contexts[2].category).toBe("beta");
+ db.sqlite.prepare("DELETE FROM account_sandbox_subscriptions").run();
+ contexts.splice(2,1);
  req.headers.cookie="";await service!.http(req,response);expect(contexts[2].category).toBe("anonymous");
  db.sqlite.close();
 });

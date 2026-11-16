@@ -29,18 +29,19 @@ describe("account beta relay grant", () => {
     }), auth, undefined, grants);
 
     expect((await read())?.status).toBe(401);
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: null });
-    await db.prepare("INSERT INTO account_beta_relay_grants(account_id,expires_at) VALUES(?,?)")
-      .bind("other", 50_000).run();
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: null });
-    await db.prepare("INSERT INTO account_beta_relay_grants(account_id,expires_at) VALUES(?,?)")
-      .bind("owner", 50_000).run();
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: 50_000 });
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: null, trial: null });
+    await db.prepare("INSERT INTO account_beta_relay_grants(account_id,expires_at,trial_started_at) VALUES(?,?,?)")
+      .bind("other", 50_000, 1_000).run();
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: null, trial: null });
+    await db.prepare("INSERT INTO account_beta_relay_grants(account_id,expires_at,trial_started_at) VALUES(?,?,?)")
+      .bind("owner", 50_000, 1_000).run();
+    const trial = { startedAt: 1_000, endsAt: 1_000 + 7 * 86400_000, exempt: false };
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: 50_000, trial: { ...trial, active: true } });
     now = 50_000;
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: null });
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: null, trial: { ...trial, active: false } });
     now = 1_000;
     await db.prepare("UPDATE account_beta_relay_grants SET revoked_at=? WHERE account_id=?")
       .bind(2_000, "owner").run();
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: null });
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: null, trial: { ...trial, active: false } });
   });
 });

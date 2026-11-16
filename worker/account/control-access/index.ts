@@ -4,7 +4,7 @@ import { boundedJSON, json, sessionToken, UUID } from "../http";
 import { ManagedSubscriptions } from "../subscriptions";
 import type { ManagedBilling } from "../subscriptions/api";
 import { reconcileSubscription } from "../subscriptions/reconcile";
-import { signManagedTicket } from "../subscriptions/tickets";
+import { signManagedTicket, ticketSource } from "../subscriptions/tickets";
 import { AccountMachineEndpoints, validControlKey, validControlRoom } from "./machine-endpoints";
 export { AccountMachineEndpoints } from "./machine-endpoints";
 
@@ -53,7 +53,8 @@ async function controllerAdmission(request: Request, services: ControlServices, 
   if (!services.billing || services.billing.signingKey.length < 32) {
     return json(503, { error: "Account access verification is unavailable." });
   }
+  const source = ticketSource(right);
   return json(200, { ticket: signManagedTicket(services.billing.signingKey, { version: 2, role: "phone",
     accountId, computerId: body.computerId, publicKey: body.publicKey, room: body.room,
-    expiresAt: right.expiresAt, source: right.source }), expiresAt: right.expiresAt, source: right.source });
+    expiresAt: right.expiresAt, source }), expiresAt: right.expiresAt, source });
 }

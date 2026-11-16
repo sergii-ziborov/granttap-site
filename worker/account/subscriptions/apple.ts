@@ -4,6 +4,8 @@ import type { JWSTransactionDecodedPayload, AppTransaction } from "@apple/app-st
 export interface AppleReceipts {
   appTransaction?(signedData: string): Promise<AppTransaction>;
   transaction(signedData: string): Promise<JWSTransactionDecodedPayload>;
+  /** Sandbox purchases from TestFlight and App Review; never recorded as production plans. */
+  sandboxTransaction?(signedData: string): Promise<JWSTransactionDecodedPayload>;
   notification(signedData: string): Promise<JWSTransactionDecodedPayload | null>;
   refresh?(originalId: string): Promise<JWSTransactionDecodedPayload[]>;
 }
@@ -17,6 +19,7 @@ export function appleReceipts(roots: Buffer[]): AppleReceipts {
   return {
     appTransaction: data => sandbox.verifyAndDecodeAppTransaction(data),
     transaction: data => verifier.verifyAndDecodeTransaction(data),
+    sandboxTransaction: data => sandbox.verifyAndDecodeTransaction(data),
     notification: async data => {
       const outer = await verifier.verifyAndDecodeNotification(data);
       const transaction = outer.data?.signedTransactionInfo;

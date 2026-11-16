@@ -2,11 +2,13 @@ import { createHash } from 'node:crypto';
 import { isIP } from 'node:net';
 import { ManagedSubscriptions } from '../worker/account/subscriptions/index.ts';
 import { sessionToken } from '../worker/account/http.ts';
+import { ticketSource } from '../worker/account/subscriptions/tickets.ts';
+import { trialPolicy } from '../worker/account/testflight/trial.ts';
 import { clientAccessFromEnv } from './hostwatch-client.mjs';
 
 export function accountClientAccess({ db, auth, machines, env = process.env, adapter = clientAccessFromEnv(env), observe = (_account) => { void _account; } }) {
   if (!adapter) return null;
-  const ledger = new ManagedSubscriptions(db);
+  const ledger = new ManagedSubscriptions(db, Date.now, trialPolicy(env));
   const trusted = new Set((env.HOSTWATCH_TRUSTED_PROXY_IPS ?? '').split(','));
   async function identity(req) {
     const headers = new Headers();
@@ -24,7 +26,7 @@ export function accountClientAccess({ db, auth, machines, env = process.env, ada
     if (!account) return { category: 'anonymous', clientIp };
     observe(account);
     const right = await ledger.entitlement(account);
-    return { category: right?.source === 'subscription' ? 'subscriber' : right?.source === 'beta' ? 'beta' : 'registered',
+    return { category: !right ? 'registered' : ticketSource(right) === 'subscription' ? 'subscriber' : 'beta',
       account, device, clientIp, expiresAt: Math.min(Date.now() + 30000, right?.expiresAt ?? Infinity) };
   }
   return {
