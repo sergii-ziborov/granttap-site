@@ -28,9 +28,9 @@ function AccessGate({ status, error, retry }: { status: string; error: string; r
       ? <><a className="gt-primary" href="/account?returnTo=control">Sign in or create an account →</a>
         <p className="gt-muted">Use the same account as your GrantTap computers.</p></>
       : status === "subscription" ? <><h2>GrantTap access is required</h2>
-        <p>An active subscription, eligible subscription trial or verified TestFlight access unlocks control.</p>
+        <p>An active subscription, an eligible subscription trial or an active TestFlight trial unlocks control.</p>
         <div className="gt-actions"><a className="gt-primary" href="/pricing">View plans</a><a href="/account">Manage account</a></div>
-        <p className="gt-muted">Subscribe in GrantTap for iPhone or iPad from the App Store, then check again. Eligible subscriptions include a 7-day trial. Official TestFlight testing does not require a purchase or consume this trial.</p>
+        <p className="gt-muted">Subscribe in GrantTap for iPhone or iPad from the App Store, then check again. Eligible subscriptions include a 7-day trial. TestFlight builds include a separate 7-day trial; after it, a subscription is required.</p>
         <button onClick={retry}>Check again</button></>
       : <><p role="alert">{error || "Account verification is temporarily unavailable."}</p><button onClick={retry}>Retry</button></>}
     <BrowserSafety compact />
@@ -60,7 +60,7 @@ function Workspace({ account, connect, forget }: WorkspaceProps) {
         aria-current={section === item && !current ? "page" : undefined} onClick={() => choose(item)}>
         <span aria-hidden="true">{["ϟ", "▤", "⌘", "▥", "▣"][index]}</span>{item}{item === "Now" && pending.length > 0 && <b>{pending.length}</b>}</button>)}</></nav>
       <div className="gt-sidebar-bottom"><a href="/support">Help & FAQ ↗</a><a href="/account">Account ↗</a>
-        <small>{account.source === "beta" ? "TestFlight access included" : "Subscription verified"}</small></div>
+        <small>{account.source === "beta" ? "TestFlight access" : "Subscription verified"}</small></div>
     </aside>
     <div className="gt-main"><header className="gt-toolbar"><h1>{current ? "Task" : section}</h1>
       <div className="gt-relay-state" data-connected={Object.values(view.connections).includes("connected")}><i />{Object.values(view.connections).includes("connected") ? "Relay connected" : "Relay not connected"}</div></header>

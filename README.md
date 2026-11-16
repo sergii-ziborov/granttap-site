@@ -120,9 +120,10 @@ granttap setup
 3. Open Now to see active work and decisions. For a direct device link instead,
    choose **Add a device** in the connection card and scan its one-time QR.
 
-Managed hosting requires a GrantTap account with verified subscription or official
-testing access. QR pairing creates a direct device link; it does not grant managed
-service rights. Local control and an own relay use the separate Mac Local license.
+Managed hosting requires a GrantTap account with a verified subscription. TestFlight
+builds include a 7-day trial per account; after it, a subscription is required. QR
+pairing creates a direct device link; it does not grant managed service rights.
+Local control and an own relay use the separate Mac Local license.
 Passkey sign-in can also approve a coding-app connection on a Mac with the local
 bridge. Joining the Account Mesh and approving a coding app are different
 steps. [Connection
@@ -246,7 +247,7 @@ TestFlight beta by invitation.
 ### Browser control (Beta)
 
 The [browser client](https://granttap.com/control) uses the same GrantTap account
-passkey and requires a verified subscription or official test entitlement. Pair
+passkey and requires a verified subscription or an active TestFlight trial. Pair
 each computer explicitly. The browser saves encryption keys in its own storage;
 website code running in that origin can access them, so it offers weaker key
 isolation than the native app's protected storage. Pair only a browser you trust.
