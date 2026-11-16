@@ -32,11 +32,13 @@ device. At most five codes can be outstanding per account. Deleting the account
 invalidates all codes. The QR grants the whole account, so a computer-only QR
 and a role-limited Project Mesh invite remain separate choices in the app.
 
-`GET /api/account/beta-relay` returns the expiry of an operator-issued relay
-tester grant for the authenticated account, or `null`. A grant never creates a
-subscription and cannot be self-issued through HTTP. The Hetzner SQLite grant
-is revoked by setting `revoked_at` or expires at `expires_at`; the Apple client
-rechecks it while using managed transport. The account session identifies the
+`GET /api/account/beta-relay` returns the expiry of the relay tester grant for
+the authenticated account, or `null`, together with its `trial`. A grant never
+creates a subscription and cannot be self-issued through HTTP. The Hetzner
+SQLite grant is revoked by setting `revoked_at`, expires at `expires_at`, and
+ends seven days after `trial_started_at` unless the account is trial-exempt
+(see `testflight/README.md`); the Apple client rechecks it while using managed
+transport. The account session identifies the
 owner, so a client-provided account ID cannot select another grant.
 
 The Worker serves Apple's `webcredentials` association file at
