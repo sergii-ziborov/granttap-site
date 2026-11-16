@@ -7,6 +7,8 @@ export type ArticleText = {
   intro: string[];
   sections: { heading: string; paragraphs: string[] }[];
   screenshotCaption?: string;
+  /** Describes the cover for assistive technology; without it the cover is decorative. */
+  coverAlt?: string;
   illustrationCaption?: string;
   additionalIllustrationCaption?: string;
   closing: string;

@@ -61,7 +61,7 @@ export function BlogArticleView({ article, articles, locale }: { article: BlogAr
         <p className="blog-deck">{t.summary}</p>
       </div>
       <p className="section-shell blog-byline"><a href={blogHref("/about", locale)}>GrantTap</a> · {locale === "ru" ? "Опубликовано" : "Published"} <time dateTime={articlePublicationDate(article)}>{articlePublicationDate(article)}</time>{articlePublicationDate(article) !== article.date && <span> · {locale === "ru" ? "Слот архива" : "Archive slot"}: {article.date}</span>}</p>
-      <figure className="blog-article-cover section-shell"><Image src={article.cover} alt="" width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{article.screenshot
+      <figure className="blog-article-cover section-shell"><Image src={article.cover} alt={t.coverAlt ?? ""} width={1600} height={900} priority unoptimized />{article.generatedCover && <figcaption><strong className="blog-visual-label">{locale === "ru" ? "Иллюстрация" : "Editorial illustration"}</strong>{article.screenshot
         ? (locale === "ru" ? "Образ статьи создан специально для этого материала. Настоящие снимки GrantTap ниже имеют отдельные подписи." : "Created for this story. Actual GrantTap captures below are identified separately in their captions.")
         : (locale === "ru" ? "Сгенерированная иллюстрация к материалу. Она передаёт идею статьи и не является экраном приложения." : "AI-generated editorial illustration of the story's ideas, not an application screenshot.")}</figcaption>}</figure>
       <ReadingGrid className="blog-reading-grid section-shell" railClassName="blog-article-rail"

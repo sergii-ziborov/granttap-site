@@ -145,10 +145,11 @@ help](https://granttap.com/support) walks through both.
 - [Pricing and availability](https://granttap.com/pricing) — current Personal
   tiers and the status of the Mac release.
 
-GrantTap 1.0 for iPhone and iPad is a free download on the
-[App Store](https://apps.apple.com/app/id6809739366) (since 13 November 2026);
-Watch is a companion through iPhone. The Mac app is available in TestFlight by
-invitation. US prices are Personal $4.99/month for 2 publishing computers,
+GrantTap for iPhone and iPad is a free download on the
+[App Store](https://apps.apple.com/app/id6809739366) (since 13 November 2026;
+version 1.0.1 since 15 November); Watch is a companion through iPhone. GrantTap
+1.0.1 for Mac was submitted to App Review on 15 November and is available in
+TestFlight by invitation until Apple publishes it. US prices are Personal $4.99/month for 2 publishing computers,
 Personal Plus $7.99 for 5, and Fleet $13.99 for 15, sold through Apple in the
 iPhone and iPad app. Mac Local is $39.99 once for local control and your own
 relay, bought in the Mac app. An active Personal plan covers the managed Mac
@@ -273,10 +274,11 @@ provider sign-in/update/restart, cache, Files/Agents, existing Codex automations
 searchable workspaces, request recovery and the supported provider boundaries.
 Support in both languages and provider pages point to that reference.
 
-The documentation basis is native build 289 (version 1.0.1, submitted to App
-Review on 14 November) and public granttap-mcp 0.8.177 (npm, 14 November).
-Version 1.0 (build 273) for iPhone and iPad has been on the App Store since
-13 November; the Mac app remains a TestFlight build by invitation.
+The documentation basis is native build 289 (version 1.0.1 for iPhone and iPad,
+on the App Store since 15 November) and public granttap-mcp 0.8.177 (npm,
+14 November). Version 1.0 (build 273) was published on 13 November. Version
+1.0.1 for Mac (build 291) was submitted to App Review on 15 November and remains
+a TestFlight build by invitation until Apple publishes it.
 `app/ProductOffer` holds the App Store state: `releaseAvailability.ios` is `live`
 with `appStoreListingURL`, so every iPhone install action, the home availability
 card and `/iphone` use the App Store link and Safari's Smart App Banner. Original dates
@@ -290,6 +292,15 @@ configuration, database migrations and API compatibility. Each has at least
 These are original workshops prepared on November 5, not earlier-day news.
 See [editorial provenance](docs/editorial/practical2026-five) for the source links,
 archive metadata and the fifteen original prompts and asset paths.
+
+### November 14–16 stories
+
+Three bilingual stories accompany the App Store release: [GrantTap for iPhone
+and iPad is on the App Store](https://granttap.com/blog/granttap-iphone-ipad-app-store-launch),
+[When a coding agent hits its subscription limit](https://granttap.com/blog/granttap-subscription-limits-auto-continue)
+and [Mesh: one project across repositories and computers](https://granttap.com/blog/granttap-mesh-repositories-computers).
+Each has at least 2,000 body words per language and three Grok-generated
+illustrations; see [their editorial record](docs/editorial/november2026-launch).
 
 ## Website appearance and discovery
 

@@ -1,6 +1,9 @@
 import type { BlogArticle } from "./articleTypes";
 
 const editorialPaths: Record<string, string[]> = {
+  "granttap-iphone-ipad-app-store-launch": ["granttap-subscription-limits-auto-continue", "granttap-mesh-repositories-computers", "control-claude-code-codex-iphone-granttap"],
+  "granttap-subscription-limits-auto-continue": ["granttap-iphone-ipad-app-store-launch", "granttap-choose-ready-agent-task-route", "granttap-devices-runtime-login-cache-maintenance"],
+  "granttap-mesh-repositories-computers": ["granttap-iphone-ipad-app-store-launch", "project-mesh-memory-handoff-less-duplicate-work", "move-a-task-without-losing-work"],
   "move-a-task-without-losing-work": ["project-mesh-memory-handoff-less-duplicate-work", "task-continuity-beyond-an-agent-session", "messages-that-wait-for-the-computer"],
   "messages-that-wait-for-the-computer": ["control-claude-code-codex-iphone-granttap", "move-a-task-without-losing-work", "local-cloud-hybrid-agent-boundaries"],
   "cortex-loom-inside-granttap-token-economy": ["project-mesh-memory-handoff-less-duplicate-work", "granttap-governance-native-enforcement-research", "cortex-loom-evidence-per-token"],

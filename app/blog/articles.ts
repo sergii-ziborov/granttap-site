@@ -3,6 +3,7 @@ import { seoGuideStories } from "./stories/seo2026-guides";
 import { octoberNextFiveStories } from "./stories/october2026-next-five";
 import { octoberBackfillStories } from "./stories/october2026-backfill";
 import { novemberStories } from "./stories/november2026";
+import { novemberLaunchStories } from "./stories/november2026-launch";
 import { cortexResearch, meshResearch, governanceResearch } from "./stories/research";
 import { taskTransferStory, waitingMessagesStory } from "./stories/october16";
 import type { BlogArticle } from "./articleTypes";
@@ -27,6 +28,7 @@ export type { BlogArticle, BlogLocale } from "./articleTypes";
 
 
 export const articles: BlogArticle[] = [
+  ...novemberLaunchStories,
   ...seoGuideStories,
   ...novemberStories, ...octoberBackfillStories,
   ...octoberNextFiveStories,

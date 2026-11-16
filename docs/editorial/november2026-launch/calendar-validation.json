@@ -1,0 +1,60 @@
+{
+  "preparedOn": "2026-11-16",
+  "timeZone": "Asia/Jerusalem",
+  "articles": [
+    {
+      "date": "2026-11-16",
+      "slug": "granttap-iphone-ipad-app-store-launch",
+      "publishedOn": "2026-11-16",
+      "title": {
+        "en": "GrantTap for iPhone and iPad is on the App Store",
+        "ru": "GrantTap для iPhone и iPad вышел в App Store"
+      },
+      "words": {
+        "en": 2402,
+        "ru": 2073
+      },
+      "images": [
+        "/blog/november2026-launch/launch-cover.webp",
+        "/blog/november2026-launch/launch-surfaces.webp",
+        "/blog/november2026-launch/launch-setup.webp"
+      ]
+    },
+    {
+      "date": "2026-11-15",
+      "slug": "granttap-subscription-limits-auto-continue",
+      "publishedOn": "2026-11-16",
+      "title": {
+        "en": "When a coding agent hits its subscription limit",
+        "ru": "Когда coding-агент упирается в лимит подписки"
+      },
+      "words": {
+        "en": 2432,
+        "ru": 2061
+      },
+      "images": [
+        "/blog/november2026-launch/limits-cover.webp",
+        "/blog/november2026-launch/limits-windows.webp",
+        "/blog/november2026-launch/limits-continue.webp"
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "slug": "granttap-mesh-repositories-computers",
+      "publishedOn": "2026-11-16",
+      "title": {
+        "en": "Mesh: one project across repositories and computers",
+        "ru": "Mesh: один проект на несколько репозиториев и компьютеров"
+      },
+      "words": {
+        "en": 2408,
+        "ru": 2057
+      },
+      "images": [
+        "/blog/november2026-launch/mesh-cover.webp",
+        "/blog/november2026-launch/mesh-bindings.webp",
+        "/blog/november2026-launch/mesh-helper.webp"
+      ]
+    }
+  ]
+}

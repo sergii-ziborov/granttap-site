@@ -1,0 +1,100 @@
+{
+  "mode": "Grok CLI image generation",
+  "preparedOn": "2026-11-16",
+  "tool": "grok 1.0.77, headless (-p) with its image generation tool",
+  "command": "grok -p \"Use your image generation tool to create one image. Subject: <subject> Style: <style> Save it in the current directory as image.png. Do not write code to draw it; use image generation. Reply with the saved file path only.\" --permission-mode bypassPermissions --max-turns 12",
+  "conversion": "cwebp -q 82 -m 6 -metadata none, native 1280x720",
+  "style": "Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+  "images": [
+    {
+      "key": "launch-cover",
+      "destination": "public/blog/november2026-launch/launch-cover.webp",
+      "subject": "An iPhone standing upright on a small stone pedestal at the left; a thin glowing orange thread runs from it through a translucent sealed glass prism in the middle to two small desktop computers on low plinths at the right. One soft orange approval token rests on the phone's screen as a simple rounded shape. Shows a phone approving work on connected computers through an encrypted relay.",
+      "prompt": "An iPhone standing upright on a small stone pedestal at the left; a thin glowing orange thread runs from it through a translucent sealed glass prism in the middle to two small desktop computers on low plinths at the right. One soft orange approval token rests on the phone's screen as a simple rounded shape. Shows a phone approving work on connected computers through an encrypted relay. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "84377680cbb23154a396525a6dbc3accd8f0c9b747a28458dc4241d214d41ad7",
+      "webpSha256": "cdce63b10e31f3a9b484ecd36285a5b4fd163ed34b293d10c5bb18189fef4454",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "launch-surfaces",
+      "destination": "public/blog/november2026-launch/launch-surfaces.webp",
+      "subject": "A smartphone standing on a stone plinth beside three shallow paper trays arranged in a gentle arc: the first tray holds a single bright orange rounded token that seems to wait for attention, the second holds a neat stack of blank paper cards, the third holds a small network of graphite beads joined by thin threads. Shows one phone giving three views of the same work: what needs you now, the tasks, and the project mesh.",
+      "prompt": "A smartphone standing on a stone plinth beside three shallow paper trays arranged in a gentle arc: the first tray holds a single bright orange rounded token that seems to wait for attention, the second holds a neat stack of blank paper cards, the third holds a small network of graphite beads joined by thin threads. Shows one phone giving three views of the same work: what needs you now, the tasks, and the project mesh. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "7c8f80427ba2746f4d4e2f2ff554d204a2288fff14098e745be98e00926337ec",
+      "webpSha256": "5defb1a20c7f153a88fffff59c4bdcb48641558b0563239c71b5f4f77311b631",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "launch-setup",
+      "destination": "public/blog/november2026-launch/launch-setup.webp",
+      "subject": "A closed laptop-shaped graphite block on a low stone plinth; a small sealed orange parcel is being lowered into it on a thin thread from above, and a second thin orange thread runs from the laptop across the paper floor to a smartphone resting on a small stand at the right, where a soft round key-like token glows. Shows installing a helper package on a computer and linking it to a phone.",
+      "prompt": "A closed laptop-shaped graphite block on a low stone plinth; a small sealed orange parcel is being lowered into it on a thin thread from above, and a second thin orange thread runs from the laptop across the paper floor to a smartphone resting on a small stand at the right, where a soft round key-like token glows. Shows installing a helper package on a computer and linking it to a phone. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "b0a20e33266b7cebae4ecd37003f5df4cb5b8511ad9e9b2e4c14769e49a1d65d",
+      "webpSha256": "97a2e5581f05ed6ea703afbf0caba14f2fc890883f7e507e95eb6027ce2cc40c",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "limits-cover",
+      "destination": "public/blog/november2026-launch/limits-cover.webp",
+      "subject": "A large shallow ring gauge made of layered paper lying flat on a warm ivory surface, its track mostly graphite with only a short bright orange arc remaining; beside it a small desktop computer on a plinth with a calm dimmed screen, waiting, and a smartphone leaning on a stone block. Shows an agent waiting while its subscription window is nearly used up.",
+      "prompt": "A large shallow ring gauge made of layered paper lying flat on a warm ivory surface, its track mostly graphite with only a short bright orange arc remaining; beside it a small desktop computer on a plinth with a calm dimmed screen, waiting, and a smartphone leaning on a stone block. Shows an agent waiting while its subscription window is nearly used up. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "7a1194ea6a321e2fc1be9db8ef05c581cadbb4079088f70505662f14673612ad",
+      "webpSha256": "c9632eef942367dded189e1bf5e33a1852568e735aa568bb8afff62c05a05228",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "limits-windows",
+      "destination": "public/blog/november2026-launch/limits-windows.webp",
+      "subject": "Two concentric circular paper tracks seen from slightly above: a short inner track and a much longer outer track, each with its own small orange marker bead at a different position, and a tiny sand timer made of glass and stone resting between them. Shows a short usage window inside a longer weekly window.",
+      "prompt": "Two concentric circular paper tracks seen from slightly above: a short inner track and a much longer outer track, each with its own small orange marker bead at a different position, and a tiny sand timer made of glass and stone resting between them. Shows a short usage window inside a longer weekly window. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "08ec28451021e03a1f986684934ea2d0b075ec46085f78cb2c7ab4a5d7dcf26a",
+      "webpSha256": "3c7bac3a93d3d9c8813f12968ca145a1116a96f0d0ac4176f25bcaf53df2e76c",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "limits-continue",
+      "destination": "public/blog/november2026-launch/limits-continue.webp",
+      "subject": "A narrow paper path leading to a small arched stone gate that is just opening, warm light spilling through it; a single orange capsule waits at the gate ready to roll forward, and next to the path stands a small physical toggle switch on a stone pedestal. Shows work resuming automatically once there is room again, with a switch to turn that off.",
+      "prompt": "A narrow paper path leading to a small arched stone gate that is just opening, warm light spilling through it; a single orange capsule waits at the gate ready to roll forward, and next to the path stands a small physical toggle switch on a stone pedestal. Shows work resuming automatically once there is room again, with a switch to turn that off. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "64f3476f06e2b0aeaf6513c2ffd399859d74569608b76b37e98f4987561dec98",
+      "webpSha256": "a54d7bf00a267f9fed1ca218485a815ba20a8a8deba4084211a7aaee4b40af56",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "mesh-cover",
+      "destination": "public/blog/november2026-launch/mesh-cover.webp",
+      "subject": "A delicate woven net of thin orange and graphite threads stretched over a warm ivory paper landscape, holding several small stone blocks of different shapes that stand for code repositories; at two edges of the net stand two different desktop computers on plinths, both attached to the same net. Shows one project spanning several repositories and several computers.",
+      "prompt": "A delicate woven net of thin orange and graphite threads stretched over a warm ivory paper landscape, holding several small stone blocks of different shapes that stand for code repositories; at two edges of the net stand two different desktop computers on plinths, both attached to the same net. Shows one project spanning several repositories and several computers. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "b20c7a90151b60a5e7da5eb339bd446e1c6905bbc30f0c5a580b3a79c30c1273",
+      "webpSha256": "da501524c0ced5246b26039ebe146b6b165c5019d121dde71cf47360b4d6d9ca",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "mesh-bindings",
+      "destination": "public/blog/november2026-launch/mesh-bindings.webp",
+      "subject": "Two separate low stone desks side by side, each with a small computer and a few distinct carved blocks on it; matching blocks on the two desks are linked by thin orange threads that rise and meet at one woven knot floating above, while one block exists on only one desk. Shows the same project repositories bound on each computer separately.",
+      "prompt": "Two separate low stone desks side by side, each with a small computer and a few distinct carved blocks on it; matching blocks on the two desks are linked by thin orange threads that rise and meet at one woven knot floating above, while one block exists on only one desk. Shows the same project repositories bound on each computer separately. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "774947269ce879eb4798d34feae81b46dcae315408f48125e3bf0dfbd8b4845d",
+      "webpSha256": "6fa70daf6b7f00162ea1aa8919de0654bc1f3b70a790fdd9d89ce53134bb2ef1",
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "key": "mesh-helper",
+      "destination": "public/blog/november2026-launch/mesh-helper.webp",
+      "subject": "A large blank paper card standing upright on a plinth like a chat page, with a smaller framed picture card tucked neatly underneath it and tied to it by a short orange ribbon, while a few loose empty frames lie scattered and faded in the background. Shows a helper run such as image generation kept under the chat that started it instead of floating loose.",
+      "prompt": "A large blank paper card standing upright on a plinth like a chat page, with a smaller framed picture card tucked neatly underneath it and tied to it by a short orange ribbon, while a few loose empty frames lie scattered and faded in the background. Shows a helper run such as image generation kept under the chat that started it instead of floating loose. Style: Wide 16:9 landscape editorial illustration in a tactile matte paper and softly lit architectural 3D miniature style: warm ivory and sand background, graphite and stone forms, restrained bright orange accents, precise soft shadows, calm premium magazine composition with generous empty space. Conceptual illustration, not an app screenshot. Absolutely no text, no letters, no numbers, no code, no logos, no brand marks, no QR codes, no watermark, no people, no hands, no faces.",
+      "originalSha256": "1db806c92531e95203914746f78fd941d15ba75e4bfcd25b7c887b77cbfdeb51",
+      "webpSha256": "81aecf1d3e0e81d9869513fc5fc267ded991df4659fc44ef40d6f67b09a758a5",
+      "width": 1280,
+      "height": 720
+    }
+  ]
+}
