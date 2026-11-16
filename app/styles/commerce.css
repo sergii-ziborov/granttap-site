@@ -151,9 +151,10 @@
   margin: 0;
   padding: 16px;
   overflow-x: auto;
+  border: 1px solid var(--line);
   border-radius: 12px;
-  background: #0b0c0e;
-  color: var(--ink);
+  background: var(--code-bg);
+  color: var(--code-ink);
   white-space: pre-wrap;
 }
 

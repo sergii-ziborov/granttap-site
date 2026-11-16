@@ -11,6 +11,9 @@
   --orange-deep: #ad3d21;
   --green: #a8be7d;
   --black: #090a0c;
+  /* Command blocks keep their own pair so a theme never mixes a dark block with dark text. */
+  --code-bg: #0b0c0e;
+  --code-ink: #f5f2ee;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }

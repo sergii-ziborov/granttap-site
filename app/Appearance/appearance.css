@@ -14,12 +14,14 @@ html[data-theme="light"] {
   --panel: #ffffff;
   --panel-raised: #f0ece6;
   --line: #dcd6ce;
-  --orange: #c9471e;
+  --orange: #b9401a;
   --orange-deep: #a93412;
   --accent-ink: #a73716;
-  --green: #657b37;
+  --green: #56692e;
   --black: #f8f6f2;
   --soft-panel: #ffffffed;
+  --code-bg: #f0ece6;
+  --code-ink: #242329;
 }
 html[data-theme="dark"] { color-scheme: dark; }
 .site-theme-picker { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 11px; }
@@ -71,11 +73,22 @@ html[data-theme="light"] .button-primary,
 html[data-theme="light"] .site-language-links a[aria-current="true"],
 html[data-theme="light"] .language-toggle button.active { color: #fff; }
 html[data-theme="light"] .offer-card-heading span { color: #8e3616; }
+/* Home sections drawn on fixed dark surfaces in the dark theme use light surfaces here,
+   so their theme-colored text keeps WCAG AA contrast. */
+html[data-theme="light"] .mesh-route span { background: var(--panel-raised); }
+html[data-theme="light"] .mesh-questions article,
+html[data-theme="light"] .security-facts article { background: var(--panel); }
+html[data-theme="light"] .security-section { background: radial-gradient(circle at 50% 5%, #56692e14, transparent 40rem), var(--paper); }
+html[data-theme="light"] .availability-card { border-color: #dec1ac; background: radial-gradient(circle at 90% 20%, #b9401a1a, transparent 24rem), #fff0e7; }
+html[data-theme="light"] .availability-pill,
+html[data-theme="light"] .history-gallery figcaption small,
+html[data-theme="light"] .mesh-gallery figcaption small,
+html[data-theme="light"] .desktop-facts article > span { color: var(--accent-ink); }
 html[data-theme="light"] .gt-control { --gt-bg: #f8f6f2; --gt-panel: #fff; --gt-text: #242329; --gt-muted: #59585f; --gt-line: #dcd6ce; --gt-accent: #a73716; color-scheme: light; }
 html[data-theme="dark"] .gt-control { --gt-bg: #1c1f20; --gt-panel: #25292a; --gt-text: #ebece5; --gt-muted: #a5a89f; --gt-line: #3a403e; --gt-accent: #ef8858; color-scheme: dark; }
 
 @media (prefers-color-scheme: light) {
-  html:not([data-theme]) { color-scheme: light; --ink: #242329; --muted: #59585f; --dim: #6c6970; --paper: #f8f6f2; --panel: #fff; --panel-raised: #f0ece6; --line: #dcd6ce; --orange: #c9471e; --orange-deep: #a93412; --accent-ink: #a73716; --green: #657b37; --black: #f8f6f2; --soft-panel: #ffffffed; }
+  html:not([data-theme]) { color-scheme: light; --ink: #242329; --muted: #59585f; --dim: #6c6970; --paper: #f8f6f2; --panel: #fff; --panel-raised: #f0ece6; --line: #dcd6ce; --orange: #b9401a; --orange-deep: #a93412; --accent-ink: #a73716; --green: #56692e; --black: #f8f6f2; --soft-panel: #ffffffed; --code-bg: #f0ece6; --code-ink: #242329; }
 }
 @media (max-width: 640px) {
   .site-header { gap: 10px; flex-wrap: wrap; padding-block: 12px; }
