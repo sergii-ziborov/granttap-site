@@ -31,11 +31,11 @@ type VersionInReview = { version: string; submittedOn: string };
  * purchase screen is in the Mac app, so it follows the Mac app's availability.
  */
 export const releaseAvailability = {
-  checkedOn: "2026-11-14",
-  ios: { state: "live" as StoreState, storeURL: appStoreListingURL as string | null, submittedOn: "2026-11-11",
-    version: "1.0", inReview: { version: "1.0.1", submittedOn: "2026-11-14" } as VersionInReview | null },
-  mac: { state: "invitation" as StoreState, storeURL: null as string | null, submittedOn: null as string | null,
-    version: "1.0", inReview: null as VersionInReview | null },
+  checkedOn: "2026-11-16",
+  ios: { state: "live" as StoreState, storeURL: appStoreListingURL as string | null, submittedOn: "2026-11-14",
+    version: "1.0.1", inReview: null as VersionInReview | null },
+  mac: { state: "review" as StoreState, storeURL: null as string | null, submittedOn: "2026-11-15" as string | null,
+    version: "1.0.1", inReview: null as VersionInReview | null },
   managedPurchases: "live" as StoreState, macLocalPurchase: "invitation" as StoreState,
 } as const;
 

@@ -20,7 +20,7 @@ actual provenance; they are never relabelled as new. Device versions, codes and
 measurements in fixtures are examples. Separate ImageGen art is labelled as art.
 Do not replace a product screenshot with an AI-drawn imitation.
 
-Behavior source basis: native d9553807 (build 289, version 1.0.1, submitted to App Review; version 1.0, build 273, is on the App Store), MCP 5d81b86 (0.8.177 on npm),
+Behavior source basis: native d9553807 (build 289, version 1.0.1, on the App Store since November 15), MCP 5d81b86 (0.8.177 on npm),
 and the website revision containing this file. Captures do not establish live
 provider authentication, successful user-project transfer or physical-device QA.
 Native bundled Learn content is exported with `npm run guide:export -- --apple-root /path/to/apple`. This snapshot documents current CLI queue behavior without promising mid-turn steering. License and purchase instructions link to the canonical full legal documents.

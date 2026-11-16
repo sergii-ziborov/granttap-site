@@ -6,8 +6,8 @@ import { appStoreListingURL, availabilityNote, installationAction, releaseAvaila
 test("iPhone page links the App Store release, shows real captures and answers common questions", async () => {
   const { container } = render(await IPhonePage({ searchParams: Promise.resolve({}) }));
   expect(screen.getByRole("heading", { level: 1, name: "GrantTap for iPhone" })).toBeTruthy();
-  expect(screen.getByText(/1\.0 for iPhone and iPad is a free download on the App Store/)).toBeTruthy();
-  expect(screen.getByText(/1\.0\.1 was submitted to App Review on November 14, 2026/)).toBeTruthy();
+  expect(screen.getByText(/1\.0\.1 for iPhone and iPad is a free download on the App Store/)).toBeTruthy();
+  expect(screen.queryByText(/was submitted to App Review/)).toBeNull();
   expect(screen.getByRole("link", { name: "Download on the App Store" }).getAttribute("href")).toBe(appStoreListingURL);
   const gallery = screen.getByRole("heading", { name: "The real app" }).parentElement!;
   expect(within(gallery).getAllByRole("img")).toHaveLength(6);
@@ -30,7 +30,7 @@ test("iPhone metadata has a full title, self canonical and the Smart App Banner 
   render(await IPhonePage({ searchParams: Promise.resolve({ lang: "ru" }) }));
   expect(screen.getByRole("heading", { level: 1, name: "GrantTap для iPhone" })).toBeTruthy();
   expect(screen.getByText(/бесплатная загрузка в App Store/)).toBeTruthy();
-  expect(screen.getByText(/1\.0\.1 отправлена в App Review 14 ноября 2026/)).toBeTruthy();
+  expect(screen.queryByText(/отправлена в App Review/)).toBeNull();
 });
 
 test("Without a published store URL every install action falls back to an invitation", () => {
@@ -43,5 +43,6 @@ test("Without a published store URL every install action falls back to an invita
     expect(availabilityNote("ru")).toMatch(/по приглашению в TestFlight/);
   } finally { Object.assign(ios, saved); }
   expect(installationAction("en", "mac").label).toBe("Request an invitation");
-  expect(availabilityNote("en", "mac")).toBe("GrantTap for Mac is available by TestFlight invitation.");
+  expect(availabilityNote("en", "mac")).toBe("GrantTap 1.0.1 for Mac was submitted to App Review on November 15, 2026. "
+    + "Until Apple publishes it, builds are available by TestFlight invitation.");
 });
