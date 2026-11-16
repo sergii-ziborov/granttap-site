@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { localizedMetadata } from "../SearchMetadata";
 import Image from "next/image";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
-import { installationAction, launchOffer, localizedProductPath, usdPrice } from "../ProductOffer";
+import { availabilityNote, installationAction, launchOffer, localizedProductPath, usdPrice } from "../ProductOffer";
 
 type Params = { searchParams: Promise<{ lang?: string }> };
 
@@ -18,7 +18,7 @@ const content = {
   en: {
     title: "GrantTap for Mac",
     intro: "Your coding-agent tasks, history and project rules on Mac, with linked iPhone and iPad clients.",
-    availability: "Available in TestFlight by invitation. GrantTap for iPhone and iPad is a free download on the App Store.",
+    availability: "GrantTap for iPhone and iPad is a free download on the App Store.",
     installTitle: "How the Mac app connects",
     steps: [
       "Install GrantTap for Mac. Sign in with the same GrantTap passkey to manage linked computers; a controller-only Mac needs no local MCP.",
@@ -34,7 +34,7 @@ const content = {
   ru: {
     title: "GrantTap для Mac",
     intro: "Задачи coding-агентов, история и правила проекта на Mac со связанными iPhone и iPad.",
-    availability: "Доступно в TestFlight по приглашению. GrantTap для iPhone и iPad бесплатно загружается из App Store.",
+    availability: "GrantTap для iPhone и iPad бесплатно загружается из App Store.",
     installTitle: "Как подключается Mac-приложение",
     steps: [
       "Установите GrantTap для Mac. Войдите с тем же passkey GrantTap для управления связанными компьютерами: Mac только в роли контроллера не требует локального MCP.",
@@ -65,7 +65,7 @@ export default async function MacPage({ searchParams }: Params) {
     <SiteHeader locale={locale} active="mac" languageControl={<LocaleLinks locale={locale} path="/mac" />} />
     <section className="section-shell mac-page-intro">
       <p className="kicker">Mac · SwiftUI</p><h1>{t.title}</h1><p>{t.intro}</p>
-      <p className="mac-availability">{t.availability}</p>
+      <p className="mac-availability">{availabilityNote(locale, "mac")} {t.availability}</p>
       <div className="mac-page-links"><a className="button button-primary" href={action.href}>{action.label}</a><a href={localizedProductPath("/support", locale)}>{t.support} →</a><a href="https://github.com/sergii-ziborov/granttap/tree/main/apps/macos">{t.source} ↗</a></div>
     </section>
     <section className="section-shell offer-included">
