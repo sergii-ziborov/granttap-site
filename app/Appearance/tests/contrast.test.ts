@@ -64,3 +64,12 @@ test("home sections painted on fixed dark surfaces switch to light surfaces in t
     expect(appearance).toMatch(new RegExp(`html\\[data-theme="light"\\] ${selector.replace(/[.]/g, "\\.")}[^{]*\\{[^}]*background:`));
   }
 });
+
+test("journal links, labels and captions switch to light-theme tokens", () => {
+  const journal = css("public/blog.css");
+  for (const selector of [".blog-prose p a", ".blog-sources a", ".blog-visual-label", ".blog-illustration figcaption", ".blog-article-rail a"]) {
+    expect(journal).toMatch(new RegExp(`html\\[data-theme="light"\\] ${selector.replace(/[.]/g, "\\.")}[^{]*\\{[^}]*color: var\\(--(accent-ink|muted)\\)`));
+  }
+  expect(contrast(light["accent-ink"], light.paper)).toBeGreaterThanOrEqual(4.5);
+  expect(contrast(light.muted, light.panel)).toBeGreaterThanOrEqual(4.5);
+});

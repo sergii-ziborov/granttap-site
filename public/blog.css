@@ -145,3 +145,14 @@
 .blog-practice h3 { font-size: 19px; color: var(--ink); }
 .blog-practice pre { max-width: 100%; overflow: auto; padding: 16px; border-radius: 10px; background: var(--black); border: 1px solid var(--line); font: 13px/1.65 var(--font-mono, monospace); color: var(--ink); }
 @media (max-width: 640px) { .blog-practice { padding: 20px; } }
+/* The fixed colors above suit the dark theme; on light surfaces these keep journal text and links at WCAG AA. */
+html[data-theme="light"] .blog-article-rail a,
+html[data-theme="light"] .blog-graphic figcaption span,
+html[data-theme="light"] .blog-graphic-row>span:nth-child(3),
+html[data-theme="light"] .blog-screenshot figcaption,
+html[data-theme="light"] .blog-illustration figcaption,
+html[data-theme="light"] .blog-related span { color: var(--muted); }
+html[data-theme="light"] .blog-prose p a,
+html[data-theme="light"] .blog-sources a,
+html[data-theme="light"] .blog-visual-label,
+html[data-theme="light"] .blog-graphic-index { color: var(--accent-ink); text-decoration-color: currentColor; }
