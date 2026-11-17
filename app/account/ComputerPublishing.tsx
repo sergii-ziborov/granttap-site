@@ -44,7 +44,7 @@ async function selection(accountId: string, signal?: AbortSignal): Promise<Page>
 
 export function ComputerPublishing({ accountId, locale, machines, busy, onDisconnect }: {
   accountId: string; locale: Locale; machines: Machine[]; busy: boolean;
-  onDisconnect: (machine: Machine) => void;
+  onDisconnect?: (machine: Machine) => void;
 }) {
   const t = copy[locale];
   const [page, setPage] = useState<Page | null>(null);
@@ -89,8 +89,8 @@ export function ComputerPublishing({ accountId, locale, machines, busy, onDiscon
           disabled={busy || saving || !states.has(machine.id)}
           onChange={event => void change(machine.id, event.target.checked)}
           aria-label={`${t.enabled}: ${machine.name}`} />{t.enabled}</label></div>
-      <button type="button" disabled={busy || saving} aria-label={`${t.disconnect} ${machine.name}`}
-        onClick={() => onDisconnect(machine)}>{t.disconnect}</button>
+      {onDisconnect && <button type="button" disabled={busy || saving} aria-label={`${t.disconnect} ${machine.name}`}
+        onClick={() => onDisconnect(machine)}>{t.disconnect}</button>}
     </li>)}</ul>
     {failed && page && <p role="status" className="account-error">{t.failed}</p>}
     <p className="account-boundary">{t.note}</p>

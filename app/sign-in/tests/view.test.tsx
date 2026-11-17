@@ -28,3 +28,18 @@ describe("account token landing", () => {
     expect(screen.queryByRole("link", { name: "Open GrantTap" })).toBeNull();
   });
 });
+
+describe("browser QR landing", () => {
+  it("explains the approval, warns about codes from others and hands off on a click only", async () => {
+    const qr = "#qr=" + "c".repeat(43) + "." + "D".repeat(43);
+    window.history.replaceState(null, "", "/sign-in" + qr);
+    const fetch = vi.spyOn(globalThis, "fetch");
+    render(<SignInPage />);
+    expect((await screen.findByRole("link", { name: "Open GrantTap" })).getAttribute("href")).toBe("granttap://sign-in" + qr);
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe("Approve this sign-in in GrantTap");
+    expect(screen.getByText(/Never approve a code someone sent you/)).toBeTruthy();
+    expect(window.location.hash).toBe("");
+    expect(fetch).not.toHaveBeenCalled();
+    fetch.mockRestore();
+  });
+});

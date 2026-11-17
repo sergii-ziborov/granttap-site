@@ -44,7 +44,7 @@ export function SubscriptionSupport({ locale }: { locale: Locale }) {
     finally { pending.current = false; }
   }
   return <section aria-labelledby="subscription-support-title" className="account-boundary">
-    <h2 id="subscription-support-title">{t.title}</h2>
+    <h3 id="subscription-support-title">{t.title}</h3>
     <p><a href="https://apps.apple.com/account/subscriptions">{t.manage}</a></p>
     <p>{t.note}</p><p>{t.offer}</p>
     {state === "saved" ? <p role="status">{t.saved}</p> : <form onSubmit={event => void submit(event)}>

@@ -1,39 +1,51 @@
 # Account page
 
-`AccountView.tsx` is the browser password, passkey and temporary-key entry point. It uses the account API
-served by Hetzner in production and creates no local pairing credential. The
-iPhone, iPad, and Mac apps can create or join an Account Mesh without any
-computer. Their Devices screens show its linked computers. A local MCP can use
-the same passkey to attach an existing computer; the machine token can update
-its own display name without creating another account entry. The browser lists
-and revokes account links; encrypted recovery offers go directly to the
-requesting phone. QR pairing remains a separate direct-device path.
-This page remains outside the public product-navigation sitemap.
+`AccountView.tsx` is the browser entry point for the GrantTap account. It uses
+the account API served by Hetzner in production (`/api/account/`), keeps the
+session in an HttpOnly cookie and never sees a bearer token. Native clients
+store their bearer in the platform Keychain. The page stays outside the public
+product-navigation sitemap.
 
-The browser receives an HttpOnly session cookie; the account API omits bearer
-tokens from browser responses. Native clients store their bearer token in the
-platform Keychain.
+## Signed out
 
-`SignInMethods` offers one explicit choice between the three sign-in methods,
-in the same order and wording as the native app: Passkey (recommended, the
-default), QR code and Password. The QR method asks the browser for a phone
-passkey (`hints: ["hybrid"]`, so a QR appears for the iPhone camera) and also
-holds the sign-in token form. `AccountPassword` keeps its Sign in / Create
-account choice, explains invalid input beside the affected field, attaches an
-unavailable login to the login field, and shows progress inside the submit
-button without moving the layout. Passkey failures appear beside the passkey
-buttons. Field borders and error text keep at least 3:1 and 4.5:1 contrast in
-both themes, and text sizes follow the browser's font-size setting.
+`SignInMethods` offers one explicit choice between four ways in, passkey first:
 
-`AccountTokenAccess` accepts a temporary token or a trusted QR sign-in link only
-after explicit submission and acknowledgement of browser-code access to decrypted
-messages and input. Redemption preserves grant expiry, usage limits and revocation.
-Cross-device passkey QR remains a system-authenticator option when available.
+- **Passkey** (recommended, default): Face ID, Touch ID or a password manager;
+  "Use a passkey from another device" asks the browser for a hybrid (phone)
+  passkey. Creating an account is a separate, quieter action.
+- **iPhone QR** (`PhoneSignIn`): the page makes an ephemeral NaCl key pair and
+  shows `https://granttap.com/sign-in#qr=<code>.<browserKey>` as a QR
+  (`QrCode`). A signed-in iPhone scans it and approves; the page polls every two
+  seconds and receives a delegated session cookie. Codes renew themselves five
+  times, then wait for a click. If the owner also ticked the key on the phone,
+  the page opens the sealed bundle with its own secret, checks digest, schema
+  and account, and deposits it once (`web-key`).
+- **Password** (`AccountPassword`): sign in or create, feedback beside fields.
+- **Sign-in token** (`AccountTokenAccess`): a temporary token or its link from
+  the app, after explicit acknowledgement of browser-code access.
 
-The browser page links to GrantTap Web and explains browser key storage and its
-weaker isolation. A successful account sign-in returns to `/control` only for the
-single literal `returnTo=control`; arbitrary and duplicate destinations are
-rejected. It never accepts an external return URL.
+A successful sign-in returns to `/control` only for the literal
+`returnTo=control` (`return-path.ts`).
+
+## Signed in
+
+`SignedInAccount` loads `summary`, `devices` and `web-key` and shows sections
+with a section index (a sticky rail on wide screens, wrapping links on phones):
+
+- **Account**: ID with copy, creation date, how browser key storage differs.
+- **Sign-in methods**: passkey count, password login, active sign-in tokens;
+  managing them stays in the app.
+- **Devices** (`Devices`): every session and computer link with kind, sign-in
+  method, last activity and a "This browser" badge; Sign out / Remove and
+  "Remove devices not seen for 30 days" each ask in place (`ConfirmAction`).
+- **Encryption key** (`EncryptionKey`): says whether the account holds the chat
+  key. Without it, computers are listed with "Chats encrypted · key a1b2c3…" and
+  the page explains that GrantTap's servers keep no chat names. The risk text is
+  shown before the owner asks the iPhone for the key and while it is stored;
+  "Remove the key from my account" asks first.
+- **Subscription**: managed publishing per computer and subscription support.
+- **Danger zone**: sign out, delete account. A QR-signed browser cannot delete
+  the account and says how to do it instead.
 
 The `/connect` MCP authorization page uses a fresh passkey assertion from this
 account service to approve a coding app on Mac. That approval issues a local
@@ -48,3 +60,7 @@ offers are confirmed in the native app through StoreKit. Feedback tests live in
 [tests/subscription-support.test.tsx](tests/subscription-support.test.tsx); the
 HTTP, receipt-history and durable-state contract belongs to
 [SubscriptionRetention](../../worker/account/subscription-retention/README.md).
+
+Tests: `tests/coverage/account-view.test.tsx` and `tests/` beside each module.
+Screenshots: `node --import tsx scripts/qa/account-shots.mjs <dir>` after
+`npm run build && npm run build:runtime`.

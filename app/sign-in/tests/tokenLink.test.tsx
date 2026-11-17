@@ -11,3 +11,14 @@ describe("native token handoff", () => {
     }
   });
 });
+
+describe("browser QR handoff", () => {
+  it("passes exactly one code and browser key to the app", async () => {
+    const { nativeHandoff } = await import("../tokenLink");
+    const qr = "#qr=" + "a".repeat(43) + "." + "B".repeat(43);
+    expect(nativeHandoff(qr)).toEqual({ kind: "qr", link: "granttap://sign-in" + qr });
+    for (const text of ["#qr=" + "a".repeat(43), qr + "&x=1", "#qr=" + "a".repeat(42) + "." + "B".repeat(43), "?qr=" + qr.slice(4)]) {
+      expect(nativeHandoff(text)).toBeNull();
+    }
+  });
+});

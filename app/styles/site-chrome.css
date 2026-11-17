@@ -99,13 +99,10 @@
 .reading-rail .legal-index a { width: 100%; min-height: 38px; border-radius: 10px; }
 .legal-contact { padding-block: 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 .legal-contact a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
-.connect-main,
-.account-card { width: min(var(--site-width), calc(100% - var(--site-gutter) * 2)); margin-inline: auto; }
-.connect-card,
-.account-card > * { max-width: 760px; }
+.connect-main { width: min(var(--site-width), calc(100% - var(--site-gutter) * 2)); margin-inline: auto; }
+.connect-card { max-width: 760px; }
 .connect-main { display: block; padding: 52px 0 90px; }
 .connect-card { width: 100%; margin: 0; }
-.account-card { padding: 36px; }
 
 @media (max-width: 1050px) {
   .reading-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "rail" "main"; gap: 24px; }
@@ -158,6 +155,5 @@
   .site-footer > p { grid-column: 1; }
   .legal-document { padding-block: 58px 78px; }
   .connect-main { padding-block: 24px 65px; }
-  .connect-card,
-  .account-card { padding: 25px 20px; }
+  .connect-card { padding: 25px 20px; }
 }
