@@ -252,6 +252,15 @@ each computer explicitly. The browser saves encryption keys in its own storage;
 website code running in that origin can access them, so it offers weaker key
 isolation than the native app's protected storage. Pair only a browser you trust.
 
+A browser can also sign in at [granttap.com/account](https://granttap.com/account)
+by showing a QR that GrantTap on a signed-in iPhone scans and approves; the
+phone shows which browser asked. Without more, that browser sees computers and
+devices but not chats. If the owner also ticks "Give my GrantTap account the
+key to read my chats", the account keeps that key so any of its browsers can
+decrypt chats in the page; if granttap.com were compromised, those chats could
+be read. The key can be removed on the account page or in the app, and the
+account page lists and signs out every device.
+
 Now, Task history, approvals, questions, message delivery, queues, Mesh, Health,
 new Tasks and usage are implemented. Transfer, commit preparation, file browsing
 and report export remain available in the native app. Browser access uses the

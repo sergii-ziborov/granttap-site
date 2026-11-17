@@ -17,7 +17,9 @@ returned by the browser list. There is no fixed active-computer cap. At most
 three recovery requests may be pending for one computer.
 
 The account database contains no plaintext pairing key, Mesh key, prompt,
-command, transcript, or provider credential. It temporarily stores an opaque
+command, transcript, or provider credential. Only if the owner opts in on the
+iPhone does it hold a chat key for the account's browsers, encrypted at rest
+(`web-key/`). It temporarily stores an opaque
 encrypted pairing offer. Account authentication authorizes a recovery request,
 so the service is part of the recovery trust boundary. The standard QR pairing
 path remains independent of the account service. The computer poller, encrypted
