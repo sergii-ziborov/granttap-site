@@ -88,7 +88,7 @@ test("creating an account and deleting it both ask first", async () => {
   await userEvent.click(within(danger).getByRole("button", { name: "Delete account" }));
   expect(within(danger).getByText(/Delete this account for good/)).toBeTruthy();
   expect(document.activeElement?.textContent).toBe("Delete account");
-  await userEvent.click(within(danger).getByRole("button", { name: "Cancel" }));
+  await userEvent.click(within(danger).getByRole("button", { name: "Keep account" }));
   await userEvent.click(within(danger).getByRole("button", { name: "Delete account" }));
   await userEvent.click(within(danger).getAllByRole("button", { name: "Delete account" })[0]);
   expect(await screen.findByRole("button", { name: "Sign in with passkey" })).toBeTruthy();
@@ -105,7 +105,7 @@ test("signs out a device, removes quiet devices and refuses deletion from a QR b
   await waitFor(() => expect(fetcher).toHaveBeenCalledWith(`/api/account/devices/sessions/${old.id}`, expect.objectContaining({ method: "DELETE" })));
   await userEvent.click(within(devices).getByRole("button", { name: "Remove devices not seen for 30 days" }));
   expect(within(devices).getByText("Firefox on Windows", { selector: "strong" })).toBeTruthy();
-  await userEvent.click(within(devices).getByRole("button", { name: "Remove 1" }));
+  await userEvent.click(within(devices).getByRole("button", { name: "Remove 1 device" }));
   await waitFor(() => expect(fetcher).toHaveBeenCalledWith("/api/account/devices/prune", expect.objectContaining({ body: '{"inactiveDays":30}' })));
   const danger = screen.getByRole("region", { name: "Danger zone" });
   expect(within(danger).queryByRole("button", { name: "Delete account" })).toBeNull();
@@ -136,5 +136,5 @@ test("signing out returns to the sign-in choices and a failed load says so", asy
   vi.restoreAllMocks();
   serve({ "GET summary": Response.json({}, { status: 503 }) });
   render(<AccountView />);
-  expect((await screen.findByRole("alert")).textContent).toMatch(/didn't work/);
+  expect((await screen.findByRole("alert")).textContent).toMatch(/Couldn't load your account/);
 });

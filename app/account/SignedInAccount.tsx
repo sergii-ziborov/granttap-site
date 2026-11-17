@@ -69,7 +69,8 @@ export function SignedInAccount({ locale, accountId, notice, onSignedOut }: { lo
           <dl className="account-facts">
             <div><dt>{t.accountId}</dt><dd><code>{summary.accountId}</code>
               <button type="button" className="account-secondary compact" onClick={() => void navigator.clipboard?.writeText(summary.accountId)
-                .then(() => setCopied(true)).catch(() => undefined)}>{copied ? t.copied : t.copy}</button></dd></div>
+                .then(() => setCopied(true)).catch(() => undefined)}>{copied ? t.copied : t.copy}</button>
+              <span role="status" className="account-visually-hidden">{copied ? t.copied : ""}</span></dd></div>
             <div><dt>{t.created}</dt><dd>{shortDate(summary.createdAt, locale)}</dd></div>
           </dl>
           <p className="account-note">{t.browserKeys}</p>

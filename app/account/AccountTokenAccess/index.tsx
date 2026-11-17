@@ -7,8 +7,8 @@ type Props = { locale: "en" | "ru"; disabled: boolean; onBusyChange: (busy: bool
 
 const copy = {
   en: {
-    title: "Sign in with a token or QR link",
-    steps: "On a signed-in iPhone or iPad, open Devices → Account → Sign-in tokens and create a token. Paste the token or its QR link here.",
+    title: "Sign in with a sign-in token",
+    steps: "On a signed-in iPhone or iPad, open Devices → Account → Sign-in tokens and create a token. Paste the token or its link here.",
     legend: "Temporary sign-in", field: "Sign-in token",
     invalid: "Paste a token that starts with gt_login_ or its granttap.com sign-in link.",
     consent: "I understand that website code can access messages decrypted in this browser and what I type.",
@@ -16,8 +16,8 @@ const copy = {
     failed: "Sign-in failed. Check the token's expiry and remaining uses, or retry later.",
   },
   ru: {
-    title: "Войти по токену или ссылке из QR",
-    steps: "На iPhone или iPad, где вы уже вошли, откройте Устройства → Аккаунт → Токены входа и создайте токен. Вставьте сюда токен или ссылку из его QR.",
+    title: "Войти по токену входа",
+    steps: "На iPhone или iPad, где вы уже вошли, откройте Устройства → Аккаунт → Токены входа и создайте токен. Вставьте сюда токен или его ссылку.",
     legend: "Временный вход", field: "Токен входа",
     invalid: "Вставьте токен, начинающийся с gt_login_, или его ссылку входа granttap.com.",
     consent: "Я понимаю: код сайта может читать сообщения, расшифрованные в браузере, и мой ввод.",

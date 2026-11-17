@@ -64,7 +64,7 @@ export function AccountView() {
       const account = await post<Account>(kind + "/verify", { ceremonyId: ceremony.ceremonyId, response });
       signedIn(account.accountId);
     } catch (cause) {
-      setError(cause instanceof Error && cause.message === "Passkey unavailable" ? t.unavailable : t.failed);
+      setError(cause instanceof Error && cause.message === "Passkey unavailable" ? t.unavailable : t.passkeyFailed);
     } finally { setBusy(false); }
   }
 

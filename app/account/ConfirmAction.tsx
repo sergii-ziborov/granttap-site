@@ -16,7 +16,8 @@ export function ConfirmAction({ label, accessibleLabel, question, confirmLabel, 
   }, [open]);
   if (!open) return <button ref={trigger} type="button" className={danger && !quiet ? "account-danger" : "account-secondary"}
     disabled={disabled} aria-label={accessibleLabel} onClick={() => setOpen(true)}>{label}</button>;
-  return <div className="account-confirm" role="group" aria-labelledby={id}>
+  return <div className="account-confirm" role="group" aria-labelledby={id}
+    onKeyDown={event => { if (event.key === "Escape" && !busy) { event.stopPropagation(); setOpen(false); } }}>
     <p id={id}>{question}</p>
     <div className="account-confirm-actions">
       <button ref={confirm} type="button" className={danger ? "account-danger solid" : "account-submit compact"} disabled={busy}

@@ -20,7 +20,7 @@ it("requires explicit consent and clears the key after a cookie-based login", as
   vi.stubGlobal("fetch", request);
   const signed = vi.fn(), busy = vi.fn();
   render(<AccountTokenAccess locale="en" disabled={false} onBusyChange={busy} onSignedIn={signed} />);
-  fireEvent.click(screen.getByText("Sign in with a token or QR link"));
+  fireEvent.click(screen.getByText("Sign in with a sign-in token"));
   fireEvent.change(screen.getByLabelText("Sign-in token"), { target: { value: key } });
   const button = screen.getByRole("button", { name: "Sign in with token" });
   expect(button).toHaveProperty("disabled", true);
@@ -41,7 +41,7 @@ it.each(["unavailable", "malformed"])("clears sensitive input after %s responses
     ? new Response("{}", { status: 410 }) : Response.json({ accountId: "bad" })));
   const signed = vi.fn();
   render(<AccountTokenAccess locale="en" disabled={false} onBusyChange={() => {}} onSignedIn={signed} />);
-  fireEvent.click(screen.getByText("Sign in with a token or QR link"));
+  fireEvent.click(screen.getByText("Sign in with a sign-in token"));
   fireEvent.change(screen.getByLabelText("Sign-in token"), { target: { value: key } });
   fireEvent.click(screen.getByRole("checkbox"));
   fireEvent.click(screen.getByRole("button", { name: "Sign in with token" }));
@@ -52,7 +52,7 @@ it.each(["unavailable", "malformed"])("clears sensitive input after %s responses
 
 it("explains pasted text that is not a sign-in token beside the field", () => {
   render(<AccountTokenAccess locale="en" disabled={false} onBusyChange={() => {}} onSignedIn={() => {}} />);
-  fireEvent.click(screen.getByText("Sign in with a token or QR link"));
+  fireEvent.click(screen.getByText("Sign in with a sign-in token"));
   const field = screen.getByLabelText("Sign-in token");
   fireEvent.change(field, { target: { value: "https://evil.example/sign-in#token=" + key } });
   expect(field.getAttribute("aria-invalid")).toBe("true");
@@ -66,7 +66,7 @@ it("names the app screen exactly as the Russian app does and shows progress in t
   let reply: (value: Response) => void = () => {};
   vi.stubGlobal("fetch", vi.fn().mockReturnValue(new Promise<Response>(resolve => { reply = resolve; })));
   render(<AccountTokenAccess locale="ru" disabled={false} onBusyChange={() => {}} onSignedIn={() => {}} />);
-  fireEvent.click(screen.getByText("Войти по токену или ссылке из QR"));
+  fireEvent.click(screen.getByText("Войти по токену входа"));
   expect(screen.getByText(/Устройства → Аккаунт → Токены входа/)).toBeTruthy();
   fireEvent.change(screen.getByLabelText("Токен входа"), { target: { value: key } });
   fireEvent.click(screen.getByRole("checkbox"));

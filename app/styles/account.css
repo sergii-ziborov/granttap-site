@@ -52,7 +52,7 @@ html[data-theme="light"] .account-page { --field-line: #8a837a; --error-ink: #a5
 .account-danger { border-color: color-mix(in srgb, var(--error-ink) 70%, transparent); background: transparent; color: var(--error-ink); }
 .account-danger:hover:not(:disabled) { background: color-mix(in srgb, var(--error-ink) 10%, transparent); }
 .account-danger.solid { border-color: var(--danger); background: var(--danger); color: #fff; }
-.account-main .compact { width: auto; min-height: 40px; padding: 8px 14px; font-size: .875rem; }
+.account-main .compact { width: auto; min-height: 44px; padding: 8px 14px; font-size: .875rem; }
 :is(.account-secondary, .account-quiet, .account-danger):disabled { opacity: .55; cursor: default; }
 .account-main :is(button, a, input, select, textarea):focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 .account-spinner { width: 1em; height: 1em; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: account-spin .8s linear infinite; }
@@ -104,7 +104,7 @@ html[data-theme="light"] .account-page { --field-line: #8a837a; --error-ink: #a5
 .account-layout { display: grid; grid-template-columns: 200px minmax(0, 800px); align-items: start; gap: 40px; }
 .account-nav { position: sticky; top: 24px; }
 .account-nav ul { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
-.account-nav a { display: block; padding: 9px 12px; border-radius: 10px; color: var(--muted); font-size: .875rem; font-weight: 600; }
+.account-nav a { display: flex; align-items: center; min-height: 44px; padding: 8px 12px; border-radius: 10px; color: var(--muted); font-size: .875rem; font-weight: 600; }
 .account-nav a:hover { background: var(--panel-raised); color: var(--ink); }
 .account-sections { display: grid; gap: 20px; min-width: 0; }
 .account-section { display: grid; gap: 14px; padding: clamp(20px, 3vw, 28px); border: 1px solid var(--line); border-radius: 20px; background: var(--panel); scroll-margin-top: 24px; }

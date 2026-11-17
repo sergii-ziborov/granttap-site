@@ -42,14 +42,15 @@ export function AccountDevices({ locale, devices, onChanged, onSignedOut }: { lo
       <ConfirmAction label={device.type === "computer" ? t.remove : t.signOut}
         accessibleLabel={`${device.type === "computer" ? t.remove : t.signOut}: ${device.name}`}
         question={device.type === "computer" ? t.confirmRemove(device.name) : device.current ? t.confirmSelf : t.confirmSignOut(device.name)}
-        confirmLabel={device.type === "computer" ? t.remove : t.signOut} cancelLabel={t.cancel} danger quiet
+        confirmLabel={device.type === "computer" ? t.remove : t.signOut}
+        cancelLabel={device.type === "computer" ? t.keepComputer : t.keepSession} danger quiet
         onConfirm={() => remove(device)} />
     </li>)}</ul>
     {devices.length === 0 && <p className="account-note">{t.empty}</p>}
     <div className="account-row-actions">
       <ConfirmAction label={t.prune(STALE_DAYS)} disabled={stale.length === 0} danger quiet
         question={<>{t.confirmPrune(stale.length)} <strong>{stale.map(device => device.name).join(", ")}</strong></>}
-        confirmLabel={t.pruneConfirm(stale.length)} cancelLabel={t.cancel} onConfirm={prune} />
+        confirmLabel={t.pruneConfirm(stale.length)} cancelLabel={t.keepAll} onConfirm={prune} />
       {stale.length === 0 && <p className="account-note">{t.nothingStale(STALE_DAYS)}</p>}
     </div>
     {error && <p role="alert" className="account-error">{error}</p>}

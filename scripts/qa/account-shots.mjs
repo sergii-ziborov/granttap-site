@@ -57,6 +57,8 @@ await fetch(api + 'password/sign-in', { method: 'POST', headers: { 'content-type
 const sqlite = new SqliteD1(db);
 const old = Date.now() - 41 * 86_400_000;
 sqlite.sqlite.prepare("UPDATE account_session_details SET created_at=?,last_seen_at=? WHERE name LIKE 'Firefox%'").run(old, old);
+// The screenshot browser uses the owner's first session; show it as the browser it is.
+sqlite.sqlite.prepare("UPDATE account_session_details SET kind='browser',name='Chrome on macOS' WHERE session_hash=(SELECT token_hash FROM sessions s JOIN account_session_details d ON d.session_hash=s.token_hash WHERE d.sign_in='password' AND d.kind='app' ORDER BY d.created_at LIMIT 1)").run();
 sqlite.sqlite.prepare('INSERT INTO account_machine_endpoints(machine_id,room,public_key,updated_at) VALUES(?,?,?,?)')
   .run(macbook.id, 'a1b2c3d4e5f60718', Buffer.from(nacl.box.keyPair().publicKey).toString('base64'), Date.now() - 600_000);
 sqlite.sqlite.prepare('UPDATE account_machines SET last_seen_at=? WHERE id=?').run(Date.now() - 600_000, macbook.id);
@@ -100,7 +102,25 @@ try {
     await signIn(owner.token);
     await shoot('account-key-stored', width, mode, '/account#key');
   }
-  console.log(JSON.stringify({ output, shots, errors: tab.errors }));
+  // Reflow at 320 CSS px (400% zoom of 1280) and the keyboard order of the sign-in card.
+  const reflow = [];
+  await tab.send('Emulation.setDeviceMetricsOverride', { width: 320, height: 700, deviceScaleFactor: 1, mobile: true });
+  for (const [label, signedIn, choice] of [['passkey', false], ['iphone', false, 'iPhone QR'], ['password', false, 'Password'],
+    ['token', false, 'Sign-in token'], ['account', true]]) {
+    if (signedIn) await signIn(owner.token); else await signOut();
+    await tab.navigate(base + '/account'); await delay(700); if (choice) { await click(choice); await delay(700); }
+    reflow.push({ label, fits: await tab.evaluate('document.documentElement.scrollWidth <= innerWidth') });
+  }
+  await signOut();
+  await tab.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 900, deviceScaleFactor: 1, mobile: false });
+  await tab.navigate(base + '/account'); await delay(700);
+  await tab.evaluate("document.querySelector('.account-card').setAttribute('tabindex','-1'),document.querySelector('.account-card').focus(),true");
+  const order = [];
+  for (let i = 0; i < 6; i++) {
+    for (const type of ['keyDown', 'keyUp']) await tab.send('Input.dispatchKeyEvent', { type, key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
+    order.push(await tab.evaluate("(()=>{const e=document.activeElement;return (e.getAttribute('aria-label')||e.closest('label')?.textContent||e.textContent||e.tagName).trim().slice(0,40)})()"));
+  }
+  console.log(JSON.stringify({ output, shots, reflow, tabOrder: order, errors: tab.errors }));
 } finally {
   await browser.close(); proxy.close(); for (const child of children) child.kill('SIGTERM');
   await delay(300); await rm(work, { recursive: true, force: true });

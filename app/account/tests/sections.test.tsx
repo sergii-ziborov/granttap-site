@@ -30,7 +30,7 @@ describe("devices section", () => {
     expect(screen.getByText(/ещё не появлялся/)).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "Удалить устройства, неактивные 30 дней" }));
     expect(screen.getByText(/Удалить 3 устройства, неактивных 30 дней/)).toBeTruthy();
-    fireEvent.click(screen.getByRole("button", { name: "Удалить: 3" }));
+    fireEvent.click(screen.getByRole("button", { name: "Удалить 3 устройства" }));
     expect(await screen.findByRole("alert")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "Удалить: Mac mini" }));
     fireEvent.click(within(screen.getByRole("group")).getByRole("button", { name: "Удалить" }));
@@ -99,5 +99,18 @@ describe("encryption key section", () => {
     fireEvent.click(screen.getByRole("button", { name: "Удалить ключ из аккаунта" }));
     fireEvent.click(screen.getByRole("button", { name: "Удалить ключ" }));
     expect((await screen.findByRole("alert")).textContent).toMatch(/Не удалось удалить ключ/);
+  });
+});
+
+describe("inline confirmation", () => {
+  it("moves focus to the action, closes on Escape and returns focus to the trigger", async () => {
+    const { ConfirmAction } = await import("../ConfirmAction");
+    const confirm = vi.fn();
+    render(<ConfirmAction label="Remove" question="Remove it?" confirmLabel="Remove it" cancelLabel="Keep it" danger onConfirm={confirm} />);
+    fireEvent.click(screen.getByRole("button", { name: "Remove" }));
+    expect(document.activeElement?.textContent).toBe("Remove it");
+    fireEvent.keyDown(screen.getByRole("group", { name: "Remove it?" }), { key: "Escape" });
+    await waitFor(() => expect(document.activeElement?.textContent).toBe("Remove"));
+    expect(confirm).not.toHaveBeenCalled();
   });
 });
