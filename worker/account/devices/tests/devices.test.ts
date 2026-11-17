@@ -15,6 +15,9 @@ describe("account devices", () => {
     const machine = (await new AccountMachines(f.db).register(f.accountId, "MacBook Pro"))!;
     await new AccountMachineEndpoints(f.db).publish({ accountId: f.accountId, machineId: machine.id },
       "room-fixture-1", Buffer.alloc(32, 3).toString("base64"));
+    // Pin activity so the order does not depend on how fast the rows were written.
+    await f.db.prepare("UPDATE account_session_details SET created_at=?,last_seen_at=? WHERE session_hash=?")
+      .bind(Date.now() - 600_000, Date.now() - 600_000, tokenHash(browser)).run();
     const listed = await (await f.native("devices", undefined, "GET")).json() as Listed;
     expect(listed.devices.map(device => device.type)).toEqual(["session", "computer", "session"]);
     expect(listed.devices[0]).toMatchObject({ current: true, kind: "app", signIn: "passkey", delegated: false });
