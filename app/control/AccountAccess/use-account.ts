@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { BrowserKeyVault } from "../BrowserKeys";
 import { connectAccountComputer } from "../ComputerConnection";
 import { ControlRuntime } from "../ControlRuntime";
+import { accountKeyPairings } from "./account-key";
 
 export type AccountComputer = { id: string; name: string; lastSeenAt?: number };
 export type ControlAccount = { accountId: string; runtime: ControlRuntime; vault: BrowserKeyVault;
@@ -24,7 +25,10 @@ export function useControlAccount() {
       const access = await response.json();
       accountIdentity = access.accountId;
       const machines = await loadAccountComputers(controller.signal);
-      const vault = new BrowserKeyVault(), keys = await vault.read(access.accountId);
+      const vault = new BrowserKeyVault(), own = await vault.read(access.accountId);
+      // The account-held key covers computers this browser has not connected itself; never written to the vault.
+      const shared = (await accountKeyPairings(controller.signal)).filter(pair => !own.pairings.some(item => item.machineId === pair.machineId));
+      const keys = { ...own, pairings: [...own.pairings, ...shared] };
       if (disposed) return;
       runtime = new ControlRuntime(access.accountId, vault);
       await runtime.restore(keys, new Set(machines.map(machine => machine.id)));

@@ -5,16 +5,18 @@ import { afterEach, expect, it, vi } from "vitest";
 import { useControlAccount } from "../use-account";
 import { BrowserKeyVault } from "../../BrowserKeys";
 
-vi.mock("../../ComputerConnection", () => ({ connectAccountComputer: async (machineId: string) => ({ machineId, room: "synthetic-room" }) }));
+vi.mock("../../ComputerConnection", () => ({ connectAccountComputer: async (machineId: string) => ({ machineId, room: "synthetic-room" }),
+  browserPairing: (pair: Record<string, unknown>, machineId: string) => ({ ...pair, machineId }) }));
 vi.mock("../../RelayConnection", () => ({ BrowserRelayConnection: class { start() {} stop() {} } }));
 afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); });
 
-function fixture(options: { pages?: unknown[]; access?: number; fail?: boolean } = {}) {
+function fixture(options: { pages?: unknown[]; access?: number; fail?: boolean; accountKey?: Response } = {}) {
   vi.stubGlobal("crypto", webcrypto);
   const accountId = crypto.randomUUID(); let status = options.access ?? 200, fail = options.fail ?? false, page = 0, currentAccount = accountId;
   const request = vi.fn(async (input: string | URL | Request) => {
     if (fail) throw Error("Synthetic network failure");
     if (String(input).includes("control/access")) return Response.json({ accountId: currentAccount, access: { source: "beta" } }, { status });
+    if (String(input).includes("web-key/material")) return options.accountKey ?? Response.json({ error: "none" }, { status: 404 });
     const value = options.pages?.[page++] ?? { machines: [{ id: "machine", name: "Synthetic computer" }] };
     return value instanceof Response ? value : Response.json(value);
   });
@@ -82,4 +84,14 @@ it("forgets browser credentials in every open control tab", async () => {
   await waitFor(() => expect(second.result.current.account?.connected.size).toBe(0));
   await expect(oldRuntime.submit("machine", { type: "user.message", text: "Synthetic", createdAt: 1 }, "user-message-forgotten-tab"))
     .rejects.toThrow(/closed/); first.unmount(); second.unmount();
+});
+it("adds the account-held key for computers this browser has not connected, without storing it", async () => {
+  const pair = (await import("tweetnacl")).default.box.keyPair();
+  const shared = { machineId: "machine", relayUrl: "wss://relay.granttap.com", room: "c".repeat(32), role: "phone", deviceName: "GrantTap Web",
+    senderId: "web", myPublicKey: Buffer.from(pair.publicKey).toString("base64"), mySecretKey: Buffer.from(pair.secretKey).toString("base64"),
+    peerPublicKey: Buffer.from(pair.publicKey).toString("base64"), pushAuth: "d".repeat(64) };
+  const f = fixture({ accountKey: Response.json({ stored: true, bundle: JSON.stringify({ schema: "granttap.account-web-key.v1", pairings: [shared] }) }) });
+  const hook = renderHook(() => useControlAccount()); await waitFor(() => expect(hook.result.current.status).toBe("ready"));
+  expect(hook.result.current.account?.connected.has("machine")).toBe(true);
+  expect((await new BrowserKeyVault().read(f.accountId)).pairings).toEqual([]); hook.unmount();
 });

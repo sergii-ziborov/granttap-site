@@ -35,20 +35,30 @@ export function openComputerOffer(encrypted: string, secret: string, requestId: 
     if (!bytes) throw Error();
     const offer = JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(bytes));
     if (offer.schema !== "granttap.account-offer.v1" || offer.requestId !== requestId || offer.machineId !== machineId) throw Error();
-    const pair = offer.pairing;
+    const pairing = browserPairing(offer.pairing, machineId);
+    if (!pairing) throw Error();
+    return pairing;
+  } catch { throw Error("The encrypted computer offer is invalid or belongs to another request."); }
+}
+
+/** The fixed managed relay, a consistent controller key pair and bounded identifiers; shared with the account key. */
+export function browserPairing(pair: Record<string, unknown> | null | undefined, machineId: string): BrowserPairing | null {
+  try {
+    if (!pair || typeof pair.relayUrl !== "string") return null;
     const url = new URL(pair.relayUrl);
     if (url.protocol !== "wss:" || url.host !== "relay.granttap.com" || !["/", "/ws"].includes(url.pathname)
       || url.username || url.password || url.search || url.hash || pair.role !== "phone"
-      || !/^[a-f0-9]{16,64}$/.test(pair.room) || !/^[a-f0-9]{64}$/.test(pair.pushAuth)
+      || typeof pair.room !== "string" || !/^[a-f0-9]{16,64}$/.test(pair.room)
+      || typeof pair.pushAuth !== "string" || !/^[a-f0-9]{64}$/.test(pair.pushAuth)
       || ![pair.myPublicKey, pair.mySecretKey, pair.peerPublicKey].every(key =>
         typeof key === "string" && /^[A-Za-z0-9+/]{43}=$/.test(key) && unbase64(key).length === 32)
-      || base64(nacl.box.keyPair.fromSecretKey(unbase64(pair.mySecretKey)).publicKey) !== pair.myPublicKey
+      || base64(nacl.box.keyPair.fromSecretKey(unbase64(pair.mySecretKey as string)).publicKey) !== pair.myPublicKey
       || typeof pair.senderId !== "string" || pair.senderId.length < 1 || pair.senderId.length > 180
-      || typeof pair.deviceName !== "string" || pair.deviceName.length > 180) throw Error();
+      || typeof pair.deviceName !== "string" || pair.deviceName.length > 180) return null;
     return { machineId, relayUrl: pair.relayUrl, role: "phone", room: pair.room, deviceName: pair.deviceName,
-      senderId: pair.senderId, myPublicKey: pair.myPublicKey, mySecretKey: pair.mySecretKey,
-      peerPublicKey: pair.peerPublicKey, pushAuth: pair.pushAuth };
-  } catch { throw Error("The encrypted computer offer is invalid or belongs to another request."); }
+      senderId: pair.senderId, myPublicKey: pair.myPublicKey as string, mySecretKey: pair.mySecretKey as string,
+      peerPublicKey: pair.peerPublicKey as string, pushAuth: pair.pushAuth };
+  } catch { return null; }
 }
 
 function pause(signal: AbortSignal): Promise<void> {
