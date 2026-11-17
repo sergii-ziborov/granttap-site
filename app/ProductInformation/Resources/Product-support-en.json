@@ -163,6 +163,7 @@
       "paragraphs": [
         "For your own linked clients, open Devices on a trusted signed-in device and choose Add another iPhone or iPad. Scan the account invitation on the new device before its displayed expiry. The new device gets its own revocable account session and discovers account computers.",
         "A QR for one computer is a different operation. On Mac use Devices → Connect iPhone or iPad, then on the phone Devices → Add a device (Scan QR). For an existing device use Reconnect; do not create a new pairing as a routine repair.",
+        "To see which phones a computer accepts, open Devices, choose the computer and look under Phones: each phone shows when it last reached the computer, and the one you hold is marked. Swipe to remove an old phone, use Remove phones not seen for 30 days, or Unpair this phone. At least one phone always stays. When a computer already holds its limit of phones, a new one takes the place of a phone not seen for 30 days. This needs GrantTap MCP 0.8.188 or newer on the computer.",
         "Inviting another person to a Project Mesh grants the selected role and project access. It does not share your whole account, provider subscription, source-hosting credentials or Mac Local license."
       ]
     },
