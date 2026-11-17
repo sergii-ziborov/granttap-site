@@ -10,6 +10,7 @@ import { AccountMachines } from "./account/machines";
 import type { D1Database } from "@cloudflare/workers-types";
 
 import { canonicalRedirect, withSecurityHeaders } from "./site-policy";
+import appSiteAssociation from "./site-policy/apple-app-site-association.json";
 
 interface AssetFetcher {
   fetch(request: Request): Promise<Response>;
@@ -46,9 +47,9 @@ const worker = {
     if (redirect) return withSecurityHeaders(request, Response.redirect(redirect, 308));
 
     if (url.pathname === "/.well-known/apple-app-site-association") {
-      return withSecurityHeaders(request, new Response(JSON.stringify({
-        webcredentials: { apps: ["XMS5ZC28UJ.com.ziborov.granttap"] },
-      }), { headers: { "content-type": "application/json; charset=utf-8" } }));
+      return withSecurityHeaders(request, new Response(JSON.stringify(appSiteAssociation), {
+        headers: { "content-type": "application/json", "cache-control": "public, max-age=3600" },
+      }));
     }
 
     const database = env?.ACCOUNTS_DB;

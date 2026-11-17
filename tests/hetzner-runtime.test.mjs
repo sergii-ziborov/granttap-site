@@ -3,6 +3,7 @@ import { spawn, spawnSync } from "node:child_process";
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { request as httpRequest } from "node:http";
 import { createServer } from "node:net";
 import { setTimeout as delay } from "node:timers/promises";
 import test from "node:test";
@@ -45,6 +46,19 @@ test("the production site serves pages and exact download bytes without developm
     const response = await fetch(base + path); assert.equal(response.status, 200, path);
     assert.match(response.headers.get("content-type"), /text\/html/);
   }
+  const association = await new Promise((resolve, reject) => {
+    // Exactly what nginx forwards for Apple's HTTPS fetch: canonical host, forwarded HTTPS, no redirect.
+    const call = httpRequest(`${base}/.well-known/apple-app-site-association`,
+      { headers: { host: "granttap.com", "x-forwarded-proto": "https" } }, result => {
+        const chunks = []; result.on("data", chunk => chunks.push(chunk));
+        result.on("end", () => resolve({ status: result.statusCode, headers: result.headers, body: Buffer.concat(chunks).toString() }));
+      });
+    call.on("error", reject); call.end();
+  });
+  assert.equal(association.status, 200);
+  assert.equal(association.headers["content-type"], "application/json");
+  assert.equal(association.headers.location, undefined);
+  assert.deepEqual(JSON.parse(association.body).webcredentials.apps, ["XMS5ZC28UJ.com.ziborov.granttap"]);
   const response = await fetch(base + "/downloads/engine/0.0.0-fixture/granttap-engine-darwin-arm64");
   assert.equal(response.status, 200); assert.deepEqual(Buffer.from(await response.arrayBuffer()), bytes);
   const manifest = JSON.parse(readFileSync(".runtime/proof.json", "utf8"));

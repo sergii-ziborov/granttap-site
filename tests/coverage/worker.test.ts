@@ -27,6 +27,15 @@ test("redirects alternate hosts with production security headers", async () => {
   expect(response.headers.get("strict-transport-security")).toContain("max-age=63072000");
 });
 
+test("serves the shared webcredentials association file as JSON before the app router", async () => {
+  const response = await worker.fetch(new Request("https://granttap.com/.well-known/apple-app-site-association"), env, context);
+
+  expect(response.status).toBe(200);
+  expect(response.headers.get("content-type")).toBe("application/json");
+  expect(await response.json()).toEqual({ webcredentials: { apps: ["XMS5ZC28UJ.com.ziborov.granttap"] } });
+  expect(doubles.app).not.toHaveBeenCalled();
+});
+
 test("adds headers to app responses and omits HSTS on HTTP", async () => {
   doubles.app.mockResolvedValueOnce(new Response("app"));
   const response = await worker.fetch(new Request("http://localhost/support"), env, context);

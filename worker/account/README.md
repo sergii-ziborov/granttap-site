@@ -39,8 +39,10 @@ is revoked by setting `revoked_at` or expires at `expires_at`; the Apple client
 rechecks it while using managed transport. The account session identifies the
 owner, so a client-provided account ID cannot select another grant.
 
-The Worker serves Apple's `webcredentials` association file at
-`/.well-known/apple-app-site-association`. The corresponding native app needs
+Apple's `webcredentials` association file at
+`/.well-known/apple-app-site-association` is served in production by the website
+process (`hetzner/app-site-association`) and by the optional Worker, both from
+`worker/site-policy/apple-app-site-association.json`. The corresponding native app needs
 the `webcredentials:granttap.com` entitlement and a matching provisioning
 profile before it can use this relying party.
 

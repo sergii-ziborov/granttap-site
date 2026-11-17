@@ -1,4 +1,5 @@
 import { startProdServer } from "vinext/server/prod-server";
+import { installAppSiteAssociation } from "./app-site-association/index.mjs";
 import { installEngineDownloads } from "./engine-downloads/index.mjs";
 import { installSitePolicy } from "./site-policy/index.mjs";
 
@@ -15,4 +16,5 @@ const { server } = await startProdServer({
   outDir: new URL("../dist", import.meta.url).pathname,
 });
 installEngineDownloads(server, new URL("../dist/client/downloads/engine", import.meta.url).pathname);
+installAppSiteAssociation(server);
 installSitePolicy(server);
