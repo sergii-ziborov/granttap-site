@@ -9,7 +9,7 @@ export function json(status: number, body: unknown, extra?: HeadersInit): Respon
   } });
 }
 
-export async function boundedJSON(request: Request): Promise<Record<string, unknown> | null> {
+export async function boundedJSON(request: Request, limit = 16_384): Promise<Record<string, unknown> | null> {
   if (!request.headers.get("content-type")?.startsWith("application/json")) return null;
   const reader = request.body?.getReader();
   if (!reader) return null;
@@ -20,7 +20,7 @@ export async function boundedJSON(request: Request): Promise<Record<string, unkn
       const { done, value } = await reader.read();
       if (done) break;
       length += value.byteLength;
-      if (length > 16_384) { await reader.cancel(); return null; }
+      if (length > limit) { await reader.cancel(); return null; }
       chunks.push(value);
     }
     const bytes = new Uint8Array(length);
@@ -45,4 +45,20 @@ export function bearerToken(request: Request): string {
 
 export function sessionCookie(token: string, expires = 30 * 24 * 60 * 60): string {
   return `granttap_session=${token}; Path=/api/account; HttpOnly; Secure; SameSite=Strict; Max-Age=${expires}`;
+}
+
+/** Error body with a stable machine-readable reason for native clients. */
+export function problem(status: number, reason: string, error: string, extra?: HeadersInit): Response {
+  return json(status, { error, reason }, extra);
+}
+
+/** A fetch from a granttap.com page. GET requests may omit Origin but always carry Sec-Fetch-Site. */
+export function sameOriginBrowser(request: Request): boolean {
+  const origin = request.headers.get("origin");
+  return request.headers.get("sec-fetch-site") === "same-origin" && (origin === null || origin === "https://granttap.com")
+    && (request.method === "GET" || origin === "https://granttap.com");
+}
+
+export function clientAddress(request: Request): string | null {
+  return request.headers.get("x-real-ip") || request.headers.get("cf-connecting-ip") || null;
 }

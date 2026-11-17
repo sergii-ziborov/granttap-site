@@ -3,6 +3,7 @@ import type { AccountAuth } from "../auth";
 import { boundedJSON, json, sessionCookie } from "../http";
 import { AccountLoginTokens, LOGIN_TOKEN } from "../login-tokens/store";
 import { reservePasswordAttempt } from "../password-access/rate-limit";
+import { describeClient } from "../devices/client";
 
 /** Explicit browser redemption keeps the native token endpoints and their restrictions intact. */
 export async function routeBrowserTokenAccess(request: Request, db: D1Database, auth: AccountAuth) {
@@ -22,7 +23,7 @@ export async function routeBrowserTokenAccess(request: Request, db: D1Database, 
   if (!await reservePasswordAttempt(db, "browser-token:" + body.secret, ip)) {
     return json(429, { error: "Too many sign-in attempts. Try again later." }, { "retry-after": "900" });
   }
-  const session = await new AccountLoginTokens(db).redeem(body.secret, auth);
+  const session = await new AccountLoginTokens(db).redeem(body.secret, auth, describeClient(request.headers, "token", true));
   if (!session) return json(410, { error: "This sign-in key expired, was revoked, or has no uses left." });
   const lifetime = Math.max(0, Math.floor((session.expiresAt - Date.now()) / 1_000));
   return json(200, { accountId: session.accountId, expiresAt: session.expiresAt }, {

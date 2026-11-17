@@ -1,6 +1,7 @@
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import type { D1Database } from "@cloudflare/workers-types";
 import type { AccountAuth } from "../auth";
+import type { SessionDetails } from "../devices/client";
 
 export const LOGIN_TOKEN = /^gt_login_[A-Za-z0-9_-]{43}$/;
 export type LoginTokenOptions = { name: string; expiresInSeconds: number; maxUses: number };
@@ -53,13 +54,13 @@ export class AccountLoginTokens {
     return result.meta.changes === 1;
   }
 
-  async redeem(secret: string, auth: AccountAuth) {
+  async redeem(secret: string, auth: AccountAuth, details?: SessionDetails) {
     if (!LOGIN_TOKEN.test(secret)) return null;
     const row = await this.db.prepare("UPDATE account_login_tokens SET uses=uses+1,last_used_at=? "
       + "WHERE token_hash=? AND revoked_at IS NULL AND expires_at>? AND uses<max_uses "
       + `RETURNING ${columns}`).bind(this.now(), hash(secret), this.now()).first<Row>();
     if (!row) return null;
-    const session = await auth.createSession(row.account_id);
+    const session = await auth.createSession(row.account_id, details);
     try {
       await this.db.prepare("INSERT INTO account_login_token_sessions(session_hash,login_token_id) VALUES(?,?)")
         .bind(hash(session.token), row.id).run();

@@ -31,10 +31,16 @@ const capacity = startAuthorityCapacity(accountDb, process.env, () => controlTra
 const accountAuth = new AccountAuth(new D1AccountStore(accountDb));
 const accountMachines = new AccountMachines(accountDb);
 const managedBilling = configuredBilling(process.env);
+// Encrypts account-held web keys at rest. Production derives it from the admission key.
+const storageSecret = process.env.GRANTTAP_ACCOUNT_STORAGE_KEY_PATH
+  ? readFileSync(process.env.GRANTTAP_ACCOUNT_STORAGE_KEY_PATH) : managedBilling?.signingKey;
+if (storageSecret && storageSecret.length < 32) throw new Error("Account storage key must be at least 32 bytes.");
 const clientAccess = accountClientAccess({ db: accountDb, auth: accountAuth, machines: accountMachines, observe: account => capacity?.accountSeen(account) });
 function purgeExpiredAccountState() {
   accountDb.sqlite.prepare("DELETE FROM ceremonies WHERE expires_at<=?").run(Date.now());
   accountDb.sqlite.prepare("DELETE FROM sessions WHERE expires_at<=?").run(Date.now());
+  accountDb.sqlite.prepare("DELETE FROM account_qr_requests WHERE expires_at<=? AND (deposit_until IS NULL OR deposit_until<=?)")
+    .run(Date.now(), Date.now());
 }
 purgeExpiredAccountState();
 setInterval(purgeExpiredAccountState, 10 * 60_000).unref();
@@ -55,7 +61,9 @@ const server = createServer(async (req, res) => {
 
   if (url.pathname.startsWith("/api/account/")) {
     try {
-      const response = await handleAccountApi(await webRequest(req), accountDb, managedBilling);
+      // A sealed or deposited chat key may exceed the usual account body limit.
+      const large = url.pathname === "/api/account/qr-sign-in/approve" || url.pathname === "/api/account/web-key";
+      const response = await handleAccountApi(await webRequest(req, large ? 65_536 : 16_384), accountDb, managedBilling, storageSecret);
       if (response) await sendResponse(res, response);
       else json(res, 404, { error: "Not found." });
     } catch (error) {
@@ -84,7 +92,7 @@ const server = createServer(async (req, res) => {
   json(res, 404, { error: "Not found." });
 });
 
-const controlTransport = attachControlTransport(server, request => handleAccountApi(request, accountDb, managedBilling), {
+const controlTransport = attachControlTransport(server, request => handleAccountApi(request, accountDb, managedBilling, storageSecret), {
   admitClient: clientAccess ? request => clientAccess.socket(request) : undefined,
 });
 

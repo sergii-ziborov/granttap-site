@@ -2,6 +2,7 @@
 import { AccountAuth } from "./account/auth";
 import { AccountMachines } from "./account/machines";
 import { boundedJSON, sessionCookie, UUID } from "./account/http";
+import { describeClient } from "./account/devices/client";
 
 const REQUEST_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const TTL_MS = 15 * 60_000;
@@ -219,7 +220,8 @@ export async function handleConnectApi(request: Request, auth?: AccountAuth,
       || typeof (body.response as Record<string, unknown>).id !== "string") {
       return json(400, { error: "Invalid passkey response." });
     }
-    const result = await auth.completeAuthentication(body.ceremonyId, body.response as { id: string });
+    const result = await auth.completeAuthentication(body.ceremonyId, body.response as { id: string },
+      describeClient(request.headers, "passkey"));
     if (!result) return json(401, { error: "Passkey verification failed or expired." });
     const owner = current.machineId ? await machines.owner(current.machineId) : null;
     if (owner && owner !== result.accountId) {

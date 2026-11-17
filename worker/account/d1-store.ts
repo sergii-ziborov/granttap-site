@@ -1,4 +1,5 @@
-import type { AccountStore, Ceremony, StoredCredential } from "./auth";
+import { randomUUID } from "node:crypto";
+import type { AccountStore, Ceremony, SessionRecord, StoredCredential, StoredSessionDetails } from "./auth";
 import type { D1Database } from "@cloudflare/workers-types";
 
 type CeremonyRow = {
@@ -10,7 +11,9 @@ type CredentialRow = {
   counter: number; transports: string;
 };
 type SessionRow = { account_id: string; expires_at: number; linked_session: string | null;
-  login_token_id: string | null; login_account: string | null; token_expiry: number | null; revoked_at: number | null };
+  login_token_id: string | null; login_account: string | null; token_expiry: number | null; revoked_at: number | null;
+  delegated: number | null; sign_in: string | null };
+const TOUCH_MS = 5 * 60_000;
 
 export class D1AccountStore implements AccountStore {
   constructor(private readonly db: D1Database) {}
@@ -60,16 +63,35 @@ export class D1AccountStore implements AccountStore {
       .bind(hash, accountId, expiresAt).run();
   }
 
-  async session(hash: string): Promise<{ accountId: string; expiresAt: number; loginTokenId?: string } | null> {
+  async session(hash: string): Promise<SessionRecord | null> {
     const row = await this.db.prepare("SELECT s.account_id,s.expires_at,l.session_hash AS linked_session,"
-      + "t.id AS login_token_id,t.account_id AS login_account,t.expires_at AS token_expiry,t.revoked_at "
+      + "t.id AS login_token_id,t.account_id AS login_account,t.expires_at AS token_expiry,t.revoked_at,"
+      + "d.delegated,d.sign_in "
       + "FROM sessions s LEFT JOIN account_login_token_sessions l ON l.session_hash=s.token_hash "
-      + "LEFT JOIN account_login_tokens t ON t.id=l.login_token_id WHERE s.token_hash=?")
+      + "LEFT JOIN account_login_tokens t ON t.id=l.login_token_id "
+      + "LEFT JOIN account_session_details d ON d.session_hash=s.token_hash WHERE s.token_hash=?")
       .bind(hash).first<SessionRow>();
     if (!row || row.linked_session && (!row.login_token_id || row.revoked_at !== null
       || row.login_account !== row.account_id || row.token_expiry === null)) return null;
     return { accountId: row.account_id, expiresAt: Math.min(row.expires_at, row.token_expiry ?? row.expires_at),
-      ...(row.login_token_id ? { loginTokenId: row.login_token_id } : {}) };
+      ...(row.login_token_id ? { loginTokenId: row.login_token_id } : {}),
+      ...(row.delegated === 1 ? { delegated: true } : {}), ...(row.sign_in ? { signIn: row.sign_in } : {}) };
+  }
+
+  async saveSessionDetails(hash: string, details: StoredSessionDetails) {
+    await this.db.prepare("INSERT INTO account_session_details(session_hash,id,kind,name,sign_in,delegated,created_at,last_seen_at) "
+      + "VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(session_hash) DO UPDATE SET kind=excluded.kind,name=excluded.name,"
+      + "sign_in=excluded.sign_in,delegated=excluded.delegated,created_at=excluded.created_at")
+      .bind(hash, details.id, details.kind, details.name, details.signIn, details.delegated ? 1 : 0,
+        details.createdAt, details.createdAt).run();
+  }
+
+  /** Older sessions gain an identity on first use, so every device can be listed and signed out. */
+  async touchSession(hash: string, now: number) {
+    await this.db.prepare("INSERT INTO account_session_details(session_hash,id,kind,name,sign_in,delegated,created_at,last_seen_at) "
+      + "VALUES(?,?,'unknown','Signed-in device',NULL,0,NULL,?) ON CONFLICT(session_hash) DO UPDATE "
+      + "SET last_seen_at=excluded.last_seen_at WHERE last_seen_at IS NULL OR last_seen_at<?")
+      .bind(hash, randomUUID(), now, now - TOUCH_MS).run();
   }
 
   async removeSession(hash: string) {

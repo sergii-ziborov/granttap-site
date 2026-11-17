@@ -1,6 +1,7 @@
 import { createHash, randomBytes } from "node:crypto";
 import type { D1Database } from "@cloudflare/workers-types";
 import { AccountAuth } from "./auth";
+import { describeClient } from "./devices/client";
 import { bearerToken, boundedJSON, json } from "./http";
 
 const INVITE_LIFETIME_MS = 5 * 60_000;
@@ -60,7 +61,7 @@ export async function routeDeviceInvites(request: Request, action: string,
     }
     const accountId = await invites.consume(body.code);
     if (!accountId) return json(410, { error: "Device invitation expired or used." });
-    const session = await auth.createSession(accountId);
+    const session = await auth.createSession(accountId, describeClient(request.headers, "invite"));
     return json(200, session);
   }
   return null;

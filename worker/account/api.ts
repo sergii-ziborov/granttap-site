@@ -11,6 +11,10 @@ import { routeControlAccess } from "./control-access";
 import { routePasswordAccess } from "./password-access";
 import { routeLoginTokens } from "./login-tokens";
 import { routeBrowserTokenAccess } from "./browser-token-access";
+import { describeClient } from "./devices/client";
+import { routeDevices } from "./devices";
+import { routeQrSignIn } from "./qr-sign-in";
+import { routeWebKey } from "./web-key";
 
 export async function routeAccountApi(request: Request, auth: AccountAuth,
                                       machines?: AccountMachines,
@@ -51,9 +55,10 @@ export async function routeAccountApi(request: Request, auth: AccountAuth,
       return json(400, { error: "Invalid passkey response." });
     }
     const credential = response as { id: string };
+    const details = describeClient(request.headers, "passkey");
     const result = action === "registration/verify"
-      ? await auth.completeRegistration(ceremonyId, credential)
-      : await auth.completeAuthentication(ceremonyId, credential);
+      ? await auth.completeRegistration(ceremonyId, credential, details)
+      : await auth.completeAuthentication(ceremonyId, credential, details);
     if (!result) return json(401, { error: "Passkey verification failed or expired." });
     const nativeClient = !origin && !request.headers.has("sec-fetch-site");
     return json(200, nativeClient
@@ -75,6 +80,10 @@ export async function routeAccountApi(request: Request, auth: AccountAuth,
     return json(200, { ok: true }, { "set-cookie": sessionCookie("", 0) });
   }
   if (request.method === "DELETE" && action === "me") {
+    if ((await auth.sessionInfo(sessionToken(request)))?.signIn === "qr") {
+      return json(403, { error: "Sign in with a passkey or password, or use the app, to delete the account.",
+        reason: "full-session-required" });
+    }
     const deleted = await auth.deleteAccount(sessionToken(request));
     return deleted
       ? json(200, { deleted: true }, { "set-cookie": sessionCookie("", 0) })
@@ -84,10 +93,13 @@ export async function routeAccountApi(request: Request, auth: AccountAuth,
 }
 
 export async function handleAccountApi(request: Request, db: D1Database,
-  billing?: ManagedBilling): Promise<Response | null> {
+  billing?: ManagedBilling, storageSecret: Uint8Array | undefined = billing?.signingKey): Promise<Response | null> {
   const auth = new AccountAuth(new D1AccountStore(db));
   const machines = new AccountMachines(db);
   return await routePasswordAccess(request, db, auth)
+    ?? await routeQrSignIn(request, db, auth, storageSecret)
+    ?? await routeWebKey(request, db, auth, storageSecret)
+    ?? await routeDevices(request, db, auth)
     ?? await routeBrowserTokenAccess(request, db, auth)
     ?? await routeLoginTokens(request, db, auth)
     ?? await routeControlAccess(request, { db, auth, billing })

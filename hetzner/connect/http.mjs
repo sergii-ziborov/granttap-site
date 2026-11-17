@@ -32,12 +32,12 @@ export async function readBody(req) {
   }
 }
 
-export async function webRequest(req) {
+export async function webRequest(req, limit = 16_384) {
   const chunks = [];
   let length = 0;
   for await (const chunk of req) {
     length += chunk.length;
-    if (length > 16_384) throw new Error("Request too large");
+    if (length > limit) throw new Error("Request too large");
     chunks.push(chunk);
   }
   return new Request(`https://granttap.com${req.url}`, {

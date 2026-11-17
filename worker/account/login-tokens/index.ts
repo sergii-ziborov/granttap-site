@@ -2,6 +2,7 @@ import type { D1Database } from "@cloudflare/workers-types";
 import type { AccountAuth } from "../auth";
 import { bearerToken, boundedJSON, json, UUID } from "../http";
 import { AccountLoginTokens, LOGIN_TOKEN } from "./store";
+import { describeClient } from "../devices/client";
 export { AccountLoginTokens } from "./store";
 
 /** Native account sign-in, separate from encrypted computer pairing. */
@@ -19,7 +20,7 @@ export async function routeLoginTokens(request: Request, db: D1Database, auth: A
     if (typeof body?.secret !== "string" || !LOGIN_TOKEN.test(body.secret)) {
       return json(400, { error: "Invalid sign-in token." });
     }
-    const session = await tokens.redeem(body.secret, auth);
+    const session = await tokens.redeem(body.secret, auth, describeClient(request.headers, "token", true));
     return session ? json(200, session) : json(410, { error: "Sign-in token expired, revoked, or used." });
   }
   const bearer = bearerToken(request);

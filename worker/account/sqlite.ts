@@ -22,6 +22,8 @@ export class SqliteD1 {
     this.sqlite.exec(readFileSync(new URL("0011_account_login_tokens.sql", migrationsRoot), "utf8"));
     this.sqlite.exec(readFileSync(new URL("0012_runtime_faults.sql", migrationsRoot), "utf8"));
     this.sqlite.exec(readFileSync(new URL("0013_account_passwords.sql", migrationsRoot), "utf8"));
+    this.sqlite.exec(readFileSync(new URL("0014_account_devices.sql", migrationsRoot), "utf8"));
+    this.sqlite.exec(readFileSync(new URL("0015_account_qr_sign_in.sql", migrationsRoot), "utf8"));
     const columns = this.sqlite.prepare("PRAGMA table_info(account_subscriptions)").all();
     if (!columns.some(column => column.name === "is_trial")) {
       this.sqlite.exec(readFileSync(new URL("0006_subscription_trial.sql", migrationsRoot), "utf8"));

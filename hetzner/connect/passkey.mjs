@@ -1,6 +1,7 @@
 import { REQUEST_ID } from "./requests.mjs";
 import { json, readBody } from "./http.mjs";
 import { sessionCookie } from "../../worker/account/http.ts";
+import { describeClient, nodeHeaders } from "../../worker/account/devices/client.ts";
 
 export async function completeConnectPasskey(req, res, id, { records, auth, machines }) {
       if (req.headers.origin !== "https://granttap.com") {
@@ -23,7 +24,8 @@ export async function completeConnectPasskey(req, res, id, { records, auth, mach
         json(res, 400, { error: "Invalid passkey response." });
         return;
       }
-      const verified = await auth.completeAuthentication(body.ceremonyId, body.response);
+      const verified = await auth.completeAuthentication(body.ceremonyId, body.response,
+        describeClient(nodeHeaders(req.headers), "passkey"));
       if (!verified) { json(res, 401, { error: "Passkey verification failed or expired." }); return; }
       const owner = current.machineId ? await machines.owner(current.machineId) : null;
       if (owner && owner !== verified.accountId) {

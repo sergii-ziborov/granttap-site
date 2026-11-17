@@ -32,6 +32,11 @@ device. At most five codes can be outstanding per account. Deleting the account
 invalidates all codes. The QR grants the whole account, so a computer-only QR
 and a role-limited Project Mesh invite remain separate choices in the app.
 
+`qr-sign-in/` signs a browser in when an already signed-in phone scans its QR
+and approves; the phone may also hand the account a chat key (`web-key/`), which
+then lets any of the account's browsers read chats in the page. `devices/` lists
+and signs out every session and computer link for the phone and the web.
+
 `GET /api/account/beta-relay` returns the expiry of an operator-issued relay
 tester grant for the authenticated account, or `null`. A grant never creates a
 subscription and cannot be self-issued through HTTP. The Hetzner SQLite grant

@@ -5,6 +5,7 @@ import {
   verifyAuthenticationResponse,
   verifyRegistrationResponse,
 } from "@simplewebauthn/server";
+import type { SessionDetails } from "./devices/client";
 
 const RP_ID = "granttap.com";
 const ORIGIN = "https://granttap.com";
@@ -27,6 +28,10 @@ export type StoredCredential = {
   transports?: string[];
 };
 
+export type SessionRecord = { accountId: string; expiresAt: number; loginTokenId?: string;
+  delegated?: boolean; signIn?: string | null };
+export type StoredSessionDetails = SessionDetails & { id: string; createdAt: number };
+
 export interface AccountStore {
   saveCeremony(row: Ceremony): Promise<void>;
   consumeCeremony(id: string): Promise<Ceremony | null>;
@@ -34,8 +39,10 @@ export interface AccountStore {
   credential(id: string): Promise<StoredCredential | null>;
   updateCounter(id: string, previous: number, counter: number): Promise<boolean>;
   saveSession(hash: string, accountId: string, expiresAt: number): Promise<void>;
-  session(hash: string): Promise<{ accountId: string; expiresAt: number; loginTokenId?: string } | null>;
+  session(hash: string): Promise<SessionRecord | null>;
   removeSession(hash: string): Promise<void>;
+  saveSessionDetails?(hash: string, details: StoredSessionDetails): Promise<void>;
+  touchSession?(hash: string, now: number): Promise<void>;
   deleteAccount(accountId: string): Promise<void>;
 }
 
@@ -80,7 +87,7 @@ export const platformPasskeyVerifier: PasskeyVerifier = {
   },
 };
 
-function tokenHash(token: string): string {
+export function tokenHash(token: string): string {
   return createHash("sha256").update(token).digest("hex");
 }
 
@@ -108,7 +115,7 @@ export class AccountAuth {
     return { ceremonyId, options };
   }
 
-  async completeRegistration(ceremonyId: string, response: { id: string }) {
+  async completeRegistration(ceremonyId: string, response: { id: string }, details?: SessionDetails) {
     const ceremony = await this.store.consumeCeremony(ceremonyId);
     if (!ceremony || ceremony.kind !== "registration" || !ceremony.accountId
       || ceremony.expiresAt <= this.now()) return null;
@@ -118,7 +125,7 @@ export class AccountAuth {
       const saved = await this.store.createAccount(ceremony.accountId, {
         ...result.credential, accountId: ceremony.accountId,
       });
-      return saved ? this.createSession(ceremony.accountId) : null;
+      return saved ? this.createSession(ceremony.accountId, details) : null;
     } catch { return null; }
   }
 
@@ -132,7 +139,7 @@ export class AccountAuth {
     return { ceremonyId, options };
   }
 
-  async completeAuthentication(ceremonyId: string, response: { id: string }) {
+  async completeAuthentication(ceremonyId: string, response: { id: string }, details?: SessionDetails) {
     const ceremony = await this.store.consumeCeremony(ceremonyId);
     if (!ceremony || ceremony.kind !== "authentication" || ceremony.expiresAt <= this.now()) return null;
     const credential = await this.store.credential(response.id);
@@ -141,20 +148,27 @@ export class AccountAuth {
       const result = await this.verifier.authenticate(response, ceremony.challenge, credential);
       if (!result.verified || result.newCounter == null) return null;
       if (!await this.store.updateCounter(credential.id, credential.counter, result.newCounter)) return null;
-      return this.createSession(credential.accountId);
+      return this.createSession(credential.accountId, details);
     } catch { return null; }
   }
 
   async accountForToken(token: string): Promise<string | null> {
+    return (await this.sessionInfo(token))?.accountId ?? null;
+  }
+
+  /** A valid session, with its last use recorded at most every few minutes. */
+  async sessionInfo(token: string): Promise<SessionRecord | null> {
     if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return null;
-    const session = await this.store.session(tokenHash(token));
-    return session && session.expiresAt > this.now() ? session.accountId : null;
+    const hash = tokenHash(token);
+    const session = await this.store.session(hash);
+    if (!session || session.expiresAt <= this.now()) return null;
+    await this.store.touchSession?.(hash, this.now());
+    return session;
   }
 
   async canManageCredentials(token: string): Promise<boolean> {
-    if (!/^[A-Za-z0-9_-]{43}$/.test(token)) return false;
-    const session = await this.store.session(tokenHash(token));
-    return !!session && session.expiresAt > this.now() && !session.loginTokenId;
+    const session = await this.sessionInfo(token);
+    return !!session && !session.loginTokenId && !session.delegated;
   }
 
   async logout(token: string): Promise<void> {
@@ -168,9 +182,10 @@ export class AccountAuth {
     return true;
   }
 
-  async createSession(accountId: string) {
+  async createSession(accountId: string, details?: SessionDetails) {
     const token = randomBytes(32).toString("base64url");
     await this.store.saveSession(tokenHash(token), accountId, this.now() + SESSION_MS);
+    if (details) await this.store.saveSessionDetails?.(tokenHash(token), { ...details, id: randomUUID(), createdAt: this.now() });
     return { accountId, token };
   }
 }

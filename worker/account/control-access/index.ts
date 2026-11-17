@@ -6,6 +6,7 @@ import type { ManagedBilling } from "../subscriptions/api";
 import { reconcileSubscription } from "../subscriptions/reconcile";
 import { signManagedTicket } from "../subscriptions/tickets";
 import { AccountMachineEndpoints, validControlKey, validControlRoom } from "./machine-endpoints";
+import { AccountWebKeys } from "../web-key/store";
 export { AccountMachineEndpoints } from "./machine-endpoints";
 
 export type ControlServices = { db: D1Database; auth: AccountAuth; billing?: ManagedBilling };
@@ -48,6 +49,9 @@ async function controllerAdmission(request: Request, services: ControlServices, 
   }
   const binding = await new AccountMachineEndpoints(services.db).binding(accountId, body.computerId, body.room);
   if (!binding) return json(403, { error: "This computer route is not available to this account." });
+  if (await new AccountWebKeys(services.db).revoked(accountId, body.publicKey)) {
+    return json(403, { error: "This key was removed from the account. Connect this browser again." });
+  }
   const right = await new ManagedSubscriptions(services.db).admit(accountId, body.computerId);
   if (!right) return json(403, { error: "Computer access must be renewed in GrantTap." });
   if (!services.billing || services.billing.signingKey.length < 32) {

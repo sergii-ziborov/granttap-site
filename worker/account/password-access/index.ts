@@ -4,6 +4,7 @@ import {boundedJSON,json,sessionCookie,sessionToken} from '../http';
 import {hashPassword,normalizeLogin,validPassword,verifyPassword} from './passwords';
 import {reservePasswordAttempt} from './rate-limit';
 import {AccountPasswords} from './store';
+import {describeClient} from '../devices/client';
 
 /** Ordinary account authentication; this route has no reviewer-specific bypass. */
 export async function routePasswordAccess(request:Request,db:D1Database,auth:AccountAuth):Promise<Response|null>{
@@ -27,11 +28,11 @@ async function passwordRoute(request:Request,db:D1Database,auth:AccountAuth):Pro
  if(!await reservePasswordAttempt(db,login,ip))return limited();
  if(action==='register'){
   const accountId=await credentials.create(login,await hashPassword(password));
-  return accountId?sessionResponse(request,await auth.createSession(accountId),201):json(409,{error:'This login is unavailable.'});
+  return accountId?sessionResponse(request,await auth.createSession(accountId,describeClient(request.headers,'password')),201):json(409,{error:'This login is unavailable.'});
  }
  const credential=await credentials.byLogin(login);
  if(!await verifyPassword(password,credential?.password_hash??null))return json(401,{error:'The login or password is incorrect.'});
- const session=await auth.createSession(credential!.account_id);
+ const session=await auth.createSession(credential!.account_id,describeClient(request.headers,'password'));
  if((await credentials.byAccount(credential!.account_id))?.password_hash!==credential!.password_hash){await auth.logout(session.token);return json(401,{error:'The login or password is incorrect.'});}
  return sessionResponse(request,session);
 }
@@ -53,7 +54,7 @@ async function manageCredential(request:Request,db:D1Database,auth:AccountAuth,c
  const saved=await credentials.set(accountId,login,passwordHash,existing?.password_hash??null);
  if(saved==='unavailable')return json(409,{error:'This login is unavailable.'});
  if(saved==='stale')return json(401,{error:'The current password is incorrect.'});
- const session=await auth.createSession(accountId);
+ const session=await auth.createSession(accountId,describeClient(request.headers,'password'));
  if((await credentials.byAccount(accountId))?.password_hash!==passwordHash){await auth.logout(session.token);return json(401,{error:'The current password is incorrect.'});}
  return sessionResponse(request,session);
 }
