@@ -50,7 +50,7 @@ test("passkey sign-in opens the account sections with this browser first", async
   expect(within(await screen.findByRole("radiogroup", { name: "Sign-in method" })).getAllByRole("radio")).toHaveLength(4);
   await userEvent.click(screen.getByRole("button", { name: "Sign in with passkey" }));
   expect(passkeys.get).toHaveBeenCalledWith({ optionsJSON: { challenge: "challenge" } });
-  expect(await screen.findByRole("heading", { level: 1, name: "Your account" })).toBeTruthy();
+  expect(await screen.findByRole("heading", { level: 1, name: "Your GrantTap account" })).toBeTruthy();
   expect(screen.getByText(accountId)).toBeTruthy();
   expect(screen.getByText("Signed in on this browser with a passkey.")).toBeTruthy();
   const nav = screen.getByRole("navigation", { name: "Account sections" });

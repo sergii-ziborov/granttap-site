@@ -71,7 +71,8 @@ export function AccountView() {
   return <div className="account-page">
     <SiteHeader locale={locale} languageControl={<LanguageToggle locale={locale} setLocale={setLocale} />} />
     <main className={"account-main " + (accountId ? "signed-in" : "signed-out")}>
-      {accountId === undefined ? <p role="status" className="account-note">{t.loading}</p> : accountId
+      {accountId === undefined ? <header className="account-head"><h1>{t.title}</h1>
+        <p role="status" className="account-note">{t.loading}</p></header> : accountId
         ? <SignedInAccount key={accountId} locale={locale} accountId={accountId} notice={notice}
           onSignedOut={() => { setNotice(undefined); setAccountId(null); }} />
         : <div className="account-signin-layout">

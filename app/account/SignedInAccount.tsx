@@ -51,7 +51,6 @@ export function SignedInAccount({ locale, accountId, notice, onSignedOut }: { lo
   const method = summary.session.signIn ? t.sessionMethods[summary.session.signIn] : null;
   return <>
     <header className="account-head">
-      <p className="account-kicker">{t.kicker}</p>
       <h1>{t.title}</h1>
       <p className="account-lead">{method ? t.signedInWith(method) : t.signedIn}</p>
       <div className="account-head-actions">
