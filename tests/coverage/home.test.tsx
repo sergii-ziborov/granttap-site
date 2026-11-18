@@ -49,6 +49,24 @@ test("renders the Personal product journey and locale control", async () => {
   expect(screen.getByRole("link", { name: "RU — Switch to Russian" }).getAttribute("href")).toBe("/?lang=ru");
 });
 
+test("the home page says GrantTap is on the App Store and keeps Mac to App Review", async () => {
+  render(await Home({ searchParams: Promise.resolve({}) }));
+  expect(screen.getByText("Now on the App Store for iPhone and iPad")).toBeTruthy();
+  expect(screen.getByText(/Version 1\.0\.2 · Free download/)).toBeTruthy();
+  expect(screen.getByRole("link", { name: "What’s new ↓" }).getAttribute("href")).toBe("#whats-new");
+  const news = screen.getByRole("region", { name: "What’s new in GrantTap 1.0.2" });
+  expect(within(news).getAllByRole("article")).toHaveLength(3);
+  expect(within(news).getByText(/on the App Store since November 13, 2026\. Version 1\.0\.2 arrived on November 18, 2026/)).toBeTruthy();
+  expect(within(news).getByRole("link", { name: "Download on the App Store" }).getAttribute("href")).toBe("https://apps.apple.com/app/id6809739366");
+  expect(within(news).getByRole("heading", { name: "Your computer · GrantTap MCP 0.8.195" })).toBeTruthy();
+  expect(within(news).getByText("After Apple approves it")).toBeTruthy();
+  const availability = document.getElementById("availability")!;
+  expect(within(availability).getByRole("heading", { name: "Get GrantTap on the App Store." })).toBeTruthy();
+  expect(within(availability).getByText(/Mac: GrantTap 1\.0\.1 is in App Review/)).toBeTruthy();
+  expect(screen.queryByText(/^GrantTap (for Mac )?is available by TestFlight invitation/)).toBeNull();
+  expect(screen.getByText("GrantTap on Mac · In App Review")).toBeTruthy();
+});
+
 test("a Russian journal link opens the product and returns to the Russian journal", async () => {
   window.localStorage.clear();
   window.history.replaceState(null, "", "/?lang=ru");

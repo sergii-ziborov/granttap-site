@@ -15,9 +15,11 @@ export default async function Home(props: PublicPageProps = {}) {
     { "@type": "WebSite", "@id": `${siteOrigin}/#website`, name: "GrantTap", url: siteOrigin,
       inLanguage: ["en", "ru"], publisher: { "@id": `${siteOrigin}/#organization` } },
     { "@type": "SoftwareApplication", name: "GrantTap", url: siteOrigin,
-      operatingSystem: "iOS, iPadOS, macOS, watchOS", applicationCategory: "DeveloperApplication",
+      operatingSystem: "iOS 15.0 or later, iPadOS 15.0 or later, watchOS", applicationCategory: "DeveloperApplication",
       description: copy[locale].hero, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-      ...(releaseAvailability.ios.storeURL ? { installUrl: releaseAvailability.ios.storeURL } : {}),
+      softwareVersion: releaseAvailability.ios.version,
+      ...(releaseAvailability.ios.storeURL ? { installUrl: releaseAvailability.ios.storeURL, downloadUrl: releaseAvailability.ios.storeURL } : {}),
+      ...(releaseAvailability.ios.firstPublishedOn ? { datePublished: releaseAvailability.ios.firstPublishedOn } : {}),
       sameAs: [`${siteOrigin}/iphone`, `${siteOrigin}/mac`], publisher: { "@id": `${siteOrigin}/#organization` } },
   ] };
   return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structuredData) }} />

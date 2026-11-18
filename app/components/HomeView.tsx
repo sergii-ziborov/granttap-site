@@ -6,8 +6,10 @@ import { DesktopShowcase } from "./DesktopShowcase";
 import type { Locale } from "./Locale";
 import { MeshExplainer } from "./MeshExplainer";
 import { ProductImage } from "./ProductImage";
+import { ReleaseNews } from "./ReleaseNews";
 import { LocaleLinks, SiteFooter, SiteHeader } from "./SiteChrome";
 import { installationAction, localizedProductPath, releaseAvailability } from "../ProductOffer";
+import { whatsNew } from "../ProductUpdates/whatsNew";
 
 type Props = { locale: Locale; t: HomeCopy };
 export function HomeView({ locale, t }: Props) {
@@ -15,6 +17,7 @@ export function HomeView({ locale, t }: Props) {
     <SiteHeader locale={locale} active="product" languageControl={<LocaleLinks locale={locale} path="/" />} />
     <Hero t={t} locale={locale} />
     <Providers t={t} locale={locale} />
+    <ReleaseNews locale={locale} />
     <Product t={t} />
     <Share t={t} />
     <How t={t} />
@@ -30,7 +33,7 @@ export function HomeView({ locale, t }: Props) {
 
 function Hero({ t, locale }: Props) {
   return <section className="hero section-shell" id="top">
-    <div className="hero-copy"><div className="eyebrow"><span className="status-dot" />{t.eyebrow}</div><h1>{t.heroTitle}<span>{t.heroAccent}</span></h1><p className="hero-lede">{t.hero}</p><div className="hero-actions"><a className="button button-primary" href={installationAction(locale).href}>{installationAction(locale).label}</a><a className="button button-secondary" href="#product">{t.productAction} ↓</a></div><ul className="hero-notes">{t.proofs.map(item => <li key={item}><b>✓</b> {item}</li>)}</ul></div>
+    <div className="hero-copy"><div className="eyebrow"><span className="status-dot" />{t.eyebrow}</div><h1>{t.heroTitle}<span>{t.heroAccent}</span></h1><p className="hero-lede">{t.hero}</p><div className="hero-actions"><a className="button button-primary" href={installationAction(locale).href}>{installationAction(locale).label}</a><a className="button button-secondary" href="#product">{t.productAction} ↓</a></div>{releaseAvailability.ios.storeURL && <p className="hero-release">{t.heroRelease} · <a href="#whats-new">{t.heroReleaseLink} ↓</a></p>}<ul className="hero-notes">{t.proofs.map(item => <li key={item}><b>✓</b> {item}</li>)}</ul></div>
     <div className="hero-product" aria-label="GrantTap on iPhone and Apple Watch"><div className="phone-shell"><div className="phone-speaker" /><div className="phone-screen-stack"><ProductImage name="iphone-command-center" alt="GrantTap Now on iPhone" priority /></div></div><div className="watch-shell"><div className="watch-crown" /><div className="watch-screen-stack"><ProductImage name="apple-watch-approval" alt="GrantTap approval on Apple Watch" /></div></div></div>
   </section>;
 }
@@ -91,7 +94,7 @@ function Install({ t }: Pick<Props, "t">) {
 function Pricing({ t, locale }: Props) {
   const action = installationAction(locale);
   const live = Boolean(releaseAvailability.ios.storeURL);
-  return <><section className="pricing-preview section-shell" id="pricing"><div><p className="kicker">{t.pricingKicker}</p><h2>{t.pricingTitle}</h2><p>{t.pricingText}</p><a className="button button-secondary" href={localizedProductPath("/pricing", locale)}>{t.pricingAction}</a></div></section><section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><div><p className="kicker">{t.releaseKicker}</p><h2>{live ? t.releaseLiveTitle : t.releaseTitle}</h2><p className="release-copy">{live ? t.releaseLiveText : t.releaseText}</p></div><a className="availability-pill" href={action.href}>{action.label}</a></div></section></>;
+  return <><section className="pricing-preview section-shell" id="pricing"><div><p className="kicker">{t.pricingKicker}</p><h2>{t.pricingTitle}</h2><p>{t.pricingText}</p><a className="button button-secondary" href={localizedProductPath("/pricing", locale)}>{t.pricingAction}</a></div></section><section className="availability section-shell" id="availability"><div className="availability-card release-card"><Image src="/app-icon.png" alt="" width={1024} height={1024} unoptimized /><div><p className="kicker">{t.releaseKicker}</p><h2>{live ? t.releaseLiveTitle : t.releaseTitle}</h2><p className="release-copy">{live ? t.releaseLiveText : t.releaseText}</p>{live && <p className="release-mac">{whatsNew(locale).mac} <a href={localizedProductPath("/mac", locale)}>{whatsNew(locale).macLink} →</a></p>}</div><a className="availability-pill" href={action.href}>{action.label}</a></div></section></>;
 }
 
 function BlogTeaser({ locale }: { locale: Locale }) {

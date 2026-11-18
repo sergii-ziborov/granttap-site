@@ -61,7 +61,7 @@ export function installationAction(locale: OfferLocale, platform: "ios" | "mac" 
       label: locale === "ru" ? "Запросить приглашение в TestFlight" : "Request a TestFlight invitation" };
 }
 
-function calendarDate(day: string | null, locale: OfferLocale): string {
+export function calendarDate(day: string | null, locale: OfferLocale): string {
   if (!day) return "";
   return new Date(`${day}T12:00:00Z`).toLocaleDateString(locale === "ru" ? "ru-RU" : "en-US",
     { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).replace(/\s*г\.$/, "");

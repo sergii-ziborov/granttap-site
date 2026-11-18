@@ -15,6 +15,8 @@ It composes small, purpose-named style modules from this directory.
 - `site-chrome.css` — shared page width, navigation, footer, and document shell.
 - `editorial-visuals.css` — Mesh and Mac editorial sections, art captions, and
   subtle motion that respects reduced-motion settings.
+- `release-news.css` — the hero's version line, What's new with the App Store
+  badge, and the availability card's Mac line; theme tokens only.
 
 Rendered behavior is covered by `../../tests/rendered-html.test.mjs`; `npm test`
 also performs a production build so malformed imports fail before publishing.
