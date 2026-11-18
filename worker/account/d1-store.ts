@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import type { AccountStore, Ceremony, SessionRecord, StoredCredential, StoredSessionDetails } from "./auth";
 import type { D1Database } from "@cloudflare/workers-types";
+import type { SessionTransport } from "./devices/client";
 
 type CeremonyRow = {
   id: string; kind: Ceremony["kind"]; challenge: string;
@@ -16,7 +17,8 @@ type SessionRow = { account_id: string; expires_at: number; linked_session: stri
 const TOUCH_MS = 5 * 60_000;
 
 export class D1AccountStore implements AccountStore {
-  constructor(private readonly db: D1Database) {}
+  /** `client`: what this request's way of carrying its session says about the device, if anything. */
+  constructor(private readonly db: D1Database, private readonly client: SessionTransport | null = null) {}
 
   async saveCeremony(row: Ceremony) {
     await this.db.prepare("INSERT INTO ceremonies(id,kind,challenge,account_id,expires_at) VALUES(?,?,?,?,?)")
@@ -86,12 +88,17 @@ export class D1AccountStore implements AccountStore {
         details.createdAt, details.createdAt).run();
   }
 
-  /** Older sessions gain an identity on first use, so every device can be listed and signed out. */
+  /**
+   * Older sessions gain an identity on first use, so every device can be listed and signed out. One whose kind
+   * is unknown takes it from how it is used: an app's bearer or a browser's cookie.
+   */
   async touchSession(hash: string, now: number) {
     await this.db.prepare("INSERT INTO account_session_details(session_hash,id,kind,name,sign_in,delegated,created_at,last_seen_at) "
-      + "VALUES(?,?,'unknown','Signed-in device',NULL,0,NULL,?) ON CONFLICT(session_hash) DO UPDATE "
-      + "SET last_seen_at=excluded.last_seen_at WHERE last_seen_at IS NULL OR last_seen_at<?")
-      .bind(hash, randomUUID(), now, now - TOUCH_MS).run();
+      + "VALUES(?,?,?,?,NULL,0,NULL,?) ON CONFLICT(session_hash) DO UPDATE SET last_seen_at=excluded.last_seen_at,"
+      + "kind=CASE WHEN kind='unknown' THEN excluded.kind ELSE kind END,"
+      + "name=CASE WHEN kind='unknown' THEN excluded.name ELSE name END "
+      + "WHERE last_seen_at IS NULL OR last_seen_at<? OR (kind='unknown' AND excluded.kind<>'unknown')")
+      .bind(hash, randomUUID(), this.client?.kind ?? "unknown", this.client?.name ?? "Signed-in device", now, now - TOUCH_MS).run();
   }
 
   async removeSession(hash: string) {

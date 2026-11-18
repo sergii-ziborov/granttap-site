@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { expect, it } from "vitest";
-import { browserLabel, describeClient, isNativeClient, nodeHeaders } from "../client";
+import { browserLabel, describeClient, describeTransport, isNativeClient, nodeHeaders } from "../client";
 
 it("labels common browsers and systems coarsely and admits what it does not know", () => {
   const cases: Array<[string, string]> = [
@@ -29,4 +29,15 @@ it("tells native app requests from browser requests by their fetch headers", () 
   const node = nodeHeaders({ origin: "https://granttap.com", "set-cookie": ["a", "b"] });
   expect(node.get("Origin")).toBe("https://granttap.com");
   expect(node.get("set-cookie")).toBeNull();
+});
+
+it("says what a session is from how a request carries it, and nothing when that is unclear", () => {
+  const bearer = { authorization: "Bearer " + "b".repeat(43) }, cookie = { cookie: "granttap_session=" + "c".repeat(43) };
+  const request = (headers: Record<string, string>) => new Request("https://granttap.com/api/account/me", { headers });
+  expect(describeTransport(request(bearer))).toEqual({ kind: "app", name: "GrantTap app" });
+  expect(describeTransport(request({ ...bearer, origin: "https://granttap.com" }))).toBeNull();
+  expect(describeTransport(request({ ...cookie, "sec-fetch-site": "same-origin", "user-agent": "Firefox/140.0" })))
+    .toEqual({ kind: "browser", name: "Firefox" });
+  expect(describeTransport(request(cookie))).toBeNull();
+  expect(describeTransport(request({ "sec-fetch-site": "same-origin" }))).toBeNull();
 });

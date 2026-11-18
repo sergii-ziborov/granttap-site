@@ -25,7 +25,7 @@ describe("account devices", () => {
     expect(listed.devices[1].encryptionKeyId).toMatch(/^[a-f0-9]{64}$/);
     expect(listed.devices[2]).toMatchObject({ name: "Firefox on Windows", current: false });
 
-    expect(await (await f.native("devices/current", { name: "Serhii's iPhone", kind: "iphone" }, "PATCH")).json()).toEqual({ updated: true });
+    expect(await (await f.native("devices/current", { name: "Serhii's iPhone", kind: "iphone" }, "PATCH")).json()).toEqual({ updated: true, replaced: 0 });
     expect((await f.native("devices/current", { name: "", kind: "iphone" }, "PATCH")).status).toBe(400);
     expect((await f.native("devices/current", { name: "Phone", kind: "watch" }, "PATCH")).status).toBe(400);
     expect((await f.browser("devices/current", { name: "Mine", kind: "mac" }, "PATCH", browser)).status).toBe(403);
@@ -44,11 +44,13 @@ describe("account devices", () => {
   it("gives older sessions an identity, describes the current browser and signs itself out", async () => {
     const f = await accountFixture();
     const legacy = randomBytes(32).toString("base64url");
+    const expiresAt = Date.now() + 86_400_000;
     await f.db.prepare("INSERT INTO sessions(token_hash,account_id,expires_at) VALUES(?,?,?)")
-      .bind(tokenHash(legacy), f.accountId, Date.now() + 86_400_000).run();
+      .bind(tokenHash(legacy), f.accountId, expiresAt).run();
     const listed = await (await f.native("devices", undefined, "GET")).json() as Listed;
     const old = listed.devices.find(device => !device.current)!;
-    expect(old).toMatchObject({ kind: "unknown", name: "Signed-in device", signIn: null, createdAt: null });
+    expect(old).toMatchObject({ kind: "unknown", name: "Signed-in device", signIn: null, older: true,
+      createdAt: expiresAt - 30 * 86_400_000, lastSeenAt: null });
     expect(old.id).toMatch(/^[0-9a-f-]{36}$/);
     const asBrowser = await (await f.browser("devices", undefined, "GET", legacy)).json() as Listed;
     expect(asBrowser.devices[0]).toMatchObject({ current: true, kind: "browser", name: "Chrome on macOS" });

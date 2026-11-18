@@ -1,3 +1,5 @@
+import { bearerToken, sessionToken } from "../http";
+
 export type DeviceKind = "browser" | "iphone" | "ipad" | "mac" | "app" | "unknown";
 export type SignInMethod = "passkey" | "password" | "qr" | "token" | "invite";
 export type SessionDetails = { kind: DeviceKind; name: string; signIn: SignInMethod; delegated: boolean };
@@ -31,6 +33,15 @@ export function browserLabel(userAgent: string | null): { name: string; os: stri
 export function describeClient(headers: HeaderSource, signIn: SignInMethod, delegated = false): SessionDetails {
   if (isNativeClient(headers)) return { kind: "app", name: "GrantTap app", signIn, delegated };
   return { kind: "browser", name: browserLabel(headers.get("user-agent")).label, signIn, delegated };
+}
+
+export type SessionTransport = { kind: Extract<DeviceKind, "app" | "browser">; name: string };
+
+/** A bearer from a native client is the app; a cookie sent by a browser is that browser. Anything else says nothing. */
+export function describeTransport(request: Request): SessionTransport | null {
+  const native = isNativeClient(request.headers);
+  if (bearerToken(request)) return native ? { kind: "app", name: "GrantTap app" } : null;
+  return !native && sessionToken(request) ? { kind: "browser", name: browserLabel(request.headers.get("user-agent")).label } : null;
 }
 
 /** Adapts Node's lower-cased header record for the connect service. */

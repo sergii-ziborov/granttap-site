@@ -11,7 +11,7 @@ import { routeControlAccess } from "./control-access";
 import { routePasswordAccess } from "./password-access";
 import { routeLoginTokens } from "./login-tokens";
 import { routeBrowserTokenAccess } from "./browser-token-access";
-import { describeClient } from "./devices/client";
+import { describeClient, describeTransport } from "./devices/client";
 import { routeDevices } from "./devices";
 import { routeQrSignIn } from "./qr-sign-in";
 import { routeWebKey } from "./web-key";
@@ -94,7 +94,7 @@ export async function routeAccountApi(request: Request, auth: AccountAuth,
 
 export async function handleAccountApi(request: Request, db: D1Database,
   billing?: ManagedBilling, storageSecret: Uint8Array | undefined = billing?.signingKey): Promise<Response | null> {
-  const auth = new AccountAuth(new D1AccountStore(db));
+  const auth = new AccountAuth(new D1AccountStore(db, describeTransport(request)));
   const machines = new AccountMachines(db);
   return await routePasswordAccess(request, db, auth)
     ?? await routeQrSignIn(request, db, auth, storageSecret)

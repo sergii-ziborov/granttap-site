@@ -2,7 +2,7 @@ import type { D1Database } from "@cloudflare/workers-types";
 import { tokenHash, type AccountAuth } from "../auth";
 import { boundedJSON, json, problem as fail, sessionCookie, sessionToken, UUID } from "../http";
 import { AccountMachines } from "../machines";
-import { describeClient, isNativeClient, type DeviceKind } from "./client";
+import { isNativeClient, type DeviceKind } from "./client";
 import { AccountDevices } from "./store";
 export { AccountDevices } from "./store";
 
@@ -20,27 +20,28 @@ export async function routeDevices(request: Request, db: D1Database, auth: Accou
   if (!session) return fail(401, "sign-in-required", "Sign in required.");
   const hash = tokenHash(token), devices = new AccountDevices(db), action = path.slice("/api/account/".length);
   if (action === "summary" && request.method === "GET") return summary(db, session.accountId, hash, session);
-  if (action === "devices" && request.method === "GET") {
-    const listed = await devices.list(session.accountId, hash);
-    return json(200, { devices: await refineCurrent(request, devices, hash, listed)
-      ? await devices.list(session.accountId, hash) : listed });
-  }
+  if (action === "devices" && request.method === "GET") return json(200, { devices: await devices.list(session.accountId, hash) });
   if (action === "devices/current" && request.method === "PATCH") {
     if (!isNativeClient(request.headers)) return fail(403, "browser-not-allowed", "Browsers are named automatically.");
     const body = await boundedJSON(request);
     const name = typeof body?.name === "string" ? body.name.trim() : "";
-    if (!NAME.test(name) || !["iphone", "ipad", "mac"].includes(String(body?.kind))) {
+    const installation = body?.installationId;
+    if (!NAME.test(name) || !["iphone", "ipad", "mac"].includes(String(body?.kind))
+      || (installation !== undefined && (typeof installation !== "string" || !UUID.test(installation)))) {
       return fail(400, "invalid", "Choose a name of 1–80 characters and iphone, ipad or mac.");
     }
-    await devices.describeCurrent(hash, name, body!.kind as DeviceKind);
-    return json(200, { updated: true });
+    return json(200, await devices.describeCurrent(session.accountId, hash, name, body!.kind as DeviceKind,
+      installation as string | undefined));
   }
   if (action === "devices/prune" && request.method === "POST") {
-    const days = (await boundedJSON(request))?.inactiveDays;
-    if (!Number.isInteger(days) || Number(days) < 7 || Number(days) > 365) {
-      return fail(400, "invalid", "Choose between 7 and 365 days.");
+    const body = await boundedJSON(request), days = body?.inactiveDays, machines = new AccountMachines(db);
+    if (body?.older === true && days === undefined) {
+      return json(200, { removed: await devices.pruneOlder(session.accountId, hash, machines) });
     }
-    return json(200, { removed: await devices.prune(session.accountId, hash, Number(days), new AccountMachines(db)) });
+    if (body?.older !== undefined || !Number.isInteger(days) || Number(days) < 7 || Number(days) > 365) {
+      return fail(400, "invalid", "Choose between 7 and 365 days, or older sign-ins.");
+    }
+    return json(200, { removed: await devices.prune(session.accountId, hash, Number(days), machines) });
   }
   const target = action.match(/^devices\/(sessions|computers)\/([^/]+)$/);
   if (target && request.method === "DELETE" && UUID.test(target[2])) {
@@ -51,13 +52,6 @@ export async function routeDevices(request: Request, db: D1Database, auth: Accou
     return json(200, { revoked: true }, self && !isNativeClient(request.headers) ? { "set-cookie": sessionCookie("", 0) } : undefined);
   }
   return fail(405, "method", "Method not allowed.");
-}
-
-async function refineCurrent(request: Request, devices: AccountDevices, hash: string,
-  listed: Awaited<ReturnType<AccountDevices["list"]>>) {
-  if (listed.find(device => device.current)?.kind !== "unknown") return false;
-  const described = describeClient(request.headers, "passkey");
-  return devices.describeCurrent(hash, described.name, described.kind);
 }
 
 async function summary(db: D1Database, accountId: string, hash: string,
