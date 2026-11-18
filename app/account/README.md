@@ -38,6 +38,10 @@ with a section index (a sticky rail on wide screens, wrapping links on phones):
 - **Devices** (`Devices`): every session and computer link with kind, sign-in
   method, last activity and a "This browser" badge; Sign out / Remove and
   "Remove devices not seen for 30 days" each ask in place (`ConfirmAction`).
+  Sessions from before the service recorded device details sit apart under
+  **Older sign-ins** ("Older sign-in · since Nov 2, 2026 · no use recorded"),
+  with "Remove N older sign-ins" (`POST devices/prune {"older": true}`). Tests:
+  `tests/devices.test.tsx`.
 - **Encryption key** (`EncryptionKey`): says whether the account holds the chat
   key. Without it, computers are listed with "Chats encrypted · key a1b2c3…" and
   the page explains that GrantTap's servers keep no chat names. The risk text is

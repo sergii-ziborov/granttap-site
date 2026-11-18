@@ -3,7 +3,8 @@ export type Device = { type: "session" | "computer"; id: string;
   kind: "browser" | "iphone" | "ipad" | "mac" | "app" | "unknown" | "computer"; name: string;
   signIn: "passkey" | "password" | "qr" | "token" | "invite" | null; createdAt: number | null;
   lastSeenAt: number | null; expiresAt: number | null; current: boolean; delegated: boolean;
-  encryptionKeyId?: string | null };
+  /** Signed in before sessions recorded their details; `createdAt` then comes from its 30-day expiry. */
+  older?: boolean; encryptionKeyId?: string | null };
 export type Summary = { accountId: string; createdAt: number;
   session: { id: string | null; signIn: Device["signIn"]; delegated: boolean };
   methods: { passkeys: number; password: string | null; signInTokens: number } };
