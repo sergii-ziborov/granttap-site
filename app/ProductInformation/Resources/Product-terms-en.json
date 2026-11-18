@@ -1,6 +1,6 @@
 {
   "title": "Terms of Use",
-  "updated": "2026-11-14",
+  "updated": "2026-11-18",
   "intro": "These terms cover the GrantTap app, encrypted relay, and related support services. GrantTap extends coding-agent sessions on computers you control; it does not replace the agent or move your project into a GrantTap cloud.",
   "sections": [
     {
@@ -46,7 +46,7 @@
     {
       "heading": "Purchases and refunds",
       "paragraphs": [
-        "The Mac app is prepared for a one-time {{MAC_LOCAL_USD}} US license. App Store availability, local price and the purchase receipt govern. A purchased Mac license does not expire when Personal ends and includes running and privately modifying the GrantTap relay for personal or internal use, excluding redistribution, resale or hosting for third parties. Direct mode uses encrypted address discovery; fully self-hosted mode uses your own endpoint. You maintain reachability, server security and backups. The Mac end-user license applies alongside mandatory Apple rules.",
+        "GrantTap for Mac offers a one-time {{MAC_LOCAL_USD}} US license, sold in the Mac app once Apple approves it. App Store availability, local price and the purchase receipt govern. A purchased Mac license does not expire when Personal ends and includes running and privately modifying the GrantTap relay for personal or internal use, excluding redistribution, resale or hosting for third parties. Direct mode uses encrypted address discovery; fully self-hosted mode uses your own endpoint. You maintain reachability, server security and backups. The Mac end-user license applies alongside mandatory Apple rules.",
         "Personal is an optional auto-renewable subscription for managed delivery. US monthly prices: {{MONTHLY_PLANS}} The same core features are available in all three plans; only managed publishing-computer limits differ. Models and tokens are not included. Eligible Apple trials, local price, renewal and plan-change dates appear in the purchase sheet. Cancellation does not delete downloaded local history.",
         "The subscription renews automatically unless cancelled at least 24 hours before the current period ends. App Store purchases, payment processing, taxes, family sharing, and refunds are handled by Apple. GrantTap does not receive your payment-card details.",
         "Active Personal includes managed access for linked Mac clients without an additional Mac Local purchase. Mac Local is the separate one-time license for local control and your own relay. Fleet is a personal computer allowance, not a fifteen-user enterprise license or SLA."
