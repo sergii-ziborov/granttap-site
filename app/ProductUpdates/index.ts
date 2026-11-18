@@ -4,6 +4,7 @@ import type { ProductDocument } from "../ProductInformation";
 /** Published releases, plus an app version on the day it is submitted to App Review, labelled as such. */
 export function versionHistory(locale: OfferLocale): ProductDocument["sections"][number] {
   return locale === "ru" ? {
+    id: "version-history",
     heading: "История версий",
     paragraphs: ["GrantTap для iPhone и iPad в App Store с 13 ноября 2026 года; текущая версия 1.0.2 опубликована 18 ноября 2026. Версия 1.0.1 для Mac отправлена в App Review 15 ноября 2026 и всё ещё на проверке; до публикации приложение для Mac доступно по приглашению через TestFlight. Номер сборки указан в разделе «О приложении». Компьютерный MCP обновляется отдельно. Ниже — выбранные опубликованные изменения; статусы каждого компонента проверяются независимо."],
     bullets: [
@@ -53,6 +54,7 @@ export function versionHistory(locale: OfferLocale): ProductDocument["sections"]
     ],
     links: [{ label: "Версия компьютерного MCP в npm", href: "https://www.npmjs.com/package/granttap-mcp/v/0.8.195" }],
   } : {
+    id: "version-history",
     heading: "Version history",
     paragraphs: ["GrantTap for iPhone and iPad has been on the App Store since November 13, 2026; the current version, 1.0.2, was published on November 18, 2026. Version 1.0.1 for Mac was submitted to App Review on November 15, 2026 and is still in review; until it is published, the Mac app is available by TestFlight invitation. Find the build number in About. The computer MCP updates separately."],
     bullets: [

@@ -67,7 +67,7 @@ export default async function MacPage({ searchParams }: Params) {
   return <main lang={locale} className="mac-page">
     <SiteHeader locale={locale} active="mac" languageControl={<LocaleLinks locale={locale} path="/mac" />} />
     <section className="section-shell mac-page-intro">
-      <p className="kicker">Mac · SwiftUI</p><h1>{t.title}</h1><p>{t.intro}</p>
+      <p className="kicker">{locale === "ru" ? "Mac · на проверке App Review" : "Mac · In App Review"}</p><h1>{t.title}</h1><p>{t.intro}</p>
       <p className="mac-availability">{availabilityNote(locale, "mac")} {t.availability}</p>
       <div className="mac-page-links"><a className="button button-primary" href={action.href}>{action.label}</a>{iphone.href !== action.href && <a className="button button-secondary" href={iphone.href}>{t.iphoneAction}</a>}<a href={localizedProductPath("/support", locale)}>{t.support} →</a><a href="https://github.com/sergii-ziborov/granttap/tree/main/apps/macos">{t.source} ↗</a></div>
     </section>

@@ -16,6 +16,7 @@ export function PricingView({ initialLocale = "en" }: { initialLocale?: Locale }
     <section className="section-shell offer-intro">
       <p className="kicker">{t.kicker}</p><h1>{t.title}</h1><p>{t.intro}</p>
       <p className="offer-availability">{t.availability}</p>
+      <p className="offer-availability offer-mac-status">{t.macAvailability}</p>
     </section>
     <section className="section-shell offer-plans" aria-label={t.plans}>
       {launchOffer.plans.map((plan, index) => <article className="offer-card"

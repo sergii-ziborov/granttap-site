@@ -8,6 +8,7 @@ describe("published version history", () => {
       const help = customerDocument("support", locale);
       const section = help.sections.find(s => s.heading === (locale === "ru" ? "История версий" : "Version history"));
       expect(section).toBeDefined();
+      expect(section?.id).toBe("version-history");
       expect(section?.bullets?.join(" ")).toContain("201");
       expect(section?.bullets?.join(" ")).toContain("202");
       expect(section?.paragraphs?.[0]).toContain("App Store");

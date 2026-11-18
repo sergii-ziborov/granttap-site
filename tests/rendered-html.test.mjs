@@ -49,7 +49,7 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /Get GrantTap on the App Store\./);
   assert.match(html, /href="https:\/\/apps\.apple\.com\/app\/id6809739366"[^>]*>Download on the App Store</);
   assert.match(html, /Now on the App Store for iPhone and iPad/);
-  assert.match(html, /What’s new in GrantTap 1\.0\.2/);
+  assert.match(html, /What’s new in GrantTap\u00a01\.0\.2/);
   assert.match(html, /src="\/brand\/app-store-badge\.svg"/);
   assert.match(html, /Mac: GrantTap 1\.0\.1 is in App Review\. Until Apple approves it, the Mac app is available by TestFlight invitation\./);
   assert.doesNotMatch(html, /GrantTap is available by TestFlight invitation|GrantTap for Mac is available by TestFlight invitation/);
@@ -71,7 +71,7 @@ test("Russian homepage is complete in server HTML with matching SEO metadata", a
   assert.match(html, /<main lang="ru">/);
   assert.match(html, /Под рукой на iPhone/);
   assert.match(html, /Уже в App Store для iPhone и iPad/);
-  assert.match(html, /Что нового в GrantTap 1\.0\.2/);
+  assert.match(html, /Что нового в GrantTap\u00a01\.0\.2/);
   assert.match(html, /Mac: GrantTap 1\.0\.1 на проверке App Review/);
   assert.doesNotMatch(html, /GrantTap доступен по приглашению в TestFlight/);
   assert.match(html, /<title>GrantTap: Claude Code и Codex с iPhone, iPad и Mac.*?<\/title>/);

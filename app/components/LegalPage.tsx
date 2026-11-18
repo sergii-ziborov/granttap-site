@@ -23,6 +23,7 @@ const LEGAL_LINKS = [
 const SUPPORT_EMAIL = "sergii.ziborov@gmail.com";
 
 type Section = {
+  id?: string;
   heading: string;
   paragraphs?: string[];
   bullets?: string[];
@@ -89,7 +90,7 @@ export function LegalPage({
             ))}
           </nav>
         </>}><div className="legal-body">{sections[locale].map((section) => (
-          <section key={section.heading}>
+          <section key={section.heading} id={section.id}>
             <h2>{section.heading}</h2>
             {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             {section.bullets && (

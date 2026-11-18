@@ -54,11 +54,13 @@ test("the home page says GrantTap is on the App Store and keeps Mac to App Revie
   expect(screen.getByText("Now on the App Store for iPhone and iPad")).toBeTruthy();
   expect(screen.getByText(/Version 1\.0\.2 · Free download/)).toBeTruthy();
   expect(screen.getByRole("link", { name: "What’s new ↓" }).getAttribute("href")).toBe("#whats-new");
-  const news = screen.getByRole("region", { name: "What’s new in GrantTap 1.0.2" });
+  const news = screen.getByRole("region", { name: "What’s new in GrantTap\u00a01.0.2" });
   expect(within(news).getAllByRole("article")).toHaveLength(3);
   expect(within(news).getByText(/on the App Store since November 13, 2026\. Version 1\.0\.2 arrived on November 18, 2026/)).toBeTruthy();
   expect(within(news).getByRole("link", { name: "Download on the App Store" }).getAttribute("href")).toBe("https://apps.apple.com/app/id6809739366");
-  expect(within(news).getByRole("heading", { name: "Your computer · GrantTap MCP 0.8.195" })).toBeTruthy();
+  expect(within(news).getByRole("heading", { name: "GrantTap MCP 0.8.195" })).toBeTruthy();
+  expect(within(news).getByText("On npm for your computer")).toBeTruthy();
+  expect(within(news).getByRole("link", { name: "See the full version history →" }).getAttribute("href")).toBe("/support#version-history");
   expect(within(news).getByText("After Apple approves it")).toBeTruthy();
   const availability = document.getElementById("availability")!;
   expect(within(availability).getByRole("heading", { name: "Get GrantTap on the App Store." })).toBeTruthy();

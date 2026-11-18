@@ -14,6 +14,8 @@ import { cancellationSupport } from "../ProductOffer/cancellationSupport";
 
 export type ProductDocumentName = "support" | "terms" | "privacy" | "licenses" | "pricing";
 export type ProductDocument = { title: string; updated: string; intro: string; sections: {
+  /** Optional stable anchor, for example "version-history"; sections without one render no id. */
+  id?: string;
   heading: string; paragraphs?: string[]; bullets?: string[];
   links?: { label: string; href: string }[];
   image?: { name: string; caption: string };

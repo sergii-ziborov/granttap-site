@@ -47,3 +47,7 @@
   .release-news-foot { gap: 12px 18px; }
   .hero-release { margin-top: -8px; }
 }
+
+/* Standalone text links get a 44px touch target without changing their look. */
+.release-news-link { display: inline-flex; align-items: center; min-height: 44px; }
+.hero-release a { display: inline-block; padding-block: 12px; margin-block: -12px; }

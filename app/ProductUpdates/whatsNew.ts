@@ -17,8 +17,8 @@ export function whatsNew(locale: OfferLocale): WhatsNew {
   const mcp = "0.8.195";
   if (locale === "ru") return {
     kicker: "Уже в App Store",
-    title: `Что нового в GrantTap ${ios.version}`,
-    text: `GrantTap для iPhone и iPad в App Store с ${calendarDate(ios.firstPublishedOn, "ru")}. Версия ${ios.version} вышла ${calendarDate(ios.publishedOn, "ru")}: длинный день работы агентов стало проще направлять с телефона.`,
+    title: `Что нового в GrantTap\u00a0${ios.version}`,
+    text: `GrantTap для iPhone и iPad в App Store с ${calendarDate(ios.firstPublishedOn, "ru")}. Версия ${ios.version} вышла ${calendarDate(ios.publishedOn, "ru")}: с ней проще направлять работу агентов с телефона весь день.`,
     columns: [
       { key: "app", label: `iPhone и iPad · ${ios.version}`, status: "В App Store", items: [
         "Переименовывайте чаты, добавляйте в избранное и ставьте флажки. Избранные собраны вверху Now и Tasks.",
@@ -26,11 +26,11 @@ export function whatsNew(locale: OfferLocale): WhatsNew {
         "Mesh в New Task выбирается из списка с поиском, а Repositories ищутся по имени, адресу, Mesh или ветке.",
         "Кнопка модели показывает уровень рассуждений чата, даже если чат начат на компьютере.",
       ] },
-      { key: "computer", label: `Компьютер · GrantTap MCP ${mcp}`, status: "В npm", items: [
-        "Обновляется сам: проверяет новую версию раз в час и не обрывает идущий ход. Выключается в карточке подключения.",
-        "Карточка подключения GrantTap в Claude показывает телефоны этого компьютера и удаляет старые.",
-        "Запуски, которые начал чат, например генерации картинок в Codex, остаются при нём и сообщают, чем закончились.",
-        "Изменения чата и коммиты отвечают быстро даже на загруженном Mac.",
+      { key: "computer", label: `GrantTap MCP ${mcp}`, status: "В npm для компьютера", items: [
+        "Обновляется сам: раз в час проверяет новую версию и переключается, не обрывая идущий ход. Выключается в карточке подключения.",
+        "Карточка подключения GrantTap в Claude показывает телефоны, подключённые к компьютеру, и удаляет старые.",
+        "Связывает запуски, которые начал чат, например генерации картинок в Codex, с этим чатом и его Mesh и сообщает, чем каждый закончился.",
+        "Файлы и расписания, открытые с телефона, приходят быстро даже на загруженном Mac.",
       ] },
       { key: "next", label: "Следующее обновление для iPhone", status: "После одобрения Apple", items: [
         "Запуски, начатые чатом, висят под ним в Now, Tasks и History с итогом: работает, упёрся в лимит, остановлен или готовые картинки.",
@@ -41,13 +41,13 @@ export function whatsNew(locale: OfferLocale): WhatsNew {
     ],
     facts: "Бесплатно · iOS 15 или новее · Apple Watch как дополнение",
     badgeAlt: "Загрузить в App Store",
-    history: "Полная история версий",
+    history: "Вся история версий",
     mac: `Mac: GrantTap ${mac.version} на проверке App Review. Пока Apple не одобрит версию, приложение для Mac доступно по приглашению в TestFlight.`,
     macLink: "GrantTap для Mac",
   };
   return {
     kicker: "Now on the App Store",
-    title: `What’s new in GrantTap ${ios.version}`,
+    title: `What’s new in GrantTap\u00a0${ios.version}`,
     text: `GrantTap for iPhone and iPad has been on the App Store since ${calendarDate(ios.firstPublishedOn, "en")}. Version ${ios.version} arrived on ${calendarDate(ios.publishedOn, "en")} and makes a long day of agent work easier to steer from your phone.`,
     columns: [
       { key: "app", label: `iPhone and iPad · ${ios.version}`, status: "On the App Store", items: [
@@ -56,11 +56,11 @@ export function whatsNew(locale: OfferLocale): WhatsNew {
         "Pick a Mesh in New Task from a searchable list, and search Repositories by name, remote, Mesh or branch.",
         "The model button shows each chat’s reasoning effort, even for chats started on the computer.",
       ] },
-      { key: "computer", label: `Your computer · GrantTap MCP ${mcp}`, status: "On npm", items: [
-        "Keeps itself current: it checks for a new version every hour and carries a running turn over. Turn it off in the connection card.",
-        "In Claude, the GrantTap connection card lists the phones paired with this computer and removes old ones.",
-        "Runs a chat starts, such as Codex image generations, stay attached to that chat and report how they ended.",
-        "A chat’s changes and commits answer quickly, even on a busy Mac.",
+      { key: "computer", label: `GrantTap MCP ${mcp}`, status: "On npm for your computer", items: [
+        "Keeps itself current: it checks for a new version every hour and switches without cutting off a running turn. Turn it off in the connection card.",
+        "In Claude, the GrantTap connection card lists the phones paired with the computer and removes old ones.",
+        "Links the runs a chat starts, such as Codex image generations, to that chat and its Mesh, with how each one ended.",
+        "Files and schedules you open from the phone arrive quickly, even on a busy Mac.",
       ] },
       { key: "next", label: "Next iPhone update", status: "After Apple approves it", items: [
         "Runs a chat started hang beneath it on Now, Tasks and History, with how each ended: working, hit the limit, stopped, or the pictures it made.",
@@ -71,7 +71,7 @@ export function whatsNew(locale: OfferLocale): WhatsNew {
     ],
     facts: "Free · iOS 15 or later · Apple Watch companion",
     badgeAlt: "Download on the App Store",
-    history: "Full version history",
+    history: "See the full version history",
     mac: `Mac: GrantTap ${mac.version} is in App Review. Until Apple approves it, the Mac app is available by TestFlight invitation.`,
     macLink: "GrantTap for Mac",
   };

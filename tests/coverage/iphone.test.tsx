@@ -11,7 +11,7 @@ test("iPhone page links the App Store release, shows real captures and answers c
   const installs = screen.getAllByRole("link", { name: "Download on the App Store" });
   expect(installs.length).toBeGreaterThanOrEqual(2);
   expect(installs.every(link => link.getAttribute("href") === appStoreListingURL)).toBe(true);
-  const news = screen.getByRole("region", { name: "What’s new in GrantTap 1.0.2" });
+  const news = screen.getByRole("region", { name: "What’s new in GrantTap\u00a01.0.2" });
   expect(within(news).getByRole("heading", { name: "iPhone and iPad · 1.0.2" })).toBeTruthy();
   expect(within(news).getByText("On the App Store")).toBeTruthy();
   expect(within(news).getByRole("heading", { name: "Next iPhone update" })).toBeTruthy();

@@ -7,7 +7,7 @@ export function pricingDocument(locale: OfferLocale): ProductDocument {
   const t = pricingCopy[locale];
   return {
     title: locale === "en" ? "Pricing and connection modes" : "Тарифы и режимы подключения",
-    updated: launchOffer.updatedOn, intro: t.availability,
+    updated: launchOffer.updatedOn, intro: `${t.availability} ${t.macAvailability}`,
     sections: [
       ...launchOffer.plans.map((plan, index) => ({ heading: plan.label,
         paragraphs: [`${usdPrice(plan.usdCents, locale)} ${t.month}. ${t.computers(plan.computers)}.`,

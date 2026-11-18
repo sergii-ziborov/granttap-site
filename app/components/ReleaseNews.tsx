@@ -27,7 +27,7 @@ export function ReleaseNews({ locale, headingLevel = 2 }: { locale: Locale; head
         ? <a className="app-store-badge" href={store}><Image src="/brand/app-store-badge.svg" alt={n.badgeAlt} width={144} height={48} unoptimized /></a>
         : <a className="button button-primary" href={installationAction(locale).href}>{installationAction(locale).label}</a>}
       <p className="release-news-facts">{n.facts}</p>
-      <a className="release-news-link" href={localizedProductPath("/support", locale)}>{n.history} →</a>
+      <a className="release-news-link" href={localizedProductPath("/support#version-history", locale)}>{n.history} →</a>
     </div>
     <p className="release-news-mac">{n.mac} <a href={localizedProductPath("/mac", locale)}>{n.macLink} →</a></p>
   </section>;
