@@ -25,17 +25,20 @@ type VersionInReview = { version: string; submittedOn: string };
 
 /**
  * Store availability is verified separately from copy and prices. After Apple
- * publishes a version, set its state to "live" and storeURL to appStoreListingURL.
+ * publishes a version, set its state to "live", storeURL to appStoreListingURL and
+ * publishedOn to the day Apple released it; firstPublishedOn stays the first release.
  * `inReview` names a later version Apple is reviewing while the published one stays live.
  * Purchases: subscriptions are sold in the App Store iPhone and iPad app; Mac Local's
  * purchase screen is in the Mac app, so it follows the Mac app's availability.
  */
 export const releaseAvailability = {
-  checkedOn: "2026-11-16",
-  ios: { state: "live" as StoreState, storeURL: appStoreListingURL as string | null, submittedOn: "2026-11-14",
-    version: "1.0.1", inReview: null as VersionInReview | null },
+  checkedOn: "2026-11-18",
+  ios: { state: "live" as StoreState, storeURL: appStoreListingURL as string | null, submittedOn: "2026-11-16",
+    version: "1.0.2", publishedOn: "2026-11-18" as string | null, firstPublishedOn: "2026-11-13" as string | null,
+    inReview: null as VersionInReview | null },
   mac: { state: "review" as StoreState, storeURL: null as string | null, submittedOn: "2026-11-15" as string | null,
-    version: "1.0.1", inReview: null as VersionInReview | null },
+    version: "1.0.1", publishedOn: null as string | null, firstPublishedOn: null as string | null,
+    inReview: null as VersionInReview | null },
   managedPurchases: "live" as StoreState, macLocalPurchase: "invitation" as StoreState,
 } as const;
 

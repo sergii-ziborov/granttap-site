@@ -6,7 +6,7 @@ import { appStoreListingURL, availabilityNote, installationAction, releaseAvaila
 test("iPhone page links the App Store release, shows real captures and answers common questions", async () => {
   const { container } = render(await IPhonePage({ searchParams: Promise.resolve({}) }));
   expect(screen.getByRole("heading", { level: 1, name: "GrantTap for iPhone" })).toBeTruthy();
-  expect(screen.getByText(/1\.0\.1 for iPhone and iPad is a free download on the App Store/)).toBeTruthy();
+  expect(screen.getByText(/1\.0\.2 for iPhone and iPad is a free download on the App Store/)).toBeTruthy();
   expect(screen.queryByText(/was submitted to App Review/)).toBeNull();
   expect(screen.getByRole("link", { name: "Download on the App Store" }).getAttribute("href")).toBe(appStoreListingURL);
   const gallery = screen.getByRole("heading", { name: "The real app" }).parentElement!;

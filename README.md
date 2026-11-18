@@ -147,9 +147,10 @@ help](https://granttap.com/support) walks through both.
 
 GrantTap for iPhone and iPad is a free download on the
 [App Store](https://apps.apple.com/app/id6809739366) (since 13 November 2026;
-version 1.0.1 since 15 November); Watch is a companion through iPhone. GrantTap
-1.0.1 for Mac was submitted to App Review on 15 November and is available in
-TestFlight by invitation until Apple publishes it. US prices are Personal $4.99/month for 2 publishing computers,
+the current version, 1.0.2, since 18 November); Watch is a companion through
+iPhone. GrantTap 1.0.1 for Mac was submitted to App Review on 15 November, is
+still in review, and is available in TestFlight by invitation until Apple
+publishes it. US prices are Personal $4.99/month for 2 publishing computers,
 Personal Plus $7.99 for 5, and Fleet $13.99 for 15, sold through Apple in the
 iPhone and iPad app. Mac Local is $39.99 once for local control and your own
 relay, bought in the Mac app. An active Personal plan covers the managed Mac
@@ -241,8 +242,9 @@ erasing local history. Beta grants and own-relay use remain separate.
 
 The server configuration is described in [the admission module](worker/account/subscriptions/README.md).
 Commercial relay mode must be enabled and verified before claiming paid
-server enforcement. iPhone and iPad are on the App Store; the Mac app is a
-TestFlight beta by invitation.
+server enforcement. iPhone and iPad are on the App Store (version 1.0.2); the
+Mac app is in App Review and a TestFlight beta by invitation until Apple
+approves it.
 
 ### Browser control (Beta)
 
@@ -289,8 +291,10 @@ on the App Store since 15 November) and public granttap-mcp 0.8.177 (npm,
 1.0.1 for Mac (build 291) was submitted to App Review on 15 November and remains
 a TestFlight build by invitation until Apple publishes it.
 `app/ProductOffer` holds the App Store state: `releaseAvailability.ios` is `live`
-with `appStoreListingURL`, so every iPhone install action, the home availability
-card and `/iphone` use the App Store link and Safari's Smart App Banner. Original dates
+(version 1.0.2, published 18 November) with `appStoreListingURL`, so every iPhone
+install action, the home hero, What's new and availability card, and `/iphone`
+use the App Store link and Safari's Smart App Banner. `releaseAvailability.mac`
+stays `review` until Apple publishes the Mac app. Original dates
 of historical release notes, legal policies, news and screenshots are preserved.
 
 The journal now has 47 published bilingual articles on November 5, with three
