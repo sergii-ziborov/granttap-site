@@ -2,7 +2,7 @@
 
 ## Доступность, TestFlight и покупки {#availability}
 
-GrantTap 1.0 для iPhone и iPad опубликован в App Store 13 ноября 2026 года и загружается бесплатно. Подписки Personal, Personal Plus и Fleet продаются в нём через Apple. Приложение для Mac доступно по приглашению в TestFlight; Mac Local покупается в приложении для Mac.
+GrantTap 1.0 для iPhone и iPad опубликован в App Store 13 ноября 2026 года и загружается бесплатно; текущая версия 1.0.2 вышла 18 ноября 2026 года. Подписки Personal, Personal Plus и Fleet продаются в нём через Apple. Версия 1.0.1 для Mac отправлена в App Review 15 ноября 2026 года; пока Apple её не одобрит, приложение для Mac доступно по приглашению в TestFlight. Mac Local покупается в приложении для Mac.
 
 TestFlight — способ распространения Apple beta-сборки. Работающая TestFlight-сборка не означает, что именно она прошла App Review или что аккаунт купил production-лицензию. Apple управляет сроком действия конкретной TestFlight-сборки.
 

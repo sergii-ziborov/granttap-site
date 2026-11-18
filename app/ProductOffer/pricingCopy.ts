@@ -2,7 +2,7 @@ export const pricingCopy = {
   en: {
     kicker: "One GrantTap. Three sizes.", title: "Choose how many computers to connect.",
     intro: "Every plan includes GrantTap’s core features. Pay for managed computers, not individual agents.",
-    availability: "GrantTap for iPhone and iPad is a free download on the App Store, and the monthly plans are sold in it through Apple. Mac Local is a one-time purchase in GrantTap for Mac, which is available by TestFlight invitation; TestFlight testing includes all features without a purchase. Apple’s purchase sheet shows the local price and any eligible trial.",
+    availability: "GrantTap for iPhone and iPad is a free download on the App Store; subscribe in the app through Apple when you are ready. Apple’s purchase sheet shows the local price and any eligible trial. Mac Local is bought once in GrantTap for Mac. GrantTap 1.0.1 for Mac is in App Review; until Apple approves it, the Mac app is available by TestFlight invitation, and TestFlight testing includes every feature without a purchase.",
     plans: "Monthly managed plans", startHere: "Start here", month: "/ month",
     computers: (count: number) => `Up to ${count} managed computers`,
     descriptions: ["For your main machine and one more computer.", "For several working machines and projects.", "For a larger personal fleet of computers."],
@@ -30,7 +30,7 @@ export const pricingCopy = {
   ru: {
     kicker: "Один GrantTap. Три масштаба.", title: "Выберите, сколько компьютеров подключить",
     intro: "Все основные возможности GrantTap — в каждом плане. Платите за managed-компьютеры, а не за каждого агента.",
-    availability: "GrantTap для iPhone и iPad бесплатно загружается из App Store, а месячные планы оформляются в нём через Apple. Mac Local — разовая покупка в GrantTap для Mac; приложение для Mac доступно по приглашению в TestFlight, где все функции открыты без покупки. Локальную цену и доступный пробный период показывает окно покупки Apple.",
+    availability: "GrantTap для iPhone и iPad бесплатно загружается из App Store; подписку можно оформить в приложении через Apple, когда будете готовы. Локальную цену и доступный пробный период показывает окно покупки Apple. Mac Local покупается один раз в GrantTap для Mac. GrantTap 1.0.1 для Mac на проверке App Review; пока Apple её не одобрит, приложение для Mac доступно по приглашению в TestFlight, где все функции открыты без покупки.",
     plans: "Месячные managed-планы", startHere: "Начните здесь", month: "/ месяц",
     computers: (count: number) => `До ${count} managed-компьютеров`,
     descriptions: ["Для вашей основной машины и второго рабочего компьютера.", "Для нескольких рабочих машин и проектов.", "Для большого личного набора компьютеров."],

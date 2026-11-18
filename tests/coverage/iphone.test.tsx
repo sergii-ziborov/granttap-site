@@ -39,10 +39,10 @@ test("Without a published store URL every install action falls back to an invita
   expect(installationAction("en")).toEqual({ href: "https://apps.apple.com/app/id6809739366", label: "Download on the App Store" });
   try {
     ios.storeURL = null; ios.state = "invitation";
-    expect(installationAction("en")).toEqual({ href: "/support#contact", label: "Request an invitation" });
+    expect(installationAction("en")).toEqual({ href: "/support#contact", label: "Request a TestFlight invitation" });
     expect(availabilityNote("ru")).toMatch(/по приглашению в TestFlight/);
   } finally { Object.assign(ios, saved); }
-  expect(installationAction("en", "mac").label).toBe("Request an invitation");
-  expect(availabilityNote("en", "mac")).toBe("GrantTap 1.0.1 for Mac was submitted to App Review on November 15, 2026. "
-    + "Until Apple publishes it, builds are available by TestFlight invitation.");
+  expect(installationAction("en", "mac").label).toBe("Request a TestFlight invitation");
+  expect(availabilityNote("en", "mac")).toBe("GrantTap 1.0.1 for Mac is in App Review, submitted on November 15, 2026. "
+    + "Until Apple approves it, the app is available by TestFlight invitation.");
 });

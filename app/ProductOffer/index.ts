@@ -58,7 +58,7 @@ export function installationAction(locale: OfferLocale, platform: "ios" | "mac" 
   return url
     ? { href: url, label: locale === "ru" ? "Загрузить в App Store" : "Download on the App Store" }
     : { href: localizedProductPath("/support#contact", locale),
-      label: locale === "ru" ? "Запросить приглашение" : "Request an invitation" };
+      label: locale === "ru" ? "Запросить приглашение в TestFlight" : "Request a TestFlight invitation" };
 }
 
 function calendarDate(day: string | null, locale: OfferLocale): string {
@@ -83,8 +83,8 @@ export function availabilityNote(locale: OfferLocale, platform: "ios" | "mac" = 
       : `GrantTap ${release.version} for ${device} is a free download on the App Store. ${purchases}${next}`;
   }
   if (release.state === "review") return locale === "ru"
-    ? `GrantTap ${release.version} для ${device} отправлен в App Review ${calendarDate(release.submittedOn, locale)}. Пока Apple его не опубликует, сборки доступны по приглашению в TestFlight.`
-    : `GrantTap ${release.version} for ${device} was submitted to App Review on ${calendarDate(release.submittedOn, locale)}. Until Apple publishes it, builds are available by TestFlight invitation.`;
+    ? `GrantTap ${release.version} для ${device} на проверке App Review с ${calendarDate(release.submittedOn, locale)}. Пока Apple не одобрит версию, приложение доступно по приглашению в TestFlight.`
+    : `GrantTap ${release.version} for ${device} is in App Review, submitted on ${calendarDate(release.submittedOn, locale)}. Until Apple approves it, the app is available by TestFlight invitation.`;
   return locale === "ru"
     ? `GrantTap для ${device} доступен по приглашению в TestFlight.`
     : `GrantTap for ${device} is available by TestFlight invitation.`;
