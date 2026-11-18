@@ -1,6 +1,7 @@
 import type { BlogArticle } from "./articleTypes";
 
 const editorialPaths: Record<string, string[]> = {
+  "granttap-1-0-2-app-store-whats-new": ["granttap-iphone-ipad-app-store-launch", "granttap-mesh-repositories-computers", "granttap-devices-runtime-login-cache-maintenance"],
   "granttap-iphone-ipad-app-store-launch": ["granttap-subscription-limits-auto-continue", "granttap-mesh-repositories-computers", "control-claude-code-codex-iphone-granttap"],
   "granttap-subscription-limits-auto-continue": ["granttap-iphone-ipad-app-store-launch", "granttap-choose-ready-agent-task-route", "granttap-devices-runtime-login-cache-maintenance"],
   "granttap-mesh-repositories-computers": ["granttap-iphone-ipad-app-store-launch", "project-mesh-memory-handoff-less-duplicate-work", "move-a-task-without-losing-work"],

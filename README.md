@@ -315,6 +315,14 @@ and [Mesh: one project across repositories and computers](https://granttap.com/b
 Each has at least 2,000 body words per language and three Grok-generated
 illustrations; see [their editorial record](docs/editorial/november2026-launch).
 
+### November 18 story
+
+[GrantTap 1.0.2 is on the App Store: what’s new on your phone and your computer](https://granttap.com/blog/granttap-1-0-2-app-store-whats-new)
+covers 1.0.2, GrantTap MCP 0.8.188–0.8.195 and the next iPhone update, which it
+describes as arriving after Apple approves it. It has at least 2,000 body words
+per language and three diagrams from `scripts/blog/research-illustrations.mjs`;
+see [its editorial record](docs/editorial/november2026-release).
+
 ## Website appearance and discovery
 
 The public site shares Auto, Light and Dark across product pages, the guide and

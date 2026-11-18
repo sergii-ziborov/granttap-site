@@ -1,0 +1,45 @@
+{
+  "preparedOn": "2026-11-18",
+  "timeZone": "Asia/Jerusalem",
+  "facts": {
+    "iosAppStore": "1.0.2 (build 295), released 2026-11-18 per Apple's public lookup; first release 2026-11-13",
+    "mcpNpm": "0.8.195, published 2026-11-18",
+    "mac": "1.0.1 (build 291) in App Review since 2026-11-15",
+    "nextIphoneUpdate": "prepared, not submitted; described without a version or date"
+  },
+  "articles": [
+    {
+      "date": "2026-11-18",
+      "slug": "granttap-1-0-2-app-store-whats-new",
+      "publishedOn": "2026-11-18",
+      "title": {
+        "en": "GrantTap 1.0.2 is on the App Store: what’s new on your phone and your computer",
+        "ru": "GrantTap 1.0.2 в App Store: что нового на телефоне и на компьютере"
+      },
+      "words": {
+        "en": 2685,
+        "ru": 2347
+      },
+      "images": [
+        {
+          "path": "/blog/granttap-1-0-2-app-store-whats-new-cover.webp",
+          "sha256": "5f7686460569b9435ea2e8a84fccf156b4877d60ba732f0c35a8a2fb2f02807e",
+          "width": 1600,
+          "height": 900
+        },
+        {
+          "path": "/blog/granttap-1-0-2-app-store-whats-new-a.webp",
+          "sha256": "97880e6e76eaac59af160e181f6d0eca3bcbc80e86ee667820375194165029f7",
+          "width": 1600,
+          "height": 900
+        },
+        {
+          "path": "/blog/granttap-1-0-2-app-store-whats-new-b.webp",
+          "sha256": "b065eba3df5514572376f6549790edbade0d0a30fdc29dd4074c7bcd99c7ec4d",
+          "width": 1600,
+          "height": 900
+        }
+      ]
+    }
+  ]
+}

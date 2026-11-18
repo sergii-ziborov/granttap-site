@@ -479,4 +479,58 @@ const marks = {
   written.push(await s.render());
 }
 
+const november18 = "18 NOV 2026";
+
+// --- GrantTap 1.0.2 on the App Store: what's new (2026-11-18) ---
+{
+  const s = scene("granttap-1-0-2-app-store-whats-new-cover", { date: november18, title: "GrantTap 1.0.2 is on the App Store", subtitle: "iPhone and iPad on the App Store · the helper on npm", caption: "Release status on November 18, 2026 · end-to-end encrypted between devices" });
+  const phone = s.box(L, 312, 400, 132);
+  s.label(phone, L + 34, 364, "APP STORE", 22, green, 700);
+  s.label(phone, L + 34, 408, "iPhone, iPad 1.0.2", 28, ink, 700);
+  const relay = s.circle(800, 378, 92);
+  s.label(relay, 800, 372, "E2EE", 30, dark, 700, "middle");
+  s.label(relay, 800, 404, "RELAY", 22, dark, 700, "middle");
+  const computer = s.box(R - 400, 312, 400, 132);
+  s.label(computer, R - 366, 364, "NPM", 22, green, 700);
+  s.label(computer, R - 366, 408, "MCP 0.8.195", 28, ink, 700);
+  s.edge(phone, relay, { color: orange, arrow: false });
+  s.edge(relay, computer, { color: orange, arrow: false });
+  const watch = s.box(L, 566, 400, 140);
+  s.label(watch, L + 34, 616, "APPLE WATCH", 22, green, 700);
+  s.label(watch, L + 34, 656, "Quick decisions", 22, ink);
+  s.label(watch, L + 34, 688, "through the paired iPhone", 22, muted);
+  const next = s.box(600, 566, 400, 140, { dash: true, stroke: orange });
+  s.label(next, 634, 616, "NEXT IPHONE UPDATE", 22, orange, 700);
+  s.label(next, 634, 656, "Run tree, commits, Devices", 22, ink);
+  s.label(next, 634, 688, "being prepared", 22, muted);
+  const mac = s.box(R - 400, 566, 400, 140, { dash: true });
+  s.label(mac, R - 366, 616, "MAC 1.0.1", 22, muted, 700);
+  s.label(mac, R - 366, 656, "In App Review", 22, ink);
+  s.label(mac, R - 366, 688, "TestFlight by invitation", 22, muted);
+  s.edge(phone, watch, { arrow: false, dash: true, x: L + 200 });
+  written.push(await s.render());
+}
+{
+  const s = scene("granttap-1-0-2-app-store-whats-new-a", { date: november18, title: "Runs stay with the chat that started them", subtitle: "Image generations and helper runs, each with how it ended", caption: "MCP 0.8.189–0.8.194 · the tree on the phone comes with the next iPhone update" });
+  const chat = s.box(L, 290, R - L, 130, { stroke: orange });
+  s.label(chat, L + 36, 342, "ONE CHAT", 22, orange, 700);
+  s.label(chat, L + 36, 388, "A Claude Code chat that started three Codex runs", 28, ink, 700);
+  const runs = s.flow(560, [["1", "Working", "Still generating"], ["2", "Hit the limit", "A usage limit stopped it", muted], ["3", "Picture ready", "Attached under the chat", green]], { joined: false, h: 160 });
+  for (const run of runs) s.edge(chat, run, { arrow: false, color: muted, x: run.x + run.w / 2 });
+  written.push(await s.render());
+}
+{
+  const s = scene("granttap-1-0-2-app-store-whats-new-b", { date: november18, title: "The helper keeps itself current", subtitle: "Hourly checks, a verified switch and no dropped turn", caption: "GrantTap MCP 0.8.188–0.8.195 · Automatic updates: On or Off in the connection card" });
+  s.flow(290, [["1", "Check", "Once an hour"], ["2", "Stage", "Verify the new version"], ["3", "Switch", "Running turns carry over", green]]);
+  const phones = s.box(L, 520, 690, 196);
+  s.label(phones, L + 36, 572, "PHONES ON THIS COMPUTER", 24, orange, 700);
+  s.label(phones, L + 36, 620, "Listed in Claude's connection card", 25, ink);
+  s.label(phones, L + 36, 664, "Remove old ones after a yes on a phone", 25, muted);
+  const waits = s.box(R - 690, 520, 690, 196);
+  s.label(waits, R - 654, 572, "WHEN AN UPDATE WAITS", 24, green, 700);
+  s.label(waits, R - 654, 620, "connection_status says why", 25, ink);
+  s.label(waits, R - 654, 664, "Phone messages wait ten minutes at most", 25, muted);
+  written.push(await s.render());
+}
+
 console.log(`Wrote ${written.length} illustrations: ${written.join(", ")}`);

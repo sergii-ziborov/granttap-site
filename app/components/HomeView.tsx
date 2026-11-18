@@ -99,8 +99,8 @@ function Pricing({ t, locale }: Props) {
 
 function BlogTeaser({ locale }: { locale: Locale }) {
   const items = locale === "ru"
-    ? [["Агент изменил файл, а приложение старое: проверьте checkout", "granttap-agent-wrong-checkout-worktree"], ["Почему спящий Mac не отвечает агентом", "granttap-sleeping-mac-agent-delivery"], ["MCP, skills и hooks: что выбрать", "granttap-mcp-skills-hooks-practical-guide"]]
-    : [["The agent changed the file. Why is the app still old?", "granttap-agent-wrong-checkout-worktree"], ["Why a sleeping Mac does not answer", "granttap-sleeping-mac-agent-delivery"], ["MCP, skills and hooks: choose the right extension", "granttap-mcp-skills-hooks-practical-guide"]];
+    ? [["GrantTap 1.0.2 в App Store: что нового на телефоне и на компьютере", "granttap-1-0-2-app-store-whats-new"], ["Агент изменил файл, а приложение старое: проверьте checkout", "granttap-agent-wrong-checkout-worktree"], ["MCP, skills и hooks: что выбрать", "granttap-mcp-skills-hooks-practical-guide"]]
+    : [["GrantTap 1.0.2 is on the App Store: what’s new on your phone and your computer", "granttap-1-0-2-app-store-whats-new"], ["The agent changed the file. Why is the app still old?", "granttap-agent-wrong-checkout-worktree"], ["MCP, skills and hooks: choose the right extension", "granttap-mcp-skills-hooks-practical-guide"]];
   return <section className="section-shell home-blog" aria-label={locale === "ru" ? "Блог GrantTap" : "GrantTap Journal"}>
     <p className="kicker">GrantTap Journal</p>
     <h2>{locale === "ru" ? "Идеи и практика управления агентами." : "The thinking and practice behind agent control."}</h2>
