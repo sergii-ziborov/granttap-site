@@ -7,8 +7,15 @@ test("iPhone page links the App Store release, shows real captures and answers c
   const { container } = render(await IPhonePage({ searchParams: Promise.resolve({}) }));
   expect(screen.getByRole("heading", { level: 1, name: "GrantTap for iPhone" })).toBeTruthy();
   expect(screen.getByText(/1\.0\.2 for iPhone and iPad is a free download on the App Store/)).toBeTruthy();
-  expect(screen.queryByText(/was submitted to App Review/)).toBeNull();
-  expect(screen.getByRole("link", { name: "Download on the App Store" }).getAttribute("href")).toBe(appStoreListingURL);
+  expect(screen.queryByText(/for iPhone and iPad (is in|was submitted to) App Review/)).toBeNull();
+  const installs = screen.getAllByRole("link", { name: "Download on the App Store" });
+  expect(installs.length).toBeGreaterThanOrEqual(2);
+  expect(installs.every(link => link.getAttribute("href") === appStoreListingURL)).toBe(true);
+  const news = screen.getByRole("region", { name: "What’s new in GrantTap 1.0.2" });
+  expect(within(news).getByRole("heading", { name: "iPhone and iPad · 1.0.2" })).toBeTruthy();
+  expect(within(news).getByText("On the App Store")).toBeTruthy();
+  expect(within(news).getByRole("heading", { name: "Next iPhone update" })).toBeTruthy();
+  expect(within(news).getByText(/Mac: GrantTap 1\.0\.1 is in App Review/)).toBeTruthy();
   const gallery = screen.getByRole("heading", { name: "The real app" }).parentElement!;
   expect(within(gallery).getAllByRole("img")).toHaveLength(6);
   expect(screen.getByText("Does GrantTap include an AI model?")).toBeTruthy();
@@ -30,7 +37,7 @@ test("iPhone metadata has a full title, self canonical and the Smart App Banner 
   render(await IPhonePage({ searchParams: Promise.resolve({ lang: "ru" }) }));
   expect(screen.getByRole("heading", { level: 1, name: "GrantTap для iPhone" })).toBeTruthy();
   expect(screen.getByText(/бесплатная загрузка в App Store/)).toBeTruthy();
-  expect(screen.queryByText(/отправлена в App Review/)).toBeNull();
+  expect(screen.queryByText(/для iPhone и iPad (на проверке|отправлена в) App Review/)).toBeNull();
 });
 
 test("Without a published store URL every install action falls back to an invitation", () => {

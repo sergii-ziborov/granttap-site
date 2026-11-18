@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ReleaseNews } from "../components/ReleaseNews";
 import { LocaleLinks, SiteFooter, SiteHeader } from "../components/SiteChrome";
 import {
   appStoreId, availabilityNote, installationAction, localizedProductPath, releaseAvailability,
@@ -50,6 +51,7 @@ export default async function IPhonePage(props: PublicPageProps = {}) {
       <div className="mac-page-links"><a className="button button-primary" href={action.href}>{action.label}</a>
         <Link href="/guide/quick-start">{t.guide} →</Link><a href={localizedProductPath("/pricing", locale)}>{t.pricing} →</a></div>
     </section>
+    {releaseAvailability.ios.storeURL && <ReleaseNews locale={locale} />}
     <section className="section-shell mac-page-connect">
       <h2>{t.featuresTitle}</h2>
       <div className="desktop-facts">{t.features.map(([title, detail], index) =>
