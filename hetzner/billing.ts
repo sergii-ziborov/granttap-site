@@ -4,7 +4,7 @@ import type { ManagedBilling } from "../worker/account/subscriptions/api";
 import { appleRetentionBilling } from "../worker/account/subscription-retention/apple";
 import { appleSubscriptionRefresh } from "../worker/account/subscriptions/apple-api";
 
-/** Explicit production configuration. Sandbox purchases do not create paid server rights. */
+/** Explicit production configuration. Sandbox purchases grant the same plan and are recorded apart. */
 export function configuredBilling(env: NodeJS.ProcessEnv): ManagedBilling | undefined {
   const roots = env.APPLE_RECEIPT_ROOTS?.split(":").filter(Boolean);
   const key = env.MANAGED_ADMISSION_KEY_PATH;

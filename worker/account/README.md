@@ -39,9 +39,11 @@ and approves; the phone may also hand the account a chat key (`web-key/`), which
 then lets any of the account's browsers read chats in the page. `devices/` lists
 and signs out every session and computer link for the phone and the web.
 
-`GET /api/account/beta-relay` returns the expiry of an operator-issued relay
-tester grant for the authenticated account, or `null`. A grant never creates a
-subscription and cannot be self-issued through HTTP. The Hetzner SQLite grant
+`GET /api/account/beta-relay` returns `{ expiresAt, exempt }`: the expiry of an
+operator-issued relay tester grant for the authenticated account, or of the App
+Review account's access (`exempt: true`, listed in `GRANTTAP_REVIEW_ACCOUNTS`),
+or `null`. A grant never creates a subscription and cannot be self-issued through
+HTTP; TestFlight app transactions no longer create one. The Hetzner SQLite grant
 is revoked by setting `revoked_at` or expires at `expires_at`; the Apple client
 rechecks it while using managed transport. The account session identifies the
 owner, so a client-provided account ID cannot select another grant.

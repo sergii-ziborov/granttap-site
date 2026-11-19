@@ -8,7 +8,6 @@ import type { AppleReceipts } from "./apple";
 import { ManagedSubscriptions, isManagedSubscription } from "./index";
 import { signManagedTicket } from "./tickets";
 import { reconcileSubscription } from "./reconcile";
-import { routeTestFlight } from "../testflight";
 import { routeManagedComputers } from "./computers";
 import { AccountMachineEndpoints } from "../control-access";
 
@@ -34,7 +33,9 @@ export async function routeManagedSubscriptions(request: Request,
   }
   const { billing } = services;
   if (!billing) return json(503, { error: "Managed billing verification is not configured." });
-  if (path === testFlightPath) return routeTestFlight(request, services.db, services.auth, billing.receipts);
+  // TestFlight builds up to 310 still ask here for access without a purchase; there is none any more.
+  if (path === testFlightPath) return json(410, { code: "subscription_required",
+    error: "The GrantTap relay needs a subscription in every build. In TestFlight, Apple does not charge for it." });
   await new SubscriptionCancellationFeedback(services.db, billing.signingKey).prune();
   const ledger = new ManagedSubscriptions(services.db);
   if (path === computersPath || release) {
@@ -80,14 +81,24 @@ export async function routeManagedSubscriptions(request: Request,
     return json(400, { error: "A signed Apple receipt is required." });
   }
   try {
-    const receipt = path === receiptPath ? await billing.receipts.transaction(signed)
-      : await billing.receipts.notification(signed);
+    let sandbox = false;
+    let receipt;
+    if (path !== receiptPath) receipt = await billing.receipts.notification(signed);
+    else {
+      // Production verification comes first; only a purchase Apple signed for the Sandbox falls through.
+      try { receipt = await billing.receipts.transaction(signed); }
+      catch (error) {
+        if (!billing.receipts.sandboxTransaction) throw error;
+        receipt = await billing.receipts.sandboxTransaction(signed);
+        sandbox = true;
+      }
+    }
     if (!receipt || !isManagedSubscription(receipt)) return json(200, { accepted: false });
     const owner = (account ?? receipt.appAccountToken)?.toLowerCase();
     if (!owner || owner.toLowerCase() !== receipt.appAccountToken?.toLowerCase()) {
       return json(403, { error: "The purchase is linked to a different GrantTap account." });
     }
-    const accepted = await ledger.acceptVerified(owner, receipt);
+    const accepted = sandbox ? await ledger.acceptSandbox(owner, receipt) : await ledger.acceptVerified(owner, receipt);
     return json(200, { accepted, entitlement: await ledger.entitlement(owner) });
   } catch { return json(400, { error: "Apple could not verify this receipt." }); }
 }

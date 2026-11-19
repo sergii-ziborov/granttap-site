@@ -18,7 +18,7 @@ Configure `SUBSCRIPTION_OFFER_KEY_PATH`, `SUBSCRIPTION_OFFER_KEY_ID`, and
 `SUBSCRIPTION_OFFER_ISSUER_ID` together, with an App Store Connect In-App Purchase
 key. The private key is read only by the account server. Never include it in web
 assets, app bundles, npm packages, metrics, or logs. Missing configuration hides
-the offer; a failed Apple check is an explicit error. Trial and TestFlight admission
+the offer; a failed Apple check is an explicit error. Trial and sandbox admission
 are unchanged. The offers must also exist for each product in App Store Connect.
 
 Feedback is optional. A repeated UUID preserves its original content; simultaneous

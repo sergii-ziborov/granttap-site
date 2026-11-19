@@ -72,7 +72,7 @@ export async function routeAccountApi(request: Request, auth: AccountAuth,
   }
   if (request.method === "GET" && action === "beta-relay" && betaRelay) {
     const accountId = await auth.accountForToken(sessionToken(request));
-    return accountId ? json(200, { expiresAt: await betaRelay.activeUntil(accountId) })
+    return accountId ? json(200, await betaRelay.state(accountId))
       : json(401, { error: "Sign in required." });
   }
   if (request.method === "POST" && action === "logout") {

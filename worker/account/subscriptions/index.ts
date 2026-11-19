@@ -2,13 +2,17 @@ import type { D1Database } from "@cloudflare/workers-types";
 import type { JWSTransactionDecodedPayload } from "@apple/app-store-server-library";
 import { SubscriptionRetention } from "../subscription-retention";
 import { launchOffer } from "../../../app/ProductOffer";
+import { REVIEW_ACCESS_LEASE, reviewAccess, type ReviewAccess } from "../review-access";
 
 const products: Record<string, number> = Object.fromEntries(
   launchOffer.plans.map(plan => [plan.productId, plan.computers]));
+type Environment = "production" | "sandbox";
+/** `beta` is an operator's tester grant or the App Review account; `review` marks the latter. */
 type Entitlement = { source: "beta" | "subscription"; limit: number; expiresAt: number;
-  revision: number; productId?: string; isTrial?: boolean };
+  revision: number; productId?: string; isTrial?: boolean; environment?: Environment; review?: true };
 type ReceiptRow = { seat_limit: number; expires_at: number; signed_date: number; revoked: number;
   product_id: string; is_trial: number };
+const tables = { production: "account_subscriptions", sandbox: "account_sandbox_subscriptions" } as const;
 const COMPUTER = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const finite = (value: unknown): value is number => Number.isSafeInteger(value) && Number(value) >= 0;
 export const isManagedSubscription = (receipt: JWSTransactionDecodedPayload) =>
@@ -16,7 +20,8 @@ export const isManagedSubscription = (receipt: JWSTransactionDecodedPayload) =>
 
 /** Only the authenticated API may call this with Apple-verified data. */
 export class ManagedSubscriptions {
-  constructor(private readonly db: D1Database, private readonly now: () => number = Date.now) {}
+  constructor(private readonly db: D1Database, private readonly now: () => number = Date.now,
+              private readonly review: ReviewAccess = reviewAccess()) {}
 
   async originalTransaction(accountId: string): Promise<string | null> {
     const row = await this.db.prepare(`SELECT original_id FROM account_subscriptions
@@ -26,44 +31,72 @@ export class ManagedSubscriptions {
   }
 
   async acceptVerified(accountId: string, receipt: JWSTransactionDecodedPayload): Promise<boolean> {
+    if (!this.acceptable(accountId, receipt, "Production")) return false;
+    const changed = await this.store("production", accountId, receipt);
+    await new SubscriptionRetention(this.db, this.now).recordVerifiedPurchase(accountId, receipt);
+    return changed;
+  }
+
+  /**
+   * A purchase Apple signed for the Sandbox, as TestFlight and App Review make
+   * them, grants the same plan as a production one. It is kept apart so that it
+   * is never sent to Apple's production API or offered retention pricing.
+   */
+  async acceptSandbox(accountId: string, receipt: JWSTransactionDecodedPayload): Promise<boolean> {
+    if (!this.acceptable(accountId, receipt, "Sandbox")) return false;
+    return this.store("sandbox", accountId, receipt);
+  }
+
+  private acceptable(accountId: string, receipt: JWSTransactionDecodedPayload, environment: string): boolean {
     const limit = receipt.productId && products[receipt.productId];
-    if (!limit || receipt.appAccountToken?.toLowerCase() !== accountId.toLowerCase()
+    return !(!limit || receipt.appAccountToken?.toLowerCase() !== accountId.toLowerCase()
       || receipt.bundleId !== "com.ziborov.granttap" || receipt.type !== "Auto-Renewable Subscription"
-      || receipt.environment !== "Production"
+      || receipt.environment !== environment
       || !receipt.originalTransactionId || !receipt.transactionId
       || !finite(receipt.expiresDate) || !finite(receipt.purchaseDate) || !finite(receipt.signedDate)
-      || receipt.signedDate > this.now() + 60_000) return false;
+      || receipt.signedDate > this.now() + 60_000);
+  }
+
+  private async store(environment: Environment, accountId: string, receipt: JWSTransactionDecodedPayload) {
     const revoked = receipt.revocationDate != null || receipt.isUpgraded === true;
+    const table = tables[environment];
     const result = await this.db.prepare(`
-      INSERT INTO account_subscriptions(original_id,account_id,transaction_id,product_id,
+      INSERT INTO ${table}(original_id,account_id,transaction_id,product_id,
         seat_limit,purchase_date,signed_date,expires_at,revoked,is_trial)
       SELECT ?,id,?,?,?,?,?,?,?,? FROM accounts WHERE id=?
       ON CONFLICT(original_id) DO UPDATE SET transaction_id=excluded.transaction_id,
         product_id=excluded.product_id,seat_limit=excluded.seat_limit,purchase_date=excluded.purchase_date,
         signed_date=excluded.signed_date,expires_at=excluded.expires_at,revoked=excluded.revoked,
         is_trial=excluded.is_trial
-      WHERE account_subscriptions.account_id=excluded.account_id
-        AND account_subscriptions.signed_date<excluded.signed_date
-    `).bind(receipt.originalTransactionId, receipt.transactionId, receipt.productId, limit,
-      receipt.purchaseDate, receipt.signedDate, receipt.expiresDate, revoked ? 1 : 0,
+      WHERE ${table}.account_id=excluded.account_id AND ${table}.signed_date<excluded.signed_date
+    `).bind(receipt.originalTransactionId!, receipt.transactionId!, receipt.productId!, products[receipt.productId!],
+      receipt.purchaseDate!, receipt.signedDate!, receipt.expiresDate!, revoked ? 1 : 0,
       receipt.offerType === 1 && receipt.offerDiscountType === "FREE_TRIAL" ? 1 : 0, accountId).run();
-    await new SubscriptionRetention(this.db, this.now).recordVerifiedPurchase(accountId, receipt);
     return result.meta.changes === 1;
   }
 
-  async entitlement(accountId: string): Promise<Entitlement | null> {
+  private async activeReceipt(environment: Environment, accountId: string): Promise<ReceiptRow | null> {
     const receipt = await this.db.prepare(`SELECT seat_limit,expires_at,signed_date,revoked,product_id,is_trial
-      FROM account_subscriptions WHERE account_id=? ORDER BY purchase_date DESC,signed_date DESC LIMIT 1`)
+      FROM ${tables[environment]} WHERE account_id=? ORDER BY purchase_date DESC,signed_date DESC LIMIT 1`)
       .bind(accountId).first<ReceiptRow>();
-    if (receipt && products[receipt.product_id] === receipt.seat_limit
-      && !receipt.revoked && receipt.expires_at > this.now()) {
-      return { source: "subscription", limit: receipt.seat_limit, expiresAt: receipt.expires_at,
-        revision: receipt.signed_date, productId: receipt.product_id, isTrial: receipt.is_trial === 1 };
+    return receipt && products[receipt.product_id] === receipt.seat_limit
+      && !receipt.revoked && receipt.expires_at > this.now() ? receipt : null;
+  }
+
+  /** A production plan wins, then a sandbox plan, then an operator's tester grant, then App Review access. */
+  async entitlement(accountId: string): Promise<Entitlement | null> {
+    for (const environment of ["production", "sandbox"] as const) {
+      const receipt = await this.activeReceipt(environment, accountId);
+      if (receipt) return { source: "subscription", limit: receipt.seat_limit, expiresAt: receipt.expires_at,
+        revision: receipt.signed_date, productId: receipt.product_id, isTrial: receipt.is_trial === 1, environment };
     }
     const beta = await this.db.prepare(`SELECT expires_at FROM account_beta_relay_grants
       WHERE account_id=? AND expires_at>? AND revoked_at IS NULL`)
       .bind(accountId, this.now()).first<{ expires_at: number }>();
     if (beta) return { source: "beta", limit: 100, expiresAt: beta.expires_at, revision: beta.expires_at };
+    if (this.review.includes(accountId)) {
+      return { source: "beta", limit: 100, expiresAt: this.now() + REVIEW_ACCESS_LEASE, revision: 0, review: true };
+    }
     return null;
   }
 
@@ -72,10 +105,11 @@ export class ManagedSubscriptions {
     const right = await this.entitlement(accountId);
     if (!right) return null;
     const now = this.now();
-    const current = right.source === "beta"
+    // The same statement checks that a stored right still holds; App Review access is the server's own list.
+    const current = right.review ? "1" : right.source === "beta"
       ? `EXISTS(SELECT 1 FROM account_beta_relay_grants WHERE account_id=? AND expires_at=?
           AND revoked_at IS NULL AND expires_at>?)`
-      : `EXISTS(SELECT 1 FROM (SELECT signed_date,revoked,expires_at FROM account_subscriptions
+      : `EXISTS(SELECT 1 FROM (SELECT signed_date,revoked,expires_at FROM ${tables[right.environment ?? "production"]}
           WHERE account_id=? ORDER BY purchase_date DESC,signed_date DESC LIMIT 1)
           WHERE signed_date=? AND revoked=0 AND expires_at>?)`;
     const expiry = Math.min(right.expiresAt, now + 5 * 60_000);
@@ -90,7 +124,7 @@ export class ManagedSubscriptions {
           ORDER BY position LIMIT ?))
       ON CONFLICT(computer_id) DO UPDATE SET expires_at=excluded.expires_at,revoked_at=NULL
         WHERE managed_computers.account_id=excluded.account_id
-    `).bind(computerId, accountId, expiry, accountId, right.revision, now,
+    `).bind(computerId, accountId, expiry, ...right.review ? [] : [accountId, right.revision, now],
       explicitEnable ? 1 : 0, computerId, accountId,
       accountId, right.limit, computerId, accountId, right.limit).run();
     return result.meta.changes === 1 ? { ...right, expiresAt: expiry } : null;

@@ -9,7 +9,7 @@ import { routeAccountApi } from "../../worker/account/api";
 import { SqliteD1 } from "./account-sqlite";
 
 describe("account beta relay grant", () => {
-  it("returns only a live grant for the authenticated account", async () => {
+  it("returns only a live operator grant for the authenticated account", async () => {
     const db = new SqliteD1();
     const d1 = db as unknown as D1Database;
     const store = new D1AccountStore(d1);
@@ -29,18 +29,18 @@ describe("account beta relay grant", () => {
     }), auth, undefined, grants);
 
     expect((await read())?.status).toBe(401);
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: null });
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: null, exempt: false });
     await db.prepare("INSERT INTO account_beta_relay_grants(account_id,expires_at) VALUES(?,?)")
       .bind("other", 50_000).run();
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: null });
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: null, exempt: false });
     await db.prepare("INSERT INTO account_beta_relay_grants(account_id,expires_at) VALUES(?,?)")
       .bind("owner", 50_000).run();
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: 50_000 });
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: 50_000, exempt: false });
     now = 50_000;
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: null });
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: null, exempt: false });
     now = 1_000;
     await db.prepare("UPDATE account_beta_relay_grants SET revoked_at=? WHERE account_id=?")
       .bind(2_000, "owner").run();
-    expect(await (await read(token))?.json()).toEqual({ expiresAt: null });
+    expect(await (await read(token))?.json()).toEqual({ expiresAt: null, exempt: false });
   });
 });
