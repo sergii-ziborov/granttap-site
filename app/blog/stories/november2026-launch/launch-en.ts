@@ -83,5 +83,5 @@ If a feature described here does not appear, check both versions before anything
 
 The [GrantTap for iPhone page](/iphone) shows real screens captured with sample data. The [complete guide](/guide) covers every screen, with chapters on pairing, Devices, provider sign-in, the queue, Mesh and troubleshooting. If something does not work, the [support page](/support) lists the information to collect before writing to us: the app build, the MCP version, the time, and the stage at which a message stopped.
 
-If you want to try GrantTap for Mac before Apple publishes it, request a TestFlight invitation through the same support page. Testing in TestFlight includes all features without a purchase, and the Mac app joins the same Account Mesh with the same passkey.
+If you want to try GrantTap for Mac before Apple publishes it, request a TestFlight invitation through the same support page. In TestFlight, local control and your own relay need no purchase; the GrantTap relay needs a subscription there too, with the same free trial, and Apple does not charge for purchases made in TestFlight. The Mac app joins the same Account Mesh with the same passkey.
 `;

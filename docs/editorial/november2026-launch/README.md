@@ -14,7 +14,7 @@ recorded in [calendar-validation.json](calendar-validation.json) and checked by
 
 | Date | Article | EN words | RU words |
 | --- | --- | ---: | ---: |
-| November 16 | [GrantTap for iPhone and iPad is on the App Store](https://granttap.com/blog/granttap-iphone-ipad-app-store-launch) | 2402 | 2073 |
+| November 16 | [GrantTap for iPhone and iPad is on the App Store](https://granttap.com/blog/granttap-iphone-ipad-app-store-launch) | 2426 | 2096 |
 | November 15 | [When a coding agent hits its subscription limit](https://granttap.com/blog/granttap-subscription-limits-auto-continue) | 2432 | 2061 |
 | November 14 | [Mesh: one project across repositories and computers](https://granttap.com/blog/granttap-mesh-repositories-computers) | 2408 | 2057 |
 
