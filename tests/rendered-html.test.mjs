@@ -248,7 +248,7 @@ test("publishes transparent subscription pricing", async () => {
   }
   assert.ok(html.includes("$39.99"));
   assert.match(html, /no separate per-agent or per-task charge/i);
-  assert.match(html, /free download on the App Store; subscribe in the app through Apple/i);
+  assert.match(html, /free download on the App Store\. Every plan starts with 7 days free for new subscribers; subscribe in the app through Apple/i);
   assert.match(html, /GrantTap 1\.0\.1 for Mac is in App Review/);
   assert.doesNotMatch(html, /planned US prices|paid products are not available/i);
   assert.match(html, /eligible new subscribers/i);
