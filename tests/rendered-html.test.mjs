@@ -49,9 +49,11 @@ test("server-renders one Personal product", async () => {
   assert.match(html, /Get GrantTap on the App Store\./);
   assert.match(html, /href="https:\/\/apps\.apple\.com\/app\/id6809739366"[^>]*>Download on the App Store</);
   assert.match(html, /Now on the App Store for iPhone and iPad/);
-  assert.match(html, /What’s new in GrantTap\u00a01\.0\.2/);
+  assert.match(html, /What’s new in GrantTap\u00a01\.0\.4/);
+  assert.match(html, /Version 1\.0\.5 in App Review/);
   assert.match(html, /src="\/brand\/app-store-badge\.svg"/);
-  assert.match(html, /Mac: GrantTap 1\.0\.1 is in App Review\. Until Apple approves it, the Mac app is available by TestFlight invitation\./);
+  assert.match(html, /Mac: GrantTap 1\.0\.1 is now on the Mac App Store, with Mac Local as a one-time purchase in the app\. Version 1\.0\.6 for Mac, with everything new on iPhone, is in App Review\./);
+  assert.match(html, /GrantTap on Mac · On the Mac App Store/);
   assert.doesNotMatch(html, /GrantTap is available by TestFlight invitation|GrantTap for Mac is available by TestFlight invitation/);
   assert.match(html, /Within reach on iPhone/);
   assert.match(html, /Managed access from/);
@@ -71,8 +73,10 @@ test("Russian homepage is complete in server HTML with matching SEO metadata", a
   assert.match(html, /<main lang="ru">/);
   assert.match(html, /Под рукой на iPhone/);
   assert.match(html, /Уже в App Store для iPhone и iPad/);
-  assert.match(html, /Что нового в GrantTap\u00a01\.0\.2/);
-  assert.match(html, /Mac: GrantTap 1\.0\.1 на проверке App Review/);
+  assert.match(html, /Что нового в GrantTap\u00a01\.0\.4/);
+  assert.match(html, /Версия 1\.0\.5 на проверке App Review/);
+  assert.match(html, /Mac: GrantTap 1\.0\.1 теперь в Mac App Store/);
+  assert.doesNotMatch(html, /Mac: GrantTap 1\.0\.1 на проверке App Review/);
   assert.doesNotMatch(html, /GrantTap доступен по приглашению в TestFlight/);
   assert.match(html, /<title>GrantTap: Claude Code и Codex с iPhone, iPad и Mac.*?<\/title>/);
   assert.match(html, /href="https:\/\/granttap\.com\/\?lang=ru"/);
@@ -249,7 +253,8 @@ test("publishes transparent subscription pricing", async () => {
   assert.ok(html.includes("$39.99"));
   assert.match(html, /no separate per-agent or per-task charge/i);
   assert.match(html, /free download on the App Store\. Every plan starts with 7 days free for new subscribers; subscribe in the app through Apple/i);
-  assert.match(html, /GrantTap 1\.0\.1 for Mac is in App Review/);
+  assert.match(html, /GrantTap for Mac is a free download on the Mac App Store\. Mac Local is a one-time purchase in it/);
+  assert.doesNotMatch(html, /GrantTap 1\.0\.1 for Mac is in App Review/);
   assert.doesNotMatch(html, /planned US prices|paid products are not available/i);
   assert.match(html, /eligible new subscribers/i);
   assert.match(html, /href="https:\/\/apps\.apple\.com\/app\/id6809739366"/);

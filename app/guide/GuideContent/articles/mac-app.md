@@ -14,7 +14,7 @@ Mac screenshots в руководстве — настоящий подписа�
 
 ## Установка и первый запуск {#setup}
 
-GrantTap для Mac доступен по приглашению в TestFlight; запросите его через [поддержку](/support?lang=ru#contact). Версия 1.0.1 для Mac отправлена в App Review 15 ноября 2026 года и появится в App Store, когда Apple её одобрит; до этого, в отличие от версии для iPhone и iPad, в App Store Mac-версии нет. Страница исходников и developer build script не являются consumer installer. TestFlight-сборка также не означает подтверждённую покупку.
+GrantTap 1.0.1 для Mac — бесплатная загрузка в Mac App Store с 24 ноября 2026 года; версия 1.0.6 для Mac, со всем, что появилось на iPhone после 1.0.1, отправлена в App Review в тот же день. Mac Local покупается в приложении один раз. Страница исходников и developer build script не являются consumer installer. TestFlight-сборка для тестировщиков не означает подтверждённую покупку.
 
 Для исполнения на этом компьютере установите helper:
 

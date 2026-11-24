@@ -32,14 +32,14 @@ type VersionInReview = { version: string; submittedOn: string };
  * purchase screen is in the Mac app, so it follows the Mac app's availability.
  */
 export const releaseAvailability = {
-  checkedOn: "2026-11-18",
-  ios: { state: "live" as StoreState, storeURL: appStoreListingURL as string | null, submittedOn: "2026-11-16",
-    version: "1.0.2", publishedOn: "2026-11-18" as string | null, firstPublishedOn: "2026-11-13" as string | null,
-    inReview: null as VersionInReview | null },
-  mac: { state: "review" as StoreState, storeURL: null as string | null, submittedOn: "2026-11-15" as string | null,
-    version: "1.0.1", publishedOn: null as string | null, firstPublishedOn: null as string | null,
-    inReview: null as VersionInReview | null },
-  managedPurchases: "live" as StoreState, macLocalPurchase: "invitation" as StoreState,
+  checkedOn: "2026-11-24",
+  ios: { state: "live" as StoreState, storeURL: appStoreListingURL as string | null, submittedOn: "2026-11-23",
+    version: "1.0.4", publishedOn: "2026-11-23" as string | null, firstPublishedOn: "2026-11-13" as string | null,
+    inReview: { version: "1.0.5", submittedOn: "2026-11-23" } as VersionInReview | null },
+  mac: { state: "live" as StoreState, storeURL: appStoreListingURL as string | null, submittedOn: "2026-11-15" as string | null,
+    version: "1.0.1", publishedOn: "2026-11-24" as string | null, firstPublishedOn: "2026-11-24" as string | null,
+    inReview: { version: "1.0.6", submittedOn: "2026-11-24" } as VersionInReview | null },
+  managedPurchases: "live" as StoreState, macLocalPurchase: "live" as StoreState,
 } as const;
 
 export function localizedProductPath(path: string, locale: OfferLocale): string {
@@ -55,8 +55,9 @@ export function usdPrice(cents: number, locale: OfferLocale = "en"): string {
 
 export function installationAction(locale: OfferLocale, platform: "ios" | "mac" = "ios") {
   const url = releaseAvailability[platform].storeURL;
+  const store = platform === "mac" ? "Mac App Store" : "App Store";
   return url
-    ? { href: url, label: locale === "ru" ? "Загрузить в App Store" : "Download on the App Store" }
+    ? { href: url, label: locale === "ru" ? `Загрузить в ${store}` : `Download on the ${store}` }
     : { href: localizedProductPath("/support#contact", locale),
       label: locale === "ru" ? "Запросить приглашение в TestFlight" : "Request a TestFlight invitation" };
 }
@@ -72,15 +73,16 @@ export function availabilityNote(locale: OfferLocale, platform: "ios" | "mac" = 
   const release = releaseAvailability[platform];
   const device = platform === "mac" ? "Mac" : locale === "ru" ? "iPhone и iPad" : "iPhone and iPad";
   if (release.storeURL) {
+    const store = platform === "mac" ? "Mac App Store" : "App Store";
     const purchases = platform === "mac"
-      ? locale === "ru" ? "Подписки и Mac Local оформляются через Apple." : "Subscriptions and Mac Local are purchased through Apple."
+      ? locale === "ru" ? "Подписки и разовая покупка Mac Local оформляются через Apple в приложении." : "Subscriptions and the one-time Mac Local purchase are made through Apple in the app."
       : locale === "ru" ? "Подписки оформляются через Apple в приложении." : "Subscriptions are purchased through Apple in the app.";
     const next = release.inReview ? locale === "ru"
       ? ` Версия ${release.inReview.version} отправлена в App Review ${calendarDate(release.inReview.submittedOn, locale)}.`
       : ` Version ${release.inReview.version} was submitted to App Review on ${calendarDate(release.inReview.submittedOn, locale)}.` : "";
     return locale === "ru"
-      ? `GrantTap ${release.version} для ${device} — бесплатная загрузка в App Store. ${purchases}${next}`
-      : `GrantTap ${release.version} for ${device} is a free download on the App Store. ${purchases}${next}`;
+      ? `GrantTap ${release.version} для ${device} — бесплатная загрузка в ${store}. ${purchases}${next}`
+      : `GrantTap ${release.version} for ${device} is a free download on the ${store}. ${purchases}${next}`;
   }
   if (release.state === "review") return locale === "ru"
     ? `GrantTap ${release.version} для ${device} на проверке App Review с ${calendarDate(release.submittedOn, locale)}. Пока Apple не одобрит версию, приложение доступно по приглашению в TestFlight.`

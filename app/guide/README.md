@@ -25,8 +25,9 @@ outside links may still point to them. Device versions, codes and measurements i
 fixtures are examples. Separate ImageGen art is labelled as art.
 Do not replace a product screenshot with an AI-drawn imitation.
 
-Behavior source basis: native 5f3e1760 (build 316, version 1.0.5; the App Store had 1.0.4,
-build 314, on November 24) plus the unreleased claude/quote-jump commits up to 0f04aaaa
+Behavior source basis: native 5f3e1760 (build 316, version 1.0.5, in App Review since November 23;
+the App Store has 1.0.4, build 314, released November 23; GrantTap 1.0.1 for Mac is on the Mac App
+Store since November 24 with Mac 1.0.6 in review) plus the unreleased claude/quote-jump commits up to 0f04aaaa
 (quote jump, redesigned About with the lot-map credit), MCP 58667cc (0.8.203 on npm),
 the What's New texts of 1.0.2–1.0.5, and the website revision containing this file. Captures do not establish live
 provider authentication, successful user-project transfer or physical-device QA.

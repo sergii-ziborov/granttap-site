@@ -66,7 +66,7 @@ export const copy = {
       ["Decide", "Allow, deny, answer, or retry when the exact session asks for you."],
       ["Continue", "Open the visible timeline and send the next turn with voice, photos, or files."],
     ],
-    desktopKicker: "GrantTap on Mac · In App Review",
+    desktopKicker: "GrantTap on Mac · On the Mac App Store",
     desktopTitle: "The control center is on your computer, too.",
     desktopText: "The Mac app joins the same Account Mesh as iPhone and iPad, with or without an installed helper. Devices lists linked computers by name; the separately installed helper supplies local Tasks, decisions, and usage.",
     desktopFacts: [
@@ -180,7 +180,7 @@ export const copy = {
       ["Решите", "Разрешите, запретите, ответьте или повторите доставку для точной session."],
       ["Продолжите", "Откройте timeline и отправьте следующий ход голосом, с фото или файлом."],
     ],
-    desktopKicker: "GrantTap на Mac · на проверке App Review",
+    desktopKicker: "GrantTap на Mac · в Mac App Store",
     desktopTitle: "Центр управления есть и на вашем компьютере.",
     desktopText: "Приложение Mac входит в тот же Mesh аккаунта, что iPhone и iPad, даже без установленного помощника. Во вкладке «Устройства» видны подключённые компьютеры по имени; отдельно установленный помощник даёт доступ к локальным задачам, решениям и статистике.",
     desktopFacts: [
