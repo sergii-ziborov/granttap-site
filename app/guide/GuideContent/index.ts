@@ -1,5 +1,12 @@
 import restrictions from "./articles/restrictions.md?raw";
 import licensesAndPurchases from "./articles/licenses-and-purchases.md?raw";
+import liveMap from "./articles/live-map.md?raw";
+import contextCompaction from "./articles/context-compaction.md?raw";
+import chatTree from "./articles/chat-tree.md?raw";
+import needsYouActions from "./articles/needs-you-actions.md?raw";
+import changesWorktrees from "./articles/changes-worktrees.md?raw";
+import quotes from "./articles/quotes.md?raw";
+import subscription from "./articles/subscription.md?raw";
 import { guideCatalog } from "./catalog";
 import { buildSearchIndex } from "../GuideNavigation/search";
 import chapter0 from "./articles/quick-start.md?raw";
@@ -53,6 +60,13 @@ import extra8 from "./articles/transcript-sources.md?raw";
 import extra9 from "./articles/coverage.md?raw";
 
 export const guideContent: Record<string, string> = {
+  "live-map": liveMap,
+  "context-compaction": contextCompaction,
+  "chat-tree": chatTree,
+  "needs-you-actions": needsYouActions,
+  "changes-worktrees": changesWorktrees,
+  quotes,
+  subscription,
   "licenses-and-purchases": licensesAndPurchases,
   restrictions,
   "device-management": extra0,

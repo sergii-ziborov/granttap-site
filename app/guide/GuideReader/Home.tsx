@@ -7,14 +7,14 @@ import captures from "../GuideContent/screenshots.json";
 
 const paths = [
   ["01", "Первое подключение", "От установки до первого ответа", "Приложение, MCP, passkey, компьютер и проверка связи.", "quick-start"],
-  ["02", "Ежедневная работа", "Задачи под вашим контролем", "Чат, вопросы, Files, Agents, Automations и перенос работы.", "chat"],
+  ["02", "Ежедневная работа", "Задачи под вашим контролем", "Чат, карта работы, вопросы, подчаты, автоматизации и перенос работы.", "chat"],
   ["03", "Устройства и доступ", "Обновить, войти, разобраться", "Версии MCP и провайдеров, перезапуск и очистка кэша.", "device-management"],
 ];
 
 export function GuideHome() {
   return <div className="guide-home">
     <section className="guide-home-hero">
-      <div className="guide-hero-copy"><span className="guide-eyebrow">Руководство GrantTap · 14 ноября 2026</span>
+      <div className="guide-hero-copy"><span className="guide-eyebrow">Руководство GrantTap · 24 ноября 2026</span>
         <h1>Ваши агенты.<br />Ваша работа.<br /><em>Шаг за шагом.</em></h1>
         <p>Подключите компьютер, продолжите задачу с телефона и проверьте результат. С настоящими экранами, подробными инструкциями и объяснением каждого статуса.</p>
         <div className="guide-hero-actions"><Link className="guide-primary" href="/guide/quick-start">Начать с первого подключения <span>↗</span></Link>
@@ -22,16 +22,16 @@ export function GuideHome() {
         <div className="guide-home-facts"><span><strong>{guideCatalog.length}</strong> глав</span><span><strong>{captures.length}</strong> скриншотов</span><span><strong>01</strong> учебный проект</span></div>
       </div>
       <div className="guide-hero-screens" aria-label="Интерфейс GrantTap">
-        <Image className="hero-screen-back" unoptimized src="/guide/screens/devices-overview.png" alt="Devices: управление компьютером" width={1206} height={2622} priority />
-        <Image className="hero-screen-front" unoptimized src="/guide/screens/chat.png" alt="Чат GrantTap с панелью файлов и агентов" width={1206} height={2622} priority />
+        <Image className="hero-screen-back" unoptimized src="/guide/screens/live-map.png" alt="Карта работы чата" width={1206} height={2622} priority />
+        <Image className="hero-screen-front" unoptimized src="/guide/screens/chat-316.png" alt="Чат GrantTap: модель с усилием и панель работы" width={1206} height={2622} priority />
         <span className="hero-screen-caption">Наше приложение · учебные данные · Simulator</span>
       </div>
     </section>
     <div className="guide-start-strip"><strong>Выберите свою задачу</strong><Link href="/guide/message-delivery">Не пришло сообщение ↗</Link><Link href="/guide/provider-sign-in">Нужно войти в агента ↗</Link><Link href="/guide/automations">Настроить автоматизации ↗</Link><a href="#guide-screens">Посмотреть экраны ↓</a></div>
     <section className="guide-paths" aria-label="Выберите свой маршрут">{paths.map(([number, label, title, description, slug]) =>
       <Link href={`/guide/${slug}`} key={slug}><small>{number} / {label}</small><strong>{title}</strong><p>{description}</p><span>Открыть маршрут ↗</span></Link>)}</section>
-    <section className="guide-home-section"><div className="guide-section-heading"><span className="guide-eyebrow">Сначала самое полезное</span><h2>Что изменилось в руководстве</h2><p>Подробные главы о Devices, входе и обновлении провайдеров, двух видах кэша, автоматизациях в чате, выборе рабочей папки и восстановлении запроса. У каждого сценария — ожидаемый результат и следующий шаг.</p></div>
-      <div className="guide-quick-links">{["device-management", "provider-sign-in", "cache-storage", "automations", "workspaces", "request-recovery"].map(slug => { const page = guideCatalog.find(item => item.slug === slug)!; return <Link href={`/guide/${slug}`} key={slug}><strong>{page.title}</strong><span>{page.summary}</span><b aria-hidden="true">↗</b></Link>; })}</div>
+    <section className="guide-home-section"><div className="guide-section-heading"><span className="guide-eyebrow">Сначала самое полезное</span><h2>Что изменилось в руководстве</h2><p>Новые главы о версиях 1.0.2–1.0.5: карта работы, подчаты и ранние запуски, свайпы в «Требует внимания», цитаты, сжатие контекста, «Изменения» с worktree и подписка с бесплатной неделей. Автоматизации теперь отправляют сообщения по расписанию в чат любого агента. Все новые экраны — на русском.</p></div>
+      <div className="guide-quick-links">{["live-map", "chat-tree", "needs-you-actions", "automations", "changes-worktrees", "quotes"].map(slug => { const page = guideCatalog.find(item => item.slug === slug)!; return <Link href={`/guide/${slug}`} key={slug}><strong>{page.title}</strong><span>{page.summary}</span><b aria-hidden="true">↗</b></Link>; })}</div>
     </section>
     <ScreenshotGallery />
     <section className="guide-home-section"><div className="guide-section-heading"><span className="guide-eyebrow">Как это работает</span><h2>От Send до ответа агента</h2><p>Нажмите на этап схемы. Сохранение на реле, получение компьютером, начало работы и ответ подтверждаются отдельно.</p></div><Diagram id="delivery" /></section>

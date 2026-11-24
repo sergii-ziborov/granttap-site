@@ -70,4 +70,4 @@ granttap status
 
 ## После первого ответа {#next-current}
 
-Настройте [Devices](/guide/device-management), проверьте [вход провайдеров](/guide/provider-sign-in) и изучите [Files и Agents](/guide/transcript-sources). Для повторяющихся задач есть отдельная [Automations](/guide/automations). Все области и версии перечислены в [покрытии руководства](/guide/coverage).
+Настройте [Devices](/guide/device-management), проверьте [вход провайдеров](/guide/provider-sign-in) и изучите [Files и Agents](/guide/transcript-sources). Для сообщений по расписанию есть [Автоматизации](/guide/automations), а за работой агента удобно следить на [Карте работы](/guide/live-map). Все области и версии перечислены в [покрытии руководства](/guide/coverage).

@@ -1,0 +1,78 @@
+{
+  "preparedOn": "2026-11-24",
+  "nativeSource": "0f04aaaa (claude/quote-jump on top of 5f3e1760, version 1.0.5 build 316)",
+  "nativeBuild": "316",
+  "appStoreVersionOnPreparation": {
+    "version": "1.0.4",
+    "build": "314",
+    "releasedAt": "2026-11-23T22:14:31Z",
+    "source": "public App Store lookup"
+  },
+  "mcpSource": "58667cc",
+  "mcpVersion": "0.8.203",
+  "mcpNpmVerified": true,
+  "whatsNewSources": [
+    "1.0.2",
+    "1.0.3",
+    "1.0.4 (build 314)",
+    "1.0.5"
+  ],
+  "chapters": 57,
+  "newChapters": [
+    "live-map",
+    "context-compaction",
+    "chat-tree",
+    "needs-you-actions",
+    "changes-worktrees",
+    "quotes",
+    "subscription"
+  ],
+  "screens": 59,
+  "freshBuild316Screens": 26,
+  "replacedIds": [
+    "now",
+    "tasks",
+    "usage",
+    "chat",
+    "automations"
+  ],
+  "addedIds": [
+    "needs-you-swipe",
+    "approval-swipe",
+    "chat-tree",
+    "chat-marks-menu",
+    "starred",
+    "changes-worktrees",
+    "automation-new",
+    "live-map",
+    "context-compaction",
+    "message-menu",
+    "quote-composer",
+    "quote-sent",
+    "quote-jump",
+    "new-task-permissions",
+    "new-task-form",
+    "pasted-attachment",
+    "usage-call-preview",
+    "queue-limit-wait",
+    "queue-subchat",
+    "about-lot-map",
+    "subscription-offer"
+  ],
+  "capture": {
+    "app": "Debug GrantTap.app 1.0.5 (316) with claude/quote-jump commits, installed unchanged",
+    "device": "iPhone 17 Pro Simulator (1206x2622)",
+    "runtime": "iOS 26.5 Simulator",
+    "locale": "ru (GRANTTAP_TEST_LANGUAGE=ru, AppleLanguages ru, AppleLocale ru_RU)",
+    "statusBar": "simctl status_bar override 9:41, charged 100%, 4 bars, Wi-Fi 3",
+    "navigation": "temporary standalone XCUITest file-command driver launching com.ziborov.granttap by bundle id; not part of the app repository",
+    "screenshot": "xcrun simctl io screenshot, PNG bytes unchanged",
+    "rejected": [
+      "Devices phones list (fixture shows a personal device name)",
+      "Settings list (Language row read English while the UI was forced to Russian)",
+      "first quote composer frame (system keyboard tip overlay)"
+    ]
+  },
+  "scope": "Isolated demo fixtures. No real computer, provider login, purchase, automation, commit or sub-chat was performed.",
+  "publicationScope": "Website guide; no native binary or MCP release."
+}
